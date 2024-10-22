@@ -1,5 +1,7 @@
 - https://kowainik.github.io/books/do-pure-haskell-interview
 - Abstractions in Context lihttps://williamyaoh.gumroad.com/l/CLyzT
+- https://wiki.haskell.org/Typeclassopedia
+- Book: https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/
 - Book:
   - https://atypeofprogramming.com/
   - https://x.com/atopbook
@@ -1954,6 +1956,7 @@ ERRATA:
 
 - solution: using the ~Managed~ monad, from the =managed= package
   #+begin_src haskell
+    import Control.Monad.Managed (managed, runManaged)
     runManaged $ do                                     -- block in the Managed monad
       inHandle <- managed (withFile inFile ReadMode)    -- bracket variant
       outHandle <- managed (withFile outFile WriteMode) -- bracket variant

@@ -2,6 +2,7 @@
 - Tutorial:
   https://o1-labs.github.io/ocamlbyexample/
   https://github.com/o1-labs/ocamlbyexample
+- Tutorial: http://caiorss.github.io/Functional-Programming/ocaml/README.html
 - Tutorial: https://ocaml.org/learn/tutorials/up_and_running.html
 - Tutorial: https://web.archive.org/web/20091214115026/http://www.ocaml-tutorial.org/streams
 - Tutorial: http://xahlee.info/ocaml/ocaml_basics.html

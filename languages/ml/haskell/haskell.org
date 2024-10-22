@@ -26,6 +26,7 @@
 - https://github.com/graninas/software-design-in-haskell
 - https://en.wikipedia.org/wiki/Dependent_type
 - https://en.wikipedia.org/wiki/Generalized_algebraic_data_type
+- tutorial http://caiorss.github.io/Functional-Programming/haskell/README.html
 
 ** deriving - types that can be derived
 |---------+---------------------------------------|
@@ -78,15 +79,16 @@
 |              | example                                | description                          |
 |--------------+----------------------------------------+--------------------------------------|
 |   import ALL | import Data.List                       | brings everything in                 |
-|    import () | import Data.List (intercalate)         | brings ONLY specific things          |
-|           as | import Data.ByteString as BS           | brings everything in AND into BS.    |
-| as qualified | import qualified Data.ByteString as BS | brings into BS.                      |
-|       hiding | import Prelude hiding (foldl, foldr)   | import all except ...                |
+|    import () | import Data.List (intercalate)         | brings ONLY ...                      |
+|           as | import Data.ByteString as BS           | brings everything in AND under BS.   |
+| as qualified | import qualified Data.ByteString as BS | brings it only under BS.             |
+|       hiding | import Prelude hiding (foldl, foldr)   | brings ALL except ...                |
 |--------------+----------------------------------------+--------------------------------------|
 |  type import | import Data.Text (Text)                | to use Text type identifier directly |
 |  + qualified | import qualified Data.Text as T        |                                      |
 |--------------+----------------------------------------+--------------------------------------|
 - you can assign the same import (as) alias to different modules
+- NOTE: here "brings" means, get it into this module's direct access
 ** operators
 *** simples
 |------+---------------------------+--------------------+--------------+-------------------|
@@ -109,7 +111,7 @@
 | =<< |                 flipped bind | Monad m       | (a -> m b) -> m a -> m b             |
 | >>  |                         then | Monad m       | m a ->       m b  -> m b             |
 | >=> | monadic composition, fish op | Monad m       | (a -> m b) -> (b -> m c) -> a -> m c |
-| <=< |                              | Monad m       | (b -> m c) -> (a -> m b) -> a -> m c |
+| <=< |         flipped kleiski fish | Monad m       | (b -> m c) -> (a -> m b) -> a -> m c |
 | <$  |                              | Functor f     | a -> f b -> f a                      |
 |-----+------------------------------+---------------+--------------------------------------|
 | <¦> |          Control.Alternative | Alternative f | f a -> f a -> f a                    |
@@ -188,8 +190,11 @@
 |               | ¦ Right b                  |                   | Left  = we got an error                |
 |---------------+----------------------------+-------------------+----------------------------------------|
 - tuples (aka anonymous products)
+
 ** Standard Library
+
 - https://packages.ubuntu.com/bionic/amd64/ghc/filelist
+
 *** Prelude.hs functions
 https://www.cse.chalmers.se/edu/year/2018/course/TDA452_Functional_Programming/tourofprelude.html#init
 |------------+-------------+------------------------------------------------------------------|
@@ -380,6 +385,7 @@ https://www.cse.chalmers.se/edu/year/2018/course/TDA452_Functional_Programming/t
 |                         |       listToMaybe | [a]            -> Maybe a                                 |
 |                         |       maybeToList | Maybe a        -> [a]                                     |
 |-------------------------+-------------------+-----------------------------------------------------------|
+| Data.Fixed              |              mod' | Real a => a -> a -> a                                     |
 | [[https://hackage.haskell.org/package/base/docs/Data-Monoid.html][Data.Monoid]]             |                   |                                                           |
 | [[https://hackage.haskell.org/package/base/docs/Data-Ord.html][Data.Ord]]                |                   |                                                           |
 | [[https://hackage.haskell.org/package/base/docs/Data-Proxy.html][Data.Proxy]]              |                   |                                                           |
@@ -394,7 +400,17 @@ https://www.cse.chalmers.se/edu/year/2018/course/TDA452_Functional_Programming/t
 | [[https://hackage.haskell.org/package/base/docs/Data-Version.html][Data.Version]]            |                   |                                                           |
 | [[https://hackage.haskell.org/package/base/docs/Data-Void.html][Data.Void]]               |                   |                                                           |
 | [[https://hackage.haskell.org/package/base/docs/Data-Word.html][Data.Word]]               |                   |                                                           |
+|-------------------------+-------------------+-----------------------------------------------------------|
 | [[https://hackage.haskell.org/package/base/docs/Foreign.html][Foreign]]                 |                   | interfacing with another programming language             |
+| [[https://hackage.haskell.org/package/base/docs/Foreign-C-Types.html][Foreign.C.Types]]         |                   | CInt, CUint                                               |
+| [[https://hackage.haskell.org/package/base/docs/Foreign-Ptr.html][Foreign.Ptr]]             |           nullPtr | Ptr a                                                     |
+|                         |           castPtr | Ptr a -> Ptr b                                            |
+| [[https://hackage.haskell.org/package/base/docs/Foreign-Marshal-Alloc.html][Foreign.Marshall.Alloc]]  |       allocaBytes | Int   -> (Ptr a -> IO b) -> IO b                          |
+|                         |       mallocBytes | Int   -> IO (Ptr a)                                       |
+| [[https://hackage.haskell.org/package/base/docs/Foreign-Marshal-Utils.html][Foreign.Marshal.Utils]]   |         copyBytes | Ptr a -> Ptr a -> Int -> IO ()                            |
+|-------------------------+-------------------+-----------------------------------------------------------|
+| GHC.Float               |         float2Int | Float -> Int                                              |
+|                         |         int2Float | Int -> Float                                              |
 | [[https://hackage.haskell.org/package/base/docs/Numeric-Natural.html][Numeric.Natural]]         |           Natural | a type of non negative number                             |
 |                         | minusNaturalMaybe | Natural -> Natural -> Maybe Natural                       |
 | [[https://hackage.haskell.org/package/base/docs/System-CPUTime.html][System.CPUTime]]          |                   |                                                           |
@@ -549,13 +565,14 @@ https://haskell-containers.readthedocs.io/en/latest/
   - STM actions cannot be interleaved with IO actions
 ** typeclasses
 
+#+ATTR_ORG: :width 500
 [[https://www.adit.io/imgs/functors/recap.png]]
 
-- Type Variable
-  - a,b = is the free-variable
-  - e   = for environment
-  - m   = monad
-  - f   = function
+- Type Variable http://jackkelly.name/blog/archives/2024/10/12/a_dictionary_of_single-letter_variable_names/
+  - a,b,c,d = is the free-variable
+  - e       = for environment
+  - m       = monad
+  - f       = function
 - A type can have _at most_ ONE instance of a typeclass.
 - In Haskell, a ~Monad~ must be a unary *type constructor*.
   - aka kind of "* -> *"
@@ -672,6 +689,7 @@ https://haskell-containers.readthedocs.io/en/latest/
 
 * Codebases
 
+- clipboard manager https://github.com/erebe/greenclip/
 - https://lotz84.github.io/haskellbyexample/
 - 30:00  Haskell The Legend of DSLs - Alejandro Serrano | ZuriHac 2022 https://www.youtube.com/watch?v=kdkWhtpX1BA
 - Haskell Adventures in IO - Alejandro Serrano | ZuriHac 2022  https://www.youtube.com/watch?v=Gt6OeWxkcEI

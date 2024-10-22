@@ -6,11 +6,15 @@
   4) https://www.youtube.com/watch?v=YyWZjd_nGDI
 - 22: Purescript for Haskellers https://www.youtube.com/watch?v=Ng1YPjveaWg
 - 20: Introduction to Purescript https://www.youtube.com/watch?v=G-pi6xeXMZs
+- 20: Learn Purescript Together https://www.youtube.com/playlist?list=PLBAMhqKy7jTvGxQSnUMmgUHTABuqXm4_a
 - 18: PureScript's Typesystem | Phil Freeman https://www.youtube.com/watch?v=SPpIbiZFPRY
 - 18: Introduction to Purescript https://www.youtube.com/watch?v=He7gQ56vl4M
+- 18: Kris Jenkins - Communicating in Types | Øredev 2018 https://vimeo.com/302682323
+- 17: Phil Freeman - PureScript's Typesystem https://www.youtube.com/watch?v=SPpIbiZFPRY
 - 17: Building Single Page Web Applications with Purescript and ... https://www.youtube.com/watch?v=HQkxm2P2xbY
 - 16: A Whilwind of PureScript https://www.youtube.com/watch?v=HycbuV6hUfI
 - 15: Learn Functional Programming with PureScript John A De Goes https://www.youtube.com/watch?v=LqYfdmb0eUU
+- 15: Functional Programming on the Web - Becky Conning https://vimeo.com/146396451
 - 14: PureScript (Maybe This Time We Get JavaScript Right) https://www.youtube.com/watch?v=yIlDBPiMb0o
 - Playing with #PureScript libraries for teaching https://www.youtube.com/watch?v=ac9NU7iZ5fI
 - Videos: Branium https://www.youtube.com/playlist?list=PLCbbPAsJ9DaJE5Er9txmPfdCMPV7CnWOv

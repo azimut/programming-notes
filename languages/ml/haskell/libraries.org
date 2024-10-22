@@ -15,6 +15,8 @@
     - https://github.com/ndmitchell/extra
     - https://hackage.haskell.org/package/extra
     - takeEnd dropEnd breakEnd
+- network-uri: un/parsing URIs
+  - https://hackage.haskell.org/package/network-uri
 - network-simple for servers
   - https://hackage.haskell.org/package/network-simple
   - https://github.com/k0001/network-simple
@@ -32,6 +34,7 @@
 - template haskell https://markkarpov.com/tutorial/th.html
 - megaparsec https://markkarpov.com/tutorial/megaparsec
 
+- loop: forM_ but optimizable https://hackage.haskell.org/package/loop
 - terminfo https://github.com/tanakh/cless/blob/master/src/Main.hs
 - euterpea
   - example http://donyaquick.com/interesting-music-in-four-lines-of-code/
@@ -41,7 +44,7 @@
 - conduit: is a framework for dealing with streaming data, such as reading raw bytes from a file, parsing a CSV response body from an HTTP request, or performing an action on all files in a directory tree.
 - parsec: It is defined as a monad transformer that can be stacked on arbitrary monads, and it is also parametric in the input stream type.
 - State of the Haskell ecosystem https://github.com/Gabriella439/post-rfc/blob/main/sotu.md https://github.com/Gabriel439/post-rfc/blob/main/sotu.md
-
+|------------+----+-----+--------------------------------------------------+------------------------------------------------|
 |        <r> |    |     |                                                  |                                                |
 |------------+----+-----+--------------------------------------------------+------------------------------------------------|
 |       lens | 23 | 1.9 | Lenses, Folds and Traversals                     | https://github.com/ekmett/lens/                |
@@ -115,6 +118,8 @@
 | persistent      |    |     | ??                 | https://www.yesodweb.com/book/persistent        |
 |-----------------+----+-----+--------------------+-------------------------------------------------|
 * graphics
+- https://github.com/tobbebex/GPipe-Core?tab=readme-ov-file#readme
+- https://archives.haskell.org/projects.haskell.org/diagrams/
 - reanimate-svg
   - source https://github.com/reanimate/reanimate
   - home https://reanimate.github.io/

@@ -3,6 +3,7 @@
 - https://downloads.haskell.org/ghc/latest/docs/users_guide/
   - [[https://downloads.haskell.org/ghc/latest/docs/users_guide/flags.html][flags]]
   - [[https://downloads.haskell.org/ghc/latest/docs/users_guide/using-warnings.html][warnings]]
+- article https://aosabook.org/en/v2/ghc.html
 
 - $ ghc --make Main.hs
 - -I0, -Iw
@@ -69,6 +70,7 @@
 - https://impurepics.com/posts/2019-08-01-haskell-extensions.html
 - https://limperg.de/ghc-extensions/
 - https://www.schoolofhaskell.com/school/to-infinity-and-beyond/pick-of-the-week/guide-to-ghc-extensions/basic-syntax-extensions
+- 24 Days of GHC Extensions https://blog.ocharles.org.uk/blog/pages/2014-12-01-24-days-of-ghc-extensions.html
 - recommendations https://typeclasses.com/extensions-intro
 - extensions enables by version https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/control.html
 - stats https://mail.haskell.org/pipermail/ghc-steering-committee/2020-November/001876.html
@@ -84,7 +86,7 @@
 |   ghci |    :set[i] -XTypeApplications     |
 |    .hs | {-# LANGUAGE TypeApplications #-} |
 |--------+-----------------------------------|
-** Extension
+** Extensions
 *** Deriving
 |----------------------------+----+----+----+----+---+-------------------------------------------------------------------------------------------------------|
 |                            | -f | 24 | 21 | 10 | R | description                                                                                           |
@@ -143,8 +145,8 @@
 |--------------------------+----+----+----+----+---+----------------------------------------------------------------------------------------------|
 |                          | -f | 24 | 21 | 10 | R |                                                                                              |
 |--------------------------+----+----+----+----+---+----------------------------------------------------------------------------------------------|
-| [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/type_operators.html][TypeOperators]]            | -f | 24 | 21 |    | r | allows operators to be types                                                                 |
-| [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/scoped_type_variables.html][ScopedTypeVariables]]      | -f | 24 | 21 |    | r | allows type applications to refer to type variables rather that ONLY the concrete type       |
+| [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/type_operators.html][TypeOperators]]            | -f | 24 | 21 |    | r | allows operators to used as types names                                                      |
+| [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/scoped_type_variables.html][ScopedTypeVariables]]      | -f | 24 | 21 |    | r | allows _TypeApplications_ to refer to type variables rather that ONLY the concrete type      |
 | [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/kind_signatures.html][KindSignatures]]           | -f | 24 | 21 |    | x | allows us to write the kind signatures for types in our type annotations                     |
 | [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/rank_n_types.html][RankNTypes]]               | -f | 24 | 21 |    | r |                                                                                              |
 | [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/gad_ts.html][GADTs]]                    |    | 24 | 21 |    | x |                                                                                              |
@@ -152,6 +154,7 @@
 | [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/type_applications.html][TypeApplications]]         |    | 24 | 21 |    | r | (@TYPE) to specify a type argument for polymorphic functions                                 |
 | [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/constraint_kind.html][ConstraintKinds]]          |    | 24 | 21 |    | x |                                                                                              |
 | [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/poly_kinds.html#extension-StandaloneKindSignatures][StandaloneKindSignatures]] |    | 24 | 21 |    |   |                                                                                              |
+| [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/explicit_forall.html][ExplicitForAll]]           |    | 24 | 21 |    | r | allows us to make explicit use of *forall*                                                   |
 | [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/data_kinds.html][DataKinds]]                |    | 24 |    |    | x |                                                                                              |
 | [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/ambiguous_types.html][AllowAmbiguousTypes]]      |    |    |    |    |   |                                                                                              |
 | [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/type_families.html][TypeFamilies]]             |    |    |    |    | x |                                                                                              |
@@ -168,7 +171,6 @@
 | [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/existential_quantification.html][ExistentialQuantification]] | -f | 24 | 21 |    | x |                                                                                                     |
 | [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/rebindable_syntax.html#extension-PostfixOperators][PostfixOperators]]          | -f | 24 | 21 |    |   |                                                                                                     |
 | [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/strict.html?highlight=bangpatterns#extension-BangPatterns][BangPatterns]]              |    | 24 | 21 |    | x | makes pattern matching and let bindings strict, instead of lazy, by adding a (!) before the varname |
-| [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/explicit_forall.html][ExplicitForAll]]            |    | 24 | 21 |    | r | allows us to make explicit use of *forall*                                                          |
 | [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/partial_type_signatures.html#extension-NamedWildCards][NamedWildCards]]            |    | 24 | 21 |    | r |                                                                                                     |
 | [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/import_qualified_post.html#extension-ImportQualifiedPost][ImportQualifiedPost]]       |    | 24 | 21 |    |   | allows putting the "qualified" on an import at the EOL                                              |
 | [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/let_generalisation.html#extension-MonoLocalBinds][MonoLocalBinds]]            |    | 24 |    |    |   |                                                                                                     |

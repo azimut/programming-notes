@@ -1,4 +1,22 @@
+- intro tutorial
+  - Why You Should Use PureScript https://gist.github.com/paf31/adfd15fbb1ac8b99fc68be2c9aca8427
+  - https://speakerdeck.com/michaelficarra/getting-started-with-purescript
+  - slides https://github.com/paf31/24-days-of-purescript-2014/blob/master/README.md
+  - slides http://taylor.fausak.me/static/pages/2015-10-22-better-know-a-language-purescript.html#10
+  - slides https://docs.google.com/presentation/d/1IOM9A3Otxufs5xzvYb3yPrT7JDVPhkJVkdaWvVl8R_E/pub?start=false&loop=false&delayms=3000#slide=id.ge6355fa29_1_10
+  - https://github.com/purescript/documentation/blob/master/guides/Getting-Started.md
+
+- snippets https://x.com/purefunctor/media
+
+- android
+  - https://blog.ndk.io/purescript-on-android.html
+
+- js interop
+  - https://filib.io/posts/2015-11-06-writing-purescript-bindings-for-a-jquery-plugin.html
+
+- https://github.com/alpacaaa/elm-to-purescript-cheatsheet
 - https://www.parsonsmatt.org/2015/10/03/elm_vs_purescript.html
 - https://www.parsonsmatt.org/2015/10/05/elm_vs_purescript_ii.html
 - https://www.parsonsmatt.org/2015/10/10/elm_architecture_in_purescript_iii.html
 - https://www.parsonsmatt.org/2015/10/11/elm_architecture_in_purescript_iv_effects.html
+- list https://github.com/xgrommx/awesome-functional-programming/tree/319c4e26c9bbc776d1e72e12431ffc8574a39acf?tab=readme-ov-file#purescript

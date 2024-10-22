@@ -14,6 +14,8 @@
 - Framework: Play Framework.
   Conocimientos deseables: Slick, Monix Task.
 - https://en.wikipedia.org/wiki/Scala_(programming_language)
+- tutorial http://caiorss.github.io/Functional-Programming/scala/README.html
+- recipies http://caiorss.github.io/Functional-Programming/scala/PRACTICAL_RECIPES.html
 
 * Language
 
