@@ -5,7 +5,6 @@
   https://github.com/jwiegley/git-from-the-bottom-up
 
 - diy
-  - https://stefan.saasen.me/articles/git-clone-in-haskell-from-the-bottom-up/
   - https://vaibhavsagar.com/blog/2017/08/13/i-haskell-a-git/
 
 - article | extract dir into new repo
@@ -22,3 +21,52 @@
 - https://ohshitgit.com/
 - https://stackoverflow.com/questions/14352932/view-a-files-history-in-magit
   ~magit-log-buffer-file~, view log for file
+* Reimplementing “git clone” in Haskell from the bottom up
+
+- https://stefan.saasen.me/articles/git-clone-in-haskell-from-the-bottom-up/
+- source https://bitbucket.org/ssaasen/git-in-haskell-from-the-bottom-up
+
+#+begin_src haskell
+pktLine :: String -> String
+pktLine msg = printf "%04s%s" (toHex . (4 +) $ length msg) msg
+
+gitProtoRequest :: String -> String -> String
+gitProtoRequest host repo = pktLine $ "git-upload-pack /" ++ repo ++ "\0host="++host++"\0"
+#+end_src
+
+#+begin_src haskell
+data Remote = Remote
+    getHost       :: String
+  , getPort       :: Maybe Int
+  , getRepository :: String
+} deriving (Eq, Show)
+
+lsRemote' :: Remote -> IO [PacketLine]
+lsRemote' Remote{..} = withSocketsDo $ -- network
+  withConnection getHost (show $ fromMaybe 9418 getPort) $ \sock -> do -- ?
+    let payload = gitProtoRequest getHost getRepository
+    send sock payload
+    response <- receive sock
+    send sock flushPkt -- disconnect
+    return $ parsePacket $ L.fromChunks [response]
+#+end_src
+
+** Code: Git TCP client
+
+#+begin_src haskell
+  {-# LANGUAGE OverloadedStrings, ScopedTypeVariables, BangPatterns #-}
+  module Git.Remote.TcpClient (
+     withConnection
+   , send
+   , receiveWithSideband
+   , receiveFully
+   , receive
+  ) where
+  import qualified Data.ByteString.Char8 as C
+  import qualified Data.ByteString as B
+  import Network.Socket hiding (recv, send)
+  import Network.Socket.ByteString (recv, sendAll)
+  import Data.Monoid (mempty, mappend)
+  import Numeric (readHex)
+  withConnection :: HostName -> ServiceName -> (Socket -> IO b) -> IO b
+#+end_src

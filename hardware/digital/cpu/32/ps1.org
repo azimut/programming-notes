@@ -1,0 +1,2 @@
+- ps1 sdk: https://github.com/sparkletron/PSYQ_Examples
+- ps1 sdk: https://github.com/Lameguy64/PSn00bSDK

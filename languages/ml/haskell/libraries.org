@@ -120,6 +120,12 @@
 * graphics
 - https://github.com/tobbebex/GPipe-Core?tab=readme-ov-file#readme
 - https://archives.haskell.org/projects.haskell.org/diagrams/
+- sdl2
+  - sdl examples https://github.com/palf/haskell-sdl2-examples
+  - game https://github.com/soupi/sdl2-snake
+  - game
+    - https://github.com/incoherentsoftware/defect-process
+    - https://store.steampowered.com/app/1136730/Defect_Process/
 - reanimate-svg
   - source https://github.com/reanimate/reanimate
   - home https://reanimate.github.io/
@@ -184,6 +190,7 @@
 - 17 https://mmhaskell.com/blog/2017/6/5/flexible-data-with-aeson
 - 15 https://web.archive.org/web/20201121162141mp_/https://artyom.me/aeson
 - 15 https://www.schoolofhaskell.com/school/starting-with-haskell/libraries-and-frameworks/text-manipulation/json
+- 12 https://archive.md/20150701185349/http://blog.raynes.me/blog/2012/11/27/easy-json-parsing-in-haskell-with-aeson/
 
 * lens
 - https://chrispenner.ca/posts/advent-of-optics-01
@@ -197,6 +204,7 @@
 
 - https://en.wikibooks.org/wiki/Haskell/Monad_transformers
 - https://www.williamyaoh.com/posts/2023-07-01-why-monad-transformers-matter.html
+- ReaderT https://tech.fpcomplete.com/blog/2017/06/readert-design-pattern/
 
 ** MaybeT
 

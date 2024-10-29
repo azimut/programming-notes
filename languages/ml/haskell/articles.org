@@ -1,6 +1,6 @@
+- articles https://github.com/katychuang/getting-started-with-haskell/tree/master/resources
 - https://mmhaskell.com/blog/2021/10/11/why-haskell
 - https://mmhaskell.com/blog/2021/10/18/using-io-without-the-io-monad
-
 - freemonad https://gist.github.com/safareli/b43f43d3e65483b71b08b894386f4d71
 - tutorial https://dr-knz.net/haskell-for-ocaml-programmers.html
 - 24 https://hasufell.github.io/posts/2024-05-07-ultimate-string-guide.html
@@ -17,13 +17,10 @@
 - 16 https://baatz.io/2016/haskell-in-a-startup/
 - 18 https://www.haskellforall.com/2018/05/how-i-evaluate-haskell-packages.html
 - https://github.com/bitemyapp/fp-course
-- https://github.com/hmemcpy/milewski-ctfp-pdf
 - https://threadreaderapp.com/thread/1277615394560360449.html
 - https://github.com/Kuratoro/haskell.zettel.page/blob/master/2012502.md
 - Applied Haskell is a commercial training program focusing on teaching intermediate Haskell.
   https://www.fpcomplete.com/haskell/syllabus/
-- http://learnyouahaskell.com/chapters
-- https://www.reddit.com/r/haskell/comments/d5og5n/which_book/
 - https://github.com/i-am-tom/haskell-exercises (extensions)
 - https://github.com/caiorss/Functional-Programming
 - What I Wish I Knew When Learning Haskell
@@ -31,7 +28,6 @@
 - https://kowainik.github.io/posts/haskell-mini-patterns
 - https://github.com/soupi/haskell-study-plan
 - https://github.com/alpacaaa/zero-bullshit-haskell
-- https://github.com/tssm/up-to-date-real-world-haskell
 - https://github.com/bitemyapp/learnhaskell
 - https://github.com/graninas/software-design-in-haskell
 * Monad Tutorials

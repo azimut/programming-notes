@@ -5,7 +5,8 @@
   - [[https://downloads.haskell.org/ghc/latest/docs/users_guide/using-warnings.html][warnings]]
 - article https://aosabook.org/en/v2/ghc.html
 
-- $ ghc --make Main.hs
+- $ runhaskell Main.hs
+- $ ghc --make Main.hs -o main && ./main
 - -I0, -Iw
 - +RTS,-RTS
 - -rtsopts to ghc-options in .cabal
@@ -118,35 +119,35 @@
 | [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/undecidable_instances.html][UndecidableInstances]]    |    |    |    |    |   |             |
 |-------------------------+----+----+----+----+---+-------------|
 *** Syntax & Record & Literals
-|--------------------+----+----+----+----+---+-------------------------------------------------------------------------------------|
-|        <c>         |    |    |    |    |   |                                                                                     |
-|                    | -f | 24 | 21 | 10 | R |                                                                                     |
-|--------------------+----+----+----+----+---+-------------------------------------------------------------------------------------|
-|   [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/tuple_sections.html][TupleSections]]    |    | 24 | 21 |    | r | extends (,) to be used for N-length tuple constructuctors (,,) or (,,,) etc...      |
-|--------------------+----+----+----+----+---+-------------------------------------------------------------------------------------|
-|   [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/pattern_guards.html][PatternGuards]]    | -f | 24 | 21 | 10 | x | allows guards after case pattern matchin                                            |
-|  [[https://gitlab.haskell.org/ghc/ghc/-/issues/18631][DoAndIfThenElse]]   |    | 24 | 21 | 10 | x | less strict, if-then-else identation                                                |
-|     [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/empty_case.html#extension-EmptyCase][EmptyCase]]      |    | 24 | 21 |    |   |                                                                                     |
-|     [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/lambda_case.html][LambdaCase]]     |    | 24 |    |    | r | (\case PAT1 -> RET1)                                                                |
-|   [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/block_arguments.html][BlockArguments]]   |    |    |    |    | r | use just (do) in places where you would use ($ do)                                  |
-|     [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/multi_way_if.html][MultiWayIf]]     |    |    |    |    | r | if with mutiple guards, equivalent to a chain of if-then-else                       |
-|--------------------+----+----+----+----+---+-------------------------------------------------------------------------------------|
-|   [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/record_puns.html][NamedFieldPuns]]   |    | 24 | 21 |    | r | Rec1Name { fieldname1 = Rec2Name { fieldname2 } }                                   |
-|  [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/record_wildcards.html][RecordWildCards]]   |    |    |    |    | r | RecName {..} automatically captures each field by the name, OR creates a new record |
-|--------------------+----+----+----+----+---+-------------------------------------------------------------------------------------|
-|   [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/binary_literals.html][BinaryLiterals]]   |    | 24 | 21 |    | x | using "0b110100101" will be desugared in "fromInteger 201"                          |
-|  [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/hex_float_literals.html#extension-HexFloatLiterals][HexFloatLiterals]]  |    | 24 | 21 |    |   |                                                                                     |
-| [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/numeric_underscores.html#extension-NumericUnderscores][NumericUnderscores]] |    | 24 | 21 |    | r | allows "1_000_000" for number literals                                              |
-|    [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/template_haskell.html?highlight=quasiquotes#extension-QuasiQuotes][QuasiQuotes]]     |    |    |    |    |   | [A.string¦foo bar¦] alternate form of string literal                                |
-| [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/overloaded_strings.html][OverloadedStrings]]  |    |    |    |    | r | replaces every string litearal, with a call to ~fromString~ on that literal         |
-|  [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/overloaded_lists.html?highlight=overloadedlists#extension-OverloadedLists][OverloadedLists]]   |    |    |    |    | r |                                                                                     |
-|--------------------+----+----+----+----+---+-------------------------------------------------------------------------------------|
+|--------------------+----+----+----+----+---+-------------------------------------------------------------------------------------------------------|
+|        <c>         |    |    |    |    |   |                                                                                                       |
+|                    | -f | 24 | 21 | 10 | R |                                                                                                       |
+|--------------------+----+----+----+----+---+-------------------------------------------------------------------------------------------------------|
+|   [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/tuple_sections.html][TupleSections]]    |    | 24 | 21 |    | r | extends (,) to be used for N-length tuple constructuctors (,,) or (,,,) etc...                        |
+|--------------------+----+----+----+----+---+-------------------------------------------------------------------------------------------------------|
+|   [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/pattern_guards.html][PatternGuards]]    | -f | 24 | 21 | 10 | x | allows guards after case pattern matchin                                                              |
+|  [[https://gitlab.haskell.org/ghc/ghc/-/issues/18631][DoAndIfThenElse]]   |    | 24 | 21 | 10 | x | less strict, if-then-else identation                                                                  |
+|     [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/empty_case.html#extension-EmptyCase][EmptyCase]]      |    | 24 | 21 |    |   |                                                                                                       |
+|     [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/lambda_case.html][LambdaCase]]     |    | 24 |    |    | r | (\case PAT1 -> RET1)                                                                                  |
+|   [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/block_arguments.html][BlockArguments]]   |    |    |    |    | r | use just (do) in places where you would use ($ do)                                                    |
+|     [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/multi_way_if.html][MultiWayIf]]     |    |    |    |    | r | if with mutiple guards, equivalent to a chain of if-then-else                                         |
+|--------------------+----+----+----+----+---+-------------------------------------------------------------------------------------------------------|
+|   [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/record_puns.html][NamedFieldPuns]]   |    | 24 | 21 |    | r | Rec1Name { fieldname1 = Rec2Name { fieldname2 } }                                                     |
+|  [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/record_wildcards.html][RecordWildCards]]   |    |    |    |    | r | RecName{..} or rec@RecName{..} automatically captures each field by the name, OR creates a new record |
+|--------------------+----+----+----+----+---+-------------------------------------------------------------------------------------------------------|
+|   [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/binary_literals.html][BinaryLiterals]]   |    | 24 | 21 |    | x | using "0b110100101" will be desugared in "fromInteger 201"                                            |
+|  [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/hex_float_literals.html#extension-HexFloatLiterals][HexFloatLiterals]]  |    | 24 | 21 |    |   |                                                                                                       |
+| [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/numeric_underscores.html#extension-NumericUnderscores][NumericUnderscores]] |    | 24 | 21 |    | r | allows "1_000_000" for number literals                                                                |
+|    [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/template_haskell.html?highlight=quasiquotes#extension-QuasiQuotes][QuasiQuotes]]     |    |    |    |    |   | [A.string¦foo bar¦] alternate form of string literal                                                  |
+| [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/overloaded_strings.html][OverloadedStrings]]  |    |    |    |    | r | replaces every string litearal, with a call to ~fromString~ on that literal                           |
+|  [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/overloaded_lists.html?highlight=overloadedlists#extension-OverloadedLists][OverloadedLists]]   |    |    |    |    | r |                                                                                                       |
+|--------------------+----+----+----+----+---+-------------------------------------------------------------------------------------------------------|
 *** Types & Kinds & Signatures
 |--------------------------+----+----+----+----+---+----------------------------------------------------------------------------------------------|
 |                          | -f | 24 | 21 | 10 | R |                                                                                              |
 |--------------------------+----+----+----+----+---+----------------------------------------------------------------------------------------------|
 | [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/type_operators.html][TypeOperators]]            | -f | 24 | 21 |    | r | allows operators to used as types names                                                      |
-| [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/scoped_type_variables.html][ScopedTypeVariables]]      | -f | 24 | 21 |    | r | allows _TypeApplications_ to refer to type variables rather that ONLY the concrete type      |
+| [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/scoped_type_variables.html][ScopedTypeVariables]]      | -f | 24 | 21 |    | r | allows _TypeApplications_ or inner signatures, to refer to type variables in scope (in a fn) |
 | [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/kind_signatures.html][KindSignatures]]           | -f | 24 | 21 |    | x | allows us to write the kind signatures for types in our type annotations                     |
 | [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/rank_n_types.html][RankNTypes]]               | -f | 24 | 21 |    | r |                                                                                              |
 | [[https://downloads.haskell.org/~ghc/latest/docs/users_guide/exts/gad_ts.html][GADTs]]                    |    | 24 | 21 |    | x |                                                                                              |

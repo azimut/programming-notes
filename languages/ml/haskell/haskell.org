@@ -91,15 +91,18 @@
 - NOTE: here "brings" means, get it into this module's direct access
 ** operators
 *** simples
-|------+---------------------------+--------------------+--------------+-------------------|
-|  <r> |                       <r> |        <c>         |     <c>      |        <c>        |
-|  ($) |      function application | map ($ 10) [(+ 1)] |              |                   |
-|  (.) |      function composition |   printLn . show   |              |                   |
-| (++) |              append lists |   [1,2] ++ [3,4]   |              | [a] -> [a] -> [a] |
-| (<>) |  append strings (mappend) |   "foo" <> "bar"   |              |  m  -> m   -> m   |
-| (!!) |             list indexing |     [1,2] !! 0     |              |                   |
-|  (:) | list consing, preppending |     1 : [2, 3]     | [1,2,3] : [] |                   |
-|------+---------------------------+--------------------+--------------+-------------------|
+|------+-----------------------------+--------------------+-----------+-------------------|
+|  <r> |                         <r> |        <c>         |    <c>    |        <c>        |
+|  ($) |        function application | map ($ 10) [(+ 1)] |           |                   |
+| ($!) | strict function application |                    |           |                   |
+|  (.) |        function composition |   printLn . show   |           |                   |
+| (++) |                append lists |   [1,2] ++ [3,4]   | [1,2,3,4] | [a] -> [a] -> [a] |
+| (<>) |    append strings (mappend) |   "foo" <> "bar"   | "foobar"  |  m  -> m   -> m   |
+| (!!) |               list indexing |     [1,2] !! 0     |     1     |  [a] -> Int -> a  |
+|  (:) |   list consing, preppending |     1 : [2, 3]     |  [1,2,3]  |  a -> [a] -> [a]  |
+| (==) |                       equal |       1 == 2       |   False   |  a -> a -> Bool   |
+| (/=) |                   not equal |       1 == 2       |   True    |  a -> a -> Bool   |
+|------+-----------------------------+--------------------+-----------+-------------------|
 *** typeclasses
 |-----+------------------------------+---------------+--------------------------------------|
 |     |                          <r> |               |                                      |
@@ -323,13 +326,14 @@ https://www.cse.chalmers.se/edu/year/2018/course/TDA452_Functional_Programming/t
 |                         |         writeChan | Chan a -> a -> IO ()                                      |
 |                         |          readChan | Chan a -> IO a                                            |
 |-------------------------+-------------------+-----------------------------------------------------------|
-| [[https://hackage.haskell.org/package/base/docs/Control-Exception.html][Control.Exception]]       |             catch | Exception e => IO a        -> (e -> IO a) -> IO a         |
+| [[https://hackage.haskell.org/package/base/docs/Control-Exception.html][Control.Exception]]       |                   |                                                           |
+|                         |             catch | Exception e => IO a        -> (e -> IO a) -> IO a         |
 |                         |            handle | Exception e => (e -> IO a) -> IO a -> IO a                |
 |                         |           ioError | IOError     -> IO a                                       |
 |                         |             throw | Exception e => e           -> a                           |
 |                         |           throwIO | Exception e => e           -> IO a                        |
-| acq,rel,use of resource |           bracket | IO r -> (r -> IO b) -> (r -> IO a) -> IO a                |
-|                         |          bracket_ | IO a -> IO b -> IO c -> IO c                              |
+| acq,rel,use of resource |           bracket | IO r -> (r -> IO a) -> (r -> IO b) -> IO b                |
+|                         |          bracket_ | IO a ->       IO b  ->       IO c  -> IO c                |
 |-------------------------+-------------------+-----------------------------------------------------------|
 | [[https://hackage.haskell.org/package/base/docs/Control-Exception-Safe.html][Control.Exception.Safe]]  |            tryAny | IO a -> IO (Either SomeException a)                       |
 |-------------------------+-------------------+-----------------------------------------------------------|
@@ -350,6 +354,7 @@ https://www.cse.chalmers.se/edu/year/2018/course/TDA452_Functional_Programming/t
 | aka fmap                |             liftM | Monad m                  => (a -> b) -> m a -> m b        |
 | aka <$> (applicative)   |                ap | Monad m                  => m (a -> b) -> m a -> m b      |
 |                         |           filterM | Monad m                  => (a -> m Bool) -> [a] -> m [a] |
+| discards the result     |              void | Functor f                => f a -> f ()                   |
 |-------------------------+-------------------+-----------------------------------------------------------|
 | [[https://hackage.haskell.org/package/base/docs/Control-Monad-IO-Class.html][Control.Monad.IO.Class]]  |            liftIO | IO a -> m a                                               |
 | [[https://hackage.haskell.org/package/base/docs/Control-Monad-Fail.html][Control.Monad.Fail]]      |              fail | MonadFail m => String -> m a                              |
@@ -401,16 +406,26 @@ https://www.cse.chalmers.se/edu/year/2018/course/TDA452_Functional_Programming/t
 | [[https://hackage.haskell.org/package/base/docs/Data-Void.html][Data.Void]]               |                   |                                                           |
 | [[https://hackage.haskell.org/package/base/docs/Data-Word.html][Data.Word]]               |                   |                                                           |
 |-------------------------+-------------------+-----------------------------------------------------------|
+| [[https://hackage.haskell.org/package/base/docs/Debug-Trace.html][Debug.Trace]]             |                   |                                                           |
+| print dynamic msg 1°arg |             trace | String -> a -> a                                          |
+| print static msg        |           traceId | String -> String                                          |
+|                         |         traceShow | Show a => a -> b -> b                                     |
+|                         |       traceShowId | Show a => a -> a                                          |
+|-------------------------+-------------------+-----------------------------------------------------------|
 | [[https://hackage.haskell.org/package/base/docs/Foreign.html][Foreign]]                 |                   | interfacing with another programming language             |
 | [[https://hackage.haskell.org/package/base/docs/Foreign-C-Types.html][Foreign.C.Types]]         |                   | CInt, CUint                                               |
 | [[https://hackage.haskell.org/package/base/docs/Foreign-Ptr.html][Foreign.Ptr]]             |           nullPtr | Ptr a                                                     |
 |                         |           castPtr | Ptr a -> Ptr b                                            |
+|                         |           plusPtr | Ptr a -> Int -> Ptr b                                     |
 | [[https://hackage.haskell.org/package/base/docs/Foreign-Marshal-Alloc.html][Foreign.Marshall.Alloc]]  |       allocaBytes | Int   -> (Ptr a -> IO b) -> IO b                          |
 |                         |       mallocBytes | Int   -> IO (Ptr a)                                       |
 | [[https://hackage.haskell.org/package/base/docs/Foreign-Marshal-Utils.html][Foreign.Marshal.Utils]]   |         copyBytes | Ptr a -> Ptr a -> Int -> IO ()                            |
+| [[https://hackage.haskell.org/package/base/docs/Foreign-Storable.html][Foreign.Storable]]        |              peek | Ptr a -> IO a                                             |
+|                         |       peekByteOff | Ptr b -> Int -> IO a                                      |
 |-------------------------+-------------------+-----------------------------------------------------------|
-| GHC.Float               |         float2Int | Float -> Int                                              |
-|                         |         int2Float | Int -> Float                                              |
+| [[https://hackage.haskell.org/package/base/docs/GHC-Float.html][GHC.Float]]               |         float2Int | Float -> Int                                              |
+|                         |         int2Float | Int   -> Float                                            |
+|-------------------------+-------------------+-----------------------------------------------------------|
 | [[https://hackage.haskell.org/package/base/docs/Numeric-Natural.html][Numeric.Natural]]         |           Natural | a type of non negative number                             |
 |                         | minusNaturalMaybe | Natural -> Natural -> Maybe Natural                       |
 | [[https://hackage.haskell.org/package/base/docs/System-CPUTime.html][System.CPUTime]]          |                   |                                                           |
@@ -418,8 +433,11 @@ https://www.cse.chalmers.se/edu/year/2018/course/TDA452_Functional_Programming/t
 | [[https://hackage.haskell.org/package/base/docs/System-Environment.html][System.Environment]]      |           getArgs | IO [String]                                               |
 |                         |          withArgs | [String] -> IO a -> IO a                                  |
 | [[https://hackage.haskell.org/package/base/docs/System-Exit.html][System.Exit]]             |                   |                                                           |
-|                         |                   | data ExitCode = ExitSuccess ¦ ExitFailure Int             |
+|                         |     data ExitCode | = ExitSuccess ¦ ExitFailure Int                           |
+| stderr msg+exitFailure  |               die | String -> IO a                                            |
 |                         |          exitWith | ExitCode -> IO a                                          |
+|                         |       exitSuccess | IO a                                                      |
+|                         |       exitFailure | IO a                                                      |
 | [[https://hackage.haskell.org/package/base/docs/System-Info.html][System.Info]]             |                   |                                                           |
 | [[https://hackage.haskell.org/package/base/docs/System-Mem.html][System.Mem]]              |                   |                                                           |
 | [[https://hackage.haskell.org/package/base/docs/System-Posix.html][System.Posix]]            |                   |                                                           |
@@ -513,9 +531,19 @@ https://haskell-containers.readthedocs.io/en/latest/
 |           [[https://hackage.haskell.org/package/parsec][parsec]] |          Text.Parsec          |                                                                                       |
 |                  | Text.ParserCombinators.Parsec |                                                                                       |
 |           [[https://hackage.haskell.org/package/pretty][pretty]] |       Text.PrettyPrint        |                                                                                       |
-|          [[https://hackage.haskell.org/package/process][process]] |          System.Cmd           |                                                                                       |
-|                  |        System.Process         |                                                                                       |
-|                  |                               | rawSystem :: String -> [String] -> IO GHC.IO.Exception.ExitCode                       |
+|------------------+-------------------------------+---------------------------------------------------------------------------------------|
+|          [[https://hackage.haskell.org/package/process][process]] |         +System.Cmd+          | DEPRECATED                                                                            |
+|                  |        [[https://hackage.haskell.org/package/process/docs/System-Process.html][System.Process]]         |                                                                                       |
+|                  |                               | shell         :: String        -> CreateProcess                                       |
+|                  |                               | proc          :: FilePath      -> [String] -> CreateProcess                           |
+|                  |                               | createProcess :: CreateProcess -> IO (Maybe Handle, MH, MH, ProcessHandle)            |
+|                  |             sync              | callProcess   :: FilePath      -> [String] -> IO ()                                   |
+|                  |             sync              | callCommand   :: String        -> IO ()                                               |
+|                  |             async             | spawnProcess  :: FilePath      -> [String] -> IO ProcessHandle                        |
+|                  |             async             | spawnCommand  :: String        -> IO ProcessHandle                                    |
+|                  |         (deprecated)          | rawSystem     :: String        -> [String] -> IO GHC.IO.Exception.ExitCode            |
+|                  |         (deprecated)          | system        :: String        -> IO ExitCode                                         |
+|------------------+-------------------------------+---------------------------------------------------------------------------------------|
 |         [[https://hackage.haskell.org/package/terminfo][terminfo]] |    System.Console.Terminfo    |                                                                                       |
 | [[https://hackage.haskell.org/package/template-haskell][template-haskell]] |      Language.Haskell.TH      |                                                                                       |
 |------------------+-------------------------------+---------------------------------------------------------------------------------------|
@@ -689,6 +717,7 @@ https://haskell-containers.readthedocs.io/en/latest/
 
 * Codebases
 
+- hclip (multiplatform lib) https://hackage.haskell.org/package/Hclip-3.0.0.4/docs/src/System-Hclip.html#setClipboard
 - clipboard manager https://github.com/erebe/greenclip/
 - https://lotz84.github.io/haskellbyexample/
 - 30:00  Haskell The Legend of DSLs - Alejandro Serrano | ZuriHac 2022 https://www.youtube.com/watch?v=kdkWhtpX1BA
@@ -704,12 +733,11 @@ https://haskell-containers.readthedocs.io/en/latest/
 - https://wiki.haskell.org/Implement_a_chat_server
 - https://wiki.haskell.org/Roll_your_own_IRC_bot
 - http://stefan.saasen.me/articles/git-clone-in-haskell-from-the-bottom-up/
+  - source https://bitbucket.org/ssaasen/git-in-haskell-from-the-bottom-up
 - https://github.com/jwiegley/git-all/blob/master/Main.hs
 - shell like library https://github.com/luke-clifton/shh
 - https://github.com/omelkonian/AlgoRhythm (music)
-- Project
-  https://github.com/reanimate/reanimate
-  https://github.com/xmonad/xmonad
+- window manager https://github.com/xmonad/xmonad
 - exercises https://github.com/effectfully-ou/haskell-challenges
 - https://github.com/jappeace/cut-the-crap/
   ffmpeg based, cut video silences
@@ -735,6 +763,14 @@ main =
     f [] = "y"
     f xs = unwords xs
 #+end_src
+
+Definition of forever on Control.Monad (possibly)
+#+begin_src haskell
+forever :: IO () -> IO ()
+forever a = a >> forever a -- OR
+forever a = do a; forever a
+#+end_src
+
 
 ** reading a file + system + aeson
 

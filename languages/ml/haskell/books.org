@@ -1,7 +1,9 @@
 - https://kowainik.github.io/books/do-pure-haskell-interview
 - Abstractions in Context lihttps://williamyaoh.gumroad.com/l/CLyzT
 - https://wiki.haskell.org/Typeclassopedia
-- Book: https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/
+- Book:
+  - https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/
+  - https://github.com/hmemcpy/milewski-ctfp-pdf
 - Book:
   - https://atypeofprogramming.com/
   - https://x.com/atopbook
@@ -15,6 +17,9 @@
 - https://leanpub.com/production-haskell/read
 - https://leanpub.com/haskell-cookbook/read
 - https://leanpub.com/haskell-stdlibs
+- http://learnyouahaskell.com/chapters
+- https://github.com/tssm/up-to-date-real-world-haskell
+- https://www.reddit.com/r/haskell/comments/d5og5n/which_book/
 
 * ?? | Learn You a Haskell
 ** DONE 10 Functionally Solving Problems
@@ -7764,3 +7769,18 @@ improved algorithm
 ** 13 Building Applications with Many =Effects=
 ** 14 Building Efficient Programs
 ** 15 Programming with Types
+* 23 | Production Haskell                        | LeanPub  | Matt Parsons
+** 5 The Beginning
+
+- Example: basic form/shape of a batch program
+  #+begin_src haskell
+    main :: IO ()
+    main = do
+      environment <- collectInformation
+      result <- app environment
+      communicate result
+
+    collectInformation :: IO Env
+    app                :: Env -> IO Result -- the meat/processing
+    communicate        :: Result -> IO ()
+  #+end_src
