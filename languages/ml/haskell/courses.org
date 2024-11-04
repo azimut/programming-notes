@@ -1097,41 +1097,36 @@ instance Functor (Reader e) where
 
 ** DONE 5-1 => Monads
 
+*** Monads
+
 #+begin_src haskell
-a -> m b -- m :: * -> *
+  a -> m b -- m :: * -> * -- "Kleisli arrows"
 #+end_src
+- "first introduced into programming, from category theory, by trying to understand how to implement side-effects in a pure language." (see Eugenio Moggi)
+- a generic type that allows you to amplify the ability of another type
+- are NOT impure, they do NOT encapsulate side effects
+- are useful when dealing/modeling with
+  - side effects, but they DO NOT deal with it themselves
+  - partial functions (Maybe a)
+  - state
+    #+begin_src haskell
+      data State s a = State (s -> a)
+    #+end_src
+  - environment
+    #+begin_src haskell
+      data Reader e a = Reader (e -> a)
+    #+end_src
+  - indeterminate functions (aka random)
 
-- Monads
-  - a generic type that allows you to amplify the ability of another type
-  - are NOT impure, they do NOT encapsulate side effects
-  - are useful when dealing with side effects, but they DO NOT deal with it themselves
-
-- "Kleisli arrows", side-effects solved by it
-
-*** TODO Example: Functor State
+**** TODO Example: Functor State
 
 #+begin_src haskell
-  data State s a = State (s -> a)
-  instance Functor (State s) where
-    fmap g (State f) = State f'
-    f' = \st -> ()
-    -- g  :: a -> b
-    -- f  :: s -> (a,s)
-    -- f' :: s -> (b,s)
-#+end_src
-
-*** Example: a functor with state and his proof
-#+begin_src haskell
-data State s a = State (s -> (a,s))
-
-instance Functor (State s) where
-  fmap g (State f) = State -- f'
-    (\st -> let (a,st') = f st
-                b       = g a
-            in  (b,st'))
-  -- g  is (a -> b)
-  -- f  is (s -> (a,s))
-  -- f' is (s -> (b,s))
+  instance Functor (State s) where -- already providing a type variable "s"
+     fmap g (State f) = State f'
+     f'               = \st -> ()
+     -- g  :: a -> b
+     -- f  :: s -> (a,s)
+     -- f' :: s -> (b,s)
 #+end_src
 
 *** >=> "fish operator"

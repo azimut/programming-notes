@@ -14,6 +14,9 @@
   /src/MyLib.hs
   /test/MyLibTest.hs
 
+- tool: cabal2nix
+  - https://archive.md/20170817025221/http://wiki.ocharles.org.uk/Nix
+
 ** versions
 
 - operators
@@ -154,3 +157,18 @@
 |                   |        type        | git                                  |
 |                   |      location      | git://...git url                     |
 |-------------------+--------------------+--------------------------------------|
+** cabal.project
+|---------------------------+------------------------------------------------|
+|                       <r> |                                                |
+|           STANZA/PROPERTY | VALUE                                          |
+|---------------------------+------------------------------------------------|
+|                 packages: | .                                              |
+|                   import: | https://www.stackage.org/lts-21.7/cabal.config |
+|---------------------------+------------------------------------------------|
+| [[https://cabal.readthedocs.io/en/latest/how-to-source-packages.html][source-repository-package]] |                                                |
+|                     type: | git                                            |
+|                 location: | http://github.com/haskell/vector.git           |
+|                   subdir: | vector                                         |
+|                      tag: | 79bdd2edcfaf6b07f7fabc43a7d9c5a2ff93d3ca       |
+|                      tag: | master                                         |
+|---------------------------+------------------------------------------------|

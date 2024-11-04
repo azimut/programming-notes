@@ -1,0 +1,7 @@
+- tutorial https://learnopengl.com/Guest-Articles/2020/Skeletal-Animation
+  - code https://learnopengl.com/code_viewer_gh.php?code=src/8.guest/2020/skeletal_animation/skeletal_animation.cpp
+  - code (someone else) https://github.com/grishavanika/skeletal_animation_sample/
+  - .dae / collada model https://github.com/JoeyDeVries/LearnOpenGL/tree/6159792dec67ff0ba70f7fd2eafd88b683730e64/resources/objects/vampire
+- tutorial https://ogldev.org/www/tutorial38/tutorial38.html
+- models (needs adobe account) https://www.mixamo.com/
+- https://github.com/grishavanika/skeletal_animation_sample/tree/main
