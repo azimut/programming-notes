@@ -13,6 +13,24 @@
     $ git rebase -r --root --exec "git commit --amend --no-edit --reset-author"
     $ git push --force --all
 
+* magit
+|-------+----------------------------------------------------------------|
+| b b   | checkout existing branch                                       |
+| b s   | spinoff branch (take local commit an put them in a new branch) |
+|-------+----------------------------------------------------------------|
+| c w   | write up (amend without changing what was commited)            |
+| c F   | instance fixup (extend chosen past commit)                     |
+|-------+----------------------------------------------------------------|
+| f p   | pull remote without affecting local branch                     |
+| F p   | pull remote                                                    |
+| F r p | pull remote with rebase (useful when we have local commit)     |
+|-------+----------------------------------------------------------------|
+| z z   | stash both (staged and unstaged)                               |
+| z p   | apply+pop stash at point                                       |
+| z a   | apply     stash at point                                       |
+|-------+----------------------------------------------------------------|
+| i     | over a untracked file, dialog to .gitignore that type of file  |
+|-------+----------------------------------------------------------------|
 * debug=1 variables
 |----------------------------+---------------------------------------------------------|
 | GIT_TRACE_PACKET           | shows =packet line= info (with pktline length stripped) |

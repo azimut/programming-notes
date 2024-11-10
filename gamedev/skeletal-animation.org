@@ -1,7 +1,76 @@
-- tutorial https://learnopengl.com/Guest-Articles/2020/Skeletal-Animation
-  - code https://learnopengl.com/code_viewer_gh.php?code=src/8.guest/2020/skeletal_animation/skeletal_animation.cpp
-  - code (someone else) https://github.com/grishavanika/skeletal_animation_sample/
-  - .dae / collada model https://github.com/JoeyDeVries/LearnOpenGL/tree/6159792dec67ff0ba70f7fd2eafd88b683730e64/resources/objects/vampire
 - tutorial https://ogldev.org/www/tutorial38/tutorial38.html
 - models (needs adobe account) https://www.mixamo.com/
 - https://github.com/grishavanika/skeletal_animation_sample/tree/main
+
+- Video: HOW TO BLEND SKELETAL ANIMATIONS // OpenGL Tutorial #42
+  https://www.youtube.com/watch?v=rE7Sf2MqVOw
+
+* Mixamo Paladin Notes
+
+- root node "RootNode"
+  - childrens
+    - "mixamorig:Hips" (a bone)
+    - meshes
+      - no children
+      - identity transform field
+      - mesh "Paladin_J_Nordstrom_Shield"
+      - mesh sword (body)
+      - mesh helmet
+      - mesh (actual sword)
+
+#+begin_src sh
+"Paladin_J_Nordstrom_Shield" -> 2920 weights in "mixamorig:Head"        1448 faces
+"Paladin_J_Nordstrom_Sword"  -> many bones/weights
+"Paladin_J_Nordstrom_Helmet" -> 210  weights in "mixamorig:Shield_joint" 102 faces
+"Paladin_J_Nordstrom"        -> 476  weights in "mixamorig:Sword_joint"  228 faces
+#+end_src
+
+- bone "mixamorig:Head"
+  - weights = #()
+  - offset matrix
+  - custom bone-id = 5
+
+- mesh "Paladin_J_Nordstrom_Shield"
+  - only weighted bone #<CLASSIMP:BONE 2920 "mixamorig:Head">
+  - aka weight=1
+
+* Assimp Quirks
+
+- bone weights array can be empty
+- PROBLEM
+  - you might want to chop an animation, start not from t=0
+  - as such you need to recalculate the total _duration_
+- PROBLEM:
+  - each ~node-animation~ can have different number of elements on his pos/rot/scale
+  - but, have the same number on each one
+  - each ~node-animation~ has a *time* where it should happen
+
+* Tutorial: LearnOpenGL
+
+https://learnopengl.com/Guest-Articles/2020/Skeletal-Animation
+
+- code https://learnopengl.com/code_viewer_gh.php?code=src/8.guest/2020/skeletal_animation/skeletal_animation.cpp
+- code (someone else) https://github.com/grishavanika/skeletal_animation_sample/
+- .dae / collada model https://github.com/JoeyDeVries/LearnOpenGL/tree/6159792dec67ff0ba70f7fd2eafd88b683730e64/resources/objects/vampire
+- based on interpolation
+  - you CANNOT interpolate a v3 rotation vector
+  - you CAN interpolate/lerp a quaternion (slerp)
+- bones are usually in a hierarchy
+  #+ATTR_ORG: :width 500
+  [[https://learnopengl.com/img/guest/2020/skeletal_animation/parent_child.png]]
+- we interpolate between ~animation keyframes~
+- assimp data model
+  #+begin_src python
+    aiScene -> [aiMesh] -> [aiBone] -> [aiVertexWeight]
+                [vert]    name offset    vertexId weight
+                  ⬆-------------------------
+
+    aiScene -> aiNode (root)
+                 name mtrans parent [child]
+
+    aiScene -> [aiAnimation] -> [aiNodeAnim] (channels)
+                 tps duration      name [pos] [rots] [scalings]
+  #+end_src
+  - offset = m4 matrix for "model space->bone space" transformations
+  - tps = ticks per seconds
+        = how fast interpolate between frames
