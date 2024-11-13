@@ -121,7 +121,6 @@ https://www.youtube.com/watch?v=MYP56QJpDr4
       It will be 4, current, index, actual file, common ancestor
 - ~global-magit-file-mode~, magit actions without going into magit-status buffer
 - ~magit-dispatch~ (suggested C-x M-g) alternative to above
-- i , to add to .gitignore or .gitinfo?
 - K , untrack
 - X, Reset (soft/hard) (3/2023 updated)
   s HEAD^ (to pop a commit) (keeps it staged)
@@ -133,11 +132,6 @@ https://www.youtube.com/watch?v=MYP56QJpDr4
   C-c C-a Acked By
   C-c C-t
   M-p     to scroll down on old commit messages
-- b s - create a new spin-off
-  When you make commits to master locally, but then decide
-  that you won't push it.
-  But instead put it on a different branch.
-  And reset your local master.
 - % worktrees
   different branch in a different directory, sharing the same repo
 - $ magit process buffer
@@ -166,9 +160,6 @@ https://www.youtube.com/watch?v=MYP56QJpDr4
     "mutable metadata"
 - git bisect, works best/easily with master branches were only things that pass CI are commited
 - ~magit-blame~, use "c" to cycle to next style
-- ~vc-annotate~ shows the blame besides the line
-- ~vc-revision-other-window~ C-u C-x v ~, to view how the file looks on another branch
-  ~vc-diff~                  C-x v =, to diff the file with master
 - https://hackage.haskell.org/package/git-monitor
   https://github.com/jwiegley/gitlbitwi
 * DONE 20 | Git                       | Missing Semester

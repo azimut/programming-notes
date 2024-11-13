@@ -13,24 +13,46 @@
     $ git rebase -r --root --exec "git commit --amend --no-edit --reset-author"
     $ git push --force --all
 
+
+* vc
+
+- ~vc-annotate~ shows the blame besides the line
+- ~vc-revision-other-window~ C-u C-x v, to view how the file looks on another branch
+  ~vc-diff~                  C-x v =, to diff the file with master
+
+- C-x v v - commit
+- C-x v a - log commit history of region
+- C-x p v - status
+
 * magit
-|-------+----------------------------------------------------------------|
-| b b   | checkout existing branch                                       |
-| b s   | spinoff branch (take local commit an put them in a new branch) |
-|-------+----------------------------------------------------------------|
-| c w   | write up (amend without changing what was commited)            |
-| c F   | instance fixup (extend chosen past commit)                     |
-|-------+----------------------------------------------------------------|
-| f p   | pull remote without affecting local branch                     |
-| F p   | pull remote                                                    |
-| F r p | pull remote with rebase (useful when we have local commit)     |
-|-------+----------------------------------------------------------------|
-| z z   | stash both (staged and unstaged)                               |
-| z p   | apply+pop stash at point                                       |
-| z a   | apply     stash at point                                       |
-|-------+----------------------------------------------------------------|
-| i     | over a untracked file, dialog to .gitignore that type of file  |
-|-------+----------------------------------------------------------------|
+
+- when in log
+  - SPC opens a pane with the commit
+  - n,p cycles through commit history updating pane
+
+t = transient
+a = action
+|---+-----+--------------------------------------------------------------------------|
+| t | a   | description                                                              |
+|---+-----+--------------------------------------------------------------------------|
+| w |     | reword commit at point                                                   |
+| S |     | stages everything                                                        |
+| U |     | unstages everything                                                      |
+| * | ? + | in any (*) transient shows help for action (+)                           |
+| ? | ?   |                                                                          |
+| i |     | over a untracked file, dialog to .gitignore that type of file            |
+| f | p   | fetch remote (without affecting local branch)                            |
+| F | p   | pull remote                                                              |
+|   | r p | pull remote with rebase (useful when we have local commit)               |
+| b | b   | checkout existing branch                                                 |
+|   | s   | ~spinoff branch~ (take local commits an put them in a new branch)        |
+| c | w   | write up (amend without changing what was commited)                      |
+|   | f   | fixup                                                                    |
+|   | F   | ~instant fixup~, opens commit history to pick a place to put our changes |
+| z | z   | stash both (staged and unstaged)                                         |
+|   | p   | ~apply+pop~ stash at point                                               |
+|   | a   | apply     stash at point                                                 |
+|---+-----+--------------------------------------------------------------------------|
 * debug=1 variables
 |----------------------------+---------------------------------------------------------|
 | GIT_TRACE_PACKET           | shows =packet line= info (with pktline length stripped) |

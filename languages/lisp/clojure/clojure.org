@@ -2,6 +2,7 @@
 | home          | https://clojure.org/               |
 | docs official | https://clojuredocs.org/           |
 | docs 3rd      | https://cljdoc.org/                |
+| docs 3rd      | https://clojure-doc.org/           |
 | cheatsheet    | https://clojure.org/api/cheatsheet |
 | quickref      | https://clojuredocs.org/quickref   |
 |---------------+------------------------------------|
@@ -35,20 +36,20 @@ EDN (extensible data notation): https://clojure.github.io/clojure/clojure.edn-ap
 - (comp)    is like Alexandria's (compose) https://clojuredocs.org/clojure.core/comp
 
 ** require/import
-
-|-----------------------------------------+---------------------------------------------------|
-| (ns (:require <HERE> ))                 |                                                   |
-|-----------------------------------------+---------------------------------------------------|
-| [clojure.string :as str]                |                                                   |
-| [clojure.string :refer [split]]         |                                                   |
-| [clojure.string :refer [split] :as str] | both at the same time                             |
-|-----------------------------------------+---------------------------------------------------|
-| ["fs" :as      fs]                      | node.js, make ns available                        |
-| ["fs" :refer  [writeFileSync]           | node.js, make fn available into current namespace |
-| .     :rename {writeFileSync wfs}]      | with a different name "wfs"                       |
-| ["node-fetch$default" :as fetch]        | new(01) cljs syntax to access ~default~ exports   |
-|-----------------------------------------+---------------------------------------------------|
 https://clojurescript.org/news/2021-04-06-release#_library_property_namespaces
+|--------------+-----------------------------------------+---------------------------------------------------|
+|     <c>      |                   <c>                   |                                                   |
+|              |         (ns (:require <HERE> ))         |                                                   |
+|--------------+-----------------------------------------+---------------------------------------------------|
+|     :as      |        [clojure.string :as str]         |                                                   |
+|    :refer    |     [clojure.string :refer [split]]     |                                                   |
+| :refer + :as | [clojure.string :refer [split] :as str] | both at the same time                             |
+|--------------+-----------------------------------------+---------------------------------------------------|
+|     :as      |              ["fs" :as fs]              | node.js, make ns available                        |
+|    :refer    |      ["fs" :refer [writeFileSync]       | node.js, make fn available into current namespace |
+|   :rename    |      :rename {writeFileSync wfs}]       | with a different name "wfs"                       |
+|     :as      |    ["node-fetch$default" :as fetch]     | new(01) cljs syntax to access ~default~ exports   |
+|--------------+-----------------------------------------+---------------------------------------------------|
 
 ** Control Flow
 
@@ -59,8 +60,8 @@ https://clojurescript.org/news/2021-04-06-release#_library_property_namespaces
 - (case)  - aka "switch", cases must be compile time literals
 - (doseq) - can iterate over >1 sequence at the time, like nested for loops
 - (for) aka "list comprehensions"
-- (recur) does not consume stack, must be on tail position
 
+- (recur) does not consume stack, must be on tail position
 - (loop) (recur)
   #+begin_src clojure
     (loop [i 0]
@@ -114,29 +115,32 @@ https://clojurescript.org/news/2021-04-06-release#_library_property_namespaces
 ** Types
 *** Primitive / Literals
 |------------+-------------------------------------------|
-| "foo"      | java.lang.String                          |
-| #"a*b"     | java.util.regex.Pattern                   |
+|    <c>     |                                           |
+|  Example   | Type                                      |
+|------------+-------------------------------------------|
+|   "foo"    | java.lang.String                          |
+|   #"a*b"   | java.util.regex.Pattern                   |
 | true/false |                                           |
-| nil        |                                           |
+|    nil     |                                           |
 |------------+-------------------------------------------|
-| ##Inf      | symbolic values                           |
-| ##-Inf     |                                           |
-| ##NaN      |                                           |
+|   ##Inf    | symbolic values                           |
+|   ##-Inf   |                                           |
+|   ##NaN    |                                           |
 |------------+-------------------------------------------|
-| \f         | java.lang.Character                       |
-| \newline   |                                           |
-| \uNNNN     | unicode                                   |
-| \oNNN      | octal                                     |
+|     \f     | java.lang.Character                       |
+|  \newline  |                                           |
+|   \uNNNN   | unicode                                   |
+|   \oNNN    | octal                                     |
 |------------+-------------------------------------------|
-| 3.14       | doubles (64bit) (~15-17 digits precision) |
-| 3.14M      | big decimal (arbitrary precision)         |
+|    3.14    | doubles (64bit) (~15-17 digits precision) |
+|   3.14M    | big decimal (arbitrary precision)         |
 |------------+-------------------------------------------|
-| 42         | integer (32bit)                           |
-| 42N        | big integer                               |
-| 052        | (octal)                                   |
+|     42     | integer (32bit)                           |
+|    42N     | big integer                               |
+|    052     | (octal)                                   |
 | 2r0101110  |                                           |
-| 8r52       |                                           |
-| 0x2a       |                                           |
+|    8r52    |                                           |
+|    0x2a    |                                           |
 |------------+-------------------------------------------|
 - char https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Character.html
   - Character/isLetter
@@ -168,19 +172,19 @@ https://clojurescript.org/news/2021-04-06-release#_library_property_namespaces
   - str/replace
 
 *** Complex
-
 |----------+----------------------+------------+---------------------+-------------+-------------+--------------------------------------------------|
-|          | constructing         | access     | update              | add         | remove      | destructuring                                    |
+|      <r> |         <c>          |    <c>     |         <c>         |     <c>     |     <c>     |                                                  |
+|          |     constructing     |   access   |       update        |     add     |   remove    | destructuring                                    |
 |----------+----------------------+------------+---------------------+-------------+-------------+--------------------------------------------------|
-| list     | '(1 2 3)             | first/rest |                     | (conj l 2)  |             | [one _ & tail :as all]                           |
-|          | '(~foo 2)            | peek/pop   |                     |             |             |                                                  |
-|          | (quote 1 2 3)        |            |                     |             |             |                                                  |
-|          | (list 1 2 3)         |            |                     |             |             |                                                  |
+|     list |       '(1 2 3)       | first/rest |                     | (conj l 2)  |             | [one _ & tail :as all]                           |
+|          |      '(~foo 2)       |  peek/pop  |                     |             |             |                                                  |
+|          |    (quote 1 2 3)     |            |                     |             |             |                                                  |
+|          |     (list 1 2 3)     |            |                     |             |             |                                                  |
 |----------+----------------------+------------+---------------------+-------------+-------------+--------------------------------------------------|
-| vector   | [1 2 3]              | (get v 0)  | (assoc v 2 9)       | (conj v 2)  |             | sequential destructuring                         |
-|          | (vector 1 2 3)       |            |                     |             |             | associative destructuring                        |
+|   vector |       [1 2 3]        | (get v 0)  |    (assoc v 2 9)    | (conj v 2)  |             | sequential destructuring                         |
+|          |    (vector 1 2 3)    |            |                     |             |             | associative destructuring                        |
 |----------+----------------------+------------+---------------------+-------------+-------------+--------------------------------------------------|
-| hash-map | {"age" 12}           |            |                     |             |             | {age "age" :or {age "Not age provided"} :as all} |
+| hash-map |      {"age" 12}      |            |                     |             |             | {age "age" :or {age "Not age provided"} :as all} |
 |          |                      |            |                     |             |             | {age :age}                                       |
 |          |                      |            |                     |             |             | {age 0}                                          |
 |          |                      |            |                     |             |             | {:keys [age name]}                               |
@@ -190,15 +194,15 @@ https://clojurescript.org/news/2021-04-06-release#_library_property_namespaces
 |          |                      |            |                     |             |             | ________:or {debug false, verbose false}]        |
 |          |                      |            |                     |             |             | {:keys [hobby/hobbies] :person/keys [name age]}  |
 |----------+----------------------+------------+---------------------+-------------+-------------+--------------------------------------------------|
-| record   | (defrecord rr [age]) |            |                     |             |             | "                                                |
+|   record | (defrecord rr [age]) |            |                     |             |             | "                                                |
 |----------+----------------------+------------+---------------------+-------------+-------------+--------------------------------------------------|
-| sets     | #{1 2 3}             | (get s :a) |                     | (conj s :a) | (disj s :a) |                                                  |
-|          | (hash-set 1 2 3)     | (s :a)     |                     |             |             |                                                  |
-|          | (sorted-set 1 2 3)   |            |                     |             |             |                                                  |
-|          | (set [1 2 3])        |            |                     |             |             |                                                  |
+|     sets |       #{1 2 3}       | (get s :a) |                     | (conj s :a) | (disj s :a) |                                                  |
+|          |   (hash-set 1 2 3)   |   (s :a)   |                     |             |             |                                                  |
+|          |  (sorted-set 1 2 3)  |            |                     |             |             |                                                  |
+|          |    (set [1 2 3])     |            |                     |             |             |                                                  |
 |----------+----------------------+------------+---------------------+-------------+-------------+--------------------------------------------------|
-| atoms    | (atom ())            | (deref)    | (swap! foo conj :x) |             |             |                                                  |
-|          |                      | @foo       | (reset! foo ())     |             |             |                                                  |
+|    atoms |      (atom ())       |  (deref)   | (swap! foo conj :x) |             |             |                                                  |
+|          |                      |    @foo    |   (reset! foo ())   |             |             |                                                  |
 |          |                      |            | (compare-and-set!)  |             |             |                                                  |
 |----------+----------------------+------------+---------------------+-------------+-------------+--------------------------------------------------|
 
@@ -226,43 +230,43 @@ https://clojurescript.org/news/2021-04-06-release#_library_property_namespaces
 ** Standard Library
 
 - https://clojure.github.io/clojure/
-  https://clojuredocs.org/clojure.zip
   https://clojure.github.io/clojure/clojure.zip-api.html
 
-|---------------+------------------------------------------------------------------|
-| clojure       |                                                                  |
-|---------------+------------------------------------------------------------------|
-| .core         | Fundamental library of the Clojure language                      |
-| .datafy       | Functions to turn objects into data. Alpha, subject to change    |
-| .math         | Clojure wrapper functions for java.lang.Math static methods.     |
-|---------------+------------------------------------------------------------------|
-| .walk         |                                                                  |
-| .zip          | Functional hierarchical zipper, with navigation, editing, and enumeration. |
-| .sh           |                                                                  |
-| .xml          | XML reading/writing.                                             |
-| .test         | A unit testing framework.                                        |
-|---------------+------------------------------------------------------------------|
-| .template     | Macros that expand to repeated copies of a template expression.  |
-| .string       | Clojure String utilities                                         |
-| .pprint       | A Pretty Printer for Clojure                                     |
-| .set          | Set operations such as union/intersection.                       |
-| .stacktrace   | Print stack traces oriented towards Clojure, not Java.           |
-|---------------+------------------------------------------------------------------|
-| .main         | Top-level main function for Clojure *REPL* and scripts.          |
-| .repl         | Utilities meant to be used interactively at the *REPL*           |
-| .core.server  |                                                                  |
-|---------------+------------------------------------------------------------------|
-| .data         | Non-core data functions.                                         |
-| .edn          |                                                                  |
-| .instant      |                                                                  |
-|---------------+------------------------------------------------------------------|
-| .java.javadoc | A *REPL* helper to quickly open javadocs.                        |
-| .java.browse  | Start a web browser from Clojure                                 |
-| .java.shell   | Conveniently launch a sub-process providing its stdin and collecting its stdout |
-| .java.io      | This file defines polymorphic I/O utility functions for Clojure. |
-| .inspector    | Graphical object inspector for Clojure data structures.          |
-| .reflect      |                                                                  |
-|---------------+------------------------------------------------------------------|
+|--------------+---------------------------------------------------------------------------------|
+|          <r> |                                                                                 |
+|     clojure. |                                                                                 |
+|--------------+---------------------------------------------------------------------------------|
+|         [[https://clojuredocs.org/clojure.core][core]] | Fundamental library of the Clojure language                                     |
+|       [[https://clojuredocs.org/clojure.datafy][datafy]] | Functions to turn objects into data. Alpha, subject to change                   |
+|         [[https://clojuredocs.org/clojure.math][math]] | Clojure wrapper functions for java.lang.Math static methods.                    |
+|--------------+---------------------------------------------------------------------------------|
+|         [[https://clojuredocs.org/clojure.walk][walk]] |                                                                                 |
+|          [[https://clojuredocs.org/clojure.zip][zip]] | Functional hierarchical zipper, with navigation, editing, and enumeration.      |
+|           [[https://clojuredocs.org/clojure.sh][sh]] |                                                                                 |
+|          [[https://clojuredocs.org/clojure.xml][xml]] | XML reading/writing.                                                            |
+|         [[https://clojuredocs.org/clojure.test][test]] | A unit testing framework.                                                       |
+|--------------+---------------------------------------------------------------------------------|
+|     [[https://clojuredocs.org/clojure.template][template]] | Macros that expand to repeated copies of a template expression.                 |
+|       [[https://clojuredocs.org/clojure.string][string]] | Clojure String utilities                                                        |
+|       [[https://clojuredocs.org/clojure.pprint][pprint]] | A Pretty Printer for Clojure                                                    |
+|          [[https://clojuredocs.org/clojure.set][set]] | Set operations such as union/intersection.                                      |
+|   [[https://clojuredocs.org/clojure.stacktrace][stacktrace]] | Print stack traces oriented towards Clojure, not Java.                          |
+|--------------+---------------------------------------------------------------------------------|
+|         [[https://clojuredocs.org/clojure.main][main]] | Top-level main function for Clojure *REPL* and scripts.                         |
+|         [[https://clojuredocs.org/clojure.repl][repl]] | Utilities meant to be used interactively at the *REPL*                          |
+|  [[https://clojuredocs.org/clojure.core.server][core.server]] |                                                                                 |
+|--------------+---------------------------------------------------------------------------------|
+|         [[https://clojuredocs.org/clojure.data][data]] | Non-core data functions.                                                        |
+|          [[https://clojuredocs.org/clojure.edn][edn]] |                                                                                 |
+|      [[https://clojuredocs.org/clojure.instant][instant]] |                                                                                 |
+|--------------+---------------------------------------------------------------------------------|
+| [[https://clojuredocs.org/clojure.java.javadoc][java.javadoc]] | A *REPL* helper to quickly open javadocs.                                       |
+|  [[https://clojuredocs.org/clojure.java.browse][java.browse]] | Start a web browser from Clojure                                                |
+|   [[https://clojuredocs.org/clojure.java.shell][java.shell]] | Conveniently launch a sub-process providing its stdin and collecting its stdout |
+|      [[https://clojuredocs.org/clojure.java.io][java.io]] | This file defines polymorphic I/O utility functions for Clojure.                |
+|    [[https://clojuredocs.org/clojure.java.inspector][inspector]] | Graphical object inspector for Clojure data structures.                         |
+|      [[https://clojuredocs.org/clojure.java.reflect][reflect]] |                                                                                 |
+|--------------+---------------------------------------------------------------------------------|
 
 
 * snippets

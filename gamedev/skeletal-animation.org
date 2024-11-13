@@ -18,6 +18,15 @@
       - mesh helmet
       - mesh (actual sword)
 
+- "Paladin_J_Nordstrom_Shield" is helmet
+- "Paladin_J_Nordstrom_Sword"  is body
+- "Paladin_J_Nordstrom_Helmet" is shield
+- "Paladin_J_Nordstrom"        is sword
+
+- "mixamorig:Shield_joint" has no children
+- "mixamorig:Sword_joint"  has no children
+- "mixamorig:Head"         has    children
+
 #+begin_src sh
 "Paladin_J_Nordstrom_Shield" -> 2920 weights in "mixamorig:Head"        1448 faces
 "Paladin_J_Nordstrom_Sword"  -> many bones/weights
