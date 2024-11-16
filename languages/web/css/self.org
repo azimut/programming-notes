@@ -1,0 +1,195 @@
+- CSS = Casacading Style Sheets
+
+#+begin_src css
+  h1 { /* selector / declaration block */
+      color: blue; /* property: value */
+      font-size: 24px;
+  }
+#+end_src
+
+- classes and ids with ~snake-case~
+
+- color
+  - name
+  - hexa
+  - rgb
+  - rgba
+  - hsl
+
+- style precedence
+  1) element inline
+  2) <style>
+  3) <link rel="stylesheet" />
+
+- selector precedence
+  1) !important
+  2) inline
+  3) id
+  4) clase
+  5) etiqueta
+  6) universal
+
+- box-shadow:  XOFFSET YOFFSET COLOR
+- box-shadow:  XOFFSET YOFFSET BLUR_RADIUS SPREAD_RADIUS COLOR
+- text-shadow: XOFFSET YOFFSET BLUR_RADIUS COLOR
+
+- selector
+  - :root (aka <html>)
+  - * (aka selector universal)
+
+- medidas
+  - absolutas: px cm mm pt in pc
+    - border
+    - screen size
+  - relativas: % em rem ex ch
+    - % elements
+    - em rem fonts
+  - flexibles: vw vh
+
+- font
+  - size: px, em, rem
+  - style: normal, italic, oblique
+  - family: arial, helvetica, sans-serif, ...
+  - weight: bold(er), 10
+    0, 200, ... , 900
+
+- box-sizing
+  - content-box: consider only content (default)
+  - border-box: consider all
+
+- border
+  - style
+  - style, color
+  - width, style
+  - width, style, color
+
+- https://getbem.com/
+- default css https://www.w3schools.com/cssref/css_default_values.php
+- https://css-tricks.com/examples/nth-child-tester/
+- https://www.matuzo.at/blog/2022/100-days-of-more-or-less-modern-css/
+- https://developer.mozilla.org/en-US/docs/Web/CSS
+- https://github.com/Ebazhanov/linkedin-skill-assessments-quizzes/blob/main/css/css-quiz.md
+- aria-live https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-live
+- TTI - Time to Interactive https://web.dev/interactive/
+- <link CSS async https://stackoverflow.com/questions/32759272/how-to-load-css-asynchronously/46750893#46750893
+- <link rel=preconnect https://web.dev/preconnect-and-dns-prefetch/
+- Logical Properties https://www.youtube.com/watch?v=cnwOfaE5GEk
+
+* Language
+- A browser ignores declaration it doesn't understand.
+** margin / padding / border
+|------+----+---+---|
+|  <r> |    |   |   |
+|------+----+---+---|
+| TBRL | -  | - | - |
+|   TB | RL | - | - |
+|    T | RL | B | - |
+|    T | R  | B | L |
+|------+----+---+---|
+** Flex
+*** Container props
+|-----------------+----------------+----------------------------------------|
+|             <r> |      <c>       |                                        |
+|            PROP |     VALUE      | DESCRIPTION                            |
+|-----------------+----------------+----------------------------------------|
+|         display |      flex      |                                        |
+|                 |  inline-flex   | won't auto grow to 100%, flows inline  |
+|                 |  -ms-flexbox   | old browser prop value                 |
+|                 |  -webkit-flex  | old browser prop value                 |
+|                 |                |                                        |
+|-----------------+----------------+----------------------------------------|
+|        flex-gap |     0.1em      | DEPRECATED                             |
+|             gap |     0.1em      | new                                    |
+|-----------------+----------------+----------------------------------------|
+|  flex-direction |     *row*      |                                        |
+|                 |     column     |                                        |
+|                 |  row-reverse   |                                        |
+|                 | column-reverse |                                        |
+|-----------------+----------------+----------------------------------------|
+|       flex-wrap |      wrap      |                                        |
+|                 |    *nowrap*    |                                        |
+|                 |  wrap-reverse  |                                        |
+|-----------------+----------------+----------------------------------------|
+|       flex-flow |                | shorthand for -direction and -wrap     |
+|-----------------+----------------+----------------------------------------|
+| justify-content |  *flex-start*  | items along main axis                  |
+|                 |    flex-end    |                                        |
+|                 |     center     |                                        |
+|                 | space-between  | maximize space between                 |
+|                 |  space-around  | smaller at start-end                   |
+|                 |  space-evenly  | equal at start-end                     |
+|-----------------+----------------+----------------------------------------|
+|     align-items |   *stretch*    | items along cross axis                 |
+|                 |   flex-start   |                                        |
+|                 |    flex-end    |                                        |
+|                 |     center     |                                        |
+|                 |    baseline    |                                        |
+|-----------------+----------------+----------------------------------------|
+|   align-content |   flex-start   | if -wrap, how spacing along cross axis |
+|                 |    flex-end    |                                        |
+|                 |     center     |                                        |
+|                 |    stretch     |                                        |
+|                 | space-between  |                                        |
+|                 |  space-around  |                                        |
+|-----------------+----------------+----------------------------------------|
+*** Item props
+|-------------+------------+---------------------------|
+|         <r> |    <c>     |                           |
+|        PROP |            |                           |
+|-------------+------------+---------------------------|
+|   flex-grow |            |                           |
+| flex-shrink |            |                           |
+|  flex-basis |            |                           |
+|        flex |            |                           |
+|-------------+------------+---------------------------|
+|  align-self |   *auto*   | aligned on the cross axis |
+|             |   center   | (override of align-items) |
+|             | flex-start |                           |
+|             |  flex-end  |                           |
+|             |  stretch   |                           |
+|             |  baseline  |                           |
+|-------------+------------+---------------------------|
+|       order |   <int>    | moves to position         |
+|-------------+------------+---------------------------|
+** Grid
+- CSS Grid https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/CSS_Grid_Layout_and_Accessibility
+- CSS Grid examples and patterns https://gridbyexample.com/
+- grid
+  - two dimensions
+  - parts
+    [[https://static.platzi.com/media/user_upload/1-dd5c265b-bf7b-494a-b939-04d7866194a7.jpg]]
+    - track (aka col/row)
+    - cell
+    - line
+    - area
+  - props
+    - item
+      - grid-column
+        - 2 / 4 (start / end)
+        - 2 / span 2 (start / span LEN)
+      - grid-column-end
+      - grid-column-start (changes start cell nr)
+        - 1
+    - container
+      - align-content (alto, when there is extra size in container)
+      - justify-content (ancho, when there is extra size in container)
+        - space-between
+        - space-around
+        - space-evenly
+        - end
+        - start
+      - column-gap
+      - row-gap
+      - gap
+      - display: grid/inline-grid
+      - grid-template-areas
+        - "header header" "main aside" "footer footer"
+      - grid-auto-flow: row (default)
+      - grid-template-=columns=
+        - 100px 50% 2em
+        - 100px auto 2em
+        - 100px 50px
+        - 1fr 2fr 0.5fr (fractions)
+        - repeat(3, 1fr)
+      - grid-template-=rows=
+        - 100px auto 50px
