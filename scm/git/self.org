@@ -170,6 +170,7 @@ info/exclude
 
 * command (145)
 
+- restore
 ** 82 Porcelain commands
 |----+---------------+-------------------------|
 | 44 | main          | add, commit, push, pull |

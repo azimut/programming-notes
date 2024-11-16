@@ -34,6 +34,11 @@ EDN (extensible data notation): https://clojure.github.io/clojure/clojure.edn-ap
 - EDN = Extensible Data Notation
 - (binding) is like Bagger's (with-setf) https://clojuredocs.org/clojure.core/binding
 - (comp)    is like Alexandria's (compose) https://clojuredocs.org/clojure.core/comp
+- (doto x & forms)
+  - evaluates x
+  - calls each form, with the result of x as the 1st param
+  - returns x
+- reify = to make real
 
 ** require/import
 https://clojurescript.org/news/2021-04-06-release#_library_property_namespaces

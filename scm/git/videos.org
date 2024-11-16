@@ -1,8 +1,11 @@
-- 21 | Git internals             | Omer Rosenbaum https://www.youtube.com/watch?v=b_0_nF9yX9c
-- 21 | Git for Professionals     | https://www.youtube.com/watch?v=Uszj_k0DGsg
-- 19 | Git Internals CS50        | John Britton https://www.youtube.com/watch?v=lG90LZotrpo
-- 15 | Git just say no           | Richard Hipp https://www.youtube.com/watch?v=ghtpJnrdgbo
-- 12 | Advanced Git: Graphs, Hashes, and Compression, Oh My! https://www.youtube.com/watch?v=ig5E8CcdM9g
+- Packt Conquering Git https://www.youtube.com/playlist?list=PLTgRMOcmRb3N5khC1tlRsPvRwcqIQiMu1
+- 24 Learn Git                 | Boot dev https://www.youtube.com/watch?v=rH3zE7VlIMs
+- 22 Advanced Git              | FreeCodeCamp https://www.youtube.com/watch?v=qsTthZi23VE
+- 21 Git internals             | Omer Rosenbaum https://www.youtube.com/watch?v=b_0_nF9yX9c
+- 21 Git for Professionals     | https://www.youtube.com/watch?v=Uszj_k0DGsg
+- 19 Git Internals CS50        | John Britton https://www.youtube.com/watch?v=lG90LZotrpo
+- 15 Git just say no           | Richard Hipp https://www.youtube.com/watch?v=ghtpJnrdgbo
+- 12 Advanced Git: Graphs, Hashes, and Compression, Oh My! https://www.youtube.com/watch?v=ig5E8CcdM9g
 * DONE 13 | Git From the Bits Up      | Tim Berglund
 
 https://www.youtube.com/watch?v=MYP56QJpDr4
@@ -218,6 +221,7 @@ https://www.youtube.com/watch?v=aolI_Rz0ZqY
 
 - Alias: stash --all
   $ git config --global alias.staasj 'stash --all'
+
 - Alias: run a script
   $ git config --global alias.bb !better-branch.sh
 
@@ -230,16 +234,18 @@ https://www.youtube.com/watch?v=aolI_Rz0ZqY
   #+end_src
 
 - $ git blame -L 15,26 path/to/file
-- $ git log -L 15,26:path/to/file
+- $ git log   -L 15,26:path/to/file
 
 - Try to let git figure out the context by the name of the function
-  $ git log -L :FileClass:path/to/file
+  $ git log   -L :FileClass:path/to/file
 
 - $ git blame -w -C
+  |------+--------------------------------------|
   | -w   | ignore whitespace                    |
   | -C   | detect code moved                    |
   | -CC  | or the commit that created that file |
   | -CCC | or any commit at all                 |
+  |------+--------------------------------------|
 
 - filter log by regex
   $ git log -S <REGEX> -p

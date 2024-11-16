@@ -1,3 +1,4 @@
+- style https://google.github.io/styleguide/htmlcssguide.html
 - https://github.com/Ebazhanov/linkedin-skill-assessments-quizzes/blob/main/html/html-quiz.md
 - https://developer.mozilla.org/en-US/docs/Web/HTML
 - https://htmlreference.io/
@@ -205,23 +206,24 @@ apple-touch-icon-57x57.png PNG 57x57 57x57+0+0 8-bit sRGB 2682B 0.000u 0:00.001
 
 * <form>
 |------------------------------+------------------------------------------|
-| TAG                          | DESCRIPTION                              |
+|                          <r> |                                          |
+|                          TAG | DESCRIPTION                              |
 |------------------------------+------------------------------------------|
-| fieldset                     | for legend/label/input                   |
-| fieldset>legend              | perfect for input[type="radio"] groups   |
+|                     fieldset | for legend/label/input                   |
+|              fieldset>legend | perfect for input[type="radio"] groups   |
 |------------------------------+------------------------------------------|
-| label[for="ID"]              | for input/select/progress/textarea/meter |
+|              label[for="ID"] | for input/select/progress/textarea/meter |
 |------------------------------+------------------------------------------|
 | input[aria-describedby="ID"] | can be used to link an error message     |
 |                              | div[id="ID"]>span[role="alert"]          |
 |------------------------------+------------------------------------------|
-| textarea                     |                                          |
-| select>option*N              |                                          |
-| select>optgroup>option*N     |                                          |
-| datalist>option*N            |                                          |
+|                     textarea |                                          |
+|              select>option*N |                                          |
+|     select>optgroup>option*N |                                          |
+|            datalist>option*N |                                          |
 |------------------------------+------------------------------------------|
-| output                       | to put JS output                         |
-| button                       | can contain an image, html or text       |
+|                       output | to put JS output                         |
+|                       button | can contain an image, html or text       |
 |------------------------------+------------------------------------------|
 ** =<input>= types
 
@@ -253,23 +255,25 @@ apple-touch-icon-57x57.png PNG 57x57 57x57+0+0 8-bit sRGB 2682B 0.000u 0:00.001
 - Those with /validation/ also enable keyboard special modes on mobile.
 
 * <table>
+
 - https://www.w3schools.com/html/html_tables.asp
 - https://www.w3schools.com/tags/tag_table.asp
 - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table
 - "bad for responsive design"
 - js interactivity https://datatables.net/
 |--------------+------------------------+-----------------------|
-| SUBTAG       | DESCRIPTION            | ATTRIBUTES            |
+|          <r> |                        |                       |
+|       SUBTAG | DESCRIPTION            | ATTRIBUTES            |
 |--------------+------------------------+-----------------------|
-| caption      | caption title          |                       |
-| colgroup     | to style groups of col |                       |
+|      caption | caption title          |                       |
+|     colgroup | to style groups of col |                       |
 | colgroup>col |                        | span style            |
-| tr           | row                    |                       |
-| th           | header                 | colspan rowspan scope |
-| td           | data                   | colspan rowspan       |
-| thead>tr>[[https://www.w3schools.com/tags/tag_th.asp][th]]  |                        |                       |
-| tbody>tr>td  |                        |                       |
-| tfoot>tr>td  |                        |                       |
+|           tr | row                    |                       |
+|           th | header                 | colspan rowspan scope |
+|           td | data                   | colspan rowspan       |
+|  thead>tr>[[https://www.w3schools.com/tags/tag_th.asp][th]] |                        |                       |
+|  tbody>tr>td |                        |                       |
+|  tfoot>tr>td |                        |                       |
 |--------------+------------------------+-----------------------|
 - thead/tbody/tfoot: used for scrolling of the body independently of the header/footer.
 - css
@@ -279,6 +283,7 @@ apple-touch-icon-57x57.png PNG 57x57 57x57+0+0 8-bit sRGB 2682B 0.000u 0:00.001
     - table-cell
     - table-header-group
     - table-column-group
+
 * Landmarks
 
 - https://en.wikipedia.org/wiki/HTML_landmarks
@@ -288,16 +293,17 @@ apple-touch-icon-57x57.png PNG 57x57 57x57+0+0 8-bit sRGB 2682B 0.000u 0:00.001
 [[https://manojbabubalaraman.wordpress.com/wp-content/uploads/2015/11/ariamap.png]]
 
 |---------+-----------------------------------------------------------------------|
-| header  | child of body, article, or section                                    |
-| main    | unique, NO parent of article/aside/footer/header/nav                  |
-| aside   | aka sidebar, ads (can be removed?)                                    |
-| footer  | child of body, article, or section                                    |
+|     <r> |                                                                       |
+|  header | child of body, article, or section                                    |
+|    main | unique, NO parent of article/aside/footer/header/nav                  |
+|   aside | aka sidebar, ads (can be removed?)                                    |
+|  footer | child of body, article, or section                                    |
 |---------+-----------------------------------------------------------------------|
 | section | generic standalone, 99% should have a <h>eadeing                      |
 |         | eg: main>div>section+section // eg: article>section*2                 |
 |---------+-----------------------------------------------------------------------|
 | article | selfcontained/independent (forum/blog/news post), eg: main>article*2  |
-| nav     | <a>'s container, not all, just the ones in a major navigation section |
+|     nav | <a>'s container, not all, just the ones in a major navigation section |
 |---------+-----------------------------------------------------------------------|
 
 * Text
@@ -330,38 +336,43 @@ apple-touch-icon-57x57.png PNG 57x57 57x57+0+0 8-bit sRGB 2682B 0.000u 0:00.001
 |--------------+------------------------------------------------------|
 ** Computer
 |------+---------------------------------|
-| kbd  | monospace                       |
+|  <r> |                                 |
+|  kbd | monospace                       |
 | code | monospace                       |
-| var  | variable                        |
+|  var | variable                        |
 | samp | "sample output" computer output |
 |------+---------------------------------|
 ** Idiom
 |------------+----------------------------------------------------------|
+|        <r> |                                                          |
 | ruby/rt+rp | japanese                                                 |
-| bdi        | "bi-directional isolation", for lang with diff direction |
-| bdo        | "bi-directional override"                                |
+|        bdi | "bi-directional isolation", for lang with diff direction |
+|        bdo | "bi-directional override"                                |
 |------------+----------------------------------------------------------|
 ** Other
 |-----------------+-------------------------------------|
-| address         | block/italic (contact info)         |
-| data            | to add metadata in ul/li attributes |
+|             <r> |                                     |
+|         address | block/italic (contact info)         |
+|            data | to add metadata in ul/li attributes |
 | details>summary | open= toggable                      |
-| dialog          | open= middle of screen              |
-| embed           | use img/iframe/video/audio instead  |
-| span            | inline, to markup text              |
+|          dialog | open= middle of screen              |
+|           embed | use img/iframe/video/audio instead  |
+|            span | inline, to markup text              |
 |-----------------+-------------------------------------|
 ** UI
 |----------------+------------------------------|
-| template       | hidden content (JS showable) |
+|            <r> |                              |
+|       template | hidden content (JS showable) |
 | progress/meter | id= value= max= progress var |
 |----------------+------------------------------|
 * Lists
 |----------------+------------------|
-| ul>li*N        | un-ordered list  |
-| ol>li*N        | ordered list     |
+|            <r> |                  |
+|        ul>li*N | un-ordered list  |
+|        ol>li*N | ordered list     |
 | (dl>(dt+dd))*N | description list |
-| dt             | a term           |
-| dd             | a description    |
+|             dt | a term           |
+|             dd | a description    |
 |----------------+------------------|
 * media (img/audio/video)
 |--------------------------+--------------------------------------------|

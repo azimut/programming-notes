@@ -29,6 +29,10 @@
   5) etiqueta
   6) universal
 
+- box-shadow:  XOFFSET YOFFSET COLOR
+- box-shadow:  XOFFSET YOFFSET BLUR_RADIUS SPREAD_RADIUS COLOR
+- text-shadow: XOFFSET YOFFSET BLUR_RADIUS COLOR
+
 - selector
   - :root (aka <html>)
   - * (aka selector universal)
