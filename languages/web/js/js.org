@@ -35,6 +35,22 @@ https://github.com/30-seconds/30-seconds-of-interviews
 - https://frontendmasters.com/
 - https://rallycoding.com/
 - https://javascript30.com/
+- parseInt, parseFloat, isNaN
+- loops: while, do while, for
+- types
+  |-----------+---+---|
+  |           | C | F |
+  |-----------+---+---|
+  | Number    | x | x |
+  | Boolean   | x | x |
+  | String    | x | x |
+  | BigInt    |   | x |
+  | Symbol    |   | x |
+  | null      |   |   |
+  | undefined |   |   |
+  |-----------+---+---|
+  C = can work as a constructor with "new"
+  F = can work as a unary function
 * Tutorial: Linkedin JS questions
 https://github.com/Ebazhanov/linkedin-skill-assessments-quizzes/blob/main/javascript/javascript-quiz.md
 - todo https://www.guru99.com/node-js-generators-compare-callbacks.html#:~:text=Generators%20are%20function%20executions%20that,resumed%20at%20a%20later%20point.
