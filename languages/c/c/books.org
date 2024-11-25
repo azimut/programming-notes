@@ -12,11 +12,12 @@
 - Race Free Initilization and ...
 * 20 | Effective C
 ** 1 Getting Started with C
+- Developed as a systems programming language
 - C defines 2 possible execution environments:
   - Freestanding: no OS, embedded programming
   - Hosted
 - A ~return~ from the initial call to the ~main~ function
-  is equivalent to calling ~exit~
+  - is equivalent to calling ~exit~
 - Passing user supplied data to ~printf~ first argument, can result in a secvul (seacord 2013)
 - https://github.com/Valloric/YouCompleteMe/
   https://github.com/Shougo/deoplete.nvim/

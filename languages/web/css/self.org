@@ -133,24 +133,30 @@
 |                 |  space-around  |                                        |
 |-----------------+----------------+----------------------------------------|
 *** Item props
-|-------------+------------+---------------------------|
-|         <r> |    <c>     |                           |
-|        PROP |            |                           |
-|-------------+------------+---------------------------|
-|   flex-grow |            |                           |
-| flex-shrink |            |                           |
-|  flex-basis |            |                           |
-|        flex |            |                           |
-|-------------+------------+---------------------------|
-|  align-self |   *auto*   | aligned on the cross axis |
-|             |   center   | (override of align-items) |
-|             | flex-start |                           |
-|             |  flex-end  |                           |
-|             |  stretch   |                           |
-|             |  baseline  |                           |
-|-------------+------------+---------------------------|
-|       order |   <int>    | moves to position         |
-|-------------+------------+---------------------------|
+|--------------+------------+-------------------------------------|
+|          <r> |    <c>     |                                     |
+|         PROP |   VALUE    | DESCRIPTION                         |
+|--------------+------------+-------------------------------------|
+|         flex | g[ s[ b]]  | growth shrink basis                 |
+|              |     1      | is the same as "1 1 0"              |
+|--------------+------------+-------------------------------------|
+|    flex-grow |    <N>     | proportion to grow                  |
+|              |     0      | will NOT grow                       |
+|  flex-shrink |    <N>     | how fast it shrinks                 |
+|              |     0      | will NOT shrink                     |
+|   flex-basis |  0¦300px   | size override, starting grow/shrink |
+|--------------+------------+-------------------------------------|
+| justify-self |            | overrides container justify-content |
+|   align-self |     -      | overrides container align-items     |
+|              |   *auto*   | aligned on the cross axis           |
+|              |   center   |                                     |
+|              | flex-start |                                     |
+|              |  flex-end  |                                     |
+|              |  stretch   |                                     |
+|              |  baseline  |                                     |
+|--------------+------------+-------------------------------------|
+|        order |   <int>    | moves to position                   |
+|--------------+------------+-------------------------------------|
 ** Grid
 - CSS Grid https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/CSS_Grid_Layout_and_Accessibility
 - CSS Grid examples and patterns https://gridbyexample.com/

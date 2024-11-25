@@ -57,30 +57,31 @@
 - https://www.fastruby.io/blog/exploring-global-constants-and-variables.html
 - https://rubyapi.org/o/english
 |--------------------------+----+------------------------------------------------------|
+|                      <r> |    |                                                      |
 |                          |    | description                                          |
 |--------------------------+----+------------------------------------------------------|
-| __FILE__                 |    | has the name of the file being run                   |
-| $stdin                   |    | standard input                                       |
-| $stdout                  |    | standard output                                      |
-| $stderr                  |    | standard error                                       |
-| $ARGV                    | $* | array with command line arguments                    |
-| $ARGF                    | $< | the content of all the files whose names were passed |
-| $DEFAULT_OUTPUT          | $> |                                                      |
-| $ENV                     |    | Hash that contains environment variables             |
-| $ERROR_INFO              | $! |                                                      |
-| $ERROR_POSITION          | $@ |                                                      |
-| $FIELD_SEPARATOR         | $; | FS                                                   |
-| $OUTPUT_FIELD_SEPARATOR  | $, | OFS                                                  |
-| $INPUT_RECORD_SEPARATOR  | $/ | RS                                                   |
+|                 __FILE__ |    | has the name of the file being run                   |
+|                   $stdin |    | standard input                                       |
+|                  $stdout |    | standard output                                      |
+|                  $stderr |    | standard error                                       |
+|                    $ARGV | $* | array with command line arguments                    |
+|                    $ARGF | $< | the content of all the files whose names were passed |
+|          $DEFAULT_OUTPUT | $> |                                                      |
+|                     $ENV |    | Hash that contains environment variables             |
+|              $ERROR_INFO | $! |                                                      |
+|          $ERROR_POSITION | $@ |                                                      |
+|         $FIELD_SEPARATOR | $; | FS                                                   |
+|  $OUTPUT_FIELD_SEPARATOR | $, | OFS                                                  |
+|  $INPUT_RECORD_SEPARATOR | $/ | RS                                                   |
 | $OUTPUT_RECORD_SEPARATOR | $\ | ORS                                                  |
-| $INPUT_LINE_NUMBER       | $. | NR                                                   |
-| $LAST_READ_LINE          | $_ |                                                      |
-| $PROCESS_ID              | $$ | PID                                                  |
-| $CHILD_STATUS            | $? |                                                      |
-| $MATCH                   | $& | regex op, the match (all between //)                 |
-| $PREMATCH                | $` | regex op, to the left of last match                  |
-| $POSTMATCH               | $' | regex op, to the right of last match                 |
-| $LAST_PAREN_MATCH        | $+ | regex op, the last group                             |
+|       $INPUT_LINE_NUMBER | $. | NR                                                   |
+|          $LAST_READ_LINE | $_ |                                                      |
+|              $PROCESS_ID | $$ | PID                                                  |
+|            $CHILD_STATUS | $? |                                                      |
+|                   $MATCH | $& | regex op, the match (all between //)                 |
+|                $PREMATCH | $` | regex op, to the left of last match                  |
+|               $POSTMATCH | $' | regex op, to the right of last match                 |
+|        $LAST_PAREN_MATCH | $+ | regex op, the last group                             |
 |                          | $N | regex op, where N is a number of the nth match       |
 |                          | $0 | aka $PROGRAM_NAME                                    |
 |--------------------------+----+------------------------------------------------------|
@@ -114,16 +115,19 @@
 
 ** operators
 |------+---------------------------------------------------|
-| +    | sums, concatenate                                 |
-| =~   | match string against regex, returns start pos/nil |
+| <c>  |                                                   |
+|  OP  |                                                   |
+|------+---------------------------------------------------|
+|  +   | sums, concatenate                                 |
+|  =~  | match string against regex, returns start pos/nil |
 | %w[] | create an array of strings                        |
 | %w() | "                                                 |
 | %i[] | "                                                 |
-| <<   | appends an element to an array                    |
-| ::   | scope resolution operator                         |
+|  <<  | appends an element to an array                    |
+|  ::  | scope resolution operator                         |
 | #{}  | string interpolation                              |
 | ¦¦=  | if LS is falsey, eval RS and assign it to LS      |
-| =>   | "hashrocket", associates k/v in a Hash            |
+|  =>  | "hashrocket", associates k/v in a Hash            |
 |------+---------------------------------------------------|
 #+TBLFM: $1=>
 ** require

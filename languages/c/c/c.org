@@ -33,7 +33,13 @@
 - https://tek256.com/posts/code-hardening/
 - http://blog.lujun9972.win/emacs-document/blog/2018/03/22/emacs-as-a-c++-ide/index.html
   https://vxlabs.com/2016/04/11/step-by-step-guide-to-c-navigation-and-completion-with-emacs-and-the-clang-based-rtags/
+
 * Language
+- main() entry point for a program that's executed in a hosted environment
+  - a *return* from it, is equivalent to calling *exit*
+- Execution environments
+  - freestanding: no OS, embedded programming
+  - hosted: cli or from other programs
 ** Sockets
 
 - CLIENT
@@ -91,45 +97,89 @@
 
 ** Standard Library
 - https://en.cppreference.com/w/c/header
-- https://en.wikibooks.org/wiki/C_Programming/stdbool.h
-|---------------+-----+---------------------------------------------------------------------------------------------------------|
-| assert.h      |     | Conditionally compiled macro that compares its argument to zero                                         |
-| complex.h     | C99 | Complex number arithmetic                                                                               |
-| ctype.h       |     | Functions to determine the type contained in character data                                             |
-| errno.h       |     | Macros reporting error conditions                                                                       |
-| fenv.h        | C99 | Floating-point environment                                                                              |
-| float.h       |     | Limits of floating-point types                                                                          |
-| inttypes.h    | C99 | Format conversion of integer types                                                                      |
-| iso646.h      | C95 | Alternative operator spellings                                                                          |
-| limits.h      |     | Ranges of integer types                                                                                 |
-| locale.h      |     | Localization utilities                                                                                  |
-| math.h        |     | Common mathematics functions                                                                            |
-| paths.h       |     | constants with string paths of common LINUX files                                                       |
-| setjmp.h      |     | Nonlocal jumps                                                                                          |
-| signal.h      |     | Signal handling                                                                                         |
-| stdalign.h    | C11 | alignas and alignof convenience macros                                                                  |
-| stdarg.h      |     | Variable arguments                                                                                      |
-| stdatomic.h   | C11 | Atomic operations                                                                                       |
-| stdbit.h      | C23 | Macros to work with the byte and bit representations of types                                           |
-| stdbool.h     | C99 | Macros for boolean type                                                                                 |
-| stdckdint.h   | C23 | macros for performing checked integer arithmetic                                                        |
-| stddef.h      |     | Common macro definitions                                                                                |
-| stdint.h      | C99 | Fixed-width integer types                                                                               |
-| stdio.h       |     | Input/output                                                                                            |
-| stdlib.h      |     | General utilities: memory management, program utilities, string conversions, random numbers, algorithms |
-| stdnoreturn.h | C11 | noreturn convenience macro                                                                              |
-| string.h      |     | String handling                                                                                         |
-| tgmath.h      | C99 | Type-generic math (macros wrapping math.h and complex.h)                                                |
-| threads.h     | C11 | Thread library                                                                                          |
-| time.h        |     | Time/date utilities                                                                                     |
-| uchar.h       | C11 | UTF-16 and UTF-32 character utilities                                                                   |
-| wchar.h       | C95 | Extended multibyte and wide character utilities                                                         |
-| wctype.h      | C95 | Functions to determine the type contained in wide character data                                        |
-|---------------+-----+---------------------------------------------------------------------------------------------------------|
+- https://en.wikibooks.org/wiki/Category:Book:C_Programming
+|---------------+--------------+----+---------------------------------------------------------------------------------------------------------|
+|           <r> |              |    |                                                                                                         |
+|        HEADER | fn           | C? |                                                                                                         |
+|---------------+--------------+----+---------------------------------------------------------------------------------------------------------|
+|      assert.h |              |    | Conditionally compiled macro that compares its argument to zero                                         |
+|     complex.h |              | 99 | Complex number arithmetic                                                                               |
+|       ctype.h |              |    | Functions to determine the type contained in character data                                             |
+|       errno.h |              |    | Macros reporting error conditions                                                                       |
+|        fenv.h |              | 99 | Floating-point environment                                                                              |
+|       float.h |              |    | Limits of floating-point types                                                                          |
+|    inttypes.h |              | 99 | Format conversion of integer types                                                                      |
+|      iso646.h |              | 95 | Alternative operator spellings                                                                          |
+|      limits.h |              |    | Ranges of integer types                                                                                 |
+|      locale.h |              |    | Localization utilities                                                                                  |
+|        [[https://en.wikibooks.org/wiki/C_Programming/math.h][math.h]] | fabs         |    | Common mathematics functions                                                                            |
+|       paths.h |              |    | constants with string paths of common LINUX files                                                       |
+|      setjmp.h |              |    | Nonlocal jumps                                                                                          |
+|      signal.h |              |    | Signal handling                                                                                         |
+|    stdalign.h |              | 11 | alignas and alignof convenience macros                                                                  |
+|      stdarg.h |              |    | Allows variable arguments functions                                                                     |
+|   stdatomic.h |              | 11 | Atomic operations                                                                                       |
+|      stdbit.h |              | 23 | Macros to work with the byte and bit representations of types                                           |
+|     stdbool.h |              | 99 | Macros for boolean type                                                                                 |
+|   stdckdint.h |              | 23 | macros for performing checked integer arithmetic                                                        |
+|---------------+--------------+----+---------------------------------------------------------------------------------------------------------|
+|      stddef.h | NULL         |    | Common macro definitions                                                                                |
+|               | size_t       |    |                                                                                                         |
+|---------------+--------------+----+---------------------------------------------------------------------------------------------------------|
+|      [[https://en.wikibooks.org/wiki/C_Programming/stdint.h][stdint.h]] | [u]int<n>_t  | 99 | Fixed-width integer types                                                                               |
+|               | INT<n>_MAX   |    |                                                                                                         |
+|---------------+--------------+----+---------------------------------------------------------------------------------------------------------|
+|       [[https://en.wikibooks.org/wiki/C_Programming/stdio.h][stdio.h]] |              |    | Input/output. Most return EOF (-1) on error.                                                            |
+|               | fopen        |    |                                                                                                         |
+|               | fread        |    |                                                                                                         |
+|               | fgetc        |    |                                                                                                         |
+|               | getchar      |    |                                                                                                         |
+|               | scanf        |    |                                                                                                         |
+|               | printf       |    | returns the nr of chars printed, or negative number on error                                            |
+|               | puts         |    |                                                                                                         |
+|               | remove       |    | erases a file                                                                                           |
+|               | rename       |    | renames a file                                                                                          |
+|               | tmpfile      |    | pointer to tmp file                                                                                     |
+|---------------+--------------+----+---------------------------------------------------------------------------------------------------------|
+|      [[https://en.wikibooks.org/wiki/C_Programming/stdlib.h][stdlib.h]] | size_t       |    | General utilities: memory management, program utilities, string conversions, random numbers, algorithms |
+|               | malloc       |    |                                                                                                         |
+|               | getenv       |    |                                                                                                         |
+|               | system       |    |                                                                                                         |
+|               | exit         |    |                                                                                                         |
+|               | bsearch      |    |                                                                                                         |
+|               | qsort        |    |                                                                                                         |
+|               | abs          |    |                                                                                                         |
+|               | div          |    |                                                                                                         |
+|               | random       |    |                                                                                                         |
+|               | ato?         |    |                                                                                                         |
+|               | strto?       |    |                                                                                                         |
+|               | EXIT_SUCCESS |    |                                                                                                         |
+|               | EXIT_FAILURE |    |                                                                                                         |
+|---------------+--------------+----+---------------------------------------------------------------------------------------------------------|
+| stdnoreturn.h |              | 11 | noreturn convenience macro                                                                              |
+|---------------+--------------+----+---------------------------------------------------------------------------------------------------------|
+|      [[https://en.wikibooks.org/wiki/C_Programming/string.h][string.h]] | size_t       |    | String handling                                                                                         |
+|               | memcpy       |    |                                                                                                         |
+|---------------+--------------+----+---------------------------------------------------------------------------------------------------------|
+|      tgmath.h |              | 99 | Type-generic math (macros wrapping math.h and complex.h)                                                |
+|     threads.h |              | 11 | Thread library                                                                                          |
+|        time.h |              |    | Time/date utilities                                                                                     |
+|       uchar.h |              | 11 | UTF-16 and UTF-32 character utilities                                                                   |
+|       wchar.h |              | 95 | Extended multibyte and wide character utilities                                                         |
+|      wctype.h |              | 95 | Functions to determine the type contained in wide character data                                        |
+|---------------+--------------+----+---------------------------------------------------------------------------------------------------------|
 * Codebases
 - https://github.com/curl/trurl/blob/master/trurl.c
 - https://github.com/gsingh93/display-manager
 - https://github.com/lpereira/lwan
+* Tools
+** Editors
+- Visual Studio https://visualstudio.microsoft.com/
+- Eclipse CDT https://projects.eclipse.org/projects/tools.cdt
+- CLion https://www.jetbrains.com/clion/
+  - Paid
+- Code::Blocks https://www.codeblocks.org/
+  - 2020 last version
 * Libraries
 - 0.9K https://github.com/MrFrenik/gunslinger
   C99, header-only framework for games and multimedia applications

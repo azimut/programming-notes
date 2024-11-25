@@ -215,31 +215,34 @@ https://en.wikipedia.org/wiki/Getopts
 - "A shell variable that is null or unset evaluates to 0"
 
 *** Operators
-From man
-|-----------------------------------+---------------------------------------------|
-| id++ id--                         | variable post-increment and  post-decrement |
-| ++id --id                         | variable pre-increment and pre-decrement    |
-| + -                               | unary minus and plus                        |
-| **                                | exponentiation                              |
-| * / %                             | multiplication, division, remainder         |
-| + -                               | addition, subtraction                       |
-|-----------------------------------+---------------------------------------------|
-| !                                 | logical negation                            |
-| <= >= < >                         | comparison                                  |
-| == !=                             | equality and inequality                     |
-| &&                                | logical AND                                 |
-| ¦¦                                | logical OR                                  |
-|-----------------------------------+---------------------------------------------|
-| expr?expr:expr                    | conditional operator                        |
-| = *= /= %= += -= <<= >>= &= ^= ¦= | assignment                                  |
-| expr1 , expr2                     | comma                                       |
-|-----------------------------------+---------------------------------------------|
-| ~                                 | bitwise negation                            |
-| << >>                             | bitwise left and right shifts               |
-| &                                 | bitwise AND                                 |
-| ^                                 | bitwise exclusive OR                        |
-| ¦                                 | bitwise OR                                  |
-|-----------------------------------+---------------------------------------------|
+
+|-----------------------------------+--------------------------------------------|
+|                <c>                |                                            |
+|             OPERATOR              |                                            |
+|-----------------------------------+--------------------------------------------|
+|             id++ id--             | variable post-increment and post-decrement |
+|             ++id --id             | variable pre-increment and pre-decrement   |
+|                + -                | unary minus and plus                       |
+|                **                 | exponentiation                             |
+|               * / %               | multiplication, division, remainder        |
+|                + -                | addition, subtraction                      |
+|-----------------------------------+--------------------------------------------|
+|                 !                 | logical negation                           |
+|             <= >= < >             | comparison                                 |
+|               == !=               | equality and inequality                    |
+|                &&                 | logical AND                                |
+|                ¦¦                 | logical OR                                 |
+|-----------------------------------+--------------------------------------------|
+|          expr?expr:expr           | conditional operator                       |
+| = *= /= %= += -= <<= >>= &= ^= ¦= | assignment                                 |
+|           expr1 , expr2           | comma                                      |
+|-----------------------------------+--------------------------------------------|
+|                 ~                 | bitwise negation                           |
+|               << >>               | bitwise left and right shifts              |
+|                 &                 | bitwise AND                                |
+|                 ^                 | bitwise exclusive OR                       |
+|                 ¦                 | bitwise OR                                 |
+|-----------------------------------+--------------------------------------------|
 
 
 * Tutorial: Style https://google.github.io/styleguide/shellguide.html

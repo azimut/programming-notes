@@ -5,6 +5,10 @@
 | vscode-lldb | dap-codelldb | yes  | 1.6 | https://github.com/vadimcn/vscode-lldb/                               |
 | code-debug  | dap-gdb-lldb | yes  | 0.3 | https://github.com/WebFreak001/code-debug                             |
 |-------------+--------------+------+-----+-----------------------------------------------------------------------|
+- launch.json https://github.com/emacs-lsp/dap-mode/blob/master/docs/page/features.md#launchjson-support
+  - https://code.visualstudio.com/docs/cpp/launch-json-reference
+  - https://code.visualstudio.com/docs/editor/debugging
+  - https://code.visualstudio.com/docs/editor/variables-reference
 - setup
   https://alpha2phi.medium.com/emacs-lsp-and-dap-7c1786282324
 - Compiler options
@@ -28,3 +32,7 @@
   - troubleshooting for lldb https://github.com/emacs-lsp/dap-mode/issues/6
   - dap-mode https://github.com/emacs-lsp/dap-mode/
   - cpp https://emacs-lsp.github.io/lsp-mode/tutorials/CPP-guide/
+- DAPE
+  - alternative to dap-mode
+  - works with eglot
+  - https://silosneeded.com/en/2024/04/configuring-dape

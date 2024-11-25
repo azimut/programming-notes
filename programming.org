@@ -58,8 +58,7 @@
   https://www.youtube.com/channel/UCnmJoeNk2mrItxXJ2-XOCcQ/videos
 - L01 Functional Programming | UC Berkeley CS 61A, Spring 2010
   https://www.youtube.com/watch?v=4leZ1Ca4f0g&list=PLhMnuBfGeCDNgVzLPxF9o5UNKG1b-LFY9
-* gamelisp.rs
-  https://gamelisp.rs/reference/overview.html
+
 * Lisp Cast
 ** A Theory of functional programming 0001
    - Started the podcast as a way to put the ideas of his book out of his head
@@ -76,10 +75,6 @@
      - actions (side effects)
      - calculations
      - data
-* Video: William Byrd on "The Most Beautiful Program Ever Written" [PWL NYC]
-  https://www.youtube.com/watch?v=OyfBQmvr2Hc
-  - "Programming Should Eat Itself" by Nada Amin
-    https://www.youtube.com/watch?v=SrKj4hYic5A
 * Video Object-Oriented Programming is Bad
   https://www.youtube.com/watch?v=QM1iUe6IofM
 * Book: Programming with Types

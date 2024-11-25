@@ -552,10 +552,6 @@ n   - Those that are "lengths" can cause issue if calculated with a unit and inh
   - Example: Two columns, each column 2/3 and 1/3
     - flex: 2
     - flex: 1
-  - Is a shorthand for: *flex-grow|shrink(1)|basis(0%)*
-    - *flex-grow*   (=0) it will NOT grow beyond the basis,       (>0) it will grow beyond, at N speed
-    - *flex-shrink* (=0) it will NOT shrink to prevent overflows, (>0) it will shrink, at N speed
-    - *flex-basis*  (px,ems,%,auto) defines the *starting point* for the size of an element, initial "main size"
 *** =flex-direction=
 - PROBLEM: On our example, the <sidebar> elements will NOT grow vertically if the <main> did
 - SOLUTION: nested flexboxes for he sidebar, in the column direction
@@ -570,10 +566,10 @@ n   - Those that are "lengths" can cause issue if calculated with a unit and inh
     }
   #+end_src
 *** Alignment spacing and other details
-**** Example:
- - TIP: using <span> instead of <div> might make the site more accesible (? in failure of css load
- - It uses both *center* on both axes (justify-content, align-items)
- - Overrides center on one
+- Example:
+  - TIP: using <span> instead of <div> might make the site more accesible (? in failure of css load
+  - It uses both *center* on both axes (justify-content, align-items)
+  - Overrides center on one
 *** A couple of things to be aware of
 - TIP: trust the document flow and ONLY add flexbox where you know you'll need it
 - List of flexbox bugs https://github.com/philipwalton/flexbugs
@@ -582,21 +578,23 @@ n   - Those that are "lengths" can cause issue if calculated with a unit and inh
   Only with multiple columns in a row. Not on the inverse.
 ** 06 Grid Layout
 *** Web Layout is Here
- - Grid Container (display: grid)
-   Grid Items
- - fr: fraction unit (like flex-grow)
- - Width
-  |           100% | display: grid        |
-  | as much needed | display: inline-grid |
- - Define the rows/cols of equal size
-   #+begin_src css
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      grid-gap: 0.5em; /* gutter */
-    }
-    #+end_src
+- Grid Container (display: grid)
+  Grid Items
+- fr: fraction unit (like flex-grow)
+- Width
+ |----------------+----------------------|
+ |           100% | display: grid        |
+ | as much needed | display: inline-grid |
+ |----------------+----------------------|
+- Define the rows/cols of equal size
+  #+begin_src css
+   .grid {
+     display: grid;
+     grid-template-columns: 1fr 1fr 1fr;
+     grid-template-rows: 1fr 1fr;
+     grid-gap: 0.5em; /* gutter */
+   }
+   #+end_src
 *** Anatomy of a grid
  - Names
   | Grid...   |                               |

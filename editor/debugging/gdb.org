@@ -1,0 +1,27 @@
+* Commands
+|-----------------+---------+---------------------------------|
+|             <r> |   <c>   |                                 |
+|        set args |  1 2 3  |                                 |
+| run < input.txt |         |                                 |
+|          (n)ext |   [N]   | step out, next source code line |
+|         (n)exti |   [N]   | step out, next asm instruction  |
+|          (s)tep |         | step into                       |
+|         (p)rint |         |                                 |
+|  info registers |         |                                 |
+|             x/i |   $pc   |                                 |
+|            file | EXEPATH | opens EXE as current program    |
+|-----------------+---------+---------------------------------|
+* Emacs
+
+- gdb
+- gdb-many-windows
+- gud-break (C-x C-a C-b)
+
+- https://www.gnu.org/software/emacs/manual/html_node/emacs/Debuggers.html
+- https://www.gnu.org/software/emacs/manual/html_node/emacs/Commands-of-GUD.html
+- https://www.gnu.org/software/emacs/manual/html_node/emacs/GDB-Graphical-Interface.html
+  - https://www.gnu.org/software/emacs/manual/html_node/emacs/GDB-User-Interface-Layout.html
+    - "When you finish debugging, kill the GUD interaction buffer with C-x k, which will also kill all the buffers associated with the session."
+
+- https://dschrempf.github.io/emacs/2015-06-24-debugging-with-emacs-and-gdb/
+- https://onestepcode.com/debugging-c-gdb-emacs/

@@ -1,3 +1,4 @@
+- corfu+eglot https://www.reddit.com/r/emacs/comments/13j0a29/how_to_configure_corfu_with_eglot/
 - Videos: https://www.youtube.com/playlist?list=PLebcndvR-wlP0iyv46tqtOxS5wKEn9E-K
 
 - babel https://orgmode.org/worg/org-contrib/babel/
@@ -6,3 +7,12 @@
 
 - insert date into at cursor https://stackoverflow.com/questions/251908/how-can-i-insert-current-date-and-time-into-a-file-using-emacs
   C-u M-! date
+
+* configs
+- full https://eshelyaron.com/esy.html
+- full https://github.com/higham/dot-emacs/blob/3bc53cce471ec9f6b4b08fb5b32ad19761468d42/.emacs#L3123
+- full https://github.com/andreyorst/dotfiles/blob/6dcb172d7857dddcc07125f891b399dca45b4bf3/.config/emacs/init.el
+- natives https://www.jamescherti.com/essential-emacs-packages/
+- treesit https://www.masteringemacs.org/article/how-to-get-started-tree-sitter
+- https://www.reddit.com/r/emacs/comments/1azmh4j/nearly_halfed_my_config_with_new_emacs_30/
+  - aparently eglot does not support multiple lsp backends, lsp-mode does

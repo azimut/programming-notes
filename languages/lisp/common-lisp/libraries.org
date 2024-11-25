@@ -25,13 +25,15 @@
 - https://github.com/bohonghuang/cffi-ops
 - https://github.com/borodust/cffi-c-ref
 * CLOS
-|--------------------+-------------------------------------+-------------------------------------------------|
-| cells              | reactive programming                | https://github.com/kennytilton/cells/wiki       |
-| defclass-std       | shorthand declaration               | https://github.com/EuAndreh/defclass-std        |
-| filtered-functions | filter function before method calls | https://github.com/pcostanza/filtered-functions |
-| quid-pro-quo       | contract programming                | https://github.com/sellout/quid-pro-quo         |
-| sanity-clause      | class type checking                 | https://github.com/fisxoj/sanity-clause         |
-|--------------------+-------------------------------------+-------------------------------------------------|
+|--------------------+-------------------------------------|
+|                <r> |                                     |
+|              [[https://github.com/kennytilton/cells/wiki][cells]] | reactive programming                |
+|       [[https://github.com/EuAndreh/defclass-std][defclass-std]] | shorthand declaration               |
+| [[https://github.com/pcostanza/filtered-functions][filtered-functions]] | filter function before method calls |
+|       [[https://github.com/sellout/quid-pro-quo][quid-pro-quo]] | contract programming                |
+|      [[https://github.com/fisxoj/sanity-clause][sanity-clause]] | metaclass type checking             |
+|    [[https://github.com/cvdub/validated-class][validated-class]] | metaclass for slot validations      |
+|--------------------+-------------------------------------|
 ** Libraries
 - Efficiently represent several finite sets or small integers as a single non-negative integer.
   https://github.com/marcoheisig/bitfield

@@ -1,2 +1,8 @@
 - sectorLISP https://www.youtube.com/watch?v=xD14SLU2u2k
+- gamelisp.rs https://gamelisp.rs/reference/overview.html
 - https://hyperpolyglot.org/lisp
+
+- Video: William Byrd on "The Most Beautiful Program Ever Written" [PWL NYC]
+  https://www.youtube.com/watch?v=OyfBQmvr2Hc
+- Video "Programming Should Eat Itself" by Nada Amin
+  https://www.youtube.com/watch?v=SrKj4hYic5A

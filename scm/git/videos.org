@@ -98,22 +98,15 @@ https://www.youtube.com/watch?v=MYP56QJpDr4
     if not, rebase at the end of the day"
 * DONE 18 | It's Magit!               | John Wiegley
   https://www.youtube.com/watch?v=j-k-lkilbEs
-- Interface copied from =Darcs=, a cvs like git
-- using 1,2,3,4 to toggle detail levels
-  using M-1234 to apply global instead per section
-- On diff section
-  - n,p move by blocks in a diff
-  - using -,+, and region selection to commit exact hunks of code
-  - select a region and "s" to stage that region
-  - S,U un/stage everything
-- g,G refresh, refresh ALL
+- Interface copied from =Darcs=, a cvs like git, based on the idea of "patches".
 - ~magit-save-repository-buffers~
   ~magit-auto-revert-mode~ (reverts all the files that were modifying those things)
 - j u jump to unstaged
   j s jump to staged
   j ?
 - ~magit-dired-jump~ C-x C-j
-- d   to open diff on a separate buffer
+- 13:00
+  d   to open diff on a separate buffer
   d r to diff for range
 - C-C C-t, (on a diff) viewing the history of changes for that function (?
 - C-C C-e, (on a diff) edit line (might rebase to it)
