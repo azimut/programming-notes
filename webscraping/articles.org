@@ -1,9 +1,5 @@
-- two types of problems
-  1) collect
-  2) parse
-
-- https://scrapfly.io/use-case
 - Site Guides https://scrapfly.io/blog/tag/scrapeguide/
+- https://grishaev.me/en/ui-test/
 - 17 https://sangaline.com/post/advanced-web-scraping-tutorial/
 - 21 https://incolumitas.com/2021/11/03/so-you-want-to-scrape-like-the-big-boys/
 - 23 https://blog.ericgoldman.org/archives/2023/08/web-scraping-for-me-but-not-for-thee-guest-blog-post.htm

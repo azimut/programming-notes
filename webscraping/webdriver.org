@@ -1,0 +1,28 @@
+- home https://webdriver.io/
+- chromedriver https://developer.chrome.com/docs/chromedriver
+  - downloads https://googlechromelabs.github.io/chrome-for-testing/#stable
+- doc https://webdriver.io/docs/api
+- doc https://www.w3.org/TR/webdriver/
+
+- https://en.wikipedia.org/wiki/Selenium_(software)
+  - by Jason Huggings, Paul Hammant
+  - umbrella project for libraries and tools for browser automation
+  - Versions
+    - 0 2004
+    - 0 2007 Webdriver
+    - 2 2009 Webdriver merge
+    - 4 2021
+  - "At the core of Selenium is Selenium ~WebDriver~,
+     an interface to write instructions that work interchangeably across browsers."
+  - "Unlike in Selenium 1, where the Selenium server was necessary to run tests,
+     Selenium ~WebDriver~ does not need a special server to execute tests.
+     Instead, the ~WebDriver~ directly starts a browser instance and controls it."
+
+* Webdriver Libraries
+
+- Clojure https://github.com/clj-commons/etaoin
+  - one namespace
+  - native (no deps)
+  - doc https://cljdoc.org/d/etaoin/etaoin/1.1.42/doc/user-guide
+  - doc https://github.com/clj-commons/etaoin/blob/master/doc/02-developer-guide.adoc
+  - video https://www.youtube.com/watch?v=cLL_5rETLWY

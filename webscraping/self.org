@@ -1,0 +1,6 @@
+- two types of problems
+  1) collect
+  2) parse
+
+- certification https://www.istqb.org/
+- https://scrapfly.io/use-case
