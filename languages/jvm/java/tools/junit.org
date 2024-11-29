@@ -1,0 +1,45 @@
+* Barebones Junit
+https://www.preciouschicken.com/blog/posts/barebones-guide-to-junit-on-the-command-line/
+** Solution.java
+
+#+begin_src java
+class Solution {
+    public static String whoLikesIt(String... names) {
+        return "Hello!";
+    }
+}
+#+end_src
+
+** SolutionTest.java
+
+#+begin_src java
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import org.junit.runners.JUnit4;
+
+public class SolutionTest {
+    @Test
+    public void staticTests() {
+        assertEquals("no one likes this", Solution.whoLikesIt());
+        assertEquals("Peter likes this", Solution.whoLikesIt("Peter"));
+        assertEquals("Jacob and Alex like this", Solution.whoLikesIt("Jacob", "Alex"));
+        assertEquals("Max, John and Mark like this", Solution.whoLikesIt("Max", "John", "Mark"));
+        assertEquals("Alex, Jacob and 2 others like this", Solution.whoLikesIt("Alex", "Jacob", "Mark", "Max"));
+    }
+}
+#+end_src
+
+** Makefile
+#+begin_src makefile
+JUNIT := junit-platform-console-standalone-1.9.0.jar
+
+.PHONY: test
+test: Solution.class SolutionTest.class
+	java -jar $(JUNIT) -cp . -c SolutionTest --disable-banner --disable-ansi-colors | head
+
+Solution.class: Solution.java
+	javac Solution.java
+
+SolutionTest.class: SolutionTest.java
+	javac -cp $(JUNIT) SolutionTest.java
+#+end_src

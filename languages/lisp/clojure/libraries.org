@@ -4,6 +4,8 @@ clojure https://clojars.org/
 clojurescript https://clojurescript.org/community/libraries
 
 - popular way to compile clojurescript https://github.com/thheller/shadow-cljs
+- 2d drawing https://github.com/Clojure2D/clojure2d
+- webdriver https://github.com/clj-commons/etaoin
 
 |-----------------------+-----+----------------------------------------------|
 | Async programming     | 1.9 | https://github.com/clojure/core.async        |

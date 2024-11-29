@@ -35,7 +35,23 @@
       def eqList[A](xs: List[A], ys: List[A])(using eq: Eq[A])
           : Boolean = ???
     #+end_src
-
+** Types
+|---------+------------+-------------------------------------------------------|
+|     <r> |    <c>     |                                                       |
+| Nothing |            | has no value, only valid code throwing exceptions     |
+|    Unit |  ()  {()}  |                                                       |
+|    Null |    null    |                                                       |
+| Boolean |    true    | no other truthy or falsy values exists in scala       |
+|    Byte |    1 or    | Byte.MinValue or Byte.MaxValue                        |
+|   Short |            |                                                       |
+|     Int |            |                                                       |
+|    Long |            |                                                       |
+|   Float |            |                                                       |
+|  Double |            |                                                       |
+|     Any |            | at the top of scala type hierarchy                    |
+|  AnyVal |            | at the top of scala primitive types                   |
+|  AnyRef |            | at the top of scala classes, alias of JavaLang.Object |
+|---------+------------+-------------------------------------------------------|
 ** Standard Library
 - https://www.scala-lang.org/api/current/
 ** Binary Compatibility
