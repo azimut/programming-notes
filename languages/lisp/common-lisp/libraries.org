@@ -105,11 +105,18 @@
   https://web.archive.org/web/20171127083905/http://www.method-combination.net/blog/archives/2010/04/06/looping-issues.html
   https://lispcookbook.github.io/cl-cookbook/iteration.html
   https://gigamonkeys.com/book/loop-for-black-belts.html
+
+#+CAPTION: from "Land of Lisp"
+#+ATTR_ORG: :width 800
+[[./loop-periodic-table.png]]
+
+
 ** for
  manual https://shinmera.github.io/for/
 ** SERIES
 - Note taken on [2022-12-17 Sat 05:39]
 #+CAPTION: All methods exported
+#+ATTR_ORG: :width 500
 #+NAME:   fig:SED-HR4049
   [[./series.png]]
 

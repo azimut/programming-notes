@@ -107,7 +107,9 @@ https://rosettacode.org/wiki/Hello_world/Web_server
   - use "IF" and not "ELSE IF" if the previous branch uses a "RETURN"
   - use () before pipes |
 
-** Types (will be automaticaly coerced when needed)
+** Types
+
+~automaticaly coerced when needed~
 
 https://www.gnu.org/software/gawk/manual/html_node/Variable-Typing.html
 
@@ -115,7 +117,9 @@ https://www.gnu.org/software/gawk/manual/html_node/Variable-Typing.html
    - index start at 1
 2) Numbers
 3) Arrays
-   - index start at 0
+   - index start at 1
+     - at least the ones returned by stdlib functions
+     - you can make it start by 0(zero) if you use a custom variable to initialize it
    - 1D
    - for strings or numbers
    - no need to be declared
@@ -147,32 +151,33 @@ https://www.gnu.org/software/gawk/manual/html_node/Variable-Typing.html
   - Instead of using FS to specify what the fields are *not*
   - We use this to specify what are the fields, in the form of a regular expression.
 
-|----------+----------------------------------------------+-----------|
-|          | =meaning=                                    | =default= |
-|----------+----------------------------------------------+-----------|
-| FPAT     | regex of what each field contains            | -         |
-|----------+----------------------------------------------+-----------|
-| NF       | numer of fields in line                      | -         |
-| NR       | number of records (aka lines) read so far    | -         |
-| FNR      | number of records read so far, in curr file  | -         |
-|----------+----------------------------------------------+-----------|
-| FS       | *controls* the input field separator         | " "       |
-| RS       | *controls* the input record separator        | "\n"      |
-|----------+----------------------------------------------+-----------|
-| OFS      | output field separator                       | " "       |
-| ORS      | output record separator                      | "\n"      |
-| OFMT     | output format for numbers                    | "%.6g"    |
-|----------+----------------------------------------------+-----------|
-| ARGC     | number of cli arguments                      | -         |
-| ARGV     | array of cli arguents                        | -         |
-| ENVIRON  | array of environment variables               |           |
-|----------+----------------------------------------------+-----------|
-| RLENGTH  | length of string matched by *match* function | -         |
-| RSTART   | start of string matched by *match* function  | -         |
-|----------+----------------------------------------------+-----------|
-| FILENAME | name of current input file                   | -         |
-| SUBSEP   | subscript separator                          | "\034"    |
-|----------+----------------------------------------------+-----------|
+|----------+----------------------------------------------+---------|
+|      <r> |                                              |   <c>   |
+|          | DESCRIPTION                                  | DEFAULT |
+|----------+----------------------------------------------+---------|
+|     FPAT | regex of what each field contains            |    -    |
+|----------+----------------------------------------------+---------|
+|       NF | numer of fields in line                      |    -    |
+|       NR | number of records (aka lines) read so far    |    -    |
+|      FNR | number of records read so far, in curr file  |    -    |
+|----------+----------------------------------------------+---------|
+|       FS | *controls* the input field separator         |   " "   |
+|       RS | *controls* the input record separator        |  "\n"   |
+|----------+----------------------------------------------+---------|
+|      OFS | output field separator                       |   " "   |
+|      ORS | output record separator                      |  "\n"   |
+|     OFMT | output format for numbers                    | "%.6g"  |
+|----------+----------------------------------------------+---------|
+|     ARGC | number of cli arguments                      |    -    |
+|     ARGV | array of cli arguents                        |    -    |
+|  ENVIRON | array of environment variables               |         |
+|----------+----------------------------------------------+---------|
+|  RLENGTH | length of string matched by *match* function |    -    |
+|   RSTART | start of string matched by *match* function  |    -    |
+|----------+----------------------------------------------+---------|
+| FILENAME | name of current input file                   |    -    |
+|   SUBSEP | subscript separator                          | "\034"  |
+|----------+----------------------------------------------+---------|
 ** built-in functions
 https://www.gnu.org/software/gawk/manual/html_node/Built_002din.html#Built_002din
 *** TIME
@@ -211,53 +216,55 @@ https://www.gnu.org/software/gawk/manual/html_node/Bitwise-Functions.html
 *** MATH
 https://www.gnu.org/software/gawk/manual/html_node/Numeric-Functions.html
 |------------+------------------------------------|
+|    <c>     |                                    |
 |            | returns                            |
 |------------+------------------------------------|
 | atan2(y,x) | arctangent of y/x in -x to x range |
-| cos(x)     | cosine of x, with x in radians     |
-| sin(x)     | sine of x, with x in radians       |
-| exp(x)     |                                    |
-| log(x)     | ntural base e logarithm of x       |
-| sqrt(x)    |                                    |
+|   cos(x)   | cosine of x, with x in radians     |
+|   sin(x)   | sine of x, with x in radians       |
+|   exp(x)   |                                    |
+|   log(x)   | ntural base e logarithm of x       |
+|  sqrt(x)   |                                    |
 |------------+------------------------------------|
-| int(x)     | integer part of x, truncated       |
+|   int(x)   | integer part of x, truncated       |
 |------------+------------------------------------|
-| rand()     | random nuber r, 0 <= r < 1         |
-| srand(x)   | x is new seed for rand()           |
+|   rand()   | random nuber r, 0 <= r < 1         |
+|  srand(x)  | x is new seed for rand()           |
 |------------+------------------------------------|
 *** STRING
 https://www.gnu.org/software/gawk/manual/html_node/String-Functions.html
+r=regex  s=string  t=target  fs=field separator
 |---------------------+---------------------------+-----------------------------------------------|
-|                     | returns                   | does                                          |
+|         <c>         | returns                   | does                                          |
 |---------------------+---------------------------+-----------------------------------------------|
-| sub(r,s)            | number of subst made      | substitute one r for s in $0                  |
-| sub(r,s,t)          | number of subst made      | substitute one r for s in t                   |
-| gsub(r,s)           | number of subst made      | substitute all r for s in $0                  |
-| gsub(r,s,t)         | number of subst made      | substitute all r for s in t                   |
-| gensub(r,s,h)       | copy of s modified        | substitute h'th instance of r by s in $0      |
-| gensub(r,s,h,t)     | copy of s modified        | substitute h'th instance of r by s in t       |
+|      sub(r,s)       | number of subst made      | substitute one r for s in $0                  |
+|     sub(r,s,t)      | number of subst made      | substitute one r for s in t                   |
+|      gsub(r,s)      | number of subst made      | substitute all r for s in $0                  |
+|     gsub(r,s,t)     | number of subst made      | substitute all r for s in t                   |
+|    gensub(r,s,h)    | copy of s modified        | substitute h'th instance of r by s in $0      |
+|   gensub(r,s,h,t)   | copy of s modified        | substitute h'th instance of r by s in t       |
 |---------------------+---------------------------+-----------------------------------------------|
-| substr(s,start)     | substring of s            |                                               |
+|   substr(s,start)   | substring of s            |                                               |
 | substr(s,start,len) | substring of s            |                                               |
 |---------------------+---------------------------+-----------------------------------------------|
-| split(s,a)          | number of fields          | stores the pieces in array a                  |
-| split(s,a,fs)       | number of fields          | stores the pieces in array a                  |
+|     split(s,a)      | number of fields          | stores the pieces in array a                  |
+|    split(s,a,fs)    | number of fields          | stores the pieces in array a                  |
 |---------------------+---------------------------+-----------------------------------------------|
-| length()            | number of chars in $0     |                                               |
-| length(s)           | number of chars in s      |                                               |
+|      length()       | number of chars in $0     |                                               |
+|      length(s)      | number of chars in s      |                                               |
 |---------------------+---------------------------+-----------------------------------------------|
-| index(s,t)          | 0 or n position of t in s |                                               |
-| match(s,r)          | index or 0                | test if s contains r, sets RSTART and RLENGTH |
-| match(s,r,a)        |                           | ... sets a to portions of s that match r      |
+|     index(s,t)      | 0 or n position of t in s |                                               |
+|     match(s,r)      | index or 0                | test if s contains r, sets RSTART and RLENGTH |
+|    match(s,r,a)     |                           | ... sets a to portions of s that match r      |
 |                     |                           | [0]           = whole matched part of s       |
 |                     |                           | [N, "start"]  = starting index of match       |
 |                     |                           | [N, "length"] = length of match               |
 |---------------------+---------------------------+-----------------------------------------------|
-| sprintf(fmt, ...)   | formated string           |                                               |
-| strtonum(s)         |                           |                                               |
+|  sprintf(fmt, ...)  | formated string           |                                               |
+|     strtonum(s)     |                           |                                               |
 |---------------------+---------------------------+-----------------------------------------------|
-| tolower(s)          | lowercased s              |                                               |
-| toupper(s)          | uppercased s              |                                               |
+|     tolower(s)      | lowercased s              |                                               |
+|     toupper(s)      | uppercased s              |                                               |
 |---------------------+---------------------------+-----------------------------------------------|
 
 *** operators

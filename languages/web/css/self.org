@@ -190,6 +190,7 @@
       - display: grid/inline-grid
       - grid-template-areas
         - "header header" "main aside" "footer footer"
+        - needs you to define grid-area on container items
       - grid-auto-flow: row (default)
       - grid-template-=columns=
         - 100px 50% 2em
