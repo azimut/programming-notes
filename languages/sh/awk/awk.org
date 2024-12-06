@@ -271,7 +271,15 @@ NOTE: call ~close("cmd")~ on the non two-way pipes
 
 ** extensions
 
+- at /usr/share/doc/gawk/examples/lib/*.awk
+  - maybe set on OS environment variable =AWKPATH= (at least for lsp emacs)
+
 - @include "join"
+  #+begin_src awk
+  function join(array, start, end, sep,    result, i)
+     if (sep == "")     sep = " "
+     if (sep == SUBSEP) sep = "" # magic value
+  #+end_src
 
 - @include "assert"
   assert(BOOLEAN, "Reason of failure HERE")
