@@ -25,82 +25,9 @@
   - Aho Alfred Vaino
   - Weinberger Peter Jay
   - Kernighan Brian Wilson
+
 - 2023
   - --csv, supports fields surrounded by double quotes
-
-- https://www.gnu.org/software/gawk/manual/html_node/Conversion
-  gawk always uses the period (.) as the decimal point
-  unless told explicitly to use the local LC_NUMERIC
-  --posix
-  --use-lc-numeric (-N)
-
-- sometimes not enforcing variables to be local can cause weird issues.
-  early return, should happen as soon as possible
-  otherwise this function will keep looping...
-  If I move the if/return0 to the top it works just fine
-  OR
-  if I make "middle" a local variable
-  #+begin_src awk
-    function binarySearch(target,    left, right) {
-        middle = int((left+right)/2)
-        print "l:", left, "r:", right, "m:", middle, "n[m]="numbers[middle]
-        if (left >= right) {
-            return 0
-        }
-        if (numbers[middle] > target) binarySearch(target, left, middle-1)
-        if (numbers[middle] < target) binarySearch(target, middle+1, right)
-        return numbers[middle] == target
-    }
-  #+end_src
-
-- length($0) == 0 { print "this is an empty record==" }
-  END { if (NR == 0) print "means that we didn't process any record" }
-- || and && return booleans. AKA 0 or 1. They do NOT return the truthy value.
-- Can redefine NF=0 at END and then add new $(++NF)=??? to later just *print*
-- falsey: "", 0, undefined variables
-#+begin_src awk
-  { print "expression" > "filename" }
-  { print "expression" | "command" }
-  function add_tree (number) { # local variables can be declared here too, like &aux
-      return number + 3
-  }
-  { print add_tree(36) }
-#+end_src
-- Unique at the time due
-  - being a scripting language
-  - having associative arrays
-- can assign a value on a if
-  #+begin_src awk
-    if (disjoint = r[2] <= m1 || m2 <= r[1])
-        continue
-  #+end_src
-
-** network
-
-- https://www.gnu.org/software/gawk/manual/html_node/TCP_002fIP-Networking.html
-- https://www.gnu.org/software/gawk/manual/gawkinet/html_node/index.html
-- https://www.gnu.org/software/gawk/manual/gawkinet/gawkinet.html#Primitive-Service
-
-*** rossetta - web server
-
-https://rosettacode.org/wiki/Hello_world/Web_server
-#+begin_src awk
-  #!/usr/bin/gawk -f
-  BEGIN {
-      RS = ORS = "\r\n"
-      HttpService = "/inet/tcp/8080/0/0"
-      Hello = "<HTML><HEAD>" \
-          "<TITLE>A Famous Greeting</TITLE></HEAD>" \
-          "<BODY><H1>Hello, world</H1></BODY></HTML>"
-      Len = length(Hello) + length(ORS)
-      print "HTTP/1.0 200 OK"          |& HttpService
-      print "Content-Length: " Len ORS |& HttpService
-      print Hello                      |& HttpService
-      while ((HttpService |& getline) > 0)
-          continue;
-      close(HttpService)
-  }
-#+end_src
 
 ** style
 
@@ -112,7 +39,7 @@ https://rosettacode.org/wiki/Hello_world/Web_server
   - use "IF" and not "ELSE IF" if the previous branch uses a "RETURN"
   - use () before pipes |
 
-** Types
+** types
 
 ~automaticaly coerced when needed~
 
@@ -121,6 +48,8 @@ https://www.gnu.org/software/gawk/manual/html_node/Variable-Typing.html
 1) Strings
    - index start at 1
 2) Numbers
+   - || and && return =booleans= AKA 0(false) and 1(true). They do NOT return the truthy value.
+   - falsey: "", 0, undefined variables
 3) Arrays
    - index start at 1
      - at least the ones returned by stdlib functions
@@ -347,6 +276,78 @@ NOTE: call ~close("cmd")~ on the non two-way pipes
   - ord(STRING) -> NUMBER
   - chr(NUMBER) -> STRING
 
+** control flow
+- do while, while, for(;;), for(in)
+- can assign a value on a if
+  #+begin_src awk
+    if (disjoint = r[2] <= m1 || m2 <= r[1])
+        continue
+  #+end_src
+
+** network
+
+- https://www.gnu.org/software/gawk/manual/html_node/TCP_002fIP-Networking.html
+- https://www.gnu.org/software/gawk/manual/gawkinet/html_node/index.html
+- https://www.gnu.org/software/gawk/manual/gawkinet/gawkinet.html#Primitive-Service
+
+*** rossetta - web server
+
+https://rosettacode.org/wiki/Hello_world/Web_server
+#+begin_src awk
+  #!/usr/bin/gawk -f
+  BEGIN {
+      RS = ORS = "\r\n"
+      HttpService = "/inet/tcp/8080/0/0"
+      Hello = "<HTML><HEAD>" \
+          "<TITLE>A Famous Greeting</TITLE></HEAD>" \
+          "<BODY><H1>Hello, world</H1></BODY></HTML>"
+      Len = length(Hello) + length(ORS)
+      print "HTTP/1.0 200 OK"          |& HttpService
+      print "Content-Length: " Len ORS |& HttpService
+      print Hello                      |& HttpService
+      while ((HttpService |& getline) > 0)
+          continue;
+      close(HttpService)
+  }
+#+end_src
+
+** gotchas
+
+- https://www.gnu.org/software/gawk/manual/html_node/Conversion
+  gawk always uses the period (.) as the decimal point
+  unless told explicitly to use the local LC_NUMERIC
+  --posix
+  --use-lc-numeric (-N)
+
+- sometimes not enforcing variables to be local can cause weird issues.
+  early return, should happen as soon as possible
+  otherwise this function will keep looping...
+  If I move the if/return0 to the top it works just fine
+  OR
+  if I make "middle" a local variable
+  #+begin_src awk
+    function binarySearch(target,    left, right) {
+        middle = int((left+right)/2)
+        print "l:", left, "r:", right, "m:", middle, "n[m]="numbers[middle]
+        if (left >= right) {
+            return 0
+        }
+        if (numbers[middle] > target) binarySearch(target, left, middle-1)
+        if (numbers[middle] < target) binarySearch(target, middle+1, right)
+        return numbers[middle] == target
+    }
+  #+end_src
+
+- Can redefine NF=0 at END and then add new $(++NF)=??? to later just *print*
+  #+begin_src awk
+    { print "expression" > "filename" }
+    { print "expression" | "command" }
+    function add_tree (number) { # local variables can be declared here too, like &aux
+        return number + 3
+    }
+    { print add_tree(36) }
+  #+end_src
+
 
 * codebases
 |---------------------+----------------------------------------------------------------|
@@ -432,6 +433,12 @@ NOTE: call ~close("cmd")~ on the non two-way pipes
         return out "\n"
     }
   #+end_src
+- check for empty records and fields
+  #+begin_src awk
+    length($0) == 0 { print "this is an empty record==" }
+    END { if (NR == 0) print "means that we didn't process any record" }
+  #+end_src
+
 
 * implementations
 
