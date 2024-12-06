@@ -26,8 +26,9 @@
   - Weinberger Peter Jay
   - Kernighan Brian Wilson
 
-- 2023
-  - --csv, supports fields surrounded by double quotes
+- [[https://www.gnu.org/software/gawk/manual/html_node/Feature-History.html][gawk changelog]]
+  - 2023 (5.3)
+    - --csv, supports fields surrounded by double quotes
 
 ** style
 
@@ -443,12 +444,14 @@ https://rosettacode.org/wiki/Hello_world/Web_server
 * implementations
 
 |--------+-------------------------------------------------------------------------------|
-| gawk   | https://www.gnu.org/software/gawk/                                            |
-| mawk   | https://web.archive.org/web/20240202023335/https://invisible-island.net/mawk/ |
-| nawk   | https://github.com/onetrueawk/awk                                             |
-|        | https://justine.lol/awk/                                                      |
-| goawk  | https://github.com/benhoyt/goawk                                              |
+|    <r> |                                                                               |
+|   gawk | https://www.gnu.org/software/gawk/                                            |
+|   mawk | https://web.archive.org/web/20240202023335/https://invisible-island.net/mawk/ |
+|  goawk | https://github.com/benhoyt/goawk                                              |
 | bioawk | https://github.com/lh3/bioawk                                                 |
+|  frawk | https://github.com/ezrosent/frawk                                             |
+|   nawk | https://github.com/onetrueawk/awk                                             |
+|        | https://justine.lol/awk/                                                      |
 |--------+-------------------------------------------------------------------------------|
 
 #+begin_src
@@ -469,7 +472,7 @@ $ readelf -d /usr/bin/mawk | grep Shared # 155K
   - =gawk= unbuffered by default
   - =mawk= buffers by default, needs ~-W interactive~ to disable
 
-* tools
+** tools
 - editor tools
   - https://github.com/Beaglefoot/awk-language-server
   - https://emacs-lsp.github.io/lsp-mode/page/lsp-awk/
