@@ -18,6 +18,7 @@
 
 #+begin_src awk
   #!/usr/bin/awk -f
+  #!/usr/bin/env -S gawk -f
   END { print "Hello, World!"; }
 #+end_src
 
@@ -52,6 +53,7 @@ https://www.gnu.org/software/gawk/manual/html_node/Variable-Typing.html
    - || and && return =booleans= AKA 0(false) and 1(true). They do NOT return the truthy value.
    - falsey: "", 0, undefined variables
 3) Arrays
+   - isarray()
    - index start at 1
      - at least the ones returned by stdlib functions
      - you can make it start by 0(zero) if you use a custom variable to initialize it
@@ -118,14 +120,17 @@ https://www.gnu.org/software/gawk/manual/html_node/Variable-Typing.html
 |-------------+----------------------------------------------+---------|
 ** built-in functions
 https://www.gnu.org/software/gawk/manual/html_node/Built_002din.html#Built_002din
+typeof
 *** TIME
 https://www.gnu.org/software/gawk/manual/html_node/Time-Functions.html
 |----------+----------------------+-------------------------------------------------|
-| mktime   | DATESTR, UTC?        | given DATESTR, timestamp in seconds since epoch |
+|      <r> |                      |                                                 |
+|   mktime | DATESTR, UTC?        | given DATESTR, timestamp in seconds since epoch |
 | strftime | FMT, TIMESTAMP, UTC? |                                                 |
-| systime  | -                    | now, timestamp in seconds since epoch           |
+|  systime | -                    | now, TIMESTAMP in seconds since epoch           |
 |----------+----------------------+-------------------------------------------------|
-
+- where DATESTR is a space separated "YYYY MM DD HH MM SS DST? 0|1"
+- where FMT can be "%Y-%m-%d %H:%M:%S"
 *** BITWISE
 https://www.gnu.org/software/gawk/manual/html_node/Bitwise-Functions.html
 |--------------------+-------------------------------------|
@@ -149,6 +154,7 @@ https://www.gnu.org/software/gawk/manual/html_node/Bitwise-Functions.html
 |  asort(SRC,DST) | number of elements in SRC | sort by value, DST has idx=numeric val=old_value |
 | asorti(SRC,DST) | number of elements in SRC | sort by index, DST has idx=numeric val=old_index |
 |    isarray(arr) | boolean                   |                                                  |
+|   delete arr[1] | ?                         | deletes element "1" from array                   |
 |-----------------+---------------------------+--------------------------------------------------|
 
 *** MATH
@@ -171,7 +177,7 @@ https://www.gnu.org/software/gawk/manual/html_node/Numeric-Functions.html
 |------------+------------------------------------|
 *** STRING
 https://www.gnu.org/software/gawk/manual/html_node/String-Functions.html
-r=regex  s=string  t=target  fs=field separator
+r=regex  s=string  t=targetstring  fs=field separator
 |---------------------+---------------------------+-----------------------------------------------|
 |         <c>         | returns                   | does                                          |
 |---------------------+---------------------------+-----------------------------------------------|
@@ -243,7 +249,7 @@ https://www.gnu.org/software/gawk/manual/html_node/Getline.html
 | "cmd" ¦& getline     | reads from a two-way pipe           | NF, RT, $0          |
 | "cmd" ¦& getline var | reads from a two-way pipe into var  | RT                  |
 |----------------------+-------------------------------------+---------------------|
-NOTE: call ~close("cmd")~ on the non two-way pipes
+NOTE: call ~close("cmd")~ on the non two-way pipes, maybe call getline on a ~while>0~
 
 ** format strings
 
