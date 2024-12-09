@@ -409,6 +409,15 @@ https://rosettacode.org/wiki/Hello_world/Web_server
         }
         return res
     }
+    function print_mat() {
+        print ""
+        for (rid = 1; rid <= NR; rid++) {
+            for (cid = 1; cid <= NF; cid++) {
+                printf map[cid + ((rid-1)*NR)]
+            }
+            printf "\n"
+        }
+    }
     function print_matrix_dimensions(    arr) {
         printf "%dx%d\n", length(arr), length(arr[1])
     }
