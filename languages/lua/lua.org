@@ -1,42 +1,54 @@
-- https://learnxinyminutes.com/docs/lua/
-- https://lua.programmingpedia.net/
-- http://lua-users.org/wiki/VarargTheSecondClassCitizen
-- https://fly.io/docs/app-guides/openresty-nginx-plus-lua/
+#+ATTR_ORG: :width 200
+[[https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Lua-Logo.svg/240px-Lua-Logo.svg.png]]
+
+|--------+----------------------------------------------------------|
+| wiki   | https://en.wikipedia.org/wiki/Lua_(programming_language) |
+| home   | https://www.lua.org/                                     |
+| libs   | https://github.com/luarocks/luarocks                     |
+| libs   | https://github.com/LewisJEllis/awesome-lua               |
+| source | https://github.com/lua/lua                               |
+| source | https://github.com/LuaJIT/LuaJIT                         |
+|--------+----------------------------------------------------------|
+
 * Language
+
+- 1993
+- by [[https://en.wikipedia.org/wiki/Roberto_Ierusalimschy][Roberto Ierusalimschy]]
+
+** Changelog
+https://www.lua.org/versions.html
+
+- 5.4 (20)
+  - const and to-be-closed vars
+- 5.3 (15)
+  - integers
+  - bitwise ops
+  - utf-8 library
+- 5.2 (11)
+- 5.1 (06)
+- 5.0 (03)
+
 ** Standard Library
+
 "This is a collection of Lua libraries for Lua 5.1 (including LuaJIT), 5.2 and 5.3."
+
 source https://github.com/lua-stdlib/lua-stdlib
 doc https://lua-stdlib.github.io/lua-stdlib/
+
 - ??? none of this works on my lua installation
   $ lua -v
    Lua 5.3.5  Copyright (C) 1994-2018 Lua.org, PUC-Rio
   $ luajit -v
    LuaJIT 2.1.0-beta3 -- Copyright (C) 2005-2017 Mike Pall. http://luajit.org/
-* mpv
+
+* Codebases
+- https://fly.io/docs/app-guides/openresty-nginx-plus-lua/
+** mpv
 - https://mpv.io/manual/master/#lua-scripting
   https://mpv.io/manual/master/#list-of-input-commands
 - https://github.com/davidde/mpv-autosub
 - https://github.com/CounterPillow/mpv-quack
-* youtube chat
+** youtube chat
 - https://github.com/vincasmiliunas/lua-basic-oauth2
 - https://developers.google.com/youtube/v3/live/docs/liveBroadcasts/list
 - https://developers.google.com/youtube/v3/live/registering_an_application
-* Packaging
-- https://github.com/siffiejoe/lua-amalg/
-- https://gist.github.com/Penguinum/a251002ffd79ba9975a0aecbe8515b80
-* autocomplete
-** vscode
-- https://github.com/jalovatt/reaper-vs-code
-** emacs
-- stylesheet
-  https://orgmode.org/worg/org-tutorials/org-spreadsheet-intro.html
-  https://orgmode.org/manual/Formula-syntax-for-Calc.html#Formula-syntax-for-Calc
-  http://ergoemacs.org/emacs/elisp_call_shell_command.html
-
-- http://p.hagelb.org/pnh-lua-completion.el.html
-  https://www.reddit.com/r/emacs/comments/4mmgny/best_practice_of_lua_programming_in_emacs/
-  "other autocompletion on emacs"
-- https://github.com/ptrv/company-lua/pull/6/files
-  "company-lua torch backend addition"
-- https://github.com/Lazzle/ZBS-REAPER-API-Gen/blob/master/zbs-reaper-api-gen.lua
-  "extract ZBS doc from reaper api"

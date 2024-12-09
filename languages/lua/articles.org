@@ -1,3 +1,16 @@
+- https://cacm.acm.org/research/a-look-at-the-design-of-lua/
+- https://learnxinyminutes.com/docs/lua/
+- https://lua.programmingpedia.net/
+- http://lua-users.org/wiki/VarargTheSecondClassCitizen
+- https://andreyor.st/posts/2020-10-15-raymarching-with-fennel-and-love/
+- http://notebook.kulchenko.com/programming/lua-good-different-bad-and-ugly-parts
+
+- embed
+  - http://web.archive.org/web/20110424170044/https://debian-administration.org/article/264/Embedding_a_scripting_language_inside_your_C/C_code
+  - https://archive.md/20181227123138/https://sepisoad.com/blog/how%20to%20lua%20and%20c%20-%20a%20short%20novel.html
+  - https://kyju.org/blog/piccolo-a-stackless-lua-interpreter/
+  - https://memorycorruption.net/posts/rce-lua-factorio/
+
 * 14 | I Fell out of love with Lua
 https://garry.blog/i-fell-out-of-love-with-lua/
 - by Garry's mod creator

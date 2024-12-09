@@ -1,3 +1,14 @@
+* Build a Programming Language - Week 1
+
+https://www.youtube.com/watch?v=NLcITMF4VSM
+https://www.youtube.com/watch?v=fWoAvmpyEJk
+https://www.youtube.com/watch?v=cLC3WWhL1aE
+https://www.youtube.com/watch?v=1_7ny3if7_4
+https://www.youtube.com/watch?v=E1d30lgzD7Y
+https://www.youtube.com/watch?v=G1Hid9Mtnn4
+https://www.youtube.com/watch?v=OpEjaC5oFOU
+https://www.youtube.com/watch?v=mQuRFoxAoyM
+
 * 20 | Master Lua Programming and Create Amazing Games with LÖVE!
 - https://www.udemy.com/course/lua-love/
 - source https://github.com/kyleschaub/udemy-love2d
