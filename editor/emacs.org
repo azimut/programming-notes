@@ -8,6 +8,9 @@
 - insert date into at cursor https://stackoverflow.com/questions/251908/how-can-i-insert-current-date-and-time-into-a-file-using-emacs
   C-u M-! date
 
+- case sensitive search, M-c after input search
+  https://stackoverflow.com/questions/11602505/how-can-i-do-a-case-sensitive-search-in-emacs
+
 * configs
 - full https://eshelyaron.com/esy.html
 - full https://github.com/higham/dot-emacs/blob/3bc53cce471ec9f6b4b08fb5b32ad19761468d42/.emacs#L3123

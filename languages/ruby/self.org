@@ -774,6 +774,15 @@ Script ran, to generate valid markdown from site's json. Then converted with  pa
 #+end_src
 
 
+* flags
+|----+--------------+--------------------------------------------|
+| -F | pattern      | input field separator                      |
+| -n |              | awk like loop around                       |
+| -p |              | awk like loop around, prints $_ at the end |
+| -a |              | awk like auto field split, $F = $_.split   |
+| -e | code         | input ruby code to run                     |
+| -i | new file ext | inplace replace                            |
+|----+--------------+--------------------------------------------|
 * codebases
 
 - http://ratfactor.com/repos/
