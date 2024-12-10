@@ -366,6 +366,11 @@ https://rosettacode.org/wiki/Hello_world/Web_server
     { print add_tree(36) }
   #+end_src
 
+- if you use an array to count unique values, if using more than one number, separate by a string
+  #+begin_src awk
+    map[x y]   = 1 # BAD
+    map[x","y] = 1 # GOOD!
+  #+end_src
 
 * codebases
 |---------------------+----------------------------------------------------------------|
@@ -409,7 +414,8 @@ https://rosettacode.org/wiki/Hello_world/Web_server
         }
         return res
     }
-    function print_mat() {
+    # map[i+((NR-1)*NF)] = $i
+    function print_mat(    rid, cid) {
         print ""
         for (rid = 1; rid <= NR; rid++) {
             for (cid = 1; cid <= NF; cid++) {
