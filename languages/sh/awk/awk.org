@@ -66,19 +66,23 @@ https://www.gnu.org/software/gawk/manual/html_node/Variable-Typing.html
    - use this to coerce into an array in a body's function
      "" in arr
    - https://www.gnu.org/software/gawk/manual/html_node/Controlling-Array-Traversal.html
-     - comp_func(i1, v1, i2, v2) < 0  Index i1 comes before index i2
-     - comp_func(i1, v1, i2, v2) == 0 Indices i1 and i2 come together
-     - comp_func(i1, v1, i2, v2) > 0  Index i1 comes after in2
+     #+begin_src awk
+      comp_func(i1, v1, i2, v2)  < 0 # Index i1 comes before index i2
+      comp_func(i1, v1, i2, v2) == 0 # Indices i1 and i2 come together
+      comp_func(i1, v1, i2, v2)  > 0 # Index i1 comes after in2
+     #+end_src
    - Set the order an already created array would be presented on a forIn
-     - PROCINFO["sorted_in"] = "afunctionname" like comp_func(index1, value1, index2, value2)
-     - PROCINFO["sorted_in"] = "@val_num_asc"
-     - PROCINFO["sorted_in"] = "@val_num_desc"
-     - PROCINFO["sorted_in"] = "@val_str_asc"
-     - PROCINFO["sorted_in"] = "@val_str_desc"
-     - PROCINFO["sorted_in"] = "@ind_num_asc"
-     - PROCINFO["sorted_in"] = "@ind_num_desc"
-     - PROCINFO["sorted_in"] = "@ind_str_asc"
-     - PROCINFO["sorted_in"] = "@ind_str_desc"
+     #+begin_src awk
+       PROCINFO["sorted_in"] = "afunctionname" # see comp_func
+       PROCINFO["sorted_in"] = "@val_num_asc"
+       PROCINFO["sorted_in"] = "@val_num_desc"
+       PROCINFO["sorted_in"] = "@val_str_asc"
+       PROCINFO["sorted_in"] = "@val_str_desc"
+       PROCINFO["sorted_in"] = "@ind_num_asc"
+       PROCINFO["sorted_in"] = "@ind_num_desc"
+       PROCINFO["sorted_in"] = "@ind_str_asc"
+       PROCINFO["sorted_in"] = "@ind_str_desc"
+     #+end_src
 
 ** built-in variables
 

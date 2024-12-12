@@ -43,6 +43,7 @@ doc https://lua-stdlib.github.io/lua-stdlib/
 
 * Codebases
 - https://fly.io/docs/app-guides/openresty-nginx-plus-lua/
+- game devlog https://github.com/a327ex/blog
 ** mpv
 - https://mpv.io/manual/master/#lua-scripting
   https://mpv.io/manual/master/#list-of-input-commands
@@ -52,3 +53,11 @@ doc https://lua-stdlib.github.io/lua-stdlib/
 - https://github.com/vincasmiliunas/lua-basic-oauth2
 - https://developers.google.com/youtube/v3/live/docs/liveBroadcasts/list
 - https://developers.google.com/youtube/v3/live/registering_an_application
+
+* Compiles to Lua
+|------------+------|
+| [[https://moonscript.org/][moonscript]] |      |
+| [[https://fennel-lang.org/][fennel]]     | lisp |
+| [[https://urn-lang.com/][urn]]        | lisp |
+| [[https://amulet.works/][amulet]]     | ml   |
+|------------+------|

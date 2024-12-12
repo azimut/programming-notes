@@ -77,10 +77,11 @@
 | bool   | false |
 |--------+-------|
 *** Complex
-|--------+------------|
-| arrays | [N]PTYPE{} |
-| slices | []PTYPE{}  |
-|--------+------------|
+|--------+---------|
+| struct | AFoo{}  |
+| arrays | [N]TYPE |
+| slices | []TYPE  |
+|--------+---------|
 ** Changelog
 https://go.dev/doc/go1.18
 
@@ -401,6 +402,15 @@ https://pkg.go.dev/golang.org/x
 - vuln       — packages for accessing and analyzing data from the Go Vulnerability Database.
 - website    — home of the go.dev and golang.org websites.
 
+** Control Flow
+#+begin_src go
+  switch foobar {
+  case "foo", "bar":
+          println("is foo or bar")
+  default:
+          println("is something else :/")
+  }
+#+end_src
 
 * Personalities
 ** Rob Pike
