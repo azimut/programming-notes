@@ -1,9 +1,8 @@
 #+TITLE: AWK
 #+DATE: <2023-09-04 lun>
 
-#+CAPTION: A "Great auk", mascot that seems adopted by AWK's bibliografy
+#+CAPTION: A "Great auk", mascot adopted by AWK's bibliography
 #+ATTR_ORG: :width 200
-
 [[https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Great_Auk_Thomas_Bewick_1804.jpg/308px-Great_Auk_Thomas_Bewick_1804.jpg]]
 
 |-----------+---------------------------------------------------------------|

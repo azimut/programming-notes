@@ -1,4 +1,7 @@
 - Roberto Ierusalimschy • Talks and Interviews https://www.inf.puc-rio.br/~roberto/talks/index.html
+  - DConf '22: Lua and Pallene https://www.youtube.com/watch?v=H3inzGGFefg
+    - TODO: 22:40
+
 - https://www.youtube.com/watch?v=lRPMrWt-ojw
 - love2d tutorials https://www.youtube.com/channel/UCcq3KOawHtjyN0ibjL4RzXQ
 - Pico-8 Tutorial - Shmup https://www.youtube.com/playlist?list=PLea8cjCua_P3Sfq4XJqNVbd1vsWnh7LZd
