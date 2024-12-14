@@ -12,6 +12,7 @@
 | wikibooks | https://en.wikibooks.org/wiki/AWK                             |
 | web repl  | https://awk.js.org/                                           |
 | doc       | https://www.gnu.org/software/gawk/manual/html_node/index.html |
+| fansite   | http://awklang.org/                                           |
 |-----------+---------------------------------------------------------------|
 
 * language

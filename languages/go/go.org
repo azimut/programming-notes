@@ -78,11 +78,20 @@
 |--------+-------|
 *** Complex
 |--------+---------|
-| struct | AFoo{}  |
-| arrays | [N]TYPE |
-| slices | []TYPE  |
+|        |   <c>   |
+| struct | name{}  |
+| arrays |  [i]T   |
+| slices |   []T   |
+| maps   | map[T]U |
 |--------+---------|
+- slices
+  - always copied by reference
+  - slices.Contains(S,E) // 1.21
+- map
+  - need to be make()
+
 ** Changelog
+
 https://go.dev/doc/go1.18
 
 - 2021

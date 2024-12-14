@@ -1,22 +1,54 @@
+#+TITLE: Lua
+#+DATE: <2020-11-24 mar>
+
 #+ATTR_ORG: :width 200
 [[https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Lua-Logo.svg/240px-Lua-Logo.svg.png]]
 
 |--------+----------------------------------------------------------|
-| wiki   | https://en.wikipedia.org/wiki/Lua_(programming_language) |
 | home   | https://www.lua.org/                                     |
+| doc    | https://www.lua.org/manual/5.4/                          |
+| wiki   | https://en.wikipedia.org/wiki/Lua_(programming_language) |
+| wiki   | https://en.wikibooks.org/wiki/Lua_Programming            |
 | libs   | https://github.com/luarocks/luarocks                     |
 | libs   | https://github.com/LewisJEllis/awesome-lua               |
 | source | https://github.com/lua/lua                               |
 | source | https://github.com/LuaJIT/LuaJIT                         |
+| typed  | https://github.com/pallene-lang/pallene                  |
 |--------+----------------------------------------------------------|
 
 * Language
 
+#+begin_src lua
+  function fact (n)
+    if n == 0 then
+      return 1
+    else
+      return n * fact(n - 1)
+    end
+  end
+
+  print("factorials of 3:", fact(5))
+#+end_src
+
 - 1993
 - by [[https://en.wikipedia.org/wiki/Roberto_Ierusalimschy][Roberto Ierusalimschy]]
+- implemented as a library
+- chunk = piece of code executed, a sequence of commands/statements
+- closures support
+- first class functions
+- tables are the only datastructure available, it might change internal representations according to the use
+  - "arrays" are tables with numeric index
+  - "records" are tables with literal keys
+  - "modules" are tables populated with anonymous functions
+  - "objects" are tables
 
-** Changelog
+** changelog
+
 https://www.lua.org/versions.html
+
+#+CAPTION: lines of code per Lua version
+#+ATTR_ORG: :width 500
+[[./loc.png]]
 
 - 5.4 (20)
   - const and to-be-closed vars
@@ -24,23 +56,163 @@ https://www.lua.org/versions.html
   - integers
   - bitwise ops
   - utf-8 library
+  - repl expressions
 - 5.2 (11)
 - 5.1 (06)
 - 5.0 (03)
 
-** Standard Library
+** types
+boolean true false
+nil
+tables {} aka associative arrays
+string '' ""
+** operators
+https://www.lua.org/manual/5.4/manual.html#3
+#+begin_src
+ +     -     *     /     %     ^     #
+ &     ~     |     <<    >>    //
+ ==    ~=    <=    >=    <     >     =
+ (     )     {     }     [     ]     ::
+ ;     :     ,     .     ..    ...
+#+end_src
 
-"This is a collection of Lua libraries for Lua 5.1 (including LuaJIT), 5.2 and 5.3."
+** stdlib functions
 
 source https://github.com/lua-stdlib/lua-stdlib
 doc https://lua-stdlib.github.io/lua-stdlib/
+https://www.lua.org/manual/5.4/
 
-- ??? none of this works on my lua installation
-  $ lua -v
-   Lua 5.3.5  Copyright (C) 1994-2018 Lua.org, PUC-Rio
-  $ luajit -v
-   LuaJIT 2.1.0-beta3 -- Copyright (C) 2005-2017 Mike Pall. http://luajit.org/
-
+*** base
+assert
+collectgarbage
+dofile
+error
+getmetatable
+ipairs
+load
+loadfile
+next
+pairs
+pcall - returns "ok, err", an exception protected call to fn
+print
+rawequal
+rawget
+rawlen
+rawset
+require
+select
+setmetatable
+tonumber
+tostring
+type
+warn
+xpcall
+*** coroutine
+https://www.lua.org/manual/5.4/manual.html#6.2
+*** debug
+https://www.lua.org/manual/5.4/manual.html#6.10
+*** io
+https://www.lua.org/manual/5.4/manual.html#6.8
+io.read("prompt") - returns read value
+*** os
+|------------+-------------------+---------|
+|        <r> |        <c>        |         |
+|         [[https://www.lua.org/manual/5.4/manual.html#6.9][os]] |     arguments     | returns |
+|------------+-------------------+---------|
+|     .clock |                   |         |
+|      .date |  [format[,time]]  |         |
+|  .difftime |      t2, t1       |         |
+|   .execute |     [command]     |         |
+|      .exit |  [code[,close]]   |         |
+|    .getenv |      varname      |         |
+|    .remove |     filename      |         |
+|    .rename |  oldname newname  |         |
+| .setlocale | locale[,category] |         |
+|      .time |      [table]      |         |
+|   .tmpname |                   |         |
+|------------+-------------------+---------|
+*** package
+https://www.lua.org/manual/5.4/manual.html#6.3
+*** math
+https://www.lua.org/manual/5.4/manual.html#6.7
+math.sqrt(n)
+*** table
+https://www.lua.org/manual/5.4/manual.html#6.6
+*** string
+init = where to start searching, can be negative
+|-----------+---------------------+----------------------------------------------------|
+|       <r> |         <c>         |                                                    |
+|    [[https://www.lua.org/manual/5.4/manual.html#6.4][string]] |      arguments      | returns                                            |
+|-----------+---------------------+----------------------------------------------------|
+|      .len |          s          | number, "" returns 0                               |
+|    .lower |          s          | string, depends on locale                          |
+|    .upper |          s          | string, depends on locale                          |
+|  .reverse |          s          |                                                    |
+|      .sub |     s, i, [,j]      | substring, from =i= to =j=, both can be negative   |
+|-----------+---------------------+----------------------------------------------------|
+|    .match | s, pattern, [,init] | captures in =s= of =pattern=                       |
+|   .gmatch | s, pattern, [,init] | iterator fn, of each capture of =pattern= in =s=   |
+|     .find | s, pattern, [,init] | idx where =pattern= starts and ends in =s= or nil  |
+|           | s, pat, init, plain | " =plain= turns off pattern matching               |
+|-----------+---------------------+----------------------------------------------------|
+|     .gsub |  s, pattern, repl   | string, with =pattern= replaced with =repl= in =s= |
+|           | s, pattern, repl, n | " =n= limits it to nth ammount of replacements     |
+|           |    repl = string    | where "%n" is the nth match, %0 is the whole match |
+|           |    repl = table     | queried on every match, 1st capture as key         |
+|           |   repl = function   | called on every match, captures as arguments       |
+|-----------+---------------------+----------------------------------------------------|
+|     .byte |   s, [[,i] [,j]]    | numeric codes for =s=, from =i= to =j=             |
+|     .char |      [int...]       | string, from given numeric code arguments          |
+|-----------+---------------------+----------------------------------------------------|
+| .packsize |         fmt         | length of string packed with =fmt=                 |
+|     .pack |  fmt, v1, v2, ...   | binary serialized string, containing Vn.. by =fmt= |
+|   .unpack |    fmt, s [,pos]    | values packed in string =s= according to =fmt=     |
+|           |                     | and index of unread bytes in =s=                   |
+|-----------+---------------------+----------------------------------------------------|
+|     .dump |                     |                                                    |
+|   .format |                     |                                                    |
+|      .rep |                     |                                                    |
+|-----------+---------------------+----------------------------------------------------|
+*** utf8
+https://www.lua.org/manual/5.4/manual.html#6.5
+** coroutines
+- covers most uses of full continuations
+- equivalent to
+  - cooperative multithreading
+  - one-shot continuations (call/1cc)
+** metamethods
+https://www.lua.org/manual/5.4/manual.html#2.4
+__add
+__band
+__bnot
+__bor
+__bxor
+__call
+__close
+__concat
+__div
+__eq
+__gc
+__idiv
+__index
+__le
+__len
+__lt
+__metatable
+__mod
+__mode
+__mul
+__name
+__newindex
+__pairs
+__pow
+__shl
+__shr
+__sub
+__tostring
+__unm
+* Command
+-i <script> - interactive mode after run script
 * Codebases
 - https://fly.io/docs/app-guides/openresty-nginx-plus-lua/
 - game devlog https://github.com/a327ex/blog
@@ -54,7 +226,7 @@ doc https://lua-stdlib.github.io/lua-stdlib/
 - https://developers.google.com/youtube/v3/live/docs/liveBroadcasts/list
 - https://developers.google.com/youtube/v3/live/registering_an_application
 
-* Compiles to Lua
+* transpiles to Lua
 |------------+------|
 | [[https://moonscript.org/][moonscript]] |      |
 | [[https://fennel-lang.org/][fennel]]     | lisp |
