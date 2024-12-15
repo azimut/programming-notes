@@ -1,7 +1,7 @@
 #+TITLE: AWK
 #+DATE: <2023-09-04 lun>
 
-#+CAPTION: A "Great auk", mascot adopted by AWK's bibliography
+#+CAPTION: mascot adopted by AWK's bibliography
 #+ATTR_ORG: :width 200
 [[https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Great_Auk_Thomas_Bewick_1804.jpg/308px-Great_Auk_Thomas_Bewick_1804.jpg]]
 
@@ -53,18 +53,13 @@ https://www.gnu.org/software/gawk/manual/html_node/Variable-Typing.html
    - || and && return =booleans= AKA 0(false) and 1(true). They do NOT return the truthy value.
    - falsey: "", 0, undefined variables
 3) Arrays
-   - isarray()
+   - are associative arrays (aka hashtables)
+   - no need to be declared
+   - for strings or numbers
    - index start at 1
      - at least the ones returned by stdlib functions
      - you can make it start by 0(zero) if you use a custom variable to initialize it
    - 1D
-   - for strings or numbers
-   - no need to be declared
-   - ALWAYS asssociative (aka hashtables)
-   - for (variable in array)
-   - delete array[subscript]
-   - use this to coerce into an array in a body's function
-     "" in arr
    - https://www.gnu.org/software/gawk/manual/html_node/Controlling-Array-Traversal.html
      #+begin_src awk
       comp_func(i1, v1, i2, v2)  < 0 # Index i1 comes before index i2
@@ -92,36 +87,36 @@ https://www.gnu.org/software/gawk/manual/html_node/Variable-Typing.html
   - Instead of using FS to specify what the fields are *not*
   - We use this to specify what are the fields, in the form of a regular expression.
 
-|-------------+----------------------------------------------+---------|
-|         <r> |                                              |   <c>   |
-|             | DESCRIPTION                                  | DEFAULT |
-|-------------+----------------------------------------------+---------|
-|        FPAT | regex of what each field contains            |    -    |
-| FIELDWIDTHS | whitespace separated list field widths       |         |
-|-------------+----------------------------------------------+---------|
-|          NF | numer of fields in line                      |    -    |
-|          NR | number of records (aka lines) read so far    |    -    |
-|         FNR | number of records read so far, in curr file  |    -    |
-|-------------+----------------------------------------------+---------|
-|          FS | *controls* the input field separator         |   " "   |
-|          RS | *controls* the input record separator        |  "\n"   |
-|-------------+----------------------------------------------+---------|
-|         OFS | output field separator                       |   " "   |
-|         ORS | output record separator                      |  "\n"   |
-|        OFMT | output format for numbers                    | "%.6g"  |
-|-------------+----------------------------------------------+---------|
-|        ARGC | number of cli arguments                      |    -    |
-|        ARGV | array of cli arguments                       |    -    |
-|      ARGIND | index of ARGV being processed                |         |
-|     ENVIRON | array of environment variables               |         |
-|    FILENAME | name of current input file                   |    -    |
-|-------------+----------------------------------------------+---------|
-|     RLENGTH | length of string matched by *match* function |    -    |
-|      RSTART | start of string matched by *match* function  |    -    |
-|-------------+----------------------------------------------+---------|
-|      SUBSEP | subscript separator                          | "\034"  |
-|  IGNORECASE | all but array subscripting will ignore case  |    0    |
-|-------------+----------------------------------------------+---------|
+|---------------+----------------------------------------------+---------|
+|           <r> |                                              |   <c>   |
+|               | DESCRIPTION                                  | DEFAULT |
+|---------------+----------------------------------------------+---------|
+|        =FPAT= | regex of what each field contains            |    -    |
+| =FIELDWIDTHS= | whitespace separated list field widths       |         |
+|---------------+----------------------------------------------+---------|
+|            NF | numer of fields in line                      |    -    |
+|            NR | number of records (aka lines) read so far    |    -    |
+|           FNR | number of records read so far, in curr file  |    -    |
+|---------------+----------------------------------------------+---------|
+|            FS | *controls* the input field separator         |   " "   |
+|            RS | *controls* the input record separator        |  "\n"   |
+|---------------+----------------------------------------------+---------|
+|           OFS | output field separator                       |   " "   |
+|           ORS | output record separator                      |  "\n"   |
+|          OFMT | output format for numbers                    | "%.6g"  |
+|---------------+----------------------------------------------+---------|
+|          ARGC | number of cli arguments                      |    -    |
+|          ARGV | array of cli arguments                       |    -    |
+|       ARGIND= | index of ARGV being processed                |         |
+|       ENVIRON | array of environment variables               |         |
+|      FILENAME | name of current input file                   |    -    |
+|---------------+----------------------------------------------+---------|
+|       RLENGTH | length of string matched by *match* function |    -    |
+|        RSTART | start of string matched by *match* function  |    -    |
+|---------------+----------------------------------------------+---------|
+|        SUBSEP | subscript separator                          | "\034"  |
+|  =IGNORECASE= | all but array subscripting will ignore case  |    0    |
+|---------------+----------------------------------------------+---------|
 ** built-in functions
 https://www.gnu.org/software/gawk/manual/html_node/Built_002din.html#Built_002din
 typeof
@@ -159,6 +154,8 @@ https://www.gnu.org/software/gawk/manual/html_node/Bitwise-Functions.html
 | asorti(SRC,DST) | number of elements in SRC | sort by index, DST has idx=numeric val=old_index |
 |    isarray(arr) | boolean                   |                                                  |
 |   delete arr[1] | ?                         | deletes element "1" from array                   |
+|       "" in arr | ?                         | coerce arr into array type (in a function?)      |
+|  for (i in arr) | ?                         | iterates over array indexes (i)                  |
 |-----------------+---------------------------+--------------------------------------------------|
 
 *** MATH
@@ -392,14 +389,13 @@ https://rosettacode.org/wiki/Hello_world/Web_server
 | svg from git        | https://github.com/deuill/grawkit                              |
 | jvm                 | https://github.com/rethab/awk-jvm                              |
 | toy lang compiler   | https://cowlark.com/mercat/com.awk.txt                         |
-| plot.awk (to svg)   | https://gist.github.com/katef/fb4cb6d47decd8052bd0e8d88c03a102 |
+| plot.awk (to svg )  | https://gist.github.com/katef/fb4cb6d47decd8052bd0e8d88c03a102 |
+| generate random fsm | https://github.com/katef/libfsm/blob/main/fuzz/genregex        |
 | gemini client       | http://git.vgx.fr/gem.awk/file/gem.awk.html                    |
 | gopher client       | https://git.sr.ht/~akarle/gc/tree/main/item/gc                 |
 |---------------------+----------------------------------------------------------------|
 | libs                | https://github.com/e36freak/awk-libs                           |
 | libs                | https://github.com/dubiousjim/awkenough                        |
-|---------------------+----------------------------------------------------------------|
-| exercises           | https://github.com/exercism/awk                                |
 |---------------------+----------------------------------------------------------------|
 * snippets
 
@@ -475,8 +471,27 @@ https://rosettacode.org/wiki/Hello_world/Web_server
     length($0) == 0 { print "this is an empty record==" }
     END { if (NR == 0) print "means that we didn't process any record" }
   #+end_src
+* cli
+** execution
 
+#+begin_src shell
+  $ awk '{ print $1 }' file.csv
+  $ awk -f script.awk file.csv
+#+end_src
 
+** flags
+|----+-------------------+------------+----------------------------|
+|    |                   |    <c>     |                            |
+|    | long gawk flag    |    arg     | description                |
+|----+-------------------+------------+----------------------------|
+| -F | --field-separator |     S      | sets FS                    |
+| -f | --file            | <FILEPATH> | runs script                |
+| -E | --exec            | <FILEPATH> | runs script (for gawk cgi) |
+| -v | --asign           |  var=val   | sets var to val            |
+|----+-------------------+------------+----------------------------|
+| -c | --traditional     |     -      | compatibility mode         |
+| -P | --posix           |     -      | compatibility mode extra   |
+|----+-------------------+------------+----------------------------|
 * implementations
 
 |--------+-------------------------------------------------------------------------------|
