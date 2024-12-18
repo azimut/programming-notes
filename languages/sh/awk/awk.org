@@ -27,9 +27,10 @@
   - Weinberger Peter Jay
   - Kernighan Brian Wilson
 
-- [[https://www.gnu.org/software/gawk/manual/html_node/Feature-History.html][gawk changelog]]
+- [[https://www.gnu.org/software/gawk/manual/html_node/Feature-History.html][gawk version changelog]] ([[https://fossies.org/linux/gawk/ChangeLog][by date]])
   - 2023 (5.3)
-    - --csv, supports fields surrounded by double quotes
+    - ~--csv~ flag, supports fields surrounded by double quotes
+    - ~\u~ escape sequence
 
 ** style
 
@@ -309,6 +310,10 @@ NOTE: call ~close("cmd")~ on the non two-way pipes, maybe call getline on a ~whi
 - https://www.gnu.org/software/gawk/manual/gawkinet/html_node/index.html
 - https://www.gnu.org/software/gawk/manual/gawkinet/gawkinet.html#Primitive-Service
 
+#+begin_src
+  /inet[,4,6]/(udp|tcp)/lport/rhost/rport
+#+end_src
+
 *** rossetta - web server
 
 https://rosettacode.org/wiki/Hello_world/Web_server
@@ -328,6 +333,19 @@ https://rosettacode.org/wiki/Hello_world/Web_server
           continue;
       close(HttpService)
   }
+#+end_src
+
+** redirections
+
+- https://www.gnu.org/software/gawk/manual/html_node/Redirection.html
+- see getline
+- in pipes, it's a good idea to call ~close(cmd)~ on them
+
+#+begin_src awk
+  { print "foo bar" >  "file.txt" } # file output
+  { print "foo bar" >> "file.txt" } # file output
+  { print "foo bar" |  "grep foo" }
+  { print "foo bar" |& "cmd"      } # piped IO coproc/socket
 #+end_src
 
 ** gotchas
@@ -367,7 +385,10 @@ https://rosettacode.org/wiki/Hello_world/Web_server
     { print add_tree(36) }
   #+end_src
 
-- if you use an array to count unique values, if using more than one number, separate by a string
+- if you use an array as a map or just an array, be careful when
+  - checking for equality/inequality as just indexing the value to read it will create the slot
+
+- if you use an array as a set, to count unique values, if using more than one number, separate by a string
   #+begin_src awk
     map[x y]   = 1 # BAD
     map[x","y] = 1 # GOOD!
@@ -390,6 +411,8 @@ https://rosettacode.org/wiki/Hello_world/Web_server
 | jvm                 | https://github.com/rethab/awk-jvm                              |
 | toy lang compiler   | https://cowlark.com/mercat/com.awk.txt                         |
 | plot.awk (to svg )  | https://gist.github.com/katef/fb4cb6d47decd8052bd0e8d88c03a102 |
+| svg drawing         | https://gist.github.com/katef/f52978b2ba4583d195414f19342d91ca |
+| matrix              | https://x.com/climagic/status/1472931718214651912              |
 | generate random fsm | https://github.com/katef/libfsm/blob/main/fuzz/genregex        |
 | gemini client       | http://git.vgx.fr/gem.awk/file/gem.awk.html                    |
 | gopher client       | https://git.sr.ht/~akarle/gc/tree/main/item/gc                 |
@@ -471,6 +494,7 @@ https://rosettacode.org/wiki/Hello_world/Web_server
     length($0) == 0 { print "this is an empty record==" }
     END { if (NR == 0) print "means that we didn't process any record" }
   #+end_src
+
 * cli
 ** execution
 
@@ -480,18 +504,19 @@ https://rosettacode.org/wiki/Hello_world/Web_server
 #+end_src
 
 ** flags
-|----+-------------------+------------+----------------------------|
-|    |                   |    <c>     |                            |
-|    | long gawk flag    |    arg     | description                |
-|----+-------------------+------------+----------------------------|
-| -F | --field-separator |     S      | sets FS                    |
-| -f | --file            | <FILEPATH> | runs script                |
-| -E | --exec            | <FILEPATH> | runs script (for gawk cgi) |
-| -v | --asign           |  var=val   | sets var to val            |
-|----+-------------------+------------+----------------------------|
-| -c | --traditional     |     -      | compatibility mode         |
-| -P | --posix           |     -      | compatibility mode extra   |
-|----+-------------------+------------+----------------------------|
+|----+-------------------+------------+---------------------------------------|
+|    |                   |    <c>     |                                       |
+|    | long gawk flag    |    arg     | description                           |
+|----+-------------------+------------+---------------------------------------|
+| -F | --field-separator |     S      | sets FS                               |
+| -f | --file            | <FILEPATH> | runs script                           |
+| -E | --exec            | <FILEPATH> | runs script (for gawk cgi)            |
+| -v | --asign           |  var=val   | sets var to val                       |
+|----+-------------------+------------+---------------------------------------|
+| -c | --traditional     |     -      | compatibility mode                    |
+| -P | --posix           |     -      | compatibility mode extra              |
+| -S | --sandbox         |     -      | disables system() and IO redirections |
+|----+-------------------+------------+---------------------------------------|
 * implementations
 
 |--------+-------------------------------------------------------------------------------|

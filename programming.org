@@ -1,3 +1,8 @@
+- 1 based arrays [[https://youtu.be/H3inzGGFefg?t=2775][DConf '22: Lua and Pallene -- Roberto Ierusalimschy]]
+  - for languages designed for non-professional programmers
+  - most zer0 based languages, are due C
+  - but in C you have pointer arithmetic ([] being syntax sugar)
+
 - parallel programming https://gfxcourses.stanford.edu/cs149/fall23/
   - https://www.youtube.com/watch?v=V1tINV2-9p4
 - video 21: What have we lost? https://www.youtube.com/watch?v=7RNbIEJvjUA

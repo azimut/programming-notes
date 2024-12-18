@@ -4,6 +4,22 @@
   - Author: Eric Wastl
   - 2015-
 
+* thoughts
+
+1) debug/print/visualize often
+   - even something really crude that relies on ascii characters can help here
+   - is astounding how blind can you be to something really obvious if you saw it visually
+     - you always have an image of how things should be behaving
+     - but until you actually see it, that might be ALL wrong
+
+2) dynamic programming languages might become a hidrance at some point of the challenges
+   - when you need to iterate over your =poorly designed algorithm=
+     - in order to understand it better
+     - and hopefully improve it
+   - when they do not provide good debugging features
+
+3) in a way 1 can help to never hit 2
+
 * repos/code
 
 - Awk

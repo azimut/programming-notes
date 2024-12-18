@@ -38,6 +38,7 @@
 - first class functions
 - tables are the only datastructure available, it might change internal representations according to the use
   - "arrays" are tables with numeric index
+    - 1 based
   - "records" are tables with literal keys
   - "modules" are tables populated with anonymous functions
   - "objects" are tables
