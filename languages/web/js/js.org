@@ -37,20 +37,40 @@ https://github.com/30-seconds/30-seconds-of-interviews
 - https://javascript30.com/
 - parseInt, parseFloat, isNaN
 - loops: while, do while, for
-- types
-  |-----------+---+---|
-  |           | C | F |
-  |-----------+---+---|
-  | Number    | x | x |
-  | Boolean   | x | x |
-  | String    | x | x |
-  | BigInt    |   | x |
-  | Symbol    |   | x |
-  | null      |   |   |
-  | undefined |   |   |
-  |-----------+---+---|
-  C = can work as a constructor with "new"
-  F = can work as a unary function
+* language
+** primitive
+|-----------+---+---|
+|           | C | F |
+|-----------+---+---|
+| Number    | x | x |
+| Boolean   | x | x |
+| String    | x | x |
+| BigInt    |   | x |
+| Symbol    |   | x |
+| null      |   |   |
+| undefined |   |   |
+|-----------+---+---|
+C = can work as a constructor with "new"
+F = can work as a unary function
+** std built-in objects
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
+[Big][Ui,I]nt[8,16,32]Array
+|-------------+---|
+| [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer][ArrayBuffer]] |   |
+| [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array][Array]]       |   |
+| [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set][Set]]         |   |
+| [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map][Map]]         |   |
+| [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date][Date]]        |   |
+| [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number][Number]]      |   |
+| [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt][BigInt]]      |   |
+| [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math][Math]]        |   |
+| [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise][Promise]]     |   |
+|-------------+---|
+** Web APIs
+https://developer.mozilla.org/en-US/docs/Web/API
+|-----+---|
+| [[https://developer.mozilla.org/en-US/docs/Web/API/URL][Url]] |   |
+|-----+---|
 * Tutorial: Linkedin JS questions
 https://github.com/Ebazhanov/linkedin-skill-assessments-quizzes/blob/main/javascript/javascript-quiz.md
 - todo https://www.guru99.com/node-js-generators-compare-callbacks.html#:~:text=Generators%20are%20function%20executions%20that,resumed%20at%20a%20later%20point.

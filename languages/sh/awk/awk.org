@@ -48,11 +48,17 @@
 
 https://www.gnu.org/software/gawk/manual/html_node/Variable-Typing.html
 
-1) Strings
+1) String
    - index start at 1
-2) Numbers
+2) Number
    - || and && return =booleans= AKA 0(false) and 1(true). They do NOT return the truthy value.
    - falsey: "", 0, undefined variables
+   - [[https://www.gnu.org/software/gawk/manual/html_node/Comparing-FP-Values.html]["comparing floating-point values to see if they are exactly equal is generally a bad idea"]]
+     #+begin_src awk
+       ratio = dimension[1] / dimension[2] # ratio = 1.77778 of type number
+       if (ratio ==  1.77778 ) # does NOT work
+       if (ratio == "1.77778") # works
+     #+end_src
 3) Arrays
    - are associative arrays (aka hashtables)
    - no need to be declared

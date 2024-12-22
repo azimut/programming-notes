@@ -112,14 +112,14 @@
 |-----------------+----------------+----------------------------------------|
 |       flex-flow |                | shorthand for -direction and -wrap     |
 |-----------------+----------------+----------------------------------------|
-| justify-content |  *flex-start*  | items along main axis                  |
+| justify-content |  *flex-start*  | items along =main axis=                |
 |                 |    flex-end    |                                        |
 |                 |     center     |                                        |
 |                 | space-between  | maximize space between                 |
 |                 |  space-around  | smaller at start-end                   |
 |                 |  space-evenly  | equal at start-end                     |
 |-----------------+----------------+----------------------------------------|
-|     align-items |   *stretch*    | items along cross axis                 |
+|     align-items |   *stretch*    | items along =cross axis=               |
 |                 |   flex-start   |                                        |
 |                 |    flex-end    |                                        |
 |                 |     center     |                                        |
@@ -200,3 +200,40 @@
         - repeat(3, 1fr)
       - grid-template-=rows=
         - 100px auto 50px
+
+* snippets
+** override tag browser defaults
+- https://medium.com/awesome-css/resetting-browsers-default-css-46ef8d71a42d
+  - firefox https://hg.mozilla.org/mozilla-central/file/tip/layout/style/res/html.css
+  - chrome https://chromium.googlesource.com/chromium/blink/+/master/Source/core/css/html.css
+  - snippet
+    #+begin_src css
+      html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, menu, nav, output, section, summary, time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+      }
+    #+end_src
+- custom block
+  #+begin_src css
+    body,
+    blockquote,
+    dl, dd,
+    figure,
+    p,
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+    }
+    td, th, dialog {
+      padding: 0;
+    }
+    ul, ol {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+  #+end_src
