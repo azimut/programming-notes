@@ -16,6 +16,7 @@
 - https://launchschool.com/books/oo_ruby
 - https://www.ruby-lang.org/en/documentation/quickstart/
 - https://learnbyexample.github.io/learn_ruby_oneliners/
+  - https://github.com/learnbyexample/Command-line-text-processing/blob/master/ruby_one_liners.md
 - https://ruby-doc.org/docs/ruby-doc-bundle/UsersGuide/rg/index.html
 - https://leanpub.com/rwdtow/read
 - https://github.com/elm-city-craftworks/practicing-ruby-manuscripts

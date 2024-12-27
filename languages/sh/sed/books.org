@@ -1,6 +1,7 @@
 - book
-  https://learnbyexample.github.io/learn_gnused/
-  https://github.com/learnbyexample/learn_gnused
+  - https://learnbyexample.github.io/learn_gnused/
+  - https://github.com/learnbyexample/learn_gnused
+  - https://github.com/learnbyexample/Command-line-text-processing/blob/master/gnu_sed.md
 - book https://www.grymoire.com/Unix/Sed.html
 - book https://www.ehdp.com/press/sed-book/
 

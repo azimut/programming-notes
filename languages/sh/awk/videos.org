@@ -1,3 +1,7 @@
+- 24 Awk, sed, grep: Together, we can change anything! – William Smith https://www.youtube.com/watch?v=axmDzoUov_8
+- Aho: "I'm the A in AWK." https://www.youtube.com/watch?v=5Zsk5L225Zs
+  - a generalization of grep
+  - intersts in: regex, pattern matching, assoc arrays, data processing
 - Taller de AWK https://www.youtube.com/watch?v=1_UyBhlTxsQ
 - 23 | Benjamin Porter | Awk: Hack the planet['s text]! (Presentation)
   https://www.youtube.com/watch?v=E5aQxIdjT0M

@@ -1,3 +1,4 @@
+- A brief interview with AWK creator Dr. Brian Kernighan https://pldb.io/blog/brianKernighan.html
 - https://wizardzines.com/comics/awk/
 - https://hoi.st/posts/2024-01-22-lets-play-some-cards-in-awk.txt
 - 10 | https://gregable.com/2010/09/why-you-should-know-just-little-awk.html

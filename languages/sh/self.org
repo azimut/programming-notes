@@ -1,6 +1,3 @@
-- https://en.wikipedia.org/wiki/ANSI_escape_code
-  https://www.ele.uva.es/~jesus/lpcVT100/term.html
-
 - https://github.com/dylanaraps/pure-sh-bible
 - force LC_LOCALE=C to avoid any kind of locale error
 - before runs when benchmarking https://linux-mm.org/Drop_Caches
@@ -30,7 +27,94 @@
 - article 06 | https://ridiculousfish.com/blog/posts/old-age-and-treachery.html
 - article 17 | http://www.pixelbeat.org/docs/unix-parallel-tools.html
 - article 23 | https://muhammadraza.me/2023/webscraping-in-bash/
+- video 23 | DEF CON 31 - Weaponizing Plain Text ANSI Escape Sequences as a Forensic Nightmare - STÖK https://www.youtube.com/watch?v=3T2Al3jdY38
 
-- language:
-  - Sleep until host is up:
+* snippets
+
+- Sleep until host is up:
+  #+begin_src sh
     until ssh root@10.10.10.10; do sleep 3; done
+  #+end_src
+
+* signals
+
+- $ man 7 signal
+- trap 'fnname' WINCH
+- SIGWINCH - window resize
+
+* escape codes
+
+- started by with ESC
+  |--------+-----------------|
+  |    <r> |                 |
+  |     ^[ | aka the ESC key |
+  |     \e | by printf       |
+  |   \033 | in octal        |
+  |   \x1b | in hexa         |
+  |    \27 | in decimal      |
+  | \u001b | in unicode      |
+  |--------+-----------------|
+
+- sometimes followed/delimited by opening bracket ([) (CSI, control sequence introducer)
+  - whitespace between sequence and arguments are ignored
+
+- followed by
+  |--------------+---+-----------+-------------------|
+  |          <r> |   |           |                   |
+  |        bytes | n | range     | range in ASCII    |
+  |--------------+---+-----------+-------------------|
+  |    parameter | * | 0x30-0x3F | 0-9:;<=>?         |
+  | intermediate | * | 0x20-0x2F | !"#$%&'()*+,-./   |
+  |        final | 1 | 0x40-0x7E | @A-Z[\]^_`a-z{¦}~ |
+  |--------------+---+-----------+-------------------|
+
+- can use bash's =printf= to send them
+  #+begin_src sh
+    printf '\e[?1049h'
+  #+end_src
+
+- can use =read= to send escape codes and readback values
+  #+begin_src sh
+  IFS='[;' read -sp $'\e7\e[9999;9999H\e[6n\e8' -d R -rs _ LINES COLUMNS
+  #+end_src
+
+- https://en.wikipedia.org/wiki/ANSI_escape_code
+- https://vt100.net/docs/vt510-rm/contents.html
+- https://www.ele.uva.es/~jesus/lpcVT100/term.html
+- https://github.com/dylanaraps/writing-a-tui-in-bash
+- ANSI Escape Sequences https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
+
+|-------------+-------------------------------------|
+|         <r> |                                     |
+|          \e |                                     |
+|-------------+-------------------------------------|
+|       [?251 | cursor, hide                        |
+|       [?25h | cursor, show                        |
+|           7 | cursor, save current position       |
+|           8 | cursor, restore position            |
+|         [6n | cursor, get position                |
+|-------------+-------------------------------------|
+|          [H | cursor, move to 0,0                 |
+|      [3;10H | cursor, move to 3,10 (line,column)  |
+|         [5H | cursor, move to 5 (line)            |
+| [9999;9999H | cursor, move to bottom right corner |
+|-------------+-------------------------------------|
+|        [10A | cursor, move 10 lines up            |
+|          [A | cursor, move line up                |
+|          [B | cursor, move line down              |
+|          [C | cursor, move column forward         |
+|          [D | cursor, move column back            |
+|-------------+-------------------------------------|
+|        [?7l | line wrapping, disable              |
+|        [?7h | line wrapping, enable               |
+|-------------+-------------------------------------|
+|     [?1049h | screen, save                        |
+|     [?1049l | screen, restore                     |
+|         [2J | screen, clear                       |
+|-------------+-------------------------------------|
+|         [0m | font, reset                         |
+|     [38;5;n | font, foreground color              |
+| [38;2;r;g;b | font, foreground color              |
+|     [48;5;n | font, background color              |
+| [48;2;r;g;b | font, background color              |
+|-------------+-------------------------------------|

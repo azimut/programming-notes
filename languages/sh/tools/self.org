@@ -5,7 +5,8 @@
   - all languages https://wiki.archlinux.org/title/GTK/Development
   - https://github.com/v1cont/yad/
   - https://gitlab.gnome.org/GNOME/zenity
-  - https://invisible-island.net/dialog/
+    https://help.gnome.org/users/zenity/stable/
+  - dialog - [[https://invisible-island.net/dialog/][home]] - [[https://linux.die.net/man/1/dialog][man]]
   - https://github.com/charmbracelet/gum
 - tool: html https://github.com/TUVIMEN/reliq
 - tool: html https://github.com/ericchiang/pup

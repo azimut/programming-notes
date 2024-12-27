@@ -119,6 +119,7 @@
 |  OP  |                                                   |
 |------+---------------------------------------------------|
 |  +   | sums, concatenate                                 |
+|  &   | boolean AND, bitwise AND, or set intersection     |
 |  =~  | match string against regex, returns start pos/nil |
 | %w[] | create an array of strings                        |
 | %w() | "                                                 |
@@ -815,6 +816,21 @@ Script ran, to generate valid markdown from site's json. Then converted with  pa
 
 #+RESULTS: split into words
 | foo | bar | foo |
+
+#+NAME: inline gem dependencies on single ruby script file
+#+begin_src ruby
+require 'bundler/inline'
+
+gemfile do
+  source 'https://rubygems.org'
+  gem 'json', require: false
+  gem 'nap', require: 'rest'
+  gem 'cocoapods', '~> 0.34.1'
+end
+
+puts 'Gems installed and loaded!' # VVV script work using the libs
+puts "The nap gem is at version #{REST::VERSION}"
+#+end_src
 
 * tools
 

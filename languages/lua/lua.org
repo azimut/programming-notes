@@ -215,17 +215,30 @@ __unm
 * Command
 -i <script> - interactive mode after run script
 * Codebases
-- https://fly.io/docs/app-guides/openresty-nginx-plus-lua/
-- game devlog https://github.com/a327ex/blog
-** mpv
-- https://mpv.io/manual/master/#lua-scripting
-  https://mpv.io/manual/master/#list-of-input-commands
-- https://github.com/davidde/mpv-autosub
-- https://github.com/CounterPillow/mpv-quack
-** youtube chat
+
+- https://github.com/lunarmodules/luasocket
 - https://github.com/vincasmiliunas/lua-basic-oauth2
-- https://developers.google.com/youtube/v3/live/docs/liveBroadcasts/list
-- https://developers.google.com/youtube/v3/live/registering_an_application
+  - https://developers.google.com/youtube/v3/live/docs/liveBroadcasts/list
+  - https://developers.google.com/youtube/v3/live/registering_an_application
+
+** used in
+
+[[https://en.wikipedia.org/wiki/List_of_applications_using_Lua][List of Apps]] [[https://en.wikipedia.org/wiki/Category:Lua_(programming_language)-scripted_video_games][List of Games]]
+
+- nodemcu https://github.com/nodemcu/nodemcu-firmware
+- neovim
+- nmap (nse)
+- redis
+- nginx https://fly.io/docs/app-guides/openresty-nginx-plus-lua/
+- awm (awesome window manager config)
+- pico-8
+- love2d
+  - game devlog https://github.com/a327ex/blog
+- mpv
+  - https://mpv.io/manual/master/#lua-scripting
+    https://mpv.io/manual/master/#list-of-input-commands
+  - https://github.com/davidde/mpv-autosub
+  - https://github.com/CounterPillow/mpv-quack
 
 * transpiles to Lua
 |------------+------|

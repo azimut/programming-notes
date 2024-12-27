@@ -1,5 +1,8 @@
 - book packt https://github.com/PacktPublishing/Learning-AWK-Programming
-- book https://learnbyexample.github.io/learn_gnuawk/ https://github.com/learnbyexample/learn_gnuawk
+- book
+  - https://learnbyexample.github.io/learn_gnuawk/
+  - https://github.com/learnbyexample/learn_gnuawk
+  - https://github.com/learnbyexample/Command-line-text-processing/blob/master/gnu_awk.md
 - book https://en.wikibooks.org/wiki/An_Awk_Primer
 - book https://www.grymoire.com/Unix/Awk.html
 * 23 | The AWK Programming Language (2nd Edition)

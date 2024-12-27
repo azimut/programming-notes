@@ -1,0 +1,54 @@
+* 14 Video: Introduction to Advanced Bash Usage | James Pannacciulli
+
+@ OSCON 2014
+https://www.youtube.com/watch?v=uqHjc7hlqd0
+
+- Bash 3/4
+- Return values: 0-255
+
+- indirect expansion
+  param="parade"; parade="long"
+  ${!param} # long
+
+- list names/variables/functions? matching prefix
+  ${!pa*} or ${!pa@}
+
+- Parameter Expansion: Conditionals (24:43)
+  (check if variable is unset, empty or non-empty)
+|--------------------+--------------+--------------+-------------|
+|                    | unset param  | param=""     | param="gnu" |
+|--------------------+--------------+--------------+-------------|
+| ${param-default}   | default      | -            | gnu         |
+| ${param=default}   | name=default | -            | gnu         |
+| ${param+alternate} | -            | alternate    | alternate   |
+| ${param?error}     | error        | -            | gnu         |
+|--------------------+--------------+--------------+-------------|
+| empty as unseat    | ..           | ..           | ..          |
+|--------------------+--------------+--------------+-------------|
+| ${param:-default   | default      | default      | gnu         |
+| ${param:=default   | name=default | name=default | gnu         |
+| ${param:+alternate | -            | -            | alternate   |
+| ${param:?error}    | error        | error        | gnu         |
+|--------------------+--------------+--------------+-------------|
+
+- example: brace expansion
+  > echo bash{,{d,s},ful{,ly,ness},ing}
+  bash bashed bashes bashful bashfully bashfulness bashing
+  > man man
+  > man{,}
+  > echo {1..5}{0,5}% # BASH 3
+  10% 15% 20% 25% 30% 35% 40% 45% 50% 55%
+  > echo {10..55..5}% # BASH 4
+  10% 15% 20% 25% 30% 35% 40% 45% 50% 55%
+
+- You don't need {} to define a function
+  #+begin_src bash
+    words () # for is the compound command
+    for word # with the missing "in" it reads from STDIN
+    do
+        echo "$word"
+    done
+  #+end_src
+
+- define and then call, being memtop a custom function defined by the user
+  > $ sudo bahs -c "$(declare -f memtop); memtop"
