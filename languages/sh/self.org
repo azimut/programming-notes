@@ -11,23 +11,26 @@
 - man
   - improvement https://gist.github.com/alphapapa/3cba3ff196147ad42bac
 
-- find
-  - -ok, is like -exec, but ask user before running
-
-- library display images on terminal
+- SIXEL: display images on terminal
   - https://www.arewesixelyet.com/ (!!)
   - home https://saitoha.github.io/libsixel/
   - tmux fork/rant https://github.com/csdvrx/sixel-tmux
 
-- terminal emulators
-  - kitty
-    - https://sw.kovidgoyal.net/kitty/
-    - glxgears https://github.com/michaeljclark/glkitty
-
 - article 06 | https://ridiculousfish.com/blog/posts/old-age-and-treachery.html
 - article 17 | http://www.pixelbeat.org/docs/unix-parallel-tools.html
 - article 23 | https://muhammadraza.me/2023/webscraping-in-bash/
-- video 23 | DEF CON 31 - Weaponizing Plain Text ANSI Escape Sequences as a Forensic Nightmare - STÖK https://www.youtube.com/watch?v=3T2Al3jdY38
+
+|------+--------+------|
+|  <r> | LOC(k) | Size |
+|------+--------+------|
+| dash |     13 | 123k |
+|  zsh |    150 | 990k |
+| bash |    176 | 1.4M |
+|------+--------+------|
+
+* language
+
+- OPINION: one way that shell scripts hide/handle complexity is by transforming data through pipes. What in other programming languages might need nested function calls or temporary variables. Pipes are, in a way, similar to method chaining.
 
 * snippets
 
@@ -82,39 +85,97 @@
 - https://vt100.net/docs/vt510-rm/contents.html
 - https://www.ele.uva.es/~jesus/lpcVT100/term.html
 - https://github.com/dylanaraps/writing-a-tui-in-bash
+
 - ANSI Escape Sequences https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
 
-|-------------+-------------------------------------|
-|         <r> |                                     |
-|          \e |                                     |
-|-------------+-------------------------------------|
-|       [?251 | cursor, hide                        |
-|       [?25h | cursor, show                        |
-|           7 | cursor, save current position       |
-|           8 | cursor, restore position            |
-|         [6n | cursor, get position                |
-|-------------+-------------------------------------|
-|          [H | cursor, move to 0,0                 |
-|      [3;10H | cursor, move to 3,10 (line,column)  |
-|         [5H | cursor, move to 5 (line)            |
-| [9999;9999H | cursor, move to bottom right corner |
-|-------------+-------------------------------------|
-|        [10A | cursor, move 10 lines up            |
-|          [A | cursor, move line up                |
-|          [B | cursor, move line down              |
-|          [C | cursor, move column forward         |
-|          [D | cursor, move column back            |
-|-------------+-------------------------------------|
-|        [?7l | line wrapping, disable              |
-|        [?7h | line wrapping, enable               |
-|-------------+-------------------------------------|
-|     [?1049h | screen, save                        |
-|     [?1049l | screen, restore                     |
-|         [2J | screen, clear                       |
-|-------------+-------------------------------------|
-|         [0m | font, reset                         |
-|     [38;5;n | font, foreground color              |
-| [38;2;r;g;b | font, foreground color              |
-|     [48;5;n | font, background color              |
-| [48;2;r;g;b | font, background color              |
-|-------------+-------------------------------------|
+** other
+|---------+------------------------|
+|   <c>   |                        |
+|---------+------------------------|
+|  [?7l   | line wrapping, disable |
+|  [?7h   | line wrapping, enable  |
+|---------+------------------------|
+| [?1049h | screen, save           |
+| [?1049l | screen, restore        |
+|   [2J   | screen, clear          |
+|---------+------------------------|
+** cursor
+|-------------+-------------------------------|
+|         <r> |                               |
+|          \e |                               |
+|-------------+-------------------------------|
+|       [?251 | hide                          |
+|       [?25h | show                          |
+|           7 | save current position         |
+|           8 | restore position              |
+|         [6n | get position                  |
+|-------------+-------------------------------|
+|          [H | move to 0,0                   |
+|      [3;10H | move to 3,10 (line,column)    |
+|         [5H | move to 5 (line)              |
+| [9999;9999H | move to bottom right corner   |
+|-------------+-------------------------------|
+|        [10A | move 10 lines up              |
+|         [#A | move # lines up               |
+|         [#B | move # lines down             |
+|         [#C | move # columns forward        |
+|         [#D | move # columns back           |
+|         [#E | move beginning of next line # |
+|         [#F | move beginning of prev line # |
+|         [#G | move to column #              |
+|-------------+-------------------------------|
+** font - style
+|-----+-------+-------------------|
+| \e  | reset |                   |
+|-----+-------+-------------------|
+| [0m |       | reset style+color |
+| [1m | [22m  | bold              |
+| [2m | [22m  | dim/faint         |
+| [3m | [23m  | italic            |
+| [4m | [24m  | underline         |
+| [5m | [25m  | blinking          |
+| [7m | [27m  | inverse           |
+| [8m | [28m  | invisible         |
+| [9m | [29m  | strikethrough     |
+|-----+-------+-------------------|
+** font - 8 colors
+
+#+begin_src sh
+'\e[1;31mHello'    # bold, red foreground.
+'\e[2;37;41mWorld' # dimmed white foreground with red background.
+#+end_src
+
+FG = foreground color BG = background color
+|---------+----+----|
+| NAME    | FG | BG |
+|---------+----+----|
+| black   | 30 | 40 |
+| red     | 31 | 41 |
+| green   | 32 | 42 |
+| yellow  | 33 | 43 |
+| blue    | 34 | 44 |
+| magenta | 35 | 45 |
+| cyan    | 36 | 46 |
+| white   | 37 | 47 |
+| default | 39 | 49 |
+| reset   |  0 |  0 |
+|---------+----+----|
+** font - 256 colors
+
+#+begin_src sh
+  '\e[38;5;{ID}m' # fg
+  '\e[48;5;{ID}m' # bg
+#+end_src
+
+where ID is a color id between 0 and 255
+#+ATTR_ORG: :width 500
+[[https://user-images.githubusercontent.com/995050/47952855-ecb12480-df75-11e8-89d4-ac26c50e80b9.png]]
+
+** font - rgb colors
+
+#+begin_src sh
+ '[38;2;{r};{g};{b}m' # fg color
+ '[48;2;{r};{g};{b}m' # bg color
+#+end_src
+
+** video 23 |  Weaponizing Plain Text ANSI Escape Sequences as a Forensic Nightmare - STÖK https://www.youtube.com/watch?v=3T2Al3jdY38

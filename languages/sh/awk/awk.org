@@ -44,9 +44,7 @@
 
 ** types
 
-~automaticaly coerced when needed~
-
-https://www.gnu.org/software/gawk/manual/html_node/Variable-Typing.html
+[[https://www.gnu.org/software/gawk/manual/html_node/Variable-Typing.html][weakly typed: their type can change as the program runs]]
 
 1) String
    - index start at 1
@@ -67,10 +65,14 @@ https://www.gnu.org/software/gawk/manual/html_node/Variable-Typing.html
    - are associative arrays (aka hashtables)
    - no need to be declared
    - for strings or numbers
-   - index start at 1
-     - at least the ones returned by stdlib functions
-     - you can make it start by 0(zero) if you use a custom variable to initialize it
    - 1D
+   - 2D support can be mimicked by using ~[x,y]~ as index and ~(x,y) in arr~ for checking
+   - 2D support in gawk
+   - index
+     - are strings
+     - start at 1
+       - at least the ones returned by stdlib functions
+       - you can make it start by 0(zero) if you use a custom variable to initialize it
    - https://www.gnu.org/software/gawk/manual/html_node/Controlling-Array-Traversal.html
      #+begin_src awk
       comp_func(i1, v1, i2, v2)  < 0 # Index i1 comes before index i2
@@ -98,36 +100,36 @@ https://www.gnu.org/software/gawk/manual/html_node/Variable-Typing.html
   - Instead of using FS to specify what the fields are *not*
   - We use this to specify what are the fields, in the form of a regular expression.
 
-|---------------+----------------------------------------------+---------|
-|           <r> |                                              |   <c>   |
-|               | DESCRIPTION                                  | DEFAULT |
-|---------------+----------------------------------------------+---------|
-|        =FPAT= | regex of what each field contains            |    -    |
-| =FIELDWIDTHS= | whitespace separated list field widths       |         |
-|---------------+----------------------------------------------+---------|
-|            NF | numer of fields in line                      |    -    |
-|            NR | number of records (aka lines) read so far    |    -    |
-|           FNR | number of records read so far, in curr file  |    -    |
-|---------------+----------------------------------------------+---------|
-|            FS | *controls* the input field separator         |   " "   |
-|            RS | *controls* the input record separator        |  "\n"   |
-|---------------+----------------------------------------------+---------|
-|           OFS | output field separator                       |   " "   |
-|           ORS | output record separator                      |  "\n"   |
-|          OFMT | output format for numbers                    | "%.6g"  |
-|---------------+----------------------------------------------+---------|
-|          ARGC | number of cli arguments                      |    -    |
-|          ARGV | array of cli arguments                       |    -    |
-|       ARGIND= | index of ARGV being processed                |         |
-|       ENVIRON | array of environment variables               |         |
-|      FILENAME | name of current input file                   |    -    |
-|---------------+----------------------------------------------+---------|
-|       RLENGTH | length of string matched by *match* function |    -    |
-|        RSTART | start of string matched by *match* function  |    -    |
-|---------------+----------------------------------------------+---------|
-|        SUBSEP | subscript separator                          | "\034"  |
-|  =IGNORECASE= | all but array subscripting will ignore case  |    0    |
-|---------------+----------------------------------------------+---------|
+|---------------+----------------------------------------------+-----------------|
+|           <r> |                                              |       <c>       |
+|               | DESCRIPTION                                  |     DEFAULT     |
+|---------------+----------------------------------------------+-----------------|
+|        =FPAT= | regex of what each field contains            | "[^[:space:]]+" |
+| =FIELDWIDTHS= | whitespace separated list field widths       |       ""        |
+|---------------+----------------------------------------------+-----------------|
+|            NF | numer of fields in line                      |        0        |
+|            NR | number of records (aka lines) read so far    |        0        |
+|           FNR | number of records read so far, in curr file  |        0        |
+|---------------+----------------------------------------------+-----------------|
+|            FS | *controls* the input field separator         |       " "       |
+|            RS | *controls* the input record separator        |      "\n"       |
+|---------------+----------------------------------------------+-----------------|
+|           OFS | output field separator                       |       " "       |
+|           ORS | output record separator                      |      "\n"       |
+|          OFMT | output format for numbers                    |     "%.6g"      |
+|---------------+----------------------------------------------+-----------------|
+|          ARGC | number of cli arguments                      |        -        |
+|          ARGV | array of cli arguments                       |        -        |
+|      =ARGIND= | index of ARGV being processed                |                 |
+|       ENVIRON | array of environment variables               |                 |
+|      FILENAME | name of current input file                   |       ""        |
+|---------------+----------------------------------------------+-----------------|
+|       RLENGTH | length of string matched by *match* function |        0        |
+|        RSTART | start of string matched by *match* function  |        0        |
+|---------------+----------------------------------------------+-----------------|
+|        SUBSEP | subscript separator                          |     "\034"      |
+|  =IGNORECASE= | all but array subscripting will ignore case  |        0        |
+|---------------+----------------------------------------------+-----------------|
 ** built-in functions
 https://www.gnu.org/software/gawk/manual/html_node/Built_002din.html#Built_002din
 typeof
@@ -514,19 +516,20 @@ https://rosettacode.org/wiki/Hello_world/Web_server
 #+end_src
 
 ** flags
-|----+-------------------+------------+---------------------------------------|
-|    |                   |    <c>     |                                       |
-|    | long gawk flag    |    arg     | description                           |
-|----+-------------------+------------+---------------------------------------|
-| -F | --field-separator |     S      | sets FS                               |
-| -f | --file            | <FILEPATH> | runs script                           |
-| -E | --exec            | <FILEPATH> | runs script (for gawk cgi)            |
-| -v | --asign           |  var=val   | sets var to val                       |
-|----+-------------------+------------+---------------------------------------|
-| -c | --traditional     |     -      | compatibility mode                    |
-| -P | --posix           |     -      | compatibility mode extra              |
-| -S | --sandbox         |     -      | disables system() and IO redirections |
-|----+-------------------+------------+---------------------------------------|
+|-----+--------------------+------------+---------------------------------------|
+|     |                    |    <c>     |                                       |
+|     | long gawk flag     |    arg     | description                           |
+|-----+--------------------+------------+---------------------------------------|
+| -F  | --field-separator  |     S      | sets FS                               |
+| -f  | --file             | <FILEPATH> | runs script                           |
+| -E  | --exec             | <FILEPATH> | runs script (for gawk cgi)            |
+| -v  | --asign            |  var=val   | sets var to val                       |
+|-----+--------------------+------------+---------------------------------------|
+| -c  | --traditional      |     -      | compatibility mode                    |
+| -P  | --posix            |     -      | compatibility mode extra              |
+| -S  | --sandbox          |     -      | disables system() and IO redirections |
+| -d- | --dump-variables=- |     -      | dump variables status to stdout       |
+|-----+--------------------+------------+---------------------------------------|
 * implementations
 
 |--------+-------------------------------------------------------------------------------|

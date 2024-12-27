@@ -1,3 +1,11 @@
+- terminal emulators
+  - kitty
+    - https://sw.kovidgoyal.net/kitty/
+    - glxgears https://github.com/michaeljclark/glkitty
+
+- find
+  - -ok, is like -exec, but ask user before running
+
 - tool: regex dot plot
   - https://github.com/katef/libfsm/
   - ? https://github.com/katef/kgt/
