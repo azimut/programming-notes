@@ -60,6 +60,9 @@
 - uxn tools https://git.sr.ht/~rabbits/
 - game https://github.com/lynn/shanghai
 - play chords https://github.com/lynn/uxn-harp
+- someone's code
+  - https://github.com/jjwatt/play-uxntal
+  - https://x.com/lawofcons/media
 
 * Official Docs
 https://github.com/XXIIVV/oscean

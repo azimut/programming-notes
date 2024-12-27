@@ -50,7 +50,7 @@
    - index start at 1
 2) Number
    - || and && return =booleans= AKA 0(false) and 1(true). They do NOT return the truthy value.
-   - falsey: "", 0, undefined variables
+   - falsy: "", 0, undefined variables
    - [[https://www.gnu.org/software/gawk/manual/html_node/Comparing-FP-Values.html]["comparing floating-point values to see if they are exactly equal is generally a bad idea"]]
      #+begin_src awk
        ratio = dimension[1] / dimension[2] # ratio = 1.77778 of type number
@@ -118,10 +118,10 @@
 |           ORS | output record separator                      |      "\n"       |
 |          OFMT | output format for numbers                    |     "%.6g"      |
 |---------------+----------------------------------------------+-----------------|
-|          ARGC | number of cli arguments                      |        -        |
-|          ARGV | array of cli arguments                       |        -        |
-|      =ARGIND= | index of ARGV being processed                |                 |
 |       ENVIRON | array of environment variables               |                 |
+|          ARGV | array of cli arguments                       |                 |
+|          ARGC | number of cli arguments                      |        0        |
+|      =ARGIND= | index of ARGV being processed                |        0        |
 |      FILENAME | name of current input file                   |       ""        |
 |---------------+----------------------------------------------+-----------------|
 |       RLENGTH | length of string matched by *match* function |        0        |

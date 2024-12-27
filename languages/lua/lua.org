@@ -36,12 +36,6 @@
 - chunk = piece of code executed, a sequence of commands/statements
 - closures support
 - first class functions
-- tables are the only datastructure available, it might change internal representations according to the use
-  - "arrays" are tables with numeric index
-    - 1 based
-  - "records" are tables with literal keys
-  - "modules" are tables populated with anonymous functions
-  - "objects" are tables
 
 ** changelog
 
@@ -63,12 +57,76 @@ https://www.lua.org/versions.html
 - 5.0 (03)
 
 ** types
-boolean true false
-nil
-tables {} aka associative arrays
-string '' ""
+- userdata, thread
+***   number
+
+https://www.lua.org/pil/2.3.html
+- 2 2.0 1e10
+- Lua has no integer type
+- Represents real (double-precision floating-point) numbers.
+- no rounding error at all (unless the number is greater than 1e14)
+
+***  boolean
+
+https://www.lua.org/pil/2.2.html
+- true false
+- falsy: false nil
+
+***      nil
+
+https://www.lua.org/pil/2.1.html
+- global variables have this value by default
+
+***   string
+
+https://www.lua.org/pil/2.4.html
+- '' "" [[]]
+- [[]] do not interpret escape sequences
+- 10 != "10"
+- sequence of 8-bit characters
+- can store binary data
+- are *immutable*
+- escape sequences: (need escape: "'[]\)
+  |------+-----------------------------------|
+  |  <r> |                                   |
+  | \nnn | literal char, where n is a number |
+  |   \a | bell                              |
+  |   \b | backspace                         |
+  |   \f | form feed                         |
+  |   \n | new line                          |
+  |   \r | carriage return                   |
+  |   \t | horizontal tab                    |
+  |   \v | vertical tab                      |
+  |------+-----------------------------------|
+
+***    table
+
+https://www.lua.org/pil/2.5.html
+- {}
+- aka associative arrays
+- are objects
+- tab.field or tab["field"]
+- nil is an invalid index
+- it might change its internal representations according to the use given
+  - "arrays" are tables with numeric index
+    - 1 based
+    - ends at his first non initialized value (a sort of *sentinel*)
+    - you might want to enforce the index type (toint,tostring)
+  - "records" are tables with literal keys
+  - "modules" are tables populated with anonymous functions
+  - "objects" are tables
+
+*** function
+https://www.lua.org/pil/2.6.html
+- support for nested functions, with lexical scoping
 ** operators
+
 https://www.lua.org/manual/5.4/manual.html#3
+|----+------------------------|
+| .. | string concatenation   |
+| ~= | inequality             |
+| #a | size of string/array a |
+|----+------------------------|
 #+begin_src
  +     -     *     /     %     ^     #
  &     ~     |     <<    >>    //
@@ -212,6 +270,12 @@ __shr
 __sub
 __tostring
 __unm
+** control flow
+
+#+begin_src lua
+  for i=1,1000 do a[i] = i*2 end
+#+end_src
+
 * Command
 -i <script> - interactive mode after run script
 * Codebases

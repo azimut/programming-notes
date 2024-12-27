@@ -22,10 +22,6 @@
 - Why doesn't set -e (or set -o errexit, or trap ERR) do what I expected?
   http://mywiki.wooledge.org/BashFAQ/105
 
-- shfmt
-  https://github.com/mvdan/sh
-  (fork?) https://github.com/patrickvane/shfmt
-
 - https://wizardzines.com/comics/bash-debugging/
   https://news.ycombinator.com/item?id=39568728
 

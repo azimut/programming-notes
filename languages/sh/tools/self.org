@@ -6,6 +6,11 @@
 - find
   - -ok, is like -exec, but ask user before running
 
+- editor
+  - shfmt
+    https://github.com/mvdan/sh
+    (fork?) https://github.com/patrickvane/shfmt
+
 - tool: regex dot plot
   - https://github.com/katef/libfsm/
   - ? https://github.com/katef/kgt/

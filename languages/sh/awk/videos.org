@@ -1,14 +1,13 @@
-- 24 Awk, sed, grep: Together, we can change anything! – William Smith https://www.youtube.com/watch?v=axmDzoUov_8
 - Aho: "I'm the A in AWK." https://www.youtube.com/watch?v=5Zsk5L225Zs
   - a generalization of grep
   - intersts in: regex, pattern matching, assoc arrays, data processing
-- Taller de AWK https://www.youtube.com/watch?v=1_UyBhlTxsQ
-- 23 | Benjamin Porter | Awk: Hack the planet['s text]! (Presentation)
-  https://www.youtube.com/watch?v=E5aQxIdjT0M
 - 20 | Hacklab Almeria | AWK, la navaja suiza de los sistemas *NIX https://www.youtube.com/watch?v=WGNlLOf7Qn0
+- 21 | Sandino A.      | Taller de AWK https://www.youtube.com/watch?v=1_UyBhlTxsQ
 - 21 | Arpan Patel     | Introduction to awk for Data Engineering https://www.youtube.com/watch?v=yizvRBqy-mE
 - 21 | Debra McCusker  | Techniques with AWK https://www.youtube.com/watch?v=rzXliWSTQPE
 - 22 | Debra McCusker  | Walking Through Several AWK Scripts https://www.youtube.com/watch?v=cPlBT2c3TuQ
+- 23 | Benjamin Porter | Awk: Hack the planet['s text]! (Presentation) https://www.youtube.com/watch?v=E5aQxIdjT0M
+- 24 | William Smith   | Awk, sed, grep: Together, we can change anything! https://www.youtube.com/watch?v=axmDzoUov_8
 * 15 | Computerphile   | UNIX Special: Profs Kernighan & Brailsford
   https://www.youtube.com/watch?v=vT_J6xc-Az0
 
@@ -16,8 +15,8 @@
   - Partially because the released version of AWK outside AT&T was inferior to the internal
 
 - If you are doing something that is only a couple of lines long, AWK is great.
-  When you get bigger than that, it doesn't scale very well.
-  Because it doesn't have any of the things that prevent you from doing something stupid, or at least finding out when you did.
+  - When you get bigger than that, it doesn't scale very well.
+  - Because it doesn't have any of the things that prevent you from doing something stupid, or at least finding out when you did.
 
 - The pattern-action paradigm is great for many thing.
   But not for some others.
@@ -201,27 +200,28 @@ OR to match multiple links on single line
   }
 #+end_src
 * 20 | Cody Mello      | An AWK love story
+
 https://www.youtube.com/watch?v=IfhMUed9RSE
-  - Concatenation
-    $ cut -d: -f2 students.txt | xargs printf "%s@example.edu"
-    $ awk -F: '{ print $2 "@example.edu" }' students.txt
-  - Instead of looping...
-    #+begin_src sh
-      while IFS=, read user p1 p2 p3 p4; do
-          (( p1 + p2 + p3 + p4 < 70 )) && echo "${user}"
-      done < grades.csv
-    #+end_src
-  - ..awk
-    $ awk -F, '$2 + $3 + $4 + $5 < 70 { print $1 }' grades.csv
-  - Splitting a file/input into multiple files
-    $ fwadm list -p -o uuid,owner_uuid,rule | \
-         awk -F: '$2 != "~" { print >> "rules/"$2 }'
-  - Perl has a "-p" flag which has a BEGIN, END and all other content will run for every line
+
+- Concatenation
+  $ cut -d: -f2 students.txt | xargs printf "%s@example.edu"
+  $ awk -F: '{ print $2 "@example.edu" }' students.txt
+- Instead of looping...
+  #+begin_src sh
+    while IFS=, read user p1 p2 p3 p4; do
+        (( p1 + p2 + p3 + p4 < 70 )) && echo "${user}"
+    done < grades.csv
+  #+end_src
+- ..awk
+  $ awk -F, '$2 + $3 + $4 + $5 < 70 { print $1 }' grades.csv
+- Splitting a file/input into multiple files
+  $ fwadm list -p -o uuid,owner_uuid,rule | \
+       awk -F: '$2 != "~" { print >> "rules/"$2 }'
+- Perl has a "-p" flag which has a BEGIN, END and all other content will run for every line
+
 * 21 | Earthly         | Unlock the Power of AWK: Learn This Tool in Minutes!
 2023 https://www.youtube.com/watch?v=yJek26lyXZ0
 2021 https://earthly.dev/blog/awk-examples/
-- for (key in array) {}
-- #!/usr/bin/env -S gawk -f
 - Can use $() to perform calculation on the fly (?)
   #+begin_src awk
     $ awk -F '\t' '{ print $NF "\t" $(NF-2)}' bookreviews.tsv

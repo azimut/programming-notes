@@ -99,6 +99,22 @@
 | [?1049l | screen, restore        |
 |   [2J   | screen, clear          |
 |---------+------------------------|
+** erase
+it won't move the cursor
+|-----+------------------------------------|
+| \e  |                                    |
+|-----+------------------------------------|
+| [J  | from cursor to end of screen       |
+| [0J | "                                  |
+| [1J | from cursor to beginning of screen |
+| [2J | entire screen                      |
+|-----+------------------------------------|
+| [K  | from cursor to end of line         |
+| [0K | "                                  |
+| [1K | from start of line to cursor       |
+| [2K | entire line                        |
+| [3J | saved lines                        |
+|-----+------------------------------------|
 ** cursor
 |-------------+-------------------------------|
 |         <r> |                               |
