@@ -59,8 +59,10 @@ https://www.gnu.org/software/gawk/manual/html_node/Variable-Typing.html
        if (ratio ==  1.77778 ) # does NOT work
        if (ratio == "1.77778") # works
      #+end_src
-   - gawk: support for =float= through MPFR has arbitrary precision
-   - gawk: support for =bigint= through GMP
+   - support for scientific notation, eg: 1e8
+   - support for =float=
+   - gawk: support for =bignum= through [[https://gmplib.org/][GMP]]
+   - gawk: support for *arbitrary precision* through [[https://www.mpfr.org/][MPFR]] (to be removed [[https://www.gnu.org/software/gawk/manual/html_node/MPFR-On-Parole.html][soon?]])
 3) Arrays
    - are associative arrays (aka hashtables)
    - no need to be declared
