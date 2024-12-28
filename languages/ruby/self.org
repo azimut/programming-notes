@@ -46,6 +46,9 @@
 - when we call a method without putting a receiver object before it
   it refers to the object named "self"
   aka "puts == self.puts"
+- methods that end with (!) raise exceptions on error
+  - in general you want to use them over the bare ones
+  - you can also build your own instance getters that do that
 
 - lib/<gemname>/<class>.rb
 - test/<gemname>/all_tests.rb # require_relative other .rbs
@@ -586,6 +589,8 @@ https://rubyreferences.github.io/rubychanges/evolution.html
 - An association by an arbitrary key type
 - Hash.new(0) # where 0 is the default value
 - #sort_by - returns an array of arrays of 2 elements
+- returns *nil* if idx not found
+- .fetch(idx) - throws if idx not found
 
 ** stdlib
 

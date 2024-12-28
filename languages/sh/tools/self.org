@@ -3,6 +3,11 @@
     - https://sw.kovidgoyal.net/kitty/
     - glxgears https://github.com/michaeljclark/glkitty
 
+- rsync
+  - video: The command-line GNU rsync // Mirroring Your Data  https://www.youtube.com/watch?v=xA7hee-65MI
+  - video: A Script to backup your data - Starring Bash maps, rsync, declare, for in https://www.youtube.com/watch?v=4MMEDgLex_A
+  - video: Michael Stapelberg: Why I wrote my own rsync https://www.youtube.com/watch?v=wpwObdgemoE
+
 - find
   - -ok, is like -exec, but ask user before running
 
@@ -14,14 +19,24 @@
 - tool: regex dot plot
   - https://github.com/katef/libfsm/
   - ? https://github.com/katef/kgt/
-- tool: dialog helpers
-  - all languages https://wiki.archlinux.org/title/GTK/Development
-  - https://github.com/v1cont/yad/
-  - https://gitlab.gnome.org/GNOME/zenity
-    https://help.gnome.org/users/zenity/stable/
-  - dialog - [[https://invisible-island.net/dialog/][home]] - [[https://linux.die.net/man/1/dialog][man]]
-  - https://github.com/charmbracelet/gum
+
+- tool: yaml/json/xml/csv/toml https://github.com/mikefarah/yq
+- tool: visualization https://github.com/saulpw/visidata https://www.visidata.org/
+- tool: awk like in cli, with haskell flavor https://github.com/gelisam/hawk
+- tool: json to grep-able format https://github.com/tomnomnom/gron
+- tool: shell https://www.nushell.sh/
+- tool: language+shell https://github.com/refaktor/rye
+- tool: language http://www.rseventeen.com/ https://github.com/matthewnourse/r17
+- tool: https://github.com/jlevy/the-art-of-command-line/blob/master/README.md
+- tool: svg into png https://manpages.ubuntu.com/manpages/trusty/man1/rsvg-convert.1.html
+
+* pwd manager
+- https://www.passwordstore.org/
+  - http://web.archive.org/web/20210302020838/https://osiux.com/2021-02-19-no-me-acuerdo-de-nada-dejame-en-pass.html
+- https://github.com/charmbracelet/skate
+* html
 - tool: html https://github.com/TUVIMEN/reliq
+- tool: html https://github.com/htacg/tidy-html5
 - tool: html https://github.com/ericchiang/pup
   - pup [flags] [css-selectors] [display function]
   - css-selectors, comma separated
@@ -35,13 +50,47 @@
     |----+----------------------------------|
     | -f | read from file, instead of STDIN |
     |----+----------------------------------|
+* dialog
+** tui
 
-- tool: yaml/json/xml/csv/toml https://github.com/mikefarah/yq
-- tool: visualization https://github.com/saulpw/visidata https://www.visidata.org/
-- tool: awk like in cli, with haskell flavor https://github.com/gelisam/hawk
-- tool: json to grep-able format https://github.com/tomnomnom/gron
-- tool: shell https://www.nushell.sh/
-- tool: language+shell https://github.com/refaktor/rye
-- tool: language http://www.rseventeen.com/ https://github.com/matthewnourse/r17
-- tools: https://github.com/jlevy/the-art-of-command-line/blob/master/README.md
-- tool: svg into png https://manpages.ubuntu.com/manpages/trusty/man1/rsvg-convert.1.html
+- whiptail
+  - wiki https://en.wikibooks.org/wiki/Bash_Shell_Scripting/Whiptail
+  - widgets:
+
+- gum
+  - https://github.com/charmbracelet/gum
+  - widgets: choose, confirm, input
+
+- fzf https://github.com/junegunn/fzf
+  - A Practical Guide to fzf: Building a File Explorer
+    - https://thevaluable.dev/practical-guide-fzf-example/
+    - https://www.youtube.com/watch?v=FvNFxx3Z9qI
+    - https://www.youtube.com/watch?v=D1Ku6sNcb3g
+    - https://www.youtube.com/watch?v=TfNpAR1dKeM
+  - options
+   |--------------+-------------------------------------|
+   | --tac        | reverse the INPUT order             |
+   | --read0      | reads NULL delimeted INPUT strings  |
+   |--------------+-------------------------------------|
+   | --cycle      | enables cyclic scrolling            |
+   | --reverse    | reverses UI layout                  |
+   | --prompt=STR |                                     |
+   | --border=OPT | rounded¦sharp¦                      |
+   | --info=OPT   | hidden¦inline¦default (the counter) |
+   |--------------+-------------------------------------|
+
+- dialog - [[https://invisible-island.net/dialog/][home]] - [[https://linux.die.net/man/1/dialog][man]]
+  - colorscheme: debian.rc, suse.rc
+  - widgets: calendar, form, radio/checklist
+  - wiki https://en.wikipedia.org/wiki/Dialog_(software)
+  - wiki https://es.wikipedia.org/wiki/Dialog
+  - screenshoots http://web.archive.org/web/20130210071731/http://invisible-island.net:80/dialog/dialog-figures.html
+** X
+- yad
+  - widgets: color picker, calendar, form, html, notification
+  - https://github.com/v1cont/yad/
+  - https://yad-guide.ingk.se/
+- https://gitlab.gnome.org/GNOME/zenity
+  https://help.gnome.org/users/zenity/stable/
+- all languages https://wiki.archlinux.org/title/GTK/Development
+- http://xdialog.free.fr/

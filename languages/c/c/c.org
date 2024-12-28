@@ -27,7 +27,6 @@
 - https://fastcompression.blogspot.com/2019/01/writing-safer-c-code.html
 - https://github.com/AnthonyCalandra/modern-cpp-features
 - https://github.com/gerasdf/InsecureProgramming/
-- https://github.com/junegunn/fzf
 - https://github.com/rhysd/vim-clang-format
 - https://not.cafe/2020/10/12/getting-started-with-c-programming.html
 - https://tek256.com/posts/code-hardening/

@@ -1,3 +1,8 @@
+- [[https://wiki.c2.com/?DontUseExceptionsForFlowControl]["Don't use exceptions for control flow"]]
+  - Exceptions are like non-local goto statements.
+  - As such they can be used to build general control flow constructs.
+  - As a "rule" it should be fine if you have only 1 thing on the "try"
+
 - 1 based arrays [[https://youtu.be/H3inzGGFefg?t=2775][DConf '22: Lua and Pallene -- Roberto Ierusalimschy]]
   - for languages designed for non-professional programmers
   - most zer0 based languages, are due C
@@ -209,3 +214,8 @@ public class Singleton {
 - Code Style
   1) Use *result* as the variable name to return from a function
   2) On dynamically typed languages, keep track of the type of a var by his name
+
+* TODO Video: destroyallsoftware - 2 How and Why to avoid NIL
+- Is a problem when it percolates faaar beyond one expect it to happen.
+  - The introduction of the nil is not local to the use of it.
+  - We might lose the line of the error

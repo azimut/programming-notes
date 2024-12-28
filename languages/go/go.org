@@ -78,10 +78,10 @@
 |--------+-------|
 *** Complex
 |--------+---------|
-|        |   <c>   |
-| struct | name{}  |
-| arrays |  [i]T   |
-| slices |   []T   |
+|        |     <r> |
+| struct |  name{} |
+| arrays |    [i]T |
+| slices |     []T |
 | maps   | map[T]U |
 |--------+---------|
 - slices
@@ -386,6 +386,7 @@ https://go.dev/doc/go1.18
 *** unsafe   - contains operations that step around the type safety of Go programs.
 
 ** Standard Library Extension
+
 https://pkg.go.dev/golang.org/x
 
 - benchmarks — benchmarks to measure Go as it is developed.
@@ -421,17 +422,6 @@ https://pkg.go.dev/golang.org/x
   }
 #+end_src
 
-* Personalities
-** Rob Pike
-https://www.youtube.com/playlist?list=PL3NQHgGj2vtsJkK6ZyTzogNUTqe4nFSWd
-- GopherFest 2015: Rob Pike on the move from C to Go in the toolchain
-  https://www.youtube.com/watch?v=cF1zJYkBW4A
-  - llvm was slow
-  - writing a compiler for your own language makes a language good for that...
-  - own abi
-  - own file format
-  - translated the C code of the compiler to Go using a "translator"
-** Dave Ceney
 * Learn
 - https://www.akitasoftware.com/blog-posts/taming-gos-memory-usage-or-how-we-avoided-rewriting-our-client-in-rust
 - https://blog.twitch.tv/en/2019/04/10/go-memory-ballast-how-i-learnt-to-stop-worrying-and-love-the-heap-26c2462549a2/

@@ -7,14 +7,32 @@
 - 15 Git just say no           | Richard Hipp https://www.youtube.com/watch?v=ghtpJnrdgbo
 - 12 Advanced Git: Graphs, Hashes, and Compression, Oh My! https://www.youtube.com/watch?v=ig5E8CcdM9g
 * Destroy All Software
+** 1
 - desired output: nrlines hash msg
 - git rev-list HEAD
 - git rev-list --reverse HEAD
 - git log -1 $rev
 - git ls-tree $rev
 - git ls-tree -r $rev # recursive
-- git show $blobid # shows blob content
+- git show $blobid    # shows blob content
 - git log --oneline -1 $rev
+** 4
+- git amend              # aka reword?
+- git rebase -i master~2 # opens EDITOR to cherry pick commits
+- git clean -fd          # clean local changes
+- restore old state
+  - git reflog show master      # shows everything that happened, helpful to restore
+  - git reset --hard master@{1} # resets to reflog entry 1
+** 11
+- git help <alias>
+- git diff --cached (diff with between repo and staged)
+- git add --all
+- git add --all -p # interactive add by hunk
+- run-command-on-git-revision <rev> master 'rspec spec'
+  - git rev-list--reverse <rev>..master
+  - git checkout --quiet <hash>
+  - rspec spec
+- git pull --ff-only # pull and merge only if it will NOT create a merge bubble
 * DONE 13 | Git From the Bits Up      | Tim Berglund
 
 https://www.youtube.com/watch?v=MYP56QJpDr4
