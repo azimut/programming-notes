@@ -1,0 +1,38 @@
+* Book: 2021 - Game Design Deep Dive (Horror)
+** 5 The Philosophy behind Horror
+*** 5.1 The Psychology of Fear
+    - Fear of the *unknown*
+      "The oldest and strongest emotion of mankind is fear,
+       and the oldest and strongest kind of fear is fear of the unknown"
+      - Once they know the "trick" they will no longer be terrified
+    - Getting the audience into a *mood* means getting their undivided attention.
+      - Keep everything that is not scary downplayed or *muted*
+      - Music faded in the background, unless something happen
+    - Limited mechanics might lead the player to think too much in how to "game the game".
+      AKA, figure out the AI, timings, events, etc
+
+*** 5.2 Creating and releasing tension
+    - Creating an atmosphere that the player *knows* something is going to happen
+      But they don't know *where* or *when*
+      - Turning off lights
+      - Turning up music
+      - Not being attacked in afew minutes
+    - If the game keeps raising the tension and not releasing it,
+      the player will start to calm down on their own and realize that the game is not going to scare them.
+    - While releasing tension, each method can only truly work *once* in each game.
+*** 5.3 The Use of Jump Scares
+    - A way of releasing tension
+    - Must relate to the situation and environment at hand
+    - Usually being a fixed event, lose their effectiveness once the player knows what to expect
+    - Do not make it obvious
+      - Making the music louder
+      - or losing control of the character
+      - Random noises after a specif time passed
+    - Understate them
+    - Make the Jump Scares lead to something
+*** 5.4 Telling Scary Stories
+    - Better build on low stakes, not the world ending, but the impact on a few lives.
+    - Passive story-telling:
+      Instead of basing the story on a character, the player explored a ruined world
+       and learned about what happened by reading about it from the items.
+      

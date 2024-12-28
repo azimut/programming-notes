@@ -1,0 +1,77 @@
+* Trial
+https://github.com/Shirakumo/trial
+** Documentation
+  - two papers about
+    https://github.com/Shinmera/talks
+  - gets (interesting) into code at half of the talk
+    https://www.youtube.com/watch?v=od6WI7JIJcQ
+  - playlist of him making game(s) with trial
+    https://www.youtube.com/playlist?list=PLkDl6Irujx9MtJPRRP5KBH40SGCenztPW
+  - talk gets better if you tried the code yourself
+    https://www.youtube.com/watch?v=jaJRGWY94k0
+** Games
+- https://github.com/Shinmera/kandria
+- https://github.com/selwynsimsek/trial-vr
+- https://github.com/Shirakumo/ld45 (works)
+- https://github.com/Shinmera/beamer (broken, after going to next slide)
+- https://github.com/Shirakumo/ld39 (missing *loop* definition, which is (scene world))
+- https://github.com/Shinmera/shootman (missing *loop* definition, which is (scene world))
+** Association
+- Entity > Entity+ShaderSubjectClass=ShaderEntity
+                  ShaderSubjectClass=Shaders+Buffers
+- Subject
+- Shader > pass
+         > entity
+- Pass=ShaderSubject+FB+Uniforms+W/H
+** Constructors
+- Entity   define-shader-entity
+- Subject: define-shader-subject
+           define-subject
+- Pass:    define-shader-pass
+- Shader:  define-class-shader
+- Asset:   define-asset
+- Pool:    define-pool
+- Handler: define-handler
+** Glossary
+- Handler:
+  - Per subject
+  - On Event
+- Event
+  - load-request, input-event, action, scene-event, class-changed, tick, lose-focus, gain-focus, resize
+    - input>keyboard>key>key-press/key-release
+           >mouse>mouse-move/scroll/button-event
+      scene>enter/leave
+- Shader
+- Pass
+  - inputs ports: textures it needs
+  - output ports: textures it provides
+- Entity>Subject>Pass
+- Entity
+  - Inherit: vertex-entity
+  - Ex: lines
+  - Specializes: (paint)
+  - Can be put in a scene
+  - Has shaders
+- Subject: "allows you to tie handler definitions to a class"
+  - Inherit: vertex-entity, color-entity
+  - Ex: grid
+- Pass
+- Asset
+  - types: mesh, image, uniform-buffer(ubo)
+- (define-gl-struct light-block
+    (lights (:array (:struct light) #.MAX-LIGHTS))
+    (count :int))
+** Functions
+- paint (shader entity , pass)
+        (shader subject, pass)
+  - gets the framebuffers for the pass, clears and render
+  - calls (paint-with) for each element in each scene
+- paint-with (pipeline, scene)
+             (pass    , scene)
+- render
+- launch, user trigger,  makes and instance of the symbol given and (start). A subclass of 'main.
+- start, calls render-loop with a renderable (?
+- render-loop calls (render), (update)
+
+- make-pass-shader-program > coerce-pass-shader
+- enter (subject)          > register-object-for-pass (pass subject) > load(pass)

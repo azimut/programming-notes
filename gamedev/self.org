@@ -1,5 +1,113 @@
+- https://github.com/chr15m/roguelike-browser-boilerplate
+- Article https://namekdev.net/2017/05/exploring-directions-to-fix-game-programming/
+- Math for Game Devs [2022, part 1] • Numbers, Vectors & Dot Product
+  https://www.youtube.com/watch?v=fjOdtSu4Lm4&list=PLImQaTpSAdsArRFFj8bIfqMk2X7Vlf3XF
+- http://www.opengl-redbook.com/
+  https://github.com/openglredbook/examples
+- Shaders https://github.com/lettier/3d-game-shaders-for-beginners
+- MIT CMS.611J Creating Video Games, Fall 2014
+  https://www.youtube.com/playlist?list=PLUl4u3cNGP61V4W6yRm1Am5zI94m33dXk
+- https://gabrielgambetta.com/computer-graphics-from-scratch/
+- Game Development with SDL 2.0 (Steam Dev Days 2014) https://www.youtube.com/watch?v=MeMPCSqQ-34
+- podcast https://www.youtube.com/c/InfallibleCode/videos
+- https://cgvr.informatik.uni-bremen.de/teaching/cg2_20/
+- gamedev
+ "DanZaidan"    https://www.youtube.com/user/DanZaidan/videos
+ "NordicGame"   https://www.youtube.com/channel/UCBYdxpDm6iEpahKkpA3y5fg/
+- https://github.com/Forceflow/trimesh2
+- python lib https://www.labri.fr/perso/nrougier/python-opengl/#python-opengl-for-scientific-visualization
+- https://github.com/jersonSeling/ComputerGraphicsKnowledge/
+- https://github.com/aschrein/aschrein.github.com/
+
 - video: A Brief look at Text Rendering https://www.youtube.com/watch?v=qcMuyHzhvpI
 
+* Book: Game Programming Patterns
+| Type       | Pattern       | Intent                                    | aka       |
+|------------+---------------+-------------------------------------------+-----------|
+| Sequencing | Double Buffer | makes sequential OPs appear instantaneous | (rotatef) |
+|            |               |                                           |           |
+** Introduction
+- Get a Problem
+  > Learn (current) Code
+  > Program
+  > Clean up
+- De-coupling
+- the cost of de-coupling, YAIG (you aint gonna need it)
+- (early) Performance optimizations, is about assumptions.
+- Prototype programming is ok
+** Design patterns revisited
+*** Command
+- "...is an areified method call"
+- "...is a way of emulating closures in languages that don't have them"
+- "...shows how effective the functional paradigm is for many problems"
+- callback
+  first-class-function
+  function pointer
+  closure
+  partially applied function
+- "When you have an
+   - interface
+   - with a single method
+   - that doesn't return anything
+   There's a good chance it's the Command Pattern"
+- example: and input system, with remapping support. Each button gets
+           assigned an command class obj. With a execute() method.
+           If there is a "do nothing" button
+           that would be a "Null Object" pattern.
+*** Flyweight
+- On CL(?: slot allocation
+- When object need to be more lightweight because there are too many of them.
+  ex: Too much memory or take much time to push somewhere.
+- intrinsic: context-free data
+  extrinsic: instance unique data
+- "purely about efficiency"
+- applied IRL on "GPU Instancing"
+*** Observer
+- "It lets one piece of code announce that something interesting happened without actually caring who receives the notification."
+- How is this different to a function call?
+** Sequencing Patterns
+- Time based features
+*** Double Buffer
+- Intent: cause a series of sequential ops to appear instantaneous
+- Class: buffer
+- Instances: 2 (a *next* buffer and a *current* buffer)
+- Operation: Swap
+- Use when:
+  1) We have some state being modified incrementally
+  2) That state can be accessed in the middle of the modification
+  3) 
+*** Game Loop
+*** Update Method
+** Double Buffer
+- A Buffered class encapsulates a *buffer*, a piece of state that can be modified.
+- Is incrementally updated, but we want outside code to see it as a single atomic change.
+- We keep 2(two) instances of the buffer a *next buffer* and a *current buffer*
+  - Information is always =read= from the *current buffer*
+    Information is =written= to the *next buffer*
+  - When changes are complete the buffers are swapped
+- NOTE:
+  - The swap itself takes times, if it is larger than a pointer assignment, we haven't helper ourselves at all
+  - It uses more memory (for the 2 buffers)
+
+* Video Capture
+** flashparty
+https://flashparty.rebelion.digital/index.php?option=com_content&view=article&id=71:como-capturar-en-video-una-demo-intro&catid=14&lang=es&Itemid=118
+** Apitrace
+- https://github.com/apitrace/apitrace/
+** KKapture
+- 2014 Video: ".kkapture: Guided tour". Fabian 'ryg' Giesen (Farbrausch)
+  https://www.youtube.com/watch?v=xJic_pxgI7E
+- http://www.farbrausch.de/~fg/kkapture/
+- fork https://github.com/kajott/kkapture/releases/tag/v1.03-wip-20180824
+** Yukon
+- 2015 https://github.com/wereHamster/yukon/
+  dep https://github.com/wereHamster/seom
+** GLC
+- 2011 "Second Life" https://wiki.secondlife.com/wiki/User:Opensource_Obscure/GLC
+- Someone's script https://github.com/sole/demoscene/blob/fcb5510055827abb6f3d46886f3732b3cd61dea9/releases/ppg/ppg_01_sotg/encode.sh#L6
+- 2012 ROS
+  https://github.com/garaemon/ros-glc/
+  http://wiki.ros.org/RecordingOpenGLAppsWithGLC
 * record video
 
 ** why? for flashparty recording

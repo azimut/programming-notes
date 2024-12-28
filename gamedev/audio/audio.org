@@ -1,0 +1,25 @@
+- "Julian Peterson" about Borderlands game audio
+#+begin_src
+ for the soundtrack I made linear presentations of the music.  In
+ game, a lot of the material is broken apart into smaller segments
+ that can be strung together, with those choices determined by game
+ state.  In BL3 we track two primary parameters: threat, and interest.
+ Threat is a distillation of 'how much combat' the player is engaged
+ in (BL3 is a first person shooter), and interest is driven by
+ numerous game events and determines how forward the music should be
+ in the overall mix.  But of course, we also can respond to other
+ changes in game state and events in the story.
+#+end_src
+- Game Audio Programming 2: Principles and Practices
+  by Guy Sombert
+- Guy Somberg - Game audio programming
+  https://www.youtube.com/watch?v=jY3tPM1oNyU
+  - Kinds:
+   - Technical Sound Designer
+   - Audio Engine Programmer
+   - DSP programmer
+  - Works involves working with middleware (wwise, fmod,...)
+    Seems like working with openAL
+  - Set3dListenerAndOrientation()
+  - Heuristically-Grown Update Loops.
+    Instead of adding feature after feature, use a state machine.

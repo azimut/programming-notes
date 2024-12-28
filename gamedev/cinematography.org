@@ -1,0 +1,52 @@
+* General
+** movement
+
+Should not be noticed, think of the eye movement, serve story.
+
+| pan                | fast in a wipepan (gives a jolted energy) or slow (time to take in) |
+| tilt               | reveal something to use, diverge attention                          |
+| zoom               | can be funny if fast                                                |
+| dolly              | smooth movement of the camera in space                              |
+| reverse-dolly-zoom | dolly+zoom intensity                                                |
+| pedestal           | up-down reveal                                                      |
+| crane/boom         |                                                                     |
+| steady cam         |                                                                     |
+| handheld           | anxiety                                                             |
+| rack focus         | dof                                                                 |
+
+** shots
+- extreme wide
+- wide
+- full
+- medium full (knees up)
+- medium (hip up)
+- medium close up (chest up)
+- close up (head)
+- extreme close up (eye/mouth/...)
+** shot transition
+| cut in   | close up | > | closer to what is looking            |
+| cut away |          | > | away of the shoot to what is looking |
+| pov      | close up | > | pov                                  |
+** more
+double - two persons in the shot
+> over the shoulder
+> single
+> close over the shoulder
+* Book: Real-Time Cinematography for Games - Brian Hawkins
+** Introduction
+- 1985: Auguste and Lous Lumiere, made the first short motion pictures to show audiences.
+  Static camera position.
+- 1895: George Melies, Magician, over 500 films.
+  Shots in different positions.
+** 01) Cinematography: Position
+** 02) Cinematography: Motion
+** 03) Acting: Hitting the Mark
+** 04) Cinematography: Lenses
+** 05) Lighting: Reality versus Hollywood
+** 06) Editing: Filters and Effects
+** 07) Editing: Transition
+** 08) Editing: Selection
+** 09) Acting: Dialogue
+** 10) Foley Artist: Sound Effects
+** 11) Composing: Makng Music
+** 12) Directing: Bring it all together

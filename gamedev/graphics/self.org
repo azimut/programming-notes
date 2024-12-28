@@ -1,0 +1,395 @@
+- Lode's Computer Graphics Tutorial
+  https://lodev.org/cgtutor/
+
+* light general
+
+- Apply "distance attenuation" to pointlight/spotlight(?) ambient oclussion factor.
+- Direct light, "lights" everything with the color of the light.
+  - And can show other color on sub-surface scattering.
+  - Show details
+  Indirect light, gives the color of the surface instead.
+- Shadowmap applies only to the direct light source
+- https://docs.unity3d.com/Manual/LightingBakedAmbientOcclusion.html
+  Ambient occlusion
+  These areas occlude (block out) ambient light, so they appear darker.
+- Intensity of maps (normal, ao,...) is common. A fudge factor.
+- AO should apply only to indirect diffuse, not specular.
+- https://github.com/mrdoob/three.js/issues/6271
+totalAmbientLight = ambientLightColor * ( 1.0 + aoScale * ( aoMap - 1.0 ) );
+outgoingLight += diffuseColor.rgb * ( totalDiffuseLight + totalAmbientLight ) + totalSpecularLight + emissive;
+
+* Tech/VFX
+- https://www.youtube.com/watch?v=pjc1QAI6zS0&list=PLujxSBD-JXgnGmsn7gEyN28P1DnRZG7qi
+** PointLights without
+;; https://github.com/blender/blender/blob/51a5be891308e174e2bd8bc862bdde41545b08d1/source/blender/draw/engines/eevee_next/shaders/eevee_light_lib.glsl#L85
+;; (d-sqr (sqr distance))
+;; (r-sqr (sqr .5))
+;; (attenuation (/ 2 (+ d-sqr
+;;                      r-sqr
+;;                      (* distance (sqrt (+ d-sqr r-sqr))))))
+** Ambient Occlussion
+- Interactive Graphics 23 - Ambient Occlusion & Soft Shadows
+  https://www.youtube.com/watch?v=teB-pbAd8JE
+  - Just adding a constant AL with a constant AO.
+    Just adds a constant number to the whole scene (assumming the whole scene has the same material)
+  - Visibility on AO is either 0 or 1 for any given direction
+    0 = ocludded
+    1 = not occluded
+  - AO is still a value between 0 and 1
+  - We simplify a BRDF of the illumination formula by AO/pi
+  - For offline rendering, since you will compute AO with raytracing.
+    You are better doing raytraced GI.
+** LTC
+- 2016 Paper https://drive.google.com/file/d/0BzvWIdpUpRx_d09ndGVjNVJzZjA/view?resourcekey=0-21tmiqk55JIZU8UoeJatXQ
+  Author Page https://eheitzresearch.wordpress.com/415-2/
+  Code https://github.com/selfshadow/ltc_code
+- 2022 Article https://learnopengl.com/Guest-Articles/2022/Area-Lights
+- Implementation
+  - Unity https://github.com/PiMaker/ltcgi
+- Someones textures?
+  https://github.com/BlurryLight/ltc_code/commit/85111a553fed777ab04ff19d098cb47d48310f30
+  - Uses
+    https://github.com/nothings/stb/blob/master/stb_image_write.h
+    https://github.com/nothings/stb/blob/master/stb_image.h
+  - But it does not support PNG 16 bit depth https://github.com/nothings/stb/issues/605
+- cl-soil, fails to import the .dds :(
+  - might be related https://github.com/cbaggers/cl-soil/issues/5
+** Soft Shadows =Area Lights=
+- https://www.youtube.com/watch?v=teB-pbAd8JE
+  - Depending on the scene, hard shadows might be more reallistic.
+  - Hard shadows are better for
+    - very small lightsources. (aka pointlights)
+    - or lights very very far away
+  - Soft Shadows, for relative large and relatively close. (eg: area light)
+  - Uses
+    - raytracing from the point to the light, to calculate the shadow.
+    - or shadowmaps to approximate them and give me a hardshadow to start with
+      - PCSS Percentage Closest Soft Shadows (from PCF)
+        - Based on the distance of the occluder and the occluded
+        - By doing an *occluded search* on the depthmap
+        - Not very cheap
+  - PCSS            '05
+    Variance    SM  '06
+    Convolution SM  '07
+    Exponential SM  '08
+** Raytracing
+- Part 1: Rendering Games With Millions of Ray Traced Lights
+  https://www.youtube.com/watch?v=QWsfohf0Bqk
+  - Objective: Move direct lighting to use full ray tracing
+  - =Importance Sampling=, one way to do complex lighting with a budget
+    - For focusing samples on important regions
+    - RIS (Resampling Importance Sampling) approximating C (?
+  - =RTX DI= Nvidia Framework
+  - Rasterization
+    - current tech.
+    - One shadowmap per light.
+    - Important lights often identified in advance
+  - Raytracing
+    - There is a limited number of shadows that you can see in one pixel
+** AA
+- FXAA https://github.com/swr06/Candela/blob/MainBranch/Source/Core/Shaders/FXAA311.glsl
+- TAA https://github.com/swr06/Candela/blob/MainBranch/Source/Core/Shaders/TAA.glsl
+- MSAA https://learnopengl.com/Advanced-OpenGL/Anti-Aliasing
+** Geometry images
+http://hhoppe.com/gim.pdf
+** SSGI
+- https://gamehacker1999.github.io/posts/SSGI/
+  https://twitter.com/perfectpixel_02/status/1517549758579105792
+  - Fast, noise free, screen space diffuse global illumination.
+  - I am only shooting *one sample per pixel* without any ray reuse.
+  - I am also *accumulating bounces over time* by using the previous frame's lighting data.
+    Effectively increasing the number of bounces instead of just doing the first bounce.
+  - I am preventing ghosting by using a *temporal pass* that does a neighborhood rejection
+    which works well for the most part.
+  - I am still working on leaks, I am thinking of storing the
+    - depth
+    - and depth squared of occluders and using chebeshev to produce soft shadows.
+- Godot (5 years ago)
+  https://github.com/martinsh/godot-SSGI/blob/master/SSGI/SSGI_shader.shader
+- Three.js (2023)
+  https://github.com/0beqz/realism-effects/tree/main/src/ssgi/shader
+- Unity (2022)
+  https://twitter.com/PulkitJuneja96/status/1518072206538031104/
+  https://github.com/pulkitjuneja/SSGI-Unity/blob/9e5c362ec51a760ece826d370dbe8ee1df7856aa/Assets/Shaders/Resources/Utils.cginc#L152
+- https://github.com/armory3d/armory/blob/415fd5214c89f217eb56509ec768afc78b34a7a4/Shaders/deferred_light/deferred_light.frag.glsl#L193
+- https://github.com/armory3d/armory/blob/415fd5214c89f217eb56509ec768afc78b34a7a4/Shaders/ssao_pass/ssgi_pass_.frag.glsl#L5
+** PSX
+- https://github.com/dsoft20/psx_retroshader
+- Unlit uv jittering, no linear fog support https://github.com/keijiro/Retro3D/
+** Volumetric lighting
+- https://www.alexandre-pestana.com/volumetric-lights/
+*** https://github.com/SlightlyMad/VolumetricLights/
+- Unity C#
+- Based on GPU 5
+- Support Spotlight(S), Directional(S), Pointlight
+*** https://github.com/Unity-Technologies/VolumetricLighting/
+- Unity C#
+- Uses (2)compute shaders passes on 2 3d textures ("froxel")
+- No directional(?
+** PLFP
+*** https://github.com/Global-Illuminati/Precomputed-Light-Field-Probes
+- only directional and spotlight??
+- takes some time on the web version to update the probes ...
+- PLFP is heavily mentioned on the DDGI paper
+- https://www.gdcvault.com/play/1024353/ min 19
+- https://casual-effects.com/research/McGuire2017LightField/index.html
+** DDGI
+- https://www.gdcvault.com/play/1026182/
+- Code https://github.com/xuechao-chen/DDGI
+** Voxel
+*** cryscan/bevy-hikary
+https://github.com/cryscan/bevy-hikari/tree/bevy-0.6
+*** Patryk27/strolle
+https://github.com/Patryk27/strolle/tree/694832c9d55db73c003e36854a2069fa7d280e60
+*** mcela/vxgi (2020)
+https://github.com/mcela/vxgi/
+#+begin_src cpp
+// 2.0f = NDC is [-1, 1] so abs(1 - -1) = 2.0f
+const float offset = 0.1f; // small offset so that a vertex at bounds (1,1,1) will be voxelized aswell
+scene.voxel_scale = vec3(
+ (2.0f - offset) / fabs(scene.bounding_box.max_point.x - scene.bounding_box.min_point.x),
+ (2.0f - offset) / fabs(scene.bounding_box.max_point.y - scene.bounding_box.min_point.y),
+ (2.0f - offset) / fabs(scene.bounding_box.max_point.z - scene.bounding_box.min_point.z));
+#+end_src
+- scaled voxel size, by a vec3
+  - on voxelization
+    - VS: gl_position is set to: world-pos * u_scene_voxel_scale
+    - GS: ?
+*** steaklive/DXR-Sandbox-GI (2021)
+https://github.com/steaklive/DXR-Sandbox-GI/
+- scaled voxel size, by a single float
+  - VS: world
+  - GS: outputs an additional vec3 with voxel position
+*** AlerianEmperor/Voxel-Cone-Tracing (2022)
+https://github.com/AlerianEmperor/Voxel-Cone-Tracing/tree/main/Voxel_Cone_Tracing_Final/Shader
+https://github.com/AlerianEmperor/Voxel-Cone-Tracing/
+;; mat4 mMat
+;; = glm::translate(glm::scale(glm::mat4(1.0f),
+;;                             glm::vec3(0.05f, 0.05f, 0.05f)),
+;;                  glm::vec3(0.0f, 0.0f, 0.0f));
+;;
+;; mat4 vMat = lookAt(lightDirection, // !!!!!!!!!!!!!
+;;                    vec3(0.0f, 0.0f, 0.0f),
+;;                    vec3(0.0f, 1.0f, 0.0f));
+;;
+;; mat4 pMat
+;; = ortho<float>(-120, 120, -120, 120, -100, 100);
+;;
+;; DepthViewProjectionMatrix = pMat * vMat;
+;;
+;; VoxelizeShader.setMat4("ModelMatrix",
+;;                         mMat);
+;; VoxelizeShader.setMat4("DepthModelViewProjectionMatrix",
+;;                         DepthViewProjectionMatrix * mMat);
+*** rdinse/VCTGI (2014)
+https://github.com/rdinse/VCTGI
+- 6 static diffuse cones, weigth 0.607
+#+begin_src
+vec3(-0.794654, 0.607062,  0.000000)
+vec3( 0.642889, 0.607062,  0.467086)
+vec3( 0.642889, 0.607062, -0.467086)
+vec3(-0.245562, 0.607062,  0.755761)
+vec3(-0.245562, 0.607062, -0.755761)
+#+end_src
+
+*** MangoSister/HarshLight (2016)
+https://github.com/MangoSister/HarshLight/
++ light injection
+- shadow
+- 5 diffuse cones, 1 specular
+- Stores albedo and normal 3D texture
+- encodes to vec4 to uint
+- imageAtomicCompSwap
++ fragment shader normal checks beyond the ones done in geometry shader
++ custom anisotropic mipmap
+*** Nvidia VXGI
+- https://github.com/NvPhysX/UnrealEngine/tree/VXGI2-4.21
+- https://developer.nvidia.com/vxgi
+- 2014 Paper https://on-demand.gputechconf.com/gtc/2014/presentations/S4552-rt-voxel-based-global-illumination-gpus.pdf
+- 2014 Video: https://www.youtube.com/watch?v=_E1oVl2d01Q
+  - Has AO and Reflections
+  - Opacity Model: Used to calculate how light is blocked by objects
+- 2016 Video: https://www.youtube.com/watch?v=dQSzmngTbtw
+  - "There are still issues with light leaking through thin objects"
+- 2018 Video: https://www.youtube.com/watch?v=13su6WkDZSw
+  Revision 2018 - Seminar - How to use Voxel Cone Tracing with two bounces for everything
+  - For =Diffuse= GI
+    - Multiple directions depending on normal, with *aperture angle*
+      size depending of the cone count of your choice.
+  - For =Specular= lighting: reflections, refractions, hard/soft shadows
+    - Single direction, where the cone *aperture angle* size can
+      depend on the roughness material parameter.
+    - Cone tracing
+      - starts with a small area at first and grows larger and larger.
+      - starts with a start bias
+- 2018 Video: https://www.youtube.com/watch?v=EJTc_t3G-js
+  - Voxelization (in 2.0 it's just one)
+    1) Opacity: avg density in it's volume (?
+    2) Emmitance/Light: avg radiance emmited or reflexted by each voxel (like forward)
+  - Tracing
+    1) Diffuse: For every visible surface, we trace multiple cones
+       into all the directions above the surface. We gather *irradiance* from the cones.
+    2) Specular: We trace only 1(one) cone in the direction of the specular.
+       - Wide cone for rough surface
+       - Fine cone for smooth
+       - More expensive than diffuse
+  - Composed by
+    - multiplying *diffuse* irradiance by albedo.
+    - multiplying *specular* rradiance by specular intensity
+  - VXAO: Voxel Ambient Occlusion
+    - Instead of doing full gather for GI, we gather only the Opacity (? of geometry
+      surrounding the surface
+    - Cannot handle fine "contact shadows",
+      looks better when combined with a small size SSAO
+  - Area Lights
+    - Just add emmisive (?
+    - VXGI 1.0 Do not handle direction of the light plane
+      VXGI 2.0 Fixes Area Light
+      - Uses conetracing in the direction of the area light1
+- Not opensourced
+- Headers available and windows binaries
+- Few bits of code available, indirectconfidence?
+*** Wicked
+- https://github.com/turanszkij/WickedEngine
+- https://wickedengine.net/2017/08/30/voxel-based-global-illumination/
+- Seems like the most complete implementation
+- Second bounce
+- intermediate SSBO
+- HDR color storage into uint of the SSBO (or at leat a "mask")
+*** Vulkan-VXGI-VR-FrameWork
+- https://github.com/byumjin/Vulkan-VXGI-VR-FrameWork
+- has voxel based AO
+*** vct
+- https://github.com/sfreed141/vct/
+- Warped(? Voxel Cone Tracing
+- (for color and normals) uses a glsl extension for f16vec4 to (afaik) directly atomically write into rgba16f
+  though it has the option to use r32ui instead and convert vec4 to that uint
+  but! it does it by defining a rgba8 texture on opengl and a r32uint on the shader
+  same texture, different representations
+- It has a r32ui 3d texture for "occupancy"
+*** Armory3d
+- Code based on Friduric code (which is based on other code)
+- https://github.com/armory3d/armory/blob/86b28c733b877bd2bc61bcf5cd7efdbcdd5f794f/Shaders/std/conetrace.glsl
+- Currently only VXAO available and full VXGI was removed
+- https://github.com/armory3d/armory/commit/52402499823ccdc30df7aff562a568bef9f9580c#diff-2d9c61fc41a431f602ac4642a8e96f11
+- color capped to 0-1
+- no idea how color is calculated...there is a lot of python code involved
+- color finally mult by sunColor and visibility
+*** jose-villegas/VCTRenderer
+- https://github.com/jose-villegas/VCTRenderer
+- defered method
+- uses the rgba to uint conversion for atomic set
+*** Cigg/Voxel-Cone-Tracing
+- https://github.com/Cigg/Voxel-Cone-Tracing
+- Same -1,1 limitation as Friduric one
+- only directional light illumination
+- imageStore vec4 of: material color *
+                      visibility from shadowmap
+*** Friduric/voxel-cone-tracing
+- https://github.com/Friduric/voxel-cone-tracing
+- https://vimeo.com/212749785
+- normal mipmap dimensions
+- world needs to be between (-1,1)????
+- expensive voxel based shadows
+- no direct AO support
+- imageStore vec4 of: illuminance +
+                      reflectivity constant +
+                      emmisivity constant +
+                      transparency constant - A component as (pow (- 1 transp) 4)
+*** phonowiz/voxel-cone-tracing
+- https://github.com/phonowiz/voxel-cone-tracing
+- fork of Friduric, downgraded to OpenGL 4.1
+- mipmap interpolation in shader/compute
+*** GreatBlambo/voxel_cone_tracing
+- https://github.com/GreatBlambo/voxel_cone_tracing
+- Similar to Friduric
+- mipmap on compute shader
+*** Godot
+- https://github.com/godotengine/godot/blob/2b1c3878f9b36cb52a5d2f654fdebb1b809167dd/drivers/gles3/shaders/scene.glsl
+- https://github.com/godotengine/godot/blob/4dec1bde77d40d802b25f7fe1f0f529b8f55d0bd/scene/3d/gi_probe.cpp
+- Voxelization happens on the CPU(!?
+- Cone tracing uses a texture3d though
+- It uses a more probe/local based approach
+*** Ogre3d
+- https://www.ogre3d.org/2019/08/05/voxel-cone-tracing
+- https://bitbucket.org/sinbad/ogre/src/v2-2-vct/
+- uses a "defer" rendering approach
+- that is albedo,normal,emissive 3d textures happen on voxelization
+- and a 4th one is generated to calculate the light and bounces
+*** SEGI
+- https://github.com/sonicether/SEGI
+- it converts an rgba to uint in order to store into a texture3d atomically
+** ReSTIR
+- Notes
+  https://twitter.com/Jiayin_Cao/status/1600003619696148480
+  https://agraphicsguynotes.com/posts/understanding_the_math_behind_restir_di/
+- 2020 Paper https://github.com/tatran5/Reservoir-Spatio-Temporal-Importance-Resampling-ReSTIR/
+- 2020 Implementation C++ https://github.com/lukedan/ReSTIR-Vulkan
+- Implementation Rust
+  https://github.com/EmbarkStudios/kajiya
+  https://github.com/seabassjh/bevy-kajiya
+- Implementation Rust https://github.com/cryscan/bevy-hikari
+- 2022 Implementation C++ https://github.com/DQLin/ReSTIR_PT
+- 2022 implementation C++ Vulkan https://github.com/yuphin/Lumen
+- Implementation Unity https://github.com/Pjbomb2/TrueTrace-Unity-Pathtracer
+*** Video: Ray Tracing: How NVIDIA Solved the Impossible!
+  https://youtu.be/NRmkr50mkEE?t=461
+  "The magic is the smarter allocation of the raysamples"
+  It does a lot of denoising.
+  Not realtime.
+  Wymann and Panteleev 2021
+*** Video: How Ray Tracing (Modern CGI) Works And How To Do It 600x Faster
+https://www.youtube.com/watch?v=gsZiJeaMO48
+- ?
+  - Rays starts from the camera
+  - Multiplied by the normal to account for light attenuation on hit angle
+  - Once they hit a surface, they can be shoot in
+    - =Monte Carlo=: Random directions
+    - =Importances Sampling= More rays in the direction of the light
+- ReSTIR (12:00)
+  - Solves the problem of Direct Lighting
+    - aka one light bounce from the object to the camera
+  - Uses a new? Integral
+    - Instead of avg on all points, it avg in all possible points of possible light sources
+    - Excluding not-visible lights
+    - With an inverse square for attenuation depending on the hit angle
+  - With an optimal way to shoot rays to calculate the average light at a point
+    - Assuming there are a few places were light comes from
+    - We sample based on a PDF (=Probability Density Function=),
+      more times on the high points, less on the lower
+    - By using =Resampled Importance Sampling=
+      - Starting by taking bad samples (evenly distributed)
+*** Patryk27/strolle
+- Area Lights
+  https://blog.demofox.org/2020/05/16/using-blue-noise-for-raytraced-soft-shadows/
+  https://schuttejoe.github.io/post/arealightsampling/
+- BVH Bounding Volume Hierarchy
+  https://jacco.ompf2.com/2022/04/13/how-to-build-a-bvh-part-1-basics/
+  https://github.com/jbikker/bvh_article
+- VR https://media.steampowered.com/apps/valve/2015/Alex_Vlachos_Advanced_VR_Rendering_GDC2015.pdf
+- Temporal AA
+  https://www.shadertoy.com/view/4tcXD2
+  https://de45xmedrsdbp.cloudfront.net/Resources/files/TemporalAA_small-59732822.pdf
+  https://www.youtube.com/watch?v=yNQ47MY-Eo0
+- SKY
+  https://www.shadertoy.com/view/slSXRW
+  https://github.com/sebh/UnrealEngineSkyAtmosphere
+- https://paroj.github.io/gltut/Illumination/Tut09%20Normal%20Transformation.html
+- https://4programmers.net/Z_pogranicza/Raytracing
+*** ChatGPT
+ChatGPT(3.5t/Programming)> at a high level which are the steps of the technique
+<shell-maker-end-of-prompt>
+At a high level, here are the steps involved in the ReSTIR technique:
+
+1) For each frame, a spatio-temporal accumulation buffer called the reservoir is initialized to store samples of indirect lighting.
+2) In the initial phase, a number of primary rays are traced into the scene and their intersection points with objects are identified.
+3) For each of these primary rays, a set of virtual rays is constructed that probe the reservoir. This is done to determine which parts of the scene have already been sampled and how important they are in contributing to indirect lighting.
+4) Based on the importance information obtained from the virtual rays, a spatio-temporal importance resampling process is performed. This selects a subset of the unexplored regions of the scene for each primary ray, determined based on their importance.
+5) A set of secondary rays is then traced from each primary ray's intersection point into the selected subsets of unexplored regions.
+6) The contribution of these secondary rays to indirect lighting is accumulated in the reservoir.
+7) Finally, the accumulated indirect lighting in the reservoir is used to render the final image.
+
+Overall, the ReSTIR technique involves a cycle of importance estimation, spatial resampling, and accumulation of indirect lighting, which is optimized for real-time performance and provides high-quality results for dynamic, complex lighting environments.
+
+* vxgi
+- to store in regular images (no hdr), use no pbr lighting and no ambient on formula calculation

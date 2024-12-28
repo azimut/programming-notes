@@ -1,0 +1,36 @@
+* Static Build ODE
+  - bullet apkbuild (CMAKE)
+    https://git.alpinelinux.org/aports/tree/community/bullet/APKBUILD
+  - ODE Makefile (./configure)
+    https://github.com/borodust/bodge-ode/blob/master/src/lib/Makefile
+* FPS Camera
+** ODE
+   https://github.com/rafaeldelboni/raylib-pixelated-fps/blob/c9b04f9013f74a4fde9b6df244581e7b0d2df3e0/app/ode_app.c
+   https://github.com/rmarquis/qio-code/blob/091f43ac8c359b491f71c185d854589d46a0fee6/code/gphysics/ode/ode_characterController.cpp
+   https://github.com/jwatte/ode-0.12/blob/master/demos/raycar/car.cpp
+   https://github.com/lacti/mmo/blob/3a48a719c87bc6b3557130873ae39115cca93cc0/clientsdl/physics.cpp
+** http://ode.org/wiki/index.php?title=HOWTO_upright_capsule
+- Set the orientation back to upright and the angular velocity to zero after every time step.
+  There is a dBodySetMaxAngularSpeed() function that does it automatically.
+  Just set the maximum angular velocity to zero, and the capsule will never rotate.
+  It won't let you rotate around the up axis, but this is usually done outside the physics simulation.
+  (e.g. a "Camera" entity in a 3D engine whith a yaw() method, attached to the capsule)
+- For the ability to climb stairs or overcome small, steep obstacles it is useful to use a ray for "feet", and a spring to push the character upwards (with some damping).
+** How can I make my actor capsule (capped cylinder) stay upright?
+  http://ode.org/wiki/index.php?title=Manual
+  - Manually reset the orientation with each frame
+  - use an angular motor
+  - apply torques
+  - use a sphere instead
+  - or (quoting Jon Watte) instead use
+    "a hovering sphere with a ray to 'sense' where the ground is and
+     apply spring forces to keep it at a constant height above ground." See 1, 2, 3 for details.
+** Game Coding Complete
+Just in case I wasn’t clear, the character hull isn’t under physics control. It is a shape
+that you move around yourself and check the physics system for collisions only when
+you move it. How you move the hull is completely dependent on your game.
+*** Special Objects: Stairs, Doorways, and Trees
+- Stairs are tough because you really want two completely different collision shapes,
+  depending on the dynamic object interacting with them.
+- The collision hull for characters should be a simple ramp.
+- The second collision hull for the stairway will look like stairs,

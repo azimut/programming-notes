@@ -1,0 +1,235 @@
+* curso
+
+  NOX - emulador android - peggle blast - analisis
+  ebuild for polyphone
+  fl studio
+  GDC audio bundle
+  traer un audio (.wav), aplicar un loop's tecnicas
+  "project adventure" Wwise
+
+** dia 1
+- deflemask
+- renoise
+- milkytracker
+- ??
+
+- wwaise
+- fmod
+- repear (make it work on linux)
+- landoleet.org lol linux ++ repear (binaries ready)
+- a2jmidi rep
+- "diggin' int he carts" < doc video
+- divinity 2 (? rpg
+- chip PSG (programable sound generator) (para cargar los sonidos)
+
+*** foobar
+- foobar + plugin game emu player
+- (permite nsf, vsf? de sega, spc supernintendo)
+- cambiavan los programas en el mismo canal >genesis
+- bittrash (? efecto para voz
+- nsf format - zoophar.net (glide+offsets para "reverb")
+- "gimmick!" ( + 3 squares de las 5 que vienen por defecto)
+- "megaturrican" juego
+- media-sound/gbsplay
+
+- spc - DSP en todos los canales
+- ff7 es midi (la ps1 era) + algo de sample
+- romblex
+
+*** PC
+"tempo liso" - drone
+mod>midi>imuse>cd-rom
+MIDI - en MIDI distinto sonido en distas placas de sonido (ejemplos de doom)
+MOD - openmtp - tracker para MOD files, .umx
+imuse - monkey island ii (seemless transitions)
+
+*** middleware
+audiokinetik wwise
+fireflight - fmod
+tzman audio -fabric
+rad game tools - miles sound system
+elias software - elias studio engine
+
+** dia 2
+*** yt
+- Game makers toolskit, diseño de video juegos
+- overwatch - blizzcon
+- soundcraft an interactive blizzard sound demostration 
+
+wwise software 
+utn musica videojuegos facebook group
+
+*** teoria audio
+Audio/ruido es la compresion/movimiento de aire. Las particulas no se mueven/viajan, las ondas si.
+
+"transduccion" el convertir audio en electricidad
+
+Dinamicos/condensadores (tipos de mic).
+Dinamicos con imanes y bobinas
+Condensadores con membranas.    -> convierten las variaciones en presiones en electricidad
+
+... md 412 senreiser microfono
+
+(gif de microfono aire, señal) Reduccion de dimensiones ?????
+
+*** ADC->DAC
+ADC - analogue to digital conversor
+DAC
+
+- Sampling rate - velocidad de muestreo
+- Bit depth - precision
+- Filtro antialias (para el smpling rate)
+- Error de cuantificacion (para el bit depth)
+
+*** Teorema de nyquist
+1000Hz x 2000Hz
+"para samplear/capturar algo la freq de muestreo debe ser el doble de la freq de la onda origen"
+
+*** F. Alias - NO harmonico
+  si F0 > Fs/2
+  Fs-F0 = Falias 
+
+44100 se usa en general en musica. 48000 en videojuegos (por lo generaaaal)
+
+Youtube - XIPH.ORG - .ogg - Videos de audio - ++++
+
+Quantize, cuantificacion. 
+ 
+*** SQNR - Signal Quantification Noise Ratio - Harmonico
+2^16 - 1 = 65535 (where 16 bits)
+2^n  - 1 = 65535
+         = 96 dbs
+
+Se arregla con "dither" (es agregar ruido blanco) al final. Enmascara el SQNR.
+
+*** THD - Total harmonic distortion - Distorsion en los parlantes
+
+*** PCM / WAV
+**** lossless
+- Sin compresion: WAV, AIFF
+- Con compresion: FLAC, ALAC, WavPack
+**** lossy
+- mp3
+- aac (m4a)
+- ogg (vorbis) (+ videojuegos, opensource)
+
+Las placas de audio tienen que recibir si o si PCM. Wav provee eso by default.
+
+*** tecnicas
+- intro que suena una sola vez, despues loopea el resto (como hacen las sf)
+- agregar linea de audio cuando un evento pasa (ride yoshi), layers
+- pantalla de carga con musica
+- filtros en canales en base a la ubicacion de los sonidos
+- cambiar canciones en el fin del beat (sin los temas son el mismo)
+
+bioshock 2, underground city music
+sonic generations, chemical plant?!
+bastion+transistor compositor
+event 0
+
+** dia 3
+"event0" efectos/tecnicas interactivos en el intro
+sws - plugins para reaper
+- "interactividad avanzada": cambio de bps cuando falta tiempo en mario
+*** remezcla vertical
+  tenemos varias pistas, agregamos o quitamos dependiendo del evento.
+  por ejemplo, agregando tracks a medida que uno avanza en el menu de seleccion. bata al final, por ejemplo.
+  por ejemplo, pueden apararecer y nunca irse, o aparecer por ese stage
+  por ejemplo, cambiar el tempo
+  comunican o refuerzan un evento
+  
+  entrada de control/hook: el trigger de un evento que puede manejar un mute/unmute o un filtro o fadein/out (aka aumental reducir volumen)
+  "steam" - tallo donde salen ramas, que son los tracks. Agrupaciones de instrumentos, que tienen cierto sentido musical.
+  "drone" - textura con mucho ancho de banda, pad (puede estar compuesto por pads), muchas capas, lento, largo
+
+*** resecuenciacion horizontal: cambio en el tiempo
+loops, tiene que ser seemless, crossfade
+
+se puede sumar, sincro+crossfade
+
+- directo - > sincro a compas
+          - > sin sincro
+- crossfade -> sincro (mario kart)
+            -> sin sincro
+- segmento de transicion: una cancion puede estar dividida en secciones, ABC, entonces existirian las "trnsiciones" correspondientes.
+  es decir un segmento de musica, que hace de bride entre las secciones A y B, por ejemplo.
+  tambien puede haber "marcas" en las que puede pasar la transicion.
+
+*** Matriz de transiciones (grafo? en cl)
+
+CF = Crossfade
+S = Sincro
+T = Transicion
+
+En wwaise
+| A  | B  | S,T |
+| B  | A  | T   |
+| A  | C  | CF  |
+| .. | .. | ..  |
+|    |    |     |
+
+Pero se puede ver mas literal como un crossproduct
+
+** dia 4
+*** peggle
+- escala a medida que uno toca un peggle. Los sonidos se afinan en base a en que lugar de la escala esta.
+- se quitan instrumentos en el menu de pausa o se baja la velocidad o se aplica un filtro.
+- stingers adaptativos: sonidos que marcan el progreso en el juego
+- peegle ii: agregar instrumentos a medida que avanza el nivel
+*** loops, sonidos que se repiten
+- cortar por cruze por 0 y con la misma pendiente
+- si corto no en 0, va a existir un "click" al momento de reproducir
+- usar un instrumento (platillo o elemento percusivo) o un filtro para ocultar el loop cycle
+- cuando hay un reverb, se puede cortar el reverb del final y agregarlo al principio
+- loopear una bateria es mas facil, ya que enmascara el reverb perdido/cortado
+- agregar una bata entonces, agrega un "stacatto" en lugar de un legato al final
+
+*** loops, multiples, de distinta length
+- superponer con distintos puntos de loop/duraccion (superpuesto hasta que coincidan la longitud) (en drones)
+- loop with crossfade
+- mover puntos de loop (? 
+
+** dia 5
+*** loops
+Harmonia! que no se resuelva
+Sonidos transitorios que se apaguen
+*** diegesis
+"Que lugar ocupa un sonido". 
+Diegetico: Todo lo que esta dentro del mundo del personaje.
+Extra-digetico: Lo que no oiria el personaje.
+
+Ejemplo: "Jetpack joyride"
+- se convierte musica digetica a extra-digetica.
+- se toca musica en el menu asociada a un elemento (gramofono) en la realidad del personaje
+- Se usa un filtro de bajos/altos para dar el efecto de lejania en la musica digetica
+
+a.k.a "Contrato audiovisual"
+
+Ejemplo: "Bioshock", la mayor parte es digetico. Con un dron para significar misterio o un viento digetico. Y unas notas en un fuego.
+
+Ejemplo: "Mass effect 2", musica dentro de un lugar tiene un efecto 3d que cambia los filtros de acuerdo
+a la posicion del jugador. Cambia de a cuerdo a si tiene un casco o no tambien.
+
+Sonidos 3d son "mono" en general.
+
+3d - (+ L R) - 3dpaner
+2d -         - 2d
+*** leimotiv
+son melodias, por ejemplo para personaje o para el juego completo
+
+https://www.youtube.com/watch?v=kmn34UjAmhw
+https://www.youtube.com/watch?v=gIDtKYCzwqo
+Ejemplos:
+pyramid song
+FF7. Usar el leimotiv 
+Cambiar instrumentos, cambiar la escala, countermelodies. Cambiar el pattern. Pattern de 6 a 5. Ritmos...
+
+pueden ser 3 notas http://jasonyu.me/undertale-part-1/
+
++ City Ruins – Rays Of Light
+http://www.kotaku.co.uk/2018/04/09/the-most-influential-piece-of-music-in-video-games-was-composed-in-1888
+
+"fractales" musica videojuegos
+
+** dia 6
+this
