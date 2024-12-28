@@ -1,0 +1,32 @@
+- https://github.com/mxgmn/WaveFunctionCollapse
+* Video:  Reinventing Minecraft world generation by Henrik Kniberg
+https://www.youtube.com/watch?v=ob3VwY4JyzE
+- =Perlin Noise=:
+  - can be described as slowly changing random noise.
+  - There are version of perlin noise that take 2 values (2D) and others that take 1 value (1D).
+  - Adding multiple *octaves* of noise. Of different amplitude/frequency.
+    Causes the terrain from it appear more real.
+- 20:00
+- Noise Transformation: we take the oise and we do something to it
+  #+begin_src
+    var noiseValue = noise.sample2d(x, z);
+    var surface = 100 + noiseValue * 20;
+  #+end_src
+- You can add a sort of mapping function from the noise value to actual height like:
+  | noise | height |
+  |-------+--------|
+  |    -1 |     50 |
+  |    .3 |    100 |
+  |    .4 |    150 |
+  |     1 |    150 |
+- Minecraft, mixes 3 different noises
+  - Continentalist, Erosion, Peaks/Valleys
+  - They act different and represent differnet things in the world
+  - They are mixed by 3 different mapping/spline pointos
+    - Height/Continentalist
+    - Height/Peak Valleys
+    - Height/Erosion
+- 26:00
+- Details are controlled by *3D noise*
+  - 3 inputs, coordinates of the world
+  - 1 output, density

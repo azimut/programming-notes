@@ -1,0 +1,4 @@
+- source (C) https://github.com/ganelson/inform/tree/master
+- https://en.wikipedia.org/wiki/Inform
+  - Author: Graham Nelson
+  - 1993-

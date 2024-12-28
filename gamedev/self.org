@@ -1,0 +1,73 @@
+- video: A Brief look at Text Rendering https://www.youtube.com/watch?v=qcMuyHzhvpI
+
+* record video
+
+** why? for flashparty recording
+** lisp
+
+- https://lispcookbook.github.io/cl-cookbook/os.html
+  - write-byte
+  - write-sequence
+
+- example: using opengl https://old.reddit.com/r/Common_Lisp/comments/15cm9mc/what_is_a_good_way_to_write_binary_files_to_disk/
+*** example: spawn lifecycle
+
+#+begin_src lisp
+  (defparameter *wut*
+    (uiop:launch-program
+     "ffmpeg -y -f rawvideo -pix_fmt rgb24 -s 800x600 -r 30 -an -i - -c:v libx264 output.mp4"
+     :input :stream
+     :error-output t
+     :output t))
+
+  ;; write frames...
+
+  (uiop:close-streams *wut*)    ; close input
+  (uiop:terminate-process *wut*); kill
+  (uiop:wait-process *wut*)     ; exit code
+#+end_src
+
+*** example: writting single bytes
+
+#+begin_src lisp
+(loop :repeat 30
+      :do (loop :repeat (* 800 600)
+                :do (write-byte 10  (uiop:process-info-input *wut*))
+                    (write-byte 255 (uiop:process-info-input *wut*))
+                    (write-byte 10  (uiop:process-info-input *wut*))
+                    (force-output (uiop:process-info-input *wut*)))
+      :finally
+         (print "DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!"))
+#+end_src
+
+*** example: writting array frames
+
+#+begin_src lisp
+(let ((frame (make-array (* 3 (* 800 600)) ; 3 = number of color components
+                         :initial-element #b11001111 ; #b11111111 = white
+                         :element-type '(unsigned-byte 8))))
+  (dotimes (seconds 5)
+    (dotimes (frames 30)
+      (write-sequence frame (uiop:process-info-input *wut*)))))
+#+end_src
+
+** how? ffmpeg
+
+- ffmpeg -y -f rawvideo -pix_fmt rgb24 -s 800x600 -r 30 -an -i - -c:v libx264 output.mp4
+
+- 23 Jun Video: ok my AI can Generate Videos now https://www.youtube.com/watch?v=I_3d83cvByY&t=1469s
+- 23 Aug Video: C + FFmpeg + Raylib = High Quality Videos (YES! It IS that simple!) https://www.youtube.com/watch?v=0To1aYglVHE&list=PLpM-Dvs8t0Vak1rrE2NJn8XYEJ5M7-BqT&index=8&t=198s
+- 24 Video: I hope FFmpeg's Twitter won't Cancel me for This... https://www.youtube.com/watch?v=nL1l_n7wfPo
+- raylib+ffmpeg
+  - source https://github.com/tsoding/rendering-video-in-c-with-ffmpeg
+
+- "mmtopl" used in discord "general 3" olive.c example
+- ffmpeg rawframes
+  1) spawn ffmpeg child process
+  2) create pipe to communicate with it
+  3) feed it raw frames
+  4) ffmpeg will output a video
+
+- rbg8 is NOT 1 byte for each color component
+- [[https://www.theimagingsource.com/en-us/documentation/icimagingcontrolcpp/PixelformatRGB24.htm][rgb24]] is 1 byte per color component on each pixel
+- [[https://www.theimagingsource.com/en-us/documentation/icimagingcontrolcpp/PixelformatRGB32.htm][rgb32]] same, but has alpha

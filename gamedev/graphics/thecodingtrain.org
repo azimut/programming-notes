@@ -1,0 +1,57 @@
+* 4: Particle Systems
+** https://www.youtube.com/watch?v=vdgiqMkFygc
+*** History
+- First particle system appeared on "The wrath of Khan"
+- Paper: 1983 Particle Systems—a Technique for Modeling a Class of Fuzzy Objects https://dl.acm.org/doi/10.1145/357318.357320
+- Video: 1990 Partice Dreams https://www.youtube.com/watch?v=tFD4jMMXRbg
+*** Implementation
+- A class with properties
+  - location
+  - velocity
+  - acceleration
+  - lifespan (+): decreases each frame
+- With methods
+  - update: acceleration adds to velocity, velocity adds to location
+  - display
+** 4.2: ArrayLists in Processing
+https://www.youtube.com/watch?v=HnSJZ4qTcwY
+- ArrayList<Particle> particles; // outside of the setup()
+  particles = new ArrayList<Particle>(); // on the setup()
+  particles.add(new Particle()) // on draw
+  for (Particle p : particles) // on draw()
+- ArrayList is a Java construct not a procesing one
+- Methods used
+  - add
+  - get
+  - remove
+  - size
+** 4.3: Deleting objects from ArrayList
+https://www.youtube.com/watch?v=IsdZKG9wyBc&list=PLRqwX-V7Uu6Z9hI4mSgx2FlE5w8zvjmEy&index=3
+- particles.remove(0)
+- particles.remove(i)
+  - if looping forward, we can be skipping some values
+  - if looping backwards, fixes the skipping
+- The problem with using a "enhanced for loop" for iterating through each particle
+  is that we cannot modify the array while in the loop
+  - You need to use a C for loop
+  - Or use an iterator
+** 4.4: Particle System Class
+https://www.youtube.com/watch?v=krRpZFU6rSI&list=PLRqwX-V7Uu6Z9hI4mSgx2FlE5w8zvjmEy&index=4
+- A "Particle System" is a collection of particles.
+  - We need it to, for example, spawn them where we left-click
+- The main piece of data on a PS is the *ArrayList<Particle>*
+- It also has an "origin" position
+** 4.5: Introduction to Inheritance Part I
+https://www.youtube.com/watch?v=e6eXD8DHc_A&list=PLRqwX-V7Uu6Z9hI4mSgx2FlE5w8zvjmEy&index=5
+- class Mammal {}
+- class Kitten extends Mammal {}
+- with inheritance you can
+  1) inherit everything
+  2) add data or functionality
+  3) override functions
+  4) super! (call parent method and do more things)
+** 4.6: Introduction to Inheritance Part II
+https://www.youtube.com/watch?v=WCgo3sDFLVQ&list=PLRqwX-V7Uu6Z9hI4mSgx2FlE5w8zvjmEy&index=6
+
+* 5: Physics Libraries
+https://www.youtube.com/playlist?list=PLRqwX-V7Uu6akvoNKE4GAxf6ZeBYoJ4uh

@@ -1,0 +1,180 @@
+- 17 Video: Handmade Ray
+  https://www.youtube.com/watch?v=pq7dV4sR7lg simple raycaster
+  https://www.youtube.com/watch?v=ZAeU3Z0PmcU multithreading
+  https://www.youtube.com/watch?v=xBBEkn1x7So replacing rand()
+  https://www.youtube.com/watch?v=dpvrPYdTkPw SSE2 & AVX2
+  https://www.youtube.com/watch?v=iHXYFbHAmlw brdf loading
+
+* Video: RealTime Raytracing in Python
+|---------------+-----+--------------------------------------------------------------------------|
+| playlist      |     | https://www.youtube.com/playlist?list=PLn3eTxaOtL2Md9tyeycECvgT-FMsf0uAd |
+| source code   | 0.1 | https://github.com/amengede/getIntoGameDev                               |
+|               | 0.2 | https://github.com/mcfletch/pyopengl                                     |
+| maths library | 0.3 | https://github.com/adamlwgriffiths/Pyrr                                  |
+| arrays        |  22 | https://github.com/numpy/numpy                                           |
+|---------------+-----+--------------------------------------------------------------------------|
+** 1 Introduction to Raytracing
+https://www.youtube.com/watch?v=NIAUFnNZGhE
+- Vulkan has raytracing pipelines
+- While we can mix both rasterizing and raytracing.
+  1) With defer shading(?) and a light pass with raytracing.
+  2) _Problem_ is that we cannot trace a game, we cannot recover the primary rays, we cannot the arbitrary LOD
+- A shader if solving an _conditional_, it will solve both cases, and use one.
+- Need to solve equations by each pixel at 60fps
+  - one equation for each object
+  - one equation for lighting/shadows
+- Types
+  1) Raytracing:
+     - we solve an equation
+     - from camera and possible from a light too
+     - almost arbitrary LOD for simple parametrized shapes
+  2) Pathtracing: bounces
+  3) Raymarching:
+     - we don't solve an equation
+     - we simulated by a loop
+     - by steps
+     - Allows participating media to change it.
+  4) Spheremarching:
+     - not fixed step size
+     - adapts to what is possible
+     - can save some computation time.
+     - Cannot interact with media.
+     - Reduces backtracking.
+** 2 Compute Shaders 101
+- opengl 4.3 needed for compute shaders
+- when accesing an image from a compute-shader is accessed as a image2d, NOT as a sampler2d
+  - for that reason, the texture filtering it needs to be GL_NEAREST
+- GL_RGBA32F
+- https://stackoverflow.com/questions/44181875/ray-tracing-via-compute-shader-vs-screen-quad
+  - Short answer: because compute shaders give you more effective tools to perform complex computations.
+    - Important on complex scene, not so much for a "Cornell Box"
+    - Many drives will abort if a single operation takes to long
+    - Techniques like: use of glScissor, draw smaller quads, limit the workload.
+      Is reinvented _compute shader_ *work groups* for controling job size
+** 3 Getting data in
+- aka passing the uniforms
+  - still we can only pass so much data (breaks around 1024 spheres)
+  - we can pass it through a texture or a SSBO
+  - to pass more than 4 values on a texture you can package it as consecutives pixels
+    a 1D array on the cpu, 2D interpreted by the GPU
+    eg: in the shape 1024x2
+- sphere class: center, radius, color
+- camera class
+  - thetha: angle around z axis (left to right)
+  - phi   : angle around y axis, altitude (polar coordinates)
+  #+begin_src python
+    def recalculateVectors(self):
+        # from "spherical coordinates"
+        self.forwards = np.array([
+            np.cos(np.deg2rad(self.theta)) * np.cos(np.deg2rad(self.phi)),
+            np.sin(np.deg2rad(self.theta)) * np.cos(np.deg2rad(self.phi)),
+            np.sin(np.deg2rad(self.phi))
+            ], dtype=np.float32)
+        self.right = pyrr.vector3.cross(self.forwards, np.array([0,0,1],dtype=np.float32))
+        self.up = pyrr.vector3.cross(self.right, self.forwards)
+  #+end_src
+*** raytrace.compute
+  #+begin_src glsl
+    struct RenderState {
+      float t;
+      vec3 color;
+      bool hit;
+    };
+    vec3 rayColor(Ray ray) {
+      vec3 color = vec3(0.0);
+      float nearestHit = 999999;
+      bool hitSomething = false;
+      RenderState renderState;
+      for (int i = 0; i < sphereCount; i++) {
+        renderState = hit(ray, spheres[i], 0.001, nearestHit, renderState);
+        if (renderState.hit) {
+          nearestHit = renderState.t;
+          hitSomething = true;
+        }
+      }
+      if (hitSomething) {
+        color = renderState.color;
+      }
+      return color;
+    }
+    RenderState hit(Ray ray, Sphere sphere, tMin, tMax, RenderState renderState) {
+      vec3 co = ray.origin - sphere.center;
+      float a = dot(ray.direction, ray.direction);
+      float b = 2 * dot(ray.direction, co);
+      float c = dot(co, co) - sphere.radius * sphere.radius;
+      float discriminant = b * b - (4 * a * c);
+      if (discriminant > 0.0) {
+        float t = (-b - sqrt(discriminant)) / (2 * a);
+        if (t > tMin && t < tMax) {
+          renderState.t = t;
+          renderState.color = sphere.color;
+          renderState.hit = true;
+          return renderState;
+        }
+      }
+      renderState.hit = false;
+      return renderState;
+    }
+  #+end_src
+** TODO 4 Rendering Planes (20:00)
+- if we store the data of the plane and the spheres in the same texture we will waste some space
+  - since the plane has more information than the sphere, we will waste around 3 pixel per sphere
+  - still *seems* to be more efficient for this to have bigger textures than more smaller ones
+  - spheres strides will need to be updated to leave 20 bytes betwen sphere
+*** plane class
+- not infinite, but constrained
+#+begin_src python
+  class Plane:
+      def __init__(self, normal, tangent, bitangent, uMin, uMax, vMin, vMax, center, color):
+          self.normal = np.array(normal, dtype=np.float32)
+          self.tangent = np.array(tangent, dtype=np.float32)
+          self.bitangent = np.array(bitangent, dtype=np.float32)
+          self.uMin = uMin
+          self.uMax = uMax
+          self.vMin = vMin
+          self.vMax = vMax
+          self.center = np.array(center, dtype=np.float32)
+          self.color = np.array(color, dtype=np.float32)
+#+end_src
+*** raytrace.compute
+#+begin_src glsl
+  struct Plane {
+    vec3 center;
+    vec3 tangent;
+    vec3 bitangent;
+    vec3 normal;
+    float uMin;
+    float uMax;
+    float vMin;
+    float vMax;
+    vec3 color;
+  };
+  uniform float PlaneCount;
+  RenderState hit(Ray ray, Plane plane, float tMin, floattMax, RenderState renderstate) {
+  }
+  Plane unpackPlane(int index) {
+    Plane plane;
+    vec4 attributeChunk = imageLoad(objects, ivec2(0, index));
+    plane.center = attributeChunk.xyz;
+    plane.tangent.x = attributeChunk.w;
+
+    attributeChunk = imageLoad(objects, ivec2(1,index));
+    plane.tangent.yz = attributeChunk.xy;
+    plane.bitangent.xy = attributeChunk.zw;
+
+    attributeChunk = imageLoad(objects, ivec2(2,index));
+    plane.bitangent.z = attributeChunk.x;
+    plane.normal = attributeChunk.yzw;
+
+    attributeChunk = imageLoad(objects, ivec2(3,index));
+    plane.uMin = attributeChunk.x;
+    plane.uMax = attributeChunk.y;
+    plane.vMin = attributeChunk.z;
+    plane.vMax = attributeChunk.w;
+
+    attributeChunk = imageLoad(objects, ivec2(4,index));
+    plane.color = attributeChunk.xyz;
+
+    return plane;
+  }
+#+end_src

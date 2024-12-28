@@ -1,0 +1,4 @@
+- source (typescript) https://github.com/klembot/twinejs
+- wiki https://en.wikipedia.org/wiki/Twine_(software)
+  - Author: Chris Klimas
+  - 2009-

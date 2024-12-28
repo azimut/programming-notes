@@ -1,0 +1,7 @@
+- https://github.com/godotengine/godot/
+- https://github.com/GDQuest/godot-shaders
+- https://github.com/The-Four-Lords/GoDot_Examples_and_CheatSheet
+* Arcadia
+  engine https://github.com/arcadia-unity/ArcadiaGodot/
+  tuto http://selfsamegames.com/pages/posts/arcadia-godot.html
+  game https://notabug.org/selfsame/orbomancy/

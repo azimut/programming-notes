@@ -1,0 +1,195 @@
+- Sound get's tricky with complex geometries or lots of geometry.
+  Portals, probes or other things might be needed.
+- Just keeping it to open spaces with/out oclussion might be a good practice.
+- https://twvideo01.ubm-us.net/o1/vault/gdceurope2015/Boev_Stepan_Sound%20Propagation%20in.pdf
+* Wwise
+- Obstruction and Occlusion in Environments
+  https://www.audiokinetic.com/library/2017.2.10_6745/?source=SDK&id=soundengine__obsocc.html
+  #+NAME: occlusiondiagram
+  #+CAPTION: Occlusion can be modeled by applying a volume control and/or a LPF affecting both the direct path AND the environmental reflections of the signal.
+  [[./occlusion.gif]]
+  #+NAME: obstructiondiagram
+  #+CAPTION:  Obstruction can be modeled by applying a volume control and/or a Low Pass Filter (LPF) affecting only the direct path of the signal. The environmental reflections are unaffected.
+  [[./obstruction.gif]]
+  #+CAPTION: Here is a diagram of the obstruction/occlusion processing pipeline inside the sound engine:
+  #+NAME: wwise pipeline
+  [[./pipeline.gif]]
+* Umbra 3D
+- It sends 9 rays from the sound source to the listener.
+  3 from origin, 3 from left of it, 3 from right of it
+- This 9 make it into 3 parameters (? to wwise
+- They control the:
+  1) Volume
+  2) LPF
+  3) Reverb
+- There are also "Gates", when an object is not visible by any of the rays it can still get
+  into the ray of the gates.
+- Audio occlusion and propagation in Quantum Break using Umbra
+  https://www.youtube.com/watch?v=MZ_bUW8thp4
+- GDC Vault: Improving Geometry Culling for Deus Ex Mankind Divided presented by Umbra
+  https://www.youtube.com/watch?v=CkMFDzNsWgw
+* Google - Resonance Audio
+https://resonance-audio.github.io/resonance-audio/discover/concepts.html
+* Csound
+#+NAME: logic.orc
+#+begin_src
+event     "i", 1, 0, 1000,
+                     gklowtime,
+                     gkhightime,
+                     gkroomx, gkroomy, gkroomz,
+                     gkwallhigh, gkwalllow, gkwallgain1, gkwallgain2, gkwallgain3,
+                     gkfloorhigh, gkfloorlow, gkfloorgain1, gkfloorgain2, gkfloorgain3,
+                     gkceilinghigh, gkceilinglow, gkceilinggain1, gkceilinggain2, gkceilinggain3
+#+end_src
+#+NAME: oscreceiver.orc /roomParams/
+#+begin_src
+kroomparameters OSClisten giosc1,
+                          "/roomParameters",
+                          "ffffffffffffffffffff",
+                          gkroomx, gkroomy, gkroomz,
+                          gklowtime,
+                          gkhightime,
+                          gkwallhigh, gkwalllow, gkwallgain1, gkwallgain2, gkwallgain3,
+                          gkfloorhigh, gkfloorlow, gkfloorgain1, gkfloorgain2, gkfloorgain3,
+                          gkceilinghigh, gkceilinglow, gkceilinggain1, gkceilinggain2, gkceilinggain3
+#+end_src
+#+NAME: hrtfSources.orc
+#+begin_src
+aearlyl,aearlyr, p4, p5, gimfp hrtfearly gasrc1*(kamp),
+                                         ksmoothx, ksmoothy, ksmoothz,
+                                         gklisxSmooth, gklisySmooth, gkliszSmooth,
+                                         "hrtf-44100-left.dat", "hrtf-44100-right.dat",
+                                         0,
+                                         8,
+                                         44100,
+                                         giorder,
+                                         1,
+                                         gklisdirSmooth,
+                                         p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23
+#+end_src
+* Nvidia - vrxwoks audio
+https://developer.nvidia.com/vrworks/vrworks-audio
+https://github.com/NvPhysX/UnrealEngine/tree/VRWorks-Audio-4.15.1
+http://on-demand.gputechconf.com/gtc/2018/video/S8680/
+* Steam - steam-audio/phonon
+https://www.youtube.com/watch?v=8C5L_OD7Wow&feature=youtu.be&list=PLs2AcLLQpQmfibV4i9KgcmtIk9RLM87b4
+https://valvesoftware.github.io/steam-audio/doc/capi/page_quickstart.html
+https://store.steampowered.com/news/posts/?appids=596420&enddate=1492730426
+https://steamcommunity.com/games/596420/announcements/detail/521693426582988261
+https://steamcommunity.com/app/596420/
+- raytracing?
+- convolution?
+- probes
+  Manager>Batches>Boxes>Probe
+- For each frequency band, the attenuation factor applied to the direct sound path is:
+  distanceAttenuation * airAbsorption * (occlusionFactor + (1 - occlusionFactor) * transmissionFactor)
+** Paths
+  - CV - iplCreateConvolutionEffect
+  - Direct: attenuation, occlusion, binaural
+    - iplSetDryAudioForConvolutionEffect - CV
+    - iplGetWetAudioForConvolutionEffect - CV
+    - iplApplyAmbisonicsBinauralEffect
+    - #
+    - iplGetDirectSoundPath
+    - iplApplyDirectSoundEffect
+    - iplApplyBinauralEffect
+    - #
+    - iplMixAudioBuffers (prev 2)
+  - Indirect
+** Usage
+
+- Create *inputbuffer*
+- Create *outputbuffer*
+- Create *context*
+  - iplCreateContext(nil,nil,nil,*context)
+- Create *render*, binaural
+  - with context
+- Create *effect*
+  - with render
+  - with inputbuffer type
+  - with outputbuffer type
+- Create *simulation* settings struct
+  IPLSceneType :SCENETYPE-PHONON or :SCENETYPE-EMBREE
+- Create *scene*
+  - with simulation
+  - with context
+- Create *environment*
+  - with scene
+         context
+         simulation
+         probe manager
+- Create *mesh*
+  - with material index
+  - into scene
+** Assigned
+- global
+  - *context*
+  - *binauralrender*
+  - structs: settings, hrtfparams, renderingsettings
+  - IVector3's for listener
+- IPLSource struct to each *sources* (for iplGetDirectSoundPath)
+** Update
+
+- iplUpdateInstancedMeshTransform
+  - each mesh
+- iplCommitScene
+  - scene
+- Apply *effect*?
+  - with inputbuffer
+  - with outputbuffer
+
+* Microsoft - project acustics
+- https://github.com/microsoft/ProjectAcoustics
+- https://www.youtube.com/watch?v=qCUEGvIgco8
+  - Gets 4 numbers out of it. Data to be interpreted.
+  - Difractions(sound bending in corners) and reverberations(sound bouncing)
+  - Acoustic effects:
+    - Obstruction: initial
+    - Occlussion: initial + reflected
+    - wetness ratio: ratio of reflected and initial
+    - reverb decay rate
+  - Acoustic effects:
+    - Obstruction: shortest path length, comparate with straight line...attenuate if needed
+    - Ccclussion: initial + reflected
+    - wetness ratio
+    - reverb decay rate
+* OpenAL
+https://github.com/kcat/openal-soft
+- Types of EFX
+  - Direct (filter)
+  - Auxiliary
+    - Send filter: happens when sending from 1 source
+    - Effect: happens after all was send
+- Environment filtering:
+  - Obstruction: no free direct path
+    - transmission: -high-frequencies =position
+    - reflaction/diffraction: -high-frequencies +/-position
+  - Occlusion:
+  - Exclusion:
+- Reflections
+  - Reverb (>= 3 bounces to us)
+    - a.k.a "sound tail"
+    - +duration = +reflective +large
+    - +louder   = +reflective -large
+  - Secondary (2 bounces to us)
+    - give less locality
+    - -volume
+  - Primary (1 bounce to us):
+    - cannot tell exact geometry from them, unless one moves
+    - give some location
+    - some happen immediatly after, brain integrates them as 1
+      - +volume
+      - +pitch shift
+    - other a while later as an *echo*
+* Propagate(Unity)
+- https://www.youtube.com/playlist?list=PLJak15SQAGJOCvnkMuXQEKzF9E7FVQ52Y
+- It uses probes placed through the scene
+- ?changes the perceived location around corners
+- ...
+* Other
+** chi.binaural
+https://audiooo.com/chi-binaural
+** cAudio
+https://github.com/R4stl1n/cAudio
+- Based on openAL
+- ?
