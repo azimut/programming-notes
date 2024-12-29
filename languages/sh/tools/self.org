@@ -29,6 +29,8 @@
 - tool: language http://www.rseventeen.com/ https://github.com/matthewnourse/r17
 - tool: https://github.com/jlevy/the-art-of-command-line/blob/master/README.md
 - tool: svg into png https://manpages.ubuntu.com/manpages/trusty/man1/rsvg-convert.1.html
+- tool: w3m-img - display image on shell
+  - used by fff
 
 * pwd manager
 - https://www.passwordstore.org/

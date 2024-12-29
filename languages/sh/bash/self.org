@@ -62,16 +62,17 @@
 - jobs/bg/fg/%N
 
 ** Variables
-|------------+-----------+------------------------------------|
-|            | example   | description                        |
-|------------+-----------+------------------------------------|
-| OSTYPE     | linux-gnu | defined at compile type            |
-| BASH_ARGV0 | foo.sh    | same as $0                         |
-| BASH_ARGC  |           |                                    |
-| BASH_ARGV  |           | array, all params in current stack |
-| COLUMNS    |           | bash4+ number of columns in window |
-| LINEs      |           | bash4+ number of rows in window    |
-|------------+-----------+------------------------------------|
+|--------------+-----------+------------------------------------|
+|              | example   | description                        |
+|--------------+-----------+------------------------------------|
+| OSTYPE       | linux-gnu | defined at compile type            |
+| BASH_ARGV0   | foo.sh    | same as $0                         |
+| BASH_ARGC    |           |                                    |
+| BASH_ARGV    |           | array, all params in current stack |
+| BASH_REMATCH |           | array, of =~ string match          |
+| COLUMNS      |           | bash4+ number of columns in window |
+| LINEs        |           | bash4+ number of rows in window    |
+|--------------+-----------+------------------------------------|
 ** Coproc
 
 - commands
@@ -326,6 +327,7 @@ table of changes https://mywiki.wooledge.org/BashFAQ/061
 [[https://blog.flowblok.id.au/static/images/shell-startup-actual.png]]
 * Codebases
 
+- tui: file browser https://github.com/dylanaraps/fff/
 - dns server backend https://github.com/basecamp/xip-pdns/blob/master/bin/xip-pdns
 - maze solver https://gist.github.com/xsot/99a8a4304660916455ba2c2c774e623a
 - web server https://github.com/dzove855/Bash-web-server
@@ -339,6 +341,14 @@ table of changes https://mywiki.wooledge.org/BashFAQ/061
   - https://news.ycombinator.com/item?id=30347501
 
 * Snippets
+
+- Read keypress
+  #+begin_src sh
+    read -rsn1 keypress
+    # -s  silent mode (not echo)
+    # -n1 read 1 char
+    # -r  raw mode, do not escape on backslash
+  #+end_src
 
 - Example: concatenation
   $ cut -d: -f2 studentlist.txt | xargs printf "%s@example.com"

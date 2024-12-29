@@ -1,0 +1,55 @@
+- [[https://www.youtube.com/watch?v=R_py8gCTTAc][Stuff About Cascading Style Sheets]] [00:20:52] by Mark Otto & Connor Sears (2015)
+- [[https://www.youtube.com/watch?v=zSYo7m5kGHQ][Your Very Own Component Library]] [00:20:04] by Alex Sexton (2015)
+- [[https://www.youtube.com/watch?v=FEs2jgZBaQA][CSS Performance Tooling]] [00:46:28] by Addy Osmani (2014)
+* [[https://www.youtube.com/watch?v=UpVj5azI-iI][CSS Levels Up]] [00:31:39] by Angelina Fabbro (2013)
+
+* [[https://www.youtube.com/watch?v=C4z_9F6nfS8][Your CSS is a Mess]] [00:51:26] by Jonathan Snook (2013)
+
+- init premise: max number of people can work productively simultaneusly work on CSS is one
+- wrote a [[https://smacss.com/][book]] about scalable css
+- https://daverupert.com/2013/04/responsive-deliverables/
+- https://geckotang.github.io/csspanic/
+- solutions
+  1) categorization (in roles)
+     1. base:
+        - resets, eg:
+          #+begin_src css
+            /* maybe nav, li, ul */
+            html {
+              background-color: #FFF;
+              font-family: Arial, Helvetica, sans-serif;
+              font-size: 14px;
+            }
+            body {
+              margin: 0;
+              padding: 0;
+            }
+            h1,h2,h3 {
+              margin: 1em 0;
+            }
+          #+end_src
+     2. layout:
+        - the "shell" aka the container
+        - eg: a header, a container, a sidebar
+     3. module:
+        - the "content" inside the "shell"
+        - reusable =visual pattern=
+        - eg: tabs, button, customized list
+        - sub-modules: are variations (dark,small,search)
+        - sub-components
+     4. state
+        - relates to js (or another state manager)
+        - visual pattern (active,disabled,default)
+     5. theme
+        - user config
+  2) naming convention
+     - classes over id (still fine)
+     - prefix on classes that belong to a module
+       - greps nicely
+       - eg: .btn, .btn-large
+     - prefix for state classes, ones that have js interaction
+       - apply state
+       - avoid applying inline css
+       - eg: .is-btn-active
+  3) decouple html/css
+     - isolate impact with child selector (aka >)

@@ -249,6 +249,7 @@ https://www.lua.org/manual/5.4/manual.html#2.4
 https://gist.github.com/oatmealine/655c9e64599d0f0dd47687c1186de99f
 |-------------+-----|
 |         <r> |     |
+|      method | ver |
 |-------------+-----|
 |      __call |     |
 |-------------+-----|
@@ -268,6 +269,7 @@ https://gist.github.com/oatmealine/655c9e64599d0f0dd47687c1186de99f
 *** operators
 |----------+----+-----|
 |      <r> |    |     |
+|   method | op | ver |
 |----------+----+-----|
 | __concat | .. |     |
 |    __len | #  | 5.1 |
