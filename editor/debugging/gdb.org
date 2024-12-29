@@ -1,3 +1,5 @@
+- /proc/PID/maps: has the section memory address ranges
+- inferior: the program being debugged
 * Commands
 |-----------------+---------+---------------------------------|
 |             <r> |   <c>   |                                 |

@@ -1,7 +1,35 @@
+- home https://www.gnu.org/software/coreutils/
 - man https://www.gnu.org/software/coreutils/manual/html_node/index.html
+
+- wiki https://en.wikipedia.org/wiki/GNU_Core_Utilities
+  - 2002
+  - David MacKenzie
+  - merge of: textutils(90), shellutils(91), fileutils(91)
+  - alternatives: busybox, toybox
+
+- gotchas https://www.pixelbeat.org/docs/coreutils-gotchas.html
+  - *echo* is inconsistent between systems, use *printf* instead
+  - *tee*
+    - exits immediately on SIGPIPE
+    - causes this sort of thing to fail ~seq 10000 | tee >(head -n1) <(tail -n1)~
+    - unless using ~-p~ (2015)
+  - *sort*
+    - use LC_ALL=C to do byte comparison
+    - by default uses _current locale_ to sort (slower)
+
+- faq https://www.gnu.org/software/coreutils/faq/coreutils-faq.html
+
+* binaries
+- https://en.wikipedia.org/wiki/List_of_GNU_Core_Utilities_commands
+- summarize: [ck|md5|sha1|sha2|b2]sum
+- also: nohup, chroot, dd
 - binaries (rare/useful)
   |----------+------------------------------------------------|
   |      <r> |                                                |
+  |----------+------------------------------------------------|
+  |      tty | print /dev/pts/? of terminal on standard input |
+  |     stty | print or change terminal characteristics       |
+  | printenv | print all or some environment variables        |
   |----------+------------------------------------------------|
   |   factor | print factors of given number                  |
   |   numfmt | human formatting of numbers                    |

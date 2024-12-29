@@ -1,0 +1,33 @@
+- home https://www.gnu.org/software/binutils/
+- https://en.wikipedia.org/wiki/GNU_Binutils
+  - Cygnus Solutions
+
+- binaries
+  |---------+---------------------------------|
+  |     <r> |                                 |
+  |---------+---------------------------------|
+  |   gprof | profiler (C,C++,Fortran,Pascal) |
+  |---------+---------------------------------|
+  |      as | assembler, asm -> obj           |
+  |      ld | linker, obj -> elf              |
+  |    gold | linker, obj -> elf              |
+  |---------+---------------------------------|
+  | readelf | print ELF info                  |
+  |    size | print OBJ section sizes         |
+  | objdump | print OBJ information           |
+  |      nm | print symbols                   |
+  |   strip | remove symbols                  |
+  |---------+---------------------------------|
+
+- as ld example makefile
+  #+begin_src makefile
+    prog:   prog.o; ld prog -o prog
+    prog.o: prog.s; as prog.s -ggdb -o prog.o
+  #+end_src
+
+- gprof
+  - need to be compiled with ~-pg~ flags
+  - shows the number of calls of functions and time spent on them
+  - $ gprof --flat-profile prog
+  - $ gprof --graph prog # shows which function called which
+  - $ gprof --annotated-source prog # shows source along with nr of calls

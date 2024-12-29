@@ -8,9 +8,6 @@
   - video: A Script to backup your data - Starring Bash maps, rsync, declare, for in https://www.youtube.com/watch?v=4MMEDgLex_A
   - video: Michael Stapelberg: Why I wrote my own rsync https://www.youtube.com/watch?v=wpwObdgemoE
 
-- find
-  - -ok, is like -exec, but ask user before running
-
 - editor
   - shfmt
     https://github.com/mvdan/sh

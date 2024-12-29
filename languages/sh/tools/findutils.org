@@ -1,0 +1,5 @@
+- https://www.gnu.org/software/findutils/
+
+- find, locate, updatedb, xargs
+- find
+  - -ok, is like -exec, but ask user before running
