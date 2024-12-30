@@ -1,0 +1,4 @@
+- home https://arturo-lang.io/
+- https://exercism.org/tracks/arturo
+- written in nim
+- binary is 2Mb

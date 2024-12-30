@@ -27,17 +27,17 @@
 
 ** articles
 
-- article 09 (DONE) | https://www.spinellis.gr/blog/20090304/
-- article 10 | https://danielmiessler.com/p/find/
-- article 10 | https://web.archive.org/web/20110811070630/http://www.xcombinator.com/2010/09/06/a-crawler-using-wget-and-xargs/
-- article 10 | https://web.archive.org/web/20121202101153/http://blog.labrat.info:80/20100429/using-xargs-to-do-parallel-processing
-- article 11 | https://web.archive.org/web/20120720071737/http://bitops.io/blog/1336893229/xargs
-- article 12 | https://www.r-bloggers.com/2012/03/find-xargs-like-a-boss/
-- article 18 | https://intoli.com/blog/sitemaps-in-bash/
-- article 21 | https://www.linuxjournal.com/content/parallel-shells-xargs-utilize-all-your-cpu-cores-unix-and-windows
-- article 21 | https://codefaster.substack.com/p/xargs-considered-harmful
-- article 21 | https://www.networkworld.com/article/970340/using-the-xargs-command-on-linux-to-simplify-your-work.html
-- article 21 | https://www.oilshell.org/blog/2021/08/xargs.html
+- 09 (DONE) | https://www.spinellis.gr/blog/20090304/
+- 10 | https://danielmiessler.com/p/find/
+- 10 | https://web.archive.org/web/20110811070630/http://www.xcombinator.com/2010/09/06/a-crawler-using-wget-and-xargs/
+- 10 | https://web.archive.org/web/20121202101153/http://blog.labrat.info:80/20100429/using-xargs-to-do-parallel-processing
+- 11 | https://web.archive.org/web/20120720071737/http://bitops.io/blog/1336893229/xargs
+- 12 | https://www.r-bloggers.com/2012/03/find-xargs-like-a-boss/
+- 18 | https://intoli.com/blog/sitemaps-in-bash/
+- 21 | https://www.linuxjournal.com/content/parallel-shells-xargs-utilize-all-your-cpu-cores-unix-and-windows
+- 21 | https://codefaster.substack.com/p/xargs-considered-harmful
+- 21 | https://www.networkworld.com/article/970340/using-the-xargs-command-on-linux-to-simplify-your-work.html
+- 21 | https://www.oilshell.org/blog/2021/08/xargs.html
 
 *** 10 | http://widgetsandshit.com/teddziuba/2010/10/taco-bell-programming.html
 

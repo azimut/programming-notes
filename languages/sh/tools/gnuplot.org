@@ -1,9 +1,105 @@
-|---------------+--------------------------------------------|
-| home          | http://gnuplot.info/                       |
-| documentation | http://gnuplot.info/docs_5.5/gnuplot5.html |
-|---------------+--------------------------------------------|
+#+TITLE: gnuplot
+#+DATE: <2024-12-27 vie>
 
-- Article: 15 Plotting tools for Linux: gnuplot https://lwn.net/Articles/628537/
-- Article: 17 What's new in gnuplot 5.2 https://lwn.net/Articles/723818/
-- Article: 20 New features in gnuplot 5.4 https://lwn.net/Articles/826456/
-- Article: 20 Voxel plotting with gnuplot 5.4 https://lwn.net/Articles/828761/
+|-------+--------------------------------------------|
+| home  | http://gnuplot.info/                       |
+| faq   | http://gnuplot.info/faq/index.html         |
+| demos | http://gnuplot.info/screenshots/index.html |
+|       | https://gnuplot.sourceforge.net/demo_5.4/  |
+| wiki  | https://en.wikipedia.org/wiki/Gnuplot      |
+| wiki  | https://en.wikibooks.org/wiki/Gnuplot      |
+|-------+--------------------------------------------|
+
+- 1986
+- Thomas Williams, Colin Kelley, Russell Lang, Dave Kotz, John Campbell, Gershon Elber, Alexander Woo
+
+* language
+#+begin_src sh
+  #!/usr/bin/gnuplot -persist
+#+end_src
+** term
+- xterm (xterm tektronix mode)
+- dumb (aka ascii)
+** commands
+|-------+------------------------------------|
+|   <r> |                                    |
+| unset | OPT                                |
+|   set | OPT [VAL]                          |
+|  with | (l)ines[*], dots[.], lines(points) |
+|-------+------------------------------------|
+** options
+|--------------------+-------------------+----------------------------------|
+|        <c>         |        <c>        |                                  |
+|       option       |     argument      | description                      |
+|--------------------+-------------------+----------------------------------|
+|      samples       |         N         | ????                             |
+|       border       |        [N]        | axis lines                       |
+|     [x¦y]tics      | [nomirror¦rotate] | axis numbers                     |
+|        grid        |         -         | axis grid                        |
+|        key         |  [LR] [[no]box]   | the box with key labels          |
+|--------------------+-------------------+----------------------------------|
+|       xdata        |       time        | tells x axis is a date/time      |
+|      encoding      |       utf8        |                                  |
+|      timefmt       |        FMT        | input format string              |
+| datafile separator |         S         | input separator (default: space) |
+|--------------------+-------------------+----------------------------------|
+|       title        |         S         | the                              |
+|       format       |     [x¦y] FMT     | tic format string                |
+|      logscale      |     [x¦y] [N]     | with step N                      |
+|       xlabel       |         S         | the                              |
+|       ylabel       |         S         | the                              |
+|     [x¦y]range     |       [N:N]       |                                  |
+|     autoscale      |         -         |                                  |
+|       output       |         S         | saves into filepath at S         |
+|--------------------+-------------------+----------------------------------|
+|       pause        |         N         | seconds to pause                 |
+|      +reread+      |         -         | REMOVED in 6.0 +reread input+    |
+|--------------------+-------------------+----------------------------------|
+** plot
+- plot
+- imagesc - matrix/heatmap - 2d contour
+- splot - 3d surface
+- hist
+- scatter3 - 3d points
+* flags
+|----------------+---------------------------------|
+| -e CMDS        |                                 |
+| -c FILE [ARG]  | runs script S with given args   |
+| -p ¦ --persist | keep window after plotting ends |
+| -s ¦ --slow    | wait for slow font init         |
+| -d ¦ --default | do NOT read ~/.gnuplot          |
+|----------------+---------------------------------|
+* snippets
+
+- simple pipe
+  #+begin_src sh
+    $ gnuplot -p -e "plot '<cat'" < rawnumbers # opens qt window
+    $ gnuplot -p -e "plot '-'"    < rawnumbers # opens qt window
+    $ GNUTERM=dumb gnuplot -e "plot '-'"    < rawnumbers # ascii plot
+  #+end_src
+
+- stream - draw last 200 lines, ten times per second
+  #+begin_src sh
+   while (1) {
+     plot "< tail -200 plot.dat" using 1:2 with lines
+     pause 0.1
+   }
+  #+end_src
+
+* tools
+- wrapper: plot realtime and stored data from the cli https://github.com/dkogan/feedgnuplot
+- examples https://github.com/TheFox/gnuplot-examples
+- config https://github.com/Gnuplotting/gnuplot-configs
+- pallettes
+  - https://github.com/Gnuplotting/gnuplot-palettes
+  - https://github.com/aschn/gnuplot-colorbrewer
+* articles
+- 13 http://hxcaine.com/blog/2013/02/28/running-gnuplot-as-a-live-graph-with-automatic-updates/
+- 15 Plotting tools for Linux: gnuplot https://lwn.net/Articles/628537/
+- 17 What's new in gnuplot 5.2 https://lwn.net/Articles/723818/
+- 19 https://raymii.org/s/tutorials/GNUplot_tips_for_nice_looking_charts_from_a_CSV_file.html
+- 20 New features in gnuplot 5.4 https://lwn.net/Articles/826456/
+- 20 Voxel plotting with gnuplot 5.4 https://lwn.net/Articles/828761/
+- 24 Gnuplot 6 comes with pie https://lwn.net/Articles/961003/
+* videos
+- https://www.youtube.com/playlist?list=PLaYBfUc8SG7W4cTZprVWjbtwrottWuk8c

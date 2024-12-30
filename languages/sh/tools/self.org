@@ -84,7 +84,9 @@
   - wiki https://en.wikipedia.org/wiki/Dialog_(software)
   - wiki https://es.wikipedia.org/wiki/Dialog
   - screenshoots http://web.archive.org/web/20130210071731/http://invisible-island.net:80/dialog/dialog-figures.html
+
 ** X
+
 - yad
   - widgets: color picker, calendar, form, html, notification
   - https://github.com/v1cont/yad/
