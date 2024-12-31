@@ -518,7 +518,7 @@ https://rosettacode.org/wiki/Hello_world/Web_server
 ** flags
 |-----+--------------------+------------+---------------------------------------|
 |     |                    |    <c>     |                                       |
-|     | long gawk flag     |    arg     | description                           |
+|     |                    |    arg     | description                           |
 |-----+--------------------+------------+---------------------------------------|
 | -F  | --field-separator  |     S      | sets FS                               |
 | -f  | --file             | <FILEPATH> | runs script                           |

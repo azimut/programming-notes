@@ -30,7 +30,7 @@
 ** options
 |--------------------+-------------------+----------------------------------|
 |        <c>         |        <c>        |                                  |
-|       option       |     argument      | description                      |
+|                    |     argument      | description                      |
 |--------------------+-------------------+----------------------------------|
 |      samples       |         N         | ????                             |
 |       border       |        [N]        | axis lines                       |
@@ -46,10 +46,9 @@
 |       title        |         S         | the                              |
 |       format       |     [x¦y] FMT     | tic format string                |
 |      logscale      |     [x¦y] [N]     | with step N                      |
-|       xlabel       |         S         | the                              |
-|       ylabel       |         S         | the                              |
-|     [x¦y]range     |       [N:N]       |                                  |
-|     autoscale      |         -         |                                  |
+|     [x¦y]label     |         S         | axis label                       |
+|     [x¦y]range     |       [N:N]       | axis range                       |
+|     autoscale      |    [[x¦y]fix]     | prevents autoextend of scale     |
 |       output       |         S         | saves into filepath at S         |
 |--------------------+-------------------+----------------------------------|
 |       pause        |         N         | seconds to pause                 |
@@ -57,6 +56,8 @@
 |--------------------+-------------------+----------------------------------|
 ** plot
 - plot
+  - using N:N+1:N+n
+  - smooth [bezier¦mcsplines]
 - imagesc - matrix/heatmap - 2d contour
 - splot - 3d surface
 - hist
