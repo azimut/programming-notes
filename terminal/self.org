@@ -23,7 +23,6 @@
         - a hw serial port device (pc?)
     [[https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Termios-script-diagram.svg/910px-Termios-script-diagram.svg.png]]
 
-- https://github.com/dylanaraps/pure-sh-bible
 - force LC_LOCALE=C to avoid any kind of locale error
 - before runs when benchmarking https://linux-mm.org/Drop_Caches
   - $ echo ? > /proc/sys/vm/drop_cache
@@ -45,18 +44,6 @@
 - article 17 | http://www.pixelbeat.org/docs/unix-parallel-tools.html
 - article 23 | https://muhammadraza.me/2023/webscraping-in-bash/
 
-|------+--------+------|
-|  <r> | LOC(k) | Size |
-|------+--------+------|
-| dash |     13 | 123k |
-|  zsh |    150 | 990k |
-| bash |    176 | 1.4M |
-|------+--------+------|
-
-* language
-
-- OPINION: one way that shell scripts hide/handle complexity is by transforming data through pipes. What in other programming languages might need nested function calls or temporary variables. Pipes are, in a way, similar to method chaining.
-
 * man
 #+begin_src sh
   $ man man
@@ -72,13 +59,6 @@
 | 8 | System administration commands (usually only for root)   |
 | 9 | Kernel routines [Non standard]                           |
 |---+----------------------------------------------------------|
-* snippets
-
-- Sleep until host is up:
-  #+begin_src sh
-    until ssh root@10.10.10.10; do sleep 3; done
-  #+end_src
-
 * signals
 
 - $ man 7 signal

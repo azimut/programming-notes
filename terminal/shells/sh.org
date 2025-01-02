@@ -1,0 +1,12 @@
+- https://github.com/dylanaraps/pure-sh-bible
+
+* language
+
+- OPINION: one way that shell scripts hide/handle complexity is by transforming data through pipes. What in other programming languages might need nested function calls or temporary variables. Pipes are, in a way, similar to method chaining.
+* snippets
+
+- Sleep until host is up:
+  #+begin_src sh
+    until ssh root@10.10.10.10; do sleep 3; done
+  #+end_src
+
