@@ -103,7 +103,7 @@ apple-touch-icon-57x57.png PNG 57x57 57x57+0+0 8-bit sRGB 2682B 0.000u 0:00.001
 |            | apple-mobile-web-app-title | eg: "State of Elm 2023"                             |
 |            | article-id                 |                                                     |
 |            | author                     |                                                     |
-|            | csrf                       | id+content(with token)                          |
+|            | csrf                       | id+content(with token)                              |
 |            | copyright                  | eg: "© 2006 MDC"                                    |
 |            | description                | SEO                                                 |
 |            | generator                  | for software generated pages                        |
@@ -126,7 +126,7 @@ apple-touch-icon-57x57.png PNG 57x57 57x57+0+0 8-bit sRGB 2682B 0.000u 0:00.001
 |------------+----------------------------+-----------------------------------------------------|
 |   property | og                         | see [[https://ogp.me/][Open Graph protocol]]                             |
 |            | og:title                   | "State of Elm 2023"                                 |
-|            | og:type                    | eg: website, video.movie                            |
+|            | og:type                    | eg: website, article, profile, video.movie          |
 |            | og:image                   | "https://state-of-elm.com/favicon.png"              |
 |            | og:image:alt               |                                                     |
 |            | og:image:type              |                                                     |
@@ -142,6 +142,9 @@ apple-touch-icon-57x57.png PNG 57x57 57x57+0+0 8-bit sRGB 2682B 0.000u 0:00.001
 |            | og:video                   |                                                     |
 |------------+----------------------------+-----------------------------------------------------|
 |            | article:published_time     | eg: "2024-10-01T00:00:00.000Z"                      |
+|            | article:publisher          | eg: "https:..."                                     |
+|            | article:section            | eg: "Coding"                                        |
+|            | article:tag                | eg: "Coding"                                        |
 |------------+----------------------------+-----------------------------------------------------|
 ** <link>
 - https://www.w3schools.com/tags/tag_link.asp

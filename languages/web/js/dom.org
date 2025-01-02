@@ -1,6 +1,13 @@
 - https://developer.mozilla.org/en-US/docs/Web/API
 - https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
   https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API/Timing_element_visibility
+* snippets
+
+#+begin_src js
+history.back()
+window.scrollTo(0,0)
+#+end_src
+
 * Book: 2018 - Eloquent Javascript - Marjin Haverbeke
 ** 15 Handling Events
  - Pooling: periodically checking a queue for new events

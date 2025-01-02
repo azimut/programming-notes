@@ -46,51 +46,61 @@
 
 [[https://www.gnu.org/software/gawk/manual/html_node/Variable-Typing.html][weakly typed: their type can change as the program runs]]
 
-1) String
-   - index start at 1
-2) Number
-   - || and && return =booleans= AKA 0(false) and 1(true). They do NOT return the truthy value.
-   - falsy: "", 0, undefined variables
-   - [[https://www.gnu.org/software/gawk/manual/html_node/Comparing-FP-Values.html]["comparing floating-point values to see if they are exactly equal is generally a bad idea"]]
-     #+begin_src awk
-       ratio = dimension[1] / dimension[2] # ratio = 1.77778 of type number
-       if (ratio ==  1.77778 ) # does NOT work
-       if (ratio == "1.77778") # works
-     #+end_src
-   - support for scientific notation, eg: 1e8
-   - support for =float=
-   - gawk: support for =bignum= through [[https://gmplib.org/][GMP]]
-   - gawk: support for *arbitrary precision* through [[https://www.mpfr.org/][MPFR]] (to be removed [[https://www.gnu.org/software/gawk/manual/html_node/MPFR-On-Parole.html][soon?]])
-3) Arrays
-   - are associative arrays (aka hashtables)
-   - no need to be declared
-   - for strings or numbers
-   - 1D
-   - 2D support can be mimicked by using ~[x,y]~ as index and ~(x,y) in arr~ for checking
-   - 2D support in gawk
-   - index
-     - are strings
-     - start at 1
-       - at least the ones returned by stdlib functions
-       - you can make it start by 0(zero) if you use a custom variable to initialize it
-   - https://www.gnu.org/software/gawk/manual/html_node/Controlling-Array-Traversal.html
-     #+begin_src awk
-      comp_func(i1, v1, i2, v2)  < 0 # Index i1 comes before index i2
-      comp_func(i1, v1, i2, v2) == 0 # Indices i1 and i2 come together
-      comp_func(i1, v1, i2, v2)  > 0 # Index i1 comes after in2
-     #+end_src
-   - Set the order an already created array would be presented on a forIn
-     #+begin_src awk
-       PROCINFO["sorted_in"] = "afunctionname" # see comp_func
-       PROCINFO["sorted_in"] = "@val_num_asc"
-       PROCINFO["sorted_in"] = "@val_num_desc"
-       PROCINFO["sorted_in"] = "@val_str_asc"
-       PROCINFO["sorted_in"] = "@val_str_desc"
-       PROCINFO["sorted_in"] = "@ind_num_asc"
-       PROCINFO["sorted_in"] = "@ind_num_desc"
-       PROCINFO["sorted_in"] = "@ind_str_asc"
-       PROCINFO["sorted_in"] = "@ind_str_desc"
-     #+end_src
+- gnu: typeof(a)
+- untyped, unassigned
+- strnum
+- regexp (?
+
+*** string
+
+- index start at 1
+
+*** number
+
+- || and && return =booleans= AKA 0(false) and 1(true). They do NOT return the truthy value.
+- falsy: "", 0, undefined variables
+- [[https://www.gnu.org/software/gawk/manual/html_node/Comparing-FP-Values.html]["comparing floating-point values to see if they are exactly equal is generally a bad idea"]]
+  #+begin_src awk
+    ratio = dimension[1] / dimension[2] # ratio = 1.77778 of type number
+    if (ratio ==  1.77778 ) # does NOT work
+    if (ratio == "1.77778") # works
+  #+end_src
+- support for scientific notation, eg: 1e8
+- support for =float=
+- gawk: support for =bignum= through [[https://gmplib.org/][GMP]]
+- gawk: support for *arbitrary precision* through [[https://www.mpfr.org/][MPFR]] (to be removed [[https://www.gnu.org/software/gawk/manual/html_node/MPFR-On-Parole.html][soon?]])
+
+*** array
+
+- are associative arrays (aka hashtables)
+- no need to be declared
+- for strings or numbers
+- 1D
+- 2D support can be mimicked by using ~[x,y]~ as index and ~(x,y) in arr~ for checking
+- 2D support in gawk
+- index
+  - are strings
+  - start at 1
+    - at least the ones returned by stdlib functions
+    - you can make it start by 0(zero) if you use a custom variable to initialize it
+- https://www.gnu.org/software/gawk/manual/html_node/Controlling-Array-Traversal.html
+  #+begin_src awk
+   comp_func(i1, v1, i2, v2)  < 0 # Index i1 comes before index i2
+   comp_func(i1, v1, i2, v2) == 0 # Indices i1 and i2 come together
+   comp_func(i1, v1, i2, v2)  > 0 # Index i1 comes after in2
+  #+end_src
+- Set the order an already created array would be presented on a forIn
+  #+begin_src awk
+    PROCINFO["sorted_in"] = "afunctionname" # see comp_func
+    PROCINFO["sorted_in"] = "@val_num_asc"
+    PROCINFO["sorted_in"] = "@val_num_desc"
+    PROCINFO["sorted_in"] = "@val_str_asc"
+    PROCINFO["sorted_in"] = "@val_str_desc"
+    PROCINFO["sorted_in"] = "@ind_num_asc"
+    PROCINFO["sorted_in"] = "@ind_num_desc"
+    PROCINFO["sorted_in"] = "@ind_str_asc"
+    PROCINFO["sorted_in"] = "@ind_str_desc"
+  #+end_src
 
 ** built-in variables
 
@@ -132,7 +142,7 @@
 |---------------+----------------------------------------------+-----------------|
 ** built-in functions
 https://www.gnu.org/software/gawk/manual/html_node/Built_002din.html#Built_002din
-typeof
+typeof()
 *** TIME
 https://www.gnu.org/software/gawk/manual/html_node/Time-Functions.html
 |----------+----------------------+-------------------------------------------------|
