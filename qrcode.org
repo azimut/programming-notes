@@ -1,0 +1,66 @@
+#+CAPTION: QR structure, Version 7
+#+ATTR_ORG: :width 500
+[[https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/QR_Code_Structure_Example_3.svg/640px-QR_Code_Structure_Example_3.svg.png]]
+
+- wiki https://en.wikipedia.org/wiki/QR_code
+  - Quick-Response Code
+  - 1994
+  - 2D matrix barcode
+  - readers use [[https://en.wikipedia.org/wiki/Reed%E2%80%93Solomon_error_correction][Reed–Solomon error correction]]
+    - which allows damaged codes to be readed
+  - input encoding modes
+    |--------------+-----------+-------|
+    | mode         | max chars | bit/c |
+    |--------------+-----------+-------|
+    | numeric only |      7089 |   3.3 |
+    | alphanumeric |      4296 |   5.5 |
+    | binary/byte  |      2953 |     8 |
+    | kanji/kana   |      1817 |    13 |
+    |--------------+-----------+-------|
+
+* tools
+
+- https://github.com/JohnHammond/qr2unicode
+  - qrencode -> python(PIL) -> unicode
+
+- https://github.com/anezatra/exploit-qrgen
+  - generates qrcodes images trying to exploit readers
+
+- qrencode
+  - encoder
+  - qrencode --verbose -s 10 --background=00000000 --foreground=FFFFFFFF -o $label.png $address
+  - https://fukuchi.org/works/qrencode/
+  - https://github.com/fukuchi/libqrencode
+
+- https://github.com/Shell-Company/QRExfil
+  - POC
+  - file to qrs to gif
+  - dd, qrencode, ffmpeg
+
+* videos
+
+- decode
+  - 13 How to Decode a QR Code by Hand https://www.youtube.com/watch?v=KA8hDldvfv0
+  - 20 Can you fit a whole game into a QR code? https://www.youtube.com/watch?v=ExwqNreocpg
+  - 20 How QR Codes Are Built https://www.youtube.com/watch?v=142TGhaTMtI
+  - 21 What Are Those Other Weird QR Codes? https://www.youtube.com/watch?v=KMsvtqQqz5g
+  - 22 The Math behind QR code, what happens inside there? https://www.youtube.com/watch?v=Rc3ul6RRANU
+  - 24 I built a QR code with my bare hands to see how it works https://www.youtube.com/watch?v=w5ebcowAJD8
+
+- attacks
+  - 20 Hacking QR Codes with QRGen to Attack Scanning Devices https://www.youtube.com/watch?v=Tjc-Xs-1fq8
+    - exploit qr code readers
+  - 24 Evading Modern Defenses When Phishing with Pixels - Melvin Langvik https://www.youtube.com/watch?v=l89qpmb2CAQ
+  - 24 Hackers Can Phish with PLAINTEXT QR Codes https://www.youtube.com/watch?v=cG8Uq2VESfM
+    - qr codes might come in emails
+    - spam detection should detect them
+    - but can be avoided by creating it with HTML instead of an image
+    - qr2unicode https://github.com/JohnHammond/qr2unicode
+
+* articles
+
+- https://stable-diffusion-art.com/qr-code/
+- https://www.quaxio.com/an_artisanal_qr_code.html
+- https://dev.to/maxart2501/let-s-develop-a-qr-code-generator-part-iii-error-correction-1kbm
+- https://www.thonky.com/qr-code-tutorial/error-correction-coding
+- https://www.nayuki.io/page/creating-a-qr-code-step-by-step

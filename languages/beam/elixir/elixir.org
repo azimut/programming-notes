@@ -449,6 +449,33 @@ https://hexdocs.pm/elixir/1.16/alias-require-and-import.html
 - 323 gradual type-checker https://github.com/esl/gradient
 - 4.5K code analysis/linter https://github.com/rrrene/credo
 
+* Snippets
+
+- script, Mix deps included
+  #+begin_src elixir
+    #!/usr/bin/env elixir
+
+    Mix.install([
+      {:floki, "~> 0.37.0"},
+      {:req, "~> 0.5.5"}
+    ])
+
+    songs =
+      Req.get!("https://lainchan.org/music/")
+      |> Map.get(:body)
+      |> Floki.parse()
+      |> Floki.find("a")
+      |> Floki.attribute("href")
+      |> Enum.filter(&String.contains?(&1, "/music/src"))
+      |> Enum.filter(&String.contains?(&1, ".mp3"))
+      |> Enum.uniq()
+      |> Enum.map(&("https://lainchan.org" <> &1))
+
+    songs |> length() |> dbg()
+
+    System.cmd("alacritty", ["-e", "mpv", "--no-video", "--shuffle", "--log-file=uomagaa.log" | songs])
+    |> dbg()
+  #+end_src
 
 * Libraries
 - https://github.com/bitwalker/libcluster

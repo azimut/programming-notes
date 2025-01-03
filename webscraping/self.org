@@ -4,3 +4,6 @@
 
 - certification https://www.istqb.org/
 - https://scrapfly.io/use-case
+- bot detection
+  - https://www.browserscan.net/
+  - https://fingerprint.com/products/bot-detection/

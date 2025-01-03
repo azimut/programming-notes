@@ -1,13 +1,10 @@
-- docs https://csvkit.readthedocs.io/en/latest/
-- source (Python) https://github.com/wireservice/csvkit
-- article https://handbook.microdata.io/tools/csvkit
-- article https://datachild.net/programming/format-clean-fix-csv-with-csvkit
-- tuto https://csvkit.readthedocs.io/en/latest/tutorial.html
-- tuto https://s3.amazonaws.com/assets.datacamp.com/production/course_15878/slides/chapter2.pdf
-- tuto https://s3.amazonaws.com/assets.datacamp.com/production/course_15878/slides/chapter3.pdf
-- inspired by pdftk and GDAL
-- poor performance (?)
-- alternatives
+- wiki https://en.wikipedia.org/wiki/Tab-separated_values
+- wiki https://en.wikipedia.org/wiki/Comma-separated_values
+  - RFC4180
+  - mime type ~text/csv~
+  - programs that work with it may have limits to the max nr of rows (1M~5M)
+
+- tools
   - https://github.com/Chris00/ocaml-csv (aka csvtool)
   - https://github.com/liquidaty/zsv (C)
   - https://github.com/dinedal/textql (Python)
@@ -18,14 +15,51 @@
   - https://github.com/BurntSushi/xsv
     - Rust
     - 2014-2019
-* commands
-** input
+
+* sqlite
+
+1) using .import (2020) https://www.sqlite.org/cli.html
+   - when in memory, high memory usage
+   - smart (skips header)
+   - all fields became TEXT
+   - add .separator if needed
+   #+begin_src sh
+     $ sqlite3
+     sqlite> .import --csv small.csv tbname1 # high memory usage
+   #+end_src
+
+2) using csvtable extension (2012) http://www.ch-werner.de/sqliteodbc/html/index.html
+   - read only
+   - low memory usage (always?)
+   - dumb (does NOT skip header)
+   #+begin_src sh
+     $ sudo apt install libsqlite3-mod-csvtable
+     $ sqlite3
+     sqlite> .load libsqlite3_mod_csvtable.so
+     sqlite> CREATE VIRTUAL TABLE temp.t1 USING csvtable('thefile.csv');
+   #+end_src
+
+3) using csv extension (2016) https://www.sqlite.org/csv.html
+4) .load libsqlite3_mod_impexp.so
+
+* csvkit
+- docs https://csvkit.readthedocs.io/en/latest/
+- source (Python) https://github.com/wireservice/csvkit
+- article https://handbook.microdata.io/tools/csvkit
+- article https://datachild.net/programming/format-clean-fix-csv-with-csvkit
+- tuto https://csvkit.readthedocs.io/en/latest/tutorial.html
+- tuto https://s3.amazonaws.com/assets.datacamp.com/production/course_15878/slides/chapter2.pdf
+- tuto https://s3.amazonaws.com/assets.datacamp.com/production/course_15878/slides/chapter3.pdf
+- inspired by pdftk and GDAL
+- poor performance (?)
+** commands
+*** input
 |---------+---------------|
 |     <r> |               |
 |  in2csv | .xls .json    |
 | sql2csv | from a sql db |
 |---------+---------------|
-** processing
+*** processing
 |----------+----------+----------------------|
 | csvclean |          | sanity check         |
 | csvcut   | -n       | for field num:name   |
@@ -36,7 +70,7 @@
 | csvsort  |          |                      |
 | csvstack |          |                      |
 |----------+----------+----------------------|
-** output & analysis
+*** output & analysis
 |-----------+------------------------------------|
 | csvformat | normalize format                   |
 | csvjson   | to json                            |
@@ -45,7 +79,7 @@
 | csvsql    | query a csv, or dump into a sql db |
 | csvstat   | per column stats                   |
 |-----------+------------------------------------|
-* videos
+** videos
 - https://www.youtube.com/playlist?list=PLSE7WKf_qqo1Dl9C2HuegYp0aK7SbZ3Jx
 - csvkit manipulate csv files on the command line https://www.youtube.com/watch?v=nAYKNEHv3Sw
 - Data science on the command line: csvkit demo https://www.youtube.com/watch?v=XhShmvBYNmw

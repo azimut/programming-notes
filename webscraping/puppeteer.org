@@ -1,0 +1,2 @@
+- https://github.com/rebrowser/rebrowser-patches
+- https://github.com/berstend/puppeteer-extra (-2022)

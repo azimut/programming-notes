@@ -1,3 +1,5 @@
 - home https://playwright.dev/
+- https://github.com/Kaliiiiiiiiii-Vinyzu/patchright
+- https://github.com/rebrowser/rebrowser-patches
 - libraries
   - clojure https://github.com/pfeodrippe/wally

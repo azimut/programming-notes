@@ -20,9 +20,12 @@
   - Types are assigned to individual values, NOT columns
   - BUT sqlite will try to convert it to the prefered column type
   - Support for strict tables (2015 - 3.37.1)
-- Changelog
-  - CONCAT()                (2023 - 3.44.0)
-  - Foreign Key constraints (2009 - 3.16.19)
+
+- [[https://www.sqlite.org/changes.html][Changelog]]
+  - CONCAT()                 (2023 - 3.44)
+  - CSV explicit import flag (2020 - 3.32)
+  - CSV virtual table        (2016 - 3.14)
+  - Foreign Key constraints  (2009 - 3.6.19)
   - Full Text Search
     - FTS4 (2010 - 3.7.4)
     - FTS5 (2015 - 3.8.11)
