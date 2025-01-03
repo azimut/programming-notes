@@ -16,13 +16,14 @@
   - *sort*
     - use LC_ALL=C to do byte comparison
     - by default uses _current locale_ to sort (slower)
+    - ~-R~ shuffles, but groups identical
 
 - faq https://www.gnu.org/software/coreutils/faq/coreutils-faq.html
 
 * binaries
 - https://en.wikipedia.org/wiki/List_of_GNU_Core_Utilities_commands
 - summarize: [ck|md5|sha1|sha2|b2]sum
-- also: nohup, chroot, dd
+- also: nohup, chroot, dd, head, tail, wc
 - binaries (rare/useful)
   |----------+------------------------------------------------|
   |      <r> |                                                |
@@ -43,7 +44,9 @@
   |    split | split file by N lines                          |
   |   csplit | split file by N lines, with context?           |
   | truncate | shrink or extends the size of a file           |
-  |     comm | compare 2 sorted files                         |
+  |     comm | (set like) compare of 2 =sorted= files         |
+  |     uniq | ommit repeated lines of a =sorted= input       |
+  |      cat | con(cat)enate files (-n, to add line numbers)  |
   |----------+------------------------------------------------|
   |     join | join lines on common fields                    |
   |   expand | tabs -> spaces                                 |

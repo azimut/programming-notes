@@ -17,38 +17,31 @@
   - https://github.com/katef/libfsm/
   - ? https://github.com/katef/kgt/
 
-- tool: yaml/json/xml/csv/toml https://github.com/mikefarah/yq
-- tool: visualization https://github.com/saulpw/visidata https://www.visidata.org/
+- https://github.com/strozfriedberg/lightgrep
 - tool: awk like in cli, with haskell flavor https://github.com/gelisam/hawk
-- tool: json to grep-able format https://github.com/tomnomnom/gron
 - tool: shell https://www.nushell.sh/
 - tool: language+shell https://github.com/refaktor/rye
 - tool: language http://www.rseventeen.com/ https://github.com/matthewnourse/r17
 - tool: https://github.com/jlevy/the-art-of-command-line/blob/master/README.md
+- https://github.com/trimstray/the-book-of-secret-knowledge/
 - tool: svg into png https://manpages.ubuntu.com/manpages/trusty/man1/rsvg-convert.1.html
 - tool: w3m-img - display image on shell
   - used by fff
+
+- articles
+  - https://archive.md/20180422220932/https://kadekillary.work/post/cli-4-ds/
+  - https://blog.erratasec.com/2017/01/the-command-line-for-cybersec.html
+  - https://jeroenjanssens.com/seven/
+  - https://tech.marksblogg.com/working-with-data-feeds.html
+  - https://github.com/jlevy/the-art-of-command-line/blob/master/README.md
+  - https://tech.marksblogg.com/making-heatmaps-python-qgis.html
+  - https://tech.marksblogg.com/ipinfo-free-ip-address-location-database.html
+  - https://exple.tive.org/blarg/2023/02/17/modern-problems-require-modern-solutions/
 
 * pwd manager
 - https://www.passwordstore.org/
   - http://web.archive.org/web/20210302020838/https://osiux.com/2021-02-19-no-me-acuerdo-de-nada-dejame-en-pass.html
 - https://github.com/charmbracelet/skate
-* html
-- tool: html https://github.com/TUVIMEN/reliq
-- tool: html https://github.com/htacg/tidy-html5
-- tool: html https://github.com/ericchiang/pup
-  - pup [flags] [css-selectors] [display function]
-  - css-selectors, comma separated
-  - display function
-    |---------------+------------------------------|
-    | text{}        | inner text of selected nodes |
-    | attr{attrkey} | return attributes            |
-    | json{}        | html -> json                 |
-    |---------------+------------------------------|
-  - flags
-    |----+----------------------------------|
-    | -f | read from file, instead of STDIN |
-    |----+----------------------------------|
 * dialog
 ** tui
 

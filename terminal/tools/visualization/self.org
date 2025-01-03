@@ -1,0 +1,3 @@
+- tool: visualization https://github.com/saulpw/visidata https://www.visidata.org/
+- tool: cli utilities for data analysis https://github.com/bitly/data_hacks
+- See: [[../../self.org][terminal.org]]

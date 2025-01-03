@@ -1,0 +1,48 @@
+|-----------+----------------------------------------------------------------|
+|       <r> |                                                                |
+|      wiki | https://en.wikipedia.org/wiki/Graphviz                         |
+|      wiki | https://en.wikipedia.org/wiki/DOT_(graph_description_language) |
+|      home | https://graphviz.org/                                          |
+| source(C) | https://gitlab.com/graphviz/graphviz                           |
+|    online | https://dreampuf.github.io/GraphvizOnline/                     |
+|-----------+----------------------------------------------------------------|
+
+https://graphviz.org/Gallery/undirected/root.html
+http://www.yifanhu.net/GALLERY/GRAPHS/
+
+* language
+- GRAPH VIZualiation software
+- 1991
+- .gv extension
+- AT&T
+** layouts
+https://graphviz.org/docs/layouts/
+neato
+fdp
+** props
+- for: node, edge
+|-------+-----------------|
+|   <r> |       <c>       |
+| group |     linear      |
+| shape |     circle      |
+| style | [filled¦dotted] |
+| color |     yellow      |
+| shape |      squre      |
+|-------+-----------------|
+** vars
+|---------+------------|
+|     <r> |    <c>     |
+| rankdir |     LR     |
+| splines | true¦ortho |
+| overlap |   false    |
+|---------+------------|
+* articles
+
+- 13 https://spin.atomicobject.com/making-diagrams-with-graphviz/
+- 16 https://naildrivin5.com/blog/2016/12/08/learn-graphviz-and-up-your-diagramming-game.html
+- 20 https://ncona.com/2020/06/create-diagrams-with-code-using-graphviz/
+- 21 https://kellyshortridge.com/blog/posts/security-decision-trees-with-graphviz/
+
+* videos
+- 09 GraphViz step-by-step walkthrough https://vimeo.com/7860697
+- demo: Automatic book building from markdown with inline graphviz (2x speed) https://vimeo.com/108337533

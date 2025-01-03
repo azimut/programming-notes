@@ -1,0 +1,19 @@
+- tool: yaml/json/xml/csv/toml https://github.com/mikefarah/yq
+- tool: json to grep-able format https://github.com/tomnomnom/gron
+
+** html
+- https://github.com/TUVIMEN/reliq
+- https://github.com/htacg/tidy-html5
+- https://github.com/ericchiang/pup
+  - pup [flags] [css-selectors] [display function]
+  - css-selectors, comma separated
+  - display function
+    |---------------+------------------------------|
+    | text{}        | inner text of selected nodes |
+    | attr{attrkey} | return attributes            |
+    | json{}        | html -> json                 |
+    |---------------+------------------------------|
+  - flags
+    |----+----------------------------------|
+    | -f | read from file, instead of STDIN |
+    |----+----------------------------------|

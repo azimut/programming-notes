@@ -1,0 +1,61 @@
+- docs https://csvkit.readthedocs.io/en/latest/
+- source (Python) https://github.com/wireservice/csvkit
+- article https://handbook.microdata.io/tools/csvkit
+- article https://datachild.net/programming/format-clean-fix-csv-with-csvkit
+- tuto https://csvkit.readthedocs.io/en/latest/tutorial.html
+- tuto https://s3.amazonaws.com/assets.datacamp.com/production/course_15878/slides/chapter2.pdf
+- tuto https://s3.amazonaws.com/assets.datacamp.com/production/course_15878/slides/chapter3.pdf
+- inspired by pdftk and GDAL
+- poor performance (?)
+- alternatives
+  - https://github.com/Chris00/ocaml-csv (aka csvtool)
+  - https://github.com/liquidaty/zsv (C)
+  - https://github.com/dinedal/textql (Python)
+  - https://github.com/shenwei356/csvtk
+    - Go
+    - 2016-2024
+    - Plotting
+  - https://github.com/BurntSushi/xsv
+    - Rust
+    - 2014-2019
+* commands
+** input
+|---------+---------------|
+|     <r> |               |
+|  in2csv | .xls .json    |
+| sql2csv | from a sql db |
+|---------+---------------|
+** processing
+|----------+----------+----------------------|
+| csvclean |          | sanity check         |
+| csvcut   | -n       | for field num:name   |
+|          | -c NAME  | for getting field    |
+|          | -r REGEX | matching cells in -c |
+| csvgrep  |          |                      |
+| csvjoin  |          |                      |
+| csvsort  |          |                      |
+| csvstack |          |                      |
+|----------+----------+----------------------|
+** output & analysis
+|-----------+------------------------------------|
+| csvformat | normalize format                   |
+| csvjson   | to json                            |
+| csvlook   | markdown render                    |
+| csvpy     |                                    |
+| csvsql    | query a csv, or dump into a sql db |
+| csvstat   | per column stats                   |
+|-----------+------------------------------------|
+* videos
+- https://www.youtube.com/playlist?list=PLSE7WKf_qqo1Dl9C2HuegYp0aK7SbZ3Jx
+- csvkit manipulate csv files on the command line https://www.youtube.com/watch?v=nAYKNEHv3Sw
+- Data science on the command line: csvkit demo https://www.youtube.com/watch?v=XhShmvBYNmw
+- +14 Sasha Laundy - How to Make Your Future Data Scientists Love You https://www.youtube.com/watch?v=dOwmU-5ShJs+
+- +14 Linux Data Science Commands In 14 Minutes https://www.youtube.com/watch?v=hRiencURwn0+
+- +19 Bash ⋖3's CSVs: Data Analysis on the cmdline - Nicholas Canzoneri https://www.youtube.com/watch?v=byEzXt2Ghsc+
+- +21 Greppin' Logs | Jon Stewart & Noah Rubin https://www.youtube.com/watch?v=paD5jbdB6tY+
+- Data Science from the Command Line - Talk Python to me Ep.392 https://www.youtube.com/watch?v=wNJ3tTPkuzY
+- Obtaining, Scrubbing, and Exploring Data at the Command Line by Jeroen Janssens from YPlan https://www.youtube.com/watch?v=QxpOKbv-KQU
+- Data + Coding in Bash - episode 4 - Best Practices & Shortcuts (data science for beginners) https://www.youtube.com/watch?v=WcZqmu9CdXk
+- Let lookup save you from boring, repetitive work you've forgotten you're even doing https://www.youtube.com/watch?v=DN52t6Cq348
+- 15 Ben Zaitlen - Odo - Shape Shifting Data—A Handy Tool to Guide You from CSV HDFS and Beyond https://www.youtube.com/watch?v=r2yeWiUt4Vw
+- CLI Data Processing Tutorial https://www.youtube.com/playlist?list=PLpY9qiZFd0oEjaDhuaZypl2Z60GXGF7ab
