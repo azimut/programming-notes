@@ -19,6 +19,7 @@
 - https://github.com/jersonSeling/ComputerGraphicsKnowledge/
 - https://github.com/aschrein/aschrein.github.com/
 
+- article https://ameye.dev/notes/rendering-outlines/
 - video: A Brief look at Text Rendering https://www.youtube.com/watch?v=qcMuyHzhvpI
 
 * Book: Game Programming Patterns

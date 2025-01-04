@@ -20,6 +20,8 @@
 
 * tools
 
+- decoder https://github.com/mchehab/zbar
+
 - https://github.com/JohnHammond/qr2unicode
   - qrencode -> python(PIL) -> unicode
 
@@ -59,6 +61,8 @@
 
 * articles
 
+- https://typefully.com/DanHollick/qr-codes-T7tLlNi
+- https://gir.st/blog/greenpass.html
 - https://stable-diffusion-art.com/qr-code/
 - https://www.quaxio.com/an_artisanal_qr_code.html
 - https://dev.to/maxart2501/let-s-develop-a-qr-code-generator-part-iii-error-correction-1kbm

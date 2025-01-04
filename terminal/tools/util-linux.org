@@ -1,1 +1,159 @@
-- https://en.wikipedia.org/wiki/Util-linux
+- source (C) https://github.com/util-linux/util-linux
+- wiki https://en.wikipedia.org/wiki/Util-linux
+- part of Linux
+- some have ~--json~ output support
+* binaries
+** account/login
+|----------+---------------------------------------|
+|      <r> | description                           |
+|----------+---------------------------------------|
+|   agetty |                                       |
+|  runuser |                                       |
+|       su |                                       |
+|  sulogin |                                       |
+| utmpdump |                                       |
+|----------+---------------------------------------|
+|     chfn | changes real world ~user~ information |
+|     chsh | changes login shell for ~user~        |
+|     last | show logged in ~users~                |
+| lslogins | show information about known ~users~  |
+|   newgrp |                                       |
+|     vipw | edit password                         |
+|     vigr | edit group                            |
+|----------+---------------------------------------|
+|    login | login prompt                          |
+|  nologin | refuse login                          |
+|----------+---------------------------------------|
+|     mesg | display messages                      |
+|     wall | send message to all                   |
+|    write | send message to user                  |
+|----------+---------------------------------------|
+** disk
+pivot_root
+switch_root
+uuidd
+uuidgen
+uuidparse
+cfdisk
+fdisk
+sfdisk
+fsck
+fsck.cramfs
+fsck.minix
+fsfreeze
+fstrim
+isosize
+mkfs
+mkfs.bfs
+mkfs.cramfs
+mkfs.minix
+mount
+mountpoint
+umount
+fallocate
+findmnt
+*** logic
+flock
+lslocks
+losetup
+*** block
+blkdicard
+blkid
+blkzone
+blockdev
+lsblk
+*** partition
+addpart
+delpart
+resizepart
+partx
+** memory
+|-----------+--------------------------------|
+|       <r> |                                |
+|-----------+--------------------------------|
+|     chmem |                                |
+|     choom |                                |
+|     lsmem |                                |
+| =fincore= | find position of exe in memory |
+|-----------+--------------------------------|
+|    mkswap |                                |
+|    swapon |                                |
+|   swapoff |                                |
+| swaplabel |                                |
+|   zramctl |                                |
+|-----------+--------------------------------|
+** namespace
+lsns
+nsenter
+unshare
+** text/scripting
+col
+colcrt
+colrm
+column
+look
+more
+namei
+rev
+ul
+logger
+getopt
+** power
+crtlaltdel
+reset
+rtcwake
+** process
+|---------+----------------------------|
+|     <r> | description                |
+|---------+----------------------------|
+|    chrt |                            |
+|    kill |                            |
+| prlimit | get/set process limits     |
+| setpriv |                            |
+|  setsid | run program in new session |
+| taskset |                            |
+|---------+----------------------------|
+|  renice |                            |
+|  ionice |                            |
+|---------+----------------------------|
+|   ipcmk |                            |
+|   ipcrm |                            |
+|    ipcs |                            |
+|   lsipc |                            |
+|---------+----------------------------|
+** other hardware
+|----------+--------------------------------|
+|      <r> |                                |
+|  =lscpu= | show cpu info                  |
+|    chcpu | configure cpu                  |
+|    eject | eject CDROM                    |
+| =rfkill= | switch on/off wireless         |
+|  hwclock | get/set clock                  |
+|    wdctl | watchdog/computer timer status |
+|----------+--------------------------------|
+** other
+cal
+dmesg
+hardlink
+hexdump
+ldattach
+mcookie
+readprofile
+script
+scriptlive
+scriptreplay
+setarch
+setterm
+whereis
+** +removed+ ????
++findfd+
++fdformat+
++irqtop+
++line+
++lsfd+
++lsirq+
++pg+
++raw+
++rename+
++tunelp+
++wipfs+

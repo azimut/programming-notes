@@ -32,9 +32,6 @@
 
 - error codes https://chromium.googlesource.com/chromiumos/docs/+/master/constants/errnos.md
 
-- man
-  - improvement https://gist.github.com/alphapapa/3cba3ff196147ad42bac
-
 - SIXEL: display images on terminal
   - https://www.arewesixelyet.com/ (!!)
   - home https://saitoha.github.io/libsixel/
@@ -47,7 +44,11 @@
 * man
 #+begin_src sh
   $ man man
+  $ man -f FOOBAR # list all available sections for FOOBAR
 #+end_src
+- TODO: better colors
+- tool: man without bs https://gist.github.com/alphapapa/3cba3ff196147ad42bac
+** sections
 |---+----------------------------------------------------------|
 | 1 | Executable programs or shell commands                    |
 | 2 | System calls (functions provided by the kernel)          |

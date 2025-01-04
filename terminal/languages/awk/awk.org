@@ -155,18 +155,19 @@ https://www.gnu.org/software/gawk/manual/html_node/Time-Functions.html
 - where FMT can be "%Y-%m-%d %H:%M:%S"
 *** BITWISE
 https://www.gnu.org/software/gawk/manual/html_node/Bitwise-Functions.html
-|--------------------+-------------------------------------|
-|                <r> | returns                             |
-|--------------------+-------------------------------------|
-|     and(v1,v2,...) |                                     |
-|     xor(v1,v2,...) |                                     |
-|      or(v1,v2,...) |                                     |
-|--------------------+-------------------------------------|
-|         compl(val) | complement                          |
-|--------------------+-------------------------------------|
-| lshift(val, count) | *val* left shifted by *count* bits  |
-| rshift(val, count) | *val* right shifter by *count* bits |
-|--------------------+-------------------------------------|
+|--------+-----------+-------------------------------------|
+|    <r> |    <c>    |                                     |
+|     fn |   args    | returns                             |
+|--------+-----------+-------------------------------------|
+|    and | v1,v2,... |                                     |
+|    xor | v1,v2,... |                                     |
+|     or | v1,v2,... |                                     |
+|--------+-----------+-------------------------------------|
+|  compl |    val    | complement                          |
+|--------+-----------+-------------------------------------|
+| lshift | val,count | *val* left shifted by *count* bits  |
+| rshift | val,count | *val* right shifter by *count* bits |
+|--------+-----------+-------------------------------------|
 
 *** ARRAY
 
@@ -183,64 +184,69 @@ https://www.gnu.org/software/gawk/manual/html_node/Bitwise-Functions.html
 
 *** MATH
 https://www.gnu.org/software/gawk/manual/html_node/Numeric-Functions.html
-|------------+------------------------------------|
-|    <c>     |                                    |
-|            | returns                            |
-|------------+------------------------------------|
-| atan2(y,x) | arctangent of y/x in -x to x range |
-|   cos(x)   | cosine of x, with x in radians     |
-|   sin(x)   | sine of x, with x in radians       |
-|   exp(x)   |                                    |
-|   log(x)   | ntural base e logarithm of x       |
-|  sqrt(x)   |                                    |
-|------------+------------------------------------|
-|   int(x)   | integer part of x, truncated       |
-|------------+------------------------------------|
-|   rand()   | random nuber r, 0 <= r < 1         |
-|  srand(x)  | x is new seed for rand()           |
-|------------+------------------------------------|
+|-------+-----+------------------------------------|
+|   <r> | <c> |                                    |
+|    fn | arg | returns                            |
+|-------+-----+------------------------------------|
+| atan2 | y,x | arctangent of y/x in -x to x range |
+|   cos |  x  | cosine of x, with x in radians     |
+|   sin |  x  | sine of x, with x in radians       |
+|   exp |  x  |                                    |
+|   log |  x  | ntural base e logarithm of x       |
+|  sqrt |  x  |                                    |
+|-------+-----+------------------------------------|
+|   int |  x  | integer part of x, truncated       |
+|-------+-----+------------------------------------|
+|  rand |  -  | random nuber r, 0 <= r < 1         |
+| srand |  x  | x is new seed for rand()           |
+|-------+-----+------------------------------------|
 *** STRING
 https://www.gnu.org/software/gawk/manual/html_node/String-Functions.html
+#+begin_src
 r=regex  s=string  t=targetstring  fs=field separator
-|---------------------+---------------------------+-----------------------------------------------|
-|         <c>         | returns                   | does                                          |
-|---------------------+---------------------------+-----------------------------------------------|
-|      sub(r,s)       | number of subst made      | substitute one r for s in $0                  |
-|     sub(r,s,t)      | number of subst made      | substitute one r for s in t                   |
-|      gsub(r,s)      | number of subst made      | substitute all r for s in $0                  |
-|     gsub(r,s,t)     | number of subst made      | substitute all r for s in t                   |
-|    gensub(r,s,h)    | copy of s modified        | substitute h'th instance of r by s in $0      |
-|   gensub(r,s,h,t)   | copy of s modified        | substitute h'th instance of r by s in t       |
-|---------------------+---------------------------+-----------------------------------------------|
-|   substr(s,start)   | substring of s            |                                               |
-| substr(s,start,len) | substring of s            |                                               |
-|---------------------+---------------------------+-----------------------------------------------|
-|     split(s,a)      | number of fields          | stores the pieces in array a                  |
-|    split(s,a,fs)    | number of fields          | stores the pieces in array a                  |
-|---------------------+---------------------------+-----------------------------------------------|
-|      length()       | number of chars in $0     |                                               |
-|      length(s)      | number of chars in s      |                                               |
-|---------------------+---------------------------+-----------------------------------------------|
-|     index(s,t)      | 0 or n position of t in s |                                               |
-|     match(s,r)      | index or 0                | test if s contains r, sets RSTART and RLENGTH |
-|    match(s,r,a)     |                           | ... sets a to portions of s that match r      |
-|                     |                           | [0]           = whole matched part of s       |
-|                     |                           | [N, "start"]  = starting index of match       |
-|                     |                           | [N, "length"] = length of match               |
-|---------------------+---------------------------+-----------------------------------------------|
-|  sprintf(fmt, ...)  | formated string           |                                               |
-|     strtonum(s)     |                           |                                               |
-|---------------------+---------------------------+-----------------------------------------------|
-|     tolower(s)      | lowercased s              |                                               |
-|     toupper(s)      | uppercased s              |                                               |
-|---------------------+---------------------------+-----------------------------------------------|
+#+end_src
+|----------+-------------+---------------------------+-----------------------------------------------|
+|      <r> |             |                           |                                               |
+|       fn | args        | returns                   | does                                          |
+|----------+-------------+---------------------------+-----------------------------------------------|
+|      sub | r,s         | number of subst made      | substitute one r for s in $0                  |
+|          | r,s,t       | "                         | substitute one r for s in t                   |
+|     gsub | r,s         | "                         | substitute all r for s in $0                  |
+|          | r,s,t       | "                         | substitute all r for s in t                   |
+|   gensub | r,s,h       | copy of s modified        | substitute h'th instance of r by s in $0      |
+|          | r,s,h,t     | "                         | substitute h'th instance of r by s in t       |
+|----------+-------------+---------------------------+-----------------------------------------------|
+|   substr | s,start     | substring of s            |                                               |
+|          | s,start,len | "                         |                                               |
+|----------+-------------+---------------------------+-----------------------------------------------|
+|    split | s,a         | number of fields          | stores the pieces in array a                  |
+|          | s,a,fs      | "                         | stores the pieces in array a                  |
+|----------+-------------+---------------------------+-----------------------------------------------|
+|   length | -           | number of chars in $0     |                                               |
+|          | s           | number of chars in s      |                                               |
+|----------+-------------+---------------------------+-----------------------------------------------|
+|    index | s,t         | 0 or n position of t in s |                                               |
+|----------+-------------+---------------------------+-----------------------------------------------|
+|    match | s,r         | index or 0                | test if s contains r, sets RSTART and RLENGTH |
+|          | s,r,a       |                           | ... sets a to portions of s that match r      |
+|          |             |                           | [0]           = whole matched part of s       |
+|          |             |                           | [N, "start"]  = starting index of match       |
+|          |             |                           | [N, "length"] = length of match               |
+|----------+-------------+---------------------------+-----------------------------------------------|
+|  sprintf | fmt,...     | formated string           |                                               |
+| strtonum | s           |                           |                                               |
+|----------+-------------+---------------------------+-----------------------------------------------|
+|  tolower | s           | lowercased s              |                                               |
+|  toupper | s           | uppercased s              |                                               |
+|----------+-------------+---------------------------+-----------------------------------------------|
 
 *** operators
 |---------------------+------------------|
+|         <c>         |                  |
 | = += -= *= /= %= ^= | Assigments       |
-| ?:                  | Ternary operator |
-| in                  | Array membership |
-| ~ !~                | Matching         |
+|         ?:          | Ternary operator |
+|         in          | Array membership |
+|        ~ !~         | Matching         |
 |---------------------+------------------|
 *** control flow
 
@@ -256,11 +262,11 @@ r=regex  s=string  t=targetstring  fs=field separator
 |-----------------+------------------------------------|
 
 *** output statement
-|-----------------+---------------------------------------------|
-| close(filename) | break connection between print and filename |
-| close(command)  | break connection between print and command  |
-| system(command) | execute command                             |
-|-----------------+---------------------------------------------|
+|--------+----------+---------------------------------------------|
+| close  | filename | break connection between print and filename |
+| close  | command  | break connection between print and command  |
+| system | command  | execute command                             |
+|--------+----------+---------------------------------------------|
 *** getline
 https://www.gnu.org/software/gawk/manual/html_node/Getline.html
 |----------------------+-------------------------------------+---------------------|

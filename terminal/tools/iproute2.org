@@ -1,0 +1,73 @@
+|-----------+--------------------------------------------------------------|
+| wiki      | https://en.wikipedia.org/wiki/Iproute2                       |
+| home      | https://wiki.linuxfoundation.org/networking/iproute2         |
+| source(C) | https://git.kernel.org/pub/scm/network/iproute2/iproute2.git |
+|-----------+--------------------------------------------------------------|
+
+- 2000-ish
+- by Alexey Kuznetsov, maintaned by Stephen Hemminger
+- replaced ~net-tools~
+  - vrf
+  - network ns
+  - policy-based routing
+- /etc/iproute2/
+- net.ipv4.conf.IFACE.promote_secondaries
+  - there is no other way to swap
+  - or set the primary
+  - ipv6 always promotes
+- cmd: ip, tc, ss
+- tuto https://github.com/B16CS006/Linux-Networking-Tutorial/tree/main
+- tuto
+  - html https://baturin.org/docs/iproute2/
+  - md https://github.com/dmbaturin/iproute2-cheatsheet/blob/master/site/index.md
+
+* ip
+- show/list commands can be ommited
+- commands can be abbreviated
+  - *dev* keyword cannot
+** articles
+- 09 http://web.archive.org/web/20091004111220/http://praetorianprefect.com:80/archives/2009/09/vrf-is-the-new-black-how-i-learned-to-stop-worrying-and-love-the-complexity/
+- 18 https://ops.tips/blog/using-network-namespaces-and-bridge-to-isolate-servers/
+- 23 https://blog.oddbit.com/post/2023-02-19-vrf-and-nat/
+** video
+- 16 Why use iproute2? Phil Sutter https://www.youtube.com/watch?v=cymH9pcFGa0
+- 20 Simon Ebnicher - Linux VXLAN Gateway https://vimeo.com/482568997
+- 21 put a vm in a network container https://www.youtube.com/watch?v=h1sptaitoRs
+- 23 deepdive the ip command in linux https://www.youtube.com/watch?v=30mQ4fD5kMI
+** cmd
+*** flags
+|-----+---------------+-------------------|
+| -o  | --oneline     | '\n' for just '\' |
+| -br | --brief       | terse output      |
+| -j  | --json        | json output       |
+|     | --pretty      |                   |
+|     | --brief       |                   |
+| -4  | -family inet  | for show cmd      |
+| -6  | -family inet6 | for show cmd      |
+|-----+---------------+-------------------|*
+** ip neighbor
+show - aka ARP/NDP neighbours
+show dev IFACE
+flush dev IFACE
+add ADDR lladdr MAC dev IFACE
+delete ADDR lladdr MAC dev IFACE
+*** ip addr
+**** show
+|------+---------------+--------------------------|
+|      |      <c>      |                          |
+| show | [dev] <IFACE> |                          |
+|      |      up       |                          |
+|      |   permanent   | configured statically    |
+|      |    dynamic    | configured automatically |
+|------+---------------+--------------------------|
+**** add/delete/flush
+|--------+-----------+----------------------+----------------------------|
+|    <r> |    <c>    |         <c>          |                            |
+|--------+-----------+----------------------+----------------------------|
+|    add | ADDR/MASK |     dev <IFACE>      |                            |
+|        |           | label <IFACE>:<DESC> | ipv4 only                  |
+|--------+-----------+----------------------+----------------------------|
+| delete | ADDR/MASK |     dev <IFACE>      | dev is mandatory           |
+|--------+-----------+----------------------+----------------------------|
+|  flush |     -     |     dev <IFACE>      | remove all addr from IFACE |
+|--------+-----------+----------------------+----------------------------|
