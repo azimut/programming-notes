@@ -73,45 +73,46 @@
   * new lines
   * cmd1;cmd2
   * -e cmd2 -e cmd2
-|---------+-------------+----------------------------------------------------------------------------|
-|   <c>   |     <c>     |                                                                            |
-|         |    name     | description                                                                |
-|---------+-------------+----------------------------------------------------------------------------|
-|    q    |    quit     | stop processing lines, if given, exit with given exit code                 |
-|    d    |   delete    | the /pattern space/                                                        |
-|    D    |   delete    | only the first line from the /pattern space/, and run again                |
-|    n    |    next     | reads   the next line into the /pattern space/ AND prints old value there  |
-|    N    |    next     | appends the next line into the /pattern space/ in a new line               |
-|    p    |    print    | the /pattern space/                                                        |
-|    P    |    print    | the first line on the /pattern space/                                      |
-|    =    |             | prints the current line number plus a new line                             |
-|    y    |             | /srcstr/dststr/ (tr)ansliterates src by dst                                |
-|    l    |    list     | list the /pattern space/ unambigously, nice for debugging                  |
-|    e    |   execute   | returns shell output after executing given shell command                   |
-|---------+-------------+----------------------------------------------------------------------------|
-|    r    |    reads    | from given filepath                                                        |
-|    w    |   writes    | to   given filepath                                                        |
-|---------+-------------+----------------------------------------------------------------------------|
-|    b    |   branch    | jump to given tag, to the end of script if none given                      |
-|    t    | test branch | jump to given tag, IF previous substitution succeded                       |
-|    T    | test branch | jump to given tag, IF previous substitution failed                         |
-|---------+-------------+----------------------------------------------------------------------------|
-| [line]a |   append    | after current /pattern space/                                              |
-| [line]i |   insert    | before current /pattern space/                                             |
-| [addr]c |   change    | replaces current /pattern space/ with given argument                       |
-|---------+-------------+----------------------------------------------------------------------------|
-|    s    | substitute  | /pattern/replacement/flags                                                 |
-|         |             | uses address for pattern if missing                                        |
-|         |             | replacement can be: "&" /pattern/ matched, \N where N is the N-match group |
-|         |             | [w FILE,g,p,I,NUMBEROFMATCH]                                               |
-|         |             | hk                                                                         |
-|---------+-------------+----------------------------------------------------------------------------|
-|    h    |    hold     | copy     pattern -> hold                                                   |
-|    H    |    hold     | append \npattern -> hold                                                   |
-|    g    |     get     | copy        hold -> pattern                                                |
-|    G    |     get     | append    \nhold -> pattern                                                |
-|    x    |  exchange   | aka swap content between /hold space/ and /pattern space/                  |
-|---------+-------------+----------------------------------------------------------------------------|
+|------------+-------------+---------------------------------------------------------------------|
+|    <c>     |     <c>     |                                                                     |
+|            |    name     | description                                                         |
+|------------+-------------+---------------------------------------------------------------------|
+|  q [CODE]  |    quit     | stop processing lines, exit with given exit code                    |
+|     z      |     zap     | empties the /pattern space/                                         |
+|     d      |   delete    | the /pattern space/                                                 |
+|     D      |   delete    | only the first line from the /pattern space/, and run again         |
+|     n      |    next     | reads   next line into the /pattern space/ AND prints its old value |
+|     N      |    next     | appends next line into the /pattern space/ in a new line            |
+|     p      |    print    | the /pattern space/                                                 |
+|     P      |    print    | the first line on the /pattern space/                               |
+|     =      |             | prints the current line number plus a new line                      |
+| y/src/dst/ |             | (tr)ansliterates src chars for dst chars                            |
+|     l      |    list     | list the /pattern space/ unambigously, nice for debugging           |
+|  e [CMD]   |   execute   | returns shell output after executing given shell CMD                |
+|------------+-------------+---------------------------------------------------------------------|
+|   r FILE   |    reads    | from given filepath                                                 |
+|   w FILE   |   writes    | to   given filepath                                                 |
+|------------+-------------+---------------------------------------------------------------------|
+|  b LABEL   |   branch    | jump to given tag, to the end of script if none given               |
+|  t LABEL   | test branch | jump to given tag, IF previous substitution succeded                |
+|  T LABEL   | test branch | jump to given tag, IF previous substitution failed                  |
+|------------+-------------+---------------------------------------------------------------------|
+|   a STR    |   append    | string after current /pattern space/                                |
+|   i STR    |   insert    | string before current /pattern space/                               |
+|   c STR    |   change    | replaces current /pattern space/ with given argument                |
+|------------+-------------+---------------------------------------------------------------------|
+|  s/p/r/f   | substitute  | /pattern/replacement/flags                                          |
+|            |             | uses address for pattern if missing                                 |
+|            |             | replacement: "&" /pattern/ matched, \N where N is the N-match group |
+|            |             | flags: [w FILE,g,p,I,NUMBEROFMATCH]                                 |
+|            |             | hk                                                                  |
+|------------+-------------+---------------------------------------------------------------------|
+|     h      |    hold     | copy     pattern -> hold                                            |
+|     H      |    hold     | append \npattern -> hold                                            |
+|     g      |     get     | copy        hold -> pattern                                         |
+|     G      |     get     | append    \nhold -> pattern                                         |
+|     x      |  exchange   | aka swap content between /hold space/ and /pattern space/           |
+|------------+-------------+---------------------------------------------------------------------|
 
 * flags
 |----+--------------------+--------+---------------------------------------------------------|
@@ -173,11 +174,15 @@ https://sed.sourceforge.io/#scripts
 #+TBLFM: $1=;n
 - https://literateprograms.org/category_programming_language_sed.html
   - rot13 https://literateprograms.org/rot13__sed_.html
-** remove the last 10 lines of a file
 
+** remove the last 15 lines of a file
+
+https://x.com/cavearr/status/1732554175156834687
 https://stackoverflow.com/questions/13380607/how-to-use-sed-to-remove-the-last-n-lines-of-a-file/13380679
 #+begin_src sh
-  sed -i -n -e :a -e '1,10!{P;N;D;};N;ba' file.txt
+  $ sox -r 22100 -t u16 -c 1 icerok.raw -n stat -freq 2>&1 |
+      sed -n -e :a -e '1,15!{P;N;D;};N;ba' |
+      gnuplot -p -e 'set logscale x; plot "-" with l'
 #+end_src
 
 * gotchas

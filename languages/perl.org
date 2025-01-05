@@ -75,6 +75,7 @@
 
 * videos
 
+- https://www.oreilly.com/library/view/modern-perl-best/9781491910719/
 - TODO 7:00 https://www.youtube.com/watch?v=EbH9jLi6v2g&list=PL8qgaJWZ7bGJPlIvAFbq8fKrFogUEJ3AJ&index=12
 - channels
   - https://www.youtube.com/@YAPCNA
