@@ -4,30 +4,30 @@
 - some have ~--json~ output support
 * binaries
 ** account/login
-|----------+---------------------------------------|
-|      <r> | description                           |
-|----------+---------------------------------------|
-|   agetty |                                       |
-|  runuser |                                       |
-|       su |                                       |
-|  sulogin |                                       |
-| utmpdump |                                       |
-|----------+---------------------------------------|
-|     chfn | changes real world ~user~ information |
-|     chsh | changes login shell for ~user~        |
-|     last | show logged in ~users~                |
-| lslogins | show information about known ~users~  |
-|   newgrp |                                       |
-|     vipw | edit password                         |
-|     vigr | edit group                            |
-|----------+---------------------------------------|
-|    login | login prompt                          |
-|  nologin | refuse login                          |
-|----------+---------------------------------------|
-|     mesg | display messages                      |
-|     wall | send message to all                   |
-|    write | send message to user                  |
-|----------+---------------------------------------|
+|------------+---------------------------------------|
+|        <r> | description                           |
+|------------+---------------------------------------|
+|     agetty |                                       |
+|    runuser |                                       |
+|         su |                                       |
+|    sulogin |                                       |
+|   utmpdump |                                       |
+|------------+---------------------------------------|
+|       chfn | changes real world ~user~ information |
+|       chsh | changes login shell for ~user~        |
+|       last | show logged in ~users~                |
+| =lslogins= | show information about known ~users~  |
+|     newgrp |                                       |
+|       vipw | edit password                         |
+|       vigr | edit group                            |
+|------------+---------------------------------------|
+|      login | login prompt                          |
+|    nologin | refuse login                          |
+|------------+---------------------------------------|
+|       mesg | display messages                      |
+|       wall | send message to all                   |
+|      write | send message to user                  |
+|------------+---------------------------------------|
 ** disk
 pivot_root
 switch_root
@@ -87,17 +87,20 @@ lsns
 nsenter
 unshare
 ** text/scripting
-col
-colcrt
-colrm
-column
-look
-more
-namei
-rev
-ul
-logger
-getopt
+|----------+---|
+|      <r> |   |
+|      col |   |
+|   colcrt |   |
+|    colrm |   |
+|   column |   |
+|     look |   |
+|     more |   |
+|    namei |   |
+|      rev |   |
+|       ul |   |
+| =logger= |   |
+| =getopt= |   |
+|----------+---|
 ** power
 crtlaltdel
 reset

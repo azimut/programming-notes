@@ -1,3 +1,6 @@
+- [[https://en.wikipedia.org/wiki/Leaning_toothpick_syndrome][Leaning Toothpick Syndrome]]
+  - when a quoted expresion becomes unreadable because it contains a large number of escape characters
+
 - [[https://wiki.c2.com/?DontUseExceptionsForFlowControl]["Don't use exceptions for control flow"]]
   - Exceptions are like non-local goto statements.
   - As such they can be used to build general control flow constructs.
