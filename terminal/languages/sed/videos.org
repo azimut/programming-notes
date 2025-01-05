@@ -1,8 +1,9 @@
+- 18 Using `sed` and Regular Expressions https://www.youtube.com/watch?v=QaGhpqRll_k
 - 21 The command-line GNU sed: become the MASTER of plain text - mouselessdev
   * Part 01 - Basics https://www.youtube.com/watch?v=R-3EahsCmpg
   * Part 02 - Commands https://www.youtube.com/watch?v=BtZB-fndkzM
-
 - GNU sed - the stream editor https://www.youtube.com/watch?v=Dd-x7kHCc44
+
 * 13 | Understanding how sed works
 
 - 1 https://www.youtube.com/watch?v=l0mKlIswojA

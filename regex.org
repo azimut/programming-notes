@@ -1,2 +1,5 @@
+- https://en.wikipedia.org/wiki/Regular_expression
 - https://en.wikibooks.org/wiki/Regular_Expressions/POSIX_Basic_Regular_Expressions
 - debug https://regex101.com/
+- * zero or more, aka Kleene star
+- + one or more, aka Kleene plus

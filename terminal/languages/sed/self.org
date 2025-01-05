@@ -26,17 +26,28 @@
 - there is a special buffer called =hold space= used by some commands to hold and accumulate text between /cycles/
 - check out ~man sed~ or the more complete ~info sed~
 
-#+CAPTION: structure of a sed script
-#+begin_src sed
-  [address]command        # single command or
-  address { cmd1; cmd2; } # multiple, cannot have a space before ";"
-#+end_src
+** script
+
+- the "body of a loop" that iterates through lines
+- each line of a script is a pattern-action pair (aka a conditional statement)
+  #+begin_src sed
+    [address]command        # single command or
+    address { cmd1; cmd2; } # multiple, cannot have a space before ";"
+  #+end_src
+
+** operations
+
+- made of commands
+- applied over the /pattern space/
+- by default, after the operations runs
+  - sed outputs the /pattern space/
+  - and begins the /cycle/ again with the next line
 
 ** addresses
 
 |---------+---------+--------------------------------------------|
 |   <c>   |   <c>   |                                            |
-|  addr   |  mnemo  | applied to                                 |
+|         |  mnemo  | applied to                                 |
 |---------+---------+--------------------------------------------|
 |         |  empty  | all lines                                  |
 |    N    |  line   | line N (of each file)                      |
@@ -48,74 +59,76 @@
 |    $    |  last   | last line                                  |
 | /regex/ |  match  | lines that match regex                     |
 |---------+---------+--------------------------------------------|
+- line numbers start at 1(one)
 - can mix-up line number and regex
 - /aregex/
   - supports arbitrary characters as delimitators, with a backslash for the left one
   - \:aregex:
 
 ** commands
-- 25 commands
-- Might take an additional (1 or 2) =address=
+- there are 25 commands
+- might take an additional (1 or 2) =address=
 - use {} to group different commands to the same OR different address
 - can separate commands with either
+  * new lines
   * cmd1;cmd2
   * -e cmd2 -e cmd2
-|---------+--------------+--------------------------------------------------------------------------------|
-|     <r> | mnemonic     | description                                                                    |
-|---------+--------------+--------------------------------------------------------------------------------|
-|       q | quit         |                                                                                |
-|       d | delete       | the /pattern space/                                                            |
-|       D | delete       | only the first line from the /pattern space/, and run again                    |
-|       n | next         | reads   the next line into the /pattern space/ AND prints previous value there |
-|       N | next         | appends the next line into the /pattern space/ in a new line                   |
-|       p | print        | the /pattern space/                                                            |
-|       P | print        | the first line on the /pattern space/                                          |
-|       = |              | prints the current line number plus a new line                                 |
-|       y |              | /srcstr/dststr/ (tr)ansliterates src by dst                                    |
-|       l |              | list the /pattern space/ unambigously, nice for debugging                      |
-|---------+--------------+--------------------------------------------------------------------------------|
-|       r | reads        | from given filepath                                                            |
-|       w | writes       | to   given filepath                                                            |
-|---------+--------------+--------------------------------------------------------------------------------|
-|       b | branch       | jump to given tag, to the end of script if none given                          |
-|       t | branch cond. | jump to given tag, IF previous substitution succeded                           |
-|       T | branch cond. | jump to given tag, IF previous substitution failed                             |
-|---------+--------------+--------------------------------------------------------------------------------|
-| [line]a |              | appends, after current /pattern space/                                         |
-| [line]i |              | inserts, before current /pattern space/                                        |
-| [addr]c |              | change, replaces current /pattern space/ with given argument                   |
-|---------+--------------+--------------------------------------------------------------------------------|
-|       s |              | /pattern/replacement/flags                                                     |
-|         |              | uses address for pattern if missing                                            |
-|         |              | replacement can be ("&" /pattern/ matched, or \N where N is the N-match group) |
-|         |              | [w FILE,g,p,I,NUMBEROFMATCH]                                                   |
-|         |              | hk                                                                             |
-|---------+--------------+--------------------------------------------------------------------------------|
-|       h | hold         | copy     pattern -> hold                                                       |
-|       H | hold         | append \npattern -> hold                                                       |
-|       g | get          | copy        hold -> pattern                                                    |
-|       G | get          | append    \nhold -> pattern                                                    |
-|       x | exchange     | aka swap content between /hold space/ and /pattern space/                      |
-|---------+--------------+--------------------------------------------------------------------------------|
+|---------+-------------+----------------------------------------------------------------------------|
+|   <c>   |     <c>     |                                                                            |
+|         |    name     | description                                                                |
+|---------+-------------+----------------------------------------------------------------------------|
+|    q    |    quit     | stop processing lines, if given, exit with given exit code                 |
+|    d    |   delete    | the /pattern space/                                                        |
+|    D    |   delete    | only the first line from the /pattern space/, and run again                |
+|    n    |    next     | reads   the next line into the /pattern space/ AND prints old value there  |
+|    N    |    next     | appends the next line into the /pattern space/ in a new line               |
+|    p    |    print    | the /pattern space/                                                        |
+|    P    |    print    | the first line on the /pattern space/                                      |
+|    =    |             | prints the current line number plus a new line                             |
+|    y    |             | /srcstr/dststr/ (tr)ansliterates src by dst                                |
+|    l    |    list     | list the /pattern space/ unambigously, nice for debugging                  |
+|    e    |   execute   | returns shell output after executing given shell command                   |
+|---------+-------------+----------------------------------------------------------------------------|
+|    r    |    reads    | from given filepath                                                        |
+|    w    |   writes    | to   given filepath                                                        |
+|---------+-------------+----------------------------------------------------------------------------|
+|    b    |   branch    | jump to given tag, to the end of script if none given                      |
+|    t    | test branch | jump to given tag, IF previous substitution succeded                       |
+|    T    | test branch | jump to given tag, IF previous substitution failed                         |
+|---------+-------------+----------------------------------------------------------------------------|
+| [line]a |   append    | after current /pattern space/                                              |
+| [line]i |   insert    | before current /pattern space/                                             |
+| [addr]c |   change    | replaces current /pattern space/ with given argument                       |
+|---------+-------------+----------------------------------------------------------------------------|
+|    s    | substitute  | /pattern/replacement/flags                                                 |
+|         |             | uses address for pattern if missing                                        |
+|         |             | replacement can be: "&" /pattern/ matched, \N where N is the N-match group |
+|         |             | [w FILE,g,p,I,NUMBEROFMATCH]                                               |
+|         |             | hk                                                                         |
+|---------+-------------+----------------------------------------------------------------------------|
+|    h    |    hold     | copy     pattern -> hold                                                   |
+|    H    |    hold     | append \npattern -> hold                                                   |
+|    g    |     get     | copy        hold -> pattern                                                |
+|    G    |     get     | append    \nhold -> pattern                                                |
+|    x    |  exchange   | aka swap content between /hold space/ and /pattern space/                  |
+|---------+-------------+----------------------------------------------------------------------------|
 
-** script
-- a series of operations/actions
-- the "body of a loop" that iterates through lines
-- each line of a script is a pattern-action pair
-  aka a conditional statement
-** operations
-- of a command
-- applied over the /pattern space/
-- by default, after run, sed output the /pattern space/
-- and begins the /cycle/ again with the next line
 * flags
-|----------------+---------------------------------------------------------|
-| -e script      | inline script                                           |
-| -f script-file | path to script-file                                     |
-| -n             | only output via the *p* command                         |
-| -i             | inplace edit                                            |
-| -i.bkp         | inplace edit, saves old version with the .bkp extension |
-|----------------+---------------------------------------------------------|
+|----+--------------------+--------+---------------------------------------------------------|
+| -e | --expression       | script | inline script                                           |
+| -f | --file             | file   | path to script file                                     |
+| -n | --quiet ¦ --silent |        | output only via the *p* command                         |
+| -i | --in-place         |        | inplace edit                                            |
+| -i | --in-place         | .bkp   | inplace edit, saves old version with the .bkp extension |
+| -E | --regexp-extended  |        | enables extended regex, instead of default posix        |
+| -u | --unbuffered       |        | flushes output more often                               |
+| -z | --null-data        |        | separate by NUL characters                              |
+| -s | --separate         |        | consider files as separate                              |
+|    | --sandbox          |        | disable e/r/w commands                                  |
+|    | --posix            |        | disable GNU extensions                                  |
+|    | --debug            |        | annotate execution                                      |
+|    | --follow-symlinks  |        | when doing (-i)nplace editing                           |
+|----+--------------------+--------+---------------------------------------------------------|
 
 
 * snippets
@@ -162,9 +175,13 @@ https://sed.sourceforge.io/#scripts
   - rot13 https://literateprograms.org/rot13__sed_.html
 ** remove the last 10 lines of a file
 
-  https://stackoverflow.com/questions/13380607/how-to-use-sed-to-remove-the-last-n-lines-of-a-file/13380679
+https://stackoverflow.com/questions/13380607/how-to-use-sed-to-remove-the-last-n-lines-of-a-file/13380679
+#+begin_src sh
   sed -i -n -e :a -e '1,10!{P;N;D;};N;ba' file.txt
+#+end_src
 
+* gotchas
+- does NOT follow symlinks for inplace edit by default, unless ~--follow-symlinks~
 * codebases
 
 - debugger https://github.com/aureliojargas/sedsed
