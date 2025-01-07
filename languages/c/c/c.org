@@ -1,6 +1,6 @@
 - https://en.wikipedia.org/wiki/C_(programming_language)
   - 1972
-  - Dennis Ritchie - Brian Kernighan (1978 Book)
+  - Dennis Ritchie - Brian Kernighan (for 1978 Book)
 
 * Language
 
@@ -350,6 +350,9 @@ https://0x00sec.org/t/remote-shells-part-i/269/1
   - https://github.com/tendra/tendra/wiki/About
 * Codebases
 
+- https://causal.agency/
+  - https://causal.agency/bin/
+  - libcurl https://causal.agency/bin/title.html
 - 100rabbits
   - https://git.sr.ht/~rabbits/
   - https://100r.co/site/projects.html

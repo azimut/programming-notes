@@ -191,16 +191,16 @@ https://stackoverflow.com/questions/13380607/how-to-use-sed-to-remove-the-last-n
 
 * codebases
 
-- https://rosettacode.org/wiki/Category:Sed
-- https://literateprograms.org/category_programming_language_sed.html
-  - rot13 https://literateprograms.org/rot13__sed_.html
-  - soundex (hashing) https://literateprograms.org/soundex__sed_.html
-- scripts https://sed.sourceforge.io/#scripts
-- scripts | seder's grab bag https://sed.sourceforge.io/grabbag/scripts/
-- debugger https://github.com/SoptikHa2/desed
-- debugger https://github.com/aureliojargas/sedsed
-- bach prelude https://github.com/laserbat/bach.sed https://clyp.it/dqgahq1x
 - https://github.com/linguisticmind/search-in-subs
+- bach prelude https://github.com/laserbat/bach.sed https://clyp.it/dqgahq1x
+- scripts
+  - https://sed.sourceforge.io/#scripts
+  - https://sed.sourceforge.io/grabbag/scripts/
+  - https://rosettacode.org/wiki/Category:Sed
+  - https://literateprograms.org/category_programming_language_sed.html
+- debugger
+  - https://github.com/SoptikHa2/desed
+  - https://github.com/aureliojargas/sedsed
 - games
   - mario https://github.com/chebykinn/sedmario
   - tetris https://github.com/uuner/sedtris

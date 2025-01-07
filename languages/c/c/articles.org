@@ -1,3 +1,7 @@
+- https://text.causal.agency/003-pleasant-c.txt
+- https://text.causal.agency/005-testing-c.txt
+- https://text.causal.agency/006-some-libs.txt
+- https://text.causal.agency/020-c-style.txt
 - https://sqlite.org/whyc.html
 - sockets https://roscas.github.io/reseau/Linux-Sockets-CheatSheet.html
 - https://www.deusinmachina.net/p/c-strings-and-my-slow-descent-to
