@@ -3,6 +3,7 @@
 * language
 
 - OPINION: one way that shell scripts hide/handle complexity is by transforming data through pipes. What in other programming languages might need nested function calls or temporary variables. Pipes are, in a way, similar to method chaining.
+
 * snippets
 
 - Sleep until host is up:
@@ -10,3 +11,10 @@
     until ssh root@10.10.10.10; do sleep 3; done
   #+end_src
 
+|-----------+-------------------+-----------|
+|           |               <r> |    <c>    |
+| head -n 5 |     first 5 lines |   take    |
+| tail -n+5 | but first 5 lines |   drop    |
+| tail -n 5 |      last 5 lines | take-last |
+| head -n-5 |  but last 5 lines | drop-last |
+|-----------+-------------------+-----------|

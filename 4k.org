@@ -16,6 +16,7 @@
 - Ulisp
   - ray tracing on microcontrollers http://www.ulisp.com/show?2NWA
 - C
+  - 20 https://journal.lunar.sh/2020/tiny-linux-c-binaries.html
   - Tool: Compiler
     https://bellard.org/tcc/
     https://en.wikipedia.org/wiki/Tiny_C_Compiler

@@ -1,3 +1,7 @@
+- http://infolab.stanford.edu/~ullman/focs.html#pdfs
+- Book: http://c-faq.com/
+- C Books Reviews http://knking.com/recbooks/c.html
+
 * 02 | Expert C Programming
 ** Introduction
 - some people do: if(3==i); in order to catch if they miss a =

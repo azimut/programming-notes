@@ -1,3 +1,4 @@
+- https://github.com/AnthonyCalandra/modern-cpp-features
 - codebases https://bisqwit.iki.fi/jutut/kuvat/programming_examples/
 - SerenityOS https://github.com/awesomekling/serenity
 - Books https://stackoverflow.com/questions/388242/the-definitive-c-book-guide-and-list/388282#388282

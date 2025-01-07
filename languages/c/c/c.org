@@ -1,45 +1,180 @@
-- c2x https://habr.com/en/company/badoo/blog/512802/
-- clangd
-  - autoformat configuration options https://bcain-llvm.readthedocs.io/projects/clang/en/latest/ClangFormatStyleOptions/
-- SDL https://nullprogram.com/blog/2023/01/08/
-- https://github.com/hardik05/Damn_Vulnerable_C_Program
-- https://github.com/microsoft/checkedc
-- talks https://nullprogram.com/blog/2018/11/21/
-- https://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html
-- A Guide to Undefined Behavior in C and C++, Part 1
-  https://blog.regehr.org/archives/213
-- const https://softwareengineering.stackexchange.com/questions/204500/when-and-for-what-purposes-should-the-const-keyword-be-used-in-c-for-variables
-- https://gjbex.github.io/DPD-online-book/CodingBestPractices/ErrorHandling/error_handling_c/
-- asan, ubsan, valgrind, fuzzers, libcheck, pvs
-- http://infolab.stanford.edu/~ullman/focs.html#pdfs
-- Book: http://c-faq.com/
-- C Books Reviews http://knking.com/recbooks/c.html
-- Code: http://bxr.su/OpenBSD/
-- Example: https://github.com/ltratt/hk/blob/18fcaea3e83f0c00aaef13b2882d5fa233d85de2/hk.c
-- Benchmark: https://www.wilfred.me.uk/blog/2014/10/20/the-fastest-bigint-in-the-west/
-- Benchmark: FFI https://github.com/dyu/ffi-overhead
-  - Golang is 40x slower than C
-  - Haskell,Ocaml(opt),Rust are on par with C
-  - Ocaml(C) is 4x slower
-  - LuaJit is faster than C, https://github.com/dyu/ffi-overhead/issues/2#issuecomment-405834411
-    "Using JITing to skip PLT inderection"
-    "Same on C would be -fno-plt"
-- https://fastcompression.blogspot.com/2019/01/writing-safer-c-code.html
-- https://github.com/AnthonyCalandra/modern-cpp-features
-- https://github.com/gerasdf/InsecureProgramming/
-- https://github.com/rhysd/vim-clang-format
-- https://not.cafe/2020/10/12/getting-started-with-c-programming.html
-- https://tek256.com/posts/code-hardening/
-- http://blog.lujun9972.win/emacs-document/blog/2018/03/22/emacs-as-a-c++-ide/index.html
-  https://vxlabs.com/2016/04/11/step-by-step-guide-to-c-navigation-and-completion-with-emacs-and-the-clang-based-rtags/
+- https://en.wikipedia.org/wiki/C_(programming_language)
+  - 1972
+  - Dennis Ritchie - Brian Kernighan (1978 Book)
 
 * Language
+
+- const https://softwareengineering.stackexchange.com/questions/204500/when-and-for-what-purposes-should-the-const-keyword-be-used-in-c-for-variables
 - main() entry point for a program that's executed in a hosted environment
   - a *return* from it, is equivalent to calling *exit*
 - Execution environments
   - freestanding: no OS, embedded programming
   - hosted: cli or from other programs
-** Sockets
+- Behavior
+  1) Defined
+  2) Unspecified
+  3) Undefined
+  4) Locale-Specific
+
+** Types
+
+- boolean, character, arithmetic, void
+- union
+
+- scope of identifiers
+  |-----------+----------------------------------------------------|
+  |           | declared...                                        |
+  |-----------+----------------------------------------------------|
+  | file      | outside a block or param list                      |
+  | block     | inside a block or param list                       |
+  | prototype | on function prototype params                       |
+  | function  | on function definition, between {}, only labels(?) |
+  |-----------+----------------------------------------------------|
+
+- type qualifiers
+  |-----------------------+------------------------------------------------------------------------|
+  | const                 | unmodifiable memory                                                    |
+  | static volatile       | mmap Input/Output                                                      |
+  | static const volative | mmap Input                                                             |
+  | restrict              | optimization on pointers, when they are the unique point to the object |
+  |-----------------------+------------------------------------------------------------------------|
+
+- storage *duration* (lifetime of objects)
+  |-----------+---------+-----------------------------------------------------------------------|
+  |           | life    | default when declared on                                              |
+  |-----------+---------+-----------------------------------------------------------------------|
+  | automatic | block   | block scope or function parameter                                     |
+  | static    | program | file scope, must be initialized with a constant value, NOT a variable |
+  | thread    |         |                                                                       |
+  | allocated |         | (dynamic allocated)                                                   |
+  |-----------+---------+-----------------------------------------------------------------------|
+
+*** string
+
+#+begin_src c
+  char* foo = "hello" "world"; // "helloworld"
+  #define STR2(x)
+  #define STR(x) STR2(x)
+  #define WIDTH 300
+  #define HEIGHT 200
+  printf("%s\n", STR(WIDTH) "x" STR(HEIGHT)); // compile time int->string casting
+#+end_src
+
+*** struct
+
+#+begin_src c
+  typedef struct { // typedef struct myStruct ?????
+    unsigned char c1;
+    unsigned char c2;
+  } myStruct;
+  myStruct _m1 = {0};
+#+end_src
+
+*** enum
+
+#+begin_src c
+  typedef enum {
+    COOKIES_OREO = 0,
+    COOKIES_VANILLA,
+  } Cookies;
+
+  enum RecipeType { maindish, sidedish, sweet, topping };
+#+end_src
+
+*** arrays
+
+- globals and static are _automatically_ initialized to zero
+- arrays as local, either
+  #+begin_src c
+    int coll2[1024] = {0};
+    memset(coll2, 0, 1024);
+  #+end_src
+- arrays of structs
+  #+begin_src c
+    typedef struct {
+      unsigned char a;
+      unsigned char b;
+      unsigned char c;
+    } user_struct;
+    user_struct arr[5] = {0};
+  #+end_src
+- arrays in structs can be initialized... TODO?
+
+** Standard Library
+- https://en.cppreference.com/w/c/header
+- https://en.wikibooks.org/wiki/Category:Book:C_Programming
+|----+---------------+--------------+---------------------------------------------------------------------------------------------------------|
+|    |           <r> |     <c>      |                                                                                                         |
+| C? |        HEADER |      fn      |                                                                                                         |
+|----+---------------+--------------+---------------------------------------------------------------------------------------------------------|
+|    |      assert.h |              | Conditionally compiled macro that compares its argument to zero                                         |
+| 99 |     complex.h |              | ~Complex number~ arithmetic                                                                             |
+|    |       ctype.h |              | Functions to determine the type contained in ~character~ data                                           |
+|    |       errno.h |              | Macros reporting error conditions                                                                       |
+| 99 |        fenv.h |              | Floating-point environment                                                                              |
+|    |       float.h |              | Limits of floating-point types                                                                          |
+| 99 |    inttypes.h |              | Format conversion of integer types                                                                      |
+| 95 |      iso646.h |              | Alternative operator spellings                                                                          |
+|    |      limits.h |              | Ranges of integer types                                                                                 |
+|    |      locale.h |              | Localization utilities                                                                                  |
+|    |        [[https://en.wikibooks.org/wiki/C_Programming/math.h][math.h]] |     fabs     | Common mathematics functions                                                                            |
+|    |       paths.h |              | constants with string paths of common LINUX files                                                       |
+|    |      setjmp.h |              | Nonlocal jumps                                                                                          |
+|    |      signal.h |              | Signal handling                                                                                         |
+| 11 |    stdalign.h |              | alignas and alignof convenience macros                                                                  |
+|    |      stdarg.h |              | Allows variable arguments functions                                                                     |
+| 11 |   stdatomic.h |              | Atomic operations                                                                                       |
+| 23 |      stdbit.h |              | Macros to work with the byte and bit representations of types                                           |
+| 99 |     stdbool.h |              | Macros for boolean type                                                                                 |
+| 23 |   stdckdint.h |              | macros for performing checked integer arithmetic                                                        |
+|----+---------------+--------------+---------------------------------------------------------------------------------------------------------|
+|    |      stddef.h |     NULL     | Common macro definitions                                                                                |
+|    |               |    size_t    |                                                                                                         |
+|----+---------------+--------------+---------------------------------------------------------------------------------------------------------|
+| 99 |      [[https://en.wikibooks.org/wiki/C_Programming/stdint.h][stdint.h]] | [u]int<n>_t  | Fixed-width integer types                                                                               |
+|    |               |  INT<n>_MAX  |                                                                                                         |
+|----+---------------+--------------+---------------------------------------------------------------------------------------------------------|
+|    |       [[https://en.wikibooks.org/wiki/C_Programming/stdio.h][stdio.h]] |              | Input/output. Most return EOF (-1) on error.                                                            |
+|    |               |    fopen     |                                                                                                         |
+|    |               |    fread     |                                                                                                         |
+|    |               |    fgetc     |                                                                                                         |
+|    |               |   getchar    |                                                                                                         |
+|    |               |    scanf     |                                                                                                         |
+|    |               |    printf    | returns the nr of chars printed, or negative number on error                                            |
+|    |               |     puts     |                                                                                                         |
+|    |               |    remove    | erases a file                                                                                           |
+|    |               |    rename    | renames a file                                                                                          |
+|    |               |   tmpfile    | pointer to tmp file                                                                                     |
+|----+---------------+--------------+---------------------------------------------------------------------------------------------------------|
+|    |      [[https://en.wikibooks.org/wiki/C_Programming/stdlib.h][stdlib.h]] |    size_t    | General utilities: memory management, program utilities, string conversions, random numbers, algorithms |
+|    |               |    malloc    |                                                                                                         |
+|    |               |    getenv    |                                                                                                         |
+|    |               |    system    |                                                                                                         |
+|    |               |     exit     |                                                                                                         |
+|    |               |   bsearch    |                                                                                                         |
+|    |               |    qsort     |                                                                                                         |
+|    |               |     abs      |                                                                                                         |
+|    |               |     div      |                                                                                                         |
+|    |               |    random    |                                                                                                         |
+|    |               |     ato?     |                                                                                                         |
+|    |               |    strto?    |                                                                                                         |
+|    |               | EXIT_SUCCESS |                                                                                                         |
+|    |               | EXIT_FAILURE |                                                                                                         |
+|----+---------------+--------------+---------------------------------------------------------------------------------------------------------|
+| 11 | stdnoreturn.h |              | noreturn convenience macro                                                                              |
+|----+---------------+--------------+---------------------------------------------------------------------------------------------------------|
+|    |      [[https://en.wikibooks.org/wiki/C_Programming/string.h][string.h]] |    size_t    | String handling                                                                                         |
+|    |               |    memcpy    |                                                                                                         |
+|----+---------------+--------------+---------------------------------------------------------------------------------------------------------|
+| 99 |      tgmath.h |              | Type-generic math (macros wrapping math.h and complex.h)                                                |
+| 11 |     threads.h |              | Thread library                                                                                          |
+|    |        time.h |              | Time/date utilities                                                                                     |
+| 11 |       uchar.h |              | UTF-16 and UTF-32 character utilities                                                                   |
+| 95 |       wchar.h |              | Extended multibyte and wide character utilities                                                         |
+| 95 |      wctype.h |              | Functions to determine the type contained in wide character data                                        |
+|----+---------------+--------------+---------------------------------------------------------------------------------------------------------|
+* Sockets
+** basic
 
 - CLIENT
   s = socket()
@@ -53,155 +188,8 @@
   listen(s, BACKLOG)
   accept(s) // wait
 
-** Types
-
-- =string=
-  #+begin_src c
-    char* foo = "hello" "world"; // "helloworld"
-
-    #define STR2(x)
-    #define STR(x) STR2(x)
-    #define WIDTH 300
-    #define HEIGHT 200
-    printf("%s\n", STR(WIDTH) "x" STR(HEIGHT)); // compile time int->string casting
-  #+end_src
-
-- =struct= intialization
-  #+begin_src c
-    typedef struct {
-      unsigned char c1;
-      unsigned char c2;
-    } myStruct;
-
-    myStruct _m1 = {0};
-  #+end_src
-
-- =arrays= initialization
-  - globals and static are _automatically_ initialized to zero
-  - arrays as local, either
-    #+begin_src c
-      int coll2[1024] = {0};
-      memset(coll2, 0, 1024);
-    #+end_src
-  - arrays of structs
-    #+begin_src c
-      typedef struct {
-        unsigned char a;
-        unsigned char b;
-        unsigned char c;
-      } user_struct;
-      user_struct arr[5] = {0};
-    #+end_src
-  - arrays in structs can be initialized... TODO?
-
-** Standard Library
-- https://en.cppreference.com/w/c/header
-- https://en.wikibooks.org/wiki/Category:Book:C_Programming
-|---------------+--------------+----+---------------------------------------------------------------------------------------------------------|
-|           <r> |              |    |                                                                                                         |
-|        HEADER | fn           | C? |                                                                                                         |
-|---------------+--------------+----+---------------------------------------------------------------------------------------------------------|
-|      assert.h |              |    | Conditionally compiled macro that compares its argument to zero                                         |
-|     complex.h |              | 99 | Complex number arithmetic                                                                               |
-|       ctype.h |              |    | Functions to determine the type contained in character data                                             |
-|       errno.h |              |    | Macros reporting error conditions                                                                       |
-|        fenv.h |              | 99 | Floating-point environment                                                                              |
-|       float.h |              |    | Limits of floating-point types                                                                          |
-|    inttypes.h |              | 99 | Format conversion of integer types                                                                      |
-|      iso646.h |              | 95 | Alternative operator spellings                                                                          |
-|      limits.h |              |    | Ranges of integer types                                                                                 |
-|      locale.h |              |    | Localization utilities                                                                                  |
-|        [[https://en.wikibooks.org/wiki/C_Programming/math.h][math.h]] | fabs         |    | Common mathematics functions                                                                            |
-|       paths.h |              |    | constants with string paths of common LINUX files                                                       |
-|      setjmp.h |              |    | Nonlocal jumps                                                                                          |
-|      signal.h |              |    | Signal handling                                                                                         |
-|    stdalign.h |              | 11 | alignas and alignof convenience macros                                                                  |
-|      stdarg.h |              |    | Allows variable arguments functions                                                                     |
-|   stdatomic.h |              | 11 | Atomic operations                                                                                       |
-|      stdbit.h |              | 23 | Macros to work with the byte and bit representations of types                                           |
-|     stdbool.h |              | 99 | Macros for boolean type                                                                                 |
-|   stdckdint.h |              | 23 | macros for performing checked integer arithmetic                                                        |
-|---------------+--------------+----+---------------------------------------------------------------------------------------------------------|
-|      stddef.h | NULL         |    | Common macro definitions                                                                                |
-|               | size_t       |    |                                                                                                         |
-|---------------+--------------+----+---------------------------------------------------------------------------------------------------------|
-|      [[https://en.wikibooks.org/wiki/C_Programming/stdint.h][stdint.h]] | [u]int<n>_t  | 99 | Fixed-width integer types                                                                               |
-|               | INT<n>_MAX   |    |                                                                                                         |
-|---------------+--------------+----+---------------------------------------------------------------------------------------------------------|
-|       [[https://en.wikibooks.org/wiki/C_Programming/stdio.h][stdio.h]] |              |    | Input/output. Most return EOF (-1) on error.                                                            |
-|               | fopen        |    |                                                                                                         |
-|               | fread        |    |                                                                                                         |
-|               | fgetc        |    |                                                                                                         |
-|               | getchar      |    |                                                                                                         |
-|               | scanf        |    |                                                                                                         |
-|               | printf       |    | returns the nr of chars printed, or negative number on error                                            |
-|               | puts         |    |                                                                                                         |
-|               | remove       |    | erases a file                                                                                           |
-|               | rename       |    | renames a file                                                                                          |
-|               | tmpfile      |    | pointer to tmp file                                                                                     |
-|---------------+--------------+----+---------------------------------------------------------------------------------------------------------|
-|      [[https://en.wikibooks.org/wiki/C_Programming/stdlib.h][stdlib.h]] | size_t       |    | General utilities: memory management, program utilities, string conversions, random numbers, algorithms |
-|               | malloc       |    |                                                                                                         |
-|               | getenv       |    |                                                                                                         |
-|               | system       |    |                                                                                                         |
-|               | exit         |    |                                                                                                         |
-|               | bsearch      |    |                                                                                                         |
-|               | qsort        |    |                                                                                                         |
-|               | abs          |    |                                                                                                         |
-|               | div          |    |                                                                                                         |
-|               | random       |    |                                                                                                         |
-|               | ato?         |    |                                                                                                         |
-|               | strto?       |    |                                                                                                         |
-|               | EXIT_SUCCESS |    |                                                                                                         |
-|               | EXIT_FAILURE |    |                                                                                                         |
-|---------------+--------------+----+---------------------------------------------------------------------------------------------------------|
-| stdnoreturn.h |              | 11 | noreturn convenience macro                                                                              |
-|---------------+--------------+----+---------------------------------------------------------------------------------------------------------|
-|      [[https://en.wikibooks.org/wiki/C_Programming/string.h][string.h]] | size_t       |    | String handling                                                                                         |
-|               | memcpy       |    |                                                                                                         |
-|---------------+--------------+----+---------------------------------------------------------------------------------------------------------|
-|      tgmath.h |              | 99 | Type-generic math (macros wrapping math.h and complex.h)                                                |
-|     threads.h |              | 11 | Thread library                                                                                          |
-|        time.h |              |    | Time/date utilities                                                                                     |
-|       uchar.h |              | 11 | UTF-16 and UTF-32 character utilities                                                                   |
-|       wchar.h |              | 95 | Extended multibyte and wide character utilities                                                         |
-|      wctype.h |              | 95 | Functions to determine the type contained in wide character data                                        |
-|---------------+--------------+----+---------------------------------------------------------------------------------------------------------|
-* Codebases
-- https://github.com/curl/trurl/blob/master/trurl.c
-- https://github.com/gsingh93/display-manager
-- https://github.com/lpereira/lwan
-* Tools
-** Editors
-- Visual Studio https://visualstudio.microsoft.com/
-- Eclipse CDT https://projects.eclipse.org/projects/tools.cdt
-- CLion https://www.jetbrains.com/clion/
-  - Paid
-- Code::Blocks https://www.codeblocks.org/
-  - 2020 last version
-* Libraries
-- 0.9K https://github.com/MrFrenik/gunslinger
-  C99, header-only framework for games and multimedia applications
-- Webserver https://mongoose.ws/
-- (3K) minimal cross-platform standalone C headers
-  https://github.com/floooh/sokol
-- (800) math lib https://github.com/HandmadeMath/Handmade-Math
-- https://github.com/oz123/awesome-c
-- https://wiki.gnome.org/Projects/GLib
-- https://github.com/clibs
-- (893) https://github.com/tezc/sc
-- (80) https://github.com/ludocode/pottery
-- (24) https://github.com/begriffs/libderp
-- (10) https://github.com/lelanthran/libds
-- (480) coroutines https://github.com/tidwall/neco
-* Sanitizers
-- Static http://splint.org/
-- https://www.youtube.com/watch?v=Q2C2lP8_tNE
-- https://github.com/google/sanitizers/wiki/AddressSanitizer
-- https://valgrind.org/docs/manual/quick-start.html
-- https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html
-* 0x00sec - Remote Shells
-**   I Use Cases
+** 0x00sec - Remote Shells
+***   I Use Cases
 https://0x00sec.org/t/remote-shells-part-i/269/1
 
 - Remote Access:
@@ -292,7 +280,7 @@ https://0x00sec.org/t/remote-shells-part-i/269/1
   }
 #+end_src
 
-**  II Crypt your link
+***  II Crypt your link
 - https://0x00sec.org/t/remote-shells-part-ii-crypt-your-link/306
 - https://en.wikipedia.org/wiki/Loop_unrolling
 
@@ -319,33 +307,88 @@ https://0x00sec.org/t/remote-shells-part-i/269/1
 
 - We use stdin socket as the input socket for async_read() on main()
 
-** III Shell Access your Phone
+*** III Shell Access your Phone
 - setsockopt() - SO_REUSEADDR
-* Projects
-- http://www.tendra.org/tdfc2-config/#S11.2
-  https://github.com/tendra/tendra/wiki/About
-- https://github.com/isometimes/rpi4-osdev
-** clang-format
-  https://emacs.stackexchange.com/questions/55635/how-can-i-set-up-clang-format-in-emacs
-  clang-format -style=llvm -dump-config > .clang-format
-* 6.S081: Learning by doing
-Catalog description: Design and implementation of operating systems,
-and their use as a foundation for systems programming. Topics include
-virtual memory; file systems; threads; context switches; kernels;
-interrupts; system calls; interprocess communication; coordination,
-and interaction between software and hardware. A multi-processor
-operating system for RISC-V, xv6, is used to illustrate these
-topics. Individual laboratory assignments involve extending the xv6
-operating system, for example to support sophisticated virtual memory
-features and networking.
 
-You may wonder why we are studying xv6, an operating system that
-resembles Unix v6, instead of the latest and greatest version of
-Linux, Windows, or BSD Unix. xv6 is big enough to illustrate the basic
-design and implementation ideas in operating systems. On the other
-hand, xv6 is far smaller than any modern production O/S, and
-correspondingly easier to understand. xv6 has a structure similar to
-many modern operating systems; once you've explored xv6 you will find
-that much is familiar inside kernels such as Linux.
-- https://pdos.csail.mit.edu/6.S081/2021/schedule.html
-- https://news.ycombinator.com/item?id=30094376
+* (in)security
+- A Guide to Undefined Behavior in C and C++, Part 1
+  https://blog.regehr.org/archives/213
+- https://github.com/microsoft/checkedc
+- https://fastcompression.blogspot.com/2019/01/writing-safer-c-code.html
+- https://github.com/gerasdf/InsecureProgramming/
+- https://github.com/hardik05/Damn_Vulnerable_C_Program
+** Sanitizers
+- asan, ubsan, valgrind, fuzzers, libcheck, pvs
+- https://tek256.com/posts/code-hardening/
+- Static http://splint.org/
+- https://www.youtube.com/watch?v=Q2C2lP8_tNE
+- https://github.com/google/sanitizers/wiki/AddressSanitizer
+- https://valgrind.org/docs/manual/quick-start.html
+- https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html
+* Tools
+- clang-format
+  - https://emacs.stackexchange.com/questions/55635/how-can-i-set-up-clang-format-in-emacs
+    clang-format -style=llvm -dump-config > .clang-format
+** Editors
+- emacs
+  - http://blog.lujun9972.win/emacs-document/blog/2018/03/22/emacs-as-a-c++-ide/index.html
+  - https://vxlabs.com/2016/04/11/step-by-step-guide-to-c-navigation-and-completion-with-emacs-and-the-clang-based-rtags/
+- clangd
+  - autoformat configuration options https://bcain-llvm.readthedocs.io/projects/clang/en/latest/ClangFormatStyleOptions/
+  - vim https://github.com/rhysd/vim-clang-format
+- Visual Studio https://visualstudio.microsoft.com/
+- Eclipse CDT https://projects.eclipse.org/projects/tools.cdt
+- CLion https://www.jetbrains.com/clion/
+  - Paid
+- Code::Blocks https://www.codeblocks.org/
+  - 2020 last version
+** Compilers
+- gcc https://gcc.gnu.org/
+- clang https://clang.llvm.org/
+- tcc
+  - http://www.tendra.org/tdfc2-config/#S11.2
+  - https://github.com/tendra/tendra/wiki/About
+* Codebases
+
+- 100rabbits
+  - https://git.sr.ht/~rabbits/
+  - https://100r.co/site/projects.html
+  - ME: small sources, that do a lot of cool things
+  - https://github.com/hundredrabbits/Grimgrains/blob/main/src/main.c
+  - https://git.sr.ht/~rabbits/modal/tree/master/item/src/modal.c
+
+- https://github.com/isometimes/rpi4-osdev
+- hk: Set temporary X11 hotkeys https://github.com/ltratt/hk/
+- Code: http://bxr.su/OpenBSD/
+- https://github.com/curl/trurl/blob/master/trurl.c
+- https://github.com/gsingh93/display-manager
+- https://github.com/lpereira/lwan
+* Libraries
+- SDL https://nullprogram.com/blog/2023/01/08/
+- gtk http://web.archive.org/web/20201212201423/https://not.cafe/2020/10/12/getting-started-with-c-programming.html
+
+- 0.9K https://github.com/MrFrenik/gunslinger
+  C99, header-only framework for games and multimedia applications
+- Webserver https://mongoose.ws/
+- (3K) minimal cross-platform standalone C headers
+  https://github.com/floooh/sokol
+- (800) math lib https://github.com/HandmadeMath/Handmade-Math
+- https://github.com/oz123/awesome-c
+- https://wiki.gnome.org/Projects/GLib
+- https://github.com/clibs
+- (893) https://github.com/tezc/sc
+- (80) https://github.com/ludocode/pottery
+- (24) https://github.com/begriffs/libderp
+- (10) https://github.com/lelanthran/libds
+- (480) coroutines https://github.com/tidwall/neco
+* Benchmarks
+- Benchmark: https://www.wilfred.me.uk/blog/2014/10/20/the-fastest-bigint-in-the-west/
+- Benchmark: FFI https://github.com/dyu/ffi-overhead
+  - Golang is 40x slower than C
+  - Haskell,Ocaml(opt),Rust are on par with C
+  - Ocaml(C) is 4x slower
+  - LuaJit is faster than C, https://github.com/dyu/ffi-overhead/issues/2#issuecomment-405834411
+    "Using JITing to skip PLT inderection"
+    "Same on C would be -fno-plt"
+* Gotchas
+- ME: (like bash) small differences can make a lot

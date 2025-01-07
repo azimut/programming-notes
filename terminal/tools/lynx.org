@@ -1,0 +1,32 @@
+- wiki https://en.wikipedia.org/wiki/Libwww
+- wiki https://en.wikipedia.org/wiki/Lynx_(web_browser)
+- 1992 (active)
+- Lou Montulli, Michael Grobe, Charles Rezac
+
+* flags
+|--------------------+-----------------------------------------|
+|                <r> | description                             |
+|--------------------+-----------------------------------------|
+| accept_all_cookies |                                         |
+|         user_agent | UA                                      |
+|              color |                                         |
+|          emacskeys |                                         |
+|--------------------+-----------------------------------------|
+|               dump | dumps formatted html                    |
+|            justify | text justify                            |
+|          nomargins | disable css margins                     |
+|      dont_wrap_pre |                                         |
+|    with_backspaces |                                         |
+|   collapse_br_tags |                                         |
+|   trim_blank_lines |                                         |
+|         force_html | parses as html, regardless of extension |
+|--------------------+-----------------------------------------|
+|             nolist | disable                                 |
+|         =listonly= | ONLY show the list of links             |
+|        =nonumbers= |                                         |
+|      =hiddenlinks= | merge ¦ <listonly> ¦ ignore             |
+|        unique_urls | not applies to image_links              |
+|        image_links |                                         |
+|        list_inline | inlines links with text                 |
+|     =list_decoded= | url decodes links                       |
+|--------------------+-----------------------------------------|

@@ -1,7 +1,37 @@
+- talks https://nullprogram.com/blog/2018/11/21/
+- Course: Defensive Programming and Debugging
+  - https://www.futurelearn.com/courses/defensive-programming-and-debugging
+  - https://gjbex.github.io/Defensive_programming_and_debugging/
+  - https://github.com/gjbex/DPD
 - Channel. https://www.youtube.com/@antirez/videos
 - Channel: https://www.youtube.com/@Mr4thProgramming/videos
 - 15 | Advice for Writing Small Programs in C  https://www.youtube.com/watch?v=eAhWIO1Ra6M
 - tic-tac toe https://www.youtube.com/watch?v=gCVMkKgs3uQ
+- 11 Advanced C Coding For Fun! by Rusty Russell https://www.youtube.com/watch?v=BEQ3sRakIs0
+- 08 Writing application fault handlers by Gilad Ben-Yossef https://bootlin.com/pub/video/2008/ols/ols2008-gilad-ben-yossef-fault-handlers.ogg
+* Course: 6.S081: Learning by doing
+Catalog description: Design and implementation of operating systems,
+and their use as a foundation for systems programming. Topics include
+virtual memory; file systems; threads; context switches; kernels;
+interrupts; system calls; interprocess communication; coordination,
+and interaction between software and hardware. A multi-processor
+operating system for RISC-V, xv6, is used to illustrate these
+topics. Individual laboratory assignments involve extending the xv6
+operating system, for example to support sophisticated virtual memory
+features and networking.
+
+You may wonder why we are studying xv6, an operating system that
+resembles Unix v6, instead of the latest and greatest version of
+Linux, Windows, or BSD Unix. xv6 is big enough to illustrate the basic
+design and implementation ideas in operating systems. On the other
+hand, xv6 is far smaller than any modern production O/S, and
+correspondingly easier to understand. xv6 has a structure similar to
+many modern operating systems; once you've explored xv6 you will find
+that much is familiar inside kernels such as Linux.
+- https://www.youtube.com/playlist?list=PLTsf9UeqkReZHXWY9yJvTwLJWYYPcKEqK
+- https://pdos.csail.mit.edu/6.S081/2021/schedule.html
+- https://news.ycombinator.com/item?id=30094376
+
 * 16 | How I program C                        | Eskil Steenberg
 00:53:00
 - video https://www.youtube.com/watch?v=443UNeGrFoM

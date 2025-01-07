@@ -26,6 +26,9 @@
 - there is a special buffer called =hold space= used by some commands to hold and accumulate text between /cycles/
 - check out ~man sed~ or the more complete ~info sed~
 
+#+ATTR_ORG: :width 550
+[[https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/SedDiagram.jpg/621px-SedDiagram.jpg]]
+
 ** script
 
 - the "body of a loop" that iterates through lines
@@ -73,6 +76,7 @@
   * new lines
   * cmd1;cmd2
   * -e cmd2 -e cmd2
+
 |------------+-------------+---------------------------------------------------------------------|
 |    <c>     |     <c>     |                                                                     |
 |            |    name     | description                                                         |
@@ -186,14 +190,20 @@ https://stackoverflow.com/questions/13380607/how-to-use-sed-to-remove-the-last-n
 #+end_src
 
 * gotchas
+
 - does NOT follow symlinks for inplace edit by default, unless ~--follow-symlinks~
+
 * codebases
 
+- scripts | seder's grab bag https://sed.sourceforge.io/grabbag/scripts/
+- debugger https://github.com/SoptikHa2/desed
 - debugger https://github.com/aureliojargas/sedsed
 - bach prelude https://github.com/laserbat/bach.sed https://clyp.it/dqgahq1x
-- tetris https://github.com/uuner/sedtris
-- chess https://github.com/moldabekov/chess-sed
 - https://github.com/linguisticmind/search-in-subs
-- scripts | seder's grab bag https://sed.sourceforge.io/grabbag/scripts/
-- python interpreter https://github.com/GillesArcas/PythonSed
-- lisp interpreter https://github.com/mb64/sel
+- games
+  - mario https://github.com/chebykinn/sedmario
+  - tetris https://github.com/uuner/sedtris
+  - chess https://github.com/moldabekov/chess-sed
+- interpreters
+  - python https://github.com/GillesArcas/PythonSed
+  - lisp https://github.com/mb64/sel

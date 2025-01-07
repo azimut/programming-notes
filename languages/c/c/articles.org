@@ -1,16 +1,17 @@
 - https://sqlite.org/whyc.html
-- 11 Object-oriented design patterns in the kernel, part 1 https://lwn.net/Articles/444910/
 - sockets https://roscas.github.io/reseau/Linux-Sockets-CheatSheet.html
-- 2010 https://web.archive.org/web/20100715074224/https://www.securecoding.cert.org/confluence/display/seccode/STR05-C.+Use+pointers+to+const+when+referring+to+string+literals
 - https://www.deusinmachina.net/p/c-strings-and-my-slow-descent-to
 - Few lesser known tricks, quirks and features of C https://blog.joren.ga/less-known-c
 - The “Build Your Own Redis” Book Is Completed https://news.ycombinator.com/item?id=34572263
-- Article: 2016 https://matt.sh/howto-c
 - Article: https://suckless.org/coding_style/
-- Article: 2021 - unfashionable C
-  https://www.yodaiken.com/2021/05/21/your-computer-is-a-fast-pdp-11-and-more-on-c-the-c-standard-and-computer-architecture/
-- Article: 2018 - C Is Not a Low-level Language
-  https://queue.acm.org/detail.cfm?id=3212479
+- 10 https://web.archive.org/web/20100715074224/https://www.securecoding.cert.org/confluence/display/seccode/STR05-C.+Use+pointers+to+const+when+referring+to+string+literals
+- 11 Object-oriented design patterns in the kernel, part 1 https://lwn.net/Articles/444910/
+- 11 https://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html
+- 16 https://matt.sh/howto-c
+- 21 unfashionable C https://www.yodaiken.com/2021/05/21/your-computer-is-a-fast-pdp-11-and-more-on-c-the-c-standard-and-computer-architecture/
+- 18 C Is Not a Low-level Language https://queue.acm.org/detail.cfm?id=3212479
+- c2x https://habr.com/en/company/badoo/blog/512802/
+
 * Article: C Runtime Overhead
   http://ryanhileman.info/posts/lib43
   https://news.ycombinator.com/item?id=29783585

@@ -17,6 +17,7 @@
 - 20 | https://ketancmaheshwari.github.io/posts/2020/05/24/SMC18-Data-Challenge-4.html
 - 21 | https://web.archive.org/web/20210505004021/https://portal.drewdevault.com/2021/05/03/awk-is-the-coolest-tool-you-dont-know.gmi
 - 22 | https://benhoyt.com/writings/goawk-compiler-vm/
+- 24 | https://www.raygard.net/awkdoc/pages/awk_parsing_is_tricky.html
 - https://github.com/freznicek/awesome-awk
 
 * 99 | Juergen Kahrs      | Network Administration with AWK

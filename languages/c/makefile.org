@@ -4,7 +4,7 @@
 
 - wiki https://en.wikipedia.org/wiki/Make_(software)
   - Author: Stuart Feldman
-  - 1976-
+  - 1976
 
 - https://github.com/casey/just#what-are-the-idiosyncrasies-of-make-that-just-avoids
   - Needing to use "$$" to use environment variables (?) in recipes
