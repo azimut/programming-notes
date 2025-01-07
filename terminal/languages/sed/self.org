@@ -137,7 +137,6 @@
 
 
 * snippets
-https://sed.sourceforge.io/#scripts
 |-----------------------+---------------+-------------------------------------------------------------------------|
 |          <c>          |      <c>      |                                                                         |
 |                       |     flag      | description                                                             |
@@ -175,9 +174,6 @@ https://sed.sourceforge.io/#scripts
 |        s/.$//         |               | dos2unix, aka CRLF to LF                                                |
 |   /ant/s/needle//g    |               | delete needle on lines containing "ant"                                 |
 |-----------------------+---------------+-------------------------------------------------------------------------|
-#+TBLFM: $1=;n
-- https://literateprograms.org/category_programming_language_sed.html
-  - rot13 https://literateprograms.org/rot13__sed_.html
 
 ** remove the last 15 lines of a file
 
@@ -195,6 +191,11 @@ https://stackoverflow.com/questions/13380607/how-to-use-sed-to-remove-the-last-n
 
 * codebases
 
+- https://rosettacode.org/wiki/Category:Sed
+- https://literateprograms.org/category_programming_language_sed.html
+  - rot13 https://literateprograms.org/rot13__sed_.html
+  - soundex (hashing) https://literateprograms.org/soundex__sed_.html
+- scripts https://sed.sourceforge.io/#scripts
 - scripts | seder's grab bag https://sed.sourceforge.io/grabbag/scripts/
 - debugger https://github.com/SoptikHa2/desed
 - debugger https://github.com/aureliojargas/sedsed
