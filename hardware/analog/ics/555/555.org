@@ -45,7 +45,7 @@ https://www.youtube.com/watch?v=kRlSFm519Bo
 - ~Astable~: there are no stable binary state
 
 #+ATTR_ORG: :width 500
-[[./555ast.jpg]][[./555astschema.jpg]]
+[[./ast.jpg]][[./astschema.jpg]]
 
 - 555 has inside:
   * 2 Comparators (2 inputs and 1 output, if input a<b output is on, if not is off)
@@ -60,7 +60,7 @@ https://www.youtube.com/watch?v=kRlSFm519Bo
 
 #+CAPTION: with recommendations
 #+ATTR_ORG: :width 400
-[[./555asmod.jpg]]
+[[./asmod.jpg]]
 
 ** Monostable
 
@@ -69,7 +69,7 @@ https://www.youtube.com/watch?v=81BgFhm2vz8
 - ~Monostable~: there is 1 binary state that is stable
 
 #+ATTR_ORG: :width 400
-[[./555mono.jpg]][[./555monoschema.jpg]]
+[[./mono.jpg]][[./monoschema.jpg]]
 
 - We want to switch to a *manual control* of the clock
   - One Tick per Button Push
@@ -85,7 +85,7 @@ https://www.youtube.com/watch?v=81BgFhm2vz8
 https://www.youtube.com/watch?v=WCwJNnx36Rk
 
 #+ATTR_ORG: :width 400
-[[./555bis.jpg]][[./555bischema.jpg]]
+[[./bis.jpg]][[./bischema.jpg]]
 
 - We can use a switch to go output either the Astable or Monostable.
   - BUT, we still need some *debounce* on the switch.
