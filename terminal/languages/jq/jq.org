@@ -124,28 +124,29 @@
 
 ** operators
 |----------+------------------------------------------------------------|
-| operator | description                                                |
+|   <c>    |                                                            |
+|          | description                                                |
 |----------+------------------------------------------------------------|
-| +        | addition, concatenation([]), merge({})                     |
-| -        | subtraction                                                |
-| ¦        | pipe operator                                              |
-| ¦=       | update operator (used for += -= *= /= %= //=)              |
-| ,        | operator to join multiple streams                          |
-| ()       | to group subexpressions                                    |
-| []       | constructor                                                |
+|    +     | addition, concatenation([]), merge({})                     |
+|    -     | subtraction                                                |
+|    ¦     | pipe operator                                              |
+|    ¦=    | update operator (used for += -= *= /= %= //=)              |
+|    ,     | operator to join multiple streams                          |
+|    ()    | to group subexpressions                                    |
+|    []    | constructor                                                |
 | {foo: .} | constructor                                                |
 |----------+------------------------------------------------------------|
-| +        | string concatenation                                       |
-| +        | arrays append                                              |
-| +        | objects merge                                              |
+|    +     | string concatenation                                       |
+|    +     | arrays append                                              |
+|    +     | objects merge                                              |
 |----------+------------------------------------------------------------|
-| /        | operator version of the split/1 function                   |
-| A // B   | if A then A else B end (~alternative operator~)            |
-| ?        | error suppresion, ~optional operator~, shorthand for *try* |
-| ?//      | ~destructuring alternative operator~                       |
+|    /     | operator version of the split/1 function                   |
+|  A // B  | if A then A else B end (~alternative operator~)            |
+|    ?     | error suppresion, ~optional operator~, shorthand for *try* |
+|   ?//    | ~destructuring alternative operator~                       |
 |----------+------------------------------------------------------------|
-| .[]?     | does NOT error when input is NOT an object or array        |
-| .foo?    | does NOT error when input is NOT an object                 |
+|   .[]?   | does NOT error when input is NOT an object or array        |
+|  .foo?   | does NOT error when input is NOT an object                 |
 |----------+------------------------------------------------------------|
 ** generators?
 |---+-------------------------------------------------+--------------+--------------------------------------|
@@ -229,43 +230,44 @@
   - x: extend regex format, ignores whitespaces and comments (#)
 
 |------------------+------------------------------------------------+----------------------------------------------------+--------------------------------------------|
-| input            | filter                                         | output                                             | description                                |
+|       <c>        |                      <c>                       |                                                    |                                            |
+|      input       |                     filter                     | output                                             | description                                |
 |------------------+------------------------------------------------+----------------------------------------------------+--------------------------------------------|
-| "Hello World!"   | test("W")                                      | true                                               | to know if a substring matches the pattern |
-| "Goodbye Mars"   | test("W")                                      | false                                              |                                            |
-|                  | test(REGEX;FLAGS)                              |                                                    |                                            |
-|                  | test([REGEX,FLAGS])                            |                                                    |                                            |
+|  "Hello World!"  |                   test("W")                    | true                                               | to know if a substring matches the pattern |
+|  "Goodbye Mars"  |                   test("W")                    | false                                              |                                            |
+|                  |               test(REGEX;FLAGS)                |                                                    |                                            |
+|                  |              test([REGEX,FLAGS])               |                                                    |                                            |
 |------------------+------------------------------------------------+----------------------------------------------------+--------------------------------------------|
-|                  | match([REGEX,FLAGS])                           |                                                    |                                            |
-| "Hello World!"   | match("([aeiou])\\1")                          | empty                                              | to extract the substring that matched      |
-| "Goodbye Mars"   | match("([aeiou])\\1")                          | {"offset": 1, "length": 2, "string": "oo"          |                                            |
+|                  |              match([REGEX,FLAGS])              |                                                    |                                            |
+|  "Hello World!"  |             match("([aeiou])\\1")              | empty                                              | to extract the substring that matched      |
+|  "Goodbye Mars"  |             match("([aeiou])\\1")              | {"offset": 1, "length": 2, "string": "oo"          |                                            |
 |                  |                                                | ,"captures": [                                     |                                            |
 |                  |                                                | {"offset": 1                                       |                                            |
 |                  |                                                | ,"length": 1                                       |                                            |
 |                  |                                                | ,"string": "o"                                     |                                            |
 |                  |                                                | ,"name": null }]}                                  |                                            |
-| "Goodbye Mars"   | match("[aeiou]";"g")                           | {"offset":1,"length":1,"string":"o","captures":[]} |                                            |
+|  "Goodbye Mars"  |              match("[aeiou]";"g")              | {"offset":1,"length":1,"string":"o","captures":[]} |                                            |
 |                  |                                                | {"offset":2,"length":1,"string":"o","captures":[]} |                                            |
 |                  |                                                | {"offset":6,"length":1,"string":"e","captures":[]} |                                            |
 |                  |                                                | {"offset":9,"length":1,"string":"a","captures":[]} |                                            |
 |------------------+------------------------------------------------+----------------------------------------------------+--------------------------------------------|
 | "JIRAISSUE-1234" | capture("(?<project>\\w+)-(?<issue_num>\\d+)") | {"project":"JIRAISSUE","issue_num":"1234"}         | object of named captures                   |
-|                  | capture(REGEX)                                 |                                                    |                                            |
-|                  | capture(REGEX;FLAGS)                           |                                                    |                                            |
-|                  | capture([REGEX,FLAGS])                         |                                                    |                                            |
+|                  |                 capture(REGEX)                 |                                                    |                                            |
+|                  |              capture(REGEX;FLAGS)              |                                                    |                                            |
+|                  |             capture([REGEX,FLAGS])             |                                                    |                                            |
 |------------------+------------------------------------------------+----------------------------------------------------+--------------------------------------------|
-| "Goodbye Mars"   | scan("[aeiou]")                                | "o", "o", "e", "a"                                 | only substrings, like match(RE,"g")        |
-| "Goodbye Mars"   | [scan("[aeiou]")]                              | ["o", "o", "e", "a"]                               |                                            |
+|  "Goodbye Mars"  |                scan("[aeiou]")                 | "o", "o", "e", "a"                                 | only substrings, like match(RE,"g")        |
+|  "Goodbye Mars"  |               [scan("[aeiou]")]                | ["o", "o", "e", "a"]                               |                                            |
 |------------------+------------------------------------------------+----------------------------------------------------+--------------------------------------------|
-| "first second"   | split("\\s+"; "")                              | ["first","second"]                                 |                                            |
-|                  | split(REGEX; FLAGS)                            |                                                    |                                            |
+|  "first second"  |               split("\\s+"; "")                | ["first","second"]                                 |                                            |
+|                  |              split(REGEX; FLAGS)               |                                                    |                                            |
 |------------------+------------------------------------------------+----------------------------------------------------+--------------------------------------------|
-|                  | sub(REGEX; REPLACEMENT)                        |                                                    |                                            |
-|                  | sub(REGEX; REPLACEMENT; FLAGS)                 |                                                    |                                            |
-|                  | gsub(REGEX; REPLACEMENT)                       |                                                    |                                            |
-|                  | gsub(REGEX; REPLACEMENT; FLAGS)                |                                                    |                                            |
-| "this: gnu, csv" | gsub("\\b(?<tla>[[:alpha:]{3})\\b")            | "this: GNU, CSV"                                   |                                            |
-|                  | ;    "\(.tla ¦ ascii_upcase)")                 |                                                    |                                            |
+|                  |            sub(REGEX; REPLACEMENT)             |                                                    |                                            |
+|                  |         sub(REGEX; REPLACEMENT; FLAGS)         |                                                    |                                            |
+|                  |            gsub(REGEX; REPLACEMENT)            |                                                    |                                            |
+|                  |        gsub(REGEX; REPLACEMENT; FLAGS)         |                                                    |                                            |
+| "this: gnu, csv" |      gsub("\\b(?<tla>[[:alpha:]{3})\\b")       | "this: GNU, CSV"                                   |                                            |
+|                  |         ;    "\(.tla ¦ ascii_upcase)")         |                                                    |                                            |
 |------------------+------------------------------------------------+----------------------------------------------------+--------------------------------------------|
 
 ***   array
@@ -339,30 +341,31 @@
 =being "Hello!" the INPUT=
 
 |----------------------+-------------------------+----------------------------|
-| filter               | out                     | description                |
+|                      |           <c>           |                            |
+| filter               |           out           | description                |
 |----------------------+-------------------------+----------------------------|
-| ascii_downcase       | "hello!"                |                            |
-| ascii_upcase         | "HELLO!"                |                            |
+| ascii_downcase       |        "hello!"         |                            |
+| ascii_upcase         |        "HELLO!"         |                            |
 |----------------------+-------------------------+----------------------------|
-| / "l"                | ["He","","o!"]          |                            |
-| split("l")           | ["He","","o!"]          |                            |
+| / "l"                |     ["He","","o!"]      |                            |
+| split("l")           |     ["He","","o!"]      |                            |
 |----------------------+-------------------------+----------------------------|
 | explode              | [72,101,108,108,111,33] | splits into codepoints     |
 | implode              |                         |                            |
 |----------------------+-------------------------+----------------------------|
-| startswith("!")      | false                   |                            |
-| endswith("!")        | true                    |                            |
-| test("He.*")         | true                    | supports regex             |
-| contains("!")        | true                    |                            |
-| inside("Hi, Hello!") | true                    | inverse of contains/1      |
+| startswith("!")      |          false          |                            |
+| endswith("!")        |          true           |                            |
+| test("He.*")         |          true           | supports regex             |
+| contains("!")        |          true           |                            |
+| inside("Hi, Hello!") |          true           | inverse of contains/1      |
 |----------------------+-------------------------+----------------------------|
-| length               | 6                       |                            |
-| index("el")          | 1                       | position, otherwise *null* |
-| +  "bar"             | "Hello!bar"             |                            |
-| * 3                  | "Hello!Hello!Hello"     |                            |
-| * 0                  | ""                      |                            |
+| length               |            6            |                            |
+| index("el")          |            1            | position, otherwise *null* |
+| +  "bar"             |       "Hello!bar"       |                            |
+| * 3                  |   "Hello!Hello!Hello"   |                            |
+| * 0                  |           ""            |                            |
 |----------------------+-------------------------+----------------------------|
-| trim/ltrim/rtrim     | "Hello!"                | trims whitespace           |
+| trim/ltrim/rtrim     |        "Hello!"         | trims whitespace           |
 |----------------------+-------------------------+----------------------------|
 
 ***    math

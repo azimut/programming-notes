@@ -312,8 +312,10 @@ https://github.com/marvinpinto/actions/blob/873de0f4dc68121da64907afaabe332d194e
 
 **  alternatives
 
+- https://about.gitea.com/ (selfhosted)
 - Gitlab
 - Bitbucket
+- https://gitgud.io/
 - https://codeberg.org/
 - https://sourcehut.org/
   - aka sr.ht

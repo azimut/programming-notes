@@ -22,6 +22,7 @@
   END { print "Hello, World!"; }
 #+end_src
 
+- 1977
 - Authors
   - Aho Alfred Vaino
   - Weinberger Peter Jay
@@ -450,6 +451,10 @@ https://rosettacode.org/wiki/Hello_world/Web_server
 |---------------------+----------------------------------------------------------------|
 * snippets
 
+- print unique lines, _without sorting_
+  #+begin_src sh
+    $ awk '!x[$0]++' file.txt
+  #+end_src
 - wEiRd - removes leading space
   #+begin_src awk
   $ awk '{ $1=$1 }1' file.txt
@@ -539,7 +544,7 @@ https://rosettacode.org/wiki/Hello_world/Web_server
 | -F  | --field-separator  |     S      | sets FS                               |
 | -f  | --file             | <FILEPATH> | runs script                           |
 | -E  | --exec             | <FILEPATH> | runs script (for gawk cgi)            |
-| -v  | --asign            |  var=val   | sets var to val                       |
+| -v  | --assign           |  var=val   | sets var to val                       |
 |-----+--------------------+------------+---------------------------------------|
 | -c  | --traditional      |     -      | compatibility mode                    |
 | -P  | --posix            |     -      | compatibility mode extra              |

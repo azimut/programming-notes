@@ -19,55 +19,40 @@
 
 * language
 
-- defines a dependency tree of rules
-  - made of targets (the vertex)
+- defines a dependency tree of ~rules~ (aka recipe)
+  - made of ~targets~ (the vertex)
   - final exe is the root vertex
 
 - bare "make" run defaults to the first target
 - can be more than 1 target
 - fails if a command returns 1
+- use ~include MAKEFILE~ to include another Makefile
 
-** control flow
-
-#+begin_src makefile
-ifeq ($(CC),gcc)
-  # foo
-else
-  # bar
-endif
-#+end_src
-
-** functions
-
-- $(shell find) - replaces new lines with spaces
-- $(wildcard foo/*.js) - filesystem match
-- $(patsubst %.c, %.o, $(wildcard *.c))
-- $(strip)
-- $(filter)
-- $(filter-out)
-
-** dependency
-|---+-------------------------------------------------------|
-| * | wildcard, filesystem matches, use it with $(wildcard) |
-| % | wildcard                                              |
-|---+-------------------------------------------------------|
-** target
+** target / output
 
 - targets without deps are human made ones
 - order does not matter
-- multiple targets??????
+  - but if multiple % patterns match, will use the last one matched (deps stills stacked?)
+- multiple targets: for same dependencies
+- recommended phony ones: https://www.gnu.org/software/make/manual/html_node/Standard-Targets.html
+  - all, help, clean, check, dist
+  - test: make it depend of the final binary
+  - install: use PREFIX=/usr/local and DESTDIR
 
-- ~.ONESHELL~ runs all commands on one shell
-- ~.POSIX:~ In order to get POSIX behavior the first line should be
-- ~.SUFFIXES~ To disable all default *inference rules*
-- ~.DELETE_ON_ERROR:~ will delete the target if a command fails (NO DEFAULT)
-- ~.PHONY~ target is to let make know that is not a file (like for clean)
-  - recommended: https://www.gnu.org/software/make/manual/html_node/Standard-Targets.html
-    - all, help, clean, test, check, dist
-    - install: use PREFIX=/usr/local and DESTDIR
+*** special targets
 
-*** Default Target Rules
+|------------------+-----------------------------------------------------------|
+| .ONESHELL        | runs all commands the same shell                          |
+| .POSIX           | should be the first line                                  |
+| .SUFFIXES        | disable all default *inference rules*                     |
+| .DELETE_ON_ERROR | will delete the target if a command fails (NO BY DEFAULT) |
+| .PHONY           | make target not a regular target file                     |
+|------------------+-----------------------------------------------------------|
 
+*** default targets
+
+https://www.gnu.org/software/make/manual/html_node/Catalogue-of-Rules.html
+https://www.gnu.org/software/make/manual/html_node/Suffix-Rules.html
 #+begin_src makefile
 %:     ; $(CC)  $*.o -o $*
 %.c:   ; $(CC)  -c $(CPPFLAGS) $(CFLAGS)
@@ -75,72 +60,139 @@ endif
 %.o:   ; $(CC) $(LDFLAGS) n.o $(LOADLIBES) $(DLIBS)
 #+end_src
 
+** prerequisites / dependency
+can be split into different targets with the same name (?
+|---+-------------------------------------------------------|
+| * | wildcard, filesystem matches, use it with $(wildcard) |
+| % | wildcard                                              |
+|---+-------------------------------------------------------|
+** commands / actions
+
+- uses /bin/sh by default
+- TAB indented
+- use (\) for long ones
+- use (;) to make one command of many
+- each one runs on his own shell
+- prefixes
+  |---+------------------------------------------------------|
+  | - | ignore errors                                        |
+  | @ | [[https://www.gnu.org/software/make/manual/html_node/Echoing.html][not print]] the command, use it to add indent comments |
+  | + | run even on no-exec mode                             |
+  |---+------------------------------------------------------|
+
 ** variables / macros
 
-- can ONLY be strings
-- Expanded with $(...)
-- $(SOMVAR:.cpp=.o)
+- are ALWAYS strings
+- undefined variables are treated as empty strings (see --warn-undefined-variables)
+- order of precedence (see override)
+  1) cli
+  2) makefile
+  3) environment
+  4) predefined
+
+*** referencing
+
+#+begin_src makefile
+$a            # for length=1 vars
+$(ab)         # for length>1 vars
+$(ab:.cpp=.o) # string replace
+#+end_src
 
 *** assignments
-|-----+----------------------------------|
-| <r> | assignment                       |
-|-----+----------------------------------|
-|   = | dynamic                          |
-|  := | one time                         |
-|  ?= | safe, only if undefined          |
-|  += | appends with a space             |
-|  != | exec shell command and assign it |
-|-----+----------------------------------|
-*** defaults
+- ONLY evaluated when they are used
+|-----+--------------------------------------|
+| <r> | assignment                           |
+|-----+--------------------------------------|
+|   = | dynamic, evaluated each time is used |
+|  := | one time, evaluated procedurally     |
+| ::= | "                                    |
+|  ?= | safe, only if undefined              |
+|  += | appends with a space                 |
+|  != | exec shell command and assign it     |
+|-----+--------------------------------------|
+*** implicit / predefined / default
 https://www.gnu.org/software/make/manual/html_node/Implicit-Variables.html
-|---------+-------------------------------------------|
-| CC      | For compiler and compiler flags           |
-| CFLAGS  | "                                         |
-| LDFLAGS | for flags passed to compiler when linking |
-| LDLIBS  | For flags about libraries when linking    |
-|---------+-------------------------------------------|
+|---------------+-------------------------------------------|
+|           <r> |                                           |
+|            CC | For compiler and compiler flags           |
+|           CXX | "                                         |
+|        CFLAGS | "                                         |
+|      CPPFLAGS |                                           |
+|      CXXFLAGS |                                           |
+|       LDFLAGS | for flags passed to compiler when linking |
+|        LDLIBS | For flags about libraries when linking    |
+|         SHELL | set it to "bash" to change default shell  |
+|    MAKE_FLAGS |                                           |
+|   .SHELLFLAGS | set it to "-eu -o pipefail -c" for "bash" |
+| .RECIPEPREFIX | use instead of tabs                       |
+|---------------+-------------------------------------------|
 *** magic variables
 |-------+-------------------------------------|
 |  <c>  |                                     |
-|  $@   | target name                         |
+|  $@   | target's name (always one)          |
+| $(@D) | target's dir(name)                  |
+| $(@F) | target's base(name)                 |
 |  $<   | 1st prerequisite                    |
+| $(<D) | 1st prerequisite's dir(name)        |
+| $(<F) | 1st prerequisite's base(name)       |
 |  $^   | all prerequisites                   |
 |  $+   | all prerequisites, with dups        |
 |  $?   | new prerequisites (than the target) |
 |  $*   | what "%" wildcard matched           |
-|  $¦   | ?                                   |
-| $(@D) | ? target dir ?                      |
+|  $$   | literal "$"                         |
+|  $¦   | ? order prerequisites ?             |
 |-------+-------------------------------------|
 
-** commands / actions
+** functions
 
-- use backslash (\) for too long *commands*
-- each one runs on his own shell
-- prefixes
-  - ~@~ will not print cmd https://www.gnu.org/software/make/manual/html_node/Echoing.html
-  - ~-~ ignore errors
-  - ~+~ run even on no exec mode
+|------------+-----------------+-------------------------------------------|
+|        <r> |       <c>       |                                           |
+|      shell |       cmd       | exec and replaces \n with space           |
+|   wildcard |    glob*Path    | filesystem match, space separated if many |
+|   patsubst | from, to, where | from/to can use %, and where *            |
+|      strip |       var       |                                           |
+|     filter |   wild%, var    |                                           |
+| filter-out |   wild%, var    |                                           |
+|        dir |       $^        |                                           |
+|     notdir |       $^        |                                           |
+|       join |      ?, ?       |                                           |
+|------------+-----------------+-------------------------------------------|
 
-* flags
-|---------+-----------------------+--------------------------------|
-|   <c>   |          <c>          |                                |
-|         |       long flag       | description                    |
-|---------+-----------------------+--------------------------------|
-|   -k    |      keep-going       | keep going on errors           |
-| -o FILE |     old-file=FILE     |                                |
-|   -s    |        silent         | silent command print           |
-|   -i    |     ignore-errors     |                                |
-|   -e    | environment-overrides | env > make vars                |
-|   -B    |      always-make      | make ALL targets               |
-|  -j N   |        jobs=N         | parallel jobs                  |
-|    -    |                       | add to suppress command error  |
-|   -n    |        dry-run        |                                |
-|   -t    |         touch         | touch targets, without running |
-|---------+-----------------------+--------------------------------|
+** control flow
+
+#+begin_src makefile
+ifeq ($(CC),gcc)
+else
+endif
+#+end_src
+
+* cli
+#+begin_src sh
+  make [OPTIONS] [TARGETS] [VAR=foo]
+#+end_src
+** flags
+|-----------+--------------------------+--------------------------------|
+|    <c>    |           <c>            |                                |
+|           |        long flag         | description                    |
+|-----------+--------------------------+--------------------------------|
+| -f=MAKEF  |   (make)file=MAKEFILE    |                                |
+| -o TARGET |     old-file=TARGET      | never remake TARGET            |
+|    -k     |        keep-going        | keep on errors                 |
+|    -s     |          silent          | silent command print           |
+|    -i     |      ignore-errors       |                                |
+|    -e     |  environment-overrides   | env>make vars                  |
+|    -B     |       always-make        | make ALL targets               |
+|   -j N    |          jobs=N          | parallel jobs                  |
+|    -n     |         dry-run          |                                |
+|    -t     |          touch           | touch targets, without running |
+|           | warn-undefined-variables | when referenced                |
+|    -r     |     no-builtin-rules     |                                |
+|    -R     |   no-builtin-variables   |                                |
+|-----------+--------------------------+--------------------------------|
 
 * gotchas
 
 - https://github.com/casey/just#what-are-the-idiosyncrasies-of-make-that-just-avoids
 - assignment expressions are ONLY evaluated when they are used
 - ~$~ needs to be escaped with another ~$$~ in commands, in order to pass them to the shell properly. Regardless if they are in between single quotes.
-
+- \t for indentation, NOT spaces

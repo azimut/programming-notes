@@ -1,5 +1,13 @@
+- vi https://en.wikipedia.org/wiki/Vi_(text_editor)
+  - Bill Joy
+  - 1976
+
 - wikipedia https://en.wikipedia.org/wiki/Vim_(text_editor)
-  - Author: Bram Moolenaar
+  - Bram Moolenaar
+  - 1991
+
+- wiki https://en.wikipedia.org/wiki/Vim_(text_editor)#Neovim
+  - 2015
 
 - article http://howivim.com/2016/andy-stewart/
 - lua https://neovim.io/doc/user/lua-guide.html#lua-guide

@@ -127,6 +127,7 @@
     | ${arr[0]}            | access                     |
     | ${arr[@]:1:3}        | slicing                    |
     | ${arr[@]// /_}       | substitute on each element |
+    | ${arr[@]/#/foo}      | preppend "foo" to each     |
     |----------------------+----------------------------|
 
 - string ops

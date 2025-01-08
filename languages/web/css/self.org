@@ -81,6 +81,9 @@
 - <link rel=preconnect https://web.dev/preconnect-and-dns-prefetch/
 - Logical Properties https://www.youtube.com/watch?v=cnwOfaE5GEk
 - center list ul https://www.w3schools.com/howto/howto_css_center-list.asp
+- tool:
+  - https://stylus-lang.com/#get-styling-with-stylus
+    https://github.com/stylus/stylus
 
 * Language
 - A browser ignores declaration it doesn't understand.
