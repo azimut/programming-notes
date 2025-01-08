@@ -1,0 +1,110 @@
+- https://swcarpentry.github.io/make-novice/reference.html
+- https://swcarpentry.github.io/make-novice/aio.html
+- https://github.com/mbcrawfo/GenericMakefile/
+- http://nuclear.mutantstargoat.com/articles/make/
+- https://www.cs.swarthmore.edu/~newhall/unixhelp/howto_makefiles.html
+- 19 https://tech.davis-hansson.com/p/make/
+- https://text.causal.agency/001-make.txt
+- https://devhints.io/makefile
+- https://gist.github.com/isaacs/62a2d1825d04437c6f08
+- https://learnxinyminutes.com/docs/make/
+- http://makefiletutorial.com/
+
+* some anon makefile - DEBUG flag
+*** src/program.c
+
+#+begin_src c
+  #include <stdio.h>
+  #include <math.h>
+
+  int
+  main (void) {
+    printf("log of 5: %f\n", log(5.0));
+  }
+#+end_src
+
+*** Makefile
+
+#+begin_src makefile
+#!/usr/bin/make -f
+
+# Reassign these as needed
+DEBUG    := 0
+STRIP    := strip
+DESTDIR  := /usr/local/bin
+SANITIZE := address,undefined
+
+CFLAGS   := -std=c99 -Wall -Wextra -Wpedantic
+CPPFLAGS := -Iinclude
+LDFLAGS  := -lm
+
+ifeq ($(DEBUG),1)
+  CFLAGS   += -ggdb -Og -fsanitize=$(SANITIZE)
+else
+  CFLAGS   += -O3 -fwhole-program
+  CPPFLAGS += -DNDEBUG
+endif
+
+SRC_DIR := src/
+OBJ_DIR := obj/
+
+VPATH := $(SRC_DIR) $(OBJ_DIR)
+
+PROGRAM_SRC := program.c
+PROGRAM_OBJ := $(addprefix $(OBJ_DIR),$(PROGRAM_SRC:.c=.o))
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
+    $(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
+
+all: program
+
+program: $(PROGRAM_OBJ)
+    $(CC) $(CFLAGS) -o $@ $+ $(LDFLAGS)
+ifneq ($(DEBUG),1)
+    $(STRIP) $@
+endif
+
+install: program
+    mkdir -p $(PREFIX)$(DESTDIR)
+    install -s -m 755 -t $(PREFIX)$(DESTDIR) $+
+
+uninstall:
+    $(RM) $(PREFIX)$(DESTDIR)/program
+
+$(OBJ_DIR):
+    mkdir -p $@
+
+clean:
+    $(RM) program $(PROGRAM_OBJ)
+    $(RM) -d $(OBJ_DIR)
+
+.PHONY: all clean
+#+end_src
+
+* A Tutorial on Portable Makefiles
+
+https://nullprogram.com/blog/2017/08/20/
+- POSIX Make https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html
+- GNU Make, on BSD is named *gmake*
+* Example
+
+#+begin_src makefile
+.POSIX:
+.SUFFIXES:
+CC     = cc
+CFLAGS = -W -O
+LDLIBS = -lm
+
+all: game
+game: graphic.so physics.o input.o
+    $(CC) $(LDFLAGS) -o game graphics.o physics.o input.o
+graphics.o: graphics.c graphics.h
+physics.o: physics.c physics.h
+input.o: input.c input.h graphics.h physics.h
+clean:
+    rm -f game graphics.o physics.o input.o
+
+.SUFFIXES: .c .o # Adds them to the suffix list
+.c.o:
+    $(CC) $(CFLAGS) -c $<
+#+end_src
