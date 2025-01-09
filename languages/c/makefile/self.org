@@ -128,47 +128,70 @@ https://www.gnu.org/software/make/manual/html_node/Implicit-Variables.html
 |   .SHELLFLAGS | set it to "-eu -o pipefail -c" for "bash" |
 | .RECIPEPREFIX | use instead of tabs                       |
 |---------------+-------------------------------------------|
-*** magic variables
-|-------+-------------------------------------|
-|  <c>  |                                     |
-|  $@   | target's name (always one)          |
-| $(@D) | target's dir(name)                  |
-| $(@F) | target's base(name)                 |
-|  $<   | 1st prerequisite                    |
-| $(<D) | 1st prerequisite's dir(name)        |
-| $(<F) | 1st prerequisite's base(name)       |
-|  $^   | all prerequisites                   |
-|  $+   | all prerequisites, with dups        |
-|  $?   | new prerequisites (than the target) |
-|  $*   | what "%" wildcard matched           |
-|  $$   | literal "$"                         |
-|  $¦   | ? order prerequisites ?             |
-|-------+-------------------------------------|
+*** magic / automatic variables
+https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html
+|-------+----------------------------------------|
+|  <c>  |                                        |
+|  $@   | target's name (always one)             |
+| $(@D) | target's dir(name)                     |
+| $(@F) | target's base(name)                    |
+|  $<   | 1st prerequisite                       |
+| $(<D) | 1st prerequisite's dir(name)           |
+| $(<F) | 1st prerequisite's base(name)          |
+|  $^   | all prerequisites                      |
+|  $+   | all prerequisites, with dups           |
+|  $?   | new prerequisites (than the target)    |
+|  $*   | what "%" wildcard matched              |
+|  $$   | literal "$"                            |
+|  $%   | target's name, WHEN (ar)chive member ? |
+|  $¦   | ? order-only prerequisites ?           |
+|-------+----------------------------------------|
 
 ** functions
-
 - https://www.gnu.org/software/make/manual/html_node/Functions.html
 - do NOT add spaces between arguments, functions will see it
-|------------+------------+-------------------------------------------|
-|        <r> |    <c>     |                                           |
-|        dir |     $^     |                                           |
-|     filter | wild%,var  |                                           |
-| filter-out | wild%,var  |                                           |
-|       join |    ?,?     |                                           |
-|     notdir |     $^     |                                           |
-|   patsubst | pat,repl,s | pat/replacement can use %, and text *     |
-|      shell |    cmd     | exec and replaces \n with space           |
-|      strip |     s      |                                           |
-|      subst |     s      |                                           |
-|   wildcard | glob*Path  | filesystem match, space separated if many |
-|------------+------------+-------------------------------------------|
-
+|-------+-----+---------------------------------|
+|   <r> | <c> |                                 |
+| shell | cmd | exec and replaces \n with space |
+|-------+-----+---------------------------------|
+*** strings
+https://www.gnu.org/software/make/manual/html_node/Text-Functions.html
+|------------+---------------+-------------------------------------------|
+|        <r> |      <c>      |                                           |
+|       word |    n,text     | "n" word in in text                       |
+|   wordlist |   n,m,text    | text word-slicing from "n" to "m"         |
+|      words |     text      | number of words                           |
+|  firstword |     text      |                                           |
+|   lastword |     text      |                                           |
+| findstring |  needle,text  | returns "needle" or "" if not in text     |
+|     filter |  pat%..,text  | remove words that match "pat%"            |
+| filter-out |  pat%..,text  | remove words that do NOT match "pat%"     |
+|       sort |     text      | sort words, remove dups                   |
+|      strip |     text      | trim and squash whitespaces               |
+|      subst | from,to,text  | substitute literal words                  |
+|   patsubst | pat,repl,text | substitute pattern% words, text can use * |
+|------------+---------------+-------------------------------------------|
+*** filenames
+https://www.gnu.org/software/make/manual/html_node/File-Name-Functions.html
+|-----------+----------------+-------------------------------------------------|
+|       <r> |      <c>       |                                                 |
+|      join |   list,list    | zipWith (<>)                                    |
+|  wildcard |   glob*Path    | filesystem match, space separated if many       |
+|  (not)dir |    names..     | like shell's basename/dirname                   |
+|   abspath |    names..     | absolute path, might not exist, no follow links |
+|  realpath |    names..     | absolute path, must exist                       |
+|  basename |    names..     | removes suffix/extension                        |
+|    suffix |    names..     | extract suffix                                  |
+| addsuffix | suffix,names.. |                                                 |
+| addprefix | prefix,names.. |                                                 |
+|-----------+----------------+-------------------------------------------------|
 ** control flow
 
+https://www.gnu.org/software/make/manual/html_node/Conditional-Syntax.html
 #+begin_src makefile
-if(n)def
+if(n)def $(CC)
 if(n)eq ($(CC),gcc)
-else
+else # if...
 endif
 #+end_src
 
