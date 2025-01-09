@@ -341,31 +341,29 @@
 =being "Hello!" the INPUT=
 
 |----------------------+-------------------------+----------------------------|
-|                      |           <c>           |                            |
-| filter               |           out           | description                |
+|         <c>          |           <c>           |                            |
+|        filter        |           out           | description                |
 |----------------------+-------------------------+----------------------------|
-| ascii_downcase       |        "hello!"         |                            |
-| ascii_upcase         |        "HELLO!"         |                            |
+|    ascii_downcase    |        "hello!"         |                            |
+|     ascii_upcase     |        "HELLO!"         |                            |
 |----------------------+-------------------------+----------------------------|
-| / "l"                |     ["He","","o!"]      |                            |
-| split("l")           |     ["He","","o!"]      |                            |
+|        / "l"         |     ["He","","o!"]      |                            |
+|      split("l")      |     ["He","","o!"]      |                            |
 |----------------------+-------------------------+----------------------------|
-| explode              | [72,101,108,108,111,33] | splits into codepoints     |
-| implode              |                         |                            |
+|       explode        | [72,101,108,108,111,33] | splits into codepoints     |
+|       implode        |                         |                            |
 |----------------------+-------------------------+----------------------------|
-| startswith("!")      |          false          |                            |
-| endswith("!")        |          true           |                            |
-| test("He.*")         |          true           | supports regex             |
-| contains("!")        |          true           |                            |
+|   startswith("!")    |          false          |                            |
+|    endswith("!")     |          true           |                            |
+|     test("He.*")     |          true           | supports regex             |
+|    contains("!")     |          true           |                            |
 | inside("Hi, Hello!") |          true           | inverse of contains/1      |
 |----------------------+-------------------------+----------------------------|
-| length               |            6            |                            |
-| index("el")          |            1            | position, otherwise *null* |
-| +  "bar"             |       "Hello!bar"       |                            |
-| * 3                  |   "Hello!Hello!Hello"   |                            |
-| * 0                  |           ""            |                            |
-|----------------------+-------------------------+----------------------------|
-| trim/ltrim/rtrim     |        "Hello!"         | trims whitespace           |
+|        length        |            6            |                            |
+|     index("el")      |            1            | position, otherwise *null* |
+|       +  "bar"       |       "Hello!bar"       |                            |
+|         * 3          |   "Hello!Hello!Hello"   |                            |
+|         * 0          |           ""            |                            |
 |----------------------+-------------------------+----------------------------|
 
 ***    math

@@ -51,8 +51,8 @@
 
 *** default targets
 
-https://www.gnu.org/software/make/manual/html_node/Catalogue-of-Rules.html
-https://www.gnu.org/software/make/manual/html_node/Suffix-Rules.html
+- https://www.gnu.org/software/make/manual/html_node/Catalogue-of-Rules.html
+- https://www.gnu.org/software/make/manual/html_node/Suffix-Rules.html
 #+begin_src makefile
 %:     ; $(CC)  $*.o -o $*
 %.c:   ; $(CC)  -c $(CPPFLAGS) $(CFLAGS)
@@ -95,13 +95,15 @@ can be split into different targets with the same name (?
 #+begin_src makefile
 $a            # for length=1 vars
 $(ab)         # for length>1 vars
+${ab}         # "
 $(ab:.cpp=.o) # string replace
 #+end_src
 
 *** assignments
 - ONLY evaluated when they are used
 |-----+--------------------------------------|
-| <r> | assignment                           |
+| <r> |                                      |
+|     | assignment                           |
 |-----+--------------------------------------|
 |   = | dynamic, evaluated each time is used |
 |  := | one time, evaluated procedurally     |
@@ -145,23 +147,27 @@ https://www.gnu.org/software/make/manual/html_node/Implicit-Variables.html
 
 ** functions
 
-|------------+-----------------+-------------------------------------------|
-|        <r> |       <c>       |                                           |
-|      shell |       cmd       | exec and replaces \n with space           |
-|   wildcard |    glob*Path    | filesystem match, space separated if many |
-|   patsubst | from, to, where | from/to can use %, and where *            |
-|      strip |       var       |                                           |
-|     filter |   wild%, var    |                                           |
-| filter-out |   wild%, var    |                                           |
-|        dir |       $^        |                                           |
-|     notdir |       $^        |                                           |
-|       join |      ?, ?       |                                           |
-|------------+-----------------+-------------------------------------------|
+- https://www.gnu.org/software/make/manual/html_node/Functions.html
+- do NOT add spaces between arguments, functions will see it
+|------------+------------+-------------------------------------------|
+|        <r> |    <c>     |                                           |
+|        dir |     $^     |                                           |
+|     filter | wild%,var  |                                           |
+| filter-out | wild%,var  |                                           |
+|       join |    ?,?     |                                           |
+|     notdir |     $^     |                                           |
+|   patsubst | pat,repl,s | pat/replacement can use %, and text *     |
+|      shell |    cmd     | exec and replaces \n with space           |
+|      strip |     s      |                                           |
+|      subst |     s      |                                           |
+|   wildcard | glob*Path  | filesystem match, space separated if many |
+|------------+------------+-------------------------------------------|
 
 ** control flow
 
 #+begin_src makefile
-ifeq ($(CC),gcc)
+if(n)def
+if(n)eq ($(CC),gcc)
 else
 endif
 #+end_src
@@ -192,7 +198,6 @@ endif
 
 * gotchas
 
-- https://github.com/casey/just#what-are-the-idiosyncrasies-of-make-that-just-avoids
-- assignment expressions are ONLY evaluated when they are used
-- ~$~ needs to be escaped with another ~$$~ in commands, in order to pass them to the shell properly. Regardless if they are in between single quotes.
-- \t for indentation, NOT spaces
+- ~=~ assignment is perpetually evaluated
+- ~$~ needs to be always escaped with ~$$~ to be sent to commands as such
+- ~\t~ for indentation, NOT spaces
