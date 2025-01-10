@@ -17,6 +17,28 @@
 - library: https://github.com/mitjafelicijan/makext
 - tool: linter https://github.com/mrtazz/checkmake
 
+* cli
+#+begin_src sh
+  make [-f Makefile] [VAR="foo"] [OPTIONS] [TARGETS]
+#+end_src
+** flags
+|-----------+--------------------------+--------------------------------|
+|    <c>    |           <c>            |                                |
+| -f=MAKEF  |   (make)file=MAKEFILE    |                                |
+| -o TARGET |     old-file=TARGET      | never remake TARGET            |
+|    -k     |        keep-going        | keep on errors                 |
+|    -s     |          silent          | silent command print           |
+|    -i     |      ignore-errors       |                                |
+|    -e     |  environment-overrides   | env>make vars                  |
+|    -B     |       always-make        | make ALL targets               |
+|   -j N    |          jobs=N          | parallel jobs                  |
+|    -n     |         dry-run          |                                |
+|    -t     |          touch           | touch targets, without running |
+|           | warn-undefined-variables | when referenced                |
+|    -r     |     no-builtin-rules     |                                |
+|    -R     |   no-builtin-variables   |                                |
+|-----------+--------------------------+--------------------------------|
+
 * language
 
 - defines a dependency tree of ~rules~ (aka recipe)
@@ -101,17 +123,17 @@ $(ab:.cpp=.o) # string replace
 
 *** assignments
 - ONLY evaluated when they are used
-|-----+--------------------------------------|
-| <r> |                                      |
-|     | assignment                           |
-|-----+--------------------------------------|
-|   = | dynamic, evaluated each time is used |
-|  := | one time, evaluated procedurally     |
-| ::= | "                                    |
-|  ?= | safe, only if undefined              |
-|  += | appends with a space                 |
-|  != | exec shell command and assign it     |
-|-----+--------------------------------------|
+|-----+--------------------------------------------|
+| <r> |                                            |
+|     | assignment                                 |
+|-----+--------------------------------------------|
+|   = | dynamic/macro, evaluated each time is used |
+|  := | one time, evaluated procedurally           |
+| ::= | "                                          |
+|  ?= | safe, only if undefined                    |
+|  += | appends with a space                       |
+|  != | exec shell command and assign it           |
+|-----+--------------------------------------------|
 *** implicit / predefined / default
 https://www.gnu.org/software/make/manual/html_node/Implicit-Variables.html
 |---------------+-------------------------------------------|
@@ -194,30 +216,6 @@ if(n)eq ($(CC),gcc)
 else # if...
 endif
 #+end_src
-
-* cli
-#+begin_src sh
-  make [OPTIONS] [TARGETS] [VAR=foo]
-#+end_src
-** flags
-|-----------+--------------------------+--------------------------------|
-|    <c>    |           <c>            |                                |
-|           |        long flag         | description                    |
-|-----------+--------------------------+--------------------------------|
-| -f=MAKEF  |   (make)file=MAKEFILE    |                                |
-| -o TARGET |     old-file=TARGET      | never remake TARGET            |
-|    -k     |        keep-going        | keep on errors                 |
-|    -s     |          silent          | silent command print           |
-|    -i     |      ignore-errors       |                                |
-|    -e     |  environment-overrides   | env>make vars                  |
-|    -B     |       always-make        | make ALL targets               |
-|   -j N    |          jobs=N          | parallel jobs                  |
-|    -n     |         dry-run          |                                |
-|    -t     |          touch           | touch targets, without running |
-|           | warn-undefined-variables | when referenced                |
-|    -r     |     no-builtin-rules     |                                |
-|    -R     |   no-builtin-variables   |                                |
-|-----------+--------------------------+--------------------------------|
 
 * gotchas
 

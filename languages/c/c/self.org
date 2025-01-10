@@ -205,6 +205,8 @@
 |----------+---+------------------------------------------------------------------|
 ** ANSI/ISO C99/C9X
 - https://en.wikipedia.org/wiki/C99
+*** features
+
 - inline for functions
 - ~compound literals~, where rational is a typedef struct with 2 members
   #+begin_src c
@@ -231,6 +233,8 @@
       data d[]; // THIS
     }
   #+end_src
+
+*** headers
 |------------+-------------+----------------------------------------------------------|
 |        <r> |     <c>     |                                                          |
 |  complex.h |             | ~Complex number~ arithmetic                              |
@@ -371,6 +375,9 @@ https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference/unistd.h
 - sleep
 - swab
 - write
+** Windows
+- MSVCRT.DLL -> UCRTBASE.DLL (C99-ish) https://en.wikipedia.org/wiki/Microsoft_Windows_library_files#Runtime_libraries
+- sockets https://en.wikipedia.org/wiki/Winsock
 ** sockets
 *** basic
 
