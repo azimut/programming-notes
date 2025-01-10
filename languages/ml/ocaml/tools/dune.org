@@ -20,6 +20,7 @@
 |--------------------------------------+---------------------------------------|
 | build                                | --profile PROF --build-dir _build     |
 | build NAME.exe                       | where NAME is the "name" in dune      |
+| cache trim --size=1GiB               |                                       |
 | clean                                |                                       |
 | runtest                              |                                       |
 | promote                              | aka "promotion apply"                 |

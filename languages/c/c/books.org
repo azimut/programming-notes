@@ -17,22 +17,12 @@
 * 20 | Effective C
 ** 1 Getting Started with C
 - Developed as a systems programming language
-- C defines 2 possible execution environments:
-  - Freestanding: no OS, embedded programming
-  - Hosted
-- A ~return~ from the initial call to the ~main~ function
-  - is equivalent to calling ~exit~
-- Passing user supplied data to ~printf~ first argument, can result in a secvul (seacord 2013)
-- https://github.com/Valloric/YouCompleteMe/
-  https://github.com/Shougo/deoplete.nvim/
-- Compilers: gcc, clang, visual studio
 - Kinds of Portability issues:
   + Implementation-defined behavior: not on the C standard, but on a particular impl
   + Unspecified behavior: on the standard, but with >1 behavior defined
   + Undefined behavior: not on the C standard, explicit or implicit
   + Locale-specific behavior
   + Common Extensions
-- ~-pedantic~, notify portability issues
 ** TODO 2 Objects, Functions, and Types
 - "Every type in C is either an ~object~ type or a ~function~ type."
 - IEEE 754-2008: the Standard for Floating-Point Arithmetic.
@@ -61,25 +51,6 @@
   In the example for a buffer which is then casted to a struct
 - Can be weaker or stronger (aka stricter). Stronger have larger alignment values.
 *** Object Types
-- Boolean:
-  - <stdbool.h>
-  _Bool (or just bool) introduced on C99, stores 0 or 1
-- Character:
-  - char, signed char, unsigned char
-  - All have the same alignment, size range, representation, and behavior
-  - satisfies a minimum et of characters aka ~basic execution character set~
-  - wchar_t is a chart type that takes more space (16 32 bits) to represent more chars
-- Numerical:
-  - signed char, short int, int, long int, long long int
-  - *int* word can be ommited on declaration
-  - <limits.h> has the maximun and minumun of each type
-  - <inttypes.h> or <stdinit.h> to define uint32_t or uintmax_t
-- Enum: enum day {sun = 1, mon, tue}
-- Floating-point: float, double, long double
-- void
-- Functions:
-  - list the param types or use *void* when no args
-  - A function with a param type list is known as a *function prototype*
 - Derived:
   - Pointers:
     - operators &* used together cancell each other
@@ -94,18 +65,13 @@
 - Are not a *type name* by itself
 - On a different namespace than identifiers
 - ~typedef~ define an alias for it
-*** Type Qualifiers
-| const                 | unmodifiable memory                                                    |
-| static volatile       | mmap Inpu/Output                                                       |
-| static const volative | mmap Input                                                             |
-| restrict              | optimization on pointers, when they are the unique point to the object |
 ** 5 Control Flow
-   - Expression statement
-   - Compound statements
-   - Statement Kinds:
-     1) Selection
-     2) Iteration
-     3) Jump
+- Expression statement
+- Compound statements
+- Statement Kinds:
+  1) Selection
+  2) Iteration
+  3) Jump
 *** Expression Statement
     Optional expression, terminated by a (;)
     Most basic unit of work.

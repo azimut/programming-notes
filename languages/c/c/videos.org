@@ -138,37 +138,16 @@ that much is familiar inside kernels such as Linux.
 * 19 | "New" Features in C                    | Daniel Saks
    https://www.youtube.com/watch?v=ieERUEhs910
 - C++ dev, working also on C
-- 4 Standards C89=C90/C99/C11/C18(bugfix of 11)
 - Reserved identifiers
   - for global scope, starting with undersore
   - for all, starting with 2 underscores, or underscore and uppercase
-- C99 boolean type
 - C90 _STDC_
-  C99 _STDC_VERSION_
+- C99 _STDC_VERSION_
 - C99 long long
-- C99 <stdint.h> for exact length ints
 - C90 you couldn't declare after the first line
      for loop variables declared at the beginning
   C99 relaxed it, and allows declaration after
      for loop variables declared inplace
-- C99 inline for functions
-- C99 ~compound literals~, where rational is a typedef struct with 2 members
-  (rational){1,2}
-  (int [m]){8,6,3,1,2,3,4,5,6}
-  (int []){8,6,3,1,2,3,4,5,6}
-- C99 ~designated initializers~, nice for unions or structs (to avoid confusion) or arrays
-  glop g1 = { .i = 10}
-  glop g2 = { .d = 12.3 }
-  int x[10] = { 0, 0, 0, 8, 0, 0, 0,  2}
-  int x[10] = { [3] = 8, [7] = 2 }
-- C99 ~variable length arrays~ VLAs, declaring and as parameters
-  void f(size_t m, size_t n) {
-    int x[m][n];
-- C99 ~Flexible Array Members~, useful for packet-like structures
-  struct packet {
-    header h;
-    data d[]; // THIS
-  }
 * 21 | Checking out raylib                    | Tsoding
 
 https://www.youtube.com/watch?v=fHojJ9Nxb0E
@@ -228,7 +207,6 @@ https://www.youtube.com/watch?v=fHojJ9Nxb0E
   #+end_src
 - C11 =_Generic= and Overloading
   #define min(a,b) _Generic((a), float. minf(a,b), int: mini(a,b))
-- C11 atomics, thread_local
 - defer macro
   #+begin_src c
     #define macro_var(name) concat(name, __LINE__)
@@ -308,26 +286,9 @@ https://www.youtube.com/watch?v=bpCJf67e1lI
 - to be able to perform an action on each file, WITHOUT interacting with the recursion of readdir()
   we creates a wrapper API struct that keep an array of DIR* around
 * 21 | Using C instead of Bash                | Tsoding
-- =fopen()= returns NULL on error
-- =fclose()=
-- =fprintf= (SINK,STRING)
-  - you can pass to the first argument the FILE *value returned by fopen()
-- assert(0 && "TODO: description");
-- =fork()=
-  - returns
-    - to the parent the child id
-    - to the child 0
-    - or negative on error
-- =wait()=
-  - waits for state changes in a child of the calling process
-  - returns the pid of the process that changed state
-- =execvp()=
-  - the "p" means that it will look into PATH
-  - replaces the current process image with the one passed to it
-  - you NEED to run in on a fork()ed child
-  - 2nd argument list must end with NULL
 - for(; *argv != NULL; argv++) can have a missing initialization parameter
 *** shlex
+- python package https://docs.python.org/3/library/shlex.html
 - strchr()
   - locates a character in string
 - python shlex.quote, escapes a string to be parsed by a command
@@ -344,8 +305,6 @@ https://www.youtube.com/watch?v=bpCJf67e1lI
 01:26:00
 - uses ~size_t~ for anything related to array indices
 - Implementation of C++'s StringView in C https://github.com/tsoding/sv
-- fwrite()
-- fread() reads elements, not bytes
 - using =goto= to return an error, a way to imitate part of Go's "defer"
   #+begin_src c
     char* slurp_file(const char *file_path, size_t *size) {

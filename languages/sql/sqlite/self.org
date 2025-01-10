@@ -9,7 +9,7 @@
 |------------+------------------------------------------------|
 
 - Author: Richard Hipp
-- 2000- (db format released 2004)
+- 2000 (db format released in 2004)
 - embedded database, a way to access a file, has no network access
 - Include a hidden "rowid" index column (uses the pkey if set)
 - Max database size 281 TB
@@ -19,16 +19,18 @@
 - Dynamically Typed
   - Types are assigned to individual values, NOT columns
   - BUT sqlite will try to convert it to the prefered column type
-  - Support for strict tables (2015 - 3.37.1)
 
 - [[https://www.sqlite.org/changes.html][Changelog]]
-  - CONCAT()                 (2023 - 3.44)
-  - CSV explicit import flag (2020 - 3.32)
-  - CSV virtual table        (2016 - 3.14)
-  - Foreign Key constraints  (2009 - 3.6.19)
-  - Full Text Search
-    - FTS4 (2010 - 3.7.4)
-    - FTS5 (2015 - 3.8.11)
+  |----+--------+-------------------------|
+  |    | <l>    |                         |
+  | 23 | 3.44   | CONCAT()                |
+  | 20 | 3.32   | csv import              |
+  | 16 | 3.14   | csv virtual table       |
+  | 15 | 3.37.1 | strictly typed tables   |
+  | 15 | 3.8.11 | FTS5                    |
+  | 10 | 3.7.4  | FTS4                    |
+  | 09 | 3.6.19 | foreign key constraints |
+  |----+--------+-------------------------|
 
 - gotchas https://sqlite.org/quirks.html
 - diy https://cstack.github.io/db_tutorial/

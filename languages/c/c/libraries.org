@@ -1,0 +1,16 @@
+- SDL https://nullprogram.com/blog/2023/01/08/
+- gtk http://web.archive.org/web/20201212201423/https://not.cafe/2020/10/12/getting-started-with-c-programming.html
+- 0.9K https://github.com/MrFrenik/gunslinger
+  C99, header-only framework for games and multimedia applications
+- Webserver https://mongoose.ws/
+- (3K) minimal cross-platform standalone C headers
+  https://github.com/floooh/sokol
+- (800) math lib https://github.com/HandmadeMath/Handmade-Math
+- https://github.com/oz123/awesome-c
+- https://wiki.gnome.org/Projects/GLib
+- https://github.com/clibs
+- (893) https://github.com/tezc/sc
+- (80) https://github.com/ludocode/pottery
+- (24) https://github.com/begriffs/libderp
+- (10) https://github.com/lelanthran/libds
+- (480) coroutines https://github.com/tidwall/neco

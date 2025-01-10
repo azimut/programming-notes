@@ -158,7 +158,7 @@ https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html
 https://www.gnu.org/software/make/manual/html_node/Text-Functions.html
 |------------+---------------+-------------------------------------------|
 |        <r> |      <c>      |                                           |
-|       word |    n,text     | "n" word in in text                       |
+|       word |    n,text     | "n"th word in in text                     |
 |   wordlist |   n,m,text    | text word-slicing from "n" to "m"         |
 |      words |     text      | number of words                           |
 |  firstword |     text      |                                           |

@@ -1,0 +1,22 @@
+- tuto https://cstack.github.io/db_tutorial/
+- tuto https://8dcc.github.io/programming/pool-allocator.html
+- https://github.com/camel-cdr/cauldron
+- https://causal.agency/
+  - https://causal.agency/bin/
+  - libcurl https://causal.agency/bin/title.html
+
+- 100rabbits
+  - https://git.sr.ht/~rabbits/
+  - https://100r.co/site/projects.html
+  - ME: small sources, that do a lot of cool things
+  - https://github.com/hundredrabbits/Grimgrains/blob/main/src/main.c
+  - https://git.sr.ht/~rabbits/modal/tree/master/item/src/modal.c
+
+- https://ccodearchive.net/list.html
+
+- https://github.com/isometimes/rpi4-osdev
+- hk: Set temporary X11 hotkeys https://github.com/ltratt/hk/
+- Code: http://bxr.su/OpenBSD/
+- https://github.com/curl/trurl/blob/master/trurl.c
+- https://github.com/gsingh93/display-manager
+- https://github.com/lpereira/lwan

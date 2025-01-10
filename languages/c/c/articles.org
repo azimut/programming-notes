@@ -1,3 +1,8 @@
+- course
+  - https://cse.buffalo.edu/~eblanton/course/cse410-2018-2f/
+  - https://cse.buffalo.edu/~eblanton/course/cse410-2018-2f/materials/2018-2F/
+- style https://www.gnu.org/prep/standards/standards.html
+- https://github.com/oz123/awesome-c?tab=readme-ov-file#learning-reference-and-tutorials
 - https://text.causal.agency/003-pleasant-c.txt
 - https://text.causal.agency/005-testing-c.txt
 - https://text.causal.agency/006-some-libs.txt

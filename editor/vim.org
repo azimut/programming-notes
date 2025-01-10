@@ -13,6 +13,9 @@
 - lua https://neovim.io/doc/user/lua-guide.html#lua-guide
 - https://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/
 
+* plugins
+- completion https://github.com/Valloric/YouCompleteMe/
+- completion https://github.com/Shougo/deoplete.nvim/
 * vimscript
 
 - https://exercism.org/tracks/vimscript/

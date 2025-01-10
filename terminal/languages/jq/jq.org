@@ -18,10 +18,11 @@
   #!/usr/bin/jq -f
 #+end_src
 
+- 2012
+- Stephen Dolan
 - jq -n # to quickly test snippets without input
 - jq sources ~/.jq automatically
 - First written in Haskell, but early rewritten in C for performance (?)
-- Created by Stephen Dolan in 2012
 - jq binary is of 33k
 - filters (aka functions)
   - all have an input and an output
@@ -150,10 +151,11 @@
 |----------+------------------------------------------------------------|
 ** generators?
 |---+-------------------------------------------------+--------------+--------------------------------------|
-| 1 | while(.<30; .*2)                                | [1,2,4,8,16] |                                      |
-| 1 | repeat(.*2; error)?                             | [2]          | repeats filter until error is raised |
-| 4 | [.,1]¦until(.[0] < 1; [.[0]-1, .[1]*.[0]])¦.[1] | 24           |                                      |
-|   | recurse???                                      |              |                                      |
+|   |                       <c>                       |     <c>      |                                      |
+| 1 |                while(.<30; .*2)                 | [1,2,4,8,16] |                                      |
+| 1 |               repeat(.*2; error)?               |     [2]      | repeats filter until error is raised |
+| 4 | [.,1]¦until(.[0] < 1; [.[0]-1, .[1]*.[0]])¦.[1] |      24      |                                      |
+|   |                   recurse???                    |              |                                      |
 |---+-------------------------------------------------+--------------+--------------------------------------|
 ** format & escape strings
 |---------+------------------------------------|
@@ -169,7 +171,7 @@
 ** stdlib functions
 *** general
 |-------------------+----------------------------------------------|
-| filter            | description                                  |
+|                   | description                                  |
 |-------------------+----------------------------------------------|
 | debug             | like (.) but it prints to stderr too         |
 | range(TO)         |                                              |
@@ -194,14 +196,14 @@
 | 0           | type     | "number"      |   |
 |-------------+----------+---------------+---|
 ***    date
-|                        |                  <c>                  |                          |
+|          <c>           |                  <c>                  |           <c>            |
 |------------------------+---------------------------------------+--------------------------|
-| 1425599507             |                todate                 |   "2015-03-05T23:51:47Z" |
-| "2015-03-05T23:51:47Z" |               fromdate                |               1425599507 |
+|       1425599507       |                todate                 |  "2015-03-05T23:51:47Z"  |
+| "2015-03-05T23:51:47Z" |               fromdate                |        1425599507        |
 | "2015-03-05T23:51:47Z" |    strptime("%Y-%m-%dT%H:%M:%SZ")     | [2015,2,5,23,51,47,4,63] |
-| "2015-03-05T23:51:47Z" | strptime("%Y-%m-%dT%H:%M:%SZ")¦mktime |               1425599507 |
-| -                      |                  now                  |        1716057777.153488 |
-| 1425599507             |         strftime("%H:%M:%S")          |               "23:51:47" |
+| "2015-03-05T23:51:47Z" | strptime("%Y-%m-%dT%H:%M:%SZ")¦mktime |        1425599507        |
+|           -            |                  now                  |    1716057777.153488     |
+|       1425599507       |         strftime("%H:%M:%S")          |        "23:51:47"        |
 |------------------------+---------------------------------------+--------------------------|
 ***  stream
 |------------+-----------+-------------------+---|
@@ -389,38 +391,38 @@ https://jqlang.github.io/jq/manual/v1.7/#math
 
 ***  object
 |----------------------------+--------------------------------------------------+-----------------------------+-------------------------------|
-|                            |                       <c>                        |                             |                               |
-|                            |                      filter                      | out                         |                               |
+|            <c>             |                       <c>                        |             <c>             |                               |
+|             in             |                      filter                      |             out             |                               |
 |----------------------------+--------------------------------------------------+-----------------------------+-------------------------------|
-| {"a": 1, "b": 2, "c": 3}   |                       .[]                        | 1,2,3                       | stream of values              |
-| {"a": 1, "b": 2, "c": 3}   |                      {a,c}                       | {"a": 1, "c": 3}            |                               |
-| {a: {foo: 1}, b: {bar: 2}} |                     .a + .b                      | {foo: 1, bar: 2}            |                               |
-| {}                         |                        .a                        | null                        | *projection, dot notation     |
-| {"a": 1, "b": 2}           |                        .a                        | 1                           |                               |
-| {"a": 1, "b": 2}           |                    . + {c: 3}                    | {a: 1, b: 2, c: 3}          |                               |
-| {"a": 1, "b": 2}           |                      .["a"]                      | 1                           |                               |
-| {"a": 1, "b": 2}           |                      "foo"                       | "foo"                       |                               |
-| {"a": 1, "b": 2}           |                     .a = 100                     | {a: 100, b: 2}              | create/update property        |
-| {"a": 1, "b": 2}           |                  .a ¦= . + 100                   | {a: 101, b: 2}              |                               |
-| {"a": 1, "b": 2}           |                    {foo: .a}                     | {foo: 1}                    | new obj, old prop             |
+|  {"a": 1, "b": 2, "c": 3}  |                       .[]                        |            1,2,3            | stream of values              |
+|  {"a": 1, "b": 2, "c": 3}  |                      {a,c}                       |      {"a": 1, "c": 3}       |                               |
+| {a: {foo: 1}, b: {bar: 2}} |                     .a + .b                      |      {foo: 1, bar: 2}       |                               |
+|             {}             |                        .a                        |            null             | *projection, dot notation     |
+|      {"a":1 , "b":2}       |                        .a                        |              1              |                               |
+|      {"a":1 , "b":2}       |                    . + {c: 3}                    |     {a: 1, b: 2, c: 3}      |                               |
+|      {"a":1 , "b":2}       |                      .["a"]                      |              1              |                               |
+|      {"a":1 , "b":2}       |                      "foo"                       |            "foo"            |                               |
+|      {"a":1 , "b":2}       |                     .a = 100                     |       {a: 100, b: 2}        | create/update property        |
+|      {"a":1 , "b":2}       |                  .a ¦= . + 100                   |       {a: 101, b: 2}        |                               |
+|      {"a":1 , "b":2}       |                    {foo: .a}                     |          {foo: 1}           | new obj, old prop             |
 |----------------------------+--------------------------------------------------+-----------------------------+-------------------------------|
-| {"name": "john"}           |                as {name: $n} ¦ $n                | "john"                      | as object destructuring       |
-| {"name": "john"}           |                as {$name} ¦ $name                | "john"                      | as object destructuring short |
+|      {"name": "john"}      |                as {name: $n} ¦ $n                |           "john"            | as object destructuring       |
+|      {"name": "john"}      |                as {$name} ¦ $name                |           "john"            | as object destructuring short |
 |----------------------------+--------------------------------------------------+-----------------------------+-------------------------------|
-| {"a": 1, "b": 2, "c": 3}   |                     flatten                      | [1,2,3]                     | array of values               |
-| {"a": 1, "b": 2, "c": 3}   |                       keys                       | ["a","b","c"]               | array of keys                 |
-| {"a": 1, "b": 2, "c": 3}   |                  keys_unsorted                   | ["a","c","b"]               | array of keys                 |
-| {"a": 1, "b": 2, "c": 3}   |                     has("a")                     | true                        |                               |
-| "a"                        |                   in({"a": 2})                   | true                        |                               |
-| {"a": 1, "b": 2, "c": 3}   |                       add                        | 6                           | adds values                   |
+|  {"a": 1, "b": 2, "c": 3}  |                     flatten                      |           [1,2,3]           | array of values               |
+|  {"a": 1, "b": 2, "c": 3}  |                       keys                       |        ["a","b","c"]        | array of keys                 |
+|  {"a": 1, "b": 2, "c": 3}  |                  keys_unsorted                   |        ["a","c","b"]        | array of keys                 |
+|  {"a": 1, "b": 2, "c": 3}  |                     has("a")                     |            true             |                               |
+|            "a"             |                   in({"a": 2})                   |            true             |                               |
+|  {"a": 1, "b": 2, "c": 3}  |                       add                        |              6              | adds values                   |
 |----------------------------+--------------------------------------------------+-----------------------------+-------------------------------|
-| {"a": 1, "b": 2, "c": 3}   |                     del(.a)                      | {"b":2, "c":3}              |                               |
-| {"a": 1, "b": 2, "c": 3}   |                    to_entries                    | [{"key":"a","value":1},...] |                               |
-| [{"key":"a","value":1}]    |                   from_entries                   | {"a":1}                     |                               |
-| {"Jane": 42}               | with_entries({key:(.value¦tostring),value:.key}) | {"42": "Jane"}              |                               |
-| [{foo:1},{foo:2}]          |                  group_by(.foo)                  | [[{foo:1}],[{foo:2}]]       |                               |
-| {"first": "jane"}          |               .[] ¦= ascii_upcase                | {first: "JANE"}             |                               |
-| {"first": "jane"}          |             map_values(ascii_upcase)             | {first: "JANE"}             | equivalent to above           |
+|  {"a": 1, "b": 2, "c": 3}  |                     del(.a)                      |       {"b":2, "c":3}        |                               |
+|  {"a": 1, "b": 2, "c": 3}  |                    to_entries                    | [{"key":"a","value":1},...] |                               |
+|  [{"key":"a","value":1}]   |                   from_entries                   |           {"a":1}           |                               |
+|        {"Jane": 42}        | with_entries({key:(.value¦tostring),value:.key}) |       {"42": "Jane"}        |                               |
+|     [{foo:1},{foo:2}]      |                  group_by(.foo)                  |    [[{foo:1}],[{foo:2}]]    |                               |
+|     {"first": "jane"}      |               .[] ¦= ascii_upcase                |       {first: "JANE"}       |                               |
+|     {"first": "jane"}      |             map_values(ascii_upcase)             |       {first: "JANE"}       | equivalent to above           |
 |----------------------------+--------------------------------------------------+-----------------------------+-------------------------------|
 
 - with_entries(filter), is equivalent to:
