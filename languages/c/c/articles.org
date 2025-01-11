@@ -1,7 +1,10 @@
+- https://overflow.hostux.net/questions/2565727/which-functions-from-the-standard-library-must-should-be-avoided
+- https://sekrit.de/webdocs/c/beginners-guide-away-from-scanf.html
 - course
   - https://cse.buffalo.edu/~eblanton/course/cse410-2018-2f/
   - https://cse.buffalo.edu/~eblanton/course/cse410-2018-2f/materials/2018-2F/
 - style https://www.gnu.org/prep/standards/standards.html
+- style https://suckless.org/coding_style/
 - https://github.com/oz123/awesome-c?tab=readme-ov-file#learning-reference-and-tutorials
 - https://text.causal.agency/003-pleasant-c.txt
 - https://text.causal.agency/005-testing-c.txt

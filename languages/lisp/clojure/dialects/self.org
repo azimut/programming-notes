@@ -1,3 +1,5 @@
+- llvm implementation, with C++ interop https://github.com/jank-lang/jank
+
 - Implementation: Uses this to interpret a (large) subset of clojure https://github.com/babashka/SCI
   - As such the code is NOT compiled.
 

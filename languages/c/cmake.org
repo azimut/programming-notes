@@ -1,1 +1,8 @@
 - https://cmake.org/cmake/help/latest/guide/tutorial/index.html
+- created defaults: help, install, --graphviz
+- directives?
+  - project
+  - add_library
+  - target_include_directories
+  - add_executable
+  - target_link_libraries

@@ -23,6 +23,8 @@
     https://github.com/mvdan/sh
     (fork?) https://github.com/patrickvane/shfmt
 
+- list of tools https://wiki.archlinux.org/title/List_of_applications/Utilities
+
 - tool: regex dot plot
   - https://github.com/katef/libfsm/
   - ? https://github.com/katef/kgt/

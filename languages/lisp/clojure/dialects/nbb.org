@@ -1,3 +1,4 @@
+- node implementation
 - source https://github.com/babashka/nbb
 
 - 22 article: https://faster-than-light-memes.xyz/binaural-beats-using-scittle.html

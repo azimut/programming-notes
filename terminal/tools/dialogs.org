@@ -36,13 +36,24 @@
 
 * X11
 
+- rofi
+  - source C https://github.com/davatorium/rofi
+
+- KDialog
+  - home https://develop.kde.org/docs/administration/kdialog/
+  - source C++ https://github.com/KDE/kdialog
+  - launcher, but has a scripting mode
+    https://github.com/davatorium/rofi/blob/next/doc/rofi-script.5.markdown
+
 - yad
   - widgets: color picker, calendar, form, html, notification
   - https://github.com/v1cont/yad/
   - https://yad-guide.ingk.se/
 
-- https://gitlab.gnome.org/GNOME/zenity
-  https://help.gnome.org/users/zenity/stable/
+- zenity
+  - source https://gitlab.gnome.org/GNOME/zenity
+  - home https://help.gnome.org/users/zenity/stable/
+
+- XDialog http://xdialog.free.fr/
 
 - all languages https://wiki.archlinux.org/title/GTK/Development
-- http://xdialog.free.fr/

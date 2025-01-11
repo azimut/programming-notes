@@ -18,9 +18,8 @@ EDN (extensible data notation): https://clojure.github.io/clojure/clojure.edn-ap
 - https://www.cs.utexas.edu/users/novak/cs378contents.html
 - https://github.com/bbatsov/clojure-style-guide
 - Live Notebooks https://clerk.vision/
-- C++ Dialect https://github.com/jank-lang/jank
 - tutorial https://practical.li/clojure/
-
+- native implementation in LLVM, with C++ interop https://github.com/jank-lang/jank
 - exercises
   - https://exercism.io/tracks/clojure
   - https://github.com/functional-koans/clojure-koans/

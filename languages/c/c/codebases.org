@@ -13,6 +13,8 @@
   - https://git.sr.ht/~rabbits/modal/tree/master/item/src/modal.c
 
 - https://ccodearchive.net/list.html
+- https://git.suckless.org/
+- https://suckless.org/rocks/
 
 - https://github.com/isometimes/rpi4-osdev
 - hk: Set temporary X11 hotkeys https://github.com/ltratt/hk/

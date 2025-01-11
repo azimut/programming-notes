@@ -8,6 +8,8 @@
 |  posix make | https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html |
 |        fork | https://justine.lol/make/                                            |
 | alternative | https://github.com/casey/just                                        |
+| alternative | https://taskfile.dev/                                                |
+| alternative | https://snakemake.github.io/                                                                     |
 |      manual | https://www.gnu.org/software/make/manual/html_node/index.html        |
 |-------------+----------------------------------------------------------------------|
 
@@ -34,6 +36,7 @@
 |   -j N    |          jobs=N          | parallel jobs                  |
 |    -n     |         dry-run          |                                |
 |    -t     |          touch           | touch targets, without running |
+|    -d     | --debug=[a¦b¦v¦i¦j¦m¦n]  | print debug                    |
 |           | warn-undefined-variables | when referenced                |
 |    -r     |     no-builtin-rules     |                                |
 |    -R     |   no-builtin-variables   |                                |
@@ -57,9 +60,9 @@
   - but if multiple % patterns match, will use the last one matched (deps stills stacked?)
 - multiple targets: for same dependencies
 - recommended phony ones: https://www.gnu.org/software/make/manual/html_node/Standard-Targets.html
-  - all, help, clean, check, dist
+  - all, help, clean, check, dist, run, deps, serve, deploy
   - test: make it depend of the final binary
-  - install: use PREFIX=/usr/local and DESTDIR
+  - (un)install: use PREFIX=/usr/local and DESTDIR
 
 *** special targets
 
