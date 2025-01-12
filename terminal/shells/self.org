@@ -1,3 +1,4 @@
+https://hyperpolyglot.org/unix-shells
 |------+--------+------|
 |  <r> | LOC(k) | Size |
 |------+--------+------|

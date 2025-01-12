@@ -1,3 +1,10 @@
+- code search
+  - debian https://codesearch.debian.net/
+  - python https://www.programcreek.com/python/
+  - linux https://livegrep.com/search/linux
+  - github https://grep.app/
+  - html, js, css https://publicwww.com/
+
 - [[https://www.linfo.org/rule_of_silence.html][The Rule of Silence]] (aka the silence is golden rule)
   - part of the Unix philosophy that states that when a program has nothing surprising, interesting or useful to say, it should say nothing
 

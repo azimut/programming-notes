@@ -1,5 +1,6 @@
-- tuto https://cstack.github.io/db_tutorial/
-- tuto https://8dcc.github.io/programming/pool-allocator.html
+- https://github.com/practical-tutorials/project-based-learning?tab=readme-ov-file#cc
+  - tuto https://cstack.github.io/db_tutorial/
+  - tuto https://8dcc.github.io/programming/pool-allocator.html
 - https://github.com/camel-cdr/cauldron
 - https://causal.agency/
   - https://causal.agency/bin/

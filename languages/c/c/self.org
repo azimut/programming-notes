@@ -4,6 +4,7 @@
 
 * Language
 
+- 0 is true
 - main() entry point for a program that's executed in a hosted environment
   - a *return* from it, is equivalent to calling *exit*
 
@@ -99,6 +100,8 @@
   #+end_src
 - arrays in structs can be initialized... TODO?
 
+** functions
+- C is a ~call-by-value~ (aka ~pass-by-value~) language
 ** variables
 *** scopes of identifiers
 |-----------+----------------------------------------------------|
@@ -123,6 +126,23 @@
 ** functions
 - list the param types or use *void* when no args
 - a function with a param type list is known as a *function prototype*
+** control flow
+- conditionally run *statements* based on a controlling *expression*
+- if/else if/else
+- switch/case/default
+  - expression must have an integer type
+  - integer promotion is performed
+    #+begin_src c
+      switch (marks/10) {
+        case 10: // Falls through
+        case 9:
+          puts("YOUR GRADE : A");
+          break;
+        default:
+          puts("YOUR GRADE : FAILED");
+      }
+    #+end_src
+
 * Standard Library
 - https://en.cppreference.com/w/c/header
 - https://en.wikibooks.org/wiki/Category:Book:C_Programming
@@ -190,6 +210,7 @@
 |          |    random    |                                                                                                         |
 |          |     ato?     |                                                                                                         |
 |          |    strto?    |                                                                                                         |
+|          |    abort     | cause abnomal process termination                                                                       |
 |          | EXIT_SUCCESS |                                                                                                         |
 |          | EXIT_FAILURE |                                                                                                         |
 |----------+--------------+---------------------------------------------------------------------------------------------------------|
@@ -267,6 +288,10 @@ https://en.wikipedia.org/wiki/C23_(C_standard_revision)
 |-------------+---+---------------------------------------------------------------|
 ** POSIX
 - Portable Opearting System Interface (for UNIX)
+- https://en.wikipedia.org/wiki/POSIX
+  - POSIX.1-2024
+    - https://sortix.org/blog/posix-2024/
+    - https://blog.toast.cafe/posix2024-xcu
 - https://en.wikipedia.org/wiki/C_POSIX_library
 - https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference
 - libc's compare http://www.etalabs.net/compare_libcs.html
@@ -566,8 +591,11 @@ https://0x00sec.org/t/remote-shells-part-i/269/1
 * Gotchas
 - ME: (like bash) small differences can make a lot
 * GCC
-|-----------+---------------------------|
-| -pedantic | notify portability issues |
-| -std=     | c89,c90,c99...            |
-| -ansi     | -std=c90                  |
-|-----------+---------------------------|
+|--------------------------+---------------------------|
+| -pedantic                | notify portability issues |
+| -std=                    | c89,c90,c99...            |
+| -ansi                    | -std=c90                  |
+| -Wmisleading-indentation | when not using braces     |
+| -Wimplicit-fallthrough   |                           |
+| -Wswitch-enum            |                           |
+|--------------------------+---------------------------|

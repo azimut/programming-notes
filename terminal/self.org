@@ -45,6 +45,7 @@
 #+begin_src sh
   $ man man
   $ man -f FOOBAR # list all available sections for FOOBAR
+  $ man -Tps | ps2pdf - bash.pdf
 #+end_src
 - TODO: better colors
 - tool: man without bs https://gist.github.com/alphapapa/3cba3ff196147ad42bac

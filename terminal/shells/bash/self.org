@@ -1,4 +1,5 @@
 - source https://github.com/wasix-org/bash/
+- manual https://www.gnu.org/software/bash/manual/bash.html
 - wiki https://en.wikipedia.org/wiki/Bash_(Unix_shell)
   - Author: Brian Fox
   - 1989-
@@ -105,14 +106,26 @@
 - Bash does NOT support natively floating point numbers
 
 - associative arrays
+  - is always global
+  - cannot be passed to a function by value
   - [[https://github.com/wasix-org/bash/blob/master/assoc.c]["are standard shell hash tables"]]
   - ops
-    |----------------+------|
-    | declare -A arr | init |
-    |----------------+------|
+    |-------------------+----------------|
+    |        <c>        |                |
+    |  declare -A arr   | init           |
+    | declare -rA arr=( | init+assign+ro |
+    |   ["c"]="foo")    |                |
+    | arr["c"]="foobar" | assign         |
+    |    ${arr["c"]}    | access         |
+    |    ${!arr[@]}     | keys           |
+    |     ${arr[*]}     | values         |
+    | unset ${arr["c"]} | delete element |
+    |     unset arr     | delete         |
+    |-------------------+----------------|
 
 - array
   - index start at 0(zero)
+    - must be non-negative
   - [[https://github.com/wasix-org/bash/blob/master/array.c]["are sparse doubly-linked lists. An element's index is stored with it."]]
     - meaning that random access is O(n)
   - array ops https://tldp.org/LDP/abs/html/arrays.html

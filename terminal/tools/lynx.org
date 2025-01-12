@@ -30,3 +30,10 @@
 |        list_inline | inlines links with text                 |
 |     =list_decoded= | url decodes links                       |
 |--------------------+-----------------------------------------|
+
+* snippets
+
+- list all links
+  #+begin_src sh
+    $ lynx -dump -listonly -nonumbers -image_links -hiddenlinks=merge "$URL"
+  #+end_src
