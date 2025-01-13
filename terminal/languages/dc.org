@@ -1,3 +1,6 @@
+#+TITLE: dc
+#+DATE: <2025-01-11 sáb>
+
 - manual https://wolfram.schneider.org/bsd/7thEdManVol2/dc/dc.html
 - manual https://www.gnu.org/software/bc/manual/dc-1.05/html_mono/dc.html
 - wiki https://en.wikipedia.org/wiki/Dc_(computer_program)
