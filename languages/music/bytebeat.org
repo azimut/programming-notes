@@ -1,0 +1,73 @@
+- https://www.youtube.com/watch?v=MqZgoNRERY8
+- http://web.archive.org/web/20240724121151/https://www.ioccc.org/2013/endoh3/hint.html
+- undertale sans
+  #+begin_src sh
+    $ echo 'char a;float b,c;main(d){for(;d>2e3*c?c=1,scanf(" %c%f",&a,&c),d=55-a%32*9/5,b=d>9,d=d%13-a/32*12:1;a=2)++d<24?b*=89/84.:putchar(a=b*d);}'|
+        gcc -x c - && printf "DDdzAzzVzGzFzDFGCCdzAzzVzGzFzDFGQQdzAzzVzGzFzDFGXXdzAzzVzGzFzDFG\n%.0s" {1..4}|
+            ./a.out|aplay -r16000
+  #+end_src
+- noise https://x.com/abramh/status/707056883048157184
+  #+begin_src sh
+    $ gawk 'BEGIN{for(;;t+=1){printf("%08X",or(t%32*and(t*5,rshift(t,7)),and((t*3),rshift(t*4,10))))}}'|xxd -r -p|aplay -fS32_LE
+  #+end_src
+- scale play https://x.com/48bitmachine/status/1540314756195950592
+  #+begin_src sh
+    $ cat /dev/urandom |
+         hexdump -e '/1 "%u\n"' |
+         awk '{ split("0,2,4,5,7,8,10,12",a,",");
+             for (i = 0; i < 1; i+= 0.0001)
+                 printf("%08X\n", 100*sin(1382*exp((a[$1 %8]/12)*log(2))*i)) }' | xxd -r -p | aplay -c 2 -f S32_LE -r 16000
+  #+end_src
+- yumeji https://x.com/thingskatedid/status/1289412271261667330
+  #+begin_src sh
+    $ echo 'main(t){for(t=0;;t++)putchar(t>>6^t&0x25|t+(t^t>>11)-t* ((t%24?2:6)&t>>11)^t<<1&(t&0x256?t>>4:t>>10));}' | gcc -xc - && ./a.out | aplay
+  #+end_src
+- radio https://x.com/thingskatedid/status/1289413386690629632
+  #+begin_src sh
+    $ gawk 'BEGIN { for (t=0;;t++) { printf("%c", and(t*t/256,rshift(t,t/1024%16))) } }' | aplay
+  #+end_src
+- left channel bell
+  #+begin_src sh
+    $ perl -e 'for ($c=0; $c<10*8000; $c++) { $f=(($c%1000)<500) ; $k=int(100*sin($f*$c)); print pack "C", $k; } ' | aplay
+  #+end_src
+- https://x.com/mooinglemur/status/1388035088642834432
+  #+begin_src sh
+    $ perl -E'@x=(split//,"gTg\0g\0i\0\0O\0\0l\0l\0\0T\0\0i\0i\0gOg\0i\0i\0eMeMO\0Q\0R\0T\0V\0X\0TY");while(@x){($f,$g)=map{1.059463**ord$_}shift@x,shift@x;for(1..5e3){print(chr(128+(!($_*$f/8e3%4)+!($_*$g/8e3%4))*63))}}'|aplay -fU8 -r44100 -
+  #+end_src
+- https://x.com/mooinglemur/status/1079904720016142340
+  #+begin_src sh
+    $ perl -Mbytes -e'for$a(((43277,34906)x2,34122,8540,37257,9323)x2,43277,42113,42240){$s=$a&7;for$n(0..15,$a&8?reverse(1..16):()){for($i=$p=0,$f=.1;$p<$s+7||!($a&2**(15-($p%12)))||$i++<$n||($p==53&&!$s);$f*=1.0595,$p++){}for($v=1e4;--$v;$j+=$f){print chr$j%73}}}'|aplay -fU8 -r48 -
+  #+end_src
+
+- https://x.com/_uranium_/status/120696555035557888
+  #+begin_src sh
+    $ perl -e 'for($t=0;;++$t){ printf( "%c", ($t*(($t>>12|$t>>8)&63&$t>>4))&0xff) }'|aplay
+  #+end_src
+
+- https://x.com/mooinglemur/status/1321928071629348864
+  #+begin_src sh
+    $ perl -E'for$x(split//,"fafjmrmbfininruzuhkpkptwtw|w"){$f=1.059463**ord$x;for(1..1400){print($_/(4e3/$f)%8?"\xf0":"\xf")}}'|aplay -fU8 -r44100 -
+    $ perl -E'for$x(split//,"fafjmrmbfininruzuhkpkptwtw|w"){$f=1.059463**ord$x;for(1..1400){print($_*$f/4e3%8?"\xf0":"\xf")}}'|aplay -fU8 -r44100 -
+  #+end_src
+
+* bytebeat
+- https://countercomplex.blogspot.com/2011/10/some-deep-analysis-of-one-line-music.html
+- https://archive.bleu255.com/0xA/
+- https://www.noisebridge.net/wiki/Bytebeat#in_.3E140-character_command_lines
+* aplay
+** Available formats
+aplay: set_params:1343: Sample format non available
+Available formats:
+- U8
+- S16_LE
+- S16_BE
+- S24_LE
+- S24_BE
+- S32_LE
+- S32_BE
+- FLOAT_LE
+- FLOAT_BE
+- MU_LAW
+- A_LAW
+- S24_3LE
+- S24_3BE

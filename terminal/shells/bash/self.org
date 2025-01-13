@@ -9,6 +9,10 @@
     - allows you to copy multiple commands (also on rc shell)
     - PS1='%(?.%(!.#.;).%F{6}%B;%b%f) '
 
+- https://bash-hackers.gabe565.com/
+  - archive of the 2023 defunct wiki.bash-hackers.org
+  - https://web.archive.org/web/20221101110416/https://wiki.bash-hackers.org/
+
 - https://github.com/onceupon/Bash-Oneliner
 - https://github.com/dylanaraps/writing-a-tui-in-bash
 

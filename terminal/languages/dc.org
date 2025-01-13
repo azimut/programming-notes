@@ -2,6 +2,9 @@
 - manual https://www.gnu.org/software/bc/manual/dc-1.05/html_mono/dc.html
 - wiki https://en.wikipedia.org/wiki/Dc_(computer_program)
 - wiki https://es.wikipedia.org/wiki/DC_(Unix)
+- alt Rust https://github.com/wfraser/dc4
+- alt C https://git.gavinhoward.com/gavin/bc
+- alt C derived https://github.com/akjmicro/dclang
 
 - 1970
 - Robert Morris, Lorinda Cherry
@@ -9,16 +12,6 @@
 - a reverse-polish (RPN) calculator
 - up to 1M digits of decimal precision
 - use _ for negative numbers
-
-- 21 video https://www.youtube.com/watch?v=WxCP8oHq_Ss
-- 23 video https://www.youtube.com/watch?v=MDENRcTWDSY
-
-- article https://cs.unh.edu/~charpov/dc.html
-- article https://bash-hackers.gabe565.com/howto/calculate-dc/
-- article http://web.archive.org/web/20200607102626/https://ben165.github.io/unix_dc/index.html
-- article https://www.dayid.org/comp/dc.html
-- article https://psychocod3r.wordpress.com/2021/05/08/obfuscated-unix-scripting-with-dc/
-- examples https://literateprograms.org/desk_calculator__python_.html
 
 * language
 
@@ -31,38 +24,81 @@ $ dc -e '[Enter time: ]P?st[Distance: ]Plt2^0.5*9.8*p'
   - strings
   - arrays?
 
-** strings
-- can only be printed or execute them as macros
-- delimited by []
-|----+---+---------------------|
-| -1 | x | executes as a macro |
-| +1 | ? | ask user input      |
-|----+---+---------------------|
-** printing
+** commands
+*** printing
 |----+---+---------------------------------|
-|  0 | p | print top of stack, new line    |
 |  0 | f | print full stack                |
+|  0 | p | print top of stack, new line    |
 | -1 | n | print top of stack, no new line |
 | -1 | P |                                 |
 |----+---+---------------------------------|
-** register
+*** arithmetic
+|----+---+---+-----------------------------|
+| -2 | + | 1 |                             |
+| -2 | - | 1 | fst - snd                   |
+| -2 | * | 1 |                             |
+| -2 | / | 1 | fst / snd                   |
+| -2 | % | 1 | remainder of /              |
+| -2 | ~ | 2 | quotient and remainder of / |
+| -2 | ^ | 1 | fst ^ snd                   |
+| -3 | ¦ | 1 | mod(fst, snd ^ trd)         |
+| -1 | v | 1 | square root                 |
+|----+---+---+-----------------------------|
+*** stack control
+|---+---------------------------|
+| c | clear stack               |
+| d | dup top of stack          |
+| r | swap top 2 values         |
+| R | rotates the top Nth items |
+|---+---------------------------|
+*** registers
+- valid names: a A 0 . " ...
 - each register has his own stack
-|----+----+-------------------------------|
-| -1 | sN | store in register N           |
-| +1 | lN | load from register N          |
-| +1 | LN | " and removes from register N |
-|----+----+-------------------------------|
-** parameters
-|----+---+-----------------------|
-| -1 | i | set input radix       |
-| -1 | o | set output radix      |
-| -1 | k | set decimal precision |
-|----+---+-----------------------|
-** stack control
-|---+----------------------|
-| c | clear stack          |
-|---+----------------------|
-
+|----+----+----------------------------------------------|
+| -1 | sR | stores in register R                         |
+| -1 | SR | stores in register R, nuke prev content on R |
+|  1 | lR | load from register R, 0 if empty             |
+|  1 | LR | " and pops it from register R                |
+|----+----+----------------------------------------------|
+*** parameters
+|----+---+------------------------|
+| -1 | i | set input radix        |
+| -1 | o | set output radix       |
+| -1 | k | set decimal precision  |
+|  1 | I | push input radix       |
+|  1 | O | push output radix      |
+|  1 | K | push decimal precision |
+|----+---+------------------------|
+*** strings
+- can only be printed or execute them as macros
+- delimited by []
+|----+-----+--------------------------------------|
+|    | <r> |                                      |
+| -1 |   x | executes as a macro                  |
+|  0 |   a | pop top, and push back 1st char/byte |
+| -2 |  >R | x R if >                             |
+| -2 | !>R | x R if <=                            |
+| -2 |  <R | x R if <                             |
+| -2 | !<R | x R if >=                            |
+| -2 |  =R | x R if =                             |
+| -2 | !=R | x R if !=                            |
+|  1 |   ? | ask user input, and execute it       |
+|  0 |   q | exits 2 level macro                  |
+| -1 |   Q | exits Nth level macro                |
+|----+-----+--------------------------------------|
+*** status inquiry
+|----+---+----------------------------|
+| -1 | Z | number of decimal digits   |
+| -1 | X | number of fraction digits  |
+|  1 | z | number of element in stack |
+|----+---+----------------------------|
+*** misc
+|----+----+---------------------------------------------|
+|  0 | !  | system command                              |
+|  0 | #  | comment                                     |
+| -2 | :R | stores *snd* in R =array=, indexed by *fst* |
+| -1 | ;r | gets =array= element in R                   |
+|----+----+---------------------------------------------|
 * flags
 |---------------------+----------------------------------|
 |         <c>         |                                  |
@@ -72,6 +108,22 @@ $ dc -e '[Enter time: ]P?st[Distance: ]Plt2^0.5*9.8*p'
 | --expression=SCRIPT | "                                |
 |---------------------+----------------------------------|
 * snippets
+** aoc 2019
+- https://github.com/tckmn/polyaoc-2019/blob/master/01/dc/01_1.dc
+  #+begin_src
+    0[3/2-+?z2=a]sa6laxp
+  #+end_src
+- https://github.com/tckmn/polyaoc-2019/blob/master/01/dc/01_2.dc
+  #+begin_src
+    0
+    [lbxszlsx?z1<a]sa
+        [3/2-dd8<b]sb
+            [+z1<s]ss
+    ?
+    laxp
+  #+end_src
+- https://github.com/tckmn/polyaoc-2019/blob/master/02/dc/02_1.dc
+- https://github.com/tckmn/polyaoc-2019/blob/master/05/dc/05.dc
 ** example: factorial - using conditions and recursion
 #+begin_src
 [d1<g]Sf
@@ -83,3 +135,15 @@ $ dc -e '[Enter time: ]P?st[Distance: ]Plt2^0.5*9.8*p'
 3 lf x p
 6
 #+end_src
+
+* articles
+- 24 https://bash-hackers.gabe565.com/howto/calculate-dc/
+- 20 http://web.archive.org/web/20200607102626/https://ben165.github.io/unix_dc/index.html
+- 13 https://www.dayid.org/comp/dc.html
+- 21 https://psychocod3r.wordpress.com/2021/05/08/obfuscated-unix-scripting-with-dc/
+- 18 https://eklitzke.org/summing-integer-ranges-with-dc
+- https://cs.unh.edu/~charpov/dc.html
+- https://literateprograms.org/desk_calculator__python_.html
+* videos
+- 21 https://www.youtube.com/watch?v=WxCP8oHq_Ss
+- 23 https://www.youtube.com/watch?v=MDENRcTWDSY
