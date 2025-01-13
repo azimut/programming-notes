@@ -10,9 +10,9 @@
 | wiki       | https://en.wikipedia.org/wiki/Bc_%28programming_language%29        |
 |------------+--------------------------------------------------------------------|
 
-- "Basic Calculator"
-- started as a frontend of =dc=
 - 1975-
+- "Basic/Bench Calculator"
+- started as a frontend for [[https://en.wikipedia.org/wiki/Dc_(computer_program)][dc]]
 - Authors:
   - Robert Morris
   - Lorinda Cherry
@@ -36,20 +36,26 @@ define foo(x) {
 }
 #+end_src
 
-|-------------+--------------------------------------------|
-| fn          | returns                                    |
-|-------------+--------------------------------------------|
-| length(n)   | length in digits of n, including decimals  |
-| s(n)        | sine                                       |
-| random()    | returns a random positive? integer         |
-| read()      | reads value from stdin, returns value read |
-| print "foo" | ala Python 2                               |
-|-------------+--------------------------------------------|
-| last        | last numer output                          |
-| scale       | number of decimals (default 0)             |
-| obase       | "output base" (default 10)                 |
-| ibase       | "input base"                               |
-|-------------+--------------------------------------------|
+|-------------+---------------------------------------------|
+|     <c>     |                                             |
+|     fn      | returns                                     |
+|-------------+---------------------------------------------|
+|  length(n)  | length in digits of n, including decimals   |
+|    s(n)     | sine                                        |
+|    c(n)     | cosine                                      |
+|    a(n)     | arctangent                                  |
+|    l(n)     | natural logarithm                           |
+|    e(n)     | exponential of ~e~ to ~n~                   |
+|   j(n,m)    | Bessel function of integer order ~n~ of ~x~ |
+|  random()   | returns a random positive? integer          |
+|   read()    | reads value from stdin, returns value read  |
+| print "foo" | ala Python 2                                |
+|-------------+---------------------------------------------|
+|    last     | last numer output                           |
+|    scale    | number of decimals (default 0)              |
+|    obase    | "output base" (default 10)                  |
+|    ibase    | "input base"                                |
+|-------------+---------------------------------------------|
 
 * Flags
 
@@ -68,10 +74,11 @@ define foo(x) {
 
 * Videos
 
-- Bc: Deep Dive Into The POSIX Calculator Language | Broodie Robertson
-  https://www.youtube.com/watch?v=JascI_29sks
-- Linux in the Shell Ep 25 - bc
-  https://vimeo.com/101977655
+- bc - geeksforgeeks https://www.youtube.com/watch?v=_UwhS0IvwQk
+- Command Line Calculator - gotbletu https://www.youtube.com/watch?v=JkyodHenTuc
+- Bc: Deep Dive Into The POSIX Calculator Language | Broodie Robertson https://www.youtube.com/watch?v=JascI_29sks
+- Linux in the Shell Ep 25 - bc https://vimeo.com/101977655
+- 23 video Is Python a souped up Basic Calculator?  https://www.youtube.com/watch?v=HcRMo0wGq44
 
 * Libraries
 

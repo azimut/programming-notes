@@ -1,0 +1,85 @@
+- manual https://wolfram.schneider.org/bsd/7thEdManVol2/dc/dc.html
+- manual https://www.gnu.org/software/bc/manual/dc-1.05/html_mono/dc.html
+- wiki https://en.wikipedia.org/wiki/Dc_(computer_program)
+- wiki https://es.wikipedia.org/wiki/DC_(Unix)
+
+- 1970
+- Robert Morris, Lorinda Cherry
+- "desk calculator"
+- a reverse-polish (RPN) calculator
+- up to 1M digits of decimal precision
+- use _ for negative numbers
+
+- 21 video https://www.youtube.com/watch?v=WxCP8oHq_Ss
+- 23 video https://www.youtube.com/watch?v=MDENRcTWDSY
+
+- article https://cs.unh.edu/~charpov/dc.html
+- article https://bash-hackers.gabe565.com/howto/calculate-dc/
+- article http://web.archive.org/web/20200607102626/https://ben165.github.io/unix_dc/index.html
+- article https://www.dayid.org/comp/dc.html
+- article https://psychocod3r.wordpress.com/2021/05/08/obfuscated-unix-scripting-with-dc/
+- examples https://literateprograms.org/desk_calculator__python_.html
+
+* language
+
+#+begin_src sh
+$ dc -e '[Enter time: ]P?st[Distance: ]Plt2^0.5*9.8*p'
+#+end_src
+
+- types:
+  - numbers
+  - strings
+  - arrays?
+
+** strings
+- can only be printed or execute them as macros
+- delimited by []
+|----+---+---------------------|
+| -1 | x | executes as a macro |
+| +1 | ? | ask user input      |
+|----+---+---------------------|
+** printing
+|----+---+---------------------------------|
+|  0 | p | print top of stack, new line    |
+|  0 | f | print full stack                |
+| -1 | n | print top of stack, no new line |
+| -1 | P |                                 |
+|----+---+---------------------------------|
+** register
+- each register has his own stack
+|----+----+-------------------------------|
+| -1 | sN | store in register N           |
+| +1 | lN | load from register N          |
+| +1 | LN | " and removes from register N |
+|----+----+-------------------------------|
+** parameters
+|----+---+-----------------------|
+| -1 | i | set input radix       |
+| -1 | o | set output radix      |
+| -1 | k | set decimal precision |
+|----+---+-----------------------|
+** stack control
+|---+----------------------|
+| c | clear stack          |
+|---+----------------------|
+
+* flags
+|---------------------+----------------------------------|
+|         <c>         |                                  |
+|       -f FILE       | executes script file             |
+|     --file=FILE     | "                                |
+|      -e SCRIPT      | runs commands in script on input |
+| --expression=SCRIPT | "                                |
+|---------------------+----------------------------------|
+* snippets
+** example: factorial - using conditions and recursion
+#+begin_src
+[d1<g]Sf
+[d1-lfx*]Sg
+
+1 lf x p
+1
+
+3 lf x p
+6
+#+end_src
