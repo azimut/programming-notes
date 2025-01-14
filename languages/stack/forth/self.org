@@ -2,7 +2,7 @@
 - home https://forth-standard.org/
 - wiki https://en.wikipedia.org/wiki/Forth_(programming_language)
   - Author: Charles H. Moore (aka Chuck Moore) https://en.wikipedia.org/wiki/Charles_H._Moore
-  - 1970-
+  - 1970
   - Used by NASA https://web.archive.org/web/20101024223709/http://forth.gsfc.nasa.gov/
 
 
@@ -65,50 +65,52 @@
 #+end_src
 
 ** words (default)
-T = take
-P = put
-|--------------+---+---+-------+-------+--------------------------------------------------------------------------------|
-|              | T | P | stack | diag  |                                                                                |
-|--------------+---+---+-------+-------+--------------------------------------------------------------------------------|
-| over         | - | 1 | a b   | a b a | dup top+1 number                                                               |
-| dup          | - | 1 | n     | n n   | when you want to use+keep top number                                           |
-| 2dup         | - | 2 |       |       | aka "over over" (dup 2 top places)                                             |
-|--------------+---+---+-------+-------+--------------------------------------------------------------------------------|
-| rot          | - | - | a b c | b c a | pushes up 3rd element to the top                                               |
-| -rot         | - | - |       |       | ? aka "rot rot" (push top 2 places below)                                      |
-|--------------+---+---+-------+-------+--------------------------------------------------------------------------------|
-| nip          | 1 | - | a b   | b     | trashes 2nd to top of the stack                                                |
-| drop         | 1 | - | a b   | a     | trashes top of stack                                                           |
-| 2drop        | 2 | - |       |       | aka "drop drop"                                                                |
-|--------------+---+---+-------+-------+--------------------------------------------------------------------------------|
-| swap         | - | - | a b   | b a   | top 2 elements                                                                 |
-|--------------+---+---+-------+-------+--------------------------------------------------------------------------------|
-| words        | - | - |       |       | shows all available words                                                      |
-| .            | 1 | - |       |       | pop & display top as number                                                    |
-| .s           | - | - |       |       | shows whole stack                                                              |
-| emit         | 1 | - | a     |       | pop & display top as character                                                 |
-| bl           | 1 | - |       |       | push the code for space " "                                                    |
-| space        | - | - |       |       | aka "bl emit"                                                                  |
-| cr           | - | - |       |       | emits a carriare return (aka new line)                                         |
-| page         | - | - |       |       | clears screen                                                                  |
-| char C       | 1 | - |       |       | puts character code for  "C" into stack                                        |
-| at-xy        | - | 2 |       |       | puts cursor at xy position in stack                                            |
-| esc[         | - | - |       |       | aka "27 emit 91 emit", for escape control char                                 |
-| ." STR"      | - | - |       |       | emits STR                                                                      |
-|--------------+---+---+-------+-------+--------------------------------------------------------------------------------|
-| mod          | 2 | 1 |       |       | remainder of division                                                          |
-| /mod         | 2 | 2 |       |       | quotient and remainder of division                                             |
-| negate       | 1 | 1 |       |       |                                                                                |
-| max          | 2 | 1 |       |       |                                                                                |
-| min          | 2 | 1 |       |       |                                                                                |
-|--------------+---+---+-------+-------+--------------------------------------------------------------------------------|
-| EXECUTE      |   |   |       |       | gets an address from the stack and runs whatever word is found at that address |
-| VARIABLE foo |   |   |       |       | defines "foo" as a new variable                                                |
-| foo          |   |   |       |       | leaves it's address on the stack                                               |
-| ' bar        |   |   |       |       | gets the address of the word "bar" and puts in on the stack                    |
-| !            |   |   |       |       | stores a =value= from the stack at ~address~ on the stack                      |
-| @            |   |   |       |       | loads the =value= from the given ~address~ and puts the =value= on the stack   |
-|--------------+---+---+-------+-------+--------------------------------------------------------------------------------|
+- https://forth-standard.org/standard/core
+- T = take
+- P = put
+|---+--------------+---+-------+-------+--------------------------------------------------------------------------------|
+|   |     <c>      |   |   <r> |   <r> |                                                                                |
+| T |              | P | stack |  diag |                                                                                |
+|---+--------------+---+-------+-------+--------------------------------------------------------------------------------|
+| - |     over     | 1 |   a b | a b a | dup top+1 number                                                               |
+| - |     dup      | 1 |     n |   n n | when you want to use+keep top number                                           |
+| - |     2dup     | 2 |       |       | aka "over over" (dup 2 top places)                                             |
+|---+--------------+---+-------+-------+--------------------------------------------------------------------------------|
+| - |     rot      | - | a b c | b c a | pushes up 3rd element to the top                                               |
+| - |     -rot     | - |       |       | ? aka "rot rot" (push top 2 places below)                                      |
+|---+--------------+---+-------+-------+--------------------------------------------------------------------------------|
+| 1 |     nip      | - |   a b |     b | trashes 2nd to top of the stack                                                |
+| 1 |     drop     | - |   a b |     a | trashes top of stack                                                           |
+| 2 |    2drop     | - |       |       | aka "drop drop"                                                                |
+|---+--------------+---+-------+-------+--------------------------------------------------------------------------------|
+| - |     swap     | - |   a b |   b a | top 2 elements                                                                 |
+|---+--------------+---+-------+-------+--------------------------------------------------------------------------------|
+| - |    words     | - |       |       | shows all available words                                                      |
+| 1 |      .       | - |       |       | pop & display top as number                                                    |
+| - |      .s      | - |       |       | shows whole stack                                                              |
+| 1 |     emit     | - |     a |       | pop & display top as character                                                 |
+| 1 |      bl      | - |       |       | push the code for space " "                                                    |
+| - |    space     | - |       |       | aka "bl emit"                                                                  |
+| - |      cr      | - |       |       | emits a carriare return (aka new line)                                         |
+| - |     page     | - |       |       | clears screen                                                                  |
+| 1 |    char C    | - |       |       | puts character code for  "C" into stack                                        |
+| - |    at-xy     | 2 |       |       | puts cursor at xy position in stack                                            |
+| - |     esc[     | - |       |       | aka "27 emit 91 emit", for escape control char                                 |
+| - |   ." STR"    | - |       |       | emits STR                                                                      |
+|---+--------------+---+-------+-------+--------------------------------------------------------------------------------|
+| 2 |     mod      | 1 |       |       | remainder of division                                                          |
+| 2 |     /mod     | 2 |       |       | quotient and remainder of division                                             |
+| 1 |    negate    | 1 |       |       |                                                                                |
+| 2 |     max      | 1 |       |       |                                                                                |
+| 2 |     min      | 1 |       |       |                                                                                |
+|---+--------------+---+-------+-------+--------------------------------------------------------------------------------|
+|   |   EXECUTE    |   |       |       | gets an address from the stack and runs whatever word is found at that address |
+|   | VARIABLE foo |   |       |       | defines "foo" as a new variable                                                |
+|   |     foo      |   |       |       | leaves it's address on the stack                                               |
+|   |    ' bar     |   |       |       | gets the address of the word "bar" and puts in on the stack                    |
+|   |      !       |   |       |       | stores a =value= from the stack at ~address~ on the stack                      |
+|   |      @       |   |       |       | loads the =value= from the given ~address~ and puts the =value= on the stack   |
+|---+--------------+---+-------+-------+--------------------------------------------------------------------------------|
 * snippets
 
 - high order functions in Forth https://gist.github.com/adolfopa/64a1a59c28cbd77b71449d68f4c36dc0

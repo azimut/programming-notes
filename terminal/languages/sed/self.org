@@ -10,6 +10,29 @@
 | changelog  | https://fossies.org/linux/sed/ChangeLog          |
 |------------+--------------------------------------------------|
 
+* cli
+
+#+begin_src sh
+  sed [OPTION] [SCRIPT] [INPUTFILE]
+#+end_src
+
+|---------+-----------------+--------+---------------------------------------------------------|
+|   <c>   |       <c>       |        |                                                         |
+|   -e    |   expression    | script | inline script                                           |
+|   -f    |      file       | file   | path to script file                                     |
+|   -n    | quiet ¦ silent  |        | output only via the *p* command                         |
+|   -i    |    in-place     |        | inplace edit                                            |
+|   -i    |    in-place     | .bkp   | inplace edit, saves old version with the .bkp extension |
+| -E ¦ -r | regexp-extended |        | enables extended regex, instead of default posix        |
+|   -u    |   unbuffered    |        | flushes output more often                               |
+|   -z    |    null-data    |        | separate by NUL characters                              |
+|   -s    |    separate     |        | consider files as separate                              |
+|         |     sandbox     |        | disable e/r/w commands                                  |
+|         |      posix      |        | disable GNU extensions                                  |
+|         |      debug      |        | annotate execution                                      |
+|         | follow-symlinks |        | when doing (-i)nplace editing                           |
+|---------+-----------------+--------+---------------------------------------------------------|
+
 * language
 
 #+begin_src sed
@@ -118,24 +141,6 @@
 |     x      |  exchange   | aka swap content between /hold space/ and /pattern space/           |
 |------------+-------------+---------------------------------------------------------------------|
 
-* flags
-|----+--------------------+--------+---------------------------------------------------------|
-| -e | --expression       | script | inline script                                           |
-| -f | --file             | file   | path to script file                                     |
-| -n | --quiet ¦ --silent |        | output only via the *p* command                         |
-| -i | --in-place         |        | inplace edit                                            |
-| -i | --in-place         | .bkp   | inplace edit, saves old version with the .bkp extension |
-| -E | --regexp-extended  |        | enables extended regex, instead of default posix        |
-| -u | --unbuffered       |        | flushes output more often                               |
-| -z | --null-data        |        | separate by NUL characters                              |
-| -s | --separate         |        | consider files as separate                              |
-|    | --sandbox          |        | disable e/r/w commands                                  |
-|    | --posix            |        | disable GNU extensions                                  |
-|    | --debug            |        | annotate execution                                      |
-|    | --follow-symlinks  |        | when doing (-i)nplace editing                           |
-|----+--------------------+--------+---------------------------------------------------------|
-
-
 * snippets
 |-----------------------+---------------+-------------------------------------------------------------------------|
 |          <c>          |      <c>      |                                                                         |
@@ -193,6 +198,7 @@ https://stackoverflow.com/questions/13380607/how-to-use-sed-to-remove-the-last-n
 
 - https://github.com/linguisticmind/search-in-subs
 - bach prelude https://github.com/laserbat/bach.sed https://clyp.it/dqgahq1x
+- irc bot https://github.com/olsner/smilebot/
 - scripts
   - https://sed.sourceforge.io/#scripts
   - https://sed.sourceforge.io/grabbag/scripts/

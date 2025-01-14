@@ -5,9 +5,6 @@
 - manual https://www.gnu.org/software/bc/manual/dc-1.05/html_mono/dc.html
 - wiki https://en.wikipedia.org/wiki/Dc_(computer_program)
 - wiki https://es.wikipedia.org/wiki/DC_(Unix)
-- alt Rust https://github.com/wfraser/dc4
-- alt C https://git.gavinhoward.com/gavin/bc
-- alt C derived https://github.com/akjmicro/dclang
 
 - 1970
 - Robert H. Morris Sr., Lorinda Cherry
@@ -57,17 +54,20 @@
 | -1 | P |                                 |
 |----+---+---------------------------------|
 *** arithmetic
-|----+---+---+-----------------------------|
-| -2 | + | 1 |                             |
-| -2 | - | 1 | fst - snd                   |
-| -2 | * | 1 |                             |
-| -2 | / | 1 | fst / snd                   |
-| -2 | % | 1 | remainder of /              |
-| -2 | ~ | 2 | quotient and remainder of / |
-| -2 | ^ | 1 | fst ^ snd                   |
-| -3 | ¦ | 1 | mod(fst, snd ^ trd)         |
-| -1 | v | 1 | square root                 |
-|----+---+---+-----------------------------|
+T = take   P = put
+|---+---+---+-----------------------------|
+| T |   | P | description                 |
+|---+---+---+-----------------------------|
+| 2 | + | 1 |                             |
+| 2 | - | 1 | fst - snd                   |
+| 2 | * | 1 |                             |
+| 2 | / | 1 | fst / snd                   |
+| 2 | % | 1 | remainder of /              |
+| 2 | ~ | 2 | quotient and remainder of / |
+| 2 | ^ | 1 | fst ^ snd                   |
+| 3 | ¦ | 1 | mod(fst, snd ^ trd)         |
+| 1 | v | 1 | square root                 |
+|---+---+---+-----------------------------|
 *** stack control
 |---+---------------------------|
 | c | clear stack               |
@@ -157,6 +157,7 @@
 #+end_src
 
 * articles
+
 - 24 https://bash-hackers.gabe565.com/howto/calculate-dc/
 - 20 http://web.archive.org/web/20200607102626/https://ben165.github.io/unix_dc/index.html
 - 13 https://www.dayid.org/comp/dc.html
@@ -164,6 +165,13 @@
 - 18 https://eklitzke.org/summing-integer-ranges-with-dc
 - https://cs.unh.edu/~charpov/dc.html
 - https://literateprograms.org/desk_calculator__python_.html
+
 * videos
+
 - 21 https://www.youtube.com/watch?v=WxCP8oHq_Ss
 - 23 https://www.youtube.com/watch?v=MDENRcTWDSY
+
+* implementations
+- Rust https://github.com/wfraser/dc4
+- C https://git.gavinhoward.com/gavin/bc
+- C (expanded) https://github.com/akjmicro/dclang

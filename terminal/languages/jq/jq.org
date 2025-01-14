@@ -12,6 +12,28 @@
 | rust rewrite | https://github.com/01mf02/jaq                           |
 |--------------+---------------------------------------------------------|
 
+* cli
+
+#+begin_src sh
+  jq [OPTIONS] FILTER [INPUTFILES]
+#+end_src
+
+|------+--------------------+-------------------------------------------------|
+|      |        <c>         | description                                     |
+|------+--------------------+-------------------------------------------------|
+| -n   |     null-input     | do NOT read input (to quickly test scripts)     |
+| -s   |       slurp        | reads whole STDIN as an array, runs script once |
+| -c   |   compat-output    | minimizes output                                |
+|      |     unbuffered     | flush output after each json object is printed  |
+|------+--------------------+-------------------------------------------------|
+| -C   |    color-output    |                                                 |
+| -M   | monochrome-output  |                                                 |
+|------+--------------------+-------------------------------------------------|
+| -f F |   from-file FILE   | read .jq program from FILE                      |
+|      | slurpfile VAR FILE | reads json FILE into array variable $VAR        |
+|      |  rawfile VAR FILE  | reads FILE raw into variable $VAR               |
+|------+--------------------+-------------------------------------------------|
+
 * language
 
 #+begin_src jq
@@ -20,22 +42,19 @@
 
 - 2012
 - Stephen Dolan
-- jq -n # to quickly test snippets without input
-- jq sources ~/.jq automatically
+- reads ~/.jq
 - First written in Haskell, but early rewritten in C for performance (?)
-- jq binary is of 33k
-- filters (aka functions)
-  - all have an input and an output
-  - so manual plumbing is not necessary
-  - (aka to pass a value from one part of a program to the next)
-  - eg: "add / length" both filters get the same input
+- jq binary is 33k
 - variables are "lexically scoped bindings"
 - jq-mode
   - bug: wrong string interpolation can have (") inside (")
   - bug: wrong identation constructing objects
 
-** functions
+** filters / functions
 
+- all have an input, and an output
+  - manual plumbing (passing of 1st argument) is NOT necessary
+  - eg: "add / length" both filters get the same input
 - the body consists of a SINGLE expression
 - single pass compiler (define a function before use it)
 - arity function overloading
@@ -43,7 +62,7 @@
 
 #+begin_src jq
   def funcname: expression; # takes stdin implicitly
-  def funcname(args) expression; # takes an argument explicitly
+  def funcname(args) expression; # takes an extra argument explicitly
   def A:
     def B(n): n + 1; # nested function definition
     B(10);
@@ -429,67 +448,51 @@ https://jqlang.github.io/jq/manual/v1.7/#math
   to_entries | map(filter) | from_entries
 
 
-* flags
-
-|------+----------------------+-------------------------------------------------|
-|      |                      | description                                     |
-|------+----------------------+-------------------------------------------------|
-| -n   | --null-input         | do NOT read input                               |
-| -s   | --slurp              | reads whole STDIN as an array, runs script once |
-| -c   | --compat-output      | minimizes output                                |
-|      | --unbuffered         | flush output after each json object is printed  |
-|------+----------------------+-------------------------------------------------|
-| -C   | --color-output       |                                                 |
-| -M   | --monochrome-output  |                                                 |
-|------+----------------------+-------------------------------------------------|
-| -f F | --from-file FILE     | read .jq program from FILE                      |
-|      | --slurpfile VAR FILE | reads json FILE into array variable $VAR        |
-|      | --rawfile VAR FILE   | reads FILE raw into variable $VAR               |
-|------+----------------------+-------------------------------------------------|
-
-* snippets filters/expressions
+* snippets
 
 - Get 5 random emails
   $ curl -s "https://randomuser.me/api/1.2/?results=5&seed=dsatcl2e" | jq -r '.results[].email'
 
 
 |-------------------------------------------------------+-------------------------------------|
-| filter                                                | description                         |
+|                          <c>                          |                                     |
+|                        filter                         | description                         |
 |-------------------------------------------------------+-------------------------------------|
-| .foo?                                                 |                                     |
+|                         .foo?                         |                                     |
 | .[] ¦ {msg: .commit.msg, name: .commit.commiter.name} | builds a new json                   |
-| path(..) ¦ map(tostring) ¦ join("/")                  | instant schema                      |
+|         path(..) ¦ map(tostring) ¦ join("/")          | instant schema                      |
 |-------------------------------------------------------+-------------------------------------|
-| .parse.categories[].name                              | the contents of each field's "name" |
-| .["parse"] ¦ .["categories"] ¦ .[] ¦ .["name"]        | equivalent code using pipelines     |
+|               .parse.categories[].name                | the contents of each field's "name" |
+|    .["parse"] ¦ .["categories"] ¦ .[] ¦ .["name"]     | equivalent code using pipelines     |
 |-------------------------------------------------------+-------------------------------------|
 
 
-|---------------------+---------------------------+----------------------+-------------------------------------------|
-| input               | filter                    | output               | description                               |
-|---------------------+---------------------------+----------------------+-------------------------------------------|
-|                     | ..                        |                      | recursive identity, from self to values   |
-| 42                  | .                         | 42                   | "identity"                                |
-| 99                  | 42                        | 42                   | "constant"                                |
-| 5                   | . * 2, . + 3, . / 5       | 10, 8, 1             | multiple selectors?                       |
-| "color"             | {(.): "red"}              | {color: "red"}       |                                           |
-| {"k":1,"v":[8,9]}   | .v[1]                     | 9                    |                                           |
-| {"k":1,"v":[8,9]}   | .v[ .["k"] ]              | 9                    |                                           |
-| [range(10)]         | map(select(. % 2 == 0))   | [0,2,4,6,8]          |                                           |
-| [range(10) ¦        | select(. % 2 == 0) ]      | [0,2,4,6,8]          |                                           |
-| [{}, true, {"a":1}] | .[] ¦ .a?                 | null, 1              | optional operator                         |
-| ["1","invalid",4]   | .[] ¦ tonumber?           | 1, 4                 |                                           |
-|---------------------+---------------------------+----------------------+-------------------------------------------|
-| [86, 99, 13]        | length as $count          | 66                   | declaring variables with *as*             |
-|                     | ¦ add / $count            |                      |                                           |
-|---------------------+---------------------------+----------------------+-------------------------------------------|
-| {"size": 34.6       | if ((.size¦floor)%2) == 0 | "even"               | 1.6 - must have an ELSE                   |
-| ,"weight": 24.1}    | then "even"               |                      | 1.7 - ELSE defaults to .                  |
-|                     | else "odd"                |                      |                                           |
-|                     | end                       |                      |                                           |
-|---------------------+---------------------------+----------------------+-------------------------------------------|
-| {"name":"John"      | "\(.name), Agent \(.nr)"  | "John, Agent 86"     | string interpolation                      |
-| ,"nr":"86"}         |                           |                      |                                           |
-|---------------------+---------------------------+----------------------+-------------------------------------------|
-| {foo: 1} {bar: 2}   | [inputs]                  | [{foo: 1}, {bar: 2}] | streams to array                          |
-|---------------------+---------------------------+----------------------+-------------------------------------------|
+|---------------------+---------------------------+----------------------+-----------------------------------------|
+|         <c>         |            <c>            |         <c>          |                                         |
+|         in          |          filter           |         out          | description                             |
+|---------------------+---------------------------+----------------------+-----------------------------------------|
+|                     |            ..             |                      | recursive identity, from self to values |
+|         42          |             .             |          42          | "identity"                              |
+|         99          |            42             |          42          | "constant"                              |
+|          5          |    . * 2, . + 3, . / 5    |       10, 8, 1       | multiple selectors?                     |
+|       "color"       |       {(.): "red"}        |    {color: "red"}    |                                         |
+|  {"k":1,"v":[8,9]}  |           .v[1]           |          9           |                                         |
+|  {"k":1,"v":[8,9]}  |       .v[ .["k"] ]        |          9           |                                         |
+|     [range(10)]     |  map(select(. % 2 == 0))  |     [0,2,4,6,8]      |                                         |
+|    [range(10) ¦     |   select(. % 2 == 0) ]    |     [0,2,4,6,8]      |                                         |
+| [{}, true, {"a":1}] |         .[] ¦ .a?         |       null, 1        | optional operator                       |
+|  ["1","invalid",4]  |      .[] ¦ tonumber?      |         1, 4         |                                         |
+|---------------------+---------------------------+----------------------+-----------------------------------------|
+|    [86, 99, 13]     |     length as $count      |          66          | declaring variables with *as*           |
+|                     |      ¦ add / $count       |                      |                                         |
+|---------------------+---------------------------+----------------------+-----------------------------------------|
+|    {"size": 34.6    | if ((.size¦floor)%2) == 0 |        "even"        | 1.6 - must have an ELSE                 |
+|  ,"weight": 24.1}   |        then "even"        |                      | 1.7 - ELSE defaults to .                |
+|                     |        else "odd"         |                      |                                         |
+|                     |            end            |                      |                                         |
+|---------------------+---------------------------+----------------------+-----------------------------------------|
+|   {"name":"John"    | "\(.name), Agent \(.nr)"  |   "John, Agent 86"   | string interpolation                    |
+|     ,"nr":"86"}     |                           |                      |                                         |
+|---------------------+---------------------------+----------------------+-----------------------------------------|
+|  {foo: 1} {bar: 2}  |         [inputs]          | [{foo: 1}, {bar: 2}] | streams to array                        |
+|---------------------+---------------------------+----------------------+-----------------------------------------|

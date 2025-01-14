@@ -5,3 +5,8 @@
 - comparative https://8th-dev.com/compare.html
 
 - single pass compiler
+
+- 16 r/forth drama https://www.reddit.com/r/Forth/comments/573lmq/8th_is_it_forth/
+  - basically author spams a lot
+  - discussion about "what is a forth?"
+    - argue that nor 8th or factor are
