@@ -1,0 +1,13 @@
+- CS173 Brown University - Programming Languages
+  Instructor : Shriram Krishnamurthi
+  https://www.youtube.com/playlist?list=PL-R-PWkyRREf3Zjk6UFI5mhKt9XuLMC3G
+  https://cs.brown.edu/courses/cs173/2012/Videos/
+
+- Course: 2022 - Waterloo - Principles of Programming Languages
+  https://student.cs.uwaterloo.ca/~cs442/W22/notes/
+  https://www.youtube.com/channel/UCnmJoeNk2mrItxXJ2-XOCcQ/videos
+
+- A Bestiary of Single-File Implementations of Programming Languages
+  https://github.com/marcpaq/b1fipl
+
+- Programming Languages https://ebookfoundation.github.io/free-programming-books/books/free-programming-books-langs.html

@@ -7,6 +7,7 @@
 - 23 https://inconvergent.net/2023/a-vector-dsl/
 - 23 https://inconvergent.net/2023/lets-write-a-dsl/
 - 23 https://edoput.it/2023/11/19/data-oriented-clos.html
+- 25 https://blog.djhaskin.com/blog/why-i-chose-common-lisp/ https://news.ycombinator.com/item?id=42671105
 - https://awkravchuk.itch.io/cl-fast-ecs/devlog/622054/gamedev-in-lisp-part-1-ecs-and-metalinguistic-abstraction
 
 * 20 | https://etc.ruricolist.com/2020/01/02/the-multiple-value-call-trick/

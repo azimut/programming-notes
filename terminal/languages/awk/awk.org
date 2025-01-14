@@ -14,6 +14,28 @@
 | fansite   | http://awklang.org/                                           |
 |-----------+---------------------------------------------------------------|
 
+* cli
+
+#+begin_src shell
+  $ awk '{ print $1 }' file.csv
+  $ awk -f script.awk file.csv
+#+end_src
+
+|-----+--------------------+------------+---------------------------------------|
+|     |                    |    <c>     |                                       |
+|     |                    |    arg     | description                           |
+|-----+--------------------+------------+---------------------------------------|
+| -F  | --field-separator  |     S      | sets FS                               |
+| -f  | --file             | <FILEPATH> | runs script                           |
+| -E  | --exec             | <FILEPATH> | runs script (for gawk cgi)            |
+| -v  | --assign           |  var=val   | sets var to val                       |
+|-----+--------------------+------------+---------------------------------------|
+| -c  | --traditional      |     -      | compatibility mode                    |
+| -P  | --posix            |     -      | compatibility mode extra              |
+| -S  | --sandbox          |     -      | disables system() and IO redirections |
+| -d- | --dump-variables=- |     -      | dump variables status to stdout       |
+|-----+--------------------+------------+---------------------------------------|
+
 * language
 
 #+begin_src awk
@@ -528,29 +550,6 @@ https://rosettacode.org/wiki/Hello_world/Web_server
     END { if (NR == 0) print "means that we didn't process any record" }
   #+end_src
 
-* cli
-** execution
-
-#+begin_src shell
-  $ awk '{ print $1 }' file.csv
-  $ awk -f script.awk file.csv
-#+end_src
-
-** flags
-|-----+--------------------+------------+---------------------------------------|
-|     |                    |    <c>     |                                       |
-|     |                    |    arg     | description                           |
-|-----+--------------------+------------+---------------------------------------|
-| -F  | --field-separator  |     S      | sets FS                               |
-| -f  | --file             | <FILEPATH> | runs script                           |
-| -E  | --exec             | <FILEPATH> | runs script (for gawk cgi)            |
-| -v  | --assign           |  var=val   | sets var to val                       |
-|-----+--------------------+------------+---------------------------------------|
-| -c  | --traditional      |     -      | compatibility mode                    |
-| -P  | --posix            |     -      | compatibility mode extra              |
-| -S  | --sandbox          |     -      | disables system() and IO redirections |
-| -d- | --dump-variables=- |     -      | dump variables status to stdout       |
-|-----+--------------------+------------+---------------------------------------|
 * implementations
 
 |--------+-------------------------------------------------------------------------------|
@@ -560,6 +559,7 @@ https://rosettacode.org/wiki/Hello_world/Web_server
 |  goawk | https://github.com/benhoyt/goawk                                              |
 | bioawk | https://github.com/lh3/bioawk                                                 |
 |  frawk | https://github.com/ezrosent/frawk                                             |
+|    wak | https://github.com/raygard/wak                                                |
 |   nawk | https://github.com/onetrueawk/awk                                             |
 |        | https://justine.lol/awk/                                                      |
 |--------+-------------------------------------------------------------------------------|

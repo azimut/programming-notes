@@ -35,10 +35,6 @@
 - Channel: Programming Codebases Review https://www.youtube.com/@ants_are_everywhere/videos
 - Interviews: https://www.youtube.com/playlist?list=PLUN7koCjqU7D6CT76Vprf_xLmaInshvGV
 - https://grugbrain.dev/
-- CS173 Brown University - Programming Languages
-  Instructor : Shriram Krishnamurthi
-  https://www.youtube.com/playlist?list=PL-R-PWkyRREf3Zjk6UFI5mhKt9XuLMC3G
-  https://cs.brown.edu/courses/cs173/2012/Videos/
 - https://github.com/mtdvio/every-programmer-should-know
 - https://github.com/chiroptical/ctfp-book-club
   https://github.com/hmemcpy/milewski-ctfp-pdf
@@ -49,7 +45,6 @@
   Cursos UNAM OS https://www.youtube.com/c/SistemasOperativosCienciasUNAM/playlists
 - Courses https://ebookfoundation.github.io/free-programming-books/courses/free-courses-en.html
 - Topics https://ebookfoundation.github.io/free-programming-books/books/free-programming-books-subjects.html
-- Programming Languages https://ebookfoundation.github.io/free-programming-books/books/free-programming-books-langs.html
 - Article: 2014 - Is TDD Dead https://news.ycombinator.com/item?id=24281195
 - Article: Carmack https://web.archive.org/web/20120702231514/http://www.altdevblogaday.com/2012/04/26/functional-programming-in-c/
 - Article: Carmack https://www.gamedeveloper.com/programming/in-depth-functional-programming-in-c-
@@ -76,9 +71,6 @@
 - https://github.com/dwmkerr/hacker-laws
 - https://github.com/hemanth/functional-programming-jargon
   https://github.com/jmesyou/functional-programming-jargon.py
-- Course: 2022 - Waterloo - Principles of Programming Languages
-  https://student.cs.uwaterloo.ca/~cs442/W22/notes/
-  https://www.youtube.com/channel/UCnmJoeNk2mrItxXJ2-XOCcQ/videos
 - L01 Functional Programming | UC Berkeley CS 61A, Spring 2010
   https://www.youtube.com/watch?v=4leZ1Ca4f0g&list=PLhMnuBfGeCDNgVzLPxF9o5UNKG1b-LFY9
 

@@ -20,10 +20,11 @@
 - tool: linter https://github.com/mrtazz/checkmake
 
 * cli
+
 #+begin_src sh
   make [-f Makefile] [VAR="foo"] [OPTIONS] [TARGETS]
 #+end_src
-** flags
+
 |-----------+--------------------------+--------------------------------|
 |    <c>    |           <c>            |                                |
 | -f=MAKEF  |   (make)file=MAKEFILE    |                                |
@@ -128,8 +129,6 @@ $(ab:.cpp=.o) # string replace
 - ONLY evaluated when they are used
 |-----+--------------------------------------------|
 | <r> |                                            |
-|     | assignment                                 |
-|-----+--------------------------------------------|
 |   = | dynamic/macro, evaluated each time is used |
 |  := | one time, evaluated procedurally           |
 | ::= | "                                          |
