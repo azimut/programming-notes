@@ -10,7 +10,7 @@
 | wiki       | https://en.wikipedia.org/wiki/Bc_%28programming_language%29        |
 |------------+--------------------------------------------------------------------|
 
-- 1975-
+- 1975
 - "Basic/Bench Calculator"
 - started as a frontend for [[https://en.wikipedia.org/wiki/Dc_(computer_program)][dc]]
 - Authors:
@@ -19,7 +19,18 @@
     - https://ncwit.org/profile/lorinda-cherry/
     - https://news.ycombinator.com/item?id=30354391
 
-* Language
+* cli
+
+#+begin_src sh
+  bc [OPTIONS] [FILES]
+#+end_src
+
+|----+-----------+------------------------------------------------|
+| -q | --quiet   | suppreses welcome message                      |
+| -l | --mathlib | enables trigonometric functions, sets scale=20 |
+|----+-----------+------------------------------------------------|
+
+* language
 
 - Runs interactively (REPL) if you just run it bare "bc"
 - default ~scale=0~, aka integer division
@@ -57,22 +68,15 @@ define foo(x) {
 |    ibase    | "input base"                                |
 |-------------+---------------------------------------------|
 
-* Flags
 
-|----+-----------+------------------------------------------------|
-| -q | --quiet   | suppreses welcome message                      |
-| -l | --mathlib | enables trigonometric functions, sets scale=20 |
-|----+-----------+------------------------------------------------|
-
-
-* Articles
+* articles
 
 - https://web.archive.org/web/20140112080500/http://mylinuxbook.com/linux-command-line-calculator-bc-examples/
 - https://unixetc.co.uk/2014/01/19/bc-rounding-errors/
 - https://www.johndcook.com/blog/2010/07/14/bc-math-library/
 - https://www.johndcook.com/blog/2019/10/29/computing-pi-with-bc/
 
-* Videos
+* videos
 
 - bc - geeksforgeeks https://www.youtube.com/watch?v=_UwhS0IvwQk
 - Command Line Calculator - gotbletu https://www.youtube.com/watch?v=JkyodHenTuc
@@ -80,7 +84,7 @@ define foo(x) {
 - Linux in the Shell Ep 25 - bc https://vimeo.com/101977655
 - 23 video Is Python a souped up Basic Calculator?  https://www.youtube.com/watch?v=HcRMo0wGq44
 
-* Libraries
+* libraries
 
 - gcd, fibo https://literateprograms.org/category_programming_language_bc.html
 - official examples https://github.com/fivepiece/gnu-bc/tree/master/Examples

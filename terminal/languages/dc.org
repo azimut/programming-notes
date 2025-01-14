@@ -10,22 +10,43 @@
 - alt C derived https://github.com/akjmicro/dclang
 
 - 1970
-- Robert Morris, Lorinda Cherry
+- Robert H. Morris Sr., Lorinda Cherry
 - "desk calculator"
-- a reverse-polish (RPN) calculator
+- a reverse-polish (RPN) calculator, with a stack based language
 - up to 1M digits of decimal precision
 - use _ for negative numbers
+
+* cli
+
+#+begin_src sh
+  dc [OPTIONS] [FILES]
+#+end_src
+
+|---------------------+----------------------------------|
+|         <c>         |                                  |
+|       -f FILE       | executes script file             |
+|     --file=FILE     | "                                |
+|      -e SCRIPT      | runs commands in script on input |
+| --expression=SCRIPT | "                                |
+|---------------------+----------------------------------|
+
+#+begin_src sh
+  DC_LINE_LENGTH=0   # disable line break
+  DC_LINE_LENGTH=999 # < 2^16 -1
+#+end_src
 
 * language
 
 #+begin_src sh
-$ dc -e '[Enter time: ]P?st[Distance: ]Plt2^0.5*9.8*p'
+  $ dc script.dc
+  $ dc -e '[Enter time: ]P?st[Distance: ]Plt2^0.5*9.8*p'
+  $ '2 3 +' | dc
 #+end_src
 
 - types:
   - numbers
   - strings
-  - arrays?
+  - arrays
 
 ** commands
 *** printing
@@ -64,6 +85,7 @@ $ dc -e '[Enter time: ]P?st[Distance: ]Plt2^0.5*9.8*p'
 |  1 | LR | " and pops it from register R                |
 |----+----+----------------------------------------------|
 *** parameters
+- hex numbers must be upcased (A-F)
 |----+---+------------------------|
 | -1 | i | set input radix        |
 | -1 | o | set output radix       |
@@ -75,20 +97,20 @@ $ dc -e '[Enter time: ]P?st[Distance: ]Plt2^0.5*9.8*p'
 *** strings
 - can only be printed or execute them as macros
 - delimited by []
-|----+-----+--------------------------------------|
-|    | <r> |                                      |
-| -1 |   x | executes as a macro                  |
-|  0 |   a | pop top, and push back 1st char/byte |
-| -2 |  >R | x R if >                             |
-| -2 | !>R | x R if <=                            |
-| -2 |  <R | x R if <                             |
-| -2 | !<R | x R if >=                            |
-| -2 |  =R | x R if =                             |
-| -2 | !=R | x R if !=                            |
-|  1 |   ? | ask user input, and execute it       |
-|  0 |   q | exits 2 level macro                  |
-| -1 |   Q | exits Nth level macro                |
-|----+-----+--------------------------------------|
+|----+-----+-------------------------------------------|
+|    | <r> |                                           |
+| -1 |   x | executes as a macro                       |
+|  0 |   a | pop top, and push back 1st char/byte      |
+| -2 |  >R | x R if >                                  |
+| -2 | !>R | x R if <=                                 |
+| -2 |  <R | x R if <                                  |
+| -2 | !<R | x R if >=                                 |
+| -2 |  =R | x R if =                                  |
+| -2 | !=R | x R if !=                                 |
+|  1 |   ? | ask user input, and execute it as a macro |
+|  0 |   q | exits 2 level macro                       |
+| -1 |   Q | exits Nth level macro                     |
+|----+-----+-------------------------------------------|
 *** status inquiry
 |----+---+----------------------------|
 | -1 | Z | number of decimal digits   |
@@ -96,21 +118,16 @@ $ dc -e '[Enter time: ]P?st[Distance: ]Plt2^0.5*9.8*p'
 |  1 | z | number of element in stack |
 |----+---+----------------------------|
 *** misc
-|----+----+---------------------------------------------|
-|  0 | !  | system command                              |
-|  0 | #  | comment                                     |
-| -2 | :R | stores *snd* in R =array=, indexed by *fst* |
-| -1 | ;r | gets =array= element in R                   |
-|----+----+---------------------------------------------|
-* flags
-|---------------------+----------------------------------|
-|         <c>         |                                  |
-|       -f FILE       | executes script file             |
-|     --file=FILE     | "                                |
-|      -e SCRIPT      | runs commands in script on input |
-| --expression=SCRIPT | "                                |
-|---------------------+----------------------------------|
+|----+----+-----------------------------------------|
+|  0 | !  | system command                          |
+|  0 | #  | comment                                 |
+| -2 | :R | stores *fst* in R =array=, at idx *snd* |
+| -1 | ;r | gets given =array= element in register  |
+|----+----+-----------------------------------------|
 * snippets
+- branch to macro example https://github.com/Alhadis/language-etc/blob/1455feb6de582239b67e8bbde8086569db377e3d/samples/dirsize.dc#L4
+- https://github.com/brunk23/code-challenges/blob/7b7afc5088142102ce9610cbda7bac5cd9583829/trend.error
+- https://github.com/brunk23/dc-programs
 ** aoc 2019
 - https://github.com/tckmn/polyaoc-2019/blob/master/01/dc/01_1.dc
   #+begin_src
