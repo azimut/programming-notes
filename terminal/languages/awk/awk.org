@@ -14,6 +14,12 @@
 | fansite   | http://awklang.org/                                           |
 |-----------+---------------------------------------------------------------|
 
+- 1977
+- Authors
+  - Aho Alfred Vaino
+  - Weinberger Peter Jay
+  - Kernighan Brian Wilson
+
 * cli
 
 #+begin_src shell
@@ -43,12 +49,6 @@
   #!/usr/bin/env -S gawk -f
   END { print "Hello, World!"; }
 #+end_src
-
-- 1977
-- Authors
-  - Aho Alfred Vaino
-  - Weinberger Peter Jay
-  - Kernighan Brian Wilson
 
 - [[https://www.gnu.org/software/gawk/manual/html_node/Feature-History.html][gawk version changelog]] ([[https://fossies.org/linux/gawk/ChangeLog][by date]])
   - 2023 (5.3)

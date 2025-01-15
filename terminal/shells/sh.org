@@ -7,6 +7,10 @@
 * language
 
 - OPINION: one way that shell scripts hide/handle complexity is by transforming data through pipes. What in other programming languages might need nested function calls or temporary variables. Pipes are, in a way, similar to method chaining.
+- use one /=/ when comparing strings, [[https://eklitzke.org/bash-if-equals][/==/ is NOT supported]]
+  #+begin_src sh
+    if [ "$foo" = "$bar" ]
+  #+end_src
 
 * snippets
 

@@ -1,3 +1,7 @@
+- 22 I don't want to go to Chel-C
+  - https://applied-langua.ge/posts/i-dont-want-to-go-to-chel-c.html
+  - https://news.ycombinator.com/item?id=31705239
+
 - code search
   - debian https://codesearch.debian.net/
   - python https://www.programcreek.com/python/

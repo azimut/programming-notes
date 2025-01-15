@@ -1,3 +1,4 @@
+- 21 Don't use math.h/div(3) https://eklitzke.org/don't-use-div(3)
 - https://overflow.hostux.net/questions/2565727/which-functions-from-the-standard-library-must-should-be-avoided
 - https://sekrit.de/webdocs/c/beginners-guide-away-from-scanf.html
 - course

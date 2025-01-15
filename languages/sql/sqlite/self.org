@@ -8,8 +8,8 @@
 | wiki       | https://en.wikipedia.org/wiki/SQLite           |
 |------------+------------------------------------------------|
 
-- Author: Richard Hipp
 - 2000 (db format released in 2004)
+- Author: Richard Hipp
 - embedded database, a way to access a file, has no network access
 - Include a hidden "rowid" index column (uses the pkey if set)
 - Max database size 281 TB

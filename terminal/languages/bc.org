@@ -2,19 +2,20 @@
 #+DATE: <2024-04-12 vie>
 
 |------------+--------------------------------------------------------------------|
-| man gnu    | https://www.gnu.org/software/bc/manual/html_mono/bc.html           |
+|    <c>     |                                                                    |
+|  man gnu   | https://www.gnu.org/software/bc/manual/html_mono/bc.html           |
 | man posix  | https://pubs.opengroup.org/onlinepubs/9699919799/utilities/bc.html |
 | source (C) | https://github.com/fivepiece/gnu-bc/                               |
-| faq        | http://phodd.net/gnu-bc/bcfaq.html                                 |
-| tutorial   | https://org.coloradomesa.edu/~mapierce2/bc/                        |
-| wiki       | https://en.wikipedia.org/wiki/Bc_%28programming_language%29        |
+|    faq     | http://phodd.net/gnu-bc/bcfaq.html                                 |
+|  tutorial  | https://org.coloradomesa.edu/~mapierce2/bc/                        |
+|    wiki    | https://en.wikipedia.org/wiki/Bc_%28programming_language%29        |
 |------------+--------------------------------------------------------------------|
 
 - 1975
 - "Basic/Bench Calculator"
 - started as a frontend for [[https://en.wikipedia.org/wiki/Dc_(computer_program)][dc]]
 - Authors:
-  - Robert Morris
+  - Robert H. Morris Sr.
   - Lorinda Cherry
     - https://ncwit.org/profile/lorinda-cherry/
     - https://news.ycombinator.com/item?id=30354391

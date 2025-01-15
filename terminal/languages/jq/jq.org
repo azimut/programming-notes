@@ -12,6 +12,12 @@
 | rust rewrite | https://github.com/01mf02/jaq                           |
 |--------------+---------------------------------------------------------|
 
+- 2012
+- Author: Stephen Dolan
+- reads ~/.jq
+- jq binary is 33k
+- first written in Haskell, but early rewritten in C for performance (?)
+
 * cli
 
 #+begin_src sh
@@ -40,11 +46,6 @@
   #!/usr/bin/jq -f
 #+end_src
 
-- 2012
-- Stephen Dolan
-- reads ~/.jq
-- First written in Haskell, but early rewritten in C for performance (?)
-- jq binary is 33k
 - variables are "lexically scoped bindings"
 - jq-mode
   - bug: wrong string interpolation can have (") inside (")

@@ -10,6 +10,11 @@
 | changelog  | https://fossies.org/linux/sed/ChangeLog          |
 |------------+--------------------------------------------------|
 
+- 1974
+- Lee E. McMahon
+- "Stream EDitor"
+- _line-oriented_ text processing utility
+
 * cli
 
 #+begin_src sh
@@ -40,10 +45,6 @@
   s/Hello/Hell/g
 #+end_src
 
-- "Stream EDitor"
-- Author: Lee E. McMahon
-- 1974
-- _line-oriented_ text processing utility
 - reads text, line by line, into a temporary *buffer* called =pattern space=
 - each line read starts a =cycle=
 - there is a special buffer called =hold space= used by some commands to hold and accumulate text between /cycles/
