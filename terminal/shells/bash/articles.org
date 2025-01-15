@@ -1,3 +1,4 @@
+- 16 https://henryraul.wordpress.com/2016/09/10/evita-las-operaciones-matematicas-en-bash/
 - 18 http://ratfactor.com/slackware/pkgblog/bash
 - 24
   https://mtlynch.io/zig-extraneous-build/#my-mental-model-of-bash-pipelines-is-wrong

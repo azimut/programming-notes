@@ -1,14 +1,14 @@
 #+TITLE: dc
 #+DATE: <2025-01-11 sáb>
 
-|--------+-----------------------------------------------------------------------------------------------------------|
-|  <c>   |                                                                                                           |
-| manual | https://wolfram.schneider.org/bsd/7thEdManVol2/dc/dc.html                                                 |
-| manual | https://www.gnu.org/software/bc/manual/dc-1.05/html_mono/dc.html                                          |
-| source | https://github.com/dspinellis/unix-history-repo/blob/Research-V7-Snapshot-Development/usr/src/cmd/dc/dc.c |
-|  wiki  | https://en.wikipedia.org/wiki/Dc_(computer_program)                                                       |
-|  wiki  | https://es.wikipedia.org/wiki/DC_(Unix)                                                                   |
-|--------+-----------------------------------------------------------------------------------------------------------|
+|--------+------------------------------------------------------------------|
+|  <c>   |                                                                  |
+| manual | https://wolfram.schneider.org/bsd/7thEdManVol2/dc/dc.html        |
+| manual | https://www.gnu.org/software/bc/manual/dc-1.05/html_mono/dc.html |
+| source | [[https://github.com/dspinellis/unix-history-repo/blob/Research-V7-Snapshot-Development/usr/src/cmd/dc/dc.c][/usr/src/cmd/dc/dc.c]]                                             |
+|  wiki  | https://en.wikipedia.org/wiki/Dc_(computer_program)              |
+|  wiki  | https://es.wikipedia.org/wiki/DC_(Unix)                          |
+|--------+------------------------------------------------------------------|
 
 - 1971
 - Robert H. Morris Sr., Lorinda Cherry
@@ -39,8 +39,8 @@
 
 #+begin_src sh
   $ dc script.dc
-  $ dc -e '[Enter time: ]P?st[Distance: ]Plt2^0.5*9.8*p'
-  $ '2 3 +' | dc
+  $ dc -e '[Enter time: ]P?st' -e '[Distance: ]Plt2^0.5*9.8*p'
+  $ echo '2 3 +' | dc
 #+end_src
 
 - types
@@ -52,8 +52,11 @@
     - delimited by []
   - arrays
 
-- registers
+- registers (256)
   - valid names: a A 0 . " ...
+    - one char length
+    - you CAN use a register name that overlaps with a command
+    - and it will stil work
   - each register has his own stack
 
 ** commands
@@ -121,6 +124,10 @@
 - [[https://github.com/Alhadis/language-etc/blob/1455feb6de582239b67e8bbde8086569db377e3d/samples/dirsize.dc][Alhadis/language-etc/dirsize.dc]]
 - [[https://github.com/brunk23/code-challenges/blob/7b7afc5088142102ce9610cbda7bac5cd9583829/trend.error][brunk23/code-challenges/trend.error]]
 - [[https://github.com/brunk23/dc-programs][brunk23/dc-programs]]
+- sum of first 36 integers
+  #+begin_src
+  36[d1-d1<F+]dsFxp
+  #+end_src
 - factorial
   #+begin_src
   [d1<g]Sf[d1-lfx*]Sg 13lfx
@@ -148,7 +155,7 @@
 - 24 [[https://bash-hackers.gabe565.com/howto/calculate-dc/][Calculating with dc - The Bash Hackers Wiki]]
 - 21 [[https://psychocod3r.wordpress.com/2021/05/08/obfuscated-unix-scripting-with-dc/][Obfuscated Unix Scripting with dc]]
 - 20 [[http://web.archive.org/web/20200607102626/https://ben165.github.io/unix_dc/index.html][A deeper introduction in Unix dc]]
-- 18 https://eklitzke.org/summing-integer-ranges-with-dc
+- 18 [[https://eklitzke.org/summing-integer-ranges-with-dc][Summing Integer Ranges With dc]]
 - ?? [[https://cs.unh.edu/~charpov/dc.html][Fun with dc]]
 
 * videos
