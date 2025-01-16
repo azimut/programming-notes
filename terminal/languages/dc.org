@@ -43,6 +43,8 @@
   $ dc script.dc
   $ dc -e '[Enter time: ]P?st' -e '[Distance: ]Plt2^0.5*9.8*p'
   $ echo '2 3 +' | dc
+  $ echo '2 3'   | dc -f - -e 'f'
+  $ echo '2 3'   | dc -e '? ? +'
 #+end_src
 
 - types

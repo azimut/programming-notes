@@ -1,0 +1,45 @@
+#+TITLE: fish
+#+DATE: <2025-01-15 mié>
+
+#+begin_src
+                 ___
+  ___======____=---=)
+/T            \_--===)
+[ \ (O)   \~    \_-==)
+ \      / )J~~    \-=)
+  \\___/  )JJ~~~   \)
+   \_____/JJJ~~~~    \
+   / \  , \J~~~~~     \
+  (-\)\=|\\\~~~~       L__
+  (\\)  (\\\)_           \==__
+   \V    \\\) ===_____   \\\\\\
+          \V)     \_) \\\\JJ\J\)
+                      /J\JT\JJJJ)
+                      (JJJ| \UUU)
+                       (UU)
+#+end_src
+
+- home https://fishshell.com/
+- source https://github.com/fish-shell/fish-shell
+- tutorial https://fishshell.com/docs/current/tutorial.html#tut_why_fish
+- 2005
+- Author: Axel Liljencrantz
+- "friendly interactive shell"
+- does NOT adhere to POSIX
+- C++ later rewritten in Rust
+- bash to fish translation https://github.com/fish-shell/fish-shell/wiki/Shell-Translation-Dictionary
+- .fish extension
+- tool: plugin manager https://github.com/jorgebucaran/fisher
+- +tool: plugin manager https://github.com/oh-my-fish/oh-my-fish+ abandoned
+- ~/.config/fish/config.fish
+- features
+  - ~funcsave~
+  - parses man pages for autocompletion
+  - context aware autocompletion (context = dir)
+  - fuzzy autocompletion
+  - syntax highlight
+  - easy to use cli cmd editor
+
+* language
+- control flow
+  - for in/end

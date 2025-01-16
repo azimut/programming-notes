@@ -67,8 +67,8 @@
 |                   $stdin |    | standard input                                       |
 |                  $stdout |    | standard output                                      |
 |                  $stderr |    | standard error                                       |
-|                    $ARGV | $* | array with command line arguments                    |
-|                    $ARGF | $< | the content of all the files whose names were passed |
+|                     ARGV | $* | array with command line arguments                    |
+|                     ARGF | $< | the content of all the files whose names were passed |
 |          $DEFAULT_OUTPUT | $> |                                                      |
 |                     $ENV |    | Hash that contains environment variables             |
 |              $ERROR_INFO | $! |                                                      |
@@ -86,7 +86,7 @@
 |               $POSTMATCH | $' | regex op, to the right of last match                 |
 |        $LAST_PAREN_MATCH | $+ | regex op, the last group                             |
 |                          | $N | regex op, where N is a number of the nth match       |
-|                          | $0 | aka $PROGRAM_NAME                                    |
+|             PROGRAM_NAME | $0 |                                                      |
 |--------------------------+----+------------------------------------------------------|
 ** testing
 
@@ -558,6 +558,7 @@ https://rubyreferences.github.io/rubychanges/evolution.html
   - Returns if not found nil, doesn't raise an exception
   - From: data[:mcu][0][:actors][1]
     To:   data.dig(:mcu, 0, :actors, 1)
+
 *** Array []
 
 - Enumerable

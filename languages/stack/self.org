@@ -1,3 +1,5 @@
+- Concatenative programming is so called because it uses function composition instead of function application—a non-concatenative language is thus called applicative. [[http://evincarofautumn.blogspot.com/2012/02/why-concatenative-programming-matters.html][1]]
+
 - wiki https://en.wikipedia.org/wiki/Concatenative_programming_language
   - term born with Joy (2001) and Manfred von Thun
 - wiki https://en.wikipedia.org/wiki/Stack-oriented_programming
@@ -23,5 +25,5 @@
 - https://github.com/JohnEarnest/Mako
   - language: maker
   - vm
-- article 12 | Why Concatenative Programming Matters
-  http://evincarofautumn.blogspot.com/2012/02/why-concatenative-programming-matters.html
+
+- 12 article http://evincarofautumn.blogspot.com/2012/02/why-concatenative-programming-matters.html

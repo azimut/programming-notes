@@ -2,6 +2,9 @@
   1) collect
   2) parse
 
+- cli: curl https://github.com/lexiforest/curl-impersonate
+  - python bindings https://github.com/lexiforest/curl_cffi
+
 - certification https://www.istqb.org/
 - https://scrapfly.io/use-case
 - bot detection
