@@ -1,0 +1,2 @@
+- 25 https://rm4n0s.github.io/posts/7-the-untouched-goldmine-of-fsharp/
+  - former Go dev

@@ -17,6 +17,7 @@
   - 5.40 2024
 
 - articles https://lobste.rs/t/perl
+- article: 25 https://www.perl.com/article/creating-midi-music-with-perl/
 - article: 96 https://www.foo.be/docs/tpj/issues/vol1_2/tpj0102-0001.html
 - book: https://learnbyexample.github.io/learn_perl_oneliners/cover.html
 - exercises:

@@ -137,6 +137,24 @@
   [d1<g]Sf[d1-lfx*]Sg 13lfx
   #+end_src
 
+** sergiosgc/AdventOfCode2021
+
+- day1 [[https://github.com/sergiosgc/AdventOfCode2021/blob/main/src/day01/one.dc][part 1]]
+  #+begin_src
+  [1Lc+sc]sC
+  [rdSar>CLaz1<L]sL
+  0sc0d=LLcp
+  #+end_src
+- day1 [[https://github.com/sergiosgc/AdventOfCode2021/blob/main/src/day01/two.dc][part 2]]
+  #+begin_src
+  [lCsDlBsClAsBsA]sr
+  [1lR+sR]si
+  [lBlClD++lAlBlC++<i0d=rz0!=l]sl
+  0sA0sB0sC0sD0sR
+  0d=r0d=r0d=r0d=r
+  0d=l0dd=llRp
+  #+end_src
+
 ** tckmn/polyaoc-2019
 
 - [[https://github.com/tckmn/polyaoc-2019/blob/master/01/dc/01_1.dc][01_1.dc]]

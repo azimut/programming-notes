@@ -1,0 +1,32 @@
+#+begin_src sh
+  http [METHOD] URL [REQUEST_ITEM ...]
+#+end_src
+- home https://httpie.io/
+- doc https://httpie.io/docs/cli
+- source (py) https://github.com/httpie/cli
+* flags
+|----+-----------+---------+------------------|
+|    |       <r> |   <c>   |                  |
+|----+-----------+---------+------------------|
+| -p |           |         | print            |
+|    |           |    H    | request headers  |
+|    |           |    B    | request body     |
+|    |           |    h    | response header  |
+|    |           |    b    | response body    |
+|----+-----------+---------+------------------|
+| -F |  --follow |         | follow redirect  |
+|    |  --verify |  BOOL   | ssl verification |
+|    |   --proxy |  PROXY  |                  |
+|    | --timeout | SECONDS |                  |
+|----+-----------+---------+------------------|
+* operators
+|-----+---------------------|
+| <r> |                     |
+|   : | http headers        |
+|   = | string              |
+|  == | url parameters      |
+|  := | non strings / json  |
+|   @ | attach given file   |
+|  =@ | read text from file |
+| :=@ | read json from file |
+|-----+---------------------|

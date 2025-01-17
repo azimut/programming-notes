@@ -17,8 +17,10 @@
 - Authors:
   - Robert H. Morris Sr.
   - Lorinda Cherry
+    - https://pbs.twimg.com/media/Ev_sxHMXMAgxd5A?format=png&name=small
     - https://ncwit.org/profile/lorinda-cherry/
     - https://news.ycombinator.com/item?id=30354391
+    - https://archive.md/20220216000803/https://minnie.tuhs.org/pipermail/tuhs/2022-February/025390.html
 
 * cli
 
@@ -93,3 +95,18 @@ define foo(x) {
 - functions https://web.archive.org/web/20160304092132/http://x-bc.sourceforge.net/extensions_bc.html
 - functions https://github.com/idealvin/bc
 - constants https://web.archive.org/web/20160304081309/http://x-bc.sourceforge.net/scientific_constants_bc.html
+
+* snippets
+** sergiosgc/AdventOfCode2021
+- day6 [[https://github.com/sergiosgc/AdventOfCode2021/blob/main/src/day06/one.bc][part 1]]
+  #+begin_src
+  for (; i>0; i-=1) {
+      n = timer[0]
+      for (t=0; t<8; t+=1) timer[t] = timer[t+1]
+      timer[8] = n
+      timer[6] += n
+  }
+  for (i=0; i<9; i+=1) result += timer[i]
+  print result
+  print "\n"
+  #+end_src
