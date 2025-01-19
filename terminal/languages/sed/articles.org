@@ -1,3 +1,4 @@
+- https://learnxinyminutes.com/sed
 - https://devmanual.gentoo.org/tools-reference/sed/index.html
 - https://hackaday.com/2020/01/12/maze-solving-via-text-editing/
   https://gist.github.com/xsot/99a8a4304660916455ba2c2c774e623a

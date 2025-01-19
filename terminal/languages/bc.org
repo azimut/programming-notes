@@ -9,6 +9,7 @@
 |    faq     | http://phodd.net/gnu-bc/bcfaq.html                                 |
 |  tutorial  | https://org.coloradomesa.edu/~mapierce2/bc/                        |
 |    wiki    | https://en.wikipedia.org/wiki/Bc_%28programming_language%29        |
+|   online   | https://bc.js.org/                                                                   |
 |------------+--------------------------------------------------------------------|
 
 - 1975
@@ -40,44 +41,47 @@
 - in POSIX mode, functions and variables can only be 1 character long
 - undefined variables return 0
 - if/while/for
-
-** Functions & Variables
+- "#" single line comment, "/**/" multi line comment
+- "auto" for declare local variables
 
 #+begin_src bash
-define foo(x) {
-  print "this is 2 to the power of "; x*1; 2^x
-  print "\n"
-}
+  define foo(x) {
+    auto pi=3.14
+    print "this is 2 to the power of "; x*1; 2^x; pi*2;
+    print "\n"
+  }
 #+end_src
 
-|-------------+---------------------------------------------|
-|     <c>     |                                             |
-|     fn      | returns                                     |
-|-------------+---------------------------------------------|
-|  length(n)  | length in digits of n, including decimals   |
-|    s(n)     | sine                                        |
-|    c(n)     | cosine                                      |
-|    a(n)     | arctangent                                  |
-|    l(n)     | natural logarithm                           |
-|    e(n)     | exponential of ~e~ to ~n~                   |
-|   j(n,m)    | Bessel function of integer order ~n~ of ~x~ |
-|  random()   | returns a random positive? integer          |
-|   read()    | reads value from stdin, returns value read  |
-| print "foo" | ala Python 2                                |
-|-------------+---------------------------------------------|
-|    last     | last numer output                           |
-|    scale    | number of decimals (default 0)              |
-|    obase    | "output base" (default 10)                  |
-|    ibase    | "input base"                                |
-|-------------+---------------------------------------------|
-
-
+** functions
+|--------+-----+---------------------------------------------|
+|  <c>   | <c> |                                             |
+| length |  n  | length in digits of n, including decimals   |
+|   s    |  n  | sine                                        |
+|   c    |  n  | cosine                                      |
+|   a    |  n  | arctangent                                  |
+|   l    |  n  | natural logarithm                           |
+|   e    |  n  | exponential of ~e~ to ~n~                   |
+|   j    | n,m | Bessel function of integer order ~n~ of ~x~ |
+| random |  -  | returns a random positive? integer          |
+|  read  |  -  | reads value from stdin, returns value read  |
+| print  |  s  | ala Python 2                                |
+|--------+-----+---------------------------------------------|
+** variables
+|-------+--------------------------------|
+|  <c>  |                                |
+| last  | last numer output              |
+| scale | number of decimals (default 0) |
+| obase | "output base" (default 10)     |
+| ibase | "input base"                   |
+|-------+--------------------------------|
 * articles
 
+- 23 https://org.coloradomesa.edu/~mapierce2/bc/
 - https://web.archive.org/web/20140112080500/http://mylinuxbook.com/linux-command-line-calculator-bc-examples/
 - https://unixetc.co.uk/2014/01/19/bc-rounding-errors/
 - https://www.johndcook.com/blog/2010/07/14/bc-math-library/
 - https://www.johndcook.com/blog/2019/10/29/computing-pi-with-bc/
+- http://www.physics.smu.edu/coan/linux/bc.html
 
 * videos
 
@@ -87,16 +91,38 @@ define foo(x) {
 - Linux in the Shell Ep 25 - bc https://vimeo.com/101977655
 - 23 video Is Python a souped up Basic Calculator?  https://www.youtube.com/watch?v=HcRMo0wGq44
 
-* libraries
+* codebases
 
+- math and bitcoin
+  - https://github.com/fivepiece/btc-bash-ng/
+  - https://github.com/fivepiece/btc-bash
 - gcd, fibo https://literateprograms.org/category_programming_language_bc.html
 - official examples https://github.com/fivepiece/gnu-bc/tree/master/Examples
 - resources http://www.phodd.net/gnu-bc/
+- functions https://github.com/mikepierce/GNU-bc-Functions
 - functions https://web.archive.org/web/20160304092132/http://x-bc.sourceforge.net/extensions_bc.html
 - functions https://github.com/idealvin/bc
 - constants https://web.archive.org/web/20160304081309/http://x-bc.sourceforge.net/scientific_constants_bc.html
 
 * snippets
+** pi
+#+begin_src sh
+  scale=10
+  4*a(1)
+#+end_src
+** solve
+
+#+begin_src sh
+$ solve "4*49+732"
+$ cat /usr/local/bin/solve
+  #!/bin/sh
+  bc << EOF
+  scale=4
+  $@
+  quit
+  EOF
+#+end_src
+
 ** sergiosgc/AdventOfCode2021
 - day6 [[https://github.com/sergiosgc/AdventOfCode2021/blob/main/src/day06/one.bc][part 1]]
   #+begin_src
@@ -110,3 +136,7 @@ define foo(x) {
   print result
   print "\n"
   #+end_src
+
+* implementations
+- alternative qalc
+- https://github.com/gavinhoward/bc

@@ -6,6 +6,12 @@
 | wiki | https://en.wikipedia.org/wiki/Python_(programming_language) |
 |------+-------------------------------------------------------------|
 
+* Cli
+
+|----+-------------------------|
+| -u | unbuffered std[out¦err] |
+|----+-------------------------|
+
 * Language
 
 #+begin_src python

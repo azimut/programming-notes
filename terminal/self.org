@@ -97,11 +97,11 @@
 
 - followed by
   |--------------+---+-----------+-------------------|
-  |          <r> |   |           |                   |
-  |        bytes | n | range     | range in ASCII    |
+  |          <r> |   |           |        <c>        |
+  |        bytes | n | range     |  range in ASCII   |
   |--------------+---+-----------+-------------------|
-  |    parameter | * | 0x30-0x3F | 0-9:;<=>?         |
-  | intermediate | * | 0x20-0x2F | !"#$%&'()*+,-./   |
+  |    parameter | * | 0x30-0x3F |     0-9:;<=>?     |
+  | intermediate | * | 0x20-0x2F |  !"#$%&'()*+,-./  |
   |        final | 1 | 0x40-0x7E | @A-Z[\]^_`a-z{¦}~ |
   |--------------+---+-----------+-------------------|
 
@@ -191,24 +191,25 @@ it won't move the cursor
 ** font - 8 colors
 
 #+begin_src sh
-'\e[1;31mHello'    # bold, red foreground.
-'\e[2;37;41mWorld' # dimmed white foreground with red background.
+'\e[1;31mHello'    # 1=fg        bold red foreground
+'\e[2;37;41mWorld' # 2=fg&bg dimmed white foreground with red background.
 #+end_src
 
 FG = foreground color BG = background color
 |---------+----+----|
-| NAME    | FG | BG |
+|     <r> |    |    |
+|    NAME | FG | BG |
 |---------+----+----|
-| black   | 30 | 40 |
-| red     | 31 | 41 |
-| green   | 32 | 42 |
-| yellow  | 33 | 43 |
-| blue    | 34 | 44 |
+|   black | 30 | 40 |
+|     red | 31 | 41 |
+|   green | 32 | 42 |
+|  yellow | 33 | 43 |
+|    blue | 34 | 44 |
 | magenta | 35 | 45 |
-| cyan    | 36 | 46 |
-| white   | 37 | 47 |
+|    cyan | 36 | 46 |
+|   white | 37 | 47 |
 | default | 39 | 49 |
-| reset   |  0 |  0 |
+|   reset |  0 |  0 |
 |---------+----+----|
 ** font - 256 colors
 

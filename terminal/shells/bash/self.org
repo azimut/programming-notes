@@ -35,6 +35,9 @@
   https://justine.lol/oneliners/
   https://gist.github.com/jart/bd2f603aefe6ac8004e6b709223881c0
 
+- tool/lib: foreign function call helpers (C) https://github.com/taviso/ctypes.sh
+- tool: fuse bindings (C) https://github.com/zevweiss/booze
+
 * Language
 
 - "Destructuring" with *read* https://stackoverflow.com/questions/1952404/linux-bash-multiple-variable-assignment

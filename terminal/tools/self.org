@@ -29,6 +29,7 @@
   - https://github.com/katef/libfsm/
   - ? https://github.com/katef/kgt/
 
+- tools: https://raw.githubusercontent.com/Lucas-C/dotfiles_and_notes/refs/heads/master/UnixUsefulCmds.sh
 - colorize https://nojhan.github.io/colout/
 - colorize https://github.com/cornet/ccze
 - https://github.com/strozfriedberg/lightgrep

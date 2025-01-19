@@ -1,10 +1,14 @@
 - https://github.com/practical-tutorials/project-based-learning?tab=readme-ov-file#cc
-  - tuto https://cstack.github.io/db_tutorial/
+  - tuto
+    - https://cstack.github.io/db_tutorial/
+    - https://db.in.tum.de/teaching/ws1516/imlab/index.shtml?lang=en
   - tuto https://8dcc.github.io/programming/pool-allocator.html
 - https://github.com/camel-cdr/cauldron
 - https://causal.agency/
   - https://causal.agency/bin/
   - libcurl https://causal.agency/bin/title.html
+
+- Simple DNS Rebinding Service https://github.com/taviso/rbndr
 
 - 100rabbits
   - https://git.sr.ht/~rabbits/
@@ -23,3 +27,9 @@
 - https://github.com/curl/trurl/blob/master/trurl.c
 - https://github.com/gsingh93/display-manager
 - https://github.com/lpereira/lwan
+
+- game
+  - 3D opengl game https://github.com/eduard-permyakov/permafrost-engine
+- AI
+  - https://github.com/karpathy/llm.c
+  - https://github.com/karpathy/llama2.c

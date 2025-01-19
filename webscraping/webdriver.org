@@ -3,6 +3,7 @@
   - downloads https://googlechromelabs.github.io/chrome-for-testing/#stable
 - doc https://webdriver.io/docs/api
 - doc https://www.w3.org/TR/webdriver/
+- tool https://github.com/ultrafunkamsterdam/undetected-chromedriver
 
 - https://en.wikipedia.org/wiki/Selenium_(software)
   - by Jason Huggings, Paul Hammant

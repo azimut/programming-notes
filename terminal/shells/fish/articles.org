@@ -1,3 +1,4 @@
+- https://learnxinyminutes.com/fish/
 - 17 https://jvns.ca/blog/2017/04/23/the-fish-shell-is-awesome/
   - 3 years of usage
 - 21 https://rmpr.xyz/the-fish-shell-is-amazing/

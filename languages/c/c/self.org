@@ -541,6 +541,7 @@ https://0x00sec.org/t/remote-shells-part-i/269/1
 - setsockopt() - SO_REUSEADDR
 
 * (in)security
+- banned stdlib functions in git source https://github.com/git/git/blob/master/banned.h
 - Passing user supplied data to ~printf~ first/format argument, can result in a security vulnerability
 - A Guide to Undefined Behavior in C and C++, Part 1
   https://blog.regehr.org/archives/213

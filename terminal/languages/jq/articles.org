@@ -1,3 +1,4 @@
+- https://learnxinyminutes.com/jq
 - https://zwischenzugs.com/2023/06/27/learn-jq-the-hard-way-part-i-json/
   https://zwischenzugs.com/2023/06/27/learn-jq-the-hard-way-part-ii-the-jq-command/
   https://zwischenzugs.com/2023/06/27/learn-jq-the-hard-waypart-iii-filters/

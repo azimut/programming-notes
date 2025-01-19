@@ -7,6 +7,12 @@
   - merge of: textutils(90), shellutils(91), fileutils(91)
   - alternatives: busybox, toybox
 
+- faq https://www.gnu.org/software/coreutils/faq/coreutils-faq.html
+
+* binaries
+- https://en.wikipedia.org/wiki/List_of_GNU_Core_Utilities_commands
+- summarize: [ck|md5|sha1|sha2|b2]sum
+- also: nohup, chroot, dd, head, tail, wc
 - gotchas https://www.pixelbeat.org/docs/coreutils-gotchas.html
   - *echo* is inconsistent between systems, use *printf* instead
   - *tee*
@@ -19,43 +25,48 @@
     - ~-R~ shuffles, but groups identical
   - *split*
     - if using ~-d~ for numeric suffix, use ~a~ too specify a fixed suffix length
-
-- faq https://www.gnu.org/software/coreutils/faq/coreutils-faq.html
-
-* binaries
-- https://en.wikipedia.org/wiki/List_of_GNU_Core_Utilities_commands
-- summarize: [ck|md5|sha1|sha2|b2]sum
-- also: nohup, chroot, dd, head, tail, wc
-- binaries (rare/useful)
-  |----------+--------------------------------------------------------|
-  |      <r> |                                                        |
-  |----------+--------------------------------------------------------|
-  |      tty | print /dev/pts/? of terminal on standard input         |
-  |     stty | print or change terminal characteristics               |
-  | printenv | print all or some environment variables                |
-  |----------+--------------------------------------------------------|
-  |   factor | print factors of given number                          |
-  |   numfmt | human formatting of numbers                            |
-  |    shred | secure file delete                                     |
-  |  install |                                                        |
-  |    rmdir | remove empty directories                               |
-  |    nproc | number of processors available                         |
-  |  timeout | run command with a timeout limit                       |
-  |   stdbuf | changes buffering behavior of standard streams         |
-  |----------+--------------------------------------------------------|
-  |    split | split file by chunks (with or withouth breaking lines) |
-  |   csplit | split file by N lines, with context?                   |
-  | truncate | shrink or extends the size of a file                   |
-  |     comm | (set like) compare of 2 =sorted= files                 |
-  |     uniq | ommit repeated lines of a =sorted= input               |
-  |      cat | con(cat)enate files (-n, to add line numbers)          |
-  |----------+--------------------------------------------------------|
-  |     join | join lines on common fields                            |
-  |   expand | tabs -> spaces                                         |
-  | unexpand | spaces -> tabs                                         |
-  |    tsort | topological sort of each word                          |
-  |       nl | cat-like with numbered lines                           |
-  |      fmt | formatter, wrap lines                                  |
-  |     fold | formatter, wrap lines, breaks words                    |
-  |       pr | formatter, in pages ready for printing                 |
-  |----------+--------------------------------------------------------|
+** pr
+#+begin_src sh
+  pr [OPTION] [FILE]
+#+end_src
+|----+-------------+--------+----------------------------------------|
+|    |     <c>     |  <c>   |                                        |
+| -J | join-lines  |   -    | merge full lines                       |
+| -m |    merge    |   -    | merge full lines, truncates long lines |
+| -t | omit-header |   -    |                                        |
+| -s |  separator  |  CHAR  | separator char                         |
+| -S | sep-string  | STRING | separator string                       |
+|----+-------------+--------+----------------------------------------|
+** others
+|----------+--------------------------------------------------------|
+|      <r> |                                                        |
+|----------+--------------------------------------------------------|
+|      tty | print /dev/pts/? of terminal on standard input         |
+|     stty | print or change terminal characteristics               |
+| printenv | print all or some environment variables                |
+|----------+--------------------------------------------------------|
+|   factor | print factors of given number                          |
+|   numfmt | human formatting of numbers                            |
+|    shred | secure file delete                                     |
+|  install |                                                        |
+|    rmdir | remove empty directories                               |
+|    nproc | number of processors available                         |
+|  timeout | run command with a timeout limit                       |
+|   stdbuf | changes buffering behavior of standard streams         |
+|----------+--------------------------------------------------------|
+|    split | split file by chunks (with or withouth breaking lines) |
+|   csplit | split file by N lines, with context?                   |
+| truncate | shrink or extends the size of a file                   |
+|     comm | (set like) compare of 2 =sorted= files                 |
+|     uniq | ommit repeated lines of a =sorted= input               |
+|      cat | con(cat)enate files (-n, to add line numbers)          |
+|----------+--------------------------------------------------------|
+|     join | join lines on common fields                            |
+|   expand | tabs -> spaces                                         |
+| unexpand | spaces -> tabs                                         |
+|    tsort | topological sort of each word                          |
+|       nl | cat-like with numbered lines                           |
+|      fmt | formatter, wrap lines                                  |
+|     fold | formatter, wrap lines, breaks words                    |
+|       pr | formatter, in pages/columns ready for printing         |
+|----------+--------------------------------------------------------|

@@ -28,8 +28,9 @@
   - https://www.rubykoans.com/
 
 - Typing: duck, dynamic, strong
-- Everything is an object (including primitive data types)
-  - not variables, they hold references to an object
+- (Almost) Everything is an object
+  - Including primitive data types (numbers, strings)
+  - Variables are NOT, they hold references to an object
     - use #dup when need a copy
     - use #freeze to not admit modifications (numbers and symbols are by default)
   - ergo, everything is a reference
@@ -119,9 +120,8 @@
 ** operators
 |------+---------------------------------------------------|
 | <c>  |                                                   |
-|  OP  |                                                   |
-|------+---------------------------------------------------|
-|  +   | sums, concatenate                                 |
+|  +   | arithmethic sum, string concatenation             |
+|  **  | arithmetic exponent/power                         |
 |  &   | boolean AND, bitwise AND, or set intersection     |
 |  =~  | match string against regex, returns start pos/nil |
 | %w[] | create an array of strings                        |

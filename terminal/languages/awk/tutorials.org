@@ -1,3 +1,4 @@
+- https://learnxinyminutes.com/awk/
 - good tuto https://opensource.com/sites/default/files/gated-content/a_practical_guide_to_learning_gnu_awk.pdf
 - https://github.com/freznicek/awk-crashcourse
 - https://github.com/mfherbst/awk-course

@@ -1,3 +1,5 @@
+- https://learnxinyminutes.com/ruby/
+- https://learnxinyminutes.com/ruby-ecosystem/
 - https://lucasoshiro.github.io/posts-en/2024-06-17-ruby-shellscript/
 - https://www.devdungeon.com/content/enhanced-shell-scripting-ruby
 - https://lucasoshiro.github.io/posts-en/2024-06-17-ruby-shellscript/

@@ -9,7 +9,10 @@
   - FFI
 
 - wiki http://progopedia.com/language/factor/
-- tutorial https://andreaferretti.github.io/factor-tutorial/
+- https://concatenative.org/wiki/view/Factor/Implementation%20history
+- 10 How Factor implements closures http://factor-language.blogspot.com/2010/01/how-factor-implements-closures.html
+- 10 Replacing GNU assembler with Factor code http://factor-language.blogspot.com/2010/01/replacing-gnu-assembler-with-factor.html
+- 10 Factor's bootstrap process explained http://factor-language.blogspot.com/2010/01/factors-bootstrap-process-explained.html
 
 * language
 

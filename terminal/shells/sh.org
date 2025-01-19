@@ -1,11 +1,23 @@
 - http://web.archive.org/web/20180206023115/http://sircmpwn.github.io/2018/02/05/Introduction-to-POSIX-shell.html
 - 11 Insufficiently known POSIX shell features https://apenwarr.ca/log/20110228
+- http://www.etalabs.net/sh_tricks.html
+- https://www.grymoire.com/Unix/Sh.html
 - https://j3s.sh/thought/write-posix-shell.html
   https://lobste.rs/s/k4z2qf/write_posix_shell
 - https://github.com/dylanaraps/pure-sh-bible
-
+- library: https://github.com/modernish/modernish
+- tool: litterate programming http://web.archive.org/web/20100701104523/http://rtomayko.github.com:80/shocco/
+- codebase:
+  - git https://git.sr.ht/~sircmpwn/shit
 * language
 
+- Multi-line comment
+  #+begin_src sh
+    : '
+      hello there
+      this is wacky!!
+    '
+  #+end_src
 - OPINION: one way that shell scripts hide/handle complexity is by transforming data through pipes. What in other programming languages might need nested function calls or temporary variables. Pipes are, in a way, similar to method chaining.
 - use one /=/ when comparing strings, [[https://eklitzke.org/bash-if-equals][/==/ is NOT supported]]
   #+begin_src sh
