@@ -1,3 +1,14 @@
+- Tuenti
+  - OLD +contest.tuenti.net+
+    - index http://web.archive.org/web/20230608014618/https://codechallenge.0x14.net/InfoPublic/past
+  - NEW
+    - https://oicampus.telefonica.com/en/project/code-challenge
+    - http://web.archive.org/web/20230608031241/https://codechallenge.0x14.net/Challenges
+    - 11 writeup https://www.davidestebanmunoz.com/?p=268&lang=es
+  - 1 writeup https://tuenticontest.wordpress.com/
+  - 10 writeup https://jcarlosroldan.com/post/152
+  - 3 has pdfs https://github.com/luisyng/TuentiChallenge3/
+  - 3 has html https://github.com/dvil88/TuentiChallenge3/tree/master/statements
 - https://rosalind.info/about/
 - https://projectlovelace.net/
 - https://selectstarsql.com/

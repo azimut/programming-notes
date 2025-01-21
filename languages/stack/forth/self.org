@@ -140,6 +140,10 @@
 |---------------------------+-------------+-----------------------------------------------------|
 * codebases
 
+- raylib https://github.com/ArnautDaniel/gforth-raylib
+  - https://github.com/raysan5/raylib/wiki/Working-on-GNU-Linux
+  - https://github.com/ArnautDaniel/bearbit/blob/main/bearbit.f
+- simple rogue like mode https://github.com/nrkn/SimpleRL/blob/master/forth/SimpleRL.fs
 - SDL Gameboy emulator https://github.com/robertoabraham/forthboy
 - r3 SDL gamejam entries
   - https://github.com/phreda4/r3-games/tree/main

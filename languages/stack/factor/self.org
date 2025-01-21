@@ -2,27 +2,49 @@
 - wiki https://en.wikipedia.org/wiki/Factor_(programming_language)
   - Author: Slave Pestov
   - Stack-Oriented Programming Language
-  - 2003-
+  - 2003
   - Created as scripting language for a video game (aka JFactor)
   - Dynamically typed
   - Object System
+  - Compiled
+  - Image based
   - FFI
 
 - wiki http://progopedia.com/language/factor/
 - https://concatenative.org/wiki/view/Factor/Implementation%20history
-- 10 How Factor implements closures http://factor-language.blogspot.com/2010/01/how-factor-implements-closures.html
-- 10 Replacing GNU assembler with Factor code http://factor-language.blogspot.com/2010/01/replacing-gnu-assembler-with-factor.html
-- 10 Factor's bootstrap process explained http://factor-language.blogspot.com/2010/01/factors-bootstrap-process-explained.html
 
 * language
 
-- Procedures are called =words=
-  - 1-3 LOC generally
-  - Fixed number of arguments
 - Stack is used to organize calls to words, NOT as a data structure.
 - No package manager.
   All libraries of the language are part of the Factor monorepo.
   Along with docs.
+
+- vocabularies: named set of words (me: libraries)
+
+** quotations
+
+#+begin_src factor
+  [ "Hello, World" print ]
+#+end_src
+- are unammed blocks of code
+- you can ~call~ it
+
+** words
+
+#+begin_src factor
+  : palindrome? ( string -- ? ) dup reverse = ;
+#+end_src
+
+- words (aka procedures)
+  - are 1-3 LOC generally
+  - have fixed number of arguments
+
+- new words are defined at parse time
+  - stack effects are used, error is reported if wrong
+
+- ~combinators~ are words that take quotations
+  - eg: if, map
 
 * Standalone Executables
 
@@ -41,12 +63,64 @@ https://concatenative.org/wiki/view/Factor/Deployment
 - ~8min in compile "tetris" example
   ~3Mb
 
+** hello world
+
+- Run in a directory above ~./hello/~
+  #+begin_src sh
+    $ factor -roots=. -e='USING: namespaces tools.deploy tools.deploy.config ; "." deploy-directory set "hello" deploy'
+    # 40 seconds
+    $ cd hello/
+    $ file hello # 1.5Mb
+    hello: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=733a08c16484ca4eb5c82c1dd2d150b7f0df6b73, for GNU/Linux 3.2.0, not stripped
+  #+end_src
+
+#+NAME: hello/hello.factor
+#+begin_src factor
+  USING: command-line formatting kernel namespaces sequences ;
+  IN: hello
+  : greet ( -- )
+      command-line get { "world" } append first
+      "Hello %s!\n" printf
+  ;
+  MAIN: greet
+#+end_src
+
+** deploy.factor
+
+#+begin_src sh
+  $ factor -run="1"                               # run day 1 solution
+  $ factor -e='USING: tools.deploy ; "1" deploy'  # build day 1 solution as executable
+#+end_src
+
+#+begin_src factor
+USING: tools.deploy.config ;
+H{
+    { deploy-console? t } ( <-- )
+    { deploy-io 3 }
+    { deploy-reflection 1 }
+    { deploy-ui? f }
+    { deploy-word-defs? f }
+    { deploy-threads? t }
+    { "stop-after-last-window?" t } ( <-- )
+    { deploy-math? t }
+    { deploy-word-props? f }
+    { deploy-c-types? f }
+    { deploy-help? f }
+    { deploy-name "bc-albums" }
+    { deploy-unicode? f }
+}
+#+end_src
+
 * libraries/vocabularies
 
+- x11 example https://github.com/letoh/hello-x11-factor
 - all
   https://docs.factorcode.org/content/article-vocab-index.html
   https://docs.factorcode.org/content/article-handbook-library-reference.html
 - ui examples https://docs.factorcode.org/content/article-ui.html
+- raylib https://github.com/ArnautDaniel/raylib-factor
+  - https://github.com/ArnautDaniel/raylib-factor/blob/master/examples/piggy/piggy.factor
+  - https://github.com/JosephOziel/bitguessr
 - opengl examples https://github.com/George66/Factor/tree/main/OpenGL3.2%2B%20examples
 - web framework
   https://concatenative.org/wiki/view/Factor/Furnace
@@ -54,7 +128,22 @@ https://concatenative.org/wiki/view/Factor/Deployment
 
 * codebases
 
+- ed(itor) clone https://github.com/zphixon/fed
+- utils https://github.com/tgunr/FactorWork
+- paint https://github.com/Capital-EX/painter/tree/main
+- simple ansi rogue like game https://github.com/nrkn/SimpleRL/tree/master/factor
+- make a lisp https://github.com/kanaka/mal
+- bandcamp scrape https://github.com/catb0t/bc-albums/
+- Random quote fetching console utility. https://github.com/q60/past/
 - examples https://concatenative.org/wiki/view/Factor/Examples
 - utils https://github.com/mrjbq7/re-factor
 - https://bluishcoder.co.nz/2020/04/18/fun-factor-libraries.html
 - supercollider https://github.com/defaultxr/factor-supercollider/
+
+* cli
+|----------------+-------+----------------------------|
+|      <c>       |       |                            |
+|      -e=       | CODE  | evals given expression     |
+|     -run=      | VOCAB | runs MAIN on given ~vocab~ |
+| -no-user-input | -     |                            |
+|----------------+-------+----------------------------|

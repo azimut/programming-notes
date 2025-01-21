@@ -13,6 +13,7 @@
   - [[https://www.youtube.com/watch?v=6MsQcUprO9o&list=PLOJjn67NeYg9cWA4hyIWcxfaeX64pwo1c][Haskell beginners 2022]] by chshersh
   - [[https://www.youtube.com/playlist?list=PLVFrD1dmDdvcjCQDPhExqP56jqxp0Ssn_][Theory for Programmers]] by code_report
 
+- https://github.com/elldritch/haskell-for-working-programmers
 - https://github.com/soupi/haskell-study-plan
 - https://www.scs.stanford.edu/14sp-cs240h/
 - http://learn.hfm.io/

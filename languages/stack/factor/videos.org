@@ -23,21 +23,34 @@ https://vimeo.com/6203360
 https://www.youtube.com/watch?v=OLh61q4c4XE
 
 - Snippets
-  1 2 + .
-  3 weeks ago noon .
-  "hello" rot13 .
-  URL" https://factorcode.org" http-get
-  10 [ "Hello, Factor" print ] times
-  { 4 7 15 16 23 42 } [ sum ] [ length ] bi / .
-
-- Define a word: at parse time
-  : palindrome? ( string -- ? ) dup reverse = ;
+  #+begin_src factor
+    1 2 + .
+    3 weeks ago noon .
+    URL" https://factorcode.org" http-get
+    10 [ "Hello, Factor" print ] times
+    "hello" rot13 .
+    { 4 7 15 16 23 42 } [ sum ] [ length ] bi / .
+    10 dup 0 < [ 1 - ] [ 1 + ] if .
+    { -1 1 -2 0 3 } [ 0 max ] map .
+  #+end_src
 
 - Unit tests
-  { f } [ "Hello" palindrome? ] unit-test
-  { t } [ "racec" palindrome? ] unit-test
+  #+begin_src factor
+    { f } [ "Hello"   palindrome? ] unit-test
+    { t } [ "racecar" palindrome? ] unit-test
+  #+end_src
 
-- TODO: 5:00
+- a debugger
+  - show-error-list
+  - B: word that create a breakpoint and opens up a walker
+
+- example: fortune
+  #+begin_src factor
+    "/usr/share/games/fortunes/science"
+    ascii file-lines
+    { "%" } split random
+    [ print ] each
+  #+end_src
 
 * TODO 08 Factor: an extensible interactive language | Slave Pestov
 

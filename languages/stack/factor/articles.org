@@ -1,3 +1,10 @@
+- 12 http://missingfaktor.blogspot.com/2012/07/lisp-factor-features-compare.html
+- 17 http://web.archive.org/web/20220419213105/https://perugini.cps.udayton.edu/teaching/courses/Spring2017/cps499/Languages/notes/Factor.html
+- https://learnxinyminutes.com/factor/
+- 23 https://www.bitquabit.com/post/beating-spelling-bee-with-factor/
+- 10 How Factor implements closures http://factor-language.blogspot.com/2010/01/how-factor-implements-closures.html
+- 10 Replacing GNU assembler with Factor code http://factor-language.blogspot.com/2010/01/replacing-gnu-assembler-with-factor.html
+- 10 Factor's bootstrap process explained http://factor-language.blogspot.com/2010/01/factors-bootstrap-process-explained.html
 - paper https://factorcode.org/littledan/dls.pdf
 - https://andreaferretti.github.io/factor-tutorial/
 - https://www.junglecoder.com/blog/factorlang-review

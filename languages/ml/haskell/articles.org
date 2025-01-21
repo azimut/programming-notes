@@ -1,3 +1,5 @@
+- https://speakerdeck.com/ajnsit/supercharged-imperative-programming-with-haskell-and-fp
+- https://entropicthoughts.com/haskell-procedural-programming
 - https://learnxinyminutes.com/haskell/
 - https://blog.jle.im/entry/tries-with-recursion-schemes.html
 - articles https://github.com/katychuang/getting-started-with-haskell/tree/master/resources
