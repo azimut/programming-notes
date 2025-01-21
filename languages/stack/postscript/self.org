@@ -1,0 +1,58 @@
+- https://en.wikipedia.org/wiki/PostScript
+  - 1982(v1), 1991(v2), 1997(v3)
+  - Adobe
+  - John Warnock, Chuck Geschke, Doug Brotz, Ed Taft, Bill Paxton
+
+- library https://github.com/nasa/pvslib
+- tool
+  - viewer gv https://www.gnu.org/software/gv/
+  - https://www.ghostscript.com/
+  - hack https://github.com/RUB-NDS/PRET
+- Fonts
+  - Truetype: .ttf apple font
+  - troff (typesetter roff)
+
+* language
+
+- ~400 operators
+- turing complete
+- interpreted (aka not fast)
+- %!<OPTIONAL_COMPLIANT_VERSION>
+- % comments
+- postfix notation (aka RPN)
+- types: char, integers, floats
+- weakly typed, you can assign a *number* to a variable, but then it will show it's printable *character* when asked to print
+- 0,0 is the bottom left coordinate
+- operators
+  - exch (aka swap)
+  - rand
+
+* snippets
+
+- aoc21 https://github.com/juntuu/advent_of_code_2021/
+- 3d donut https://personal.math.ubc.ca/~cass/graphics/manual/code/doughnut.txt
+- raytracer https://gist.github.com/grkvlt/2651230
+- example
+  #+begin_src ps
+    %!PS
+    /Courier             % name the desired font
+    20 selectfont        % choose the size in points and establish
+                         % the font as the current one
+    72 500 moveto        % position the current point at
+                         % coordinates 72, 500 (the origin is at the
+                         % lower-left corner of the page)
+    (Hello world!) show  % stroke the text in parentheses
+    showpage             % print all on the page
+  #+end_src
+
+* codebases
+
+- logo https://seriot.ch/projects/golfing_with_postscript.html
+- planes https://seriot.ch/projects/intersecting_planes.html
+- stairs https://seriot.ch/projects/postscript_stairs.html
+- drawings https://seriot.ch/projects/drawing_with_computers.html
+- tictactoe https://github.com/nst/PSTicTacToe
+- sokoban https://github.com/nst/PSSokoban
+- chess
+  - article https://seriot.ch/projects/pschess.html
+  - source https://github.com/nst/PSChess

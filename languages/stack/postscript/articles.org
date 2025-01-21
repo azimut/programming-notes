@@ -1,0 +1,30 @@
+- style https://web.mit.edu/ghostscript/www/Ps-style.htm
+- tuto https://personal.math.ubc.ca/~cass/graphics/manual/
+- history
+  - 12 https://rgbcmyk.com.ar/en/history-of-postscript/
+  - 98 https://spectrum.ieee.org/adobe-postscript
+  - 22 https://computerhistory.org/blog/postscript-a-digital-printing-press/
+- http://www.tuxgraphics.org/npa/book-binding/
+- 16 https://cre8math.com/2016/04/25/fractals-viii-postscript-programming/
+- 17 https://cre8math.com/2017/01/08/on-coding-v-postscript/
+- 17 https://lamehackersguide.blogspot.com/2017/02/weaponizing-postscript.html
+- 18 https://www.metalevel.at/postscript/animations
+- 21 https://dev.to/taw/100-languages-speedrun-episode-24-postscript-4i2k
+- 24 https://seriot.ch/projects/programming_in_postscript.html
+  - demo https://seriot.ch/images/pschess/postscript_1024.m4v
+    - circles
+      #+begin_src ps
+        %!
+        100 500 translate
+        0 0 1 setrgbcolor
+        /N 10 def
+        /STEP 15 def
+        1 1 N {
+                STEP mul /r exch def
+                r 0 r 0 180 arc stroke
+                N 2 mul STEP mul r sub 0 r 180 0 arc stroke
+        } for
+      #+end_src
+- 24 https://ztoz.blog/posts/postscript-code/
+- https://wiki.xxiivv.com/site/postscript
+- 90(8) https://paulbourke.net/dataformats/postscript/
