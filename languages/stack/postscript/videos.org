@@ -3,6 +3,8 @@
 - ?? New York City Harbor to PostScript and PDF - John Warnock https://www.youtube.com/watch?v=DyXiC-MSzwU
 - 11 From PostScript to PDF https://www.youtube.com/watch?v=bnz_yWKS1jo
   - epstopdf, pst-pdf, auto-pst-pdf, pst2pdf
+- 15 PostScript Introduction https://www.youtube.com/watch?v=2DREjXR5-v8
+- 17 Programming data for display, the PDF Story by Chas Emerick https://www.youtube.com/watch?v=MAki8C6qFHY
 - 18 Einar Høst - A PostScript to functional geometry https://www.youtube.com/watch?v=5c0De1pHJ0U
 - 18 Programming data for display, the PDF Story by Chas Emerick https://www.youtube.com/watch?v=MAki8C6qFHY
 - 19 The Font Wars—PostScript, TrueType, the Mac and the success of desktop publishing https://www.youtube.com/watch?v=5X9Dj7tBlkg

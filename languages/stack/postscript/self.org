@@ -20,13 +20,112 @@
 - %!<OPTIONAL_COMPLIANT_VERSION>
 - % comments
 - postfix notation (aka RPN)
-- types: char, integers, floats
+- types:
+  - char, integers, floats
+  - strings
+    - between ()
+    - assigned by reference, must be manually copied when needed
 - weakly typed, you can assign a *number* to a variable, but then it will show it's printable *character* when asked to print
-- 0,0 is the bottom left coordinate
-- operators
-  - exch (aka swap)
-  - rand
 
+- A ~path~ is a collection of, possibly disconnected, lines and areas describing the image.
+
+- A ~clipping path~ is a type of path that defines the effective drawing area. By default it matches the border of the paper.
+
+- Uses a =coordinate system=, device independent.
+  - X=right Y=up
+  - unit is in ~points~ (1/72 inch long)
+  - 0,0 is the bottom left coordinate
+  - aka doesn't depend on the resolution or paper size
+
+** commands / operators
+https://personal.math.ubc.ca/~cass/courses/ps.html
+- showpage, forces page print of what is draw
+*** control flow
+
+- if/ifelse
+- there is no "else if" construct
+  - alternatives
+    - nested if
+    - an exit at the end of a loop
+      #+begin_src ps
+        /b exch def
+        /a exch def
+        {
+            a b gt {  1 exit } if
+            a b lt { -1 exit } if
+            0 exit
+        } loop
+      #+end_src
+
+*** files
+
+- ==,=, pop one prints string representation
+- (p)stack
+
+*** stack manipulation
+- copy, copies Nth element(s) from top
+- index, copies Nth element from top
+- roll
+- count
+- clear
+- exch (aka swap)
+- pop
+- dup
+*** string
+|---+--------+---+----------------------------------------------|
+| 1 | string | 1 | takes a number, push a string of that length |
+| 1 | length | 1 | takes a string, push length                  |
+| 2 | get    | 1 | takes a index and string, returns int at idx |
+| 3 | put    | 1 | assigns int at idx to string                 |
+| 2 | cvs    | 1 | converts object to string                    |
+|---+--------+---+----------------------------------------------|
+*** graphics
+- gsave/grestore - state manage (path,color...)
+- [set¦current]rgbcolor - 3 components 0-1
+- [set¦current]gray - gray level 0-1(white)
+- [set¦current]linewidth
+- [set¦current]linecap - end - 0=butt, 1=round, 2=square
+- [set¦current]linejoin - corners - 0=mitter, 1=round, 2=bevel
+*** matrix
+- matrix, creates an identity matrix
+- 2/3 translate 0 origin
+- 2/3 scale 0 user space
+- 1/2 rotate 0 user space
+*** arithmetic / rand
+
+- srand  sets random seed
+- rrand  gets random seed
+- rand   push random number > 0 < ?
+
+- add, sub, div, idiv, mul, mod, abs, neg,
+- ceiling, floor, round, truncate
+- sqrt, atan, cos, sin, exp, ln, log
+*** paths
+|---+--------------+---+-------------------------------------------------------|
+| T |     <c>      | P |                                                       |
+|---+--------------+---+-------------------------------------------------------|
+| 0 |   newpath    | 0 | clears current path                                   |
+| 0 |  closepath   | 0 | closes current path, with a line to the last *moveto* |
+| 0 |    stroke    | 0 | paints the current path, destroys it                  |
+| 0 |     fill     | 0 | fills current path, destroys it                       |
+|---+--------------+---+-------------------------------------------------------|
+| 0 | currentpoint | 2 | returns current point                                 |
+| 2 |  [r]moveto   | 0 | [relative] move current point                         |
+| 2 |  [r]lineto   | 0 | puts a line from current point                        |
+| 5 |    arc[n]    | 0 | counter/anti clockwise arc                            |
+| 2 |   charpath   | 0 | adds chars outlines to path                           |
+|---+--------------+---+-------------------------------------------------------|
+*** fonts
+needs a path for the characters
+by default fontsize is 1
+|---+-------------+---+----------------------------------|
+|   |     <c>     |   |                                  |
+| 1 |  findfont   | 1 | pushes the fontdict of given key |
+| 2 |  scalefont  | 1 | scales fontdict from 1 to n      |
+| 1 |   setfont   | 0 | set current font                 |
+| 0 | currentfont | 1 | returns fontdict                 |
+| 1 |    show     | 0 | prints string of text            |
+|---+-------------+---+----------------------------------|
 * snippets
 
 - aoc21 https://github.com/juntuu/advent_of_code_2021/

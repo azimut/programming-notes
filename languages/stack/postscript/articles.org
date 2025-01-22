@@ -26,5 +26,69 @@
         } for
       #+end_src
 - 24 https://ztoz.blog/posts/postscript-code/
-- https://wiki.xxiivv.com/site/postscript
 - 90(8) https://paulbourke.net/dataformats/postscript/
+* xxiivv
+https://wiki.xxiivv.com/site/postscript
+** example 1: <
+#+begin_src ps
+  newpath
+  100 200 moveto
+  200 250 lineto
+  100 300 lineto
+  2 setlinewidth
+  stroke
+#+end_src
+
+** example 2: triangle inside triangle
+#+begin_src ps
+  newpath
+  100 200 moveto
+  200 250 lineto
+  100 300 lineto
+  closepath
+  gsave
+  0.5 setgray
+  fill
+  grestore
+  4 setlinewidth
+  0.75 setgray
+  stroke
+#+end_src
+
+** example 3: text
+#+begin_src ps
+  /Times-Roman findfont
+  12 scalefont
+  setfont
+  newpath
+  100 200 moveto
+  (Hello world!) show
+#+end_src
+
+** example 4: text rotated
+#+begin_src ps
+  /msg (Help me!) def
+  /Times-Roman findfont 30 scalefont setfont
+  100 200 translate 45 rotate 2 1 scale
+  newpath
+  0 0 moveto
+  msg true charpath
+  0.5 setlinewidth 0.4 setgray
+  stroke
+#+end_src
+
+** example 5: green square / red border
+#+begin_src ps
+  newpath
+  100 500 moveto
+  0  100 rlineto  100 0 rlineto
+  0 -100 rlineto -100 0 rlineto
+  closepath
+  gsave
+  0.5 1 0.5 setrgbcolor
+  fill
+  grestore
+  1 0 0 setrgbcolor
+  4 setlinewidth
+  stroke
+#+end_src
