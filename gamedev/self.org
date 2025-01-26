@@ -21,6 +21,9 @@
 
 - article https://ameye.dev/notes/rendering-outlines/
 - video: A Brief look at Text Rendering https://www.youtube.com/watch?v=qcMuyHzhvpI
+- https://www.smashingmagazine.com/2012/04/a-closer-look-at-font-rendering/
+- http://usabilitypost.com/2012/11/05/stop-fixing-font-smoothing/
+- https://purplefusion.wordpress.com/2011/01/28/font-wars-postscript-vs-truetype-vs-opentype/
 
 * Book: Game Programming Patterns
 | Type       | Pattern       | Intent                                    | aka       |

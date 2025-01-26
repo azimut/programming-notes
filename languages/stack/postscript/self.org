@@ -1,11 +1,14 @@
 - https://en.wikipedia.org/wiki/PostScript
-  - 1982(v1), 1991(v2), 1997(v3)
+  - 1982(v1), =1984= (released), 1991(v2), 1997(v3)
   - Adobe
   - John Warnock, Chuck Geschke, Doug Brotz, Ed Taft, Bill Paxton
 
 - library https://github.com/nasa/pvslib
 - tool
+  - editor (for vector graphics) https://inkscape.org/ https://en.wikipedia.org/wiki/Inkscape
   - viewer gv https://www.gnu.org/software/gv/
+    - $ gv -noantialias -center -widgetless -watch bar.ps
+    - -geometry wxh - of the x11 window
   - https://www.ghostscript.com/
   - hack https://github.com/RUB-NDS/PRET
 - Fonts
@@ -73,11 +76,13 @@ https://personal.math.ubc.ca/~cass/courses/ps.html
 - dup
 *** string
 |---+--------+---+----------------------------------------------|
+|   |  <c>   |   |                                              |
 | 1 | string | 1 | takes a number, push a string of that length |
 | 1 | length | 1 | takes a string, push length                  |
-| 2 | get    | 1 | takes a index and string, returns int at idx |
-| 3 | put    | 1 | assigns int at idx to string                 |
-| 2 | cvs    | 1 | converts object to string                    |
+| 2 |  get   | 1 | takes a index and string, returns int at idx |
+| 3 |  put   | 1 | assigns int at idx to string                 |
+| 2 |  cvs   | 1 | converts to string, substring if smaller     |
+| 1 |  cvi   | 1 | converts real to integer                     |
 |---+--------+---+----------------------------------------------|
 *** graphics
 - gsave/grestore - state manage (path,color...)
@@ -91,7 +96,7 @@ https://personal.math.ubc.ca/~cass/courses/ps.html
 - 2/3 translate 0 origin
 - 2/3 scale 0 user space
 - 1/2 rotate 0 user space
-*** arithmetic / rand
+*** arithmetic / ran
 
 - srand  sets random seed
 - rrand  gets random seed
@@ -116,21 +121,45 @@ https://personal.math.ubc.ca/~cass/courses/ps.html
 | 2 |   charpath   | 0 | adds chars outlines to path                           |
 |---+--------------+---+-------------------------------------------------------|
 *** fonts
-needs a path for the characters
-by default fontsize is 1
-|---+-------------+---+----------------------------------|
-|   |     <c>     |   |                                  |
-| 1 |  findfont   | 1 | pushes the fontdict of given key |
-| 2 |  scalefont  | 1 | scales fontdict from 1 to n      |
-| 1 |   setfont   | 0 | set current font                 |
-| 0 | currentfont | 1 | returns fontdict                 |
-| 1 |    show     | 0 | prints string of text            |
-|---+-------------+---+----------------------------------|
+#+begin_src ps
+  /Times-Roman findfont 20 scalefont setfont
+  newpath
+  (foo) show
+#+end_src
+|---+-------------+---+---------------------------------------|
+|   |     <c>     |   |                                       |
+| 1 |  findfont   | 1 | pushes the fontdict of given key      |
+| 2 |  scalefont  | 1 | scales fontdict from 1 (default) to n |
+| 1 |   setfont   | 0 | set current font                      |
+| 0 | currentfont | 1 | returns fontdict                      |
+| 1 |    show     | 0 | prints string of text                 |
+|---+-------------+---+---------------------------------------|
 * snippets
 
+- escher style impossible triangle https://gist.github.com/jgamble/bbaff6f932adc21e804cdf43eaae308f
+- mandelbrot https://gist.github.com/dln/bc88911f6bf8e55856d9
+- L-Systems https://gist.github.com/usr-ein/47661f123f055fda3ed73e2e3bce20ad
+- quicksort https://gist.github.com/kuroneko/e896a466dc4a1af55c9c
 - aoc21 https://github.com/juntuu/advent_of_code_2021/
 - 3d donut https://personal.math.ubc.ca/~cass/graphics/manual/code/doughnut.txt
 - raytracer https://gist.github.com/grkvlt/2651230
+- print stack count (need =moveto=)
+  #+begin_src ps
+/printcount { count 20 string cvs show } def
+  #+end_src
+- filled circle
+  #+begin_src ps
+currentpoint 6 0 360 arc fill stroke
+  #+end_src
+- a font initialization
+  #+begin_src ps
+    /Courier 20 selectfont 300 300 moveto
+  #+end_src
+- get dimensions
+  #+begin_src ps
+/width  currentpagedevice /PageSize get 0 get def
+/height currentpagedevice /PageSize get 1 get def
+  #+end_src
 - example
   #+begin_src ps
     %!PS
@@ -146,6 +175,8 @@ by default fontsize is 1
 
 * codebases
 
+- examples https://github.com/hzeller/postscript-hacks/
+- library https://github.com/denismm/dmmlib
 - logo https://seriot.ch/projects/golfing_with_postscript.html
 - planes https://seriot.ch/projects/intersecting_planes.html
 - stairs https://seriot.ch/projects/postscript_stairs.html

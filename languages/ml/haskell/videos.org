@@ -17,6 +17,9 @@
 - Berlin function programming https://www.youtube.com/channel/UCNp-DVb8cQRIOo32sZhWgNg
 - Talks by kowainik https://www.youtube.com/playlist?list=PL6EBWxwzgPKOHz4OQlyVHeae0EUqL6Prt
 - Functional Parsing - Computerphile https://www.youtube.com/watch?v=dDtZLm7HIJs
+- Gopher
+  - Writing a Gopher Server Using Haskell https://www.youtube.com/watch?v=MpYRVbxTxj0
+  - Generating a Gopher Directory Using Haskell https://www.youtube.com/watch?v=nS3-9KMB_Sg
 * Backend Web Programming in Haskell - Tsoding
 https://www.twitch.tv/videos/743607386
 https://github.com/tsoding/tsoken/blob/master/src/Main.hs

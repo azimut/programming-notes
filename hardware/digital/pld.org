@@ -72,6 +72,8 @@ https://en.wikipedia.org/wiki/Complex_programmable_logic_device
 https://en.wikipedia.org/wiki/Field-programmable_gate_array
 - https://github.com/litex-hub/fpga_101
 - https://www.youtube.com/channel/UC4ls2cPrXHfEO_oTHZcCclA/videos
+- verilog
+  - 21 article https://dev.to/taw/100-languages-speedrun-episode-28-verilog-18jp
 ** Videos
 *** Playlist
 - Building a CPU on an FPGA - Robert Baruch

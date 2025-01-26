@@ -393,3 +393,65 @@ Overall, the ReSTIR technique involves a cycle of importance estimation, spatial
 
 * vxgi
 - to store in regular images (no hdr), use no pbr lighting and no ambient on formula calculation
+
+* Nature of code
+
+** 0 Random
+
+- =Single Event Proability= the likelihood that a single event will occur
+- =Outcomes= all the possible results of a random proces
+- =Event= a specific outcome, or a combination of outcomes
+
+- To calculate the probability of something happening in sequence:
+  - multiply the probabilities of each event
+
+- =Non-uniform distribution=
+  - uniform to non-uniform
+    1) filling an array of numbers
+    2) repeating some
+    3) picking one random
+
+- =Normal distribution= (aka gaussian bell curve): numbers cluster around avg/mean value
+  - types
+    - low std deviation: spike
+    - high std deviation: smooth hill
+  - [[https://natureofcode.com/random/#calculating-mean-and-standard-deviation][How to calculate the standard deviation]]
+    1) the difference between
+       - the mean
+       - each person grade
+    2) square it = *variance*
+    3) avg all of them to get the *avg variance*
+    4) sqrt and you have the *std deviation*
+
+- Custom distribution
+  - =Oversampling= returning to previously visited positions
+  - Solution
+    - Taking big steps every so often (Levi flight)
+  - =accept-reject algorith=
+    - a type of *monte carlo* method
+    - eg:
+      - infinite loop
+      - get 2 random numbers
+      - if one is less than the other
+      - pick the bigger one
+      - otherwise keep trying
+
+- Noise
+  - is deterministic
+  - Perlin (random) noise
+    - 1983
+    - by Ken Perlin
+    - less "jagged" over time
+    - noise() in Processing
+    - usually?
+      - return a value between 0-1
+      - take a single "time" parameter
+    - https://mrl.nyu.edu/~perlin/doc/oscar.html
+
+  - Simplex Noise
+    - 2001
+    - by Ken Perlin
+    - https://thecodingtrain.com/opensimplexnoise
+
+  - Worley Noise
+  - Value Noise

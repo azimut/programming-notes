@@ -9,6 +9,7 @@
     - Author: David Makenzie
     - 1991-
 
+- article https://dev.to/taw/100-languages-speedrun-episode-45-m4-pgg
 - used in the "xz backdoor"
   - https://git.savannah.gnu.org/gitweb/?p=gnulib.git;a=blob;f=m4/build-to-host.m4
   - https://felipec.wordpress.com/2024/04/04/xz-backdoor-and-autotools-insanity/
