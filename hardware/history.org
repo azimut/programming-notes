@@ -1,0 +1,16 @@
+- 41 - Z3 computer https://en.wikipedia.org/wiki/Z3_(computer)
+  - Konrad Zuse
+  - first programmable computer
+  - used 2.6k relays
+  - ~5Hz
+  - had no conditional branching
+  - RPN/stack based
+  - 2 registers
+  - 8 bit ops
+
+- 49 EDSAC (Electronic Delay Storage Automatic Calculator) https://en.wikipedia.org/wiki/EDSAC
+  - Cambridge
+  - Maurice Wilkes
+  - 500 kHz
+  - 2kb storage
+  - input paper tape programs
