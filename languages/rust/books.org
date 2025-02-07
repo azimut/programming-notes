@@ -1,3 +1,5 @@
+- https://google.github.io/comprehensive-rust/es/
+
 * 22 | Rust Sampler
 - Edition
   - 2015 - Rust version 1.0-

@@ -1,3 +1,17 @@
+- Combinators: are =high-order= functions like *map*
+  - they can replace logic operators, even variables
+  - Books:
+    - "To mock a mockingbird"
+    - "Combinators" by Stephen Wolfram
+    - ?? by Moses Schonfinkel
+  - tool: lambda to SKI combinators https://theory.stanford.edu/~blynn/lambda/cl.html
+    #+begin_src
+      (I x) = x
+      (K x y) = x
+      (S x y z) = (x z (y z))
+    #+end_src
+  - lists of combinators https://www.angelfire.com/tx4/cus/combinator/birds.html
+
 - 22 I don't want to go to Chel-C
   - https://applied-langua.ge/posts/i-dont-want-to-go-to-chel-c.html
   - https://news.ycombinator.com/item?id=31705239

@@ -1,7 +1,26 @@
+- https://en.wikipedia.org/wiki/Joy_(programming_language)
+  - Manfred von Thun
+  - 2001 (2003 stable release)
+  - Where "concatenative" proglang started at
+  - Based on
+    - function composition, rather than lambda calculus
+    - John Backus's 1977 paper "Can programming be liberated from the von neuman style?"
+
+- can stack quoted programs
+- has lists, a special case of quoted programs
+- without variables
+- without traditional control structures (?
+- all functions are unary (take a stack, output a stack)
+  - implied
+
+- links https://hypercubed.github.io/joy/joy.html
+- tuto https://hypercubed.github.io/joy/html/forth-joy.html
 - https://web.archive.org/web/20210613000126/https://www.latrobe.edu.au/humanities/research/research-projects/past-projects/joy-programming-language
 - 03 | An informal tutorial on Joy https://hypercubed.github.io/joy/html/j01tut.html
 - 03 | A Conversation with Manfred von Thun http://www.nsl.com/papers/interview.htm
-- https://github.com/calroc/joypy
-  git clone https://github.com/calroc/joypy.git
-  cd joypy
-  python -m joy
+
+- implementations
+  - https://github.com/calroc/joypy
+    git clone https://github.com/calroc/joypy.git
+    cd joypy
+    python -m joy

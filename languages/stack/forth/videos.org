@@ -4,6 +4,7 @@
 - 19 GBForth: Using Forth to understand the Game Boy https://www.youtube.com/watch?v=g3HNhvW3lI8
 - 13 Programming a 144-computer chip to minimize power https://www.youtube.com/watch?v=0PclgBd6_Zs
 
+- Course: Forth by Code and Crux https://www.youtube.com/playlist?list=PLGY0au-SczllY3HnWvoQrLaEoxv5Y_VjC
 - Course: Back & Forth | Hans Bezemer https://www.youtube.com/playlist?list=PLRWL7HN2PQD5QRW4voNWy6YGyFaxBEpdT
 - Course https://www.youtube.com/playlist?list=PLGY0au-Sczllm2NcYC0Ypk2CYcFAadYZa
 - Channel https://www.youtube.com/@code4th/videos
@@ -18,6 +19,7 @@
   - by David Frech
   - video https://vimeo.com/859408
   - author of muForth https://muforth.dev/
+- 22 SmithForth workings https://www.youtube.com/watch?v=9MSJGzYELBA
 - 24 Forth Bitcoin miner for PC and Game Boy | Lee
   video https://www.youtube.com/watch?v=QGpZl23vXbw
   source https://github.com/lf94/gbforth/blob/main/examples/sha256/sha256.fs

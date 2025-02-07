@@ -394,7 +394,7 @@ Overall, the ReSTIR technique involves a cycle of importance estimation, spatial
 * vxgi
 - to store in regular images (no hdr), use no pbr lighting and no ambient on formula calculation
 
-* Nature of code
+* Book: Nature of code
 
 ** 0 Random
 
@@ -455,3 +455,38 @@ Overall, the ReSTIR technique involves a cycle of importance estimation, spatial
 
   - Worley Noise
   - Value Noise
+
+** 1 Vectors
+
+- velocity: the rate of change of *position*
+- acceleration: the rate of change in *velocity*
+
+** 2 Forces
+
+- =force=: a vector that causes an object with mass to *accelerate*
+  - equilibrium: if the forces that act on an object *cancel each other out*, meaning the net force adds up to zero.
+
+- =weigth=: is the *force* of gravity on an object (in newtons)
+  - weight = mass x gravity_acceleration
+
+- =mass=: measure of ammount of matter in an object (in kg)
+  - mass != weight
+
+- =density=: the ammount of *mass* per unit of volume (in kg in cm3)
+
+- Newton's laws of motion
+  1) An object at rest stays at rest, and an object in motion stays in motion.
+     - an object's velocity vector will remain constant if it's in a state of equilibrium.
+
+  2) force        = mass x acceleration
+     acceleration = force / mass
+
+  3) For every action, there is an equal and opposite reaction.
+     - aka resistance is measure as a force
+     - Forces always occur in pairs. Both of equal strength but in opposite directions.
+
+- Exercises
+  1) Hellium baloon
+     - floats upwards
+     - bouncing of the top
+     - wind force changes over time (noise)

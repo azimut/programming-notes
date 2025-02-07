@@ -1,10 +1,12 @@
 - https://learnxinyminutes.com/forth/
 - https://www.forth2020.org/about-forth
+- 73 http://home.iae.nl/users/mhx/forth_NRAO.pdf
 - 80 BYTE 08 https://archive.org/details/byte-magazine-1980-08/page/n2/mode/1up
 - 81 https://jupiter-ace.co.uk/Forth_general_practical_computing8108.html
 - 94? http://www.rigwit.co.uk/papers/literate.html
 - 99 | https://www.ultratechnology.com/1xforth.htm
 - 02 | https://www.ultratechnology.com/levels.htm
+- 08 | Understanding What It's Like to Program in Forth https://prog21.dadgum.com/33.html
 - 10 | https://yosefk.com/blog/my-history-with-forth-stack-machines.html
 - 17 | https://hackaday.com/2017/01/27/forth-the-hackers-language/
 - 19 | https://blog.information-superhighway.net/what-the-hell-is-forth
@@ -12,6 +14,7 @@
 - 20 | https://web.archive.org/web/20210302015450/https://librehacker.com/2020/11/25/byok-bare-metal-forth/
 - 21 | https://ph1lter.bitbucket.io/blog/2021-01-15-baremetal-x86-forth.html
 - 24 | the zen of forth https://web.archive.org/web/20240516070108/https://cohost.org/offset---cyan/post/728975-the-zen-of-forth/
+
 * 23 | Forth: The programming language that writes itself
 
 http://ratfactor.com/forth/the_programming_language_that_writes_itself.html
@@ -26,11 +29,26 @@ http://ratfactor.com/forth/the_programming_language_that_writes_itself.html
   Each function will be called in sequence.
   No names (unless explicit), just nouns and verbs.
 
-- Joy, is kind of like starting with a Lisp
-  - 2001-
-  - https://en.wikipedia.org/wiki/Joy_(programming_language)
-  - without variables
-  - without traditional control structures
-  - all functions are unary (arity 1)
-    - take one stack, return one stack
-    - implied
+- Forth vs Joy
+  - "I do not believe studing concatenative programming in general or Joy specifically is a good way to understand the history and genesis of Forth."
+  - "Both languages share cosmetically similar syntax and both produce the same result for "2 3 +", but there is a fundamental difference between how the two languages "think" about the expression because they arrived at this place in completely different ways."
+
+- Origin of the Forth language:
+  - Moore wrote a simple interpreter to reduce waste and tedium.
+
+- Computers generations
+  1) vacuum tubes (IBM 704)
+  2) transistors (B5500)
+  3) ICs
+
+- [[https://en.wikipedia.org/wiki/Teleprinter][Teleprinters]] aka teletypewritters aka teletype aka tty
+  - computers at the time were "paper manipulators"
+    - they displayed their output on paper
+    - they were programmed with paper
+    - kept long term storage with paper
+  - keyboard +  printer  +  punched paper tape printer/reader
+  - pulse dialing through a Telex network
+  - famous ritchie and thomson picture is in front of a teletype
+  - [[https://en.wikipedia.org/wiki/Teletype_Model_33][Model 33]]
+    - 1962-1980
+    - ascii

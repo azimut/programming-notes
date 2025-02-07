@@ -22,6 +22,8 @@
 - home https://fishshell.com/
 - source https://github.com/fish-shell/fish-shell
 - tutorial https://fishshell.com/docs/current/tutorial.html#tut_why_fish
+- tutorial https://github.com/jorgebucaran/cookbook.fish
+- tools https://github.com/pirate/fish-utils/blob/master/README.md
 - 2005
 - Author: Axel Liljencrantz
 - "friendly interactive shell"

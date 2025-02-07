@@ -10,6 +10,7 @@
 [[https://karenok.github.io/SAP-1-Computer/images/sap-1-architecture.png]]
 
 - digital https://www.youtube.com/@Kevindarrah/videos
+- 19 Learn How Computers Work Between Silicon and Assembly: Build a CPU with Python https://www.youtube.com/watch?v=iJqCMoAMlMA
 
 * Video: My Ben Eater inspired homemade 8-bit CPU
 - by James Bates

@@ -45,6 +45,15 @@ https://fsharp.org/use/linux/
 - https://github.com/pavsaund/awesome-learning-fsharp
 - https://github.com/fsprojects/awesome-fsharp
 - Learning resources https://fsharpforfunandprofit.com/
+* Language
+
+#+begin_src fsharp
+#!/usr/bin/env -S dotnet fsi --quiet
+open System
+let name = "World"
+printfn $"Hello{name}!"
+#+end_src
+
 * Libraries
 - F# -> Javascript https://github.com/fable-compiler/Fable
 - ELM like abstraction https://github.com/elmish/elmish

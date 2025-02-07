@@ -1,9 +1,18 @@
 - wiki https://en.wikipedia.org/wiki/Prolog
-  - 1972-
+  - 1972
   - Author: Alain Colmerauer
- 
+
 - https://thesearch.space/
 - https://www.metalevel.at/prolog
+- videos
+  - https://www.youtube.com/watch?v=h5Xy4YjCZxM
+  - https://youtu.be/5KUdEZTu06o
+- articles
+  - 25 https://bitsandtheorems.com/the-simplicity-of-prolog/
+- other logic programming languages
+  - https://mercurylang.org/
+  - https://www.curry-lang.org/
+  - https://minikanren.org/
 - Book: The power of Prolog https://www.metalevel.at/prolog/videos/
 * Video: 2014 - Production Prolog - Michael Hendricks - StrangeLoop
   https://www.youtube.com/watch?v=G_eYTctGZw8

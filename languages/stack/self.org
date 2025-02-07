@@ -1,4 +1,9 @@
-- Concatenative programming is so called because it uses function composition instead of function application—a non-concatenative language is thus called applicative. [[http://evincarofautumn.blogspot.com/2012/02/why-concatenative-programming-matters.html][1]]
+- Concatenative programming is so called because it uses function compos
+  ition instead of function application—a non-concatenative language is thus called applicative. [[http://evincarofautumn.blogspot.com/2012/02/why-concatenative-programming-matters.html][1]]
+
+- stacks: explicit access to 2
+  - data stack
+  - return stack: for control
 
 - wiki https://en.wikipedia.org/wiki/Concatenative_programming_language
   - term born with Joy (2001) and Manfred von Thun
@@ -27,3 +32,14 @@
   - vm
 
 - 12 article http://evincarofautumn.blogspot.com/2012/02/why-concatenative-programming-matters.html
+- from [[https://ratfactor.com/forth/the_programming_language_that_writes_itself.html][rafactor.com: forth]]
+  - contrast with _applicative_ language (algol-like)
+    #+begin_src sh
+      eat(bake(prove(mix(ingredients))))
+    #+end_src
+  - _concatenative_ language
+    #+begin_src
+      ingredients mix prove bake eat
+    #+end_src
+    - has us composing functions/verbs simply putting them in sequence
+    - no names (unless we want them), just nouns and verbs

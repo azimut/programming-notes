@@ -1,3 +1,5 @@
+- advent shaders https://github.com/mrange/shader-advent-2024/
+- challenges https://tcc.lovebyte.party/
 - https://github.com/chr15m/roguelike-browser-boilerplate
 - Article https://namekdev.net/2017/05/exploring-directions-to-fix-game-programming/
 - Math for Game Devs [2022, part 1] • Numbers, Vectors & Dot Product

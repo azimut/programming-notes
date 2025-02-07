@@ -44,7 +44,10 @@
 - https://github.com/hundredrabbits/awesome-uxn
 - https://llllllll.co/t/uxn-virtual-computer/46103/435?page=20
 - https://applied-langua.ge/posts/i-dont-want-to-go-to-chel-c.html
-
+- 22 https://limited.systems/articles/uxntal-quoting/
+- tool
+  - editor: emacs syntax https://github.com/xaderfos/uxntal-mode
+  - editor: vim syntax https://github.com/bellinitte/uxntal.vim
 - tal
   - a stack based asm language for the uxn vm
   - https://learnxinyminutes.com/docs/uxntal/

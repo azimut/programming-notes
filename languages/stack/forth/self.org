@@ -35,6 +35,7 @@
   - rpi https://github.com/organix/pijFORTHos
 
 
+- forth strings https://websites.umich.edu/~williams/archive/forth/strings/fstrings/fstrings.txt
 - https://www.btbytes.com/forth.html
 - how to write a forth? (in ASM)
   http://git.annexia.org/?p=jonesforth.git;a=blob;f=jonesforth.S
@@ -43,30 +44,73 @@
 
 * language
 
+- Name's origin name likely coming due Chuck used a filesystem with filenames limit of 5 characters
 - Portability
   - CPU registers change a lot between hardware, but all machines have a "stack"
     https://www.youtube.com/watch?v=faHB4MGQIG8
 - everything is separated by a space, new line is considered a space
 - Forth programs are made of NUMBERS and WORDS separated by spaces
+- standards
+  - fig-Forth (78)
+  - FORTH-79
+  - FORTH-83
+  - ANS FORTH (94)
+- char?
+  - 'a'
+- string?
+  - s" foo"
+  - leaves the address and length on the stack, not the string itself
+- DOUBLE
+  - double precision, but not float
+  - occupy 2 places in the stack, 2 numbers
+  - MSW(more), LSW (less) significant words
+  - MSW*2^64+LSW
 - NUMBERS
   - are pushed to the data stack
+  - can contain underscores
 - WORDS
   - are interpreded and executed on the fly
   - consume their arguments, removing them from the stack
   - . and +, are words too
 - Booleans
-  - true  is -1
-    false is  0
+  - TRUE  word is -1
+  - FALSE word is  0
   - because they are defined as bitmasks
 
+** comments
+
+they are commands, thus the space
+
 #+begin_src forth
-  : is-5? 5 = if 71 emit then ;
+  \ comment line
+  .(
+     comment block
+     also displayed in CLI
+  )
+  (
+    comment
+    block
+  )
+  2 2 + . ( other comment )
+#+end_src
+
+** new words
+
+ x any type
+ n number
+ u unsigned
+ d double
+ud unsigned double
+
+#+begin_src forth
+  : is-5? 5 = if 71 emit then ; ( other comment )
   : is-5? 5 = if 71 emit else 72 emit then ;
   : 6-gs 6 1 do i 71 emit loop ;
 #+end_src
 
 ** words (default)
 - https://forth-standard.org/standard/core
+- case insensitive
 - T = take
 - P = put
 |---+--------------+---+-------+-------+--------------------------------------------------------------------------------|
@@ -88,7 +132,7 @@
 |---+--------------+---+-------+-------+--------------------------------------------------------------------------------|
 | - |    words     | - |       |       | shows all available words                                                      |
 | 1 |      .       | - |       |       | pop & display top as number                                                    |
-| - |      .s      | - |       |       | shows whole stack                                                              |
+| - |      .s      | - |       |       | shows whole stack, without popping anything                                    |
 | 1 |     emit     | - |     a |       | pop & display top as character                                                 |
 | 1 |      bl      | - |       |       | push the code for space " "                                                    |
 | - |    space     | - |       |       | aka "bl emit"                                                                  |
@@ -97,20 +141,22 @@
 | 1 |    char C    | - |       |       | puts character code for  "C" into stack                                        |
 | - |    at-xy     | 2 |       |       | puts cursor at xy position in stack                                            |
 | - |     esc[     | - |       |       | aka "27 emit 91 emit", for escape control char                                 |
-| - |   ." STR"    | - |       |       | emits STR                                                                      |
+| - |   ." STR"    | - |       |   n a | emits STR                                                                      |
 |---+--------------+---+-------+-------+--------------------------------------------------------------------------------|
 | 2 |     mod      | 1 |       |       | remainder of division                                                          |
 | 2 |     /mod     | 2 |       |       | quotient and remainder of division                                             |
 | 1 |    negate    | 1 |       |       |                                                                                |
 | 2 |     max      | 1 |       |       |                                                                                |
 | 2 |     min      | 1 |       |       |                                                                                |
+|   |   + D+ M+    |   |       |       | add number: single, dpn or mixed                                               |
 |---+--------------+---+-------+-------+--------------------------------------------------------------------------------|
-|   |   EXECUTE    |   |       |       | gets an address from the stack and runs whatever word is found at that address |
+| 1 |   EXECUTE    |   |       |       | gets an address from the stack and runs whatever word is found at that address |
 |   | VARIABLE foo |   |       |       | defines "foo" as a new variable                                                |
 |   |     foo      |   |       |       | leaves it's address on the stack                                               |
 |   |    ' bar     |   |       |       | gets the address of the word "bar" and puts in on the stack                    |
-|   |      !       |   |       |       | stores a =value= from the stack at ~address~ on the stack                      |
-|   |      @       |   |       |       | loads the =value= from the given ~address~ and puts the =value= on the stack   |
+| 2 |      !       | - |       |       | stores a =value= from the stack at ~address~ on the stack                      |
+| 1 |      @       | 1 |       |       | loads the =value= from the given ~address~ and puts the =value= on the stack   |
+|   |      CR      |   |       |       | carriage return                                                                |
 |---+--------------+---+-------+-------+--------------------------------------------------------------------------------|
 * snippets
 
@@ -138,6 +184,7 @@
 |           esc[ ." 31mFoo" |             | prints in red from now on                           |
 |         cr esc[ ." 0mQux" |             | reset all terminal display attributes               |
 |---------------------------+-------------+-----------------------------------------------------|
+
 * codebases
 
 - raylib https://github.com/ArnautDaniel/gforth-raylib

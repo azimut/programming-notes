@@ -46,6 +46,8 @@
 - ~combinators~ are words that take quotations
   - eg: if, map
 
+- those that manipulate the stack are called *shuffle words*
+
 * Standalone Executables
 
 https://concatenative.org/wiki/view/Factor/Deployment

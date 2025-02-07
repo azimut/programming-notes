@@ -1,9 +1,10 @@
 - 16 https://henryraul.wordpress.com/2016/09/10/evita-las-operaciones-matematicas-en-bash/
 - 18 http://ratfactor.com/slackware/pkgblog/bash
+- 18 https://github.com/anordal/shellharden/blob/master/how_to_do_things_safely_in_bash.md
+- 23 https://muhammadraza.me/2023/webscraping-in-bash/
+- 23 https://garnix.io/blog/contextual-cli
+- 23 https://muhammadraza.me/2023/shell-functions/
+- 24 https://yossarian.net/til/post/some-surprising-code-execution-sources-in-bash/
 - 24
   https://mtlynch.io/zig-extraneous-build/#my-mental-model-of-bash-pipelines-is-wrong
   https://hackaday.com/2024/03/28/is-your-mental-model-of-bash-pipelines-wrong/
-- article https://garnix.io/blog/contextual-cli
-- 23 https://muhammadraza.me/2023/webscraping-in-bash/
-- 23 https://muhammadraza.me/2023/shell-functions/
-- 18 https://github.com/anordal/shellharden/blob/master/how_to_do_things_safely_in_bash.md

@@ -5,24 +5,42 @@
 - Raspberry Pi ARM based bare metal examples
   https://github.com/dwelch67/raspberrypi
 
+- SoC System-on-a-Chip
+  - CPU+GPU+Memory+USB+PCM+IO
+    - CPU+Interrupt Controller+Timers
+    - UART, I2C, SPI, GPIO, PWM
+    - DMA
+
+* Founders
+
+- Eben Upton (Cambridge)
+- Rob Mullins (Cambridge)
+- Jack Lang (Cambridge)
+- Alan Mycroft (Cambridge)
+- Pete Lomas
+- David Braben
+
+* Model Revisions
+
+- 2012 B/A
+  - first sale price 25 libras
+- 2014 B+/A+ ARM11 BCM2835
+- 2015 Zero W
+- 2015 2B BCM2836
+  - ARM Cortex-A7
+  - ARM Cortex-A53 (Rev 1.2)
+- 2016 3B ARMv8 A53 BCM2837
+  - no analog inputs
+
 * IO
 
+- UART
 - I2C
 - SPI
 - Serial
 - GPIO: 3.3v, 18mA max
   - you will likely need a transistor
   - with a resistor in base calculated with Ohm's Law
-
-* Models
-
-- Zero W
-  - 1GHz
-  - 512Mb
-- 3
-  - 26 GPIO (3.3v)
-  - No analog inputs
-  - QUad-core Cortex A53 (1.2GHz)
 
 * Libraries
 ** GPIO Zero
