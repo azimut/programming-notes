@@ -68,6 +68,7 @@
 - https://en.wikipedia.org/wiki/PostScript_fonts
 - images of all charset https://web.mit.edu/kenta/www/three/postscript/0-All.html
 
+#+CAPTION: postscript available fonts
 #+ATTR_ORG: :width 800
 [[./fonts.png]]
 
@@ -157,6 +158,8 @@ index numering starts at 0
 - [set¦current]linecap  - end     - 0=butt,   1=round, 2=square
 - [set¦current]linejoin - corners - 0=mitter, 1=round, 2=bevel
 
+#+CAPTION: miter
+#+ATTR_HTML: :width 300
 [[./mitter.png]]
 
 *** matrix
@@ -182,24 +185,31 @@ index numering starts at 0
 
 - there is *always* a path
 - can be visually disconnected
-|---+---------------+---+-------------------------------------------------------|
-| T |      <c>      | P |                                                       |
-|---+---------------+---+-------------------------------------------------------|
-| 0 |    newpath    | 0 | clears current path                                   |
-| 0 |   closepath   | 0 | closes current path, with a line to the last *moveto* |
-| 0 |    stroke     | 0 | draws current path + RESET PATH                       |
-| 0 |     fill      | 0 | fills current path + RESET PATH                       |
-|---+---------------+---+-------------------------------------------------------|
-| 0 | currentpoint  | 2 | returns current point                                 |
-| 2 |   [r]moveto   | 0 | [relative] move current point                         |
-| 2 |   [r]lineto   | 0 | puts a line from current point, and moves it there    |
-| 5 |    arc[n]     | 0 | counter/clockwise arc (x y r a1 a2)                   |
-| 5 |    arct[o]    | - | draws arc from current point x0,y0 (x1 y1 x2 y2 r)    |
-| 6 |    curveto    | - | bezier curve from current point (x1 y2 x2 y2 x3 y3)   |
-| 2 |   charpath    | 0 | adds chars outlines to path                           |
-|---+---------------+---+-------------------------------------------------------|
-#+CAPTION: arc / arct / curveto
-[[./arc.png]] [[./arct.png]] [[./curveto.png]]
+|---+--------------+---+-------------------------------------------------------|
+| T |     <c>      | P |                                                       |
+|---+--------------+---+-------------------------------------------------------|
+| 0 |   newpath    | 0 | clears current path                                   |
+| 0 |  closepath   | 0 | closes current path, with a line to the last *moveto* |
+| 0 |    stroke    | 0 | draws current path + RESET PATH                       |
+| 0 |     fill     | 0 | fills current path + RESET PATH                       |
+|---+--------------+---+-------------------------------------------------------|
+| 0 | currentpoint | 2 | returns current point                                 |
+| 2 |  [r]moveto   | 0 | [relative] move current point                         |
+| 2 |  [r]lineto   | 0 | puts a line from current point, and moves it there    |
+| 5 |    arc[n]    | 0 | counter/clockwise arc (x y r a1 a2)                   |
+| 5 |   arct[o]    | - | draws arc from current point x0,y0 (x1 y1 x2 y2 r)    |
+| 6 |   curveto    | - | bezier curve from current point (x1 y2 x2 y2 x3 y3)   |
+| 2 |   charpath   | 0 | adds chars outlines to path                           |
+|---+--------------+---+-------------------------------------------------------|
+#+CAPTION: arc: (x y r a1 a2)
+#+ATTR_HTML: :width 300
+[[./arc.png]]
+#+CAPTION: arct: (x1 y1 x2 y2 r)
+#+ATTR_HTML: :width 300
+[[./arct.png]]
+#+CAPTION: curveto: (x1 y2 x2 y2 x3 y3)
+#+ATTR_HTML: :width 400
+[[./curveto.png]]
 *** fonts
 
 #+begin_src ps
