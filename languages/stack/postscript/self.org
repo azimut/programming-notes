@@ -1,50 +1,107 @@
 - https://en.wikipedia.org/wiki/PostScript
-  - 1982(v1), =1984= (released), 1991(v2), 1997(v3)
+  - 1982([[https://hepunx.rl.ac.uk/~adye/psdocs/DSC2.html][v1]]), =1984= (released), 1991(v2), 1997(v3)
   - Adobe
   - John Warnock, Chuck Geschke, Doug Brotz, Ed Taft, Bill Paxton
 
 - library https://github.com/nasa/pvslib
-- tool
+- Init file ~gs_init.ps~
+- Page sizes
+  - A4 595x842 (default)
+  - US Letter 612x792
+- tools
   - editor (for vector graphics) https://inkscape.org/ https://en.wikipedia.org/wiki/Inkscape
+  - viewer: evince
   - viewer gv https://www.gnu.org/software/gv/
     - $ gv -noantialias -center -widgetless -watch bar.ps
     - -geometry wxh - of the x11 window
   - https://www.ghostscript.com/
   - hack https://github.com/RUB-NDS/PRET
-- Fonts
-  - Truetype: .ttf apple font
-  - troff (typesetter roff)
 
 * language
 
+#+begin_src ps
+  %!PS
+  %!PS-Adobe-2.0 EPSF-2.0
+  %!PS-Adobe-3.0 EPSF-3.0
+  %%BoundingBox: 5 5 105 105
+  %   BoundingBox is EPS Clip (Encapsulated Postscript),
+  %   the boundaries of the drawing area,
+  %   useful creators, not taking in account by convert
+  %%BeginProlog
+  %   Can contain ONLY _def_ of variables and procedures
+  %%EndProlog
+  20 20 moveto
+  %%EOF
+#+end_src
+
+- single pass compiler
 - ~400 operators
 - turing complete
 - interpreted (aka not fast)
-- %!<OPTIONAL_COMPLIANT_VERSION>
-- % comments
 - postfix notation (aka RPN)
 - types:
-  - char, integers, floats
+  - char, integers, real/floats
   - strings
     - between ()
     - assigned by reference, must be manually copied when needed
 - weakly typed, you can assign a *number* to a variable, but then it will show it's printable *character* when asked to print
 
 - A ~path~ is a collection of, possibly disconnected, lines and areas describing the image.
-
 - A ~clipping path~ is a type of path that defines the effective drawing area. By default it matches the border of the paper.
 
 - Uses a =coordinate system=, device independent.
   - X=right Y=up
   - unit is in ~points~ (1/72 inch long)
+  - 1pt  = 28.34645 cm
+  - 72pt = 1 inch
   - 0,0 is the bottom left coordinate
   - aka doesn't depend on the resolution or paper size
 
+- Truetype: .ttf apple font
+  - troff (typesetter roff)
+
+** fonts
+
+- https://en.wikipedia.org/wiki/PostScript_fonts
+- images of all charset https://web.mit.edu/kenta/www/three/postscript/0-All.html
+
+#+ATTR_ORG: :width 800
+[[./fonts.png]]
+
+- Symbol (translates strings into symbols)
+  - https://en.wikipedia.org/wiki/Symbol_(typeface)
+  - list of symbol names
+    - https://www.jdawiseman.com/papers/trivia/character-entities.html
+    - https://web.archive.org/web/20071028100036/http://www.adobe.com:80/devnet/opentype/archives/glyphlist.txt
+  - \050 into open parens
+  - "a" into alpha greek letter
+  - (1) into an subindex 1
+
 ** commands / operators
-https://personal.math.ubc.ca/~cass/courses/ps.html
+- by cat https://personal.math.ubc.ca/~cass/courses/ps.html
+- by letter https://hepunx.rl.ac.uk/~adye/psdocs/ref/REF.html
 - showpage, forces page print of what is draw
+*** array
+index numering starts at 0
+|---+-------------+---+---------------------------------------------|
+|   |     <c>     |   |                                             |
+|   | [ 0 1 20 ]  |   |                                             |
+| 1 |    array    | 1 | creates array of given length               |
+| 1 |   length    | 1 |                                             |
+| 2 |     get     | 1 | arr idx                                     |
+| 3 |     put     | - | arr idx val                                 |
+| 3 | getinterval | 1 | arr idx len                                 |
+| 3 | putinterval | - | arr idx arr                                 |
+| 1 |    aload    | ? | puts arr elements + arr into stack          |
+| ? |   astore    | 1 | stores stack upto array capacity into array |
+| 2 |    copy     | 1 | copies arr1 to initial subarray of arr2  ?  |
+| 2 |   forall    | 1 | executes proc for every element in _array_  |
+|---+-------------+---+---------------------------------------------|
 *** control flow
 
+- repeat
+- for
+- loop
 - if/ifelse
 - there is no "else if" construct
   - alternatives
@@ -67,7 +124,7 @@ https://personal.math.ubc.ca/~cass/courses/ps.html
 
 *** stack manipulation
 - copy, copies Nth element(s) from top
-- index, copies Nth element from top
+- index, copies Nth element from top, starting at 0
 - roll
 - count
 - clear
@@ -85,55 +142,92 @@ https://personal.math.ubc.ca/~cass/courses/ps.html
 | 1 |  cvi   | 1 | converts real to integer                     |
 |---+--------+---+----------------------------------------------|
 *** graphics
+
 - gsave/grestore - state manage (path,color...)
 - [set¦current]rgbcolor - 3 components 0-1
+- [set¦current]hsbcolor - color given hue/saturation/brightness
 - [set¦current]gray - gray level 0-1(white)
+- [set¦current]miterlimit
 - [set¦current]linewidth
-- [set¦current]linecap - end - 0=butt, 1=round, 2=square
+- [set¦current]linecap  - end     - 0=butt,   1=round, 2=square
 - [set¦current]linejoin - corners - 0=mitter, 1=round, 2=bevel
+
+[[./mitter.png]]
+
 *** matrix
 - matrix, creates an identity matrix
 - 2/3 translate 0 origin
 - 2/3 scale 0 user space
 - 1/2 rotate 0 user space
-*** arithmetic / ran
+*** arithmetic / rand
 
 - srand  sets random seed
 - rrand  gets random seed
 - rand   push random number > 0 < ?
 
-- add, sub, div, idiv, mul, mod, abs, neg,
-- ceiling, floor, round, truncate
-- sqrt, atan, cos, sin, exp, ln, log
+- add, sub, mul, div, idiv, mod (2)
+- abs, neg (1)
+- ceiling, floor, round, truncate (1)
+- sqrt, cos, sin, ln, log (1)
+- atan, exp (2)
+
 *** paths
-|---+--------------+---+-------------------------------------------------------|
-| T |     <c>      | P |                                                       |
-|---+--------------+---+-------------------------------------------------------|
-| 0 |   newpath    | 0 | clears current path                                   |
-| 0 |  closepath   | 0 | closes current path, with a line to the last *moveto* |
-| 0 |    stroke    | 0 | paints the current path, destroys it                  |
-| 0 |     fill     | 0 | fills current path, destroys it                       |
-|---+--------------+---+-------------------------------------------------------|
-| 0 | currentpoint | 2 | returns current point                                 |
-| 2 |  [r]moveto   | 0 | [relative] move current point                         |
-| 2 |  [r]lineto   | 0 | puts a line from current point                        |
-| 5 |    arc[n]    | 0 | counter/anti clockwise arc                            |
-| 2 |   charpath   | 0 | adds chars outlines to path                           |
-|---+--------------+---+-------------------------------------------------------|
+- there is *always* a path
+- can be visually disconnected
+|---+---------------+---+-------------------------------------------------------|
+| T |      <c>      | P |                                                       |
+|---+---------------+---+-------------------------------------------------------|
+| 0 |    newpath    | 0 | clears current path                                   |
+| 0 |   closepath   | 0 | closes current path, with a line to the last *moveto* |
+| 0 |    stroke     | 0 | draws current path + RESET PATH                       |
+| 0 |     fill      | 0 | fills current path + RESET PATH                       |
+|---+---------------+---+-------------------------------------------------------|
+| 0 | currentpoint  | 2 | returns current point                                 |
+| 2 |   [r]moveto   | 0 | [relative] move current point                         |
+| 2 |   [r]lineto   | 0 | puts a line from current point, and moves it there    |
+| 5 |    arc[n]     | 0 | counter/clockwise arc (x y r a1 a2)                   |
+| 5 |    arct[o]    | - | draws arc from current point x0,y0 (x1 y1 x2 y2 r)    |
+| 6 |    curveto    | - | bezier curve from current point (x1 y2 x2 y2 x3 y3)   |
+| 2 |   charpath    | 0 | adds chars outlines to path                           |
+|---+---------------+---+-------------------------------------------------------|
+#+CAPTION: arc / arct / curveto
+[[./arc.png]] [[./arct.png]] [[./curveto.png]]
 *** fonts
+
 #+begin_src ps
-  /Times-Roman findfont 20 scalefont setfont
-  newpath
+  /Courier 20 selectfont
+  300 300 moveto
   (foo) show
 #+end_src
-|---+-------------+---+---------------------------------------|
-|   |     <c>     |   |                                       |
-| 1 |  findfont   | 1 | pushes the fontdict of given key      |
-| 2 |  scalefont  | 1 | scales fontdict from 1 (default) to n |
-| 1 |   setfont   | 0 | set current font                      |
-| 0 | currentfont | 1 | returns fontdict                      |
-| 1 |    show     | 0 | prints string of text                 |
-|---+-------------+---+---------------------------------------|
+|---+-------------+---+---------------------------------------------------|
+|   |     <c>     |   |                                                   |
+| 1 |  findfont   | 1 | pushes the fontdict of given key                  |
+| 2 |  scalefont  | 1 | set+scale fontdict from size 1 (default) to given |
+| 1 |   setfont   | 0 | sets current fontdict                             |
+| 2 | selectfont  |   |                                                   |
+| - | currentfont | 1 | returns fontdict                                  |
+| 1 |    show     | - | prints string of text                             |
+|---+-------------+---+---------------------------------------------------|
+
+** Prolog
+
+can contain only _definitions_ of variables and procedures
+#+begin_src ps
+  %%BeginProlog
+  %%EndProlog
+#+end_src
+
+** local variables
+
+#+begin_src ps
+  /f {
+    1 dict begin % makes x a local binding
+      \x exch def
+      x x lineto
+    end
+  } def
+#+end_src
+
 * snippets
 
 - escher style impossible triangle https://gist.github.com/jgamble/bbaff6f932adc21e804cdf43eaae308f
@@ -143,6 +237,24 @@ https://personal.math.ubc.ca/~cass/courses/ps.html
 - aoc21 https://github.com/juntuu/advent_of_code_2021/
 - 3d donut https://personal.math.ubc.ca/~cass/graphics/manual/code/doughnut.txt
 - raytracer https://gist.github.com/grkvlt/2651230
+- vector
+  #+begin_src ps
+/vectoradd { exch 3 1 roll add 3 1 roll add exch } def
+/vectorsub { exch 3 1 roll sub 3 1 roll sub exch } def
+  #+end_src
+- position helpers
+  #+begin_src ps
+/currentx { currentpoint pop } def
+/currenty { currentpoint exch pop } def
+  #+end_src
+- factor like operators
+  #+begin_src ps
+/drop { pop  } def
+/nip  { exch pop } def
+/swap { exch } def
+/over { 1 index } def
+/pick { 2 index } def
+  #+end_src
 - print stack count (need =moveto=)
   #+begin_src ps
 /printcount { count 20 string cvs show } def
@@ -175,6 +287,8 @@ currentpoint 6 0 360 arc fill stroke
 
 * codebases
 
+- examples charts https://www.complang.tuwien.ac.at/anton/eps-gallery/
+- examples https://web.archive.org/web/20060824003443/http://www.physics.uq.edu.au/people/foster/postscript.html
 - examples https://github.com/hzeller/postscript-hacks/
 - library https://github.com/denismm/dmmlib
 - logo https://seriot.ch/projects/golfing_with_postscript.html

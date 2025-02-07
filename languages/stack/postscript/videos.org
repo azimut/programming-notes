@@ -30,6 +30,14 @@
 
 - 21 Tuto (Korean) https://www.youtube.com/playlist?list=PLKseYrrlvWNqvDZDXmjFiVhEwb0-5FTDG
 - 20 Tuto https://www.youtube.com/playlist?list=PL3by7evD3F527t79cHU0Ki8anStBmCci2
+  - Books
+    - Blue (86)
+    - Green (88)
+    - Red (99): reference manual, first one to appear, for reference mainly, advanced
+  - coordinate system:
+    - in type setter points (pt)
+    - 1pt  = 1/72 inch
+    - 72pt = 1inch
 - Tuto
   - https://www.youtube.com/watch?v=_gouTfn_BQo
   - https://www.youtube.com/watch?v=IJxcYwvWVP4
