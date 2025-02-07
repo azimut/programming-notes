@@ -1,3 +1,6 @@
+#+TITLE: postscript
+#+DATE: <2025-01-20 lun>
+
 - https://en.wikipedia.org/wiki/PostScript
   - 1982([[https://hepunx.rl.ac.uk/~adye/psdocs/DSC2.html][v1]]), =1984= (released), 1991(v2), 1997(v3)
   - Adobe
@@ -123,6 +126,7 @@ index numering starts at 0
 - (p)stack
 
 *** stack manipulation
+
 - copy, copies Nth element(s) from top
 - index, copies Nth element from top, starting at 0
 - roll
@@ -131,6 +135,7 @@ index numering starts at 0
 - exch (aka swap)
 - pop
 - dup
+
 *** string
 |---+--------+---+----------------------------------------------|
 |   |  <c>   |   |                                              |
@@ -155,10 +160,12 @@ index numering starts at 0
 [[./mitter.png]]
 
 *** matrix
+
 - matrix, creates an identity matrix
 - 2/3 translate 0 origin
 - 2/3 scale 0 user space
 - 1/2 rotate 0 user space
+
 *** arithmetic / rand
 
 - srand  sets random seed
@@ -172,6 +179,7 @@ index numering starts at 0
 - atan, exp (2)
 
 *** paths
+
 - there is *always* a path
 - can be visually disconnected
 |---+---------------+---+-------------------------------------------------------|
