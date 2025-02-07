@@ -1,0 +1,103 @@
+- 23 you can learn assembly fast with this technique https://www.youtube.com/watch?v=vhyettT7sdA
+- 24 Just enough assembly to blow your mind by Kay Lack https://www.youtube.com/watch?v=GU8MnZI0snA
+- 17 video: Enough x86 Assembly to Be Dangerous
+  Charles Bailey
+  https://www.youtube.com/watch?v=IfUPkUAEwrk
+
+- courses
+  - mips
+    - https://www.youtube.com/playlist?list=PL1C2GgOjAF-KYdV5bH-xzoybEHreDZ3Kh
+  - avr
+    - steamcode4441 https://www.youtube.com/playlist?list=PLgHw_wODS1vUKFDlJ1Fueou9IEFh5xbnj
+    - hackaday https://www.youtube.com/playlist?list=PL_tws4AXg7avNexvQxkfxfEBtvTtBi6Tu
+    - spanish https://www.youtube.com/playlist?list=PLT-jFumAby_9Yly8UDv4nRg8qZcLMrDEQ
+  - Vulnerabilities 1001: C-Family Software Implementation Vulnerabilities https://www.youtube.com/playlist?list=PLUFkSN0XLZ-m3i_FkgTxDZASkwFJJ7MyZ
+  - Vulnerabilities 1002: C-Family Software Implementation Vulnerabilities https://www.youtube.com/playlist?list=PLUFkSN0XLZ-kfxdnGt-UmwQzPpSEglLeN
+  - Assembly primer for hackers https://www.youtube.com/playlist?list=PLVC4D7vfqCfM-5Ws2mWbUtQnaEip43h5f
+  - Architecture 1001: Intel x86-64 Assembly https://www.youtube.com/playlist?list=PLUFkSN0XLZ-m9B0DhHjkXd8foIMuZO1Gd
+  - Architecture 1005: RISC-V 32-bit and 64-bit assembly https://www.youtube.com/playlist?list=PLUFkSN0XLZ-ngGxCtYimQmjIMXUnufVUN
+  - Architecture 2001: Intel x86-64 OS Internals https://www.youtube.com/playlist?list=PLUFkSN0XLZ-myVyCmMvfz_W5Z5SauI3cN
+  - Assembly Language Tutorial - Derek Banas
+    - https://www.youtube.com/watch?v=ViNnfoE56V8
+    - https://www.youtube.com/watch?v=5HILZon7pVE
+    - https://www.youtube.com/watch?v=2ghL_R5CSaI
+    - https://www.youtube.com/watch?v=zj-cGdNpYZ8
+  - Practical ARM Assembly Tutorial Series https://www.youtube.com/playlist?list=PLn_It163He32Ujm-l_czgEBhbJjOUgFhg
+    #+begin_src asm
+      .global _start
+      _start:
+    #+end_src
+    - registers
+      - r0-r6 general purpose
+      - r7    holds syscall number
+      - r8-r12 ???
+      - sp: stack pointer
+      - pc: program counter
+        - incremented for each intruction ran
+  - Assembly Language Programming with ARM – Full Tutorial for Beginners https://www.youtube.com/watch?v=gfmRrPjnEw4
+  - Intro to x86 Assembly Language - Davy Wybiral https://www.youtube.com/playlist?list=PLmxT2pVYo5LB5EzTPZGfFN0c2GDiSXgQe
+  - Learning Assembly by Dr Josh Stroschein https://www.youtube.com/playlist?list=PLHJns8WZXCdvESvdr1BRjo4RHiR1Ylhw9
+  - X86 MASM Programming (Assembly Language) https://www.youtube.com/playlist?list=PLXYpRL4SQpMnHL0c6PwSKAHCId3F6uVwi
+
+* TODO 14 video: The Teensy ELF Executable
+
+  https://www.muppetlabs.com/~breadbox/software/tiny/techtalk.html
+
+TODO: 15:00
+
+** C: returning 42 exit code
+#+DESC: $ gcc -Os -m32 -s -o main main.c
+#+SIZE: 6k
+#+begin_src c
+  int main(void) { return 42; }
+#+end_src
+
+** ASM: returning 42 exit code, using main/libc
+#+DESC: $ gcc -Os -s -m32 -Wall -o foo foo.s
+#+SIZE: 6k
+#+begin_src asm
+  .intel_syntax
+  .globl main
+  main: mov %eax, 42
+        ret
+#+end_src
+
+** ASM: returning 42 exit code, bypassing start
+#+DESC: $ gcc -nostartfile -Os -s -m32 -Wall -o foo foo.s
+#+SIZE: 4k
+#+begin_src asm
+  .intel_syntax
+  .globl _start
+  _start: push 42
+          call _exit
+#+end_src
+
+** ASM: returning 42 exit code, calling the syscall directly
+
+$ gcc -nostartfile -Os -s -m32 -Wall -o foo foo.s
+4588 bytes
+
+$ gcc -nostartfile -Os -s -m32 -Wall -c foo.s
+$ ld -m elf_i386 -s -o foo foo.o
+236 bytes
+
+#+begin_src asm
+  .intel_syntax
+  .globl_start
+  _start:
+          mov     %eax, 1  # exit syscall is "1"
+          mov     %ebx, 42 # return code
+          int     0x80     # interrupt to call syscall
+#+end_src
+
+228 bytes
+
+#+begin_src asm
+  .intel_syntax
+  .globl_start
+  _start:
+          xor     %eax, %eax
+          inc     %eax
+          mov     %bl, 42
+          int     0x80     # interrupt to call syscall
+#+end_src

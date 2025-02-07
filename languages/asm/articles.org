@@ -1,0 +1,25 @@
+- https://azeria-labs.com/writing-arm-assembly-part-1/
+- https://spectrum.ieee.org/three-computer-games-that-make-assembly-language-fun
+  - human resource machine
+  - tis-100
+  - shenzen i/o
+- 16 https://www.nayuki.io/page/a-fundamental-introduction-to-x86-assembly-programming
+- 16 https://patshaughnessy.net/2016/11/26/learning-to-read-x86-assembly-language
+- 20 https://johv.dk/blog/bare-metal-assembly-tutorial.html
+- avr
+  - https://github.com/Dentrax/AVR-Programming-with-Assembly
+  - https://arduino-craft-corner.de/index.php/2021/10/11/real-programmers-write-assembly-code/
+  - https://gist.github.com/mhitza/8a4608f4dfdec20d3879
+  - https://github.com/tbtommyb/assembly-arduino
+- tuto riscv https://github.com/riscv/learn
+- https://en.wikibooks.org/wiki/X86_Assembly/Print_Version
+- https://en.wikibooks.org/wiki/X86_Disassembly/Print_Version
+- 96 https://web.archive.org/web/20120525102637/http://maven.smith.edu/~thiebaut/ArtOfAssembly/artofasm.html
+- tuto https://github.com/mschwartz/assembly-tutorial
+- tuto https://asmtutor.com/
+- tuto https://github.com/0xAX/asm
+- tuto https://github.com/hackclub/some-assembly-required
+- tuto https://github.com/FFmpeg/asm-lessons
+- tuto/project https://gaultier.github.io/blog/x11_x64.html
+- project os https://www.joe-bergeron.com/posts/Writing%20a%20Tiny%20x86%20Bootloader/
+- project os https://www.cl.cam.ac.uk/projects/raspberrypi/tutorials/os/index.html
