@@ -15,7 +15,7 @@
   - editor (for vector graphics) https://inkscape.org/ https://en.wikipedia.org/wiki/Inkscape
   - viewer: evince
   - viewer gv https://www.gnu.org/software/gv/
-    - $ gv -noantialias -center -widgetless -watch bar.ps
+    - $ gv -noantialias -center -widgetless -watch -infoAll -noresize bar.ps
     - -geometry wxh - of the x11 window
   - https://www.ghostscript.com/
   - hack https://github.com/RUB-NDS/PRET
@@ -297,9 +297,7 @@ currentpoint 6 0 360 arc fill stroke
       width  2 div sub exch
       width height rectfill
     grestore
-  end
-}
-def
+  end } def
 /box {
   2 dict begin
     /height exch def
@@ -311,9 +309,7 @@ def
       width  2 div sub exch
       width height rectstroke
     grestore
-  end
-}
-def
+  end } def
 /boxrounded {
   5 dict begin
     /hheight exch 2 div def
@@ -330,8 +326,33 @@ def
       closepath
       stroke
     grestore
-  end
-} def
+  end } def
+/pentagon {
+  1 dict begin /size exch def
+    gsave
+      0 0 moveto
+      size 2 div neg
+      size 36 sin 36 cos div 2 mul div neg
+      moveto
+      4 { size 0 rlineto 72 rotate } repeat
+      closepath
+      stroke
+    grestore
+  end } def
+/star {
+  2 dict begin
+    /side exch def
+    /offset side 54 sin 54 cos div 2 mul div def
+    gsave
+      offset offset neg rmoveto
+      5 {
+        side 0 rlineto
+        180 36 sub rotate side 0 rlineto
+        180 108 add rotate
+      } repeat
+      stroke
+    grestore
+  end } def
   #+end_src
 
 - example

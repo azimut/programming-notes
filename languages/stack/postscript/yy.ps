@@ -1,0 +1,22 @@
+%!PS
+% -John Tromp  https://tromp.github.io/img/sig.pdf
+42 42 scale 7 9 translate
+.07 setlinewidth
+.2 setgray
+/c { arc clip fill setgray } def
+1 0 0 42 1 0 c
+0 1 1 {
+  0 3 3 90 270 arc
+  0 -3 3 90 270 arcn
+  0 0 6 270 90 c
+  -2 2 4 {
+    -6 moveto 0 12 rlineto
+  } for
+  -5 2 5 {
+    -3 exch moveto 9 0 rlineto
+  } for
+  stroke
+  0 0 3 1 1 0 c % ying in yang / yang in ying
+  180 rotate
+  initclip
+} for

@@ -1,3 +1,11 @@
+- 22 resources links https://zzzoot.blogspot.com/2022/09/postscript-coding-resources.html
+- 20 https://coding-and-computers.blogspot.com/2022/12/postscript-coding-for-vaxvms-system-in.html
+- https://subversion.american.edu/aisaac/wp/psdraw.xhtml
+- https://pianomanfrazier.com/post/drawing-with-postscript/
+- 12
+  - https://www.antoniosiber.org/drawing_with_postscript_I_en.html
+  - https://www.antoniosiber.org/drawing_with_postscript_II_en.html
+  - https://www.antoniosiber.org/drawing_with_postscript_III_en.html
 - https://news.ycombinator.com/item?id=22456471
 - 16 https://github.com/parrt/cs652/blob/master/lectures/postscript.md
 - 03 https://nedbatchelder.com/blog/200312/postscript_control_structures.html
