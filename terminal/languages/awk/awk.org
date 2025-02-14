@@ -44,12 +44,12 @@
 
 * language
 
-#+begin_src awk
-  #!/usr/bin/awk -f
-  #!/usr/bin/env -S gawk -f
-  END { print "Hello, World!"; }
-#+end_src
+#+CAPTION: from "The AWK Programming Language"
+#+ATTR_ORG: :width 500
+[[./awk_syntax.png]]
 
+- #!/usr/bin/awk -f
+- #!/usr/bin/env -S gawk -f
 - [[https://www.gnu.org/software/gawk/manual/html_node/Feature-History.html][gawk version changelog]] ([[https://fossies.org/linux/gawk/ChangeLog][by date]])
   - 2023 (5.3)
     - ~--csv~ flag, supports fields surrounded by double quotes
