@@ -91,6 +91,12 @@
 #+end_src
 
 
+* 22 Course: Raspberry Pi Pico Lectures
+
+- https://www.youtube.com/playlist?list=PLDqMkB5cbBA5oDg8VXM110GKc-CmvUqEZ
+- https://ece4760.github.io/
+- https://ocw.ece.cornell.edu/courses/ece-4760-designing-with-microcontrollers/
+
 * Book: Operating Systems Foundations with Linux (2019)
 Home: http://www.dcs.gla.ac.uk/operating-system-foundations/
 Source: https://github.com/wimvanderbauwhede/OSH/

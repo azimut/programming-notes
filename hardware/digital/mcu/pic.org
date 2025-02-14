@@ -17,6 +17,10 @@
     - 17 - PIC32MK - MIPS - motor control, IOT...
 
 - Channels
+  - 17 Course https://www.youtube.com/playlist?list=PLKcjQ_UFkrd43P4lgzCot1hgiUu8onfaj
+  - 20 Course
+    - https://www.youtube.com/playlist?list=PLDqMkB5cbBA6FEJuj94gl-9vw8xcHu9Gp
+    - https://people.ece.cornell.edu/land/courses/ece4760/
   - https://www.youtube.com/@RickJimenezElectronics/videos
   - https://www.youtube.com/@ece4760/playlists
     - https://www.youtube.com/playlist?list=PLKcjQ_UFkrd43P4lgzCot1hgiUu8onfaj

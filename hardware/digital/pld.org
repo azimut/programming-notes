@@ -76,6 +76,10 @@ https://en.wikipedia.org/wiki/Field-programmable_gate_array
   - 21 article https://dev.to/taw/100-languages-speedrun-episode-28-verilog-18jp
 ** Videos
 *** Playlist
+- 17 https://www.youtube.com/playlist?list=PLKcjQ_UFkrd7UcOVMm39A6VdMbWWq-e_c
+- 20 DE1-SoC FPGA Lectures
+  - https://www.youtube.com/playlist?list=PLDqMkB5cbBA4OW0fDTu1FY6aw4uBWOpBa
+  - https://people.ece.cornell.edu/land/courses/ece5760/
 - Building a CPU on an FPGA - Robert Baruch
   https://www.youtube.com/playlist?list=PLEeZWGE3PwbZ44SUf1-vA-UuX9_J_pifB
 - FPGA-OBIJUAN

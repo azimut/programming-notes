@@ -185,3 +185,10 @@ https://flashparty.rebelion.digital/index.php?option=com_content&view=article&id
 - rbg8 is NOT 1 byte for each color component
 - [[https://www.theimagingsource.com/en-us/documentation/icimagingcontrolcpp/PixelformatRGB24.htm][rgb24]] is 1 byte per color component on each pixel
 - [[https://www.theimagingsource.com/en-us/documentation/icimagingcontrolcpp/PixelformatRGB32.htm][rgb32]] same, but has alpha
+* Creative Coding
+
+- https://web.archive.org/web/20180727074903/http://www.tylerlhobbs.com/writings
+- https://inconvergent.net/#writing
+- https://github.com/golanlevin/exercises
+- https://generativeartistry.com/tutorials/
+- https://mattdesl.svbtle.com/
