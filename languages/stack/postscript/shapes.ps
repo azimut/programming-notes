@@ -1,0 +1,66 @@
+/boxfill {
+  2 dict begin
+    /height exch def
+    /width  exch def
+    gsave
+      currentpoint
+      height 2 div sub exch
+      width  2 div sub exch
+      width height rectfill
+    grestore
+  end } def
+/box {
+  2 dict begin
+    /height exch def
+    /width  exch def
+    gsave
+      setlinewidth
+      currentpoint
+      height 2 div sub exch
+      width  2 div sub exch
+      width height rectstroke
+    grestore
+  end } def
+/boxrounded {
+  5 dict begin
+    /hheight exch 2 div def
+    /hwidth  exch 2 div def
+    /R exch def
+    currentpoint /centery exch def /centerx exch def
+    gsave
+      setlinewidth
+      hwidth neg 0 rmoveto
+      centerx hwidth sub centery hheight add centerx centery hheight add R arct % U
+      centerx hwidth add centery hheight add centerx hwidth add centery R arct % R
+      centerx hwidth add centery hheight sub centerx centery hheight sub R arct % D
+      centerx hwidth sub centery hheight sub centerx hwidth sub centery R arct % L
+      closepath
+      stroke
+    grestore
+  end } def
+/pentagon {
+  1 dict begin /size exch def
+    gsave
+      0 0 moveto
+      size 2 div neg
+      size 36 sin 36 cos div 2 mul div neg
+      moveto
+      4 { size 0 rlineto 72 rotate } repeat
+      closepath
+      stroke
+    grestore
+  end } def
+/star {
+  2 dict begin
+    /side exch def
+    /offset side 54 sin 54 cos div 2 mul div def
+    gsave
+      offset offset neg rmoveto
+      5 {
+        side 0 rlineto
+        180 36 sub rotate side 0 rlineto
+        180 108 add rotate
+      } repeat
+      stroke
+    grestore
+  end } def
