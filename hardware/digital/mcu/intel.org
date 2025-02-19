@@ -32,8 +32,9 @@ https://timeline.intel.com/
 - tool: AS output to binary to be written into ROM https://linux.die.net/man/1/p2bin
 - tool: assembler https://github.com/daveho/asm48
 - tool: assembler fasm macros https://board.flatassembler.net/topic.php?t=18398
+- tool: assembler https://www.sbprojects.net/sbasm/8080.php
 - tool: VHDL https://github.com/devsaurus/t48
-- too: ROM programmer story https://laughtonelectronics.com/oldsite/lab_oem/lab_mcs48.html
+- tool: ROM programmer story https://laughtonelectronics.com/oldsite/lab_oem/lab_mcs48.html
 - https://jhnbyrn.github.io/951-KLR-PAGES/reading_code.html
 - dumping ROM https://www.sbprojects.net/projects/8049spy/index.php
 - dumping ROM https://www.eevblog.com/forum/projects/intel-mcs-48-(8749-8049)-hmos-vs-cmos-differences-bus-driver-(dumping-woe)/
@@ -49,6 +50,10 @@ https://timeline.intel.com/
   - This was done to save costs and keep pin count down.
   - Unfortunately this complicates the connection to an external PROM.
 
+- project http://www.moria.de/~michael/comp/ecb/sbcmcs48/hardware.html
+- project https://github.com/romavis/metra-m1t380-doc
+- project https://www.delabs-circuits.com/cirdir/micro/micro4.html
+- notes https://jhnbyrn.github.io/951-KLR-PAGES/reading_code.html
 - 22 article | https://www.eejournal.com/article/a-history-of-early-microcontrollers-part-4-the-intel-8048-and-8748/
 - 21 video | Intro to Intel 8048 and PIC 16f1619
   https://www.youtube.com/watch?v=7TIBGRGaTB0

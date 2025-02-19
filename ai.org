@@ -1,3 +1,4 @@
+- article: llm agent https://tadeodonegana.com/posts/building-agents-my-notes/
 - DataSets
   - https://en.wikipedia.org/wiki/List_of_datasets_for_machine-learning_research
   - https://en.wikipedia.org/wiki/MNIST_database
