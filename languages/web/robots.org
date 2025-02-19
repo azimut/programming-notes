@@ -1,0 +1,44 @@
+* sitemap.xml
+- https://en.wikipedia.org/wiki/Sitemaps
+* in <meta>
+- https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag
+- https://en.wikipedia.org/wiki/Meta_element#The_robots_attribute
+- https://en.wikipedia.org/wiki/Nofollow
+- https://en.wikipedia.org/wiki/Noindex
+- types
+  - [no]index
+  - [no]follow
+  - [no]archive
+  - [no]snippet
+* in robots.txt
+
+#+CAPTION: robots.txt example
+#+begin_src txt
+  User-agent: MalloryBot
+  Disallow: /
+
+  User-agent: *
+  Crawl-delay: 20
+  Disallow: /secret/
+#+end_src
+
+- Martin Koster
+- 1994 (standarized on 2022)
+
+- wiki https://en.wikipedia.org/wiki/Robots.txt
+- home https://www.robotstxt.org/
+- rfc https://www.rfc-editor.org/rfc/rfc9309.html
+- google doc https://developers.google.com/search/docs/crawling-indexing/robots/robots_txt
+
+- parser https://github.com/google/robotstxt
+- template https://github.com/jonasjacek/robots.txt
+- template to disallow AI https://github.com/ai-robots-txt/ai.robots.txt
+- common Disallowed https://github.com/danielmiessler/RobotsDisallowed
+
+** Directives
+
+- Allow
+- Disallow
+- User-agent
+- Crawl-delay
+- Sitemap
