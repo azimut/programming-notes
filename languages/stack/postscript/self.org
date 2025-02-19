@@ -285,7 +285,6 @@ currentpoint 6 0 360 arc fill stroke
 /width  currentpagedevice /PageSize get 0 get def
 /height currentpagedevice /PageSize get 1 get def
   #+end_src
-- [[./yinyang.ps][yinyang.ps]]
 - [[./shapes.ps][shapes.ps]]
   #+INCLUDE: "./shapes.ps" src ps
 
@@ -304,3 +303,4 @@ currentpoint 6 0 360 arc fill stroke
 - chess
   - article https://seriot.ch/projects/pschess.html
   - source https://github.com/nst/PSChess
+- [[./yinyang.ps][yinyang.ps]]
