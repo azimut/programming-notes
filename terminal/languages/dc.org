@@ -188,6 +188,7 @@
 
 - 21 [[https://www.youtube.com/watch?v=WxCP8oHq_Ss][The Genius of the "dc" Desktop Calculator]]
 - 23 [[https://www.youtube.com/watch?v=MDENRcTWDSY][Découvrons & Programmons "dc" (desk calculator) - 1971]]
+- 23 [[https://www.youtube.com/watch?v=9M8sQrrS_f8][RPN, dc, and the HP-12C]]
 
 * implementations
 

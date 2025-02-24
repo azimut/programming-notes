@@ -298,9 +298,10 @@ currentpoint 6 0 360 arc fill stroke
 - planes https://seriot.ch/projects/intersecting_planes.html
 - stairs https://seriot.ch/projects/postscript_stairs.html
 - drawings https://seriot.ch/projects/drawing_with_computers.html
+- [[./yinyang.ps][yinyang.ps]]
 - tictactoe https://github.com/nst/PSTicTacToe
 - sokoban https://github.com/nst/PSSokoban
+- tetris https://github.com/nst/PSTris
 - chess
   - article https://seriot.ch/projects/pschess.html
   - source https://github.com/nst/PSChess
-- [[./yinyang.ps][yinyang.ps]]

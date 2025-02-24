@@ -4,6 +4,12 @@ https://developer.ibm.com/languages/cobol/
 https://exercism.org/tracks/cobol
 
 - books https://www.dasumo.com/libros/cobol-espa%C3%B1ol-pdf.html
+- https://en.wikipedia.org/wiki/COBOL
+  - COmmon Business-Oriented Language
+  - 1959 (at CODASYL)
+  - .cbl .cob .cpy
+  - Changes
+    - 2002 Object Orientation
 
 * Implementations
 - https://cobolforgcc.sourceforge.net/

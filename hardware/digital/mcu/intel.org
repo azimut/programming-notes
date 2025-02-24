@@ -4,7 +4,6 @@ https://timeline.intel.com/
 ** MCS-48 (1976)
 
 - manual https://devsaurus.github.io/mcs-48/mcs-48.pdf
-- projects https://web.archive.org/web/20140717062700/http://coprolite.com:80/8048.html
 - wiki https://en.wikipedia.org/wiki/Intel_MCS-48
 - Intel's first =Microcontroller=
 - Models: 8048, 8035, 8748
@@ -28,6 +27,63 @@ https://timeline.intel.com/
   - Roland Jupiter-4
   - Roland Promars
 
+- 21 video | Intro to Intel 8048 and PIC 16f1619
+  https://www.youtube.com/watch?v=7TIBGRGaTB0
+
+- 22 article | https://www.eejournal.com/article/a-history-of-early-microcontrollers-part-4-the-intel-8048-and-8748/
+- 13 article | http://www.theresistornetwork.com/2013/07/programming-vintage-intel-mcs-48.html
+  - Early Intel processors combine the address and data bits onto the same lines and use two signals:
+    1) ALE  (Address Latch Enable)
+    2) PSEN (Program Store Enable)
+  - To signal what state the bus is in.
+  - This was done to save costs and keep pin count down.
+  - Unfortunately this complicates the connection to an external PROM.
+
+- notes https://jhnbyrn.github.io/951-KLR-PAGES/reading_code.html
+
+*** support chips
+
+- mcs-80 peripherals https://en.wikipedia.org/wiki/Intel_8080#Support_chips
+- mcs-85 peripherals https://en.wikipedia.org/wiki/Intel_8085#Periphery
+
+|------+----+------------------------------------------------|
+| 8214 |    | Priority Interrupt Control                     |
+| 8224 |    | Clock Generator                                |
+| [[https://web.archive.org/web/20200919134210/https://www.datasheets360.com/pdf/-4828066515233335508][8228]] | 28 | System Controller & Bus Driver                 |
+| [[https://web.archive.org/web/20230918030959/https://www.datasheets360.com/pdf/-4828066515233335508][8238]] |    | "                                              |
+| [[https://en.wikipedia.org/wiki/Intel_8251][8251]] | 28 | Communication Controller, USART                |
+| [[https://en.wikipedia.org/wiki/Intel_8253][8253]] | 24 | Programmable Interval Timer, PITs              |
+| 8259 |    | Programmable Interrupt Controller, handle IRQs |
+|------+----+------------------------------------------------|
+
+*** architecture
+
+- CPU
+  - 8 bit
+  - 96 instructions (90% single byte)
+- IO 27 IO pins
+  |---+-----------------------|
+  | 3 | test inputs for jumps |
+  | 8 | port 1                |
+  | 8 | port 2                |
+  | 8 | bus                   |
+  |---+-----------------------|
+  - bus (=OUTL= and =INS=)
+    - configurations
+      1) bidirectional (true)
+         - with IO strobe pins (RD, WR)
+      2) statically latched input
+      3) statically non-latched output
+  - ports
+    - TTL compatible IO
+    - output latched
+    - input non-latched
+*** projects
+- https://web.archive.org/web/20140717062700/http://coprolite.com:80/8048.html
+- http://www.moria.de/~michael/comp/ecb/sbcmcs48/hardware.html
+- https://github.com/romavis/metra-m1t380-doc
+- https://www.delabs-circuits.com/cirdir/micro/micro4.html
+*** tools
 - tool: HSE-49: Original Dev Board https://en.wikipedia.org/wiki/Intel_system_development_kit#HSE-49
 - tool: AS output to binary to be written into ROM https://linux.die.net/man/1/p2bin
 - tool: assembler https://github.com/daveho/asm48
@@ -41,23 +97,6 @@ https://timeline.intel.com/
 - KIT: internal EPROM programmer for UV ereasable ones
   - https://www.mattmillman.com/projects/hveprom-project/an-easy-to-build-mcs-48-8748-8749-8741-8742-8048-8049-programmer-reader/
   - https://www.mattmillman.com/projects/an-intel-mcs-48-based-dual-temperature-sensor/
-
-- 13 article | http://www.theresistornetwork.com/2013/07/programming-vintage-intel-mcs-48.html
-  - Early Intel processors combine the address and data bits onto the same lines and use two signals:
-    1) ALE  (Address Latch Enable)
-    2) PSEN (Program Store Enable)
-  - To signal what state the bus is in.
-  - This was done to save costs and keep pin count down.
-  - Unfortunately this complicates the connection to an external PROM.
-
-- project http://www.moria.de/~michael/comp/ecb/sbcmcs48/hardware.html
-- project https://github.com/romavis/metra-m1t380-doc
-- project https://www.delabs-circuits.com/cirdir/micro/micro4.html
-- notes https://jhnbyrn.github.io/951-KLR-PAGES/reading_code.html
-- 22 article | https://www.eejournal.com/article/a-history-of-early-microcontrollers-part-4-the-intel-8048-and-8748/
-- 21 video | Intro to Intel 8048 and PIC 16f1619
-  https://www.youtube.com/watch?v=7TIBGRGaTB0
-
 *** codebases
 
 - https://github.com/marekw1986/8048/blob/main/code/ascii/ascii.asm

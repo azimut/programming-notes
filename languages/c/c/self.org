@@ -1,6 +1,8 @@
 - https://en.wikipedia.org/wiki/C_(programming_language)
   - 1972
-  - Dennis Ritchie - Brian Kernighan (for 1978 Book)
+  - by Dennis Ritchie
+  - Influenced by Algol and B (of Ken Thompson)
+  - Loosely typed language
 
 * Language
 
@@ -144,12 +146,15 @@
     #+end_src
 
 * Standard Library
+
 - https://en.cppreference.com/w/c/header
 - https://en.wikibooks.org/wiki/Category:Book:C_Programming
 - https://en.wikipedia.org/wiki/ANSI_C
 - gcc/gnu extensions https://gcc.gnu.org/onlinedocs/gcc/C-Extensions.html
   - linux kernel uses them https://maskray.me/blog/2024-05-12-exploring-gnu-extensions-in-linux-kernel
   - also implemented by clang
+- K&R C - 1978 - from the book with Brian Kernighan
+
 ** ANSI/ISO C89/C90
 - https://en.wikipedia.org/wiki/C_data_types
 - https://en.wikipedia.org/wiki/C_character_classification
@@ -163,60 +168,61 @@
 - https://en.wikipedia.org/wiki/C_signal_handling
 - https://en.wikipedia.org/wiki/C_alternative_tokens
 - assert(0 && "TODO: description");
-|----------+--------------+---------------------------------------------------------------------------------------------------------|
-|      <r> |     <c>      |                                                                                                         |
-|   HEADER |      fn      |                                                                                                         |
-|----------+--------------+---------------------------------------------------------------------------------------------------------|
-| assert.h |    assert    | Conditionally compiled macro that compares its argument to zero                                         |
-|  ctype.h |              | Functions to determine the type contained in ~character~ data                                           |
-|  errno.h |              | Macros reporting error conditions                                                                       |
-|  float.h |              | Limits of floating-point types                                                                          |
-|   time.h |              | Time/date utilities                                                                                     |
-| limits.h |              | Ranges of integer types                                                                                 |
-| locale.h |              | Localization utilities                                                                                  |
-|   [[https://en.wikibooks.org/wiki/C_Programming/math.h][math.h]] |     fabs     | Common mathematics functions                                                                            |
-|  paths.h |              | constants with string paths of common LINUX files                                                       |
-| setjmp.h |              | Nonlocal jumps                                                                                          |
-| signal.h |              | Signal handling                                                                                         |
-| stdarg.h |              | Allows variable arguments functions                                                                     |
-|----------+--------------+---------------------------------------------------------------------------------------------------------|
-| stddef.h |     NULL     | Common macro definitions                                                                                |
-|          |    size_t    |                                                                                                         |
-|----------+--------------+---------------------------------------------------------------------------------------------------------|
-|  [[https://en.wikibooks.org/wiki/C_Programming/stdio.h][stdio.h]] |              | Input/output. Most return EOF (-1) on error.                                                            |
-|          |    fopen     | open a stream                                                                                           |
-|          |    fclose    | close a stream                                                                                          |
-|          |    fread     | reads from stream, elements not bytes                                                                   |
-|          |    fgetc     | reads int character from stream                                                                         |
-|          |    fwrite    | writes into stream                                                                                      |
-|          |   fprintf    | writes into stream                                                                                      |
-|          |    printf    | returns the nr of chars printed, or negative number on error                                            |
-|          |   getchar    |                                                                                                         |
-|          |    scanf     |                                                                                                         |
-|          |     puts     |                                                                                                         |
-|          |    remove    | erases a file                                                                                           |
-|          |    rename    | renames a file                                                                                          |
-|          |   tmpfile    | pointer to tmp file                                                                                     |
-|----------+--------------+---------------------------------------------------------------------------------------------------------|
-| [[https://en.wikibooks.org/wiki/C_Programming/stdlib.h][stdlib.h]] |    size_t    | General utilities: memory management, program utilities, string conversions, random numbers, algorithms |
-|          |    malloc    |                                                                                                         |
-|          |    getenv    |                                                                                                         |
-|          |    system    |                                                                                                         |
-|          |     exit     |                                                                                                         |
-|          |   bsearch    |                                                                                                         |
-|          |    qsort     |                                                                                                         |
-|          |     abs      |                                                                                                         |
-|          |     div      |                                                                                                         |
-|          |    random    |                                                                                                         |
-|          |     ato?     |                                                                                                         |
-|          |    strto?    |                                                                                                         |
-|          |    abort     | cause abnomal process termination                                                                       |
-|          | EXIT_SUCCESS |                                                                                                         |
-|          | EXIT_FAILURE |                                                                                                         |
-|----------+--------------+---------------------------------------------------------------------------------------------------------|
-| [[https://en.wikibooks.org/wiki/C_Programming/string.h][string.h]] |    size_t    | String handling                                                                                         |
-|          |    memcpy    |                                                                                                         |
-|----------+--------------+---------------------------------------------------------------------------------------------------------|
+|----------+--------------+-----------------------------------------------------------------|
+|      <r> |     <c>      |                                                                 |
+|   HEADER |      fn      |                                                                 |
+|----------+--------------+-----------------------------------------------------------------|
+| assert.h |    assert    | Conditionally compiled macro that compares its argument to zero |
+|  ctype.h |              | Functions to determine the type contained in ~character~ data   |
+|  errno.h |              | Macros reporting error conditions                               |
+|  float.h |              | Limits of floating-point types                                  |
+|   time.h |              | Time/date utilities                                             |
+| limits.h |              | Ranges of integer types                                         |
+| locale.h |              | Localization utilities                                          |
+|   [[https://en.wikibooks.org/wiki/C_Programming/math.h][math.h]] |     fabs     | Common mathematics functions                                    |
+|  paths.h |              | constants with string paths of common LINUX files               |
+| setjmp.h |              | Nonlocal jumps                                                  |
+| signal.h |              | Signal handling                                                 |
+| stdarg.h |              | Allows variable arguments functions                             |
+|----------+--------------+-----------------------------------------------------------------|
+| stddef.h |     NULL     | Common macro definitions                                        |
+|          |    size_t    |                                                                 |
+|----------+--------------+-----------------------------------------------------------------|
+|  [[https://en.wikibooks.org/wiki/C_Programming/stdio.h][stdio.h]] |              | Input/output. Most return EOF (-1) on error.                    |
+|          |    fopen     | open a stream                                                   |
+|          |    fclose    | close a stream                                                  |
+|          |    fread     | reads from stream, elements not bytes                           |
+|          |    fgetc     | reads int character from stream                                 |
+|          |    fwrite    | writes into stream                                              |
+|          |   fprintf    | writes into stream                                              |
+|          |    printf    | returns the nr of chars printed, or negative number on error    |
+|          |   getchar    |                                                                 |
+|          |    scanf     |                                                                 |
+|          |     puts     |                                                                 |
+|          |    remove    | erases a file                                                   |
+|          |    rename    | renames a file                                                  |
+|          |   tmpfile    | pointer to tmp file                                             |
+|----------+--------------+-----------------------------------------------------------------|
+| [[https://en.wikibooks.org/wiki/C_Programming/stdlib.h][stdlib.h]] |              | General utilities                                               |
+|          |    size_t    |                                                                 |
+|          |    malloc    |                                                                 |
+|          |    getenv    |                                                                 |
+|          |    system    |                                                                 |
+|          |     exit     |                                                                 |
+|          |   bsearch    |                                                                 |
+|          |    qsort     |                                                                 |
+|          |     abs      |                                                                 |
+|          |     div      |                                                                 |
+|          |    random    |                                                                 |
+|          |     ato?     |                                                                 |
+|          |    strto?    |                                                                 |
+|          |    abort     | cause abnomal process termination                               |
+|          | EXIT_SUCCESS |                                                                 |
+|          | EXIT_FAILURE |                                                                 |
+|----------+--------------+-----------------------------------------------------------------|
+| [[https://en.wikibooks.org/wiki/C_Programming/string.h][string.h]] |    size_t    | String handling                                                 |
+|          |    memcpy    |                                                                 |
+|----------+--------------+-----------------------------------------------------------------|
 ** ANSI/ISO C95
 |----------+---+------------------------------------------------------------------|
 |      <r> |   |                                                                  |
