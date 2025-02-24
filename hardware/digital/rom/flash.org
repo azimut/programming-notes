@@ -1,0 +1,11 @@
+- https://en.wikipedia.org/wiki/Flash_memory
+  - vs EEPROM
+    - programmed in blocks instead of bytes
+    - needs explicit full erase
+      - can only 1->0
+      - or reset back to 1
+  - Types
+    - 1987 NOR flash architecture
+      - allows single word writes
+    - 1989 NAND flash architecture
+      - eg: memory card, usb flash drive, ssd (2009-)
