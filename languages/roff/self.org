@@ -1,0 +1,135 @@
+- https://en.wikipedia.org/wiki/Roff_(software)
+  - 1971
+  - Joe Ossanna, Ken Thompson
+  - typesetting *markup language*
+  - Unix version of _runoff_ from Multics
+
+- [[https://en.wikipedia.org/wiki/Nroff][nroff]] for terminals
+- [[https://en.wikipedia.org/wiki/Troff][troff]] for typesetting
+  - [[https://en.wikipedia.org/wiki/Groff_(software)][groff]] aka gnu ~troff~
+    - includes: [[https://en.wikipedia.org/wiki/Eqn_(software)][eqn]] (formats equations), tbl, [[https://en.wikipedia.org/wiki/PIC_(markup_language)][pic]] (for diagrams), seolim
+- book https://www.schaffter.ca/shared/groff-and-mom.pdf
+
+* language
+
+- line based
+- do NOT put blank text lines on the file
+  - use control lines "." to space things around
+- types of line
+  1) text line
+  2) control lines (macro, request aka low level commands)
+
+#+begin_src sh
+  $ groff -ms foo.ms > groff.ps
+  $ groff -ms foo.ms -Tpdf > foo.pdf
+  $ groff -ms -e eqn.ms -Tpdf > eqn.pdf
+  $ eqn eqn.ms -Tpdf | groff -ms -Tpdf > eqn.pdf
+  $ nroff -man refill.man > refill.txt
+#+end_src
+
+** requests
+- =me= dialect, use after .pp
+|-------+------------------------------|
+| .bp   | begin new page               |
+| .br   | break output line here       |
+| .sp n | insert n spacing lines       |
+| .ls n | line spacing                 |
+| .na   | no alignment of right margin |
+| .ce n | center next n lines          |
+| .ul n | underline next n lines       |
+|-------+------------------------------|
+** macros
+*** new
+
+1) defining in macros.roff file
+   #+begin_src nroff
+.de BL
+.IP \(bu 1
+..
+   #+end_src
+
+2) sourcing
+   #+begin_src nroff
+.so macros.roff
+   #+end_src
+
+3) using
+   #+begin_src nroff
+.BL
+Here
+.BL
+more
+   #+end_src
+
+*** predefined
+|---------------+----+----+-----+------------------------------------------------------|
+|               | ms | me | doc | description                                          |
+|---------------+----+----+-----+------------------------------------------------------|
+| .TL           |    |    |     | title                                                |
+| .AU           |    |    |     | author name                                          |
+| .AI           |    |    |     | author institution                                   |
+| .NH           |    |    |     | new section heading                                  |
+| .NH N         |    |    |     | new section with N depth, starts at 1 by default     |
+| .IP [s] [d]   |    |    | x   | indented list                                        |
+|               |    |    |     | with optional bullet s (eg: \(bu )                   |
+|               |    |    |     | with optional number of indent n spaces              |
+| .TH n i d v t | -  |    | x   | name, section number, date, version, title           |
+|---------------+----+----+-----+------------------------------------------------------|
+| .SH s         |    |    | x   | new un-numbered major section heading                |
+| .SH s N       |    |    | x   |                                                      |
+| .SS s         |    |    | x   | new subsection                                       |
+|---------------+----+----+-----+------------------------------------------------------|
+| .(c           |    | x  |     | start center                                         |
+| .)c           |    | x  |     | ends center                                          |
+|---------------+----+----+-----+------------------------------------------------------|
+| .RS           |    |    |     | start record?, adds identation                       |
+| .RE           |    |    |     | end record?                                          |
+|---------------+----+----+-----+------------------------------------------------------|
+| .TP           |    |    | x   | indent, tagged paragraph, used for man options       |
+| .P            |    |    | x   | blank line, make paragraph                           |
+| .LP           |    | x  | x   | blank line, makes a leading paragram, with no indent |
+| .PP           |    | x  | x   | blank line, makes an indented paragraph              |
+|---------------+----+----+-----+------------------------------------------------------|
+| .EQ           |    |    |     | start of a eqn equation                              |
+| .EN           |    |    |     | end of a eqn equation                                |
+|---------------+----+----+-----+------------------------------------------------------|
+| .R  s a b     |    |    | x   | regular text for s                                   |
+| .B  s a b     |    | x  | x   | bold s, with a after and b before                    |
+| .I  s a b     |    | x  | x   | italic s                                             |
+| .BR b s       |    |    | x   | no space between                                     |
+| .BI s a b     |    |    | x   | no space between                                     |
+| .IR i s       |    |    | x   | no space between                                     |
+| .IB i b       |    |    | x   | no space between                                     |
+| .RB s b       |    |    | x   | no space between                                     |
+| .RI s i       |    |    | x   | no space between                                     |
+| .UL s         |    |    |     | underline                                            |
+| .BX s         |    |    |     | boxed                                                |
+|---------------+----+----+-----+------------------------------------------------------|
+* man
+
+- https://en.wikipedia.org/wiki/Man_page
+- $ manpath
+- $ man foo.2
+- Should/Can be gzip
+- Directories
+  - /usr/share/man
+  - ~/.local/share/man
+- Subdirectories: /man[1-8]/
+- line comments start with ./"
+- language ref https://linux.die.net/man/7/groff
+- \fB\-h\fR inline bold style of -h
+- common sections: name, synopsis, description, options, files, see also
+
+** section numbers
+|-----+--------------------------------|
+| <c> |                                |
+| =1= | executables or shell commands  |
+|  2  | system/kernel calls            |
+|  3  | library/function calls         |
+|  4  | special files (eg: /dev/*)     |
+|  5  | file formats (eg: /etc/passwd) |
+|  6  | games                          |
+|  7  | misc                           |
+| =8= | sysadmin tools and daemons     |
+|  9  | kernel routines                |
+|-----+--------------------------------|

@@ -1,0 +1,26 @@
+- 18 Adding Colors to man https://russellparker.me/post/2018/02/23/adding-colors-to-man/
+- 98 Basic Formatting with troff/nroff https://cmd.inp.nsk.su/old/cmd2/manuals/unix/UNIX_Unleashed/ch08.htm
+- 84 UNIX Text Formatting Using the -ms Macros https://www.hactrn.net/ietf/rfcgen/textms.html
+* technicallywewrite
+- 25 Learning to love ‘groff -ms’ https://technicallywewrite.com/2025/02/17/groffms
+- 25 5 reasons to love groff https://technicallywewrite.com/2025/01/13/lovegroff
+- 24 Understanding Unix ‘nroff’ https://technicallywewrite.com/2024/06/10/understandingnroff
+- 24 How to change fonts in ‘groff’ https://technicallywewrite.com/2024/04/12/changefonts
+- 24 How I wrote academic papers in groff -me https://technicallywewrite.com/2024/03/11/classpaper
+- 23 Writing books in groff https://technicallywewrite.com/2023/10/13/groffbooks
+- 23 An introduction to groff -mom https://technicallywewrite.com/2023/11/02/momintro
+- 23 Learning how to use groff -mom https://technicallywewrite.com/2023/10/24/learnmom
+- 23 Technical writing history with ed and nroff https://technicallywewrite.com/2023/10/18/unixhistory
+- 23 Modern groff macros with -mom https://technicallywewrite.com/2023/09/30/groffmom
+- 23 Groff by example: tables with tbl https://technicallywewrite.com/2023/09/23/tblexample
+- 23 How to use OTF, TTF or PFB fonts in groff https://technicallywewrite.com/2023/09/16/addfonts
+- 23 Code samples with GNU groff https://technicallywewrite.com/2023/08/26/groffcode
+- 23 Tables with groff tbl https://technicallywewrite.com/2023/08/19/grofftbl
+- 23 Modern troff with GNU groff https://technicallywewrite.com/2023/08/04/gnugroff
+- 23 GNU groff: Powerful document formatting in a small package https://technicallywewrite.com/2023/08/01/groffinterview
+- 23 Groff by example: equations with eqn https://technicallywewrite.com/2023/07/16/groffeqn
+- 23 Watch: How to write documents with groff -me https://technicallywewrite.com/2023/06/24/groffvideo
+- +23 Nroff by example: Manual pages Nroff by example: Manual pages https://technicallywewrite.com/2023/07/02/manpages+
+- 23 Nroff by example: The basics https://technicallywewrite.com/2023/06/04/nroffexample
+- 23 Technical writing with GNU groff https://technicallywewrite.com/2023/06/01/groff
+- 23 A look back: Technical writing with nroff and troff https://technicallywewrite.com/2023/05/16/nroff

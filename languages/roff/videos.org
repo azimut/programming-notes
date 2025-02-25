@@ -1,0 +1,27 @@
+- 23 Technical writing history with ed and nroff https://www.youtube.com/watch?v=pXmS501wKlU
+- 23 How to write documents with nroff -me https://www.youtube.com/watch?v=DhQ2Tk8vuc8
+- 23 Lets create a Linux Man Page https://www.youtube.com/watch?v=tGF6Q8tEKPka
+- 22 Use groff (GNU Troff) and stop using sh!t https://l04db4l4nc3r.github.io/groff-cheatsheet. https://www.youtube.com/watch?v=M8aK81ce6E4
+- 21 How to make resume like a chad. feat. groff https://www.youtube.com/watch?v=DhQ2Tk8vuc8
+- 20 typesetting with gnu roff https://www.youtube.com/watch?v=hkZWMbU4KTI
+- +20 Introduction to groff https://www.youtube.com/watch?v=YSWmKLjigIs+
+- +20 Troff Tutorial: how to write a linux manpage with troff https://www.youtube.com/watch?v=r2JrbyezhM4+
+- 17 History of Markup Languages https://www.youtube.com/watch?v=qQMXPXzrE_s https://www.youtube.com/watch?v=P-7hwjocEpM
+- 15 WT2015: How to write Linux/Unix man pages (quick and dirty method) https://www.youtube.com/watch?v=rEc0taDAFBw
+  - 23:30
+- +14 Write you own man page in Linux - The basics https://www.youtube.com/watch?v=KVhFUwdsE2w+
+- Tutorial https://www.youtube.com/playlist?list=PLhvYefy49nBmc1EtWDF8ibjgrjmIz39UE
+- Gavin Freeborn https://www.youtube.com/playlist?list=PLknodeJt-I5FgZ5VwT-BHda_lu3dYrMeJ
+  - 21 Improve Your Groff and Troff Pipeline - Using a Shell Script and Makefiles https://www.youtube.com/watch?v=-WG6ozhRtZs
+  - 21 Neatroff - Minimalist Documents Done Right https://www.youtube.com/watch?v=sUbHGCnAZic
+  - 20 Christmas Cards The Unix Way - with pic and troff https://www.youtube.com/watch?v=xMijdTWSUEE
+- Bryce Vandegrift
+  - 20 Groff: Making Documents the Unix Way https://www.youtube.com/watch?v=Cg9GfpNv1Yk
+  - 22 Pictures on the Terminal with pic! (groff/troff) https://www.youtube.com/watch?v=RDpuOFkpiXM
+  - 23 *1000 IQ* Math equations with eqn (groff/troff) https://www.youtube.com/watch?v=njdKIbbiSZU
+- Luke Smith
+  - +18 [[https://www.youtube.com/watch?v=w8EKH_fjmXA][groff/troff: MUH MINIMALIST Documents]]+ ms
+  - +18 [[https://www.youtube.com/watch?v=kJ_TXZB4Gm4][Customizing groff/troff Macros and Other Basics]]+ ms
+  - 18 [[https://www.youtube.com/watch?v=XfOwRYmb5bQ][LaTeX OWNED EPIC STYLE by LOGICAL groff and refer]]
+  - 18 [[https://www.youtube.com/watch?v=sp0qgpeG6EY][High-Intellect Mathematical Formatting with eqn! (groff and troff)]] ms eqn
+  - 18 https://www.youtube.com/watch?v=yTQbi_E_Gys
