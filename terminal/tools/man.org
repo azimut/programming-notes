@@ -1,0 +1,33 @@
+#+begin_src sh
+  $ manpath
+  $ man man
+  $ man 7 man # macro language
+  $ man -f FOOBAR # list all available sections for FOOBAR
+  $ man -Tps | ps2pdf - bash.pdf
+#+end_src
+
+- https://en.wikipedia.org/wiki/Man_page
+- https://wiki.gentoo.org/wiki/Man_page
+- Should/Can be gzip
+- Directories
+  - /usr/share/man
+  - ~/.local/share/man
+- Subdirectories: /man[1-8]/
+- line comments start with ./"
+- \fB\-h\fR inline bold style of -h
+- common sections: name, synopsis, description, options, files, see also, copyright
+- tool: man without bs https://gist.github.com/alphapapa/3cba3ff196147ad42bac
+
+* sections
+
+|---+----------------------------------------------------------|
+| 1 | Executable programs or shell commands                    |
+| 2 | System calls (functions provided by the kernel)          |
+| 3 | Library calls (functions within program libraries)       |
+| 4 | Special files (usually found in /dev)                    |
+| 5 | File formats and conventions, e.g. /etc/passwd           |
+| 6 | Games                                                    |
+| 7 | Miscellaneous (including macro packages and conventions) |
+| 8 | Sysadmin commands (usually only for root)                |
+| 9 | Kernel routines [Non standard]                           |
+|---+----------------------------------------------------------|

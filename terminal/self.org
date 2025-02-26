@@ -41,26 +41,70 @@
 - article 17 | http://www.pixelbeat.org/docs/unix-parallel-tools.html
 - article 23 | https://muhammadraza.me/2023/webscraping-in-bash/
 
-* man
-#+begin_src sh
-  $ man man
-  $ man -f FOOBAR # list all available sections for FOOBAR
-  $ man -Tps | ps2pdf - bash.pdf
-#+end_src
-- TODO: better colors
-- tool: man without bs https://gist.github.com/alphapapa/3cba3ff196147ad42bac
-** sections
-|---+----------------------------------------------------------|
-| 1 | Executable programs or shell commands                    |
-| 2 | System calls (functions provided by the kernel)          |
-| 3 | Library calls (functions within program libraries)       |
-| 4 | Special files (usually found in /dev)                    |
-| 5 | File formats and conventions, e.g. /etc/passwd           |
-| 6 | Games                                                    |
-| 7 | Miscellaneous (including macro packages and conventions) |
-| 8 | System administration commands (usually only for root)   |
-| 9 | Kernel routines [Non standard]                           |
-|---+----------------------------------------------------------|
+* termcap / terminfo
+
+- termcap https://en.wikipedia.org/wiki/Termcap
+  - 1978
+  - Bill Joy
+  - library and database
+
+- terminfo https://en.wikipedia.org/wiki/Terminfo -
+  - 1981
+  - Mary Ann Horton
+  - library and database
+  - termcap improvement
+
+- tput https://en.wikipedia.org/wiki/Tput
+  - 1980
+  - command
+  - uses available terminfo or termcap
+
+|---------+------------+---------------------------+------------|
+|   <c>   |    <c>     |                           |            |
+| TC name | TI capname | description               | man        |
+|---------+------------+---------------------------+------------|
+|   me    |    sgr0    | turn OFF all attr.        |            |
+|   mb    |   blink    | turn on blink             |            |
+|   md    |    bold    | turn on *bold*            | bold       |
+|   mh    |    dim     | turn on half-bright mode  |            |
+|   mr    |    rev     | turn on rev(erse mode)    |            |
+|   vb    |   flash    | emit (v)isual (b)ell      |            |
+|   so    |    smso    | begin =standout= mode     | status bar |
+|   se    |    rmso    | exit =standout= mode      | status bar |
+|   us    |    smul    | begin _underline_ mode    | italic     |
+|   ue    |    rmul    | exit _underline_ mode     | italic     |
+|---------+------------+---------------------------+------------|
+|   ks    |    smkx    | make numpad send commands |            |
+|   ke    |    rmkx    | make numpad send digits   |            |
+|---------+------------+---------------------------+------------|
+
+* termios
+
+- =stty=
+  - a cli wrapper of termios functions: ~tcgetattr~ and ~tcsetattr~
+  - for shell scripts
+  |---------+-----------------------------------------------------------|
+  | -a      | prints all flag of its ~struct termios~ in a readable way |
+  | -F<DEV> | peek into a /dev/pts/N                                    |
+  |---------+-----------------------------------------------------------|
+
+- features
+  1) line buffering
+  2) echo
+  3) line editing
+  4) newline translation
+     - \n to \r\n (terminal needs both)
+  5) signal generation:
+     - escape (^C or ^Z)
+     - to signal (SIGINT,SIGTSTP)
+- guide https://en.wikibooks.org/wiki/Serial_Programming/termios
+- man https://www.man7.org/linux/man-pages/man3/termios.3.html
+- https://blog.nelhage.com/2009/12/a-brief-introduction-to-termios/
+- https://blog.nelhage.com/2009/12/a-brief-introduction-to-termios-termios3-and-stty/
+- https://blog.nelhage.com/2010/01/a-brief-introduction-to-termios-signaling-and-job-control/
+- https://baulderasec.wordpress.com/programando-2/programacion-con-linux/5-terminales/estructura-termios/
+- http://www.unixwiz.net/techtips/termios-vmin-vtime.html
+- https://www.youtube.com/watch?v=WvSOSyi5lWY
 * signals
 
 - $ man 7 signal
@@ -230,30 +274,3 @@ where ID is a color id between 0 and 255
 #+end_src
 
 ** video 23 |  Weaponizing Plain Text ANSI Escape Sequences as a Forensic Nightmare - STÖK https://www.youtube.com/watch?v=3T2Al3jdY38
-* termios
-
-- =stty=
-  - a cli wrapper of termios functions: ~tcgetattr~ and ~tcsetattr~
-  - for shell scripts
-  |---------+-----------------------------------------------------------|
-  | -a      | prints all flag of its ~struct termios~ in a readable way |
-  | -F<DEV> | peek into a /dev/pts/N                                    |
-  |---------+-----------------------------------------------------------|
-
-- features
-  1) line buffering
-  2) echo
-  3) line editing
-  4) newline translation
-     - \n to \r\n (terminal needs both)
-  5) signal generation:
-     - escape (^C or ^Z)
-     - to signal (SIGINT,SIGTSTP)
-- guide https://en.wikibooks.org/wiki/Serial_Programming/termios
-- man https://www.man7.org/linux/man-pages/man3/termios.3.html
-- https://blog.nelhage.com/2009/12/a-brief-introduction-to-termios/
-- https://blog.nelhage.com/2009/12/a-brief-introduction-to-termios-termios3-and-stty/
-- https://blog.nelhage.com/2010/01/a-brief-introduction-to-termios-signaling-and-job-control/
-- https://baulderasec.wordpress.com/programando-2/programacion-con-linux/5-terminales/estructura-termios/
-- http://www.unixwiz.net/techtips/termios-vmin-vtime.html
-- https://www.youtube.com/watch?v=WvSOSyi5lWY

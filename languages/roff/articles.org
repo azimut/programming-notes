@@ -1,7 +1,14 @@
+- 20 An Introduction to groff https://douglasrumbaugh.com/post/groff-introduction/
+- 19 roff https://www.bencode.net/posts/2019-03-15-groff/
+- 19 Writing a resume in groff https://noxz.tech/articles/writing_a_resume_in_groff/
 - 18 Adding Colors to man https://russellparker.me/post/2018/02/23/adding-colors-to-man/
+  - https://unix.stackexchange.com/questions/108699/documentation-on-less-termcap-variables/108840#108840
+  - https://unix.stackexchange.com/questions/119/colors-in-man-pages
 - 98 Basic Formatting with troff/nroff https://cmd.inp.nsk.su/old/cmd2/manuals/unix/UNIX_Unleashed/ch08.htm
 - 84 UNIX Text Formatting Using the -ms Macros https://www.hactrn.net/ietf/rfcgen/textms.html
+
 * technicallywewrite
+
 - 25 Learning to love ‘groff -ms’ https://technicallywewrite.com/2025/02/17/groffms
 - 25 5 reasons to love groff https://technicallywewrite.com/2025/01/13/lovegroff
 - 24 Understanding Unix ‘nroff’ https://technicallywewrite.com/2024/06/10/understandingnroff

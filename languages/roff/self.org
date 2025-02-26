@@ -3,21 +3,23 @@
   - Joe Ossanna, Ken Thompson
   - typesetting *markup language*
   - Unix version of _runoff_ from Multics
+    https://bxriver.net/obscure/runoff/
 
 - [[https://en.wikipedia.org/wiki/Nroff][nroff]] for terminals
 - [[https://en.wikipedia.org/wiki/Troff][troff]] for typesetting
-  - [[https://en.wikipedia.org/wiki/Groff_(software)][groff]] aka gnu ~troff~
-    - includes: [[https://en.wikipedia.org/wiki/Eqn_(software)][eqn]] (formats equations), tbl, [[https://en.wikipedia.org/wiki/PIC_(markup_language)][pic]] (for diagrams), seolim
+
+#+CAPTION: GNU roff's logo
+[[https://www.gnu.org/software/groff/gnu-head-groff.png]]
+
+- [[https://en.wikipedia.org/wiki/Groff_(software)][groff]] aka gnu ~troff~
+  - home https://www.gnu.org/software/groff/
+  - includes: [[https://en.wikipedia.org/wiki/Eqn_(software)][eqn]] (formats equations), tbl, [[https://en.wikipedia.org/wiki/PIC_(markup_language)][pic]] (for diagrams), seolim
+  - manual https://www.gnu.org/software/groff/manual/
+
 - book https://www.schaffter.ca/shared/groff-and-mom.pdf
+- book https://www.oreilly.com/library/view/unix-text-processing/9780810462915/Chapter04.html
 
-* language
-
-- line based
-- do NOT put blank text lines on the file
-  - use control lines "." to space things around
-- types of line
-  1) text line
-  2) control lines (macro, request aka low level commands)
+* cli
 
 #+begin_src sh
   $ groff -ms foo.ms > groff.ps
@@ -25,7 +27,18 @@
   $ groff -ms -e eqn.ms -Tpdf > eqn.pdf
   $ eqn eqn.ms -Tpdf | groff -ms -Tpdf > eqn.pdf
   $ nroff -man refill.man > refill.txt
+  $ man 7 man # man macro language help
 #+end_src
+
+* language
+
+- language ref https://linux.die.net/man/7/groff
+- line based
+- do NOT put blank text lines on the file
+  - use control lines "." to space things around
+- types of line
+  1) text line
+  2) control lines (macro, request aka low level commands)
 
 ** requests
 - =me= dialect, use after .pp
@@ -39,6 +52,7 @@
 | .ul n | underline next n lines       |
 |-------+------------------------------|
 ** macros
+- https://www.fileformat.info/info/man-pages/macro.htm
 *** new
 
 1) defining in macros.roff file
@@ -105,31 +119,3 @@ more
 | .UL s         |    |    |     | underline                                            |
 | .BX s         |    |    |     | boxed                                                |
 |---------------+----+----+-----+------------------------------------------------------|
-* man
-
-- https://en.wikipedia.org/wiki/Man_page
-- $ manpath
-- $ man foo.2
-- Should/Can be gzip
-- Directories
-  - /usr/share/man
-  - ~/.local/share/man
-- Subdirectories: /man[1-8]/
-- line comments start with ./"
-- language ref https://linux.die.net/man/7/groff
-- \fB\-h\fR inline bold style of -h
-- common sections: name, synopsis, description, options, files, see also
-
-** section numbers
-|-----+--------------------------------|
-| <c> |                                |
-| =1= | executables or shell commands  |
-|  2  | system/kernel calls            |
-|  3  | library/function calls         |
-|  4  | special files (eg: /dev/*)     |
-|  5  | file formats (eg: /etc/passwd) |
-|  6  | games                          |
-|  7  | misc                           |
-| =8= | sysadmin tools and daemons     |
-|  9  | kernel routines                |
-|-----+--------------------------------|

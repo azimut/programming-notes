@@ -13,7 +13,7 @@
 - 68HC08
   - https://sdcc.sourceforge.net/
 
-** (M)6800 family
+* (M)6800 family
 
 https://en.wikipedia.org/wiki/Motorola_6800_family
 
@@ -24,10 +24,10 @@ https://en.wikipedia.org/wiki/Motorola_6800_family
 - Inspired the MOS 6502
 - 8bit microprocess and microcontrollers
 
-*** 6800   (74)
+** 6800   (74)
 https://en.wikipedia.org/wiki/Motorola_6800
 http://zoom.interoscitor.com/PetersonEnterprises/Consulting/WritingSkills.html
-*** 68HC05 (79)
+** 68HC05 (79)
 
 https://en.wikipedia.org/wiki/Motorola_68HC05
 https://web.archive.org/web/20160309232352/http://www.68bits.com/m68hc05evm.html
@@ -42,13 +42,14 @@ https://web.archive.org/web/20160309232352/http://www.68bits.com/m68hc05evm.html
   - a 13-bit program counter PC
   - and an 8-bit condition code register CCR
 - low powered variations of 05
-*** 68HC11 (90)
+
+** 68HC11 (90)
 
 - https://en.wikipedia.org/wiki/Motorola_68HC11
-- M68HC11
-- MC68HC11A8 (CMOS EEPROM)
-- MC68HC11E9
-- MC68HC11D0/3 ROM based
+- M68HC11 ic models
+  - MC68HC11A8 (CMOS EEPROM)
+  - MC68HC11E9
+  - MC68HC11D0/3 ROM based
 
 - fileformat? https://www.x-ways.net/winhex/kb/ff/Motorola-S3.txt
 - instructions http://dankohn.info/projects/68HC11/68HC11%20Instruction%20Set.htm
