@@ -1,9 +1,13 @@
+- 21 Writing formal letters with roff's "mm" package http://web.archive.org/web/20230605030324/https://www.woozle.org/papers/roff-letters.html
+- 23 Man Pages — The Complete Guide https://medium.com/better-programming/man-pages-the-complete-guide-800ad93425fe
+- 21 Adventures with man color https://felipec.wordpress.com/2021/06/05/adventures-with-man-color/
 - 20 An Introduction to groff https://douglasrumbaugh.com/post/groff-introduction/
 - 19 roff https://www.bencode.net/posts/2019-03-15-groff/
 - 19 Writing a resume in groff https://noxz.tech/articles/writing_a_resume_in_groff/
-- 18 Adding Colors to man https://russellparker.me/post/2018/02/23/adding-colors-to-man/
+- +18 Adding Colors to man https://russellparker.me/post/2018/02/23/adding-colors-to-man/+
   - https://unix.stackexchange.com/questions/108699/documentation-on-less-termcap-variables/108840#108840
   - https://unix.stackexchange.com/questions/119/colors-in-man-pages
+- 17 learn: Ancient troff sources vs. modern-day groff https://virtuallyfun.com/2017/12/22/learn-ancient-troff-sources-vs-modern-day-groff/
 - 98 Basic Formatting with troff/nroff https://cmd.inp.nsk.su/old/cmd2/manuals/unix/UNIX_Unleashed/ch08.htm
 - 84 UNIX Text Formatting Using the -ms Macros https://www.hactrn.net/ietf/rfcgen/textms.html
 

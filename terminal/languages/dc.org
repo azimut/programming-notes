@@ -182,6 +182,7 @@
 - 21 [[https://psychocod3r.wordpress.com/2021/05/08/obfuscated-unix-scripting-with-dc/][Obfuscated Unix Scripting with dc]]
 - 20 [[http://web.archive.org/web/20200607102626/https://ben165.github.io/unix_dc/index.html][A deeper introduction in Unix dc]]
 - 18 [[https://eklitzke.org/summing-integer-ranges-with-dc][Summing Integer Ranges With dc]]
+- 97 https://wolfram.schneider.org/bsd/7thEdManVol2/dc/dc.pdfa
 - ?? [[https://cs.unh.edu/~charpov/dc.html][Fun with dc]]
 
 * videos

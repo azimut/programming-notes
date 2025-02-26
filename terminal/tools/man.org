@@ -1,3 +1,6 @@
+#+TITLE: man
+#+DATE: <2025-01-14 mar>
+
 #+begin_src sh
   $ manpath
   $ man man
@@ -8,6 +11,10 @@
 
 - https://en.wikipedia.org/wiki/Man_page
 - https://wiki.gentoo.org/wiki/Man_page
+- https://wiki.archlinux.org/title/Man_page
+- online
+  - https://linux.die.net/man/
+  - https://man7.org/linux/man-pages/
 - Should/Can be gzip
 - Directories
   - /usr/share/man

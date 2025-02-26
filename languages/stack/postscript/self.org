@@ -11,6 +11,8 @@
 - Page sizes
   - A4 595x842 (default)
   - US Letter 612x792
+- tuto https://github.com/Chubek/postscript-dossier
+- tuto https://github.com/Chubek/postscript-manpages
 - tools
   - editor (for vector graphics) https://inkscape.org/ https://en.wikipedia.org/wiki/Inkscape
   - viewer: evince

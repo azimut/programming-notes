@@ -1,0 +1,9 @@
+- [[https://en.wikipedia.org/wiki/Neural_processing_unit][Neural processing unit]]
+  - specialized hardware accelerator
+  - aka AI accelerator
+  - aka deep learning processor
+  - eg:
+    - 80's: Intel's ETANN 80170NX
+    - 90's: Intel [[https://en.wikipedia.org/wiki/Ni1000][Ni1000]]
+    - 2015: Qualcomm Snapdragon 820
+  - CPU > GPU|FPGA > ASIC

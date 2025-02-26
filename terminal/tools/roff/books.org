@@ -1,0 +1,10 @@
+- tuto https://github.com/Chubek/roff-dossier
+- tuto https://github.com/utility-code/groffTutorial/blob/master/groffTutorial.ms
+- tuto https://github.com/plainoldcheese/groff-guide
+- cheatsheet https://github.com/L04DB4L4NC3R/groff-cheatsheet
+- book neatroff http://litcave.rudi.ir/neatroff.pdf
+- books https://github.com/mamccollum/troff-resources
+- book http://www.schemamania.org/troff/for-the-love-of-troff.pdf
+- book https://www.schaffter.ca/shared/groff-and-mom.pdf
+- book https://www.oreilly.com/library/view/unix-text-processing/9780810462915/Chapter04.html
+  - source https://github.com/larrykollar/Unix-Text-Processing
