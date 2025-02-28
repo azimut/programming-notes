@@ -1,0 +1,22 @@
+- Modern CMake an Introduction https://vimeo.com/425615149
+- Introduction to CMake https://vimeo.com/32212195
+- CMake vs Make
+  - https://www.youtube.com/watch?v=_DOdoAJf17k
+  - https://www.youtube.com/watch?v=PWYSyD2rVbM
+
+- 14 CMake - Get your build on! https://www.youtube.com/watch?v=6zOpxAwYKUQ
+- 17 Embracing Modern CMake https://www.youtube.com/watch?v=JsjI5xr1jxM
+- 17 C++Now 2017: Daniel Pfeifer “Effective CMake" https://www.youtube.com/watch?v=bsXLMQ6WgIk
+- 17 CppCon 2017: Mathieu Ropert “Using Modern CMake Patterns to Enforce a Good Modular Design” https://www.youtube.com/watch?v=eC9-iRN2b04
+- 17 C++ Weekly - Ep 78 - Intro to CMake (Old version - see links) https://www.youtube.com/watch?v=HPMvU64RUTY
+- 19 Android OpenCV with Native C++ Installation https://www.youtube.com/watch?v=12kkJQOmCF4
+- 20 C++ Weekly - Ep 208 - The Ultimate CMake / C++ Quick Start https://www.youtube.com/watch?v=YbgH7yat-Jo
+- 20 Better CMake https://www.youtube.com/playlist?list=PL8i3OhJb4FNV10aIZ8oF0AA46HgA2ed8g
+- 20 Simplified CMake Tutorial https://www.youtube.com/watch?v=mKZ-i-UfGgQ
+- 22 Why CMake https://www.youtube.com/watch?v=kekw7eGb8Mw
+- 23 The only CMake tutorial you will ever need https://www.youtube.com/watch?v=A735Y4kMIPM
+- 24 Cmake, How it works (at three different levels) https://www.youtube.com/watch?v=SDX0oYqdv_g
+- 24 CMake Tutorial for absolute beginners https://www.youtube.com/watch?v=NGPo7mz1oa4
+- Deniz Bahadir
+  - 18 https://www.youtube.com/watch?v=y7ndUhdQuU8
+  - 19 https://www.youtube.com/watch?v=y9kSr5enrSk

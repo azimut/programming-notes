@@ -1,0 +1,8 @@
+- 15 https://rix0r.nl/blog/2015/08/13/cmake-guide/
+- 18 https://pabloariasal.github.io/2018/02/19/its-time-to-do-cmake-right/
+- 21 https://twdev.blog/2021/08/cmake/
+- 21
+  - https://blog.feabhas.com/2021/07/cmake-part-1-the-dark-arts/
+  - https://feabhasblog.wpengine.com/2021/07/cmake-part-2-release-and-debug-builds/
+  - https://feabhasblog.wpengine.com/2021/08/cmake-part-3-source-file-organisation/
+- 23 https://izzys.casa/2023/06/everything-you-never-wanted-to-know-about-cmake-redux/

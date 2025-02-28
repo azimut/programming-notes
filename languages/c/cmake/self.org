@@ -1,0 +1,43 @@
+CommitDate: Tue Dec 21 05:02:30 2021 -0300
+
+- home https://cmake.org/
+- docs https://cmake.org/documentation/
+- faq https://gitlab.kitware.com/cmake/community/-/wikis/faq
+- source C/C++ https://gitlab.kitware.com/cmake/cmake
+- wiki https://en.wikipedia.org/wiki/CMake
+  - 2000
+  - Authors:
+    - Andy Cedilnik
+    - Bill Hoffman
+    - Brad King
+    - Ken Martin
+    - Alex Neundorf
+
+- wiki https://wiki.osdev.org/CMake_Build_System
+- https://cmake.org/cmake/help/latest/guide/tutorial/index.html
+- created defaults: help, install, --graphviz
+- directives?
+  - project
+  - add_library
+  - target_include_directories
+  - add_executable
+  - target_link_libraries
+
+- https://github.com/onqtam/awesome-cmake
+
+* cli
+
+https://cmake.org/cmake/help/latest/manual/cmake.1.html
+
+* examples
+
+- https://github.com/toeb/moderncmake
+- https://github.com/pr0g/cmake-examples
+- https://github.com/pabloariasal/modern-cmake-sample
+- https://github.com/ttroy50/cmake-examples
+
+* used by
+
+- android ndk
+  - https://developer.android.com/ndk/guides/cmake
+  - https://developer.android.com/studio/projects/configure-cmake
