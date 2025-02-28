@@ -1,4 +1,5 @@
 - 21 https://dev.to/taw/100-languages-speedrun-episode-06-tcltk-50kl
+- 21 https://gr33nonline.wordpress.com/2021/01/17/tcl-tk-on-eclipse/
 - 24 https://world-playground-deceit.net/blog/2024/why_tcl.html
 - https://wiki.tcl-lang.org/page/Articles
 - TCL/Tk Hello world https://wiki.tcl-lang.org/page/The+Hello+World+program+as+implemented+in+Tcl%2FTk
@@ -6,6 +7,7 @@
 - 23 | https://gist.github.com/nat-418/bdccb2428cde750c9f42bf9bbc1a50d3
 - 24 | https://cohost.org/sakiamu/post/177439-tcl-on-the-brain
 - 23 | https://forum.exercism.org/t/tcl-some-notes/5567
+- 06 | http://markroseman.com/tcl/dyingout.html
 - 04 | 10 Things I Hate About Tcl
   http://tleaves.com/2004/10/20/10-things-i-hate-about-tcl/
 - 94 | Why you should not use Tcl | Richard Stallman

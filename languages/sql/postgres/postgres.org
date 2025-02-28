@@ -12,6 +12,7 @@
 (8 rows)
 #+end_src
 - explain queries https://explain.dalibo.com/
+- extensions https://gist.github.com/joelonsql/e5aa27f8cc9bd22b8999b7de8aee9d47
 * functions
 https://www.postgresql.org/docs/9.6/functions-datetime.html
 |-------------------------------------+-------------------------------------------------------------------------------------------------|

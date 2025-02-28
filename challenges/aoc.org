@@ -66,6 +66,7 @@
     https://github.com/scalacenter/scala-advent-of-code
 - tcl
   - https://codeberg.org/NRK/slashtmp/src/branch/master/AoC/2022
+  - https://github.com/harkaitz/advent-of-code-2024-tcl
 - zig
   - 22 https://www.huy.rocks/everyday/12-11-2022-zig-using-zig-for-advent-of-code
   - 22 https://www.forrestthewoods.com/blog/failing-to-learn-zig-via-advent-of-code/

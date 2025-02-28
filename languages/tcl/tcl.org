@@ -1,6 +1,6 @@
 - https://en.wikipedia.org/wiki/Tcl
   - Author: John Ousterhout
-  - 1988-
+  - 1988
 
 - https://wiki.tcl-lang.org/page/Who+Uses+Tcl
 - Used in F5's BIG-IP iRules https://my.f5.com/manage/s/article/K6091
@@ -8,6 +8,17 @@
   - https://clouddocs.f5.com/api/irules/
 
 - yasnippets https://github.com/yangwen0228/unimacs/tree/bbeb3195000d8c1fd8ba436b47aa65d868769206/utils/snippets/tcl-mode
+
+* standalone executable
+
+- https://www.tcl-lang.org/software/tcltk/bindist.html
+- https://sourceforge.net/projects/kbskit/
+- https://freewrap.dengensys.com/
+- http://kitcreator.rkeene.org/fossil/index
+- golang
+  - allows shipping tcl/tk binaries, without c dependencies
+  - https://pkg.go.dev/modernc.org/tk9.0
+  - https://wiki.tcl-lang.org/page/Tcl%2FTk+application+binaries+through+Go
 
 * Language
 |-------------------------------+----------------------------|

@@ -1,3 +1,8 @@
+- Books by Jose Maria Sirvent Ichaso https://www.amazon.es/s?i=digital-text&rh=p_27%3AJos%25C3%25A9%2BMar%25C3%25ADa%2BSirvent%2BIchaso&_encoding=UTF8&ref=dbs_m_mng_rwt_byln
+  - nothing here https://github.com/jmsi1
+  - Arduino Tcl/Tk: Radio FM
+  - Arduino Tcl/Tk: Getting Started
+
 * 04 | antirez     | tclwise - An introduction to the Tcl programming language
 http://invece.org/tclwise/
 * 11 | Hal Abelson | TCL for Web Nerds

@@ -123,6 +123,7 @@
 | 20 |  TSTP | ^Z |                                             |
 | 28 | WINCH |    | on window resize                            |
 |----+-------+----+---------------------------------------------|
+
 * escape codes
 
 - started by with ESC

@@ -107,29 +107,30 @@ more
 | .IP [s] [d]   |    |    | x   | indented list                                        |
 |               |    |    |     | with optional bullet s (eg: \(bu )                   |
 |               |    |    |     | with optional number of indent n spaces              |
-| .TH n i d v t | -  |    | x   | name, section number, date, version, title           |
 |---------------+----+----+-----+------------------------------------------------------|
+| .TH t i d v m | -  | -  | x   | title, section number, date, version, manual         |
 | .SH s         |    |    | x   | new un-numbered major section heading                |
 | .SH s N       |    |    | x   |                                                      |
-| .SS s         |    |    | x   | new subsection                                       |
+| .SS s         |    |    | x   | new sub-section                                      |
 |---------------+----+----+-----+------------------------------------------------------|
-| .(c           |    | x  |     | start center                                         |
-| .)c           |    | x  |     | ends center                                          |
+| .(c ¦ .)c     |    | x  |     | start/end center                                     |
+| .AB ¦ .AE     | x  |    |     | begin/end abstract                                   |
+| .EX ¦ .EE     |    |    | x   | begin/end example                                    |
+| .RS ¦ .RE     |    |    | x   | start/end record?, adds identation                   |
+| .SY ¦ .YS     |    |    | x   | start/end synopsis                                   |
 |---------------+----+----+-----+------------------------------------------------------|
-| .AB           | x  |    |     | begin abstract                                       |
-| .AE           | x  |    |     | end abstract                                         |
-|---------------+----+----+-----+------------------------------------------------------|
-| .RS           |    |    |     | start record?, adds identation                       |
-| .RE           |    |    |     | end record?                                          |
-|---------------+----+----+-----+------------------------------------------------------|
-| .TP           |    |    | x   | indent, tagged paragraph, used for man options       |
 | .P            |    |    | x   | blank line, make paragraph                           |
-| .LP           |    | x  | x   | blank line, makes a leading paragram, with no indent |
 | .PP           |    | x  | x   | blank line, makes an indented paragraph              |
+| .TP           |    |    | x   | indent, tagged paragraph, used for man options       |
+| .TQ           |    |    | x   | tagged paragraph continuation                        |
+| .LP           |    | x  | x   | blank line, makes a leading paragram, with no indent |
+| .IP           |    |    | x   | indented paragraph                                   |
 |---------------+----+----+-----+------------------------------------------------------|
 | .R  s a b     |    |    | x   | regular text for s                                   |
 | .B  s a b     |    | x  | x   | bold s, with a after and b before                    |
 | .I  s a b     |    | x  | x   | italic s                                             |
+| .SM           |    |    | x   | small                                                |
+| .SB           |    |    | x   | small bold                                           |
 | .BR b s       |    |    | x   | no space between                                     |
 | .BI s a b     |    |    | x   | no space between                                     |
 | .IR i s       |    |    | x   | no space between                                     |
@@ -138,9 +139,11 @@ more
 | .RI s i       |    |    | x   | no space between                                     |
 | .UL s         |    |    |     | underline                                            |
 | .BX s         |    |    |     | boxed                                                |
+| .UR ¦ .UE     |    |    | x   | url start/end                                        |
+| .ME ¦ .MT     |    |    | x   | mail start/end                                       |
 |---------------+----+----+-----+------------------------------------------------------|
 * codebases
 
 - http://froude.eu/groff/
 - https://github.com/pintman/groff101
-
+- http://www.sgerwk.altervista.org/roff/roff.html

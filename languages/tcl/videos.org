@@ -3,7 +3,11 @@
 - https://www.youtube.com/@alexbakeredu
 - Learning TCL https://www.youtube.com/watch?v=jf0PynxBSOg
   LIVE Programming a Web Crawler w/ Tcl – Programming Polyglot #001
-- Channel https://www.youtube.com/@videotcltk
+- Channel
+  - https://www.youtube.com/@videotcltk
+  - https://www.youtube.com/@alexbakeredu/videos
+  - https://www.youtube.com/@alexbakeredu/streams
+
 - EuroTCL Slides https://ssl.webpack.de/www.eurotcl.eu/pastevents.html
 * 16 | Nathan Coulter  | coroutine is the new main
 https://www.youtube.com/watch?v=yCC--STRzo4
