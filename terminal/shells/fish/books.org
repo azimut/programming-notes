@@ -1,0 +1,2 @@
+- tutorial https://fishshell.com/docs/current/tutorial.html#tut_why_fish
+- tutorial https://github.com/jorgebucaran/cookbook.fish

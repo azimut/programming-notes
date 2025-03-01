@@ -6,3 +6,5 @@
 - 21 https://rmpr.xyz/the-fish-shell-is-amazing/
 - 23 https://earthly.dev/blog/fish-shell/
 - 24 https://jvns.ca/blog/2024/09/12/reasons-i--still--love-fish/
+- 24 https://axlefublr.github.io/elegant-fish-shell-booleans/
+- 25 https://axlefublr.github.io/new-fish-shell/

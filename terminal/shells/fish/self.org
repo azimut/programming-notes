@@ -19,23 +19,22 @@
                        (UU)
 #+end_src
 
-- home https://fishshell.com/
-- source https://github.com/fish-shell/fish-shell
-- tutorial https://fishshell.com/docs/current/tutorial.html#tut_why_fish
-- tutorial https://github.com/jorgebucaran/cookbook.fish
-- tools https://github.com/pirate/fish-utils/blob/master/README.md
+|--------+-------------------------------------------------|
+| home   | https://fishshell.com/                          |
+| source | https://github.com/fish-shell/fish-shell        |
+| wiki   | https://en.wikipedia.org/wiki/Fish_(Unix_shell) |
+|--------+-------------------------------------------------|
+
 - 2005
 - Author: Axel Liljencrantz
 - "friendly interactive shell"
 - does NOT adhere to POSIX
 - C++ later rewritten in Rust
-- bash to fish translation https://github.com/fish-shell/fish-shell/wiki/Shell-Translation-Dictionary
 - .fish extension
-- tool: plugin manager https://github.com/jorgebucaran/fisher
-- +tool: plugin manager https://github.com/oh-my-fish/oh-my-fish+ abandoned
 - ~/.config/fish/config.fish
 - features
   - ~funcsave~
+  - never creates *subshells* for language features
   - parses man pages for autocompletion
   - context aware autocompletion (context = dir)
   - fuzzy autocompletion
@@ -43,5 +42,35 @@
   - easy to use cli cmd editor
 
 * language
+
 - control flow
   - for in/end
+
+#+begin_src fish
+  string replace -a "i" "I" "Wikipedia" # WIkIpedIa
+  set foo bar       # assignment, there is no =, works for array/scoping
+  echo $foo         # variable
+  set wd  (pwd)     # command substitution, there is no ``
+  set wd $(pwd)     # command substitution
+  set A 3 4 29      # array, of 3 values
+  set B $A[1 2]     # array slicing, first 2 elems
+  set C $A[(seq 3)] # array slicing with command substitution
+  set --erase A[$B] # array erasure of 3rd and 5th elems
+
+  for i in *.jpg; convert $i (basename $i .jpg).png; end
+  for i in *.jpg
+      convert $i (basename $i .jpg).png
+  end
+
+  while read line
+      set arr (echo $line|tr : \n)
+      echo $arr[5]
+  end
+#+end_src
+* tools
+
+- tools https://github.com/pirate/fish-utils/blob/master/README.md
+- bash to fish translation https://github.com/fish-shell/fish-shell/wiki/Shell-Translation-Dictionary
+- plugin manager https://github.com/jorgebucaran/fisher
+- +plugin manager https://github.com/oh-my-fish/oh-my-fish+ abandoned
+

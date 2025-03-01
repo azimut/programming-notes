@@ -1,1 +1,13 @@
-- 21 my fish shell workflow for coding https://www.youtube.com/watch?v=KKxhf50FIPI
+- 13 fish by Yu-Jie Lin https://www.youtube.com/watch?v=8pno3tTdywg&pp=ygUhZmlzaCBzaGVsbCBhZnRlcjoyMDEwIGJlZm9yZToyMDE1
+- 13 fish by Dennis https://www.youtube.com/watch?v=SWmKfb2jQhU
+- 19 https://www.youtube.com/watch?v=9w38oExOJgg
+- 21 my fish shell workflow for coding by devaslife https://www.youtube.com/watch?v=KKxhf50FIPI
+- 25 Run QEMU VMs with fish shell script https://www.youtube.com/watch?v=YAfaF2DkslI
+- by axlefublr
+  - 23 Fish abbreviation in zsh https://www.youtube.com/watch?v=tN1HCl2PQ5c
+  - 24 how to install Fish shell https://www.youtube.com/watch?v=RKg-GvnOR_8
+  - 24 How to configure Fish shell tide prompt https://www.youtube.com/watch?v=8FIc7nXyZUI
+  - 24 My Fish shell prompt experience https://www.youtube.com/watch?v=fp6e-DSeMug
+- Creator unrelated talks
+  - 14 https://www.youtube.com/watch?v=v564H-n9HVU
+  - 20 https://www.youtube.com/watch?v=2EU7kFxl6RI
