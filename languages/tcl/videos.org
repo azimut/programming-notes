@@ -1,6 +1,4 @@
 - 22 Coding Live: Advent of Code with iRules https://www.youtube.com/watch?v=Rnw7lUU8KpY
-- 21 | Simple Calculator using TCL/TK  https://www.youtube.com/watch?v=q7Zjy0tATW4
-- https://www.youtube.com/@alexbakeredu
 - Learning TCL https://www.youtube.com/watch?v=jf0PynxBSOg
   LIVE Programming a Web Crawler w/ Tcl – Programming Polyglot #001
 - Channel
@@ -9,6 +7,7 @@
   - https://www.youtube.com/@alexbakeredu/streams
 
 - EuroTCL Slides https://ssl.webpack.de/www.eurotcl.eu/pastevents.html
+
 * 16 | Nathan Coulter  | coroutine is the new main
 https://www.youtube.com/watch?v=yCC--STRzo4
 - TODO 06:40 https://wiki.tcl-lang.org/page/ycl%20coro%20relay

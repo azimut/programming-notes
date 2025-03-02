@@ -1,5 +1,17 @@
+- home https://core.tcl-lang.org/expect/index
 - https://en.wikipedia.org/wiki/Expect
+  - 1990
+  - Don Libes (Author) Nils Carlson (Dev)
+  - Tcl extension
+  - for cli automation
+
+- commands
+  - spawn
+  - expect
+  - send
+
 * Video: 12 | Hak5 - Automate Everything, Using Expect, Hak5 1023.1
+
 https://www.youtube.com/watch?v=dlwqyMW5H5I
 - ATTACKER -> ssh -> VICTIM -> scp -> remoteB
 - send
@@ -7,8 +19,10 @@ https://www.youtube.com/watch?v=dlwqyMW5H5I
   - -h make the characters like they are humanly typed (delay)
 - interact
   - gives control back to the user
+
 * Video: 21 | Automate Remote SSH Control of Computers with Expect Scripts [Tutorial]
-  https://www.youtube.com/watch?v=Vt5S12U3F0k
+
+https://www.youtube.com/watch?v=Vt5S12U3F0k
 - Use case: Login into a raspberry pi and shutting it down
 ** trigger.sh
   #+begin_src sh

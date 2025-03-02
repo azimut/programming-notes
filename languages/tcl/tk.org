@@ -1,0 +1,110 @@
+- source (C) https://core.tcl-lang.org/tk/dir?ci=tip
+- https://en.wikipedia.org/wiki/Tk_(software)
+  - 1991
+  - Tcl extension
+  - initially resambled [[https://en.wikipedia.org/wiki/Motif_(software)][Motif]]
+
+* cli (wish)
+
+- #!/usr/bin/env wish
+
+- #!/usr/bin/tclsh
+  package require Tk
+
+- api https://www.tcl-lang.org/man/tcl/UserCmd/wish.htm
+
+* widgets
+
+- api https://www.tcl-lang.org/man/tcl8.6/TkCmd/contents.htm
+- thirdparty https://wiki.tcl-lang.org/page/Useful+Tk+Widgets
+- tklib
+  - source https://github.com/tcltk/tklib
+  - toc https://core.tcl-lang.org/tklib/doc/trunk/embedded/md/toc.md
+
+** basic
+
+[[https://wiki.tcl-lang.org/page/button][button]]
+canvas
+checkbutton
+combobox
+entry
+frame
+label
+labelframe
+listbox
+menu
+menubutton
+message
+notebook
+panedwindow
+progressbar
+radiobutton
+scale
+scrollbar
+separator
+sizegrip
+spinbox
+text
+tk_optionMenu
+treeview
+
+** top level
+|--------------------+-------------------------------------------------------------|
+| tk_chooseColor     | pops up a dialog box for the user to select a color.        |
+| tk_chooseDirectory | pops up a dialog box for the user to select a directory.    |
+| tk_dialog          | creates a modal dialog and waits for a response.            |
+| tk_getOpenFile     | pops up a dialog box for the user to select a file to open. |
+| tk_getSaveFile     | pops up a dialog box for the user to select a file to save. |
+| tk_messageBox      | pops up a message window and waits for a user response.     |
+| tk_popup           | posts a popup menu.                                         |
+| toplevel           | creates and manipulates toplevel widgets.                   |
+|--------------------+-------------------------------------------------------------|
+** geometry managers / layout
+|-------+-----------------------------------------|
+|   <r> |                                         |
+|  grid | arranges widgets in a grid              |
+|  [[https://wiki.tcl-lang.org/page/pack][pack]] | packs widgets into a cavity             |
+| place | positions widgets at absolute locations |
+|-------+-----------------------------------------|
+* examples
+
+- library: GUTTER - Great Unified Tcl/Tk Extension Repository
+  https://core.tcl-lang.org/jenglish/gutter/
+- https://www.tutorialspoint.com/tcl-tk/tk_widgets_overview.htm
+- https://cspages.ucalgary.ca/~saul/personal/archives/Tcl-Tk_stuff/tcl_examples/
+- https://wiki.tcl-lang.org/page/Tk+examples
+- https://wiki.tcl-lang.org/page/Tk+Programs
+- https://github.com/janbodnar/Tcl-Tk-Examples
+- https://wiki.tcl-lang.org/page/Arts+and+Crafts+of+Tcl-Tk+Programming
+- https://wiki.tcl-lang.org/page/Graphics+with+Tcl
+
+* codebases
+- official git gui
+  https://git-scm.com/docs/git-gui/
+  https://github.com/prati0100/git-gui/
+* videos
+- VecTcl image processing https://www.youtube.com/watch?v=88J0tVFE_ic
+- https://www.youtube.com/watch?v=fLEb_Hv7sY4
+- https://www.youtube.com/watch?v=bJpfmnEw_-Y
+- 21 | Simple Calculator using TCL/TK  https://www.youtube.com/watch?v=q7Zjy0tATW4
+* articles
+
+- 24 | v9 release https://www.theregister.com/2024/10/02/tcltk_version_9/
+- 21 https://gr33nonline.wordpress.com/2021/01/17/tcl-tk-on-eclipse/
+- 21 https://dev.to/taw/100-languages-speedrun-episode-06-tcltk-50kl
+- 03 Scripting Graphical Commands with Tcl/Tk Mini-HOWTO https://tldp.org/HOWTO/Scripting-GUI-TclTk/index.html
+- TCL/Tk Hello world https://wiki.tcl-lang.org/page/The+Hello+World+program+as+implemented+in+Tcl%2FTk
+
+* tutorial
+
+- 23 Tcl/Tk tutorial https://zetcode.com/gui/tcltktutorial/
+  - source https://github.com/janbodnar/Tcl-Tk-Examples
+- https://tkdocs.com/tutorial/index.html
+- https://www.tutorialspoint.com/tcl-tk/index.htm
+
+* books
+
+- Books by Jose Maria Sirvent Ichaso https://www.amazon.es/s?i=digital-text&rh=p_27%3AJos%25C3%25A9%2BMar%25C3%25ADa%2BSirvent%2BIchaso&_encoding=UTF8&ref=dbs_m_mng_rwt_byln
+  - nothing here https://github.com/jmsi1
+  - Arduino Tcl/Tk: Radio FM
+  - Arduino Tcl/Tk: Getting Started
