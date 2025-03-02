@@ -29,6 +29,7 @@
   - https://github.com/katef/libfsm/
   - ? https://github.com/katef/kgt/
 
+- tool: cli opengl interpreter http://www.nrdvana.net/cmdlinegl/
 - tool: string conversion https://github.com/abhimanyu003/sttr
 - tools: https://raw.githubusercontent.com/Lucas-C/dotfiles_and_notes/refs/heads/master/UnixUsefulCmds.sh
 - colorize https://nojhan.github.io/colout/

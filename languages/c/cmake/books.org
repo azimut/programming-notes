@@ -1,5 +1,5 @@
-* tutorials
-
+- $$$ https://crascit.com/professional-cmake/
+- https://aosabook.org/en/v1/cmake.html
 - https://llvm.org/docs/CMakePrimer.html
 - https://gist.github.com/mbinna/c61dbb39bca0e4fb7d1f73b0d66a4fd1
 - https://cliutils.gitlab.io/modern-cmake/README.html

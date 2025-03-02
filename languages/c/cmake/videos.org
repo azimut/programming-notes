@@ -9,6 +9,7 @@
 - 17 C++Now 2017: Daniel Pfeifer “Effective CMake" https://www.youtube.com/watch?v=bsXLMQ6WgIk
 - 17 CppCon 2017: Mathieu Ropert “Using Modern CMake Patterns to Enforce a Good Modular Design” https://www.youtube.com/watch?v=eC9-iRN2b04
 - 17 C++ Weekly - Ep 78 - Intro to CMake (Old version - see links) https://www.youtube.com/watch?v=HPMvU64RUTY
+- 18 Florent Castelli: Introduction to CMake https://www.youtube.com/watch?v=jt3meXdP-QI
 - 19 Android OpenCV with Native C++ Installation https://www.youtube.com/watch?v=12kkJQOmCF4
 - 20 C++ Weekly - Ep 208 - The Ultimate CMake / C++ Quick Start https://www.youtube.com/watch?v=YbgH7yat-Jo
 - 20 Better CMake https://www.youtube.com/playlist?list=PL8i3OhJb4FNV10aIZ8oF0AA46HgA2ed8g
