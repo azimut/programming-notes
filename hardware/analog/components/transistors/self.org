@@ -10,6 +10,14 @@
   - current amplifiers
   - a variable resistors
 
+- Types
+  - TTL (Transistor Transistor Logic)
+    - BJT (Bipolar Juntion Transistor)
+      - PNP
+      - NPN
+  - CMOS (Complimentary MOSFET)
+    - MOSFET
+
 - States
   - =Saturation=: when there is current in base
   - =Cutoff=: when there is no current in base

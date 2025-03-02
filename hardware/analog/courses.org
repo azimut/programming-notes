@@ -1,0 +1,160 @@
+- 07 6.002 | Circuits and Electronics
+  * https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/video_galleries/video-lectures/
+
+- 10 Introduction to Microelectronics - Josh Hug - UC Berkeley
+  * [[https://archive.org/details/ucberkeley_webcast_KvN1QYJcb3I][Lecture 1: Introduction, Ohm's Law, Sign Conventions]]
+  * [[https://archive.org/details/ucberkeley_webcast_fwKGFsAaWIA][Lecture 2: Kirchoff's Laws, Voltage and Current Divider, Node Voltage Method]]
+  * [[https://archive.org/details/ucberkeley_webcast_lSSOPNKkOww][Lecture 3: Node Voltage contd., Superposition, Transformation Theorems, Simulation, Strain Gauge]]
+  * [[https://archive.org/details/ucberkeley_webcast_SqKG565bfVM][Lecture 4: More Node Voltage and Thevenin Equivalents, Intro to Op-Amps]]
+  * [[https://archive.org/details/ucberkeley_webcast_N8Zfnqpxo08][Lecture 5: Introduction to Op-Amps]]
+  * [[https://archive.org/details/ucberkeley_webcast_PrFDk6Nz_PQ][Lecture 6: Op-Amps continued]]
+  * [[https://archive.org/details/ucberkeley_webcast_Tz3Wa_K1rlw][Lecture 7: Op-amps in saturation and with positive feedback, MyDaq]]
+  * [[https://archive.org/details/ucberkeley_webcast_ieOycqIqc0s][Lecture 8: Capacitors and Inductors , Node Voltage with capacitors and inductors, ODEs]]
+  * [[https://archive.org/details/ucberkeley_webcast__KsdRlcsdrI][Lecture 9: DE review, solving RC, RL circuits]]
+  * [[https://archive.org/details/ucberkeley_webcast_B4iekia-r2c][Lecture 10: LC, RLC circuits, intro to phasors and impedance]]
+  * [[https://archive.org/details/ucberkeley_webcast_gfBEgeJYH4Q][Lecture 11: Phasors, Impedence, Transfer functions, Filters, Bode plots]]
+  * [[https://archive.org/details/ucberkeley_webcast_bg40AnlSPhw][Lecture 12: Transfer Functions, Filters, Bode Plots]]
+  * [[https://archive.org/details/ucberkeley_webcast_ccuicMSIbo8][Lecture 13: Bode Plots, Intro to Integrated Circuits and Digital Logic 1]]
+  * [[https://archive.org/details/ucberkeley_webcast_9qNgeUPXp8A][Lecture 14: Power, Intro to Integrated Circuits and Digital Logic 2]]
+  * MISSING
+  * [[https://archive.org/details/ucberkeley_webcast_KSUXsbbsuNc][Lecture 16: Power in Digital Circuits, CMOS, Intro to Diodes]]
+  * [[https://archive.org/details/ucberkeley_webcast_pHUDY-Pgihc][Lecture 17: Tradeoffs in Digital Circuits (Power, Speed, Cost), Diodes]]
+  * [[https://archive.org/details/ucberkeley_webcast_VDQSAt6M_r4][Lecture 18: Intro to Semiconductor Physics, PN Junctions, Chip Manufacturing]]
+
+* Course: The Great Courses Understanding Modern Electronics
+** 1 Electricity and Electronics
+
+- =Electronics=
+  - involves the *control* of one ~electrical circuit~
+  - by another
+
+- =Electrical Circuit=
+  - is an interconnection of *components*
+  - intented to do something useful.
+
+- Both vacuum tubes and transistors
+  - allows one electronic circuit to *control* another
+  - transistors being "solid state" devices
+  [[https://cs.calvin.edu/activities/books/rit/chapter2/images/transhist.gif]]
+
+- 1946 First Computer (ENIAC), had 20k vacuum tubes.
+
+- Ohm's law
+  - I = V/R
+
+- Electric Power
+  - in Watts
+  - P = I*V
+
+** 2 Circuits and Symbols
+
+- simplest circuit = battery + resistor
+
+** 3 Instruments and Measurement
+
+#+begin_src
+  voltage <-> across
+  current <-> through
+#+end_src
+
+- volts don't go through anything
+  - they aren't a flow
+  - they are the potential of difference across 2 points
+
+- Voltmeter (measure voltage)
+  - ideal ones should have infinite resistance to affect less measurements, through which current cannot flow
+    - analogs have 20k ohms
+    - digitals have 1M,10M ohms
+  - we put it in *parallel* with what we want to measure
+    #+ATTR_ORG: :width 200
+      [[https://buphy.bu.edu/~duffy/PY106/Voltmeter.GIF]]
+
+- Ampmeter (Measure current)
+  - ideal one should have zero resistance
+  - put it in series / break the circuit
+
+- Ohmmeter (measure resistance)
+  - you to be more "active", generate a current
+  - you need to disconnect it from the circuit
+
+** 4 AC vs DC
+
+#+ATTR_ORG: :width 200
+#+CAPTION: AC to DC, simple power supply
+[[https://www.homemade-circuits.com/wp-content/uploads/2012/04/power2Bsupply2Bcircuit2Busing2Bsingle2Bdiode.png]]
+
+- DC from batteries, constant
+- AC from power outlet, time varying
+  - easier to step down/up voltage
+  - characteristics
+    + peak amplitude/voltage
+    + rms (root-mean-square) amplitude/voltage
+    + period: time for one full cycle
+    + frequency: number of cycles per second (Hz)
+  - in US: 120v, 60Hz powerlines (peak 170v, rms 120v)
+
+- Voltage regulators
+
+** 5 Up the Trebble, Down the Bass
+
+- aka filter circuits (with capacitors)
+- project TODO: twin-t filter / notch filter
+  [[http://www.learningaboutelectronics.com/images/Twin-t-notch-filter.png]]
+
+** 6 Semiconductors
+
+- sillicon acts as semiconductor
+  - every sillicon atom is bind to his neighbours by 2 electrons
+  - at room temperature one of the 2 electrons might leave
+  - creating ~holes~ (aka missing electrons) on it
+  - the holes give the conductivity
+
+- most semiconductors are doped sillicon
+  - added impurities/dopants (eg: phosphorus, boron)
+  - resulting in ~N-type~ and ~P-type~ semiconductors
+  - depending if electro(N)s or (P)ositive holes carry the current
+
+- =PN Junction= (aka diode)
+  [[http://hyperphysics.phy-astr.gsu.edu/hbase/Solids/imgsol/pn2.png]]
+   - a P-type+N-type semiconductor
+  - leaves the junction with few free charges (aka _bad conductor_)
+    - a =depletion region/zone=
+    - which can be temporarily removed, with a battery in the right polarity aka *forward bias*
+
+- Types of diodes: zener, photovoltaicell, led
+
+** 7 Transistors: How they work
+- FET(MOS,J), BJT
+- BJT(NPN,PNP)
+** 8 Transistors: as amplifiers
+
+- Common Emitter Amplifier
+  - load line analysis (?
+    - there is a cutoff of a max input voltage we can receive before cutting off the amplified signal
+  - needs biasing circuit or diode on transistor won't work
+    - with resistors carefully selected
+    - provides current even when there is no other input current
+    - input
+      - needs to be really small
+      - coupled with a capacitor, to block direct current (DC can't get through it)
+      - out of phase with the output
+  - an extra resistor (50ohms) on the emitter lead gives a better bias
+    - protects transistor
+    - less distortion
+    - give you a fixed gain
+    - an capacitor in parallel with it would also help
+  #+ATTR_ORG: :width 200
+  [[https://blog.mbedded.ninja/_astro/bjt-common-emitter-amplifier.CU7QYcts.png]]
+
+** TODO 9 Building an Audio Amplifier
+
+- 2-stage common-emitter amplifier
+  - stage 2 is basically a copy of stage 1
+  - in between a capacitor
+  - added an emmitter follower
+    - aka a common collector configuration
+    - aka current amplifier
+    - to not draw current when quiet
+  - added volume control
+    - at the output of the stage 1
+    - or at the output of the second stage

@@ -28,9 +28,13 @@
   - logic-level ones <2v
 - voltage based switching
 - a block of ~P-type~ with probes of ~N-type~ (in N-type transistors)
-- a metal gate layer above a insulating oxide layer
+- a metal gate layer above a insulating oxide layer, that controls flow of an electric field
 - when a (+) is given to the gate,
   it pulls electrons making the whole middle section N-type
   closing the circuit
+- features
+  - less power
+  - much smaller
+  - easy to damage
 #+ATTR_ORG: :width 200
 [[https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Lateral_mosfet.svg/800px-Lateral_mosfet.svg.png]]

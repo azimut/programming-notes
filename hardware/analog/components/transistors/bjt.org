@@ -16,6 +16,14 @@
   - ~Ib~ Base Current
   - ~Ic~ Collector Current
 - Allows ~Ic~ to flow, when a small ~Ib~ flows
+- Similar to a *diode* (aka PN), but with an extra element
+- Types
+  - NPN: small current from from B to E, triggers a large current from C to E
+  - PNP: a small current from E to B, triggers a bigger current from E to C
+- Features
+  - +power consumption
+  - lower density (harder to fit on a space)
+  - more durable
 
 #+CAPTION: operating voltages
 #+ATTR_ORG: :width 400

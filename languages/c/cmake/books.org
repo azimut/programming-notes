@@ -2,6 +2,9 @@
 
 - https://llvm.org/docs/CMakePrimer.html
 - https://gist.github.com/mbinna/c61dbb39bca0e4fb7d1f73b0d66a4fd1
+- https://cliutils.gitlab.io/modern-cmake/README.html
+- https://www.jetbrains.com/help/clion/quick-cmake-tutorial.html
+- https://cmake.org/cmake/help/latest/guide/tutorial/index.html
 - https://cmake.org/getting-started/
 - https://github.com/dev-cafe/cmake-cookbook
 - https://github.com/TheErk/CMake-tutorial

@@ -243,3 +243,56 @@ public class Singleton {
 - Is a problem when it percolates faaar beyond one expect it to happen.
   - The introduction of the nil is not local to the use of it.
   - We might lose the line of the error
+
+* Interview: 2012 - David Nolen on Logic and Constraint Programming https://www.infoq.com/interviews/nolen-logic-programming/
+  - Book: "Multiparadigm Programming in Mozart/Oz"
+  - Book: "Concept techniques and models of computer programming"
+    "The book to read after SICP"
+    Seeeems to be a "Paradigm programming" class type of book.
+    2014 https://www.youtube.com/playlist?list=PLhMnuBfGeCDO488LRJkng6nWzCQrIN1G1
+  - A logic programming library for Clojure https://github.com/clojure/core.logic
+  - Talk: 2012 - Post Functional - David Nolen https://www.youtube.com/watch?v=LXVLrfgQgiQ
+    - NO SCREEN :(
+    - Talk: 2011 - We Really Don't Know How to Compute! - Gerry Sussman -  https://www.youtube.com/watch?v=Rk76BurH384
+      - "Software still complex"
+    - Talk: 2012 - Extracting Energy from the Turing Tarpit - Alan Kay - https://www.youtube.com/watch?v=Vt8jyPqsmxE
+      - Design "WHAT" languages, not "HOW"
+    - "...there is something deeply concurrent in Prolog"
+    - miniKanren is an embedded Domain Specific Language for logic programming. http://minikanren.org/
+      https://github.com/TheReasonedSchemer2ndEd/CodeFromTheReasonedSchemer2ndEd
+      Book: The Reasoned Schemer, Second Edition
+    - "If you have a purely functional design you get backtracking for free"
+  - Talk: 2009 - Organizing Functional Code for Parallel Execution; or, foldl and foldr Considered Slightly Harmful https://vimeo.com/6624203
+  - GECODE https://www.gecode.org/
+    "Gecode is an open source C++ toolkit for developing constraint-based systems and applications. Gecode provides a constraint solver with state-of-the-art performance while being modular and extensible"
+  - Datalog: https://en.wikipedia.org/wiki/Datalog
+    is a declarative logic programming language that syntactically is a subset of Prolog.
+  - Datomic: https://en.wikipedia.org/wiki/Datomic
+    is a distributed database and implementation of Datalog.
+    It has ACID transactions, joins, and a logical query language, Datalog.
+  - "Haskell has superlight processes"
+* Talk: 2008 - The Lively Kernel - Dan Ingalls https://www.youtube.com/watch?v=gGw09RZjQf8
+  - "Why is it getting harder?"
+  - OS>Browser>Javascript>Widgets
+  - No HTML intermediate, using svg
+  - class browser, feels smalltalkie
+  - some kind of webapps, running reaaaaaaally smoth for that age
+* Talk: 2011 - Programming and Scaling - Alan Kay https://www.youtube.com/watch?v=YyIQKBzIuBY
+  http://lambda-the-ultimate.org/node/4325
+  - Argue "the right way"
+  - "in history you can find people like Bob Barton that we can only emulate their ideas in software today"
+  - Bob Barton machine had "capabilities".
+  - Paper: 1987 A New Approach to the Functional Design of a Digital Computer
+    https://people.eecs.berkeley.edu/~kubitron/courses/cs252-S10/handouts/papers/barton.pdf
+  - "we confuse our beliefs with reality"
+  - "the internet worked out so well but the web is a mess"
+  - "one of the problems of the new ideas is when things get translated
+     into C based form in order to be recognizable to people"
+  - "one of the mistakes we made years ago is to make objects too small, we can get more of universal object"
+  - "knowledge trumps IQ"
+    - "If you can get a supreme genius to invent calculus, those with normal IQ we can learn it"
+    - knowledge is silver
+    -   outlook is gold
+    -        IQ is a lead weight
+  - "He who only know his own generation remains forever a child - Ciceron"
+  - "Destroy the present to see the whole past"

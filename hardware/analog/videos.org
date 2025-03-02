@@ -1,0 +1,49 @@
+- Transistors: https://www.youtube.com/watch?v=X31B1pVow1o
+* channels
+
+- https://www.youtube.com/@GadgetReboot
+- IMSAI guy basics https://www.youtube.com/playlist?list=PLXDK0MeyK4Zj7aS1_kkNKaRwiWeBhNZb0
+- https://www.youtube.com/@EngineeringMindset/playlists
+- https://www.youtube.com/@EEVblog/playlists
+- https://www.youtube.com/@jeriellsworth/videos
+- https://www.youtube.com/playlist?list=PLkyBCj4JhHt9dIWsO7GaTU149BkIFbo5y
+- https://www.youtube.com/@greatscottlab/videos
+- https://www.youtube.com/@bigclivedotcom/videos
+- https://www.youtube.com/@Afrotechmods/videos
+- https://www.youtube.com/@IMSAIGuy/videos
+- https://www.youtube.com/@HaseebElectronics/videos
+- https://www.youtube.com/c/ShawnHymel/videos
+- RSD Academy https://www.youtube.com/playlist?list=PLL_nf1OmixTT8ZPpWYcxVEjsp33y0C0o9
+- Jonathan Valvano
+  Embedded Systems - Shape the World
+  https://www.youtube.com/playlist?list=PL_RVM1q4YIETsC1_nFjgBF9X0jKebDucF
+- Electronic Basics by "GreatScott!"
+  https://www.youtube.com/playlist?list=PLAROrg3NQn7cyu01HpOv5BWo217XWBZu0
+- The Learning Circuit by "element14 presents"
+  https://www.youtube.com/playlist?list=PLwO8CTSLTkii9S_vhEOsyJ17RI3jjBZ95
+- Khan Academy https://www.youtube.com/playlist?list=PLSQl0a2vh4HCLqA-rhMi_Z_WnBkD3wUka
+  Introduction to electrical engineering https://www.youtube.com/playlist?list=PLSQl0a2vh4HBSM5a6HtETI__plvXdNdb4
+  Circuit analysis https://www.youtube.com/playlist?list=PLSQl0a2vh4HDoMKF1cHmklv2iC8TN85U3
+  Electrostatics https://www.youtube.com/playlist?list=PLSQl0a2vh4HCTwGArjMHobDjOfDV8nuso
+  Home-made robots https://www.youtube.com/playlist?list=PLSQl0a2vh4HC6eEYIcUS8ZL5Jxdu4InKl
+  Lego robotics https://www.youtube.com/playlist?list=PLSQl0a2vh4HAEEAqLP03EUFopjaN68QMr
+  Reverse engineering https://www.youtube.com/playlist?list=PLSQl0a2vh4HDNGLPZvI2UTyuOuLOXXn0I
+
+* How semiconductors work - Ben Eater
+
+https://www.youtube.com/watch?v=33vbFFFn04k
+
+- In his purest form a crystal of silicon (Si^+4) is NOT conductive
+  So silicon used in electric devices is impure or "doped" to make it semi-conductive.
+  1)Fosfurus is added (P^+5), adds extra electrons
+  2)Boron is added (B^+3), leaves "holes" of electrons
+
+- "Charge carriers" can be either, electrons (N- type) or "holes"(P- type)
+
+- [N||P]
+     ^--"PN junction", creates a =depletion region= preventing current to flow
+
+- With >0.6V with - to N and + to P there is current flow
+             with + to N and - to P there is NOT current flow
+
+- while current flow of electrons is from negative to positive it doesn't matter in practice as long one is consistent

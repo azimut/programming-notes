@@ -1,3 +1,4 @@
+- https://leanpub.com/purescript/read
 - book
   https://github.com/JordanMartinez/purescript-jordans-reference
   https://jordanmartinez.github.io/purescript-jordans-reference-site/

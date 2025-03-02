@@ -1,0 +1,6 @@
+- Active Learning Module Lab Activities, Circuits I https://wiki.analog.com/university/courses/alm1k/alm_circuits_lab_outline
+- Electronics I and II: https://wiki.analog.com/university/courses/electronics/text/electronics-toc
+- Lessons in Electric Circuits https://www.allaboutcircuits.com/textbook/
+- Navy Book http://web.archive.org/web/20041102181627/http://www.phy.davidson.edu:80/instrumentation/NEETS.htm
+- Composed by J. B. Calvert https://mysite.du.edu/~etuttle/electron/elecindx.htm
+- https://www.mattkeeter.com/blog/2022-08-11-udp/

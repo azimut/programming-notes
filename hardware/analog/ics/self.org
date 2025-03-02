@@ -1,0 +1,51 @@
+- Chip Tips by Rober Baruch
+  https://www.youtube.com/playlist?list=PLEeZWGE3PwbbCry_aGdOg87IXSAA7c6LQ
+
+- https://en.wikipedia.org/wiki/Integrated_circuit
+  - Germanium
+    - 1958-
+    - Creator: Jack Kilby @Texas Instruements
+  - Silicon
+    - 1959-
+    - Creator: Robert Noyce @Fairchild Semiconductor
+
+* pins
+|-----------+------------------------------------|
+|           | description                        |
+|-----------+------------------------------------|
+| CS        | Chip Select                        |
+| E?        | Chip Enable                        |
+| PRE       | Write Protect Enable               |
+| CLK       | Serial Clock                       |
+| SCL       | Serial Clock                       |
+| DI        | Data IN                            |
+| DO        | Data Out                           |
+| WE        | Write Enable                       |
+| OE        | Output Enable                      |
+| WC        | Write Control                      |
+| SERIAL IN | data input                         |
+| STROBE    | storage clock pulse                |
+|-----------+------------------------------------|
+| SDA       | Serial Data Address I/O            |
+| A?        | Address ?                          |
+| I/O?      | Input Output ?                     |
+|-----------+------------------------------------|
+| GND       | Ground                             |
+| Vss       | Ground                             |
+| Vcc       | +5V Power Supply (Voltage)         |
+|-----------+------------------------------------|
+| NC        | No Connect; No Internal Connection |
+|-----------+------------------------------------|
+* date labels
+
+- Date formats: YYWW, YWW, YMW, YYWWRR, YWWR
+  - https://telcontar.net/KBK/tech/IC_dates
+  - RR 2-digit number
+  - YY 2-digit year
+  - Y  1-digit year
+  - WW 2-digit week of year
+  - W  1-digit week of month
+  - M  1-char month
+  - [[http://bedienungsanleitung.elektronotdienst-nuernberg.de/din-en-60062.html][West german (year) code dates]]
+  [[https://telcontar.net/KBK/tech/images/IC_dates/IC_dates--GoldStar_YYWW.svgz]]
+
