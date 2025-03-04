@@ -2,6 +2,7 @@
 - article: llm agent https://tadeodonegana.com/posts/building-agents-my-notes/
 - DataSets
   - https://en.wikipedia.org/wiki/List_of_datasets_for_machine-learning_research
+  - https://en.wikipedia.org/wiki/Iris_flower_data_set
   - https://en.wikipedia.org/wiki/MNIST_database
   - https://en.wikipedia.org/wiki/ImageNet
 
@@ -67,6 +68,9 @@
   a critical reading list for engineers, designers, and policy makers
   https://github.com/rockita/criticalML
 - https://www.youtube.com/playlist?list=PLl8OlHZGYOQ7bkVbuRthEsaLr7bONzbXS
+- Channel https://www.youtube.com/@vlavrenko/playlists
+  - Neural Networls and Backpropagation https://www.youtube.com/watch?v=jZYz0EUPYBI&list=PLBv09BD7ez_4Bs9j3o8l_ZTjQZoN_3Oqs
+
 * Channels
 - Will Kwan https://www.youtube.com/c/WillKwan/videos
 - Instituto de Calculo Secretaria https://www.youtube.com/channel/UCzcbeaNQEIhOFBRBdYx1NEA
