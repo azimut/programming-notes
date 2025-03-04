@@ -7,7 +7,7 @@
 
 - *stores* electricity in a ~electrostatic field~
   - the field of force between 2 electrically charged bodies
-  - _conductors_ separated by an _insulator/dielectric_
+  - aka _conductors_ separated by an _insulator/dielectric_
 
 - Specs
   - capacitance = ratio of charge to voltage

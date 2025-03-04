@@ -1,0 +1,5 @@
+- https://en.wikipedia.org/wiki/Electronic_component
+- Classification
+  - active
+  - passive
+  - electromechanic

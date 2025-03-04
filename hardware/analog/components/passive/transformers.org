@@ -1,0 +1,6 @@
+- An inductor wound with +1 coil of wire
+- Changes in voltage between wires change the current
+
+|----------+---------------------+-----------------------|
+| toroidal | ferrite donut, coil | stepping +/- voltages |
+|----------+---------------------+-----------------------|
