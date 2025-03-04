@@ -1,0 +1,69 @@
+* editors
+- yasnippets https://github.com/yangwen0228/unimacs/tree/bbeb3195000d8c1fd8ba436b47aa65d868769206/utils/snippets/tcl-mode
+* android
+- https://www.androwish.org/home/home
+- https://wiki.tcl-lang.org/page/Tcl+and+android
+- https://wiki.tcl-lang.org/page/AndroWish
+- 13 Android Application Development Using AndroWish And The Scripting Language Tcl/Tk (English Version)
+  by superlinux https://www.youtube.com/playlist?list=PLsAEIIjTPIo-sLNh3gL0vj0g6nKUJ0hSU
+- 17 Why AndroWish was a bad idea http://wookie.tcl.tk/39493
+- bug: https://www.reddit.com/r/decentespresso/comments/1bjju9l/androwish_help/
+  - cannot see fs
+  - cannot use blutooth
+* standalone executable
+
+- 2020 | Building Tcl 8.6 single file applications - a step-by-step guide
+  https://www.magicsplat.com/blog/starpack-example/
+- https://www.tcl-lang.org/software/tcltk/bindist.html
+- https://sourceforge.net/projects/kbskit/
+- https://freewrap.dengensys.com/
+- http://kitcreator.rkeene.org/fossil/index
+- golang
+  - allows shipping tcl/tk binaries, without c dependencies
+  - https://pkg.go.dev/modernc.org/tk9.0
+  - https://wiki.tcl-lang.org/page/Tcl%2FTk+application+binaries+through+Go
+
+* TclKit http://tclkits.rkeene.org/fossil/wiki/Downloads
+- "batteries included" tcl distribution
+- distributed in a single file
+- can distribute custom scripts too as a single binary file (?
+*** Example: Hello world
+#+begin_src sh
+  $ ls
+  sdx.kit test.tcl
+  $ cat test.tcl
+  puts "Hello Tcl"
+  $ tclkitsh sdx.kit qwrap test.tcl
+  $ ls
+  sdx.kit test.tcl test.kit
+  $ tclkitsh test.kit
+  $ tclkitsh sdx.kit unwrap test.kit
+  $ ls
+  sdx.kit test.tcl test.kit test.vfs/
+  $ cp ~/bin/tclkitsh tclkitsh-runtime
+  $ tclkitsh sdx.kit wrap test -runtime tclkitsh-runtime
+  $ ./test
+#+end_src
+*** Example: ?
+$ tclkitsh sdx.kit wrap test -runtime tclkitsh-runtime
+$ ./test
+
+#+NAME: test.vfs/lib/app-test/test.tcl
+#+begin_src tcl
+  package provide app-test 1.0
+  package require starkit
+
+  puts "Hello Tcl"
+
+  set fname [file join $starkit::topdir payload.txt]
+  set fd    [open $fname]
+  set fdata [read $fd]
+
+  puts "Contents of $fname:"
+  puts $fdata
+#+end_src
+#+NAME: test.vfs/payload.txt
+#+begin_src
+  Hello Tcl from CFS
+#+end_src
+

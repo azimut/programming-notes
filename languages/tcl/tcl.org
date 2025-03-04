@@ -11,31 +11,6 @@
 - Used in F5's BIG-IP iRules https://my.f5.com/manage/s/article/K6091
   - TCL version 8.4.6
   - https://clouddocs.f5.com/api/irules/
-* tools
-** editors
-- yasnippets https://github.com/yangwen0228/unimacs/tree/bbeb3195000d8c1fd8ba436b47aa65d868769206/utils/snippets/tcl-mode
-** android
-- https://www.androwish.org/home/home
-- https://wiki.tcl-lang.org/page/Tcl+and+android
-- https://wiki.tcl-lang.org/page/AndroWish
-- 13 Android Application Development Using AndroWish And The Scripting Language Tcl/Tk (English Version)
-  by superlinux https://www.youtube.com/playlist?list=PLsAEIIjTPIo-sLNh3gL0vj0g6nKUJ0hSU
-- 17 Why AndroWish was a bad idea http://wookie.tcl.tk/39493
-- bug: https://www.reddit.com/r/decentespresso/comments/1bjju9l/androwish_help/
-  - cannot see fs
-  - cannot use blutooth
-** standalone executable
-
-- 2020 | Building Tcl 8.6 single file applications - a step-by-step guide
-  https://www.magicsplat.com/blog/starpack-example/
-- https://www.tcl-lang.org/software/tcltk/bindist.html
-- https://sourceforge.net/projects/kbskit/
-- https://freewrap.dengensys.com/
-- http://kitcreator.rkeene.org/fossil/index
-- golang
-  - allows shipping tcl/tk binaries, without c dependencies
-  - https://pkg.go.dev/modernc.org/tk9.0
-  - https://wiki.tcl-lang.org/page/Tcl%2FTk+application+binaries+through+Go
 
 * language
 |-------------------------------+----------------------------------|
@@ -53,8 +28,9 @@
 |       [ expr {1 + 2} ]        |                                  |
 | proc + {a b} { expr {$a+$b} } | procedure, implicit return       |
 |-------------------------------+----------------------------------|
+
 - "Tcl casts everything into the mold of a _command_, even programming constructs".
-- there are no reserved words
+- there are NO reserved keywords
 - Features
   - Dynamically typed, everything can be treated as a string
   - Bytecode Compiler

@@ -18,6 +18,7 @@
 - https://www.magicsplat.com/articles/tdbc.html
 - Style https://wiki.tcl-lang.org/page/Tcl+Style+Guide
 - Style https://wiki.tcl-lang.org/page/Best+Practices
+
 * Lainchan post
 
 Tcl is the best scripting language for the real but still productive hacker
@@ -231,11 +232,6 @@ http://antirez.com/articoli/tclmisunderstood.html
   #+end_src
 
 * 19 | Linux Magazine #7
-- Substitutions
-  1) Variable ($)
-  2) Command ([])
-  3) Backslash (\)
-- All substitutions work inside ("")
 - Curly braces that start a block MUST be on the same line as the previous part of the statement
   #+begin_src tcl
     # WRONG
@@ -343,72 +339,6 @@ http://antirez.com/articoli/tclmisunderstood.html
   } else {
       puts "Grep executed ok: $results"
   }
-#+end_src
-** TK
-- latest version on 2007, has themable widgets
-- the top-level window/widget is named "." and childs ".childA"
-- *-variable VAR* when selected it sets the variable to the
-  *-value VAL* given
-- Using TK, either
-  1) #!/usr/bin/wish
-  2) package require Tk
-*** Example
-#+begin_src tcl
-  set yesno -1
-
-  wm title . "Which do you like?"
-  wm geometry . 300x90
-
-  radiobutton .rb1 -variable yesno -value 1 -text "I like yes"
-  radiobutton .rb2 -variable yesno -value 0 -text "I like no"
-  button .ok -text "Ok" -command { puts $yesno; exit }
-
-  grid .rb1 -sticky nw ;# -sticky for alignment, nw = north west
-  grid .rb2 -sticky nw
-  grid .ok
-#+end_src
-** TclKit http://tclkits.rkeene.org/fossil/wiki/Downloads
-  - "batteries included" tcl distribution
-  - distributed in a single file
-  - can distribute custom scripts too as a single binary file (?
-*** Example: Hello world
-#+begin_src sh
-  $ ls
-  sdx.kit test.tcl
-  $ cat test.tcl
-  puts "Hello Tcl"
-  $ tclkitsh sdx.kit qwrap test.tcl
-  $ ls
-  sdx.kit test.tcl test.kit
-  $ tclkitsh test.kit
-  $ tclkitsh sdx.kit unwrap test.kit
-  $ ls
-  sdx.kit test.tcl test.kit test.vfs/
-  $ cp ~/bin/tclkitsh tclkitsh-runtime
-  $ tclkitsh sdx.kit wrap test -runtime tclkitsh-runtime
-  $ ./test
-#+end_src
-*** Example: ?
-$ tclkitsh sdx.kit wrap test -runtime tclkitsh-runtime
-$ ./test
-
-#+NAME: test.vfs/lib/app-test/test.tcl
-#+begin_src tcl
-  package provide app-test 1.0
-  package require starkit
-
-  puts "Hello Tcl"
-
-  set fname [file join $starkit::topdir payload.txt]
-  set fd    [open $fname]
-  set fdata [read $fd]
-
-  puts "Contents of $fname:"
-  puts $fdata
-#+end_src
-#+NAME: test.vfs/payload.txt
-#+begin_src
-  Hello Tcl from CFS
 #+end_src
 * 20 | Why I'm TCL-ish
 https://colin-macleod.blogspot.com/2020/10/why-im-tcl-ish.html

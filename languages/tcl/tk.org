@@ -3,11 +3,14 @@
   - 1991
   - Tcl extension
   - initially resambled [[https://en.wikipedia.org/wiki/Motif_(software)][Motif]]
+  - Changelog:
+    - 2024 - 9.0
+    - 2016 - 8.5
+    - 2007 - ??? - themeable widgets
 
 * cli (wish)
 
 - #!/usr/bin/env wish
-
 - #!/usr/bin/tclsh
   package require Tk
 
@@ -15,6 +18,7 @@
 
 * widgets
 
+- the top-level window/widget is named "." and childs ".childA"
 - api https://www.tcl-lang.org/man/tcl8.6/TkCmd/contents.htm
 - thirdparty https://wiki.tcl-lang.org/page/Useful+Tk+Widgets
 - tklib
@@ -77,6 +81,23 @@ treeview
 - https://github.com/janbodnar/Tcl-Tk-Examples
 - https://wiki.tcl-lang.org/page/Arts+and+Crafts+of+Tcl-Tk+Programming
 - https://wiki.tcl-lang.org/page/Graphics+with+Tcl
+
+** Example
+#+begin_src tcl
+  set yesno -1
+
+  wm title . "Which do you like?"
+  wm geometry . 300x90
+
+  radiobutton .rb1 -variable yesno -value 1 -text "I like yes"
+  radiobutton .rb2 -variable yesno -value 0 -text "I like no"
+  button .ok -text "Ok" -command { puts $yesno; exit }
+
+  grid .rb1 -sticky nw ;# -sticky for alignment, nw = north west
+  grid .rb2 -sticky nw
+  grid .ok
+#+end_src
+
 
 * codebases
 - official git gui
