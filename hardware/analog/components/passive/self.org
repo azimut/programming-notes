@@ -1,0 +1,2 @@
+- components that do NOT add energy to a circuit
+  - dissipate, store, or transform energy
