@@ -1,13 +1,15 @@
 - https://wiki.tcl-lang.org/page/Articles
 - 24 https://world-playground-deceit.net/blog/2024/10/tcl-closures.html
 - 24 Why I Like Tcl https://world-playground-deceit.net/blog/2024/why_tcl.html
-- Tcl/Ruby/Perl/Python https://tkdocs.com/tutorial/firstexample.html
-- 23 | Why Tcl? https://gist.github.com/nat-418/bdccb2428cde750c9f42bf9bbc1a50d3
-- 24 | https://cohost.org/sakiamu/post/177439-tcl-on-the-brain
-- 23 | https://forum.exercism.org/t/tcl-some-notes/5567
-- 06 | http://markroseman.com/tcl/dyingout.html
-- 04 | 10 Things I Hate About Tcl http://tleaves.com/2004/10/20/10-things-i-hate-about-tcl/
-- 94 | Why you should not use Tcl | Richard Stallman
+- 23 Why Tcl? https://gist.github.com/nat-418/bdccb2428cde750c9f42bf9bbc1a50d3
+- 24 https://cohost.org/sakiamu/post/177439-tcl-on-the-brain
+- 23 https://forum.exercism.org/t/tcl-some-notes/5567
+- 21 https://www.magicsplat.com/blog/tcltls/
+- 20 https://www.magicsplat.com/blog/obex-intro/
+- 20 https://www.magicsplat.com/blog/exploring-bluetooth/
+- 06 http://markroseman.com/tcl/dyingout.html
+- 04 10 Things I Hate About Tcl http://tleaves.com/2004/10/20/10-things-i-hate-about-tcl/
+- 94 Why you should not use Tcl | Richard Stallman
   https://vanderburg.org/old_pages/Tcl/war/0000.html
   https://vanderburg.org/old_pages/Tcl/war/0021.html
   https://web.archive.org/web/20040318215452/http://www.python.org/search/hypermail/python-1994q3/0612.html
@@ -159,8 +161,16 @@ Where to begin:
 
 Anon's page: https://wiki.tcl-lang.org/page/q3cpma
 
-* 06 | Tcl the Misunderstood
+* +06 | Tcl the Misunderstood+
+
 http://antirez.com/articoli/tclmisunderstood.html
+
+- Python is a better language than Tcl
+  - except at being embedded
+
+- Things very similar to _Lisp_ macros just happen using normal procedures.
+  - in a more powerful way than _Ruby_ blocks
+
 - Create procedures for operators
   #+begin_src tcl
     set operators [list + - * /]
@@ -181,31 +191,36 @@ http://antirez.com/articoli/tclmisunderstood.html
     set a 10
     repeat 5 {incr a};# will return 15
   #+end_src
+
+** Features
+
 - No types, but strict (string) format checks
   - You don't need serialization
   - Example: sending and receiving through a socket
     #+begin_src tcl
-      puts $socket $mylist ;# on one side
+      puts $socket $mylist      ;# on one side
       set mylist [read $socket] ;# on the other side
     #+end_src
-- Event drive I/O model
-  Example: concurrent tcp (SELECT based) server
+- event-driven I/O model, inspired Python's "twisted" framework
+  Example: concurrent tcp server - select(2) based
   #+begin_src tcl
     socket -server handler 9999
     proc handler {fd clientaddr clientport} {
         set t [clock format [clock seconds]]
-        puts $fd "Hello $clientaddr:clientport, currentdate is $t"
+        puts $fd "Hello $clientaddr:$clientport, current date is $t"
         close $fd
     }
     vwait forever
   #+end_src
-- Multiparadigm
-  Example: functional, calling lmap
+- Multiparadigm. Tcl is less rigid than Python, so there is less need for debate when using it.
+  Example: functional, calling lmap here returns a list of squares
   #+begin_src tcl
-    lmap i {1 2 3 4 5} { expr $i*$i }
+    lmap i {1 2 3 4 5} {
+        expr $i*$i
+    }
   #+end_src
 - Using introspection and eval/uplevel/upvar. You can redefine the language.
-  Example: memoize the rest of the function
+  Example: memoize the rest of a function
   #+begin_src tcl
     proc memoize {} {
         set cmd [info level -1]
@@ -222,8 +237,7 @@ http://antirez.com/articoli/tclmisunderstood.html
         ...
     }
   #+end_src
-- You can define a procedure called *unknown* which will be called
-  every time a command not defined is called.
+- You can define a procedure called ~unknown~, which will be called every time a command not defined is called.
   Can be used to write our own DSL.
 - Procedures that get an index, support "end-num" notation.
   Example:
@@ -341,12 +355,12 @@ http://antirez.com/articoli/tclmisunderstood.html
   }
 #+end_src
 * 20 | Why I'm TCL-ish
-https://colin-macleod.blogspot.com/2020/10/why-im-tcl-ish.html
-https://news.ycombinator.com/item?id=24897326
-- Most programming languages blend syntax and semantics.
-  Each language construct has individual rules for how it is written (syntax) and how it operates (semantics).
-  The language definition as a whole includes all of these.
-- In contrast TCL
+
+https://colin-macleod.blogspot.com/2020/10/why-im-tcl-ish.html [[https://news.ycombinator.com/item?id=24897326][[HN]​]]
+- Most programming languages blend *syntax* and *semantics*.
+  - Each language construct has individual rules for how it is written (syntax) and how it operates (semantics).
+  - The language definition as a whole includes all of these.
+- Contrasted with ~Tcl~
   - only syntactic rule are those which define how to invoke a generic command and pass data to/from it
   - Core has no syntax for arithmetic expressions, this is delegated to *expr*
 

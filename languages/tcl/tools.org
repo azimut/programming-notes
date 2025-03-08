@@ -12,6 +12,9 @@
   - cannot use blutooth
 * standalone executable
 
+- 20 tool https://github.com/electgon/tclpot
+- 10 https://anoved.net/2010/01/kitgen-build-system-for-tcltk/
+- 13 https://techtinkering.com/2013/02/20/compiling-a-tcl-script-into-an-executable/
 - 2020 | Building Tcl 8.6 single file applications - a step-by-step guide
   https://www.magicsplat.com/blog/starpack-example/
 - https://www.tcl-lang.org/software/tcltk/bindist.html

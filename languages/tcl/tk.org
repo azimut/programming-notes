@@ -27,30 +27,38 @@
 
 ** basic
 
-[[https://wiki.tcl-lang.org/page/button][button]]
-canvas
-checkbutton
-combobox
-entry
-frame
-label
-labelframe
-listbox
-menu
-menubutton
-message
-notebook
-panedwindow
-progressbar
-radiobutton
-scale
-scrollbar
-separator
-sizegrip
-spinbox
-text
-tk_optionMenu
-treeview
+[[https://www.tcl-lang.org/man/tcl/TkCmd/button.htm][button]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/canvas.htm][canvas]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/checkbutton.htm][checkbutton]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/combobox.htm][combobox]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/entry.htm][entry]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/frame.htm][frame]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/label.htm][label]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/labelframe.htm][labelframe]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/listbox.htm][listbox]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/image.htm][image]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/menu.htm][menu]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/menubutton.htm][menubutton]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/message.htm][message]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/panedwindow.htm][panedwindow]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/radiobutton.htm][radiobutton]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/scrollbar.htm][scrollbar]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/scale.htm][scale]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/spinbox.htm][spinbox]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/text.htm][text]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/tk_optionMenu.htm][tk_optionMenu]]
+
+** ttk
+
+[[https://www.tcl-lang.org/man/tcl/TkCmd/ttk_notebook.htm][ttk_notebook]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/ttk_panedwindow.htm][ttk_panedwindow]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/ttk_progressbar.htm][ttk_progressbar]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/ttk_scale.htm][ttk_scale]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/ttk_scrollbar.htm][ttk_scrollbar]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/ttk_separator.htm][ttk_separator]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/ttk_sizegrip.htm][ttk_sizegrip]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/ttk_spinbox.htm][ttk_spinbox]]
+[[https://www.tcl-lang.org/man/tcl/TkCmd/ttk_treeview.htm][ttk_treeview]]
 
 ** top level
 |--------------------+-------------------------------------------------------------|
@@ -100,14 +108,23 @@ treeview
 
 
 * codebases
+
 - official git gui
   https://git-scm.com/docs/git-gui/
   https://github.com/prati0100/git-gui/
+
 * videos
-- VecTcl image processing https://www.youtube.com/watch?v=88J0tVFE_ic
-- https://www.youtube.com/watch?v=fLEb_Hv7sY4
-- https://www.youtube.com/watch?v=bJpfmnEw_-Y
-- 21 | Simple Calculator using TCL/TK  https://www.youtube.com/watch?v=q7Zjy0tATW4
+
+- 21 Simple Calculator using TCL/TK  https://www.youtube.com/watch?v=q7Zjy0tATW4
+- 20 Tcl/Tk, The tclsh Shell and Scripts - PESU Academy
+  - https://vimeo.com/477489492
+  - https://vimeo.com/472879767
+- 16 Visualization of microscopic images with Tk (Paul Bloembergen & Frans van der Have) https://www.youtube.com/watch?v=fLEb_Hv7sY4a
+- 15 VecTcl image processing https://www.youtube.com/watch?v=88J0tVFE_ic
+- 13 Rapid Product Development with Tcl/Tk
+  - https://www.youtube.com/watch?v=bJpfmnEw_-Y
+  - https://www.youtube.com/watch?v=hP3-OKNxSJA
+
 * articles
 
 - 24 | v9 release https://www.theregister.com/2024/10/02/tcltk_version_9/

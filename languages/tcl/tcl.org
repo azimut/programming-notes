@@ -1,36 +1,49 @@
+#+TITLE: Tcl
+
 - https://en.wikipedia.org/wiki/Tcl
   - Author: John Ousterhout
   - 1988
   - Scripting Language, embeded in C
+  - Changelog
+    - 1999 8.1 full utf-8 support
+    - 2012 8.6 TclOO
+    - 2024 9.0 64-bit
 
 - tclsh https://www.tcl-lang.org/man/tcl/UserCmd/tclsh.htm
   - addon https://github.com/suewonjp/tclsh-wrapper
+- tool: implementation for J2ME supported phones https://www.hecl.org/
 
 * used in
+
 - https://wiki.tcl-lang.org/page/Who+Uses+Tcl
+- OpenOCD - Open on Chip Debugger https://openocd.org/
 - Used in F5's BIG-IP iRules https://my.f5.com/manage/s/article/K6091
   - TCL version 8.4.6
   - https://clouddocs.f5.com/api/irules/
 
 * language
-|-------------------------------+----------------------------------|
-|              <c>              |                                  |
-|-------------------------------+----------------------------------|
-|             "foo"             | grouping                         |
-|            { foo }            | literal grouping                 |
-|          [ print 1 ]          | command substitution             |
-|             $foo              | variable substitution            |
-|              \n               | backslash substitution (newline) |
-|-------------------------------+----------------------------------|
-|        [ list foo 1 ]         | lists, are just strings          |
-|         [ expt 1+2 ]          |                                  |
-|        [ expr 1 + 2 ]         |                                  |
-|       [ expr {1 + 2} ]        |                                  |
-| proc + {a b} { expr {$a+$b} } | procedure, implicit return       |
-|-------------------------------+----------------------------------|
+|-------------------------------+--------------------------------------|
+|              <c>              |                                      |
+|-------------------------------+--------------------------------------|
+|             "foo"             | grouping, supports all substitutions |
+|            { foo }            | literal grouping                     |
+|          [ puts 1 ]           | command substitution                 |
+|             $foo              | variable substitution                |
+|              \n               | backslash substitution (newline)     |
+|-------------------------------+--------------------------------------|
+|        [ list foo 1 ]         | lists, are just strings              |
+|         [ expt 1+2 ]          |                                      |
+|        [ expr 1 + 2 ]         |                                      |
+|       [ expr {1 + 2} ]        |                                      |
+| proc + {a b} { expr {$a+$b} } | procedure, implicit return           |
+|-------------------------------+--------------------------------------|
 
-- "Tcl casts everything into the mold of a _command_, even programming constructs".
+- "Tcl casts _everything_ into the mold of a ~command~, even programming constructs".
 - there are NO reserved keywords
+- everything is a (utf-8) string, there are NO TYPES
+  - what "it is" depends of the command that it is manipulating it
+  - no manual conversions / no serialization needed
+  - but strict format checks at runtime
 - Features
   - Dynamically typed, everything can be treated as a string
   - Bytecode Compiler
@@ -39,23 +52,121 @@
   - bignums
   - OO + FP + Imperative + Procedural
   - lambdas
-- variables are NOT declared but assigned to
-- Event Driven interfaces to sockets/files
+- Variables are NOT declared but assigned to.
+- Things very similar to _Lisp_ macros just happen using normal procedures.
+  - the ultimate late binding proglang
+- Event Driven interfaces to sockets & files
 - Supports ~line continuation~ by backslash
-- commands can be variadic, and with default values
 - Substitution, happens from left-to-right. =Just once=.
-- Values are *immutable*, not variables.
-- {*} works as ,@ does on LISP
-  causes the word to be splitted appart and passed to the command as separate arguments.
+- Values are *immutable*, variables not.
+- {*} works as ,@ does on LISP, causes the word to be splitted appart and passed to the command as separate arguments.
 
-** Commands
+** TclOO
+
+- since Tcl 8.6 (2012)
+- https://wiki.tcl-lang.org/page/TclOO
+- https://wiki.tcl-lang.org/page/TclOO+Tutorial
+
+#+begin_src tcl
+  oo::class create fruit {
+      method eat {} { # <-- can be overwritten by subclass, and called by "next"
+          puts "yummy!"
+      }
+  }
+  oo::class create banana {
+      superclass fruit
+      constructor {} {
+          my variable peeled; # <-- access instance variable
+          set peeled 0
+      }
+      method peel {} {
+          my variable peeled; # <-- my takes the place of this instance, aka $b
+          set peeled 1
+          puts "skin off!"
+      }
+      method edible? {} { # <-- reader
+          my variable peeled
+          return $peeled
+      }
+      method eat {} {
+          if {![my edible?]} {
+              my peel
+          }
+          next; # <-- call superclass method
+      }
+  }
+  set b [banana new]
+  $b eat
+#+end_src
+
+** procedures
+
+- aka user defined commands
+  #+begin_src tcl
+    proc + {a b} {
+        expr {$a+$b} # returns the last command
+    }
+  #+end_src
+
+- ~return~ breaks out of the procedure boundary and returns given value to caller
+- ~unknown~ procedure
+  - undefined by default
+  - called each time an undefined function is called
+  - can be used to write a DSL (?)
+
+** commands
 
 https://wiki.tcl-lang.org/page/Tcl+Commands
+
+- almost every command returns a value
+- can be _variadic_, and with default values
+- those that support index notation, support a ~end-NUM~ notation
+
+*** control flow
+
+- break/continue
+- return, breaks out of the procedure boundary and returns given value to caller
+- if/elseif/else
+- while
+- foreach
+- for
+- try
+- catch
+- coroutine
+- [[https://wiki.tcl-lang.org/page/tailcall][tailcall]]
+
+*** other
 
 - gets stdin line
 - read -nonewline stdin
 - concat
-- upvar
+- regexp
+- split
+- join
+- scan
+- array
+- string
+- incr
+
+|-----------+-----------------------------------------------------------|
+|       <r> |                                                           |
+|     apply | applies an anonymous function                             |
+|     array |                                                           |
+|      dict | are lists with an even number of elements, k,v            |
+|      expr | ME: performs variable substitution on given string        |
+| namespace | create/access/destroy contexts for commands and variables |
+|    puts/1 | prints argument, returns nothing                          |
+|    puts/2 | prints argument in given stream?, returns nothing         |
+|    regexp | matches                                                   |
+|    regsub | substitution                                              |
+|   uplevel | evaluates code, in the context of the calling procedure   |
+|     yield | ditto                                                     |
+|   yieldto | ditto                                                     |
+|      zlib | zlib library                                              |
+|-----------+-----------------------------------------------------------|
+*** lists
+
+- list -  creates a list with arguments, or an emtpy string
 - lappend
 - lassign
 - lindex
@@ -67,36 +178,9 @@ https://wiki.tcl-lang.org/page/Tcl+Commands
 - lreplace
 - lsearch
 - lsort
-- regexp
-- split
-- join
-- scan
-- list
-- array
-- string
-- if/else
-- foreach
-- [[https://wiki.tcl-lang.org/page/tailcall][tailcall]]
 
-|-----------+-----------------------------------------------------------------------------|
-| apply     | applies an anonymous function                                               |
-| array     |                                                                             |
-| catch     |                                                                             |
-| coroutine | create and produce values from coroutines                                   |
-| dict      | are lists with an even number of elements, k,v                              |
-| expr      | ME: performs variable substitution on given string                          |
-| list      | creates a list with arguments, or an emtpy string                           |
-| namespace | create/access/destroy contexts for commands and variables                   |
-| regexp    | matches                                                                     |
-| regsub    | substitution                                                                |
-| try       |                                                                             |
-| uplevel   | evaluates code in the context of the calling procedure, caller caller or... |
-| upvar     | create s alink to a variable in a different stack frame                     |
-| yield     | ditto                                                                       |
-| yieldto   | ditto                                                                       |
-| zlib      | zlib library                                                                |
-|-----------+-----------------------------------------------------------------------------|
 *** uplevel
+
 - Allows a command to be executed in a scope other than the current.
 - Has the net effect of transforming the call stack into a call tree.
 #+begin_src tcl
@@ -109,7 +193,10 @@ https://wiki.tcl-lang.org/page/Tcl+Commands
       }
   }
 #+end_src
+
 *** upvar
+
+- Create s alink to a variable in a different stack frame
 - Arranges for one or more local variables in the current procedure
   to ~refer~ to  variables in an enclosing procedure call or _global variables_
 #+begin_src tcl
@@ -119,7 +206,7 @@ https://wiki.tcl-lang.org/page/Tcl+Commands
   }
 #+end_src
 
-** Standard Library (tcllib)
+** standard library (tcllib)
 - https://www.tcl.tk/man/tcl8.6/TclCmd/contents.htm
 - https://www.tcl.tk/software/tcllib/
 - https://core.tcl-lang.org/tcllib/doc/trunk/embedded/md/toc.md
@@ -187,10 +274,15 @@ https://wiki.tcl-lang.org/page/Tcl+Commands
 - https://wiki.tcl-lang.org/page/Showcase
 - https://www.androwish.org/index.html/home
   https://www.androwish.org/index.html/wiki?name=undroidwish
-- OpenOCD - Open on Chip Debugger https://openocd.org/
 - NaviServer (a webserver)
   https://wiki.tcl-lang.org/page/NaviServer
   https://bitbucket.org/naviserver/naviserver/src/main/
+- tcp example
+  https://wiki.tcl-lang.org/page/The+simplest+possible+socket+demonstration
+  https://wiki.tcl-lang.org/page/A+little+client%2Dserver+example
+  https://wiki.tcl-lang.org/page/Network+server+application+template
+- examples https://en.wikibooks.org/wiki/Tcl_Programming/Examples
+- eggdrop's twitter https://github.com/horgh/twitter-tcl
 - First version of redis
   - took from https://gist.github.com/antirez/6ca04dd191bdb82aad9fb241013e88a8
   - [[./redis.tcl]]
@@ -199,9 +291,43 @@ https://wiki.tcl-lang.org/page/Tcl+Commands
 
 - '01 try/catch/finally implementation (before it was added to the language)
   https://code.activestate.com/recipes/68396-try-catch-finally/
-- tcp example
-  https://wiki.tcl-lang.org/page/The+simplest+possible+socket+demonstration
-  https://wiki.tcl-lang.org/page/A+little+client%2Dserver+example
-  https://wiki.tcl-lang.org/page/Network+server+application+template
-- examples https://en.wikibooks.org/wiki/Tcl_Programming/Examples
-- eggdrop's twitter https://github.com/horgh/twitter-tcl
+- control flow: repeat N {} (from "Tcl the misunderstood")
+  #+begin_src tcl
+    proc repeat {n body} {
+        set res ""
+        while {$n} {
+            incr n -1
+            set res [uplevel $body]
+        }
+        return res
+    }
+    set a 10
+    repeat 5 {incr a};# will return 15
+  #+end_src
+- Example: concurrent tcp server - select(2) based (from "Tcl the misunderstood")
+  #+begin_src tcl
+    socket -server handler 9999
+    proc handler {fd clientaddr clientport} {
+        set t [clock format [clock seconds]]
+        puts $fd "Hello $clientaddr:$clientport, current date is $t"
+        close $fd
+    }
+    vwait forever
+  #+end_src
+- Example: memoize the rest of a function (from "Tcl the misunderstood")
+  #+begin_src tcl
+    proc memoize {} {
+        set cmd [info level -1]
+        if {[info level] > 2 && [lindex [info level -2] 0] eq "memoize"} {
+            return
+        }
+        if {![info exists ::Memo($cmd)]} {
+            set ::Memo($cmd) [eval $cmd]
+        }
+        return -code return $::Memo($cmd)
+    }
+    proc myMemoizedProcedure { ... } {
+        memoize
+        ...
+    }
+  #+end_src
