@@ -1,4 +1,23 @@
+- Parts:
+  - Dendrites
+    - roles: excitory, inhibitory
+    - multiple per neuron
+    - receive impulses/INPUTS from other neurons
+    - each weighted (aka with a strength)
+  - Body (or Cyton):
+    - sums inputs
+    - fired/activated (binary)
+      - if a _threshold_ is met (squashing/sigmoid fn)
+      - out proportional to input
+  - Axon
+    - single OUTPUT, proportional to input
+    - branches into dendrites
+    - connects to other neurons
+
 * History
+
+- 94 https://www.teamten.com/lawrence/writings/plan02.html
+  - https://news.ycombinator.com/item?id=25068678
 
 - [[https://en.wikipedia.org/wiki/Artificial_neuron][Artificial neuron]]
 - [[https://en.wikipedia.org/wiki/Connectionism][Connectionism]]: NN research for the study of the human mental processes, were given the name of.
@@ -17,19 +36,6 @@
   - an exchange of chemicals
   - a transmition delay to sync firing
   - modulate their firing frequency
-
-- Parts:
-  - Dendrites
-    - roles: excitory, inhibitory
-    - multiple INPUTS
-    - each weighted (aka with a strength)
-  - Body (or Cyton):
-    - sums inputs
-  - Axon
-    - single OUTPUT fired/activated (binary)
-      - if a _threshold_ is met (squashing/sigmoid fn)
-      - proportional to input
-    - branches into dendrites
 
 ** 49: Hebb
 
@@ -62,6 +68,13 @@
 - James L. McClelland, David E. Rumelhart
 - book about Parallel Distributed Processing
 - introduced ~hidden layers~
+
+* Articles
+
+- https://bartoszmilewski.com/2024/03/22/neural-networks-pre-lenses-and-triple-tambara-modules/
+- https://bartoszmilewski.com/2024/03/24/neural-networks-pre-lenses-and-triple-tambara-modules-part-ii/
+- https://bartoszmilewski.com/2025/03/06/understanding-attention-in-llms/
+
 * Examples
 
 - Python https://iamtrask.github.io/2015/07/12/basic-python-network/
@@ -75,6 +88,7 @@
   - Python https://navoshta.com/traffic-signs-classification/
 - MNIST
   - C 1987 #4 Dr. Dobbs Journal
+    - SILOAM - Simple Image Learning On Adaptative Machinery
   - ? Python https://aosabook.org/en/500L/optical-character-recognition-ocr.html
   - Python https://victorzhou.com/blog/intro-to-cnns-part-1/
   - Go http://web.archive.org/web/20180326121901/https://sausheong.github.io/posts/how-to-build-a-simple-artificial-neural-network-with-go/
@@ -83,7 +97,7 @@
 * Videos
 
 - McCulloch
-  - Interview https://www.youtube.com/watch?v=8Wdz1Tj5084
+  - 69 Interview https://www.youtube.com/watch?v=8Wdz1Tj5084
   - Interview https://www.youtube.com/watch?v=wawMjJUCMVw
   - Interview https://www.youtube.com/watch?v=E3ePU8CWRf0
   - Minsky https://www.youtube.com/watch?v=yHValEmyKoM
@@ -93,3 +107,107 @@
 - Neural Networks: Zero to Hero by Andrej Karpathy https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ
 - JS CodeTrain https://www.youtube.com/playlist?list=PLRqwX-V7Uu6aCibgK1PTWWu9by6XFdCfh
 - https://www.youtube.com/watch?v=e5dVSygXbAE
+
+* Book: 2019 | Neural Networks for Electronics Hobbyists | Richard McKeon
+** Preface
+- "Illustrates how ~back propagation~ can be
+     used to adjust connection strengths or ~weights~ and train a network."
+- "We do this manually adjusting potentiometers in the ~hidden layer~"
+- Train a model VS Writing a Program
+- Going back to figure out *how* a neural network resolved a problem is called ~feature extraction~ delving deep into the ~hidden layers~
+** Chapter 1 - Biological Neural Networks
+- 44billion neurons in the human brain, and each is connected to thousands
+- Spoilers: Weights, activation potentials, transfer functions
+- ~Synapse~: The gap between neurons
+  ~Neurotransmitters~: chemical messangers send by neurons
+- Sometimes learning just happens
+- ~Biomimicry~ inspire solutions from nature
+- Software: Steps in training
+  1) Produce the result based on the inputs
+  2) Check the result against the correct answer we provided.
+  3) Adjust connection strenghts between neurons to improve results
+  4) Repeat, until errors get really small for all possible inputs
+- Hardware: Input Layer, Hidden Layer, Output Layer
+** Chapter 2 - Implementing Neural Networks
+- We train the NN and we build it in ways for it to
+  make adjustments and "learn" to solve the problem
+- Artificial Neurons
+  1) Inputs
+  2) Weight Adjustments
+  3) Summation
+  4) Transfer Function
+  5) Output (for our purposed, it will be a simple yes/no)
+- Type of NN used in the book:
+  "feed forward" using "back propagation" as the training algorithm
+- Feed Forward: signals are sent only in the forward direction
+- "Backpropagation of errors": if someone is contributing to a wrong answer, he needs to have is input reduced
+- Project will be the "XOR problem", and we will use a 3 layer NN
+  - 2 inputs
+  - 2 Neurons in the hidden layer
+  - 1 output
+- Input Layer: like our senses
+- Hidden Layer: No connection to the outside world.
+- Output Layer: Can be ON or OFF. Or return several outputs.
+- Photo of the finish project (what can I see)
+  - 7x potentiometer with tips switches
+  - 3x 555 IC?, 2 before and 1 after the output layer
+  - 2x Transistors near the power source
+  - 2x 9v batteries
+  - Leds for input/output layers
+** Chapter 3 - Electronic Components
+- Inclusive OR vs exclusive (X)OR
+  - In real life we can use XOR too, ex: we either go to the mountains or the beach
+- XOR is ~nonlinear~, meaning an input can result in different values, depending of what the other inputs are doing
+- -5V The logic value 0 (false)
+  +5V The logic value 1 (true)
+- Components
+  * Breadboard/Protoboard
+  * 22 AWG Solid (not stranded) wire
+  * 2x 9v batteries
+    - Bipolar Power Supply: +5V, -5V, and ground
+    - To have both ~excitatory~ and ~inhibitory~ neurons
+  * Voltage regulators, to have a solid/stable voltage
+    * 1x +5V regulator (7805)
+    * 1x -5V regulator (7905)
+  * SPDT - Single Pole Double Throw
+    3 Pines, two pins connected at the time.
+    Of the sliding type.
+    We would pick between +5V and -5V
+  * ?x 470ohm resistors (for the led)
+  * Led: Anode (+) and Cathode(- aka shorter leg)
+  * 10-turn potentiometers: 100K
+  * CA3130 op amps, simulate the neurons
+    - Tie + and - rails
+    - ~activation threshold~ PIN to two-resistor voltage divider
+    - ~input~ the output of the summing circuit
+- ~Voltage divider~, when a voltage is dropped due resistors between terminals of a power supply
+  - 1 resistor can't be measure
+  - 2 resistor IF equal half the voltage
+  - 1 potentiometer
+- We use a ~passive averager~, a type of voltage divider
+  If the resistors are the same value:
+  - Vout = (V1+V2)/2
+  - Vout = (V1+V2+V3)/3
+  - See neuron's ~threshold value~ and ~transfer function~
+- Op amps usage, as a comparator:
+  - If 3>2, output will be HIGH
+  - if 3<2, output will be LOW
+- There is a *Neuron Y* called ~inhibitory~ neuron
+** Chapter 4 - Building the Network
+- Cables Color
+  * Red   +5V
+  * Black GND
+  * Blue  -5V
+  * Yellow for signals
+- Input Layer
+  - 2x switches
+  - 2x 470ohm
+  - 2x led
+- Hidden Layer
+  - 2x Op amps
+    - Threshold: Constant Voltage divider between 100K and 22K, from +V and GND
+    - Input: Variable Passive Averager from both inputs layer neurons
+- Output Layer
+  - Same as a Neuron in Hidden
+  - a LED to the output
+** Chapter 5 - Training with Back Propagation

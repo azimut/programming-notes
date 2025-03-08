@@ -16,6 +16,7 @@
 - http://sebastianmihai.com/z80-v10.html
 - https://www.metsuke.com/la-academia/juguemos-al-z80/
 
+- tool https://github.com/cormacj/z80-smart-disassembler
 - 14 article http://www.righto.com/2014/10/how-z80s-registers-are-implemented-down.html
 - 17 article https://floooh.github.io/2017/12/10/z80-emu-evolution.html
 - 18 article https://floooh.github.io/2018/10/06/bombjack.html
