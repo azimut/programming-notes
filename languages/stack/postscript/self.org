@@ -292,6 +292,9 @@ currentpoint 6 0 360 arc fill stroke
 
 * codebases
 
+- example: yearly poster
+  - https://github.com/k16shikano/new-year-cards
+  - 2016 using ps3d.inc https://note.golden-lucky.net/2015/12/2016.html
 - examples charts https://www.complang.tuwien.ac.at/anton/eps-gallery/
 - examples https://web.archive.org/web/20060824003443/http://www.physics.uq.edu.au/people/foster/postscript.html
 - examples https://github.com/hzeller/postscript-hacks/

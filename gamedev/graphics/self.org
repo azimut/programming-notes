@@ -1,6 +1,12 @@
 - Lode's Computer Graphics Tutorial
   https://lodev.org/cgtutor/
 
+- 81 course: Jim Blinn and Ed Catmull – CS292 Graphics Class at Berkeley https://www.youtube.com/playlist?list=PLZhjH7LMo6XhsjC57AjmLZSqqEegC-e8k
+  - A introductory computer graphics class taught at Berkeley by:
+  - Ed Catmull (co-founder of Pixar and former President of Walt Disney Animation)
+  - Jim Blinn (former NASA JPL scientist).
+  - Includes clips of early computer animation and Blinn discusses some of his and LucasFilm's early work.
+
 * light general
 
 - Apply "distance attenuation" to pointlight/spotlight(?) ambient oclussion factor.

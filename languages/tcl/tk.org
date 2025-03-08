@@ -26,28 +26,31 @@
   - toc https://core.tcl-lang.org/tklib/doc/trunk/embedded/md/toc.md
 
 ** basic
-
-[[https://www.tcl-lang.org/man/tcl/TkCmd/button.htm][button]]
-[[https://www.tcl-lang.org/man/tcl/TkCmd/canvas.htm][canvas]]
-[[https://www.tcl-lang.org/man/tcl/TkCmd/checkbutton.htm][checkbutton]]
-[[https://www.tcl-lang.org/man/tcl/TkCmd/combobox.htm][combobox]]
-[[https://www.tcl-lang.org/man/tcl/TkCmd/entry.htm][entry]]
-[[https://www.tcl-lang.org/man/tcl/TkCmd/frame.htm][frame]]
-[[https://www.tcl-lang.org/man/tcl/TkCmd/label.htm][label]]
-[[https://www.tcl-lang.org/man/tcl/TkCmd/labelframe.htm][labelframe]]
-[[https://www.tcl-lang.org/man/tcl/TkCmd/listbox.htm][listbox]]
-[[https://www.tcl-lang.org/man/tcl/TkCmd/image.htm][image]]
-[[https://www.tcl-lang.org/man/tcl/TkCmd/menu.htm][menu]]
-[[https://www.tcl-lang.org/man/tcl/TkCmd/menubutton.htm][menubutton]]
-[[https://www.tcl-lang.org/man/tcl/TkCmd/message.htm][message]]
-[[https://www.tcl-lang.org/man/tcl/TkCmd/panedwindow.htm][panedwindow]]
-[[https://www.tcl-lang.org/man/tcl/TkCmd/radiobutton.htm][radiobutton]]
-[[https://www.tcl-lang.org/man/tcl/TkCmd/scrollbar.htm][scrollbar]]
-[[https://www.tcl-lang.org/man/tcl/TkCmd/scale.htm][scale]]
-[[https://www.tcl-lang.org/man/tcl/TkCmd/spinbox.htm][spinbox]]
-[[https://www.tcl-lang.org/man/tcl/TkCmd/text.htm][text]]
-[[https://www.tcl-lang.org/man/tcl/TkCmd/tk_optionMenu.htm][tk_optionMenu]]
-
+|---------------+--------------------------------|
+|      <c>      |                                |
+|    [[https://www.tcl-lang.org/man/tcl/TkCmd/button.htm][button]]     | clickable, triggers an action  |
+|---------------+--------------------------------|
+|     [[https://www.tcl-lang.org/man/tcl/TkCmd/menu.htm][menu]]      |                                |
+|   [[https://www.tcl-lang.org/man/tcl/TkCmd/combobox.htm][combobox]]    |                                |
+|    [[https://www.tcl-lang.org/man/tcl/TkCmd/listbox.htm][listbox]]    |                                |
+|  [[https://www.tcl-lang.org/man/tcl/TkCmd/checkbutton.htm][checkbutton]]  | many of many                   |
+|  [[https://www.tcl-lang.org/man/tcl/TkCmd/radiobutton.htm][radiobutton]]  | one of many                    |
+|---------------+--------------------------------|
+|     [[https://www.tcl-lang.org/man/tcl/TkCmd/entry.htm][entry]]     | input single line of text      |
+|     [[https://www.tcl-lang.org/man/tcl/TkCmd/text.htm][text]]      | input multiple lines of text   |
+|     [[https://www.tcl-lang.org/man/tcl/TkCmd/label.htm][label]]     | display single line of text    |
+|    [[https://www.tcl-lang.org/man/tcl/TkCmd/message.htm][message]]    | display multiple lines of text |
+|---------------+--------------------------------|
+|    [[https://www.tcl-lang.org/man/tcl/TkCmd/canvas.htm][canvas]]     |                                |
+|  [[https://www.tcl-lang.org/man/tcl/TkCmd/labelframe.htm][labelframe]]   |                                |
+|     [[https://www.tcl-lang.org/man/tcl/TkCmd/image.htm][image]]     |                                |
+|  [[https://www.tcl-lang.org/man/tcl/TkCmd/menubutton.htm][menubutton]]   |                                |
+|  [[https://www.tcl-lang.org/man/tcl/TkCmd/panedwindow.htm][panedwindow]]  |                                |
+|   [[https://www.tcl-lang.org/man/tcl/TkCmd/scrollbar.htm][scrollbar]]   |                                |
+|     [[https://www.tcl-lang.org/man/tcl/TkCmd/scale.htm][scale]]     |                                |
+|    [[https://www.tcl-lang.org/man/tcl/TkCmd/spinbox.htm][spinbox]]    |                                |
+| [[https://www.tcl-lang.org/man/tcl/TkCmd/tk_optionMenu.htm][tk_optionMenu]] |                                |
+|---------------+--------------------------------|
 ** ttk
 
 [[https://www.tcl-lang.org/man/tcl/TkCmd/ttk_notebook.htm][ttk_notebook]]
@@ -74,9 +77,10 @@
 ** geometry managers / layout
 |-------+-----------------------------------------|
 |   <r> |                                         |
-|  grid | arranges widgets in a grid              |
-|  [[https://wiki.tcl-lang.org/page/pack][pack]] | packs widgets into a cavity             |
-| place | positions widgets at absolute locations |
+| [[https://www.tcl-lang.org/man/tcl/TkCmd/frame.htm][frame]] | container widget                        |
+|  [[https://www.tcl-lang.org/man/tcl/TkCmd/grid.htm][grid]] | arranges widgets in a grid              |
+|  [[https://www.tcl-lang.org/man/tcl/TkCmd/pack.htm][pack]] | packs widgets into a cavity             |
+| [[https://www.tcl-lang.org/man/tcl/TkCmd/place.htm][place]] | positions widgets at absolute locations |
 |-------+-----------------------------------------|
 * examples
 
