@@ -245,13 +245,7 @@ index numering starts at 0
 
 * snippets
 
-- escher style impossible triangle https://gist.github.com/jgamble/bbaff6f932adc21e804cdf43eaae308f
-- mandelbrot https://gist.github.com/dln/bc88911f6bf8e55856d9
-- L-Systems https://gist.github.com/usr-ein/47661f123f055fda3ed73e2e3bce20ad
 - quicksort https://gist.github.com/kuroneko/e896a466dc4a1af55c9c
-- aoc21 https://github.com/juntuu/advent_of_code_2021/
-- 3d donut https://personal.math.ubc.ca/~cass/graphics/manual/code/doughnut.txt
-- raytracer https://gist.github.com/grkvlt/2651230
 - vector
   #+begin_src ps
 /vectoradd { exch 3 1 roll add 3 1 roll add exch } def
@@ -292,18 +286,30 @@ currentpoint 6 0 360 arc fill stroke
 
 * codebases
 
-- example: yearly poster
-  - https://github.com/k16shikano/new-year-cards
-  - 2016 using ps3d.inc https://note.golden-lucky.net/2015/12/2016.html
+- aoc21 https://github.com/juntuu/advent_of_code_2021/
 - examples charts https://www.complang.tuwien.ac.at/anton/eps-gallery/
 - examples https://web.archive.org/web/20060824003443/http://www.physics.uq.edu.au/people/foster/postscript.html
 - examples https://github.com/hzeller/postscript-hacks/
 - library https://github.com/denismm/dmmlib
+
+** art / graphics
+
 - logo https://seriot.ch/projects/golfing_with_postscript.html
+- yearly poster
+  - https://github.com/k16shikano/new-year-cards
+  - 2016 using ps3d.inc https://note.golden-lucky.net/2015/12/2016.html
+- 3d donut https://personal.math.ubc.ca/~cass/graphics/manual/code/doughnut.txt
+- raytracer https://gist.github.com/grkvlt/2651230
+- [[./yinyang.ps][yinyang.ps]]
+- escher style impossible triangle https://gist.github.com/jgamble/bbaff6f932adc21e804cdf43eaae308f
+- mandelbrot https://gist.github.com/dln/bc88911f6bf8e55856d9
+- L-Systems https://gist.github.com/usr-ein/47661f123f055fda3ed73e2e3bce20ad
 - planes https://seriot.ch/projects/intersecting_planes.html
 - stairs https://seriot.ch/projects/postscript_stairs.html
 - drawings https://seriot.ch/projects/drawing_with_computers.html
-- [[./yinyang.ps][yinyang.ps]]
+
+** games
+
 - tictactoe https://github.com/nst/PSTicTacToe
 - sokoban https://github.com/nst/PSSokoban
 - tetris https://github.com/nst/PSTris

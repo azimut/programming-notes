@@ -3,25 +3,29 @@
     - TODO: 22:40
 
 - https://www.youtube.com/watch?v=lRPMrWt-ojw
+- course https://www.youtube.com/watch?v=1srFmjt1Ib0
 - love2d tutorials https://www.youtube.com/channel/UCcq3KOawHtjyN0ibjL4RzXQ
 - Pico-8 Tutorial - Shmup https://www.youtube.com/playlist?list=PLea8cjCua_P3Sfq4XJqNVbd1vsWnh7LZd
-- OpenResty
-  - 13 Getting started with Lapis, the web framework https://www.youtube.com/watch?v=Eo67iTY1Yf8
-  - 15 Web development with Lua Programming Language by Etiene Dalcol https://www.youtube.com/watch?v=JGPvM-50bOk
-  - 16 Building a large web application in Lua with Lapis: itch.io - Leaf Corcoran https://www.youtube.com/watch?v=7hKPX_Je9Ew
-  - 17 The price of speed: Lua or LuaJIT? Etiene Dalcol https://www.youtube.com/watch?v=p4AzAaJ8Ick
-  - 17 Rapid backend prototyping for a geolocation-based mobile game With OpenResty, Redis and Docker https://www.youtube.com/watch?v=vNw2oDNiv3s
-  - 21 No Middleware. Build Fast Geospatial APIs with PostGIS and a Scriptable Webserver https://www.youtube.com/watch?v=HDnGbvZimLk
-  - 22 How to build your own CDN using Nginx Openresty (DIY CDN) https://www.youtube.com/watch?v=Xu84Cog76WU
-  - 23 Monitorama PDX 2023 - OpenResty, My Bestie: Tracing NGINX With Lua https://www.youtube.com/watch?v=fUrLpycUzIQ
-  - 23 Domain-Specific Languages (Implementation Strategies and Technologies)
-    - https://www.youtube.com/watch?v=XxL6Frvv4TM
-    - https://www.youtube.com/watch?v=qGK06bnuLpk
 
-- Channels
-  - https://www.youtube.com/@LuainMoscow/videos
-  - https://www.youtube.com/@robertoierusalimschy942/videos
-  - https://www.youtube.com/@luaworkshop1620/videos
-  - 16 https://www.youtube.com/@LuaConf/videos
-  - 16 https://www.youtube.com/@luaworkshop/videos
-  - 14 https://www.youtube.com/@luawshop14/videos
+* Channels
+
+- https://www.youtube.com/@LuainMoscow/videos
+- https://www.youtube.com/@robertoierusalimschy942/videos
+- https://www.youtube.com/@luaworkshop1620/videos
+- 16 https://www.youtube.com/@LuaConf/videos
+- 16 https://www.youtube.com/@luaworkshop/videos
+- 14 https://www.youtube.com/@luawshop14/videos
+
+* OpenResty
+
+- 13 Getting started with Lapis, the web framework https://www.youtube.com/watch?v=Eo67iTY1Yf8
+- 15 Web development with Lua Programming Language by Etiene Dalcol https://www.youtube.com/watch?v=JGPvM-50bOk
+- 16 Building a large web application in Lua with Lapis: itch.io - Leaf Corcoran https://www.youtube.com/watch?v=7hKPX_Je9Ew
+- 17 The price of speed: Lua or LuaJIT? Etiene Dalcol https://www.youtube.com/watch?v=p4AzAaJ8Ick
+- 17 Rapid backend prototyping for a geolocation-based mobile game With OpenResty, Redis and Docker https://www.youtube.com/watch?v=vNw2oDNiv3s
+- 21 No Middleware. Build Fast Geospatial APIs with PostGIS and a Scriptable Webserver https://www.youtube.com/watch?v=HDnGbvZimLk
+- 22 How to build your own CDN using Nginx Openresty (DIY CDN) https://www.youtube.com/watch?v=Xu84Cog76WU
+- 23 Monitorama PDX 2023 - OpenResty, My Bestie: Tracing NGINX With Lua https://www.youtube.com/watch?v=fUrLpycUzIQ
+- 23 Domain-Specific Languages (Implementation Strategies and Technologies)
+  - https://www.youtube.com/watch?v=XxL6Frvv4TM
+  - https://www.youtube.com/watch?v=qGK06bnuLpk

@@ -1,3 +1,4 @@
+#+COMMENT: it crashed my machine/wm at random times
 - source (C) https://core.tcl-lang.org/tk/dir?ci=tip
 - https://en.wikipedia.org/wiki/Tk_(software)
   - 1991

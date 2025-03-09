@@ -16,7 +16,31 @@
 | typed  | https://github.com/pallene-lang/pallene                  |
 |--------+----------------------------------------------------------|
 
-* Language
+- 1993
+- by [[https://en.wikipedia.org/wiki/Roberto_Ierusalimschy][Roberto Ierusalimschy]], Luiz Henrique Figueiredo, Waldemar Celes
+- scripting language for extending applications
+- embeddable, implemented as a library
+- written in ISO/ANSI C
+
+* cli
+|-----------+------------------------------------|
+| LUA_INIT  | executed before anything else      |
+| LUA_PATH  | set package.cpath, for lua loaders |
+| LUA_CPATH | set package.cpath, for C loaders   |
+|-----------+------------------------------------|
+** lua  - interpreter
+#+begin_src sh
+  lua [opts] [ script [args] ]
+#+end_src
+|-----------+--------------------------------------------|
+| -e <stat> | executes given statement                   |
+| -i <file> | interactive mode after running script file |
+| -l <lib>  | requires library                           |
+| -E        | ignore environment vars                    |
+| -W        | turn _warnings_ on                         |
+|-----------+--------------------------------------------|
+** luac - compiler
+* language
 
 #+begin_src lua
   function fact (n)
@@ -30,31 +54,9 @@
   print("factorials of 3:", fact(5))
 #+end_src
 
-- 1993
-- by [[https://en.wikipedia.org/wiki/Roberto_Ierusalimschy][Roberto Ierusalimschy]]
-- implemented as a library
 - chunk = piece of code executed, a sequence of commands/statements
 - closures support
 - first class functions
-
-** changelog
-
-https://www.lua.org/versions.html
-
-#+CAPTION: lines of code per Lua version
-#+ATTR_ORG: :width 500
-[[./loc.png]]
-
-- 5.4 (20)
-  - const and to-be-closed vars
-- 5.3 (15)
-  - integers
-  - bitwise ops
-  - utf-8 library
-  - repl expressions
-- 5.2 (11)
-- 5.1 (06)
-- 5.0 (03)
 
 ** types
 - userdata, thread
@@ -119,6 +121,16 @@ https://www.lua.org/pil/2.5.html
 *** function
 https://www.lua.org/pil/2.6.html
 - support for nested functions, with lexical scoping
+** control flow
+
+#+begin_src lua
+  while 1 do print("!") end
+  repeat print("!") until 0
+  for i=1, 1000 do a[i] = i*2 end
+  for i=1, 1000, 10 do a[i] = i*2 end
+  for key,value in pairs(t) do print(value) end
+#+end_src
+
 ** operators
 
 https://www.lua.org/manual/5.4/manual.html#3
@@ -239,98 +251,107 @@ init = where to start searching, can be negative
 |-----------+---------------------+----------------------------------------------------|
 *** utf8
 https://www.lua.org/manual/5.4/manual.html#6.5
+** metamethods
+https://www.lua.org/manual/5.4/manual.html#2.4
+https://gist.github.com/oatmealine/655c9e64599d0f0dd47687c1186de99f
+|-------------+-----|
+|     <c>     |     |
+|-------------+-----|
+|   __call    |     |
+|-------------+-----|
+| __metatable |     |
+| __tostring  |     |
+|   __name    |     |
+|   __pairs   | 5.2 |
+|  __ipairs   | 5.2 |
+|-------------+-----|
+|   __index   |     |
+| __newindex  |     |
+|-------------+-----|
+|   __close   | 5.4 |
+|    __gc     |     |
+|   __mode    |     |
+|-------------+-----|
+*** operators
+|----------+----+-----|
+| __concat | .. |     |
+| __len    | #  | 5.1 |
+| __eq     | == |     |
+| __lt     | <  |     |
+| __le     | <= |     |
+|----------+----+-----|
+*** math    operators
+|--------+----+-----|
+| __add  | +  |     |
+| __sub  | -  |     |
+| __mul  | *  |     |
+| __div  | /  |     |
+| __unm  | -  |     |
+| __mod  | %  | 5.1 |
+| __pow  | ^  | 5.1 |
+| __idiv | // | 5.3 |
+|--------+----+-----|
+*** bitwise operators
+|--------+----+-----|
+| __bor  | &  | 5.3 |
+| __band | ¦  | 5.3 |
+| __bnot | ~  | 5.3 |
+| __bxor | ~  | 5.3 |
+| __shl  | << | 5.3 |
+| __shr  | >> | 5.3 |
+|--------+----+-----|
+** changelog
+
+https://www.lua.org/versions.html
+
+#+CAPTION: lines of code per Lua version
+#+ATTR_ORG: :width 500
+[[./loc.png]]
+
+|----+-----+---------------------------------------|
+| 20 | 5.4 | const and to-be-closed vars           |
+| 15 | 5.3 | integers, bitwise ops, utf8, repl exp |
+| 11 | 5.2 |                                       |
+| 06 | 5.1 |                                       |
+| 03 | 5.0 |                                       |
+|----+-----+---------------------------------------|
 ** coroutines
 - covers most uses of full continuations
 - equivalent to
   - cooperative multithreading
   - one-shot continuations (call/1cc)
-** metamethods
-https://www.lua.org/manual/5.4/manual.html#2.4
-https://gist.github.com/oatmealine/655c9e64599d0f0dd47687c1186de99f
-|-------------+-----|
-|         <r> |     |
-|      method | ver |
-|-------------+-----|
-|      __call |     |
-|-------------+-----|
-| __metatable |     |
-|  __tostring |     |
-|      __name |     |
-|     __pairs | 5.2 |
-|    __ipairs | 5.2 |
-|-------------+-----|
-|     __index |     |
-|  __newindex |     |
-|-------------+-----|
-|     __close | 5.4 |
-|        __gc |     |
-|      __mode |     |
-|-------------+-----|
-*** operators
-|----------+----+-----|
-|      <r> |    |     |
-|   method | op | ver |
-|----------+----+-----|
-| __concat | .. |     |
-|    __len | #  | 5.1 |
-|----------+----+-----|
-|     __eq | == |     |
-|     __lt | <  |     |
-|     __le | <= |     |
-|----------+----+-----|
-|    __add | +  |     |
-|    __sub | -  |     |
-|    __mul | *  |     |
-|    __div | /  |     |
-|    __unm | -  |     |
-|    __mod | %  | 5.1 |
-|    __pow | ^  | 5.1 |
-|   __idiv | // | 5.3 |
-|----------+----+-----|
-|    __bor | &  | 5.3 |
-|   __band | ¦  | 5.3 |
-|   __bnot | ~  | 5.3 |
-|   __bxor | ~  | 5.3 |
-|    __shl | << | 5.3 |
-|    __shr | >> | 5.3 |
-|----------+----+-----|
-** control flow
-
-#+begin_src lua
-  for i=1,1000 do a[i] = i*2 end
-#+end_src
-
-* Command
-|-------------+-----------------------------------|
-| -i <script> | interactive mode after run script |
-|-------------+-----------------------------------|
-* Codebases
+* codebases
 
 - https://github.com/lunarmodules/luasocket
 - https://github.com/vincasmiliunas/lua-basic-oauth2
   - https://developers.google.com/youtube/v3/live/docs/liveBroadcasts/list
   - https://developers.google.com/youtube/v3/live/registering_an_application
 
-** used in
+* used in
 
 [[https://en.wikipedia.org/wiki/List_of_applications_using_Lua][List of Apps]] [[https://en.wikipedia.org/wiki/Category:Lua_(programming_language)-scripted_video_games][List of Games]]
 
+- redbean http server https://redbean.dev/
 - obs https://docs.obsproject.com/scripting
   - example: https://github.com/insin/obs-bounce/
 - nodemcu https://github.com/nodemcu/nodemcu-firmware
 - neovim
 - nmap (nse)
+- wireshark
+- snort
 - redis
 - nginx https://fly.io/docs/app-guides/openresty-nginx-plus-lua/
 - awm (awesome window manager config)
 - pico-8
 - love2d
+  - arcade shooter https://github.com/a327ex/SNKRX
   - game devlog https://github.com/a327ex/blog
 - mpv
   - https://mpv.io/manual/master/#lua-scripting
     https://mpv.io/manual/master/#list-of-input-commands
   - https://github.com/davidde/mpv-autosub
   - https://github.com/CounterPillow/mpv-quack
+- in LucasArts's Grim Fandango
 
 * transpiles to Lua
 |------------+------|
