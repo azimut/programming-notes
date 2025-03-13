@@ -14,6 +14,7 @@
 | source | https://github.com/lua/lua                               |
 | source | https://github.com/LuaJIT/LuaJIT                         |
 | typed  | https://github.com/pallene-lang/pallene                  |
+| typed  | https://github.com/teal-language/tl                      |
 |--------+----------------------------------------------------------|
 
 - 1993
@@ -57,6 +58,10 @@
 - chunk = piece of code executed, a sequence of commands/statements
 - closures support
 - first class functions
+- dynamic: variables don't have a type, values inside have
+- weakly typed, in the automatic type conversion sense (for +, and ..)
+- referencing undefined variables return value nil, no error
+- 1(one) based index
 
 ** types
 - userdata, thread
@@ -83,7 +88,7 @@ https://www.lua.org/pil/2.1.html
 
 https://www.lua.org/pil/2.4.html
 - '' "" [[]]
-- [[]] do not interpret escape sequences
+- [[]] multiline raw string, do not interpret escape sequences
 - 10 != "10"
 - sequence of 8-bit characters
 - can store binary data
@@ -121,35 +126,47 @@ https://www.lua.org/pil/2.5.html
 *** function
 https://www.lua.org/pil/2.6.html
 - support for nested functions, with lexical scoping
+
 ** control flow
 
 #+begin_src lua
-  while 1 do print("!") end
-  repeat print("!") until 0
-  for i=1, 1000 do a[i] = i*2 end
-  for i=1, 1000, 10 do a[i] = i*2 end
-  for key,value in pairs(t) do print(value) end
+if i > 20 then print("BIG") end
+if i > 20 then print("BIG") else print("smol") end
+if i > 20 then print("BIG") elseif i > 10 print("big") end
+#+end_src
+
+** looping
+
+#+begin_src lua
+while 1 do print("!") end
+repeat print("!") until 0
+for i=1, 1000 do a[i] = i*2 end
+for i=1, 1000, 10 do a[i] = i*2 end
+for key,value in pairs(t) do print(value) end
 #+end_src
 
 ** operators
 
 https://www.lua.org/manual/5.4/manual.html#3
-|-----+------------------------|
-| <r> |                        |
-|  .. | string concatenation   |
-|  == | equality               |
-|  ~= | inequality             |
-|  #a | size of string/array a |
-|  // | floor division         |
-|   & | bitwise and            |
-|   ¦ | bitwise or             |
-| a~b | bitwise binary xor     |
-|  ~a | bitwise unary not      |
-|  << | bitwise left shift     |
-|  >> | bitwise right shift    |
-|-----+------------------------|
+|-----+-------------------------------|
+| <r> |                               |
+|  .. | string concatenation          |
+|  == | equality                      |
+|  ~= | inequality                    |
+|  >= | ge                            |
+|  <= | le                            |
+|  #a | length/size of string/array a |
+|  // | floor division                |
+|   & | bitwise and                   |
+|   ¦ | bitwise or                    |
+| a~b | bitwise binary xor            |
+|  ~a | bitwise unary not             |
+|  << | bitwise left shift            |
+|  >> | bitwise right shift           |
+|-----+-------------------------------|
 #+begin_src
  ::    ;     :     ,     .     ..    ...
+ and or not
 #+end_src
 
 ** stdlib functions
@@ -191,22 +208,20 @@ https://www.lua.org/manual/5.4/manual.html#6.10
 https://www.lua.org/manual/5.4/manual.html#6.8
 io.read("prompt") - returns read value
 *** os
-|------------+-------------------+---------|
-|        <r> |        <c>        |         |
-|         [[https://www.lua.org/manual/5.4/manual.html#6.9][os]] |     arguments     | returns |
-|------------+-------------------+---------|
-|     .clock |                   |         |
-|      .date |  [format[,time]]  |         |
-|  .difftime |      t2, t1       |         |
-|   .execute |     [command]     |         |
-|      .exit |  [code[,close]]   |         |
-|    .getenv |      varname      |         |
-|    .remove |     filename      |         |
-|    .rename |  oldname newname  |         |
-| .setlocale | locale[,category] |         |
-|      .time |      [table]      |         |
-|   .tmpname |                   |         |
-|------------+-------------------+---------|
+|------------+-------------------+---|
+|        <r> |        <c>        |   |
+|     .clock |                   |   |
+|      .date |   [fmt[,time]]    |   |
+|  .difftime |      t2 , t1      |   |
+|   .execute |     [command]     |   |
+|      .exit |  [code[,close]]   |   |
+|    .getenv |      varname      |   |
+|    .remove |     filename      |   |
+|    .rename | oldname , newname |   |
+| .setlocale | locale[,category] |   |
+|      .time |      [table]      |   |
+|   .tmpname |                   |   |
+|------------+-------------------+---|
 *** package
 https://www.lua.org/manual/5.4/manual.html#6.3
 *** math
@@ -308,13 +323,13 @@ https://www.lua.org/versions.html
 #+ATTR_ORG: :width 500
 [[./loc.png]]
 
-|----+-----+---------------------------------------|
-| 20 | 5.4 | const and to-be-closed vars           |
-| 15 | 5.3 | integers, bitwise ops, utf8, repl exp |
-| 11 | 5.2 |                                       |
-| 06 | 5.1 |                                       |
-| 03 | 5.0 |                                       |
-|----+-----+---------------------------------------|
+|----+-----+-------------------------------------------|
+| 20 | 5.4 | const and to-be-closed vars               |
+| 15 | 5.3 | integers, bitwise ops, utf8, repl exp, // |
+| 11 | 5.2 |                                           |
+| 06 | 5.1 |                                           |
+| 03 | 5.0 |                                           |
+|----+-----+-------------------------------------------|
 ** coroutines
 - covers most uses of full continuations
 - equivalent to
@@ -352,6 +367,7 @@ https://www.lua.org/versions.html
   - https://github.com/davidde/mpv-autosub
   - https://github.com/CounterPillow/mpv-quack
 - in LucasArts's Grim Fandango
+- puredata https://agraef.github.io/pd-lua/
 
 * transpiles to Lua
 |------------+------|
