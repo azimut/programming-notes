@@ -198,6 +198,10 @@
 
 * videos
 
+#+CAPTION: Lorinda Cherry in 1982's
+[[./dc_bell.png]]
+
+- 82 used by Lorinda Cherry in segment of [[https://youtu.be/XvDZLjaCJuw?t=921][UNIX: Making Computers Easier To Use]]
 - 21 [[https://www.youtube.com/watch?v=WxCP8oHq_Ss][The Genius of the "dc" Desktop Calculator]]
 - 23 [[https://www.youtube.com/watch?v=MDENRcTWDSY][Découvrons & Programmons "dc" (desk calculator) - 1971]]
 - 23 [[https://www.youtube.com/watch?v=9M8sQrrS_f8][RPN, dc, and the HP-12C]]
