@@ -63,6 +63,16 @@
 - referencing undefined variables return value nil, no error
 - 1(one) based index
 
+** variables
+
+arg - array of arguments, [0] name of the script
+#+begin_src lua
+        x = 0
+  local x = 0    -- limit scope
+     x, y = 0, 0 -- multiple values
+     x, y = y, x -- swap values
+#+end_src
+
 ** types
 - userdata, thread
 ***   number
@@ -163,9 +173,10 @@ https://www.lua.org/manual/5.4/manual.html#3
 |  ~a | bitwise unary not             |
 |  << | bitwise left shift            |
 |  >> | bitwise right shift           |
+|   : | method call                   |
 |-----+-------------------------------|
 #+begin_src
- ::    ;     :     ,     .     ..    ...
+ ::     ;     ,     .     ..    ...
  and or not
 #+end_src
 
@@ -207,6 +218,11 @@ https://www.lua.org/manual/5.4/manual.html#6.10
 *** io
 https://www.lua.org/manual/5.4/manual.html#6.8
 io.read("prompt") - returns read value
+io.open("file.csv", "r")
+- :close()
+- :read("*a")
+- :read("a")
+- :read("all")
 *** os
 |------------+-------------------+---|
 |        <r> |        <c>        |   |
@@ -226,11 +242,25 @@ io.read("prompt") - returns read value
 https://www.lua.org/manual/5.4/manual.html#6.3
 *** math
 https://www.lua.org/manual/5.4/manual.html#6.7
-math.sqrt(n)
+.pi
+.sqrt(n)
+.abs(n)
+.cos(n)
+.sin(n)
+.tan(n)
+.atan(n)
+.floor(n)
+.ceil(n)
+.randomseed(seed) - eg: seed = os.time()
+.random() - between 0 and 1
+.random(a,b)
 *** table
 https://www.lua.org/manual/5.4/manual.html#6.6
 *** string
-init = where to start searching, can be negative
+#+begin_src
+   init = where to start searching, can be negative
+pattern = regex
+#+end_src
 |-----------+---------------------+----------------------------------------------------|
 |       <r> |         <c>         |                                                    |
 |    [[https://www.lua.org/manual/5.4/manual.html#6.4][string]] |      arguments      | returns                                            |

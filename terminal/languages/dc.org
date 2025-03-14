@@ -48,6 +48,8 @@
   $ echo '2 3'   | dc -e '? ? +'
 #+end_src
 
+- possible to use recursion, but slow
+
 - types
   - numbers
     - hex numbers must be upcased (A-F)
@@ -67,63 +69,72 @@
 ** commands
 
 #+CAPTION: T=take P=put
-|---+-----+---+----------------------------------------------|
-|   | <r> |   |                                              |
-| T |     | P |                                              |
-|---+-----+---+----------------------------------------------|
-|   |   f |   | print full stack                             |
-|   |   p |   | print top of stack, new line                 |
-| 1 |   n |   | print top of stack, no \n                    |
-| 1 |   P | 1 | print top of stack, no \n, as char if number |
-|---+-----+---+----------------------------------------------|
-| 2 |   + | 1 |                                              |
-| 2 |   - | 1 | fst - snd                                    |
-| 2 |   * | 1 |                                              |
-| 2 |   / | 1 | fst / snd                                    |
-| 2 |   % | 1 | remainder of /                               |
-| 2 |   ~ | 2 | quotient and remainder of /                  |
-| 2 |   ^ | 1 | fst ^ snd                                    |
-| 3 |   ¦ | 1 | mod(fst, snd ^ trd)                          |
-| 1 |   v | 1 | square root                                  |
-|---+-----+---+----------------------------------------------|
-| * |   c |   | clear stack                                  |
-| 1 |   d |   | dup top of stack                             |
-|   |   r |   | swap top 2 values                            |
-|   |   R |   | rotates the top Nth items                    |
-|---+-----+---+----------------------------------------------|
-| 1 |  sR |   | stores in register R                         |
-| 1 |  SR |   | stores in register R, nuke prev content on R |
-|   |  lR | 1 | load from register R, 0 if empty             |
-|   |  LR | 1 | " and pops it from register R                |
-|---+-----+---+----------------------------------------------|
-| 1 |   i |   | set input radix                              |
-| 1 |   o |   | set output radix                             |
-| 1 |   k |   | set decimal precision                        |
-|   |   I | 1 | push input radix                             |
-|   |   O | 1 | push output radix                            |
-|   |   K | 1 | push decimal precision                       |
-|---+-----+---+----------------------------------------------|
-| 1 |   x |   | executes as a macro                          |
-| 1 |   a | 1 | pop top, and push back 1st char/byte         |
-| 2 |  >R |   | x R if >                                     |
-| 2 | !>R |   | x R if <=                                    |
-| 2 |  <R |   | x R if <                                     |
-| 2 | !<R |   | x R if >=                                    |
-| 2 |  =R |   | x R if =                                     |
-| 2 | !=R |   | x R if !=                                    |
-|   |   ? | 1 | ask user input, and execute it as a macro    |
-|   |   q |   | exits 2 level macro                          |
-| 1 |   Q |   | exits Nth level macro                        |
-|---+-----+---+----------------------------------------------|
-| 1 |   Z |   | number of decimal digits                     |
-| 1 |   X |   | number of fraction digits                    |
-|   |   z | 1 | number of element in stack                   |
-|---+-----+---+----------------------------------------------|
-|   |   ! |   | system command                               |
-|   |   # |   | comment                                      |
-| 2 |  :R |   | store *fst* in R =array=, at idx *snd*       |
-| 1 |  ;r |   | get given =array= element in register        |
-|---+-----+---+----------------------------------------------|
+|---+----+---+----------------------------------------------|
+| T |    | P |                                              |
+|---+----+---+----------------------------------------------|
+|   | f  |   | print full stack                             |
+|   | p  |   | print top of stack, with \n                  |
+| 1 | n  |   | print top of stack, no \n                    |
+| 1 | P  | 1 | print top of stack, no \n, as char if number |
+|---+----+---+----------------------------------------------|
+|   | z  | 1 | number of element in stack                   |
+| * | c  |   | clear stack                                  |
+| 1 | d  | 2 | dup top of stack                             |
+|   | r  |   | swap top 2 values                            |
+|   | R  |   | rotates the top Nth items                    |
+|---+----+---+----------------------------------------------|
+| 1 | sR |   | stores in register R                         |
+| 1 | SR |   | stores in register R, nuke prev content on R |
+|   | lR | 1 | load from register R, 0 if empty             |
+|   | LR | 1 | " and pops it from register R                |
+|---+----+---+----------------------------------------------|
+| 1 | a  | 1 | pop top, and push back 1st char/byte         |
+|   | ?  | 1 | ask user input, and execute it as a macro    |
+|---+----+---+----------------------------------------------|
+|   | !  |   | system command                               |
+|   | #  |   | comment                                      |
+| 2 | :R |   | store *fst* in R =array=, at idx *snd*       |
+| 1 | ;r |   | get given =array= element in register        |
+|---+----+---+----------------------------------------------|
+*** control flow
+|---+-----+---+-----------------------|
+|   | <r> |   |                       |
+| T |     | P |                       |
+|---+-----+---+-----------------------|
+| 1 |   x |   | executes as a macro   |
+| 2 |  >R |   | x R if >              |
+| 2 | !>R |   | x R if <=             |
+| 2 |  <R |   | x R if <              |
+| 2 | !<R |   | x R if >=             |
+| 2 |  =R |   | x R if =              |
+| 2 | !=R |   | x R if !=             |
+|   |   q |   | exits 2 level macro   |
+| 1 |   Q |   | exits Nth level macro |
+|---+-----+---+-----------------------|
+*** numbers
+|---+---+---+-----------------------------|
+| T |   | P |                             |
+|---+---+---+-----------------------------|
+| 1 | Z |   | number of decimal digits    |
+| 1 | X |   | number of fraction digits   |
+|---+---+---+-----------------------------|
+| 1 | i |   | set input radix             |
+| 1 | o |   | set output radix            |
+| 1 | k |   | set decimal precision       |
+|   | I | 1 | push input radix            |
+|   | O | 1 | push output radix           |
+|   | K | 1 | push decimal precision      |
+|---+---+---+-----------------------------|
+| 2 | + | 1 |                             |
+| 2 | - | 1 | fst - snd                   |
+| 2 | * | 1 |                             |
+| 2 | / | 1 | fst / snd                   |
+| 2 | % | 1 | remainder of /              |
+| 2 | ~ | 2 | quotient and remainder of / |
+| 2 | ^ | 1 | fst ^ snd                   |
+| 3 | ¦ | 1 | mod(fst, snd ^ trd)         |
+| 1 | v | 1 | square root                 |
+|---+---+---+-----------------------------|
 * snippets
 
 - [[https://github.com/Alhadis/language-etc/blob/1455feb6de582239b67e8bbde8086569db377e3d/samples/dirsize.dc][Alhadis/language-etc/dirsize.dc]]

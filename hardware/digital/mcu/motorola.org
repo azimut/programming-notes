@@ -75,3 +75,9 @@ https://web.archive.org/web/20160309232352/http://www.68bits.com/m68hc05evm.html
 - https://www.clear.rice.edu/elec201/Book/6811_asm.html
 - snippet: some random asm code https://gist.github.com/Reflej0/d15f87d7080c43e9461db202624182fe
 - https://community.nxp.com/t5/8-bit-Microcontrollers/68HC11-not-starting-correctly/m-p/634257/highlight/true
+
+- videos
+  - @IMSAI https://www.youtube.com/watch?v=k_S_Nf_6weE
+    - special because it's a MCU that can be used a CPU
+    - expensive at the time
+    - 8 bit, but 16 bit instructions
