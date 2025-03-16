@@ -90,6 +90,7 @@
 *** stdlib
 |--------+-------+------------------------------------------------|
 |  <c>   |  <c>  |                                                |
+|   fn   |  arg  | description                                    |
 |--------+-------+------------------------------------------------|
 | length |   n   | significant digits, including decimals         |
 | scale  |   n   | significant digits, only decimals              |
@@ -136,21 +137,21 @@
 
 * articles
 
-- 23 https://org.coloradomesa.edu/~mapierce2/bc/
-- 21 https://www.computerhope.com/unix/ubc.htm
-- https://web.archive.org/web/20140112080500/http://mylinuxbook.com/linux-command-line-calculator-bc-examples/
-- https://unixetc.co.uk/2014/01/19/bc-rounding-errors/
-- https://www.johndcook.com/blog/2010/07/14/bc-math-library/
-- https://www.johndcook.com/blog/2019/10/29/computing-pi-with-bc/
-- http://www.physics.smu.edu/coan/linux/bc.html
+- 23 [[https://org.coloradomesa.edu/~mapierce2/bc/][The GNU Basic Calculator (bc): a Quick-Start Guide for Mathematicians]]
+- 21 [[https://www.computerhope.com/unix/ubc.htm][Linux bc command]]
+- 19 [[https://www.johndcook.com/blog/2019/10/29/computing-pi-with-bc/][Computing pi with bc]]
+- 14 [[https://unixetc.co.uk/2014/01/19/bc-rounding-errors/][bc Rounding Errors]]
+- 14 [[https://www.johndcook.com/blog/2010/07/14/bc-math-library/][Three surprises with bc]]
+- 13 [[https://web.archive.org/web/20140112080500/http://mylinuxbook.com/linux-command-line-calculator-bc-examples/][Command Line Calculator bc – 11 Extremely Useful Examples]]
+- ?? [[http://www.physics.smu.edu/coan/linux/bc.html][6. (Very) Brief intro to bc]]
 
 * videos
 
-- bc - geeksforgeeks https://www.youtube.com/watch?v=_UwhS0IvwQk
-- Command Line Calculator - gotbletu https://www.youtube.com/watch?v=JkyodHenTuc
-- Bc: Deep Dive Into The POSIX Calculator Language | Broodie Robertson https://www.youtube.com/watch?v=JascI_29sks
-- Linux in the Shell Ep 25 - bc https://vimeo.com/101977655
-- 23 video Is Python a souped up Basic Calculator?  https://www.youtube.com/watch?v=HcRMo0wGq44
+- [[https://www.youtube.com/watch?v=_UwhS0IvwQk][bc - geeksforgeeks]]
+- [[https://www.youtube.com/watch?v=JkyodHenTuc][Command Line Calculator - gotbletu]]
+- [[https://www.youtube.com/watch?v=JascI_29sks][Bc: Deep Dive Into The POSIX Calculator Language | Broodie Robertson]]
+- [[https://vimeo.com/101977655][Linux in the Shell Ep 25 - bc]]
+- 23 [[https://www.youtube.com/watch?v=HcRMo0wGq44][video Is Python a souped up Basic Calculator?]]
 
 * codebases
 
