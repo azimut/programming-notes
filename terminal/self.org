@@ -37,9 +37,14 @@
   - home https://saitoha.github.io/libsixel/
   - tmux fork/rant https://github.com/csdvrx/sixel-tmux
 
-- article 06 | https://ridiculousfish.com/blog/posts/old-age-and-treachery.html
-- article 17 | http://www.pixelbeat.org/docs/unix-parallel-tools.html
-- article 23 | https://muhammadraza.me/2023/webscraping-in-bash/
+* articles
+
+- 06 https://ridiculousfish.com/blog/posts/old-age-and-treachery.html
+- 17 http://www.pixelbeat.org/docs/unix-parallel-tools.html
+- 18 https://pspodcasting.net/dan/blog/2018/console_desktop.html
+- 20 https://pspodcasting.net/dan/blog/2020/complexity.pdf
+- 22 https://pspodcasting.net/dan/blog/2022/ancient_unix.html
+- 23 https://muhammadraza.me/2023/webscraping-in-bash/
 
 * termcap / terminfo
 

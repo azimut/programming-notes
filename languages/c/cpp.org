@@ -9,6 +9,7 @@
 - C++ FULL COURSE For Beginners (Learn C++ in 10 hours)
   15:00
   https://www.youtube.com/watch?v=GQp1zzTwrIg&t=28139s
+- 92 video https://archive.org/details/viagrafix-c-plus-plus-programming
 * Video: C++Now 2018: Mark Zeren “-Os Matters”
 https://www.youtube.com/watch?v=vGV5u1nxqd8
 | compiler explorer          | https://godbolt.org/             |

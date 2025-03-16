@@ -9,6 +9,7 @@
 - tic-tac toe https://www.youtube.com/watch?v=gCVMkKgs3uQ
 - 11 Advanced C Coding For Fun! by Rusty Russell https://www.youtube.com/watch?v=BEQ3sRakIs0
 - 08 Writing application fault handlers by Gilad Ben-Yossef https://bootlin.com/pub/video/2008/ols/ols2008-gilad-ben-yossef-fault-handlers.ogg
+- 90 [[https://archive.org/details/learning-c-programming-viagrafix-1990][Learning C Programming (Viagrafix, 1990)]]
 * Course: 6.S081: Learning by doing
 Catalog description: Design and implementation of operating systems,
 and their use as a foundation for systems programming. Topics include
