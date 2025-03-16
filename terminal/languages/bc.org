@@ -9,7 +9,7 @@
 |    faq     | http://phodd.net/gnu-bc/bcfaq.html                                 |
 |  tutorial  | https://org.coloradomesa.edu/~mapierce2/bc/                        |
 |    wiki    | https://en.wikipedia.org/wiki/Bc_%28programming_language%29        |
-|   online   | https://bc.js.org/                                                                   |
+|   online   | https://bc.js.org/                                                 |
 |------------+--------------------------------------------------------------------|
 
 - 1975
@@ -21,12 +21,17 @@
     - bio https://ncwit.org/profile/lorinda-cherry/
     - story https://news.ycombinator.com/item?id=30354391
     - https://archive.md/20220216000803/https://minnie.tuhs.org/pipermail/tuhs/2022-February/025390.html
+    - interview https://github.com/DamianFekete/an-oral-history-of-unix/blob/2bfd60782f3d6bbb7c50975c61324ce14a82670e/txt/cherry.txt#L4
 
 * cli
 
 #+begin_src sh
   bc [OPTIONS] [FILES]
 #+end_src
+
+- use ~BC_ENV_VARS~ env var to set cli arguments
+- use ~BC_LINE_LENGTH~ env var set to 0(zero) to disable wrapping
+- runs an interactively REPL if you just run it bare "bc"
 
 |----+-----------+------------------------------------------------|
 | -q | --quiet   | suppreses welcome message                      |
@@ -35,47 +40,104 @@
 
 * language
 
-- Runs interactively (REPL) if you just run it bare "bc"
-- default ~scale=0~, aka integer division
-- in POSIX mode, functions and variables can only be 1 character long
-- undefined variables return 0
-- if/while/for
-- "#" single line comment, "/**/" multi line comment
-- "auto" for declare local variables
+#+begin_src sh
+  #!/usr/bin/bc -lq
+  #!/usr/bin/env -S bc -lq
+  print "Hello\n" # might want that \n
+  quit            # needs an explicit
+#+end_src
 
-#+begin_src bash
-  define foo(x) {
-    auto pi=3.14
+- default ~scale=0~, aka integer division
+- changing the value of ~scale~ low will accumulate rounding errors
+- in POSIX mode, functions and variables can only be 1 character long
+- "/**/" multi line comments
+- accepts bases from 2 to 36
+- 1 is true, 0 is false
+
+** arrays
+
+- index non-negative
+- index start at 0(zero)
+- no syntax sugar for creating
+- no automatic length book-keeping (eg: stats is impossible)
+- cannot be return from a function
+- max length given at compile time by ~BC_DIM_MAX~ (eg: 2^24)
+- no support for matrices
+- on a different "namespace" than variables
+  - pass by reference
+    #+begin_src bash
+      define fibonacci_next (*array[], n) {
+          array[n] = array[n-1] + array[n-2]
+          return array[n]
+      }
+    #+end_src
+
+** functions
+
+- can receive simple variables or arrays
+- arguments passed by value by default
+
+*** new
+
+#+begin_src sh
+  define foo (x) {
+    auto pi=3.14 # "auto" declares pi a local variable
     print "this is 2 to the power of "; x*1; 2^x; pi*2;
-    print "\n"
+    print "\n"   # ";" and/or \n to separate commands
   }
 #+end_src
 
-** functions
-|--------+-----+---------------------------------------------|
-|  <c>   | <c> |                                             |
-| length |  n  | length in digits of n, including decimals   |
-|   s    |  n  | sine                                        |
-|   c    |  n  | cosine                                      |
-|   a    |  n  | arctangent                                  |
-|   l    |  n  | natural logarithm                           |
-|   e    |  n  | exponential of ~e~ to ~n~                   |
-|   j    | n,m | Bessel function of integer order ~n~ of ~x~ |
-| random |  -  | returns a random positive? integer          |
-|  read  |  -  | reads value from stdin, returns value read  |
-| print  |  s  | ala Python 2                                |
-|--------+-----+---------------------------------------------|
+*** stdlib
+|--------+-------+------------------------------------------------|
+|  <c>   |  <c>  |                                                |
+|--------+-------+------------------------------------------------|
+| length |   n   | significant digits, including decimals         |
+| scale  |   n   | significant digits, only decimals              |
+| random |   -   | returns a random positive? integer             |
+|  read  |   -   | reads value from stdin, returns value read     |
+| print  | s,... | needs "\n", no (), takes a variadic nr of args |
+|  quit  |   -   |                                                |
+|--------+-------+------------------------------------------------|
+|  sqrt  |   n   | square root                                    |
+|   s    |   n   | sine of angle n given in _radians_             |
+|   c    |   n   | cosine of angle n given in _radians_           |
+|   a    |   n   | arctangent of angle n given in _radians_       |
+|   l    |   n   | natural logarithm                              |
+|   e    |   n   | exponential of ~e~ to ~n~                      |
+|   j    |  n,m  | Bessel function of integer order ~n~ of ~x~    |
+|--------+-------+------------------------------------------------|
+
 ** variables
+
+- type is infered, not declared
+- undefined variables return 0
+- lowercase (uppercase used for bases >10)
+
 |-------+--------------------------------|
 |  <c>  |                                |
-| last  | last numer output              |
+| last  | last command output            |
+|   .   | shorthand for "last"           |
 | scale | number of decimals (default 0) |
 | obase | "output base" (default 10)     |
 | ibase | "input base"                   |
 |-------+--------------------------------|
+** control flow
+
+- continue/break/halt/return
+#+begin_src bash
+  if (20 > 0) { print "bigger" }
+  if (20 > 0) { print "bigger" } else { print "smaller" }
+  for (i=1; i<42; ++i) {
+      print i, " | ", fibonacci(i), "\n"
+  }
+  while (1) {
+  }
+#+end_src
+
 * articles
 
 - 23 https://org.coloradomesa.edu/~mapierce2/bc/
+- 21 https://www.computerhope.com/unix/ubc.htm
 - https://web.archive.org/web/20140112080500/http://mylinuxbook.com/linux-command-line-calculator-bc-examples/
 - https://unixetc.co.uk/2014/01/19/bc-rounding-errors/
 - https://www.johndcook.com/blog/2010/07/14/bc-math-library/
@@ -98,30 +160,11 @@
 - gcd, fibo https://literateprograms.org/category_programming_language_bc.html
 - official examples https://github.com/fivepiece/gnu-bc/tree/master/Examples
 - resources http://www.phodd.net/gnu-bc/
+- http://www.numbertheory.org/gnubc/gnubc.html
 - functions https://github.com/mikepierce/GNU-bc-Functions
 - functions https://web.archive.org/web/20160304092132/http://x-bc.sourceforge.net/extensions_bc.html
 - functions https://github.com/idealvin/bc
 - constants https://web.archive.org/web/20160304081309/http://x-bc.sourceforge.net/scientific_constants_bc.html
-
-* snippets
-** pi
-#+begin_src sh
-  scale=10
-  4*a(1)
-#+end_src
-** solve
-
-#+begin_src sh
-$ solve "4*49+732"
-$ cat /usr/local/bin/solve
-  #!/bin/sh
-  bc << EOF
-  scale=4
-  $@
-  quit
-  EOF
-#+end_src
-
 ** sergiosgc/AdventOfCode2021
 - day6 [[https://github.com/sergiosgc/AdventOfCode2021/blob/main/src/day06/one.bc][part 1]]
   #+begin_src bash
@@ -135,6 +178,52 @@ $ cat /usr/local/bin/solve
   print result
   print "\n"
   #+end_src
+
+
+* snippets
+
+- needed to handle fractional exponents, uses e() and l()
+  #+begin_src bash
+    define pow (b,x) { return e(x*l(b)) }
+  #+end_src
+
+- getting the integer part of a number
+  #+begin_src bash
+    define int (x) {
+        auto s;
+        s=scale;
+        scale=0; # temporarilly chaing the scale
+        x/=1;
+        scale=s; # restoring scale
+        return x;
+    }
+  #+end_src
+
+- radians <=> degrees conversions
+  #+begin_src sh
+    define radtodeg (x) { return x*(45/a(1)) }
+    define degtorad (x) { return x*(a(1)/45) }
+  #+end_src
+
+
+** pi
+
+#+begin_src sh
+  scale=10
+  4*a(1)
+#+end_src
+
+** solve
+#+begin_src sh
+$ solve "4*49+732"
+$ cat /usr/local/bin/solve
+  #!/bin/sh
+  bc << EOF
+  scale=4
+  $@
+  quit
+  EOF
+#+end_src
 
 * implementations
 - alternative qalc

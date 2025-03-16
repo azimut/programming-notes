@@ -48,7 +48,7 @@
   $ echo '2 3'   | dc -e '? ? +'
 #+end_src
 
-- possible to use recursion, but slow
+- supports recursion
 
 - types
   - numbers
@@ -69,33 +69,33 @@
 ** commands
 
 #+CAPTION: T=take P=put
-|---+----+---+----------------------------------------------|
-| T |    | P |                                              |
-|---+----+---+----------------------------------------------|
-|   | f  |   | print full stack                             |
-|   | p  |   | print top of stack, with \n                  |
-| 1 | n  |   | print top of stack, no \n                    |
-| 1 | P  | 1 | print top of stack, no \n, as char if number |
-|---+----+---+----------------------------------------------|
-|   | z  | 1 | number of element in stack                   |
-| * | c  |   | clear stack                                  |
-| 1 | d  | 2 | dup top of stack                             |
-|   | r  |   | swap top 2 values                            |
-|   | R  |   | rotates the top Nth items                    |
-|---+----+---+----------------------------------------------|
-| 1 | sR |   | stores in register R                         |
-| 1 | SR |   | stores in register R, nuke prev content on R |
-|   | lR | 1 | load from register R, 0 if empty             |
-|   | LR | 1 | " and pops it from register R                |
-|---+----+---+----------------------------------------------|
-| 1 | a  | 1 | pop top, and push back 1st char/byte         |
-|   | ?  | 1 | ask user input, and execute it as a macro    |
-|---+----+---+----------------------------------------------|
-|   | !  |   | system command                               |
-|   | #  |   | comment                                      |
-| 2 | :R |   | store *fst* in R =array=, at idx *snd*       |
-| 1 | ;r |   | get given =array= element in register        |
-|---+----+---+----------------------------------------------|
+|---+----+---+-----------------------------------------------|
+| T |    | P |                                               |
+|---+----+---+-----------------------------------------------|
+|   | f  |   | print full stack                              |
+|   | p  |   | print top of stack, with \n                   |
+| 1 | n  |   | print top of stack, no \n                     |
+| 1 | P  | 1 | print top of stack, no \n, as char if number  |
+|---+----+---+-----------------------------------------------|
+|   | z  | 1 | number of element in stack                    |
+| * | c  |   | clear stack                                   |
+| 1 | d  | 2 | dup top of stack                              |
+| 2 | r  | 2 | swap top 2 values                             |
+| 1 | R  |   | rotates the top Nth items once                |
+|---+----+---+-----------------------------------------------|
+| 1 | sR |   | stores in register R                          |
+| 1 | SR |   | stores in register R, nuke prev content on R  |
+|   | lR | 1 | load from register R, 0 if empty              |
+|   | LR | 1 | " and pops it from register R                 |
+|---+----+---+-----------------------------------------------|
+| 1 | a  | 1 | pop top, and push back 1st char/byte          |
+|   | ?  | 1 | ask user input, and execute it as a macro     |
+|---+----+---+-----------------------------------------------|
+|   | !  |   | system command                                |
+|   | #  |   | comment                                       |
+| 2 | :r |   | store *fst* in r =array=, at idx *snd*        |
+| 1 | ;r | 1 | get from r =array=, element at *top* position |
+|---+----+---+-----------------------------------------------|
 *** control flow
 |---+-----+---+-----------------------|
 |   | <r> |   |                       |
@@ -191,6 +191,7 @@
 
 - 24 [[https://bash-hackers.gabe565.com/howto/calculate-dc/][Calculating with dc - The Bash Hackers Wiki]]
 - 21 [[https://psychocod3r.wordpress.com/2021/05/08/obfuscated-unix-scripting-with-dc/][Obfuscated Unix Scripting with dc]]
+- 21 https://www.computerhope.com/unix/udc.htm
 - 20 [[http://web.archive.org/web/20200607102626/https://ben165.github.io/unix_dc/index.html][A deeper introduction in Unix dc]]
 - 18 [[https://eklitzke.org/summing-integer-ranges-with-dc][Summing Integer Ranges With dc]]
 - 97 https://wolfram.schneider.org/bsd/7thEdManVol2/dc/dc.pdfa
@@ -198,12 +199,14 @@
 
 * videos
 
-#+CAPTION: Lorinda Cherry in 1982's
+#+CAPTION: Lorinda Cherry in 1982
 [[./dc_bell.png]]
 
-- 82 used by Lorinda Cherry in segment of [[https://youtu.be/XvDZLjaCJuw?t=921][UNIX: Making Computers Easier To Use]]
+- 82 used by Lorinda Cherry in a segment of [[https://youtu.be/XvDZLjaCJuw?t=921][UNIX: Making Computers Easier To Use]]
+- 11 [[https://okpanico-wordpress-com.translate.goog/2011/07/04/dc-desk-calculator-antenato-di-bc-calc-e-altri-ancora/?_x_tr_sl=it&_x_tr_tl=en&_x_tr_hl=es&_x_tr_pto=wapp][[Translation]​]] [[https://okpanico.wordpress.com/2011/07/04/dc-desk-calculator-antenato-di-bc-calc-e-altri-ancora/][dc = desk calculator, antenato di bc, calc e altri ancora]]
 - 21 [[https://www.youtube.com/watch?v=WxCP8oHq_Ss][The Genius of the "dc" Desktop Calculator]]
 - 23 [[https://www.youtube.com/watch?v=MDENRcTWDSY][Découvrons & Programmons "dc" (desk calculator) - 1971]]
+  - https://blog.univ-angers.fr/mathsinfo/dc/
 - 23 [[https://www.youtube.com/watch?v=9M8sQrrS_f8][RPN, dc, and the HP-12C]]
 
 * implementations
