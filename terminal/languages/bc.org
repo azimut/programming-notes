@@ -1,16 +1,14 @@
 #+TITLE: bc
 #+DATE: <2024-04-12 vie>
 
-|------------+--------------------------------------------------------------------|
-|    <c>     |                                                                    |
-|  man gnu   | https://www.gnu.org/software/bc/manual/html_mono/bc.html           |
-| man posix  | https://pubs.opengroup.org/onlinepubs/9699919799/utilities/bc.html |
-| source (C) | https://github.com/fivepiece/gnu-bc/                               |
-|    faq     | http://phodd.net/gnu-bc/bcfaq.html                                 |
-|  tutorial  | https://org.coloradomesa.edu/~mapierce2/bc/                        |
-|    wiki    | https://en.wikipedia.org/wiki/Bc_%28programming_language%29        |
-|   online   | https://bc.js.org/                                                 |
-|------------+--------------------------------------------------------------------|
+|------------+-------------------------------------------------------------|
+|    <c>     |                                                             |
+| source (C) | https://github.com/fivepiece/gnu-bc/                        |
+|   manual   | https://www.gnu.org/software/bc/manual/html_mono/bc.html    |
+|    faq     | http://phodd.net/gnu-bc/bcfaq.html                          |
+|    wiki    | https://en.wikipedia.org/wiki/Bc_%28programming_language%29 |
+|   online   | https://bc.js.org/                                          |
+|------------+-------------------------------------------------------------|
 
 - 1975
 - "Basic/Bench Calculator"
@@ -91,6 +89,7 @@
 #+end_src
 
 *** stdlib
+
 |--------+-------+------------------------------------------------|
 |  <c>   |  <c>  |                                                |
 |   fn   |  arg  | description                                    |
@@ -125,6 +124,7 @@
 | obase | "output base" (default 10)     |
 | ibase | "input base"                   |
 |-------+--------------------------------|
+
 ** control flow
 
 - continue/break/halt/return
@@ -142,6 +142,7 @@
 
 - 23 [[https://org.coloradomesa.edu/~mapierce2/bc/][The GNU Basic Calculator (bc): a Quick-Start Guide for Mathematicians]]
 - 21 [[https://www.computerhope.com/unix/ubc.htm][Linux bc command]]
+- 21 [[https://leancrew.com/all-this/2021/02/some-bc-stuff/][Some bc stuff]]
 - 19 [[https://www.johndcook.com/blog/2019/10/29/computing-pi-with-bc/][Computing pi with bc]]
 - 14 [[https://unixetc.co.uk/2014/01/19/bc-rounding-errors/][bc Rounding Errors]]
 - 14 [[https://www.johndcook.com/blog/2010/07/14/bc-math-library/][Three surprises with bc]]
@@ -228,6 +229,10 @@ $ cat /usr/local/bin/solve
   EOF
 #+end_src
 
-* implementations
-- alternative qalc
-- https://github.com/gavinhoward/bc
+* other implementations
+- alternative [[https://qalculate.github.io/][qalc]]
+- howard? https://github.com/gavinhoward/bc
+- posix https://pubs.opengroup.org/onlinepubs/9699919799/utilities/bc.html
+- bsd [[https://man.freebsd.org/cgi/man.cgi?query=bc&sektion=1][man]] [[https://cgit.freebsd.org/src/tree/contrib/bc][source]]
+- busybox https://git.busybox.net/busybox/tree/miscutils/bc.c
+- toybox https://github.com/landley/toybox/blob/master/toys/pending/bc.c

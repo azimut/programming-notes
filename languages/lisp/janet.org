@@ -2,7 +2,12 @@
 - 23 https://ianthehenry.com/posts/why-janet/
 - book: https://janet.guide/
 
-* 21 Janet Game
+* videos
+- 2020 random project (text editor) https://www.youtube.com/@saikyun/search?query=janet
+- 2020 random projects https://www.youtube.com/@swlkr_/search?query=janet
+- 2023 aoc https://www.youtube.com/playlist?list=PLjT5GDnW_UMCQfIxEr0ftjBeDohXEnYmh
+- 2024 Janet: A practical, Embeddable Lisp by SystemCrafters https://www.youtube.com/watch?v=f5KZHGGogbc
+* 21 Article: Janet Game
 - https://ianthehenry.com/posts/janet-game/day-one/
 - https://ianthehenry.com/posts/janet-game/judging-janet/
 - https://ianthehenry.com/posts/janet-game/the-problem-with-macros/

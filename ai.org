@@ -5,9 +5,11 @@
   - https://en.wikipedia.org/wiki/Iris_flower_data_set
   - https://en.wikipedia.org/wiki/MNIST_database
   - https://en.wikipedia.org/wiki/ImageNet
+  - https://github.com/several27/FakeNewsCorpus
 
 - deep learning https://www.youtube.com/playlist?list=PLoROMvodv4rPOWA-omMM6STXaWW4FvJT8
 - https://github.com/AudioLLMs/AudioLLM
+- Course: intro for probability for cs https://www.youtube.com/playlist?list=PLoROMvodv4rOpr_A7B9SriE_iZmkanvUg
 - Course: zero to neural networks https://www.youtube.com/@datacorelinux/videos
 - https://microsoft.github.io/generative-ai-for-beginners/#/
 - books https://github.com/aridiosilva/AI_Books/

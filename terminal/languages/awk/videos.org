@@ -1,6 +1,7 @@
 - Aho: "I'm the A in AWK." https://www.youtube.com/watch?v=5Zsk5L225Zs
   - a generalization of grep
   - intersts in: regex, pattern matching, assoc arrays, data processing
+- 19 [[https://www.youtube.com/watch?v=zOTa1sM1eWg][Embedded with Go: from an AWK prototype to a gokrazy appliance How to build a self-contained toy]]
 - 20 | Hacklab Almeria | AWK, la navaja suiza de los sistemas *NIX https://www.youtube.com/watch?v=WGNlLOf7Qn0
 - 21 | Sandino A.      | Taller de AWK https://www.youtube.com/watch?v=1_UyBhlTxsQ
 - 21 | Arpan Patel     | Introduction to awk for Data Engineering https://www.youtube.com/watch?v=yizvRBqy-mE
