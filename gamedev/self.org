@@ -1,3 +1,4 @@
+- https://ianthehenry.com/posts/delaunay/
 - advent shaders https://github.com/mrange/shader-advent-2024/
 - challenges https://tcc.lovebyte.party/
 - https://github.com/chr15m/roguelike-browser-boilerplate

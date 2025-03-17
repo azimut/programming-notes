@@ -1,0 +1,12 @@
+- 23 https://ianthehenry.com/posts/janet-for-mortals/
+- 23 https://ianthehenry.com/posts/why-janet/
+- book: https://janet.guide/
+
+* 21 Janet Game
+- https://ianthehenry.com/posts/janet-game/day-one/
+- https://ianthehenry.com/posts/janet-game/judging-janet/
+- https://ianthehenry.com/posts/janet-game/the-problem-with-macros/
+- https://ianthehenry.com/posts/janet-game/janet-macrology/
+- https://ianthehenry.com/posts/janet-game/putting-judge-to-the-test/
+- https://ianthehenry.com/posts/janet-game/how-to-patch-emacs/
+- https://ianthehenry.com/posts/janet-game/dots-and-crosses/

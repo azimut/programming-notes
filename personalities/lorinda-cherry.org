@@ -1,0 +1,13 @@
+#+TITLE: Lorinda Cherry
+
+- 1994-2022
+- wiki https://en.wikipedia.org/wiki/Lorinda_Cherry
+- bio https://ncwit.org/profile/lorinda-cherry/
+- story https://news.ycombinator.com/item?id=30354391
+- eulogy https://archive.md/20220216000803/https://minnie.tuhs.org/pipermail/tuhs/2022-February/025390.html
+- interview https://github.com/DamianFekete/an-oral-history-of-unix/blob/2bfd60782f3d6bbb7c50975c61324ce14a82670e/txt/cherry.txt#L4
+- author of:
+  - dc
+  - bc
+  - Writers Workbench https://en.wikipedia.org/wiki/Writer%27s_Workbench
+    - gnu: spell, style, diction

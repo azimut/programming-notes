@@ -45,6 +45,10 @@
 
 * Computerphile
 
+- 14 Fibonacci Programming - Computerphile https://youtu.be/7t_pTlH9HwA?t=212
+  - things that can be de-recurse are called "primitive recursive"
+  - +https://www.eprg.org/computerphile/recursion.htm+ DEAD LINK
+  - script https://youtu.be/7t_pTlH9HwA?t=264
 - 15 The Font Magicians https://www.youtube.com/watch?v=jAdspOtgciQ
 - 24 Discussing PDF@30 Years Old https://www.youtube.com/watch?v=Bffm1Ie66gM
 - 20 How eBooks work https://www.youtube.com/watch?v=59kyZH6sgpc
