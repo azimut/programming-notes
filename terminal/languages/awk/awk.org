@@ -478,11 +478,6 @@ https://rosettacode.org/wiki/Hello_world/Web_server
 |---------------------+----------------------------------------------------------------|
 * snippets
 
-#+CAPTION: aoc solution wrote by some anon
-#+ATTR_HTML: :width 700
-#+ATTR_ORG: :width 400
-[[./anonawk.jpg]]
-
 - print unique lines, _without sorting_
   #+begin_src sh
     $ awk '!x[$0]++' file.txt

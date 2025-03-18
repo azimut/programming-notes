@@ -4,6 +4,11 @@
   - Author: Eric Wastl
   - 2015-
 
+#+CAPTION: aoc solution wrote by some anon
+#+ATTR_HTML: :width 700
+#+ATTR_ORG: :width 400
+[[./anonawk.jpg]]
+
 * thoughts
 
 1) debug/print/visualize often

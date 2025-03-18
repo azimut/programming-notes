@@ -56,16 +56,13 @@
 #+end_src
 
 - chunk = piece of code executed, a sequence of commands/statements (a file?)
-- closures support
-- first class functions
-- dynamic: variables don't have a type, values inside have
-- weakly typed, in the automatic type conversion sense (for +, and ..)
-- referencing undefined variables return value nil, no error
-- 1(one) based index
 
 ** variables
 
-- always global scope by default
+- always have global _scope_ by default
+- _dynamic_, variables don't have a type, values inside have
+- _weakly typed_, in the automatic type conversion sense (for +, and ..)
+- referencing _undefined_ variables return value nil, no error
 - arg - array of arguments, [0] name of the script
 
 #+begin_src lua
@@ -128,7 +125,7 @@ https://www.lua.org/pil/2.5.html
 - nil is an invalid index
 - it might change its internal representations according to the use given
   - "arrays" are tables with numeric index
-    - 1 based
+    - 1 based index
     - ends at his first non initialized value (a sort of *sentinel*)
     - you might want to enforce the index type (toint,tostring)
   - "records" are tables with literal keys
@@ -136,7 +133,10 @@ https://www.lua.org/pil/2.5.html
   - "objects" are tables
 
 *** function
+
 https://www.lua.org/pil/2.6.html
+- first class functions
+- closures support
 - support for nested functions, with lexical scoping
 
 ** control flow
