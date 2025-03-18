@@ -1,3 +1,8 @@
+- trigonometry
+  - arctan: helps find the angle between hyp/adj = arctan(opposite/adj)
+  - arctan2: optimized to return correct angle regardless cuadrant
+    - takes opposite and adjacent values
+    - returns in radians
 - https://ianthehenry.com/posts/delaunay/
 - advent shaders https://github.com/mrange/shader-advent-2024/
 - challenges https://tcc.lovebyte.party/

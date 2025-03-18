@@ -34,6 +34,7 @@
   - game https://play.battlesnake.com/
   - game https://dojorena.io/with/the-best-coding-challenge https://dojorena.io/manuals/43
 - Algo
+  - https://everybody.codes/home
   - https://www.janestreet.com/puzzles/archive/
   - https://leetcode.com/
   - https://adventofcode.com/

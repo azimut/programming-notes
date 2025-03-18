@@ -55,7 +55,7 @@
   print("factorials of 3:", fact(5))
 #+end_src
 
-- chunk = piece of code executed, a sequence of commands/statements
+- chunk = piece of code executed, a sequence of commands/statements (a file?)
 - closures support
 - first class functions
 - dynamic: variables don't have a type, values inside have
@@ -65,7 +65,9 @@
 
 ** variables
 
-arg - array of arguments, [0] name of the script
+- always global scope by default
+- arg - array of arguments, [0] name of the script
+
 #+begin_src lua
         x = 0
   local x = 0    -- limit scope
@@ -217,7 +219,14 @@ https://www.lua.org/manual/5.4/manual.html#6.2
 https://www.lua.org/manual/5.4/manual.html#6.10
 *** io
 https://www.lua.org/manual/5.4/manual.html#6.8
-io.read("prompt") - returns read value
+io.read(FMT) - returns read value
+- FMT
+  - all a *a  - all input
+  - *n        - a number
+  - *l        - an entire line, same as () no argument
+  - 4         - reads 4 characters
+  - 4,6       - reads 4 and 6 characters, returns mval
+  - *n,*n     - reads two numbers
 io.open("file.csv", "r")
 - :close()
 - :read("*a")
@@ -241,6 +250,7 @@ io.open("file.csv", "r")
 *** package
 https://www.lua.org/manual/5.4/manual.html#6.3
 *** math
+
 https://www.lua.org/manual/5.4/manual.html#6.7
 .pi
 .sqrt(n)
@@ -253,7 +263,8 @@ https://www.lua.org/manual/5.4/manual.html#6.7
 .ceil(n)
 .randomseed(seed) - eg: seed = os.time()
 .random() - between 0 and 1
-.random(a,b)
+.random(a,b) - between a and b
+
 *** table
 https://www.lua.org/manual/5.4/manual.html#6.6
 *** string
