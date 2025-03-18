@@ -45,6 +45,7 @@
 * language
 
 #+CAPTION: from "The AWK Programming Language"
+#+ATTR_HTML: :width 600
 #+ATTR_ORG: :width 500
 [[./awk_syntax.png]]
 
