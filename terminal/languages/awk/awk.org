@@ -50,6 +50,7 @@
 
 - #!/usr/bin/awk -f
 - #!/usr/bin/env -S gawk -f
+- standalone script should use BEGIN (not END)
 - [[https://www.gnu.org/software/gawk/manual/html_node/Feature-History.html][gawk version changelog]] ([[https://fossies.org/linux/gawk/ChangeLog][by date]])
   - 2023 (5.3)
     - ~--csv~ flag, supports fields surrounded by double quotes
@@ -297,6 +298,7 @@ https://www.gnu.org/software/gawk/manual/html_node/Getline.html
 | getline var          | reads n.i.r. into var               | NR, FNR, RT         |
 | getline < file       | reads n.i.r. from file              | NF, RT, $0          |
 | getline var < file   | reads n.i.r. from file into var     | -                   |
+| getline var < "-"    | reads n.i.r. from stdin/user        | -                   |
 | "cmd" ¦  getline     | reads a single line of cmd into awk | NF, RT, $0          |
 | "cmd" ¦  getline var | reads a single line of cmd into var | RT                  |
 | "cmd" ¦& getline     | reads from a two-way pipe           | NF, RT, $0          |

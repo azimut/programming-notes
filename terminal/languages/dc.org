@@ -137,6 +137,7 @@
 |---+---+---+-----------------------------|
 * snippets
 
+- https://rosettacode.org/wiki/Category:Dc
 - [[https://github.com/Alhadis/language-etc/blob/1455feb6de582239b67e8bbde8086569db377e3d/samples/dirsize.dc][Alhadis/language-etc/dirsize.dc]]
 - [[https://github.com/brunk23/code-challenges/blob/7b7afc5088142102ce9610cbda7bac5cd9583829/trend.error][brunk23/code-challenges/trend.error]]
 - [[https://github.com/brunk23/dc-programs][brunk23/dc-programs]]

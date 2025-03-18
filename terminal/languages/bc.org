@@ -165,6 +165,7 @@
 - official examples https://github.com/fivepiece/gnu-bc/tree/master/Examples
 - resources http://www.phodd.net/gnu-bc/
 - http://www.numbertheory.org/gnubc/gnubc.html
+- https://rosettacode.org/wiki/Category:Bc
 - functions https://github.com/mikepierce/GNU-bc-Functions
 - functions https://web.archive.org/web/20160304092132/http://x-bc.sourceforge.net/extensions_bc.html
 - functions https://github.com/idealvin/bc
