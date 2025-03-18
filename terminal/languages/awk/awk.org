@@ -449,6 +449,7 @@ https://rosettacode.org/wiki/Hello_world/Web_server
 
 * codebases
 
+#+CAPTION: Alfred Aho in a 80's film
 [[./aho.png]]
 
 |---------------------+----------------------------------------------------------------|
@@ -476,8 +477,9 @@ https://rosettacode.org/wiki/Hello_world/Web_server
 |---------------------+----------------------------------------------------------------|
 * snippets
 
-#+DESCRIPTION: aoc solution wrote by some anon
-#+ATTR_ORG: :width 500
+#+CAPTION: aoc solution wrote by some anon
+#+ATTR_HTML: :width 700
+#+ATTR_ORG: :width 400
 [[./anonawk.jpg]]
 
 - print unique lines, _without sorting_
