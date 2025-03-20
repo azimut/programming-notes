@@ -124,13 +124,20 @@ https://www.lua.org/pil/2.5.html
 - tab.field or tab["field"]
 - nil is an invalid index
 - it might change its internal representations according to the use given
-  - "arrays" are tables with numeric index
+  - =arrays= are tables with numeric index
     - 1 based index
     - ends at his first non initialized value (a sort of *sentinel*)
     - you might want to enforce the index type (toint,tostring)
-  - "records" are tables with literal keys
-  - "modules" are tables populated with anonymous functions
-  - "objects" are tables
+    #+begin_src lua
+      scores = { 88.7, 67.7 }
+    #+end_src
+  - =records= are tables with literal keys
+    #+begin_src lua
+      scores = {["miles"] = 88.7, ["john"] = 67.7 }
+      scores = {  miles   = 88.7,   john   = 67.7 }
+    #+end_src
+  - =modules= are tables populated with anonymous functions
+  - =objects= are tables
 
 *** function
 
@@ -194,11 +201,11 @@ collectgarbage
 dofile
 error
 getmetatable
-ipairs
+pairs - returns key-value pairs, without order
+ipairs - returns index-value pairs, in order
 load
 loadfile
 next
-pairs
 pcall - returns "ok, err", an exception protected call to fn
 print
 rawequal

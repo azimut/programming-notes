@@ -9,7 +9,22 @@
 | wiki | https://en.wikibooks.org/wiki/Ruby_Programming            |
 |------+-----------------------------------------------------------|
 
-* Language
+- Author: Yukihiro Matsumoto (matz)
+- 1995, Japan
+- Written in C
+- Author wanted an OO language.
+  - Didn't liked Python, because it wasn't true OO.
+
+* cli
+|----+--------------+--------------------------------------------|
+| -F | pattern      | input field separator                      |
+| -n |              | awk like loop around                       |
+| -p |              | awk like loop around, prints $_ at the end |
+| -a |              | awk like auto field split, $F = $_.split   |
+| -e | code         | input ruby code to run                     |
+| -i | new file ext | inplace replace                            |
+|----+--------------+--------------------------------------------|
+* language
 
 #+begin_src ruby
   #!/usr/bin/env ruby
@@ -17,12 +32,6 @@
     puts "Hello, World!"
   end
 #+end_src
-
-- Author: Yukihiro Matsumoto (matz)
-- 1995-
-- Written in C
-- Author wanted an OO language.
-  Didn't like Python, because it wasn't true OO.
 
 - challenges
   - https://www.rubykoans.com/
@@ -47,134 +56,6 @@
 - when we call a method without putting a receiver object before it
   it refers to the object named "self"
   aka "puts == self.puts"
-- methods that end with (!) raise exceptions on error
-  - in general you want to use them over the bare ones
-  - you can also build your own instance getters that do that
-
-- lib/<gemname>/<class>.rb
-- test/<gemname>/all_tests.rb # require_relative other .rbs
-- test/<gemname>/<class>_test.rb
-
-** variables
-- the "nouns" of Ruby
-*** global variables
-- https://www.fastruby.io/blog/exploring-global-constants-and-variables.html
-- https://rubyapi.org/o/english
-|--------------------------+----+------------------------------------------------------|
-|                      <r> |    |                                                      |
-|                          |    | description                                          |
-|--------------------------+----+------------------------------------------------------|
-|                 __FILE__ |    | has the name of the file being run                   |
-|                   $stdin |    | standard input                                       |
-|                  $stdout |    | standard output                                      |
-|                  $stderr |    | standard error                                       |
-|                     ARGV | $* | array with command line arguments                    |
-|                     ARGF | $< | the content of all the files whose names were passed |
-|          $DEFAULT_OUTPUT | $> |                                                      |
-|                     $ENV |    | Hash that contains environment variables             |
-|              $ERROR_INFO | $! |                                                      |
-|          $ERROR_POSITION | $@ |                                                      |
-|         $FIELD_SEPARATOR | $; | FS                                                   |
-|  $OUTPUT_FIELD_SEPARATOR | $, | OFS                                                  |
-|  $INPUT_RECORD_SEPARATOR | $/ | RS                                                   |
-| $OUTPUT_RECORD_SEPARATOR | $\ | ORS                                                  |
-|       $INPUT_LINE_NUMBER | $. | NR                                                   |
-|          $LAST_READ_LINE | $_ |                                                      |
-|              $PROCESS_ID | $$ | PID                                                  |
-|            $CHILD_STATUS | $? |                                                      |
-|                   $MATCH | $& | regex op, the match (all between //)                 |
-|                $PREMATCH | $` | regex op, to the left of last match                  |
-|               $POSTMATCH | $' | regex op, to the right of last match                 |
-|        $LAST_PAREN_MATCH | $+ | regex op, the last group                             |
-|                          | $N | regex op, where N is a number of the nth match       |
-|             PROGRAM_NAME | $0 |                                                      |
-|--------------------------+----+------------------------------------------------------|
-** testing
-
-- "do NOT mind code duplication in tests" - PragmaticRuby
-- assert_, refute_
-- _equal, _empty
-#+begin_src ruby
-  require_relative "words_from_string"
-  require "minitest/autorun" # runs all the test_*
-  class TestWordsFromString < Minitest::Test
-    def setup # called before each test_ method in class
-      @playlist = Playlist.new("Gonzo")
-      @movie1 = Movie.new("A", 10)
-      @movie2 = Movie.new("B", 9)
-      $stdout = StringIO.new # supress stdout
-    end
-    def test_high_number
-      @playlist.stub(:roll_die, 6) do  # override method to return a constant value
-        @playlist.play()
-        assert_equal 11, @movie1.rank
-      end
-    end
-    def test_empty_string # methods starting with "test" automatically run
-      assert_equal([], words_from_string(""))
-      assert_equal([], words_from_string("   "))
-    end
-  end
-#+end_src
-
-** operators
-|------+---------------------------------------------------|
-| <c>  |                                                   |
-|  +   | arithmethic sum, string concatenation             |
-|  **  | arithmetic exponent/power                         |
-|  &   | boolean AND, bitwise AND, or set intersection     |
-|  =~  | match string against regex, returns start pos/nil |
-| %w[] | create an array of strings                        |
-| %w() | "                                                 |
-| %i[] | "                                                 |
-|  <<  | appends an element to an array                    |
-|  ::  | scope resolution operator                         |
-| #{}  | string interpolation                              |
-| ¦¦=  | if LS is falsey, eval RS and assign it to LS      |
-|  =>  | "hashrocket", associates k/v in a Hash            |
-|------+---------------------------------------------------|
-#+TBLFM: $1=>
-** require
-
-#+begin_src ruby
-  require "csv"
-  require_relative "book_in_stock" # for "./book_in_stock.rb"
-#+end_src
-
-** i/o
-
-- https://docs.ruby-lang.org/en/2.4.0/Open3.html
-  - child process stdin/stdout/stderr and a thread for it
-- https://ruby-doc.org/stdlib-2.6.3/libdoc/pathname/rdoc/Pathname.html
-  - wrapper around File class, crossplatform
-- popen - for r/w from/to a process
-- system - if you don't care about the output just stdout
-- p
-  - calls #inspect
-- pp
-- puts
-  - calls #to_s, to get its string representation
-  - short for "outPUT String"
-  - available to all objects
-  - often written without parentheses
-
-** style
-
-- guide https://github.com/airbnb/ruby
-- guide https://github.com/rubocop/ruby-style-guide
-- tool: linter/formatter https://github.com/standardrb/standard
-- tool: linter/formatter https://github.com/rubocop/rubocop/
-
-- 2 spaces for indentation
-- book_in_stock.rb (file) / BookInStock (class)
-
-- variable/parameters/methods
-- @instance_var @X @_
-- @@class_var @@N @@x_pos @@SINGLE
-- $global $CUSTOMER $_ $plan9 $Global
-- ClassName
-- ModuleName
-- CONSTANT_NAME
 
 ** changelog
 
@@ -216,215 +97,64 @@ https://rubyreferences.github.io/rubychanges/evolution.html
   - new parser: Prism
   - introduces RJIT
 
-** control flow
+** variables
 
-- if/elsif/else/end
-- unless/
-- while/end
-- =statement modifiers=
-  #+begin_src ruby
-    return nil if user.nil? # guards clause, usually at the beginning of a method
+- lowercase, digits, underscore
+- the "nouns" of Ruby
 
-    puts "Danger" if radiation > 3000
+- @ instance variables
+  - used to define (at)tributes
 
-    square = 4
-    square = square * square while square < 1000
-  #+end_src
-- loop/end
-  - infinite loop
-  - break out of them
-  - it will also auto-break if the *Enumerator* inside runs out of values
-    #+begin_src ruby
-      short_enum = [1,2,3].to_enum
-      long_enum = ('a'..'z').to_enum
-      loop do # loops 3 times
-        puts "#{short_enum.next} - #{long_enum.next}"
-      end
-    #+end_src
+- @@ class variables
+  - used to define (at)tributes for (a)ll instances
 
-** a =block= {} do/end
-
-- blocks are closures
-- is a chunk of code you can pass to a method, as it were another parameter
-
-- assign a block to a variable, all of these return a =Proc= from the block
-  #+begin_src ruby
-    bo = ->(param) { puts "You called me with #{param}" } # stabby lambda, optional parens
-    bo = lambda { |param| puts "You called me with #{param}" } # Kernel method "lambda", error on wrong nargs
-    bo = proc { |param| puts "You called me with #{param}" } # Kernel method "proc", bubble ups "return"
-    bo = Proc.new { |param| puts "You called me with #{param}" } # same but OLD style
-    bo.call(99)
-  #+end_src
-
-- can be passed to a *method* either
-  1) extra IMPLICIT last argument that's passed to a method
-  2) (&) EXPLICIT last argument, to call store it and call it later (callbacks)
-     #+begin_src ruby
-       class ProcExample
-         def pass_in_block(&action)
-           @stored_proc = action
-         end
-         def use_proc(parameter)
-           @stored_proc.call(parameter) # .call stored block
-         end
-       end
-       eg = ProcExample.new
-       eg.pass_in_block { |param| puts "The parameter is #{param}" }
-       eg.use_proc(99)
-     #+end_src
-
-- parameters to a block are ALWAYS local to that block
-- has access to variables outside his scope
-- =Iterator= or =Enumerator= a method that can invoke a block of code repeatedly
-- you can only pass one block per method call
-  greet("dave", "loyal customer") { puts "hi" }
-- invoked in a method using ~yield~
-  - block parameters put after a ; are considered locals to that block (awk-ish) (RARE!)
-    #+begin_src ruby
-      square = "some shape"
-      sum = 0
-      [1,2,3,4].each do |value;square| # 2 block parameters
-        square = value * value
-        sum += square
-      end
-      puts sum
-      puts square
-    #+end_src
-  - no argument
-    #+begin_src ruby
-      def call_block
-        puts "Start of method"
-        yield
-        yield
-        puts "End of method"
-      end
-      call_block { puts "In the block" }
-    #+end_src
-  - with arguments
-    #+begin_src ruby
-      def who_says_what
-        yield("Dave", "hello")
-        yield("Andy", "goodbye")
-      end
-      who_says_what { |person, phrase| puts "#{person} says #{phrase}" }
-    #+end_src
-  - for =transactions= (ME: using blocks for meta-programming stuff)
-    #+begin_src ruby
-      class File
-        def self.open_and_process(*args) # class method
-          f = File.open(*args)
-          yield f
-          f.close()
-        end
-      end
-
-      File.open_and_process("testfile", "r") do |file|
-        while line = file.gets
-          puts line
-        end
-      end
-    #+end_src
-
-** Classes
-
-- created with NAME.new
-- has/can have
-  - each instance has an ~object_id~ /property/
-  - instance variables
-- attributes are just methods without arguments
-- the "only easy" way to change an object's state is by calling onf its methods
-- templates for creating objectss
-
-#+NAME: from "Programming Ruby 3.3"
-#+begin_src ruby
-  class BookInStock
-    attr_accessor :price      # would create a attr_reader/attr_writer
-    attr_reader :isbn #, :price   # creates the reader accessor methods #isbn and #price, for @isbn and @price
-    def initialize(isbn, price) # called by BookInStock.new
-      @isbn = isbn
-      @price = Float(price)
-    end
-    # def price=(new_price) # setter
-    #   @price = new_price
-    # end
-    def price_in_cents
-      (price * 100).round # !!!! is valid to refer to it either as "price" or "@price"
-    end
-    def price_in_cents=(cents) # setter for a "virtual isntance variable", giving a "uniform access principle"
-      @price = cents / 100.0
-    end
-  end
-  book = BookInStock.new("isbn1", 33.80)
-  book.price = book.price * 0.75 # using the setter and getter
-#+end_src
-
-#+NAME: optionally take a block
-#+begin_src ruby
-  class File
-    def self.my_open(*args) # CLASS METHOD, parameter list into array "args"
-      file = File.new(*args) # spread array "args", into individual arguments
-      return file unless block_given? # guard return if no block_given?
-      result = yield file
-      file.close
-      result
-    end
-  end
-#+end_src
-
-** Methods (.)
-
-- private/public/protected def
-- can be redefining (just warns about it)
-- the verbs of ruby
-- attached at the end of variables with by a dot
-- some methods (such as =print=) are kernel methods, won't use the dot
-- parameters
-  - =positional= foo
-  - =keyword= rank: 10
-    needs the keyword to be passed
-  - =default= rank = 10
-    with a possible computed default
-    (ME: aka &optional)
-- kinds
-  - module methods (::) self.
-  - Class Methods (::) self.
-    - attached after variables and constants by a double colon
-  - instance methods (.)
-    - called by RECEIVER.METHODNAME
-    - a *message* is being send to the object,
-      which contains the method name along with arguments
-- special
-  - to_s
-  - inspect
-  - each
-- arguments, keyword args, *,**splats, &arguments
-- Types
-  - public: by default (except initialize which is private) (RARE explicit)
-  - protected: can be invoked by class or subclasses (RARE!) can be used on attr_reader/w/a
-  - private: cannot be invoked without an explicit receiver
-
-** modules
-
-- to group related constants/methods, or for mixins or namespaces
-
-#+begin_src ruby
-  module Snackbar
-    Snack = Data.define(:name, :price)
-    SNACKS = [
-      Snack.new("popcorn", 3),
-      Snack.new("candy", 1)
-    ]
-    def self.random_snack # self. declares a "module method"
-      SNACKS.sample
-    end
-  end
-#+end_src
-
-#+begin_src ruby
-  require_relative "snackbar"
-  Snackbar::SNACKS.each do { |snack| puts snack.name }
-#+end_src
-
+*** $ global variables
+- https://www.fastruby.io/blog/exploring-global-constants-and-variables.html
+- https://rubyapi.org/o/english
+|--------------------------+----+------------------------------------------------------|
+|           <c>            |    |                                                      |
+|         __FILE__         |    | has the name of the file being run                   |
+|          $stdin          |    | standard input                                       |
+|         $stdout          |    | standard output                                      |
+|         $stderr          |    | standard error                                       |
+|           ARGV           | $* | array with command line arguments                    |
+|           ARGF           | $< | the content of all the files whose names were passed |
+|     $DEFAULT_OUTPUT      | $> |                                                      |
+|           $ENV           |    | Hash that contains environment variables             |
+|       $ERROR_INFO        | $! |                                                      |
+|     $ERROR_POSITION      | $@ |                                                      |
+|     $FIELD_SEPARATOR     | $; | FS                                                   |
+| $OUTPUT_FIELD_SEPARATOR  | $, | OFS                                                  |
+| $INPUT_RECORD_SEPARATOR  | $/ | RS                                                   |
+| $OUTPUT_RECORD_SEPARATOR | $\ | ORS                                                  |
+|    $INPUT_LINE_NUMBER    | $. | NR                                                   |
+|     $LAST_READ_LINE      | $_ |                                                      |
+|       $PROCESS_ID        | $$ | PID                                                  |
+|      $CHILD_STATUS       | $? |                                                      |
+|          $MATCH          | $& | regex op, the match (all between //)                 |
+|        $PREMATCH         | $` | regex op, to the left of last match                  |
+|        $POSTMATCH        | $' | regex op, to the right of last match                 |
+|    $LAST_PAREN_MATCH     | $+ | regex op, the last group                             |
+|                          | $N | regex op, where N is a number of the nth match       |
+|       PROGRAM_NAME       | $0 |                                                      |
+|--------------------------+----+------------------------------------------------------|
+** operators
+|------+---------------------------------------------------|
+| <c>  |                                                   |
+|  +   | arithmethic sum, string concatenation             |
+|  **  | arithmetic exponent/power                         |
+|  &   | boolean AND, bitwise AND, or set intersection     |
+|  =~  | match string against regex, returns start pos/nil |
+| %w[] | create an array of strings                        |
+| %w() | "                                                 |
+| %i[] | "                                                 |
+|  <<  | appends an element to an array                    |
+|  ::  | scope resolution operator                         |
+| #{}  | string interpolation                              |
+| ¦¦=  | if LS is falsey, eval RS and assign it to LS      |
+|  =>  | "hashrocket", associates k/v in a Hash            |
+|------+---------------------------------------------------|
+#+TBLFM: $1=>
 ** types
 
 - Ruby 2: diagram of classes
@@ -434,6 +164,8 @@ https://rubyreferences.github.io/rubychanges/evolution.html
 - Constants
   - capitalized
   - proper nouns of Ruby
+  - they refer to something specific that doesn't change over time
+  - eg: Array, Time
 
 - nil
   - is an object, just like any other
@@ -461,28 +193,31 @@ https://rubyreferences.github.io/rubychanges/evolution.html
   - Regexp#gsub
 
 - Symbols :foo
+  - letters, digits, underscores
   - like lightweight strings
   - immutable
-  - same named symbols have the same ~object_id~
+  - symbols with the same name have the same ~object_id~
   - used
     - as keys and identifiers
     - when you need a string but you won't be printing it
     - when you need to use the same string over and over
 
-- Struct
-  #+begin_src ruby
-    Snack = Struct.new(:name, :price)
-  #+end_src
-  - when you have date and no behaviour
-  - it creates accessors (r/w) automatically
+*** Struct
 
-- Data
-  #+begin_src ruby
-    Snack = Data.define(:name, :price)
-  #+end_src
-  - when you have date and no behaviour
-  - it creates readers automatically
-    - immutable
+#+begin_src ruby
+  Snack = Struct.new(:name, :price)
+#+end_src
+- when you have data and _no behaviour_
+- it creates accessors (r/w) automatically
+
+*** Data
+
+#+begin_src ruby
+  Snack = Data.define(:name, :price)
+#+end_src
+- when you have data and no behaviour
+- it creates readers automatically
+  - ~immutable~
 
 *** Enumerator (class)
 
@@ -592,6 +327,246 @@ https://rubyreferences.github.io/rubychanges/evolution.html
 - #sort_by - returns an array of arrays of 2 elements
 - returns *nil* if idx not found
 - .fetch(idx) - throws if idx not found
+
+** modules/require
+
+- lib/<gemname>/<class>.rb
+- test/<gemname>/all_tests.rb # require_relative other .rbs
+- test/<gemname>/<class>_test.rb
+- to group related constants/methods, or for mixins or namespaces
+
+#+begin_src ruby
+  module Snackbar
+    Snack = Data.define(:name, :price)
+    SNACKS = [
+      Snack.new("popcorn", 3),
+      Snack.new("candy", 1)
+    ]
+    def self.random_snack # self. declares a "module method"
+      SNACKS.sample
+    end
+  end
+#+end_src
+
+#+begin_src ruby
+  require_relative "snackbar"
+  Snackbar::SNACKS.each do { |snack| puts snack.name }
+#+end_src
+
+#+begin_src ruby
+  require "csv"
+  require_relative "book_in_stock" # for "./book_in_stock.rb"
+#+end_src
+
+** control flow
+
+- if/elsif/else/end
+- unless/
+- while/end
+- =statement modifiers=
+  #+begin_src ruby
+    return nil if user.nil? # guards clause, usually at the beginning of a method
+
+    puts "Danger" if radiation > 3000
+
+    square = 4
+    square = square * square while square < 1000
+  #+end_src
+- loop/end
+  - infinite loop
+  - break out of them
+  - it will also auto-break if the *Enumerator* inside runs out of values
+    #+begin_src ruby
+      short_enum = [1,2,3].to_enum
+      long_enum = ('a'..'z').to_enum
+      loop do # loops 3 times
+        puts "#{short_enum.next} - #{long_enum.next}"
+      end
+    #+end_src
+
+** 🦀 {block} do/end
+
+- is any code surrounded by {}
+- is a chunk of code you can pass to a method, as it were another parameter
+- are closures (aka has access to variables outside his scope)
+- parameters to a block are ALWAYS local to that block
+- =Iterator= or =Enumerator= a method that can invoke a block of code repeatedly
+
+- assigning a block to a variable, all of these return a =Proc= from the block
+  #+begin_src ruby
+    bo =           ->(param) { puts "You called me with #{param}" } # stabby lambda, optional parens
+    bo =        lambda { |param|   puts "You called me with #{param}" } # Kernel method "lambda", error on wrong nargs
+    bo =     proc { |param|   puts "You called me with #{param}" } # Kernel method "proc", bubble ups "return"
+    bo = Proc.new { |param|   puts "You called me with #{param}" } # same, but OLD style
+    bo.call(99)
+  #+end_src
+
+- can be passed to a *method* either
+  1) extra IMPLICIT last argument that's passed to a method
+     #+begin_src ruby
+       greet("dave", "loyal customer") { puts "hi" }
+     #+end_src
+  2) (&) EXPLICIT last argument, to call store it and call it later (callbacks)
+     #+begin_src ruby
+       class ProcExample
+         def pass_in_block(&action)
+           @stored_proc = action
+         end
+         def use_proc(parameter)
+           @stored_proc.call(parameter) # .call stored block
+         end
+       end
+       eg = ProcExample.new
+       eg.pass_in_block { |param| puts "The parameter is #{param}" }
+       eg.use_proc(99)
+     #+end_src
+
+- invoked in a method using ~yield~
+  - block parameters put after a ; are considered locals to that block (awk-ish) (RARE!)
+    #+begin_src ruby
+      square = "some shape"
+      sum = 0
+      [1,2,3,4].each do |value;square| # 2 block parameters
+        square = value * value
+        sum += square
+      end
+      puts sum
+      puts square
+    #+end_src
+  - no argument
+    #+begin_src ruby
+      def call_block
+        puts "Start of method"
+        yield
+        yield
+        puts "End of method"
+      end
+      call_block { puts "In the block" }
+    #+end_src
+  - with arguments
+    #+begin_src ruby
+      def who_says_what
+        yield("Dave", "hello")
+        yield("Andy", "goodbye")
+      end
+      who_says_what { |person, phrase| puts "#{person} says #{phrase}" }
+    #+end_src
+  - for =transactions= (ME: using blocks for meta-programming stuff)
+    #+begin_src ruby
+      class File
+        def self.open_and_process(*args) # class method
+          f = File.open(*args)
+          yield f
+          f.close()
+        end
+      end
+
+      File.open_and_process("testfile", "r") do |file|
+        while line = file.gets
+          puts line
+        end
+      end
+    #+end_src
+
+** Classes
+
+- created with NAME.new
+- has/can have
+  - each instance has an ~object_id~ /property/
+  - @ instance variables
+  - @@ class variables
+- attributes are just methods without arguments
+- the "only easy" way to change an object's state is by calling onf its methods
+- templates for creating objectss
+
+#+NAME: from "Programming Ruby 3.3"
+#+begin_src ruby
+  class BookInStock
+    attr_accessor :price      # would create a attr_reader/attr_writer
+    attr_reader :isbn #, :price   # creates the reader accessor methods #isbn and #price, for @isbn and @price
+    def initialize(isbn, price) # called by BookInStock.new
+      @isbn = isbn
+      @price = Float(price)
+    end
+    # def price=(new_price) # setter
+    #   @price = new_price
+    # end
+    def price_in_cents
+      (price * 100).round # !!!! is valid to refer to it either as "price" or "@price"
+    end
+    def price_in_cents=(cents) # setter for a "virtual isntance variable", giving a "uniform access principle"
+      @price = cents / 100.0
+    end
+  end
+  book = BookInStock.new("isbn1", 33.80)
+  book.price = book.price * 0.75 # using the setter and getter
+#+end_src
+
+#+NAME: optionally take a block
+#+begin_src ruby
+  class File
+    def self.my_open(*args) # CLASS METHOD, parameter list into array "args"
+      file = File.new(*args) # spread array "args", into individual arguments
+      return file unless block_given? # guard return if no block_given?
+      result = yield file
+      file.close
+      result
+    end
+  end
+#+end_src
+
+** Methods
+
+- the verbs of ruby
+- private/public/protected def
+- can end with "?" or "!"
+  - methods that end with (!) raise exceptions on error
+    - in general you want to use them over the bare ones
+    - you can also build your own instance getters that do that
+
+- can be redefining (just warns about it)
+- attached at the end of variables with by a dot
+- some methods (such as =print=) are kernel methods, won't use the dot
+- parameters
+  - =positional= foo
+  - =keyword= rank: 10
+    needs the keyword to be passed
+  - =default= rank = 10
+    with a possible computed default
+    (ME: aka &optional)
+- kinds
+  |----+-----------------+----------------------------------|
+  | :: | module method   |                                  |
+  | :: | class method    | most often used to create things |
+  | .  | instance method |                                  |
+  |----+-----------------+----------------------------------|
+- special
+  - to_s
+  - inspect
+  - each
+- arguments, keyword args, *,**splats, &arguments
+- Types
+  - public: by default (except initialize which is private) (RARE explicit)
+  - protected: can be invoked by class or subclasses (RARE!) can be used on attr_reader/w/a
+  - private: cannot be invoked without an explicit receiver
+
+** style
+
+- guide https://github.com/airbnb/ruby
+- guide https://github.com/rubocop/ruby-style-guide
+- tool: linter/formatter https://github.com/standardrb/standard
+- tool: linter/formatter https://github.com/rubocop/rubocop/
+
+- 2 spaces for indentation
+- book_in_stock.rb (file) / BookInStock (class)
+
+- variable/parameters/methods
+- @instance_var @X @_
+- @@class_var @@N @@x_pos @@SINGLE
+- $global $CUSTOMER $_ $plan9 $Global
+- ClassName
+- ModuleName
+- CONSTANT_NAME
 
 ** stdlib
 
@@ -770,6 +745,51 @@ Script ran, to generate valid markdown from site's json. Then converted with  pa
 | [[https://www.rubydoc.info/gems/net-smtp][net-smtp]]     | Support for SMTP ([[https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol][Simple Mail Transfer Protocol]])                                                           |
 | [[https://www.rubydoc.info/gems/net-telnet][net-telnet]]   | Support for [[https://en.wikipedia.org/wiki/Telnet][Telnet]]                                                                                         |
 |--------------+------------------------------------------------------------------------------------------------------------|
+** i/o
+
+- https://docs.ruby-lang.org/en/2.4.0/Open3.html
+  - child process stdin/stdout/stderr and a thread for it
+- https://ruby-doc.org/stdlib-2.6.3/libdoc/pathname/rdoc/Pathname.html
+  - wrapper around File class, crossplatform
+- popen - for r/w from/to a process
+- system - if you don't care about the output just stdout
+- p
+  - calls #inspect
+- pp
+- puts
+  - calls #to_s, to get its string representation
+  - short for "outPUT String"
+  - available to all objects
+  - often written without parentheses
+
+** testing
+
+- "do NOT mind code duplication in tests" - PragmaticRuby
+- assert_, refute_
+- _equal, _empty
+#+begin_src ruby
+  require_relative "words_from_string"
+  require "minitest/autorun" # runs all the test_*
+  class TestWordsFromString < Minitest::Test
+    def setup # called before each test_ method in class
+      @playlist = Playlist.new("Gonzo")
+      @movie1 = Movie.new("A", 10)
+      @movie2 = Movie.new("B", 9)
+      $stdout = StringIO.new # supress stdout
+    end
+    def test_high_number
+      @playlist.stub(:roll_die, 6) do  # override method to return a constant value
+        @playlist.play()
+        assert_equal 11, @movie1.rank
+      end
+    end
+    def test_empty_string # methods starting with "test" automatically run
+      assert_equal([], words_from_string(""))
+      assert_equal([], words_from_string("   "))
+    end
+  end
+#+end_src
+
 ** concurrency - threads
 
 #+begin_src ruby
@@ -781,15 +801,6 @@ Script ran, to generate valid markdown from site's json. Then converted with  pa
 #+end_src
 
 
-* flags
-|----+--------------+--------------------------------------------|
-| -F | pattern      | input field separator                      |
-| -n |              | awk like loop around                       |
-| -p |              | awk like loop around, prints $_ at the end |
-| -a |              | awk like auto field split, $F = $_.split   |
-| -e | code         | input ruby code to run                     |
-| -i | new file ext | inplace replace                            |
-|----+--------------+--------------------------------------------|
 * codebases
 
 - http://ratfactor.com/repos/
@@ -837,26 +848,6 @@ end
 puts 'Gems installed and loaded!' # VVV script work using the libs
 puts "The nap gem is at version #{REST::VERSION}"
 #+end_src
-
-* tools
-
-- tool: ri (Ruby API reference frontend)
-- tool: version managers
-  - https://github.com/rbenv/rbenv
-    - /.ruby-version
-    - ~/.rbenv/versions/
-    - commands
-      - rbenv init
-      - eval "$(rbenv init - zsh)"
-      - rbenv install -l
-      - rbenv install 3.3.0
-      - rbenv versions
-      - rbenv rehash
-  - https://rvm.io/
-  - https://github.com/postmodern/chruby
-- tool: seeing is believing
-  - https://github.com/JoshCheek/seeing_is_believing
-  - https://github.com/jcinnamond/seeing-is-believing
 
 * implementations
 |----------+---------------------------------------|

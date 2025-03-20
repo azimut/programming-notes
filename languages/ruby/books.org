@@ -73,11 +73,19 @@
 
 * Book: why's (poignant) guide to Ruby
 
+cartoon foxes == sinergy (often found in introductions)
+
 ** 3 A Quick Ride Through Ruby
 
 http://poignant.guide/book/chapter-3.html
 
-- ="My conscience won't let me call Ruby a computer language. That would imply that the language works primarily on the computer's terms."=
+#+begin_quote
+My conscience won't let me call Ruby a computer language.
+That would imply that the language works primarily on the computer's terms.
+But what do you call the language when your brain begins to think in that language?
+When we start to use the language's own words and colloquialisms to express yourself.
+How can it be a computer language?. It's ours we speak it natively!
+#+end_quote
 
 - Read the following aloud to yourself.
   - Punctuation silent.
@@ -92,7 +100,14 @@ http://poignant.guide/book/chapter-3.html
     ['toast', 'cheese', 'wine'].each { |food| print food.capitalize }
   #+end_src
 
-- ="Ruby is built from sentences. They aren't exactly English sentences. They are short collections of words and punctuation which emcompass a single thought. These sentences can form books. They can form pages. They can form entire novels, when trung together. Novels that can be read by humans, but also by computers."=
+#+begin_quote
+Ruby is built from sentences.
+They aren't exactly English sentences.
+They are short collections of words and punctuation which emcompass a single thought.
+These sentences can form books.
+They can form pages.
+They can form entire novels, when trung together.
+Novels that can be read by humans, but also by computers.
+#+end_quote
 
 - "Punctuation and capitalization will help your brain to see bits of code and feel intense recognition."
-
