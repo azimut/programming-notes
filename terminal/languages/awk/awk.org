@@ -567,6 +567,7 @@ use "|&" to send and receive
 * implementations
 
 #+CAPTION: Brian W. Kernighan in a 80's film about UNIX
+#+ATTR_HTML: :width 480
 [[./bwk.png]]
 
 |--------+-------------------------------------------------------------------------------|
