@@ -206,22 +206,22 @@ https://stackoverflow.com/questions/13380607/how-to-use-sed-to-remove-the-last-n
 #+CAPTION: Lee E. McMahon in 1966 at Bell Labs
 [[./mcmahon.jpg]]
 
-- https://github.com/linguisticmind/search-in-subs
-- bach prelude https://github.com/laserbat/bach.sed https://clyp.it/dqgahq1x
-- irc bot https://github.com/olsner/smilebot/
-- scripts
-  - https://sed.sourceforge.io/#scripts
-  - https://sed.sourceforge.io/grabbag/scripts/
-  - https://rosettacode.org/wiki/Category:Sed
-  - https://literateprograms.org/category_programming_language_sed.html
-- debugger
-  - https://github.com/SoptikHa2/desed
-  - https://github.com/aureliojargas/sedsed
-- games
-  - mario https://github.com/chebykinn/sedmario
-  - tetris https://github.com/uuner/sedtris
-  - chess https://github.com/moldabekov/chess-sed
-  - rubik https://github.com/izabera/cube.sed/
-- interpreters
-  - python https://github.com/GillesArcas/PythonSed
-  - lisp https://github.com/mb64/sel
+|-------------+---------------------------------------------------------------------|
+|     <c>     |                                                                     |
+| subs search | https://github.com/linguisticmind/search-in-subs                    |
+|  bach song  | https://github.com/laserbat/bach.sed                                |
+|             | https://clyp.it/dqgahq1x                                            |
+|   irc bot   | https://github.com/olsner/smilebot/                                 |
+|   scripts   | https://sed.sourceforge.io/#scripts                                 |
+|             | https://sed.sourceforge.io/grabbag/scripts/                         |
+|             | https://rosettacode.org/wiki/Category:Sed                           |
+|             | https://literateprograms.org/category_programming_language_sed.html |
+|  debugger   | https://github.com/SoptikHa2/desed                                  |
+|             | https://github.com/aureliojargas/sedsed                             |
+|    game     | https://github.com/chebykinn/sedmario                               |
+|             | https://github.com/uuner/sedtris                                    |
+|             | https://github.com/moldabekov/chess-sed                             |
+|             | https://github.com/izabera/cube.sed/                                |
+|   python    | https://github.com/GillesArcas/PythonSed                            |
+|    lisp     | https://github.com/mb64/sel                                         |
+|-------------+---------------------------------------------------------------------|
