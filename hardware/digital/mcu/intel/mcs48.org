@@ -1,0 +1,269 @@
+#+TITLE: MCS-48
+
+|--------+-----------------------------------------------|
+| manual | https://devsaurus.github.io/mcs-48/mcs-48.pdf |
+| wiki   | https://en.wikipedia.org/wiki/Intel_MCS-48    |
+| wiki   | https://es.wikipedia.org/wiki/Intel_MCS-48    |
+|--------+-----------------------------------------------|
+
+- 1976
+- Models: 8048, 8035, 8748
+- Intel's first =Microcontroller=
+- Manufactured in the 90's to support older designs
+- Harvard architecture (modified) https://en.wikipedia.org/wiki/Modified_Harvard_architecture
+  - loose separation between code and data
+  - _allows memory that contains instructions to be accesed as data_
+
+- notes https://jhnbyrn.github.io/951-KLR-PAGES/reading_code.html
+
+* architecture
+
+- 11MHz (divided by 15 internally?)
+- 8 bit
+- 96 instructions (90% single byte)
+- ROM: 1K internal for _program memory_
+
+** RAM
+
+- Can be expanded to access 256 bytes extra of external _data memory_
+  - 64+256 = 320 bytes
+
+- 64-256 bytes internal for _data memory_
+  - (0-31) Lower Half
+    - (0-7) 8 registers of 8bit
+      - =Register Inderect Addressing=
+        R0/R1 may be used as *RAM pointers* to access memory containing data.
+        #+begin_src asm
+          mov a, @r0 ; a = *r0
+        #+end_src
+    - (8-23) 8-Level stack
+      - addressed by the stack pointer during subroutine calls
+      - 8 stack locations in 16 RAM locations (2 locations per address)
+    - (24-31) Optional second register stack
+      - R0' - R7'
+      - can be used in place of R0-R7
+      - useful during interrupts
+  - (32-64) Upper Half
+    - Data Store
+      - up to the programmer
+      - accessed only by R0, R1
+
+** Program Memory
+
+- 1024/2048/4096 words 8 bit wide addressed by the =program counter=
+
+#+begin_src asm
+  .org 0 ; reset vector
+  jmp hellworld
+
+  .org 3 ; external interrupt vector (PIN 6)
+  retr   ; not used
+
+  .org 7 ; time interrupt vector (msd to lsd)
+         ; ...
+
+  .org 0x100
+  hellworld: ; ...
+  .org 0x300 ; BCD lookup table
+#+end_src
+
+*** External Access Mode
+
+
+- EA input pin, RESET should be applied when EA changes
+- disables internal _program memory_ (the first ~1k of the memory map)
+- allowing the first words of _program memory_, to be fetched from external memory
+- bumps _program memory_ size upto 4k
+
+** Arithmetic Section
+
+  - =Instruction Decoder=
+    - stores the ~OP code~ part of the instruction
+    - sends control signals to the ALU
+  - =ALU=
+    - 2x 8bit input
+    - 8 bit output
+    - sets Carry Flag on ~Program Status Word~
+    - Operations:
+      - add with/out carry, inc, dec
+      - AND, OR, XOR
+      - bit complement, rotation, swap nibbles, BCD decimal adjust
+  - =Accumulator= register
+    - 8 bit
+    - one of the ALU sources
+    - data to/from I/O ports and memory pass through it (?)
+
+** IO 27 IO pins
+
+|---+-----------------------|
+| 3 | test inputs for jumps |
+| 8 | port 1                |
+| 8 | port 2                |
+| 8 | bus                   |
+|---+-----------------------|
+- uses same 8bit bus for address and data
+  - needs a transparent latch (373/573) IC for addresses
+- bus (=OUTL= and =INS=)
+  - configurations
+    1) bidirectional (true)
+       - with IO strobe pins (RD, WR)
+    2) statically latched input
+    3) statically non-latched output
+- ports
+  - TTL compatible IO
+  - output latched
+  - input non-latched
+
+* projects
+
+- https://hackaday.io/project/19278-8048-maze-generator
+  - code https://cdn.hackaday.io/files/19278824789952/maze.asm
+
+- https://web.archive.org/web/20140717062700/http://coprolite.com:80/8048.html
+- http://www.moria.de/~michael/comp/ecb/sbcmcs48/hardware.html
+- https://github.com/romavis/metra-m1t380-doc
+- https://www.delabs-circuits.com/cirdir/micro/micro4.html
+
+- 8042 keyboard https://wiki.osdev.org/%228042%22_PS/2_Controller
+  - CHMOS
+  - Slave microcontroller (?)
+  - OTP EPROM
+  - UPI-42 family
+    - UPI-C42
+    - UPI-L42
+
+- Used in
+  - [[https://en.wikipedia.org/wiki/Magnavox_Odyssey_2][Magnavox's Oddysey 2]] video game console (1978)
+  - Korg Trident Series
+  - Korg Poly-61
+  - Roland Jupiter-4
+  - Roland Promars
+
+* support chips
+
+- mcs-80 peripherals https://en.wikipedia.org/wiki/Intel_8080#Support_chips
+- mcs-85 peripherals https://en.wikipedia.org/wiki/Intel_8085#Periphery
+
+|------+----+------------------------------------------------|
+| 8214 |    | Priority Interrupt Control                     |
+| 8224 |    | Clock Generator                                |
+| [[https://web.archive.org/web/20200919134210/https://www.datasheets360.com/pdf/-4828066515233335508][8228]] | 28 | System Controller & Bus Driver                 |
+| [[https://web.archive.org/web/20230918030959/https://www.datasheets360.com/pdf/-4828066515233335508][8238]] |    | "                                              |
+| [[https://en.wikipedia.org/wiki/Intel_8251][8251]] | 28 | Communication Controller, USART                |
+| [[https://en.wikipedia.org/wiki/Intel_8253][8253]] | 24 | Programmable Interval Timer, PITs              |
+| 8259 |    | Programmable Interrupt Controller, handle IRQs |
+|------+----+------------------------------------------------|
+
+* tools
+
+- HSE-49: Original Dev Board https://en.wikipedia.org/wiki/Intel_system_development_kit#HSE-49
+- AS output to binary to be written into ROM https://linux.die.net/man/1/p2bin
+- assemblers
+  - asm48 https://github.com/daveho/asm48
+  - fasm macros https://board.flatassembler.net/topic.php?t=18398
+  - sbasm https://www.sbprojects.net/sbasm/8080.php
+- VHDL https://github.com/devsaurus/t48
+- ROM programmer story https://laughtonelectronics.com/oldsite/lab_oem/lab_mcs48.html
+- https://jhnbyrn.github.io/951-KLR-PAGES/reading_code.html
+- dumping ROM https://www.sbprojects.net/projects/8049spy/index.php
+- dumping ROM https://www.eevblog.com/forum/projects/intel-mcs-48-(8749-8049)-hmos-vs-cmos-differences-bus-driver-(dumping-woe)/
+- KIT: internal EPROM programmer for UV ereasable ones
+  - https://www.mattmillman.com/projects/hveprom-project/an-easy-to-build-mcs-48-8748-8749-8741-8742-8048-8049-programmer-reader/
+  - https://www.mattmillman.com/projects/an-intel-mcs-48-based-dual-temperature-sensor/
+
+* codebases
+
+- https://github.com/marekw1986/8048/blob/main/code/ascii/ascii.asm
+- korg trident mk2 https://github.com/wohali/polysix/blob/457212866bcf8875156f871fd5cc638a6e59b143/docs/klm8048.asm#L4
+- game https://github.com/tcr/8bit-demos/
+- pwm https://github.com/retiredfeline/8048-pwmctl
+- ⭐ display https://github.com/retiredfeline/beckman-clock
+- maze https://cdn.hackaday.io/files/19278824789952/maze.asm
+- i2c https://github.com/retiredfeline/8042-clock/
+- metronome https://github.com/retiredfeline/8042-metronome
+
+* articles
+
+- https://www.cpu-world.com/Arch/8048.html
+- 22 https://www.eejournal.com/article/a-history-of-early-microcontrollers-part-4-the-intel-8048-and-8748/
+- 13 http://www.theresistornetwork.com/2013/07/programming-vintage-intel-mcs-48.html
+  - Early Intel processors combine the address and data bits onto the same lines and use two signals:
+    1) ALE  (Address Latch Enable)
+    2) PSEN (Program Store Enable)
+  - To signal what state the bus is in.
+  - This was done to save costs and keep pin count down.
+  - Unfortunately this complicates the connection to an external PROM.
+
+* videos
+
+- 21 video | Intro to Intel 8048 and PIC 16f1619
+  https://www.youtube.com/watch?v=7TIBGRGaTB0
+
+** 20 video | 8048 microcontroller experiments
+
+- https://www.youtube.com/watch?v=K83uTnW6IHU
+- https://github.com/daveho/RandomStuff/tree/master/Episode05
+  - MAX708 reset generator (?
+  - 74HC573 address latch
+  - AT28C64E-15PC
+- ROM programmed at factory
+- but if you tie EA (External Access input) pin high
+  - it can work with external ROM
+  - by using 1 address and 1 data bus pin
+
+- $ asm48 -o foo.bin foo.asm
+
+- Comment
+  - I tied EA pin 7 to ground to use internal ROM running with a 10Mhz crystal.
+  - I see what you mean with getting the CPU to reset reliably, a 2k2 resistor to VCC with a 10uf cap to gnd seems to work ok, boots reliably on power-up.
+  - The devices I have are NEC types programmed with an equally ancient Expro-60 device programmer using an ISO interface card. Indeed a lot of fun, regards.
+
+**** Example 1: infinite loop of NOPs
+  #+begin_src asm
+    .org 0x0
+    reset:
+            jmp entry
+    .org 0x10
+    entry:
+            nop
+            nop
+            nop
+            nop
+            nop
+            nop
+            nop
+            nop
+            nop
+            nop
+            jmp entry
+  #+end_src
+
+**** Example 2: blink led
+
+#+begin_src asm
+  .org 0x0
+  reset:
+          jmp entry
+  .org 0x10
+  entry:
+          mov A, #255 ; set all A bits to 1
+          outl P1, A  ; output to port 1 (LED will be off)
+          call delay
+          move A, #0  ; set all A bits to 0
+          outl P1, A  ; output to port 1 (LED will be ON)
+          call delay
+          jmp entry   ; repeat main loop
+  delay:
+          mov R0, #255 ; init outer loop counter
+  delay_outer:
+          mov R1, #255 ; init inner loop counter
+  delay_inner:
+          nop
+          nop
+          nop
+          nop
+          djnz R1, delay_inner ; dec inner count, continue if not zero
+          djnz R0, delay_outer ; dec outer count, continue if not zero
+          ret                  ; return to caller
+#+end_src
+

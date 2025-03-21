@@ -1,0 +1,43 @@
+http://www.8052mcu.com/tutorial
+https://timeline.intel.com/
+
+* MCS-85 (1976)
+
+- wiki https://en.wikipedia.org/wiki/Intel_8085
+- Intel 8085
+- 8-bit
+- https://www.youtube.com/watch?v=7PNWR2QSjjc
+  - intel:
+    - mcs-4 / 4040
+    - mcs-8 / 8008
+    - 8080
+      - multiple power supplies
+      - higher voltages
+    - mcs-85 / 8085
+
+* MCS-51 (1980)
+
+- https://en.wikipedia.org/wiki/MCS-51
+  - MCS-51 succesor of MCS-48
+  - microcontroller (mCU)
+
+- tool: as31
+- tool: C89 https://www.keil.com/c51/default.asp
+- tool: C https://sdcc.sourceforge.net/
+
+- KIT: https://www.dos4ever.com/8031board/8031board.html
+
+- tutoriales
+  - https://www.8051projects.net/wiki/
+  - https://nevonprojects.com/8051-project/ ($$$)
+  - https://circuitdigest.com/8051-microcontroller-projects
+- snippet i2c https://www.8051projects.net/wiki/I2C_Implementation_on_8051
+
+- Still manufactured and popular (2016)
+  - [[https://old.reddit.com/r/microcontrollers/comments/593xrw/why_is_the_8051_still_so_popular/][TI's bluetooth chip CC3000]]
+  - [[https://www.embedded.com/the-8051-mcu-arms-nemesis-on-the-internet-of-things/][ARM collects a tax on each part sold]]
+  - Bad achitecture (?
+  - Cheap
+
+- 19 Programming 8051
+  - https://www.youtube.com/watch?v=QEI55gpt7zM
