@@ -3,7 +3,7 @@
 
 #+CAPTION: mascot adopted by AWK's bibliography
 #+ATTR_ORG: :width 200
-[[https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Great_Auk_Thomas_Bewick_1804.jpg/308px-Great_Auk_Thomas_Bewick_1804.jpg]]
+[[./auk.jpg]]
 
 |-----------+---------------------------------------------------------------|
 | book      | https://www.awk.dev/                                          |
@@ -368,25 +368,13 @@ NOTE: call ~close("cmd")~ on the non two-way pipes, maybe call getline on a ~whi
   /inet[,4,6]/(udp|tcp)/lport/rhost/rport
 #+end_src
 
-*** rossetta - web server
+use "|&" to send and receive
 
-https://rosettacode.org/wiki/Hello_world/Web_server
 #+begin_src awk
-  #!/usr/bin/gawk -f
-  BEGIN {
-      RS = ORS = "\r\n"
-      HttpService = "/inet/tcp/8080/0/0"
-      Hello = "<HTML><HEAD>" \
-          "<TITLE>A Famous Greeting</TITLE></HEAD>" \
-          "<BODY><H1>Hello, world</H1></BODY></HTML>"
-      Len = length(Hello) + length(ORS)
-      print "HTTP/1.0 200 OK"          |& HttpService
-      print "Content-Length: " Len ORS |& HttpService
-      print Hello                      |& HttpService
-      while ((HttpService |& getline) > 0)
-          continue;
-      close(HttpService)
-  }
+  HttpService = "/inet/tcp/8080/0/0"            # listens
+  print "HTTP/1.0 200 OK" |& HttpService        # sends to clients
+  while ((HttpService |& getline) > 0) continue # drop what we receive
+  close(HttpService)
 #+end_src
 
 ** redirections
@@ -557,8 +545,29 @@ https://rosettacode.org/wiki/Hello_world/Web_server
     length($0) == 0 { print "this is an empty record==" }
     END { if (NR == 0) print "means that we didn't process any record" }
   #+end_src
+- network - web server https://rosettacode.org/wiki/Hello_world/Web_server
+  #+begin_src awk
+    #!/usr/bin/gawk -f
+    BEGIN {
+        RS = ORS = "\r\n"
+        HttpService = "/inet/tcp/8080/0/0"
+        Hello = "<HTML><HEAD>" \
+            "<TITLE>A Famous Greeting</TITLE></HEAD>" \
+            "<BODY><H1>Hello, world</H1></BODY></HTML>"
+        Len = length(Hello) + length(ORS)
+        print "HTTP/1.0 200 OK"          |& HttpService
+        print "Content-Length: " Len ORS |& HttpService
+        print Hello                      |& HttpService
+        while ((HttpService |& getline) > 0)
+            continue;
+        close(HttpService)
+    }
+  #+end_src
 
 * implementations
+
+#+CAPTION: Brian W. Kernighan in a 80's film about UNIX
+[[./bwk.png]]
 
 |--------+-------------------------------------------------------------------------------|
 |    <r> |                                                                               |
