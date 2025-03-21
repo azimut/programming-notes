@@ -57,6 +57,8 @@
 - analog ICs
 - reissued in 2016 https://www.matrixsynth.com/2016/06/curtis-cem3340-vco-chips-re-issued.html
 
+- CEM 3374 Clone PCB https://github.com/alanbog/3374-VCO/
+
 - list of products https://web.archive.org/web/20080124170134/http://curtiselectromusic.com/Customers_and_Instruments.html
 
 |-------+----+---------------------|

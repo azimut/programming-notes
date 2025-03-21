@@ -149,9 +149,19 @@
   #+begin_src
   [d1<g]Sf[d1-lfx*]Sg 13lfx
   #+end_src
-- [[https://github.com/grondilu/bitcoin-bash-tools/][bitcoin-bash-tools]] ⭐
-  - [[https://github.com/grondilu/bitcoin-bash-tools/blob/master/bitcoin.sh][bitcoin.sh]]
-  - [[https://github.com/grondilu/bitcoin-bash-tools/blob/master/t/basics.t][basics.t]]
+
+** grondilu/bitcoin-bash-tools
+
+- [[https://github.com/grondilu/bitcoin-bash-tools/blob/master/bitcoin.sh][bitcoin.sh]]
+- [[https://github.com/grondilu/bitcoin-bash-tools/blob/master/t/basics.t][basics.t]]
+
+** makenowjust/quine
+
+[[https://github.com/makenowjust/quine/blob/1d33bee091f4b37352f5f5c2dd5813095da331e9/quine.dc][quine.c]]
+
+#+begin_src
+[91aPP93aP[dx]p]dx
+#+end_src
 
 ** sergiosgc/AdventOfCode2021
 
