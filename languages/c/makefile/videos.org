@@ -1,3 +1,4 @@
+- 20 COS 217 Fall 2020 Lecture 7 - Building with make https://www.youtube.com/watch?v=0gBhNNnd1LM
 * 20 - Lecture 8: Metaprogramming
 https://www.youtube.com/watch?v=_Ms1Z4xfqv4
 - we generate a *pipeline*

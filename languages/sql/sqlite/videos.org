@@ -1,3 +1,4 @@
+- 24 SQLite: How it works, by Richard Hipp https://www.youtube.com/watch?v=ZSKLA81tBis
 - SQLite for Beginners https://www.youtube.com/playlist?list=PLWENznQwkAoxww-cDEfIJ-uuPDfFwbeiJ
 - 06 | An Introduction to SQLite https://www.youtube.com/watch?v=giAMt8Tj-84
 - 08 | How SQL Database Engines Work https://www.youtube.com/watch?v=Z_cX3bzkExE

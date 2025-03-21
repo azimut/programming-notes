@@ -1,15 +1,17 @@
 #+TITLE: MCS-48
 
-|--------+-----------------------------------------------|
-| manual | https://devsaurus.github.io/mcs-48/mcs-48.pdf |
-| wiki   | https://en.wikipedia.org/wiki/Intel_MCS-48    |
-| wiki   | https://es.wikipedia.org/wiki/Intel_MCS-48    |
-|--------+-----------------------------------------------|
+|----------+----------------------------------------------------|
+| manual   | https://devsaurus.github.io/mcs-48/mcs-48.pdf      |
+| wiki     | https://en.wikipedia.org/wiki/Intel_MCS-48         |
+| wiki     | https://es.wikipedia.org/wiki/Intel_MCS-48         |
+| wiki     | https://handwiki.org/wiki/Engineering:Intel_MCS-48 |
+| timeline | https://timeline.intel.com/1976/mcs-48             |
+|----------+----------------------------------------------------|
 
 - 1976
 - Models: 8048, 8035, 8748
 - Intel's first =Microcontroller=
-- Manufactured in the 90's to support older designs
+- Manufactured in the 90's to support older designs (cheap)
 - Harvard architecture (modified) https://en.wikipedia.org/wiki/Modified_Harvard_architecture
   - loose separation between code and data
   - _allows memory that contains instructions to be accesed as data_
@@ -21,7 +23,80 @@
 - 11MHz (divided by 15 internally?)
 - 8 bit
 - 96 instructions (90% single byte)
-- ROM: 1K internal for _program memory_
+
+** PSW - Program Status Word
+
+- 4 MSB stored at the top of the ~stack~ when a subroutine call or interrupt
+- reflect information about status of ram&cpu
+- can be read as a whole
+- From LSB to MSB
+  - 3 bit stack pointer
+  - 1 bit unused
+  - 1 bit (register) BS Bank-Select switch
+    #+begin_src asm
+      sel rb0 ; = 0 for R0  - R7
+      sel rb1 ; = 1 for R0' - R7'
+    #+end_src
+  - 1 bit F0 flag
+  - 1 bit auxiliary carry flag
+  - 1 bit carry flag
+
+** Program Counter
+
+#+begin_src
+    |----+------+-----|
+MSB | 11 | 8-10 | 0-7 | LSB
+    |----+------+-----|
+#+end_src
+
+- stored at the top of the ~stack~ on subroutine call or interrupt
+- reset to 0 when power-on or RESET is received
+
+- 12 bits wide (from LSB to MSB)
+  - 8 bits for ~address~ within a page
+  - 3 bits for ~page~ addressing
+    |---+-----+-----+-----|
+    | P | BIT | SRT | END |
+    |---+-----+-----+-----|
+    | 0 | 000 | 000 | 0FF |
+    | 1 | 001 | 100 | 1FF |
+    | 2 | 010 | 200 | 2FF |
+    | 3 | 011 | 300 | 3FF |
+    |---+-----+-----+-----|
+  - 1 bit needed only when _external memory_ is employed
+    - under programmer's only control
+      #+begin_src asm
+        sel mb0
+        sel mb1
+      #+end_src
+    - =0 program memory in ~memory bank~ 0 (0-2047)
+    - =1 program mempry in ~memory bank~ 1 (2048-4095)
+
+- unconditional jump & call instruction
+  - instruction
+    - 8 bit opcode
+      - 5 bit for opcode
+      - 3 bit MSB address
+      - there is an _unique opcode for each page_ that a jump or call can transfer control to
+    - 8 bit address
+  - replace 11 bits of the ~program counter~
+    - transfer control anywhere within a 2K address range
+      - 4 pages of external program memory
+      - 4 pages of resident program memory
+
+- conditional jump instructions
+  - can transfer control only _within the page_ containing the instruction
+  - use 2(two) bytes
+    - 1(one) for the opcode/instruction
+    - 1(one) for the adddress
+      - replaces the LSB of the ~program counter~
+
+** ROM
+
+- 1K internal for _program memory_
+  - segmented into 4(four) 256-byte blocks/pages
+- 3k of additional support for external ROM for _program memory_
+- 4k of total ROM supported
 
 ** RAM
 
@@ -39,6 +114,7 @@
     - (8-23) 8-Level stack
       - addressed by the stack pointer during subroutine calls
       - 8 stack locations in 16 RAM locations (2 locations per address)
+      - each will contain the ~program counter~ + 4MSB of the ~PSW~
     - (24-31) Optional second register stack
       - R0' - R7'
       - can be used in place of R0-R7
@@ -93,36 +169,49 @@
     - one of the ALU sources
     - data to/from I/O ports and memory pass through it (?)
 
-** IO 27 IO pins
+** I/O 27 pins
 
-|---+-----------------------|
-| 3 | test inputs for jumps |
-| 8 | port 1                |
-| 8 | port 2                |
-| 8 | bus                   |
-|---+-----------------------|
-- uses same 8bit bus for address and data
-  - needs a transparent latch (373/573) IC for addresses
-- bus (=OUTL= and =INS=)
-  - configurations
-    1) bidirectional (true)
-       - with IO strobe pins (RD, WR)
-    2) statically latched input
-    3) statically non-latched output
-- ports
+- 3 bit test INPUTs for jumps
+  - T0, T1, INT
+  - Can be used to monitor external signals
+- 8 bit port (x2)
   - TTL compatible IO
-  - output latched
-  - input non-latched
+  - you can mix input and output within a port
+  - output _latched_ (aka remains until new data is written)
+    #+begin_src asm
+      outl p1,a ; port 1 = accumulator
+      outl p2,a ; port 2 = accumulator
+    #+end_src
+  - input _non-latched_
+    #+begin_src asm
+      in a,p1 ; accumulator = port 1 state
+      in a,p2 ; accumulator = port 2 state
+    #+end_src
+- 8 bit bus
+  - used for address and data
+  - needs a transparent latch (373/573) IC for addresses
+  - bus (=OUTL= and =INS=)
+    - configurations
+      1) bidirectional (true)
+         - with IO strobe pins (RD, WR)
+      2) statically latched input
+      3) statically non-latched output
 
 * projects
 
 - https://hackaday.io/project/19278-8048-maze-generator
   - code https://cdn.hackaday.io/files/19278824789952/maze.asm
 
+- 20 breadboard computer, based on Ben Eater's 6502 project https://www.reddit.com/r/beneater/comments/gbmv8u/inspired_by_bens_6502_project_ive_decided_to/#lightbox
 - https://web.archive.org/web/20140717062700/http://coprolite.com:80/8048.html
 - http://www.moria.de/~michael/comp/ecb/sbcmcs48/hardware.html
 - https://github.com/romavis/metra-m1t380-doc
 - https://www.delabs-circuits.com/cirdir/micro/micro4.html
+- programmer https://minuszerodegrees.net/willem/Willem%20MCS-48%20adapter.htm
+- programmer
+  - original https://www.jelora.fr/post/2024/06/15/Programmateur-de-microcontrleur-Intel-MCS-48-experimental-sur-Arduino.html
+  - translation https://www-jelora-fr.translate.goog/post/2024/06/15/Programmateur-de-microcontrleur-Intel-MCS-48-experimental-sur-Arduino.html?_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=es&_x_tr_pto=wapp
+  - had a "MAB 8048H" IC from Philips
 
 - 8042 keyboard https://wiki.osdev.org/%228042%22_PS/2_Controller
   - CHMOS
@@ -167,6 +256,8 @@
 - https://jhnbyrn.github.io/951-KLR-PAGES/reading_code.html
 - dumping ROM https://www.sbprojects.net/projects/8049spy/index.php
 - dumping ROM https://www.eevblog.com/forum/projects/intel-mcs-48-(8749-8049)-hmos-vs-cmos-differences-bus-driver-(dumping-woe)/
+- dissasembler ? https://github.com/pmackinlay/binaryninja-mcs48
+  - for https://binary.ninja/
 - KIT: internal EPROM programmer for UV ereasable ones
   - https://www.mattmillman.com/projects/hveprom-project/an-easy-to-build-mcs-48-8748-8749-8741-8742-8048-8049-programmer-reader/
   - https://www.mattmillman.com/projects/an-intel-mcs-48-based-dual-temperature-sensor/
@@ -186,6 +277,8 @@
 
 - https://www.cpu-world.com/Arch/8048.html
 - 22 https://www.eejournal.com/article/a-history-of-early-microcontrollers-part-4-the-intel-8048-and-8748/
+- 20 https://www.mattmillman.com/mcs-48-the-quest-for-16-bit-division-on-the-8-bit-cpu-which-cant-divide-anything/
+  - discussion https://news.ycombinator.com/item?id=24941189
 - 13 http://www.theresistornetwork.com/2013/07/programming-vintage-intel-mcs-48.html
   - Early Intel processors combine the address and data bits onto the same lines and use two signals:
     1) ALE  (Address Latch Enable)

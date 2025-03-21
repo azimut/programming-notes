@@ -1,3 +1,7 @@
+- Course: COS 217 @Princeton
+  - 20 Lecture https://www.youtube.com/playlist?list=PLwXw5yrGdQS55Q2ZODSqDNjm7Zhk4wFE3
+  - 21 Lecture https://www.youtube.com/playlist?list=PLwXw5yrGdQS7zpF7M7yKQPJu7s7fFpnF3
+  - 21 Q&A https://www.youtube.com/playlist?list=PLwXw5yrGdQS4HKVilgAm4mepG-7ZBS-2T
 - talks https://nullprogram.com/blog/2018/11/21/
 - Course: Defensive Programming and Debugging
   - https://www.futurelearn.com/courses/defensive-programming-and-debugging
