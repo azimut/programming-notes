@@ -10,7 +10,7 @@
 | changelog  | https://fossies.org/linux/sed/ChangeLog          |
 |------------+--------------------------------------------------|
 
-- 1974
+- 1974, Bell Labs
 - Lee E. McMahon
 - "Stream EDitor"
 - _line-oriented_ text processing utility
@@ -50,8 +50,10 @@
 - there is a special buffer called =hold space= used by some commands to hold and accumulate text between /cycles/
 - check out ~man sed~ or the more complete ~info sed~
 
-#+ATTR_ORG: :width 550
-[[https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/SedDiagram.jpg/621px-SedDiagram.jpg]]
+#+ATTR_HTML: :width 480
+#+ATTR_ORG: :width 600
+#+CAPTION: Working diagram, took from es.wikipedia
+[[./diagram.jpg]]
 
 ** script
 
@@ -199,6 +201,10 @@ https://stackoverflow.com/questions/13380607/how-to-use-sed-to-remove-the-last-n
 - does NOT follow symlinks for inplace edit by default, unless ~--follow-symlinks~
 
 * codebases
+
+#+ATTR_HTML: :width 480
+#+CAPTION: Lee E. McMahon in 1966 at Bell Labs
+[[./mcmahon.jpg]]
 
 - https://github.com/linguisticmind/search-in-subs
 - bach prelude https://github.com/laserbat/bach.sed https://clyp.it/dqgahq1x
