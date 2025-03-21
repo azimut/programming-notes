@@ -402,7 +402,7 @@ https://rosettacode.org/wiki/Hello_world/Web_server
   { print "foo bar" |& "cmd"      } # piped IO coproc/socket
 #+end_src
 
-** gotchas
+* gotchas
 
 - https://www.gnu.org/software/gawk/manual/html_node/Conversion
   gawk always uses the period (.) as the decimal point
@@ -450,7 +450,7 @@ https://rosettacode.org/wiki/Hello_world/Web_server
 
 * codebases
 
-#+CAPTION: Alfred Aho in a 80's film
+#+CAPTION: Alfred Aho in a 80's film about UNIX
 [[./aho.png]]
 
 |---------------------+----------------------------------------------------------------|
@@ -477,6 +477,9 @@ https://rosettacode.org/wiki/Hello_world/Web_server
 |                libs | https://github.com/dubiousjim/awkenough                        |
 |---------------------+----------------------------------------------------------------|
 * snippets
+
+#+CAPTION: Peter J. Weinberger edited for the book "Beyond Photography"
+[[./pjw.jpg]]
 
 - print unique lines, _without sorting_
   #+begin_src sh
@@ -587,7 +590,7 @@ $ readelf -d /usr/bin/mawk | grep Shared # 155K
   - =gawk= unbuffered by default
   - =mawk= buffers by default, needs ~-W interactive~ to disable
 
-** tools
+* tools
 
 - editor tools
   - https://github.com/Beaglefoot/awk-language-server
