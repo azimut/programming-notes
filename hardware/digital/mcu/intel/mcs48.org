@@ -10,7 +10,7 @@
 
 - 1976
 - Models: 8048, 8035, 8748
-- Intel's first =Microcontroller=
+- Intel's first =Microcontroller= (aka micro computer)
 - Manufactured in the 90's to support older designs (cheap)
 - Harvard architecture (modified) https://en.wikipedia.org/wiki/Modified_Harvard_architecture
   - loose separation between code and data
@@ -171,31 +171,69 @@ MSB | 11 | 8-10 | 0-7 | LSB
 
 ** I/O 27 pins
 
-- 3 bit test INPUTs for jumps
-  - T0, T1, INT
-  - Can be used to monitor external signals
-- 8 bit port (x2)
-  - TTL compatible IO
-  - you can mix input and output within a port
-  - output _latched_ (aka remains until new data is written)
-    #+begin_src asm
-      outl p1,a ; port 1 = accumulator
-      outl p2,a ; port 2 = accumulator
-    #+end_src
-  - input _non-latched_
-    #+begin_src asm
-      in a,p1 ; accumulator = port 1 state
-      in a,p2 ; accumulator = port 2 state
-    #+end_src
-- 8 bit bus
-  - used for address and data
-  - needs a transparent latch (373/573) IC for addresses
-  - bus (=OUTL= and =INS=)
-    - configurations
-      1) bidirectional (true)
-         - with IO strobe pins (RD, WR)
-      2) statically latched input
-      3) statically non-latched output
+*** Types of data tranfers
+
+1) Programmed: controlled by the _program_
+   - control-> ->signal <-data->
+   - inneficient use of CPU
+   - there is abit chit-chat needed for reading data
+     + you signal/ask for the conversion to happen to the A/D converter
+     + wait for it to be ready on T0 (maybe thousands of status signals)
+     + accept the data
+
+2) Interrupt: initiated by the _device_ when is ready, through an INTerruption
+   - temporarilly suspends normal operations, and transfer the data
+   - _more efficient_ than programming
+   - useful for events of _unpredictable_ occurrence
+   - requires more _hardware complexity_ on the IO, to externally compare and trigger the INTerruption
+   - no idle time
+     - you send a signal
+     - keep processing
+     - accept data when INTerrupted
+
+3) DMA Direct Memory Access: between _device_ and the computer _memory_
+   - no involvement at all by the CPU
+   - needs a _DMA controller_ IC
+   - =NOT AVAILABLE for the 8048=
+
+*** Types of I/O operations
+
+1) Control: IO <=  CPU, causes IO to perform an *action* (eg: rewind tape)
+2) Status:  IO  => CPU, convey *information* about the present state or condition (eg: parity error)
+3) Data:    IO <=> CPU, through data lines on the CPU bus
+
+*** 3 bit test INPUTs for jumps
+
+- T0, T1, INT
+- Can be used to monitor external signals
+
+*** 8 bit port (x2)
+
+- TTL compatible IO
+- you can mix input and output within a port
+- output _latched_ (aka remains until new data is written)
+  #+begin_src asm
+    outl p1,a ; port 1 = accumulator
+    outl p2,a ; port 2 = accumulator
+  #+end_src
+- input _non-latched_
+  #+begin_src asm
+    in a,p1 ; accumulator = port 1 state
+    in a,p2 ; accumulator = port 2 state
+  #+end_src
+
+*** 8 bit bus
+
+- all pins must be used for either input or output (no mixing possible)
+- also use the accumulator for I/O
+- used for address and data
+- needs a transparent latch (373/573) IC for addresses
+- bus (=OUTL= and =INS=)
+  - configurations
+    1) bidirectional (true)
+       - with IO strobe pins (RD, WR)
+    2) statically non-latched input
+    3) statically latched output
 
 * projects
 
@@ -272,6 +310,9 @@ MSB | 11 | 8-10 | 0-7 | LSB
 - maze https://cdn.hackaday.io/files/19278824789952/maze.asm
 - i2c https://github.com/retiredfeline/8042-clock/
 - metronome https://github.com/retiredfeline/8042-metronome
+- clock https://web.archive.org/web/20220630074502/https://www.wraith.sf.ca.us/8048/
+  - source https://web.archive.org/web/20041210150149/http://www.wraith.sf.ca.us/8048/block-sig.asm
+  - sheet https://web.archive.org/web/20210913152817/https://www.wraith.sf.ca.us/8048/clock-8048.gif
 
 * articles
 

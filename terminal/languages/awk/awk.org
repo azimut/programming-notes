@@ -265,14 +265,6 @@ r=regex  s=string  t=targetstring  fs=field separator
 |  toupper | s           | uppercased s              |                                               |
 |----------+-------------+---------------------------+-----------------------------------------------|
 
-*** operators
-|---------------------+------------------|
-|         <c>         |                  |
-| = += -= *= /= %= ^= | Assigments       |
-|         ?:          | Ternary operator |
-|         in          | Array membership |
-|        ~ !~         | Matching         |
-|---------------------+------------------|
 *** control flow
 
 - exit
@@ -306,6 +298,16 @@ https://www.gnu.org/software/gawk/manual/html_node/Getline.html
 | "cmd" ¦& getline var | reads from a two-way pipe into var  | RT                  |
 |----------------------+-------------------------------------+---------------------|
 NOTE: call ~close("cmd")~ on the non two-way pipes, maybe call getline on a ~while>0~
+
+** operators
+
+|---------------------+------------------|
+|         <c>         |                  |
+| = += -= *= /= %= ^= | Assigments       |
+|         ?:          | Ternary operator |
+|         in          | Array membership |
+|        ~ !~         | Matching         |
+|---------------------+------------------|
 
 ** format strings
 
