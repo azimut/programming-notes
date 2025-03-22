@@ -1,3 +1,7 @@
+- Word = number of BITS that can be transmitted between ~CPU~ and ~memory~ at one time.
+  - = data bus length in BITS
+  - might not match with the ALU size
+
 - https://en.wikipedia.org/wiki/Von_Neumann_architecture
   - 1945
   - aka princeton architecture

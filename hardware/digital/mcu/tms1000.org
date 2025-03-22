@@ -1,0 +1,12 @@
+- https://en.wikipedia.org/wiki/Texas_Instruments_TMS1000
+- 1974
+- MCU (CPU+ROM+RAM+IO)
+  - variants for external ROM
+- 4 bit
+- Hardvard Architecture (separated data/address)
+- DIP28
+- Texas Instruments
+- TMS1100, TMS1300
+- Used in:
+  - Simon Says
+  - Merlin Electronic Wizard

@@ -25,8 +25,11 @@ https://en.wikipedia.org/wiki/Motorola_6800_family
 - 8bit microprocess and microcontrollers
 
 ** 6800   (74)
+
 https://en.wikipedia.org/wiki/Motorola_6800
 http://zoom.interoscitor.com/PetersonEnterprises/Consulting/WritingSkills.html
+Power Source: +5 GND
+
 ** 68HC05 (79)
 
 https://en.wikipedia.org/wiki/Motorola_68HC05

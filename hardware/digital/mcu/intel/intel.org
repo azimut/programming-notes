@@ -6,6 +6,7 @@ https://timeline.intel.com/
 - wiki https://en.wikipedia.org/wiki/Intel_8085
 - Intel 8085
 - 8-bit
+- 20 1970's Intel MCS-85 8085 Design Kit! https://www.youtube.com/watch?v=SBkW_pzhUSs
 - https://www.youtube.com/watch?v=7PNWR2QSjjc
   - intel:
     - mcs-4 / 4040

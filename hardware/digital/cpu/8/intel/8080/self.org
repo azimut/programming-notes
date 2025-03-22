@@ -1,9 +1,10 @@
 - wiki https://en.wikipedia.org/wiki/Intel_8080
   - Intel
-  - 1974-1990
+  - 1974
   - 2 - 3.125 MHz
   - DIP40
   - 4.5k - 6k transistors (6um)
   - width in bits
     - Data: 8
     - Address: 16
+  - Power Source: +5 -5 +12 GND
