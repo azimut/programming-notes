@@ -1,0 +1,6 @@
+- https://firstmicroprocessor.com/
+- https://en.wikipedia.org/wiki/F-14_CADC
+- 1968
+- 20bit
+- F14 tomcat chip
+- 24 video [[https://www.youtube.com/watch?v=YpruA5mC7wg][The World's First Microprocessor: F-14 Central Air Data Computer]]
