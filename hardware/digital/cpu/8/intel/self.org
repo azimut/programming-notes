@@ -1,1 +1,6 @@
 4004 -> 8004 -> 4040 -> 8080 -> 8085 (5v 8080) -> 8086 -> 8088
+- mcs-4
+  - 4bit
+  - 45 instructions
+  - "Micro Computer Set 4" (cpu,rom,ram,shift register for IO expansion)
+  - 71 video [[https://www.youtube.com/watch?v=gPKZSuXAVMU][The MCS-4 Story]]

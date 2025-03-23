@@ -1,3 +1,43 @@
+- Registers
+  - transparent: not visible to the programmer
+    - eg: accumulator latch, temporary register
+  - general purpose
+  - accumulator:
+    - holds one of the ALU operands
+    - stores the result (often)
+
+- =Intructions=
+  - Parts/Fields
+    - opcode
+    - address
+      - direct: has a memory address, pointing to where is the data
+      - immediate: has data
+  - Types
+    - memory reference
+    - input/output
+    - operate: causes an operation internal to the cpu
+    - control
+  - Instruction Cycle
+    1) feching: read it from memory
+    2) decoding: interpreted by ~control unit~
+    3) executing: by the CPU
+
+- Main parts:
+  - ALU: arithmetic, logic, and shifting
+  - Control Unit: issues a sequence of signals, that evoke actions inside the CPU
+
+- Way to interpret bytes as (by a program)
+  - an instruction
+  - data
+    - binary number
+    - coded binary data (eg: bcd, complement number)
+    - char
+
+- Memory Address
+  - start at 0
+  - more common refer in hex/octal
+  - 2^8=256 2^9=512 2^10=1024
+
 - Word = number of BITS that can be transmitted between ~CPU~ and ~memory~ at one time.
   - = data bus length in BITS
   - might not match with the ALU size

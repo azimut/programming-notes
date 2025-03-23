@@ -22,7 +22,10 @@
 
 - 11MHz (divided by 15 internally?)
 - 8 bit
-- 96 instructions (90% single byte)
+- 96 instructions
+  - 1 byte are those that only have the opcode (90%?) (aka operate)
+  - 2 bytes are immediate instructions
+  - 2 bytes are memory reference intructions
 
 ** PSW - Program Status Word
 
@@ -32,7 +35,7 @@
 - From LSB to MSB
   - 3 bit stack pointer
   - 1 bit unused
-  - 1 bit (register) BS Bank-Select switch
+  - 1 bit memory bank select switch
     #+begin_src asm
       sel rb0 ; = 0 for R0  - R7
       sel rb1 ; = 1 for R0' - R7'
@@ -54,7 +57,7 @@ MSB | 11 | 8-10 | 0-7 | LSB
 
 - 12 bits wide (from LSB to MSB)
   - 8 bits for ~address~ within a page
-  - 3 bits for ~page~ addressing
+  - 3 bits for ~page~ addressing (4 pages)
     |---+-----+-----+-----|
     | P | BIT | SRT | END |
     |---+-----+-----+-----|
@@ -72,24 +75,27 @@ MSB | 11 | 8-10 | 0-7 | LSB
     - =0 program memory in ~memory bank~ 0 (0-2047)
     - =1 program mempry in ~memory bank~ 1 (2048-4095)
 
-- unconditional jump & call instruction
-  - instruction
-    - 8 bit opcode
-      - 5 bit for opcode
-      - 3 bit MSB address
-      - there is an _unique opcode for each page_ that a jump or call can transfer control to
-    - 8 bit address
-  - replace 11 bits of the ~program counter~
-    - transfer control anywhere within a 2K address range
-      - 4 pages of external program memory
-      - 4 pages of resident program memory
+*** unconditional jump & call instruction
 
-- conditional jump instructions
-  - can transfer control only _within the page_ containing the instruction
-  - use 2(two) bytes
-    - 1(one) for the opcode/instruction
-    - 1(one) for the adddress
-      - replaces the LSB of the ~program counter~
+- instruction
+  - 8 bit opcode
+    - 5 bit for opcode
+    - 3 bit MSB address
+    - there is an _unique opcode for each page_ that a jump or call can transfer control to
+  - 8 bit address
+
+- replace 11 bits of the ~program counter~
+  - transfer control anywhere within a 2K address range
+    - 4 pages of external program memory
+    - 4 pages of resident program memory
+
+***   conditional jump instructions
+
+- can transfer control only _within the page_ containing the instruction
+- use 2(two) bytes
+  - 1(one) for the opcode/instruction
+  - 1(one) for the adddress
+    - replaces the LSB of the ~program counter~
 
 ** ROM
 
@@ -98,42 +104,16 @@ MSB | 11 | 8-10 | 0-7 | LSB
 - 3k of additional support for external ROM for _program memory_
 - 4k of total ROM supported
 
-** RAM
+*** Program Memory
 
-- Can be expanded to access 256 bytes extra of external _data memory_
-  - 64+256 = 320 bytes
-
-- 64-256 bytes internal for _data memory_
-  - (0-31) Lower Half
-    - (0-7) 8 registers of 8bit
-      - =Register Inderect Addressing=
-        R0/R1 may be used as *RAM pointers* to access memory containing data.
-        #+begin_src asm
-          mov a, @r0 ; a = *r0
-        #+end_src
-    - (8-23) 8-Level stack
-      - addressed by the stack pointer during subroutine calls
-      - 8 stack locations in 16 RAM locations (2 locations per address)
-      - each will contain the ~program counter~ + 4MSB of the ~PSW~
-    - (24-31) Optional second register stack
-      - R0' - R7'
-      - can be used in place of R0-R7
-      - useful during interrupts
-  - (32-64) Upper Half
-    - Data Store
-      - up to the programmer
-      - accessed only by R0, R1
-
-** Program Memory
-
-- 1024/2048/4096 words 8 bit wide addressed by the =program counter=
+- 1024 words 8bit wide addressed by the =program counter=
 
 #+begin_src asm
-  .org 0 ; reset vector
+  .org 0 ; reset vector, ->RST (pin 4)
   jmp hellworld
 
-  .org 3 ; external interrupt vector (PIN 6)
-  retr   ; not used
+  .org 3 ; external interrupt vector, ->INT (pin 6)
+  retr   ; if not used
 
   .org 7 ; time interrupt vector (msd to lsd)
          ; ...
@@ -145,31 +125,74 @@ MSB | 11 | 8-10 | 0-7 | LSB
 
 *** External Access Mode
 
-
 - EA input pin, RESET should be applied when EA changes
 - disables internal _program memory_ (the first ~1k of the memory map)
 - allowing the first words of _program memory_, to be fetched from external memory
 - bumps _program memory_ size upto 4k
 
+** RAM
+
+- Can be expanded to access 256 bytes extra of external _data memory_
+  - 64+256 = 320 bytes
+
+*** Internal Data Memory
+
+- (0-31) Lower Half
+  - (0-7) 8 (working) registers of 8bit
+    - R0-R7 - aka memory bank 0
+    - =Register Inderect Addressing=
+      - R0/R1 may be used as *RAM pointers* to access memory containing data.
+        #+begin_src asm
+          mov a, @r0 ; a = *r0
+        #+end_src
+  - (8-23) 8-Level stack (or used as user ram if not stack)
+    - 16x8
+    - addressed by the stack pointer during subroutine calls
+    - 8 stack locations in 16 RAM locations (2 locations per address)
+    - each will contain the ~program counter~ + 4MSB of the ~PSW~
+  - (24-31) Optional second register stack
+    - R0'-R7' - aka memory bank 1
+    - can be used in place of R0-R7
+    - useful during interrupts
+    - see ~program status word~
+
+- (32-64) Upper Half
+  - 32x8
+  - Data Store
+    - up to the programmer
+    - accessed only by R0, R1
+
 ** Arithmetic Section
-
-  - =Instruction Decoder=
-    - stores the ~OP code~ part of the instruction
-    - sends control signals to the ALU
-  - =ALU=
-    - 2x 8bit input
-    - 8 bit output
-    - sets Carry Flag on ~Program Status Word~
-    - Operations:
-      - add with/out carry, inc, dec
-      - AND, OR, XOR
-      - bit complement, rotation, swap nibbles, BCD decimal adjust
-  - =Accumulator= register
-    - 8 bit
-    - one of the ALU sources
-    - data to/from I/O ports and memory pass through it (?)
-
+*** Instruction Decoder
+- stores the ~OP code~ part of the instruction
+- sends control signals to the ALU
+*** ALU (Arithmetic Logic Unit)
+- 2x 8bit input
+  - 8 bit accumulator
+  - 8 bit temporary register (transparent)
+- 8 bit output
+- sets a =Carry Flag= on the ~Program Status Word~ on overflow
+- Operations:
+  - add with/out carry, incr, decr
+  - AND, OR, XOR
+  - bit complement, rotation, swap nibbles, BCD decimal adjust
+*** Accumulator register
+- 8 bit
+- one of the ALU sources
+- data to/from I/O ports and memory pass through it
 ** I/O 27 pins
+
+*** External _Instruction_ *FETCH* Cycle
+
+- automatically if memory address >1024 OR ~EA~ pin is on
+- ~program counter~ put
+  - 8bit bus
+  - 4bit port 2
+- ~ALE~ indicates address validity timing
+  - to a 373 latch control
+- ~PSEN~ indicates fetching is in progress
+  - to chip-enable the memory
+- bus is reset (? and content is read
 
 *** Types of data tranfers
 
