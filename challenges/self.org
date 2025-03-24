@@ -21,6 +21,7 @@
 - Projects
   - https://codecrafters.io/
   - https://github.com/codecrafters-io/build-your-own-x
+  - https://github.com/vicky002/1000_Projects
   - books https://github.com/AlgoryL/Projects-from-Scratch
   - https://github.com/practical-tutorials/project-based-learning
   - https://austinhenley.com/blog/challengingalgorithms.html
