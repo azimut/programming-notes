@@ -11,105 +11,133 @@ RESUME 6:19
 
 * Videos: Build a 65c02-based computer from scratch
 
-https://www.youtube.com/playlist?list=PLowKtXNTBypFbtuVMUVXNR0z1mu7dp7eH
-  - 6502 (890 pesos at 15Aug/20)
-  - AT28C256 (1887 pesos at 15Aug/20)
+- https://www.youtube.com/playlist?list=PLowKtXNTBypFbtuVMUVXNR0z1mu7dp7eH
+  - W65C02S (890 pesos at 15Aug/20) (15k pesos at 25Mar/25)
+    - 16bit/2^16 addresses 128K of memory
+  - AT28C256 (1887 pesos at 15Aug/20) (15k pesos at 25Mar/25)
 
 ** 01 - "Hello, world" from scratch on a 6502
+
 https://www.youtube.com/watch?v=LnzuMJLZRdU
-- 1x W65C02S
-  - 16bit/2^16 addresses 128K of memory
-- Connecting:
+- Connecting for a basic setup
   - 5v VDD(+) VCC(-)
-  - READ_WRITE: tells if it is and read or write operation
-  - A0-A16 are address pins that outputs the *current* address
-  - Min clock: new one allow stopping and step by step execution
-  - Max clock: orig 1mhz, new 16mhz
-  - Inputs: are connected (RDY,IRQB,NMIB,BE,PHI2O(clock),...) some to HIGH/UP and some to LOW/DOWN
-  - Outputs: kept disconnected (VPB,A0-15,...)
-  - I/O (D1-6)
+  - Outputs: kept disconnected (VPB,A0-15,D0-D7...)
+  - Inputs: connected (RDY,IRQB,NMIB,BE,PHI2(clock),...) some to HIGH/UP and some to LOW/DOWN
+    - RST: connected to (+) with a 1k resitor, and a button to GND
+    - RWB: tells if it is and read or write operation
+  - Min PHI2(clock): new 6502 model allows stopping and doing step by step execution
+  - Max PHI2(clock): orig 1mhz, new model 16mhz
+
+- Final result: We hardwire the DATA (D0-D5) pins with 1k resistors connected to vcc or vdd.
+  - 0xea 11101010
+  - this particular pattern makes it so when it RST jumps to address ~0xeaea~
+  - when it jumps, it runs the instruction there, with is a NOP=ea
+  - and it goes on and on...
+
+*** How to study what is happening once plugged?
+
+- We can put leds on the address lines
 - We can use a "logic analyzer" to capture each signal.
-  Overkill. Especially useful for fast speed circuits.
-- Arduino Read
-  1) Read Address Bus
+  - Overkill. Especially useful for fast speed circuits.
+
+**** Using Arduino - Read Addresses Bus
+
+1) define address pins and initialize pinmode
+   #+begin_src c
+     const char ADDR[] = {22,24,...};
+     void
+     setup() {
+       for (int n = 0; n < 16; n += 1) {
+         pinMode(ADDR[n], INPUT);
+       }
+     }
+   #+end_src
+2) Read A0-A15 in loop()
   #+begin_src c++
-  unsigned int address = 0;
-  for(...){
-     int bit = digitalRead(NNN) ? 1 : 0; // to int
-     address = (address << 1) + bit // an address as a number
-  }
+    unsigned int address = 0;
+    for(int n = 0; n < 16; n += 1){
+       int bit = digitalRead(ADDR[n]) ? 1 : 0; // to int, could Serial.print(bit)
+       address = (address << 1) + bit;         // an address as a number
+    } // and after add a Serial.println()
   #+end_src
-  1) Read Clock Pulse (have it trigger an interrupt)
+
+**** Using Arduino - Read Clock
+
+- Read Clock Pulse (have it trigger an interrupt)
+ #+begin_src c++
+   #define CLOCK 2
+   void init() {
+     pinMode(CLOCK, INPUT);
+     attachInterrupt(digitalPinToInterrupt(CLOCK), onClock, RISING); // !!!
+   }
+   void onClock(){
+    // put what you want to run JUST on a clock
+    // in our case the print of Addresses
+   }
+ #+end_src
+
+**** Using Arduino - Read Data Bus
+
+2) Read D0-D7
   #+begin_src c++
-  void init() {
-    // ...
-    attachInterrupt(digitalPinToInterrupt(CLOCK), onClock, RISING);
-  }
-  void onClock(){
-   // put what you want to run JUST on a clock
-  }
+    const char DATA[] = {39,41,...};
+    pinMode(DATA[n], INPUT); // on setup, where 0<n<8
+    void onClock() { // we add this
+      char output[];
+      unsigned int data = 0;
+      for (int n = 0; n < 8; n += 1) {
+        int bit = digitalRead(DATA[n]) ? 1 : 0; // to int
+        data = (data << 1) + bit;               // an address as a number
+      }
+      sprintf(output, "    %04x %02x", address, data);
+      Serial.println(output);
+    }
   #+end_src
-  1) Read Data Bus
-  #+begin_src c++
-  unsigned int data = 0;
-  for(...){
-     int bit = digitalRead(NNN) ? 1 : 0; // to int
-     data = (data << 1) + bit // an address as a number
-  }
-  #+end_src
-  1) Convert all the bits read one at the time into a number, by shifting and adding bits
-  2) Read READ_WRITE pin
-- Hardcodes the DATA (D1-6) pins with 1k? resistors connected to vcc or vdd.
-  0xea 11101010
-- Things might happen across than more than 1 clock cycle. Depending of the
-  "Addressing Mode"
-  1) Reset sequence  (7 clocks)
-  2) Reads the reset vector from locations below.
-     - FFFC (low byte)   -> 0xea
-     - FFFD (high bytes) -> 0xea
-  3) Loads PC register with that read addresses.
-  4) Instruction NOP (2) is also 0xea (mindblow)
-     It takes 2 clock cycles.
+4) Read READ_WRITE pin
+   #+begin_src c
+     #define READ_WRITE 3
+     pinMode(READ_WRITE, INPUT); // setup()
+     digitalRead(READ_WRITE) ? 'r' : 'W'; // use this to add to sprintf
+   #+end_src
+
 ** 02 - How do CPUs read machine code?
 https://www.youtube.com/watch?v=yl8vPW5hydQ
 - 6502 - Little Endian, reads the lower order byte followed by the high order byte
 *** EEPROM Connecting
 - Adding a EEPROM, so instructions are loaded from it.
 - 1x AT28C256 - 32Kilobytes (or 256Kilobits)
-  - 15 Addresses pins (while 6502 has 16)
-  - CE: Chip enable, active low
-  - WE: Write enable, active low
-  - OE: Output enable, active low
-- The EEPROM is fully used.
-- The CPU can address 2^16, the memory has 2^15 addresses
-  The CPU will then only be able to see the UPPER half of the memory it can address.
-      the dangling *inverted* signal to CE on the EEPROM
-- We use a NAND gate, instead of a NOT
+- CE/WE/OE
+- 15 Addresses pins (while 6502 has 16)
+  - We connect the extra bit to CE of the EEPROM but inverted
+    - We use a NAND gate, instead of a NOT
+    - Because we want to keep the FFFD and FFFC addressed used on RST
+  - We do that so CPU will only see half of the memory, the upper half, NOT repeated
 *** Programming NOPs
-- Python script that creates a file with 0's
+- Python script that creates a file with NOPs
   #+begin_src python
-rom = bytearray([0xea] * 32768)
-with open("rom.bin", "wb") as out_file:
-    out_file.write(rom)
+    rom = bytearray([0xea] * 32768)
+    with open("rom.bin", "wb") as out_file:
+        out_file.write(rom)
   #+end_src
 - EEPROM programmer TL866II+
   > minipro -p AT28C256 -w some.bin
 *** Programming ASM, save to EEPROM from CPU
-- Python script, jumping to beggining of memory, AND programming
-  #+begin_src python
-rom = bytearray([0xea] * 32768)
-rom[0] = 0xa9 # LDA, immediate value
-rom[1] = 0x42 # Value
+Python script, jumping to beggining of memory, AND programming
+#+begin_src python
+  rom = bytearray([0xea] * 32768)
+  rom[0] = 0xa9 # LDA, load acc with immediate value
+  rom[1] = 0x42 # acc = 0x42
 
-rom[2] = 0x8d # STA, memory address
-rom[3] = 0x00 # Memory address 6000
-rom[4] = 0x60 # Note: address outside 0x800-0xfff range the EEPROM has currently
+  rom[2] = 0x8d # STA, memory address
+  rom[3] = 0x00 # Memory address 6000
+  rom[4] = 0x60 # Note: address outside 0x800-0xfff range the EEPROM has currently
 
-rom[0x7ffc] = 0x00 # Address 1000000000000000
-rom[0x7ffd] = 0x80 # Address 8000 on the CPU (which is the zero on the ROM)
-with open("rom.bin", "wb") as out_file:
-    out_file.write(rom)
-  #+end_src
+  rom[0x7ffc] = 0x00 # Fill reset vector with address 8000
+  rom[0x7ffd] = 0x80 # which is addr 0 on the ROM for our setup
+  with open("rom.bin", "wb") as out_file:
+      out_file.write(rom)
+#+end_src
+
 *** 65C22 Register - Hooked into CPU's Address and Data Bus
 - We can use the write to some memory addressed (STA) as "commands" for external hardware
   (Address Decoder) HW Will have to look at the address BUS of the CPU

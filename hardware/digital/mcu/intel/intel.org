@@ -21,6 +21,14 @@ https://timeline.intel.com/
 - https://en.wikipedia.org/wiki/MCS-51
   - MCS-51 succesor of MCS-48
   - microcontroller (mCU)
+  - versions
+    - 8051 128bytes RAM 4k ROM 32 I/O
+    - 8052 256bytes RAM 8k ROM 32 I/O
+    - 8031/8032 no ROM, requires external ROM
+    - 80C31/32/51/52 CMOS
+    - 87C51 EPROM
+    - 89C51 FLASH (ATMEL)
+    - 89C2051 DIP20 (ATMEL)
 
 - tool: as31
 - tool: C89 https://www.keil.com/c51/default.asp
@@ -39,6 +47,11 @@ https://timeline.intel.com/
   - [[https://www.embedded.com/the-8051-mcu-arms-nemesis-on-the-internet-of-things/][ARM collects a tax on each part sold]]
   - Bad achitecture (?
   - Cheap
+
+- Article https://www.instructables.com/Introduction-to-8051-Programming-With-AT89C2051-gu/
+
+- 19 video 8051 family microcontrollers, initial experiments
+  - https://www.youtube.com/watch?v=YitrSDJKMMU
 
 - 19 Programming 8051
   - https://www.youtube.com/watch?v=QEI55gpt7zM

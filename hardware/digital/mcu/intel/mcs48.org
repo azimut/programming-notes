@@ -9,7 +9,7 @@
 |----------+----------------------------------------------------|
 
 - 1976
-- Models: 8048, 8035, 8748
+- Models: 8048, 8035, 8748/9 (EPROM)
 - Intel's first =Microcontroller= (aka micro computer)
 - Manufactured in the 90's to support older designs (cheap)
 - Harvard architecture (modified) https://en.wikipedia.org/wiki/Modified_Harvard_architecture
@@ -19,6 +19,13 @@
 - notes https://jhnbyrn.github.io/951-KLR-PAGES/reading_code.html
 
 * architecture
+
+|------+-----+-----------|
+|      | ROM | RAM       |
+| 8048 | 1k  | 64 bytes  |
+| 8049 | 2k  | 128 bytes |
+| 8050 | 4k  | 256 bytes |
+|------+-----+-----------|
 
 - 11MHz (divided by 15 internally?)
 - 8 bit
@@ -278,7 +285,7 @@ MSB | 11 | 8-10 | 0-7 | LSB
   - of both external program and external data memory
   - to a 373 latch control
 - ~PSEN~ indicates fetching is in progress
-  - to chip-enable the memory
+  - tie to CE/OE of the memory
 - bus is reset (? and content is read
 
 *** Types of data tranfers
@@ -353,6 +360,7 @@ MSB | 11 | 8-10 | 0-7 | LSB
 
 * projects
 
+- homebrew computer https://github.com/jim11662418/Intel_8048_Single_Board_Computer
 - https://hackaday.io/project/19278-8048-maze-generator
   - code https://cdn.hackaday.io/files/19278824789952/maze.asm
 
@@ -361,6 +369,7 @@ MSB | 11 | 8-10 | 0-7 | LSB
 - http://www.moria.de/~michael/comp/ecb/sbcmcs48/hardware.html
 - https://github.com/romavis/metra-m1t380-doc
 - https://www.delabs-circuits.com/cirdir/micro/micro4.html
+- programmer https://www.sbprojects.net/projects/8049spy/index.php
 - programmer https://minuszerodegrees.net/willem/Willem%20MCS-48%20adapter.htm
 - programmer
   - original https://www.jelora.fr/post/2024/06/15/Programmateur-de-microcontrleur-Intel-MCS-48-experimental-sur-Arduino.html
@@ -375,6 +384,7 @@ MSB | 11 | 8-10 | 0-7 | LSB
     - UPI-C42
     - UPI-L42
 
+- Reversing of Porsche computer https://jhnbyrn.github.io/951-KLR-PAGES/
 - Used in
   - [[https://en.wikipedia.org/wiki/Magnavox_Odyssey_2][Magnavox's Oddysey 2]] video game console (1978)
   - Korg Trident Series
@@ -453,23 +463,26 @@ MSB | 11 | 8-10 | 0-7 | LSB
 
 - https://www.youtube.com/watch?v=K83uTnW6IHU
 - https://github.com/daveho/RandomStuff/tree/master/Episode05
-  - MAX708 reset generator (?
+
+- Extra ICS used:
+  - MAX708 reset generator
   - 74HC573 address latch
   - AT28C64E-15PC
-- ROM programmed at factory
-- but if you tie EA (External Access input) pin high
+
+- ROM programmed at factory (aka mask rom)
+- But, if you tie EA (External Access input) pin high
   - it can work with external ROM
-  - by using 1 address and 1 data bus pin
+  - by using 2 IO pins on port 2 for external address/data acccess
 
 - $ asm48 -o foo.bin foo.asm
 
-- Comment
+- YT Comments
   - I tied EA pin 7 to ground to use internal ROM running with a 10Mhz crystal.
   - I see what you mean with getting the CPU to reset reliably, a 2k2 resistor to VCC with a 10uf cap to gnd seems to work ok, boots reliably on power-up.
   - The devices I have are NEC types programmed with an equally ancient Expro-60 device programmer using an ISO interface card. Indeed a lot of fun, regards.
 
 **** Example 1: infinite loop of NOPs
-  #+begin_src asm
+#+begin_src asm
     .org 0x0
     reset:
             jmp entry
@@ -486,23 +499,22 @@ MSB | 11 | 8-10 | 0-7 | LSB
             nop
             nop
             jmp entry
-  #+end_src
+#+end_src
 
 **** Example 2: blink led
-
 #+begin_src asm
   .org 0x0
   reset:
           jmp entry
   .org 0x10
   entry:
-          mov A, #255 ; set all A bits to 1
-          outl P1, A  ; output to port 1 (LED will be off)
+          mov A, #255  ; set all A bits to 1
+          outl P1, A   ; output to port 1 (LED will be off)
           call delay
-          move A, #0  ; set all A bits to 0
-          outl P1, A  ; output to port 1 (LED will be ON)
+          move A, #0   ; set all A bits to 0
+          outl P1, A   ; output to port 1 (LED will be ON)
           call delay
-          jmp entry   ; repeat main loop
+          jmp entry    ; repeat main loop
   delay:
           mov R0, #255 ; init outer loop counter
   delay_outer:
@@ -517,3 +529,87 @@ MSB | 11 | 8-10 | 0-7 | LSB
           ret                  ; return to caller
 #+end_src
 
+**** Example 3: led + button to GND
+
+- button
+  - when pressed see 0
+  - when released see 1, due pull up
+
+#+begin_src asm
+  .org 0x0
+  reset:
+          jmp entry
+
+  .org 0x10
+  entry:
+          mov R0, #0xFF         ; R0 is value to output to P1
+
+  loop:
+          mov   A, R0           ; get value to output to P1
+          outl P1,  A           ; output to P1
+
+          in    A, P1           ; read P1
+          anl   A, #0x80        ; see if high bit is set
+          jnz buton_not_pressed
+
+          ;; button is pressed
+          mov R0, #0xFE         ; drive P1.0 low, LED is on
+          jmp loop
+
+  button_not_pressed:
+          mov R0, #0xFF         ; drive P1.0 high, LED is off
+#+end_src
+
+**** Example 4: timer + light pattern P1.7 through P1.0
+
+#+begin_src asm
+  .equ pattern_array, 32 ; 33, 34
+  .equ cycle_count  , 45 ; nr of cycles before interrupt
+
+  .org 0x0
+  reset:
+          jmp entry
+  .org 0x7
+  timer_int:
+          jmp timer_event
+  .org 0x10
+  entry:
+          ;; initialize pattern_array
+          mov  R0, #pattern_array
+          mov @R0, #0x6D
+          mov  R0, #pattern_array+1
+          mov @R0, #0xB6
+          mov  R0, #pattern_array+2
+          mov @R0, #0xDB
+
+          mov  R4, #cycle_count ; countdown value
+          mov  R2, #0           ; is either: 0,1,2
+          strt t                ; start timer
+          en tcti               ; enable timer interrupt
+
+   loop: ; copies R0 to P1
+          mov  A, R0
+          outl P1, A
+          jmp  loop
+
+   timer_event:
+          djnz R4, timer_event_done ; check if countdown=0
+
+          mov  R4, #cycle_count     ; reset countdown
+          inc  R2                   ; increment pattern count
+          mov   A, R2               ; move pattern count to A
+          inc   A                   ; increment
+          anl   A, #0x4             ; check if pattern=4
+          jz    gen_pattern         ;  no, continue
+          mov   R2, #0              ; yes, reset pattern count
+
+   gen_pattern:
+          mov A  , #pattern_array ; base address of pattern array
+          add A  , R2             ; add offset to select element
+          mov R1 , A              ; load element address to R1
+          mov A  , @R1            ; retrieve element value
+          mov R0 , A              ; copy element value to R0
+
+   timer_event_done:
+          retr
+#+end_src

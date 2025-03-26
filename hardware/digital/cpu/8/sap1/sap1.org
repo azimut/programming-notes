@@ -556,78 +556,138 @@ https://www.youtube.com/watch?v=7zffjsXqATg&list=PLowKtXNTBypGqImE405J2565dvjafg
    Where the truth table values are the numbers in binary
    - 17 ORs, 33ANDs, 4NOTs (Too complex)
 *** 2 - Using an EEPROM to replace combinational logic
-     ROM - Only Read
-    PROM - Programable Once
-   EPROM - Can be ereased through UV lights
-  EEPROM - Erased programmatically
+https://www.youtube.com/watch?v=BA12Z7gQ4P0
 - 1x AT28C16 - ATMEL 16K (2K x8) Parallel EEPROM
-  8x I/O, input if programming, normally output
-  11x address lines (to a tip switch)
-  WE: Write enable
-  OE: Output enable
-  CE: Chip Enable (when low, the chip is enabled)
-  No Current limiter to the output.
+- No Current limiter to the output.
+- Pins
+  - 11x address lines
+    - to a tip switch
+  - 8x I/O, input if programming, normally output
+    - goes to 8 leds
+  - WE: Write enable
+    - Build an RC (Resistor & Capacitor) circuit, _with a button switch_ to trigger it within the required timings
+    - 1nf cap and 610ohm resistor = 610ns
+    - and an additional 10k resistor to allow the capacitor to discharge when not pushed
+  - OE: Output enable
+    - jumper cable for easy switch
+  - CE: Chip Enable (when low, the chip is enabled)
+    - tied always down on our project
 - Write Protocol:
-  - OE set to high (?)
-  - Low pulse, on CE or WE (between 100ns-1000ns)
+  - OE disabled (aka set to high)
+  - Press button of RC circuit in WE
   - Will latch the *address* first and at the end of the pulse the *data*
-- Build and RC circuit, with button switch to trigger the WE, and a tip switch to put the address
-  1nf cap and 610ohm = 610ns
-  + 10k resistor to allow capacitor to discharge
 *** 3 - Build an Arduino EEPROM programmer
 
 https://www.youtube.com/watch?v=K88pgWhEb1M&list=PLowKtXNTBypGqImE405J2565dvjafglHU&index=32
 
-- Programming the addresses (input) and data for the hex (output)
-- Arduino has 14 I/O digital pins (12 if we are using serial interface, hence using the TX and RX pins)
-  We need to control 21 pins: 11 address + 8 IO + WE + OE = 21
+- Goal: Programming the addresses (input) and data for the hex display (output)
 
-- There is way for us to use only a couple (!!!) of pins of the Arduino
-  With a ~shift register~
-  - uses several *D flip-flops* chained, the input bit "travels" across the flip-flops
-  - It has a single input, but many outputs
+- Problem:
+  - Arduino has 14 I/O digital pins (12 if we are using serial interface, hence using the TX and RX pins)
+  - But, we need to control 21 pins:
+    + 11 address
+    + 8 IO
+    + WE
+    + OE
 
-- 1X ~74HC595~ - "8-bit serial-in, seria or parallel-out shift register with output latches; 3-state"
-  - Reduce it to 3 signals (DATA INPUT, ST_CP, SH_CP)
+**** Solution: using a shift register
+
+- Is a way to use only a couple (!!!) of pins on the Arduino.
+- Internally it uses several *D flip-flops* chained, the input bit "travels" across the flip-flops
+- It has a single input, but many outputs
+
+- 2X ~74HC595~ - "8-bit serial-in, seria or parallel-out shift register with output latches; 3-state"
+  - Reduce it to 3 signals for each (DS, ST_CP, SH_CP)
   - No current limiter on the the output
   - We can cascade them if we want
-  - Storage resister (8-bit)
-    - ST_CP: storage register clock pulse,
-             if 1 (or unplugged) sends to output
-             if 0 holds the input without output it
+  - Registers
+    - 8bit shift register
+    - 8bit storage register, between the SR and its output pins
   - Shift-register pins
-    - DS: data serial input
-    - SH_CP: shift clock pulse
-    - MR: master reset (set to high to not reset)
-    - OE: output enable (set to low to enable our outputs)
+    |-------+------------------------------------------------------|
+    |  <c>  |                                                      |
+    |  DS   | data serial input                                    |
+    |  MR   | master reset, resets it (set to high to not reset)   |
+    | SH_CP | shift clock pulse                                    |
+    | ST_CP | Storage Register Clock Pulse, we can hold the output |
+    |  OE   | output enable (set to low to enable our outputs)     |
+    | Q(n)  | 8 outputs                                            |
+    |  Q7'  | tap/copy of the last output bit, to daisy-chain it   |
+    |-------+------------------------------------------------------|
 
-- Arduino Programming
-  - Set Address
-    - shiftOut() - sends the value provided (an int) to the pin provided, shifting with a clock into the target pin
-    - address >> 8
-    - (address >> 8) | (outputEnable ? 0x00 : 0x80)
-  - Reading
-    - data = (data << 1) + digitalRead()
-  - Writing
-    - Setup: We need to make sure it starts HIGH, on this order to avoid it going low
-      digitalWrite(PIN, HIGH) // Sets the pullup resistor
-      pinMode(PIN, OUTPUT)    // set the pinmode to output, which is already high
-
+**** Code Rationale - Arduino Programming
+- Set Address
+  - an ~integer~ is 2 bytes, 16 bits
+  - shiftOut() - sends the value provided (an int) to the pin provided, shifting with a clock into the target pin
+  - address >> 8 - sends just the MSB, since it shifts it 8 bits
+  - address      - sends the LSB since it ignores the upper ones
+  - (address >> 8) | (outputEnable ? 0x00 : 0x80)
+**** Code Arduino - setup()
 #+begin_src c
   #define SHIFT_DATA  2
   #define SHIFT_CLK   3
   #define SHIFT_LATCH 4
   #define EEPROM_D0   5
   #define EEPROM_D7  12
-
-  void setAddress(int address, bool outputEnable) {
+  #define WRITE_EN   13
+  void
+  setup() {
+    pinMode(SHIFT_DATA , OUTPUT);
+    pinMode(SHIFT_CLK  , OUTPUT);
+    pinMode(SHIFT_LATCH, OUTPUT);
+    digitalWrite(WRITE_EN, HIGH);
+    pinMode(WRITE_EN, OUTPUT); // sets up the pull up resistor
+    Serial.begin(57600);
+    Serial.println(readEEPROM(0));
+  }
+#+end_src
+**** Code Arduino - setAddress()
+#+begin_src c
+  void
+  setAddress(int address, bool outputEnable) {
+    // shifts address 8 bits
     shiftOut(SHIFT_DATA, SHIFT_CLK, MSBFIRST,
              (address >> 8) | (outputEnable ? 0x00 : 0x80));
+    // ignores the top bits, sends the lower
     shiftOut(SHIFT_DATA, SHIFT_CLK, MSBFIRST,
              address);
-    digitalWrite(SHIFT_LATCH, LOW);
+    digitalWrite(SHIFT_LATCH, LOW);  // pulse it hight
     digitalWrite(SHIFT_LATCH, HIGH);
     digitalWrite(SHIFT_LATCH, LOW);
+  }
+#+end_src
+
+**** Code Arduino - readEEPROM()
+#+begin_src c
+  byte readEEPROM(int address) {
+    for (int pin = EEPROM_D0; pin <= EEPROM_D7; pin += 1) {
+      pinMode(pin, INPUT);
+    }
+    setAddress(address, true);
+    byte data = 0;
+    for (int pin = EEPROM_D7; pin >= EEPROM_D0; pin -= 1) {
+      data = (data << 1) + digitalRead(pin);
+    }
+    return data;
+  }
+#+end_src
+
+**** Code Arduino - writeEEPROM()
+#+begin_src c
+  void
+  writeEEPROM(int address, byte data) {
+    for (int pin = EEPROM_D0; pin <= EEPROM_D7; pin += 1) {
+      pinMode(pin, OUTPUT)
+    }
+    setAddress(address, false);
+    for (int pin = EEPROM_D0; pin <= EEPROM_D7; pin += 1) {
+      digitalWrite(pin, data & 1); // zero out everything but the last bit
+      data = data >> 1;
+    }
+    digitalWrite(WRITE_EN, LOW);
+    delayMicroseconds(1); // a bit over 1000ns
+    digitalWrite(WRITE_EN, HIGH);
+    delay(10); // needs to be 10, not 5 to work (magic number?)
   }
 #+end_src
 

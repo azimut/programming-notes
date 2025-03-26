@@ -412,3 +412,5 @@ done | sort -R | xargs -ILETTER echo -n LETTER
   - zsh: errors
   - fish: does nothing
 - some language constructs spawn *subshells* (eg: pipelining)
+- piped commands run/start all at the same time
+  - if one fails the rest will ran regardless if "pipefail" is set

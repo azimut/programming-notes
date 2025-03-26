@@ -1,0 +1,6 @@
+#+begin_src
+     ROM - Only Read
+    PROM - Programable Once
+   EPROM - Can be ereased through UV lights
+  EEPROM - Erased programmatically
+#+end_src

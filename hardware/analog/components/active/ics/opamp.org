@@ -253,6 +253,7 @@ see https://www.electronics-tutorials.ws/opamp/opamp_1.html
 - 21 EEVBlog  | 1436 - The TOP 5 Jellybean OPAMP's https://www.youtube.com/watch?v=uq1DMWtjL2U
 - 23 Dronebot |Op-Amps - Using Operational Amplifiers https://www.youtube.com/watch?v=_HHxV-7alwE
 - Aaron's Analog Chip Collection (ECE Design Fundamentals, Georgia Tech class) https://www.youtube.com/watch?v=fVFukSjWQjk
+- LM1875 DIY audio amplifier https://www.youtube.com/playlist?list=PL9zJKV-F2eMzatbAfKcEIOSK2qt0VTn7Z
 
 * OTA (69)
 

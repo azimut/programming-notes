@@ -1,4 +1,4 @@
-* 7400 (64)
+#+TITLE: 7400 (64)
 
 - wiki https://en.wikipedia.org/wiki/7400-series_integrated_circuits
 - TI = Texas Instruments
@@ -65,7 +65,7 @@ https://en.wikipedia.org/wiki/List_of_7400-series_integrated_circuits
 | 373 | 8 | 3S | transparent latch                          |
 | 374 | 8 | 3S | transparent latch (positive edge)          |
 | 573 | 1 | 3S | D transparent latch                        |
-| 595 | 1 | 3S | 8-bit shift register                       |
+| 595 | 1 | 3S | 8-bit =shift register=                     |
 |-----+---+----+--------------------------------------------|
 
 - multiplexers

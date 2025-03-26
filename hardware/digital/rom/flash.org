@@ -9,3 +9,11 @@
       - allows single word writes
     - 1989 NAND flash architecture
       - eg: memory card, usb flash drive, ssd (2009-)
+
+- Homemade Flash Memory Programmer
+  - https://www.youtube.com/playlist?list=PLd0Jb8MtKHOPvd8nIFa7q3OW3F3grJMLO
+
+- 21 Replace EEPROMs with FLASH Memory from Scratch
+  - https://www.youtube.com/watch?v=2crXqNlBazg
+  - SST39SF010A
+  - https://github.com/slu4coder/SST39SF010-FLASH-Programmer

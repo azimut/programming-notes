@@ -1,4 +1,4 @@
-*  EPROM (71)
+#+TITLE: EPROM (71)
 
 https://en.wikipedia.org/wiki/EPROM
 
@@ -30,11 +30,11 @@ https://en.wikipedia.org/wiki/EPROM
          Connected to the SW(itch) pin and either charges or floats the _external_ inductor (L1)
          at a frequency of 1.2MHz at a variable duty cycle."
 
-- 22 Video | Emulator with RPi Pico https://www.youtube.com/watch?v=elrf1nM5nco
+- 22 Video | [[https://www.youtube.com/watch?v=elrf1nM5nco][Emulate RAM/ROM For A 6502 Using a RPi Pico]]
   - Code in Python
   - With a 1MHz clock is fine
 
-- 17 Video https://www.youtube.com/watch?v=P0oJPvwca6I
+- 17 Video [[https://www.youtube.com/watch?v=P0oJPvwca6I][Chip on Breadboard - 2716 EPROM]]
   - Data lines are noted On, because they are normally output
   - Vpp = Voltage for programming
     - In video are 25v for programming
