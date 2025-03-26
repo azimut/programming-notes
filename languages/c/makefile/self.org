@@ -13,7 +13,7 @@
 |      manual | https://www.gnu.org/software/make/manual/html_node/index.html        |
 |-------------+----------------------------------------------------------------------|
 
-- 1976
+- 1976, at Bell Labs
 - Author: Stuart Feldman
 
 - library: https://github.com/mitjafelicijan/makext
@@ -231,6 +231,10 @@ help: # Print help on Makefile
   #+end_src
 
 * gotchas
+
+#+ATTR_ORG: :width 160
+#+CAPTION: Stuard Feldman on the "Unix Playing Cards" released in 1994
+[[./feldman.jpg]]
 
 - ~=~ assignment is perpetually evaluated
 - ~$~ needs to be always escaped with ~$$~ to be sent to commands as such
