@@ -123,7 +123,7 @@ http://www.6502.org/tutorials/6502opcodes.html
 
 - game: snake https://gist.github.com/wkjagt/9043907
 
-* products
+* used in
 
 - Apple IIe
 - BBC Micro
@@ -134,11 +134,14 @@ http://www.6502.org/tutorials/6502opcodes.html
 - Atari 2600
 - NES
 
-* CIA
+* auxiliary IC's
 
-https://en.wikipedia.org/wiki/MOS_Technology_CIA
+- https://en.wikipedia.org/wiki/WDC_65C22
+  - VIA - Versatile Interface Adapter
+- https://en.wikipedia.org/wiki/MOS_Technology_CIA
+  - CIA - Complex Interface Adapter
 
-* 6507
+* 6507 (variant)
 
 https://en.wikipedia.org/wiki/MOS_Technology_6507
 

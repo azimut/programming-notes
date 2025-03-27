@@ -2,6 +2,7 @@
 - 03 PJW's face https://spinroot.com/pico/pjw.html
   - orig https://spinroot.com/pico/pjw.jpg
   - papermask https://spinroot.com/pico/pjw_papermask.jpg
+  - unix cards https://blog.dshr.org/p/unix-p.html
 - Beyond Photography - The Digital Darkroom https://spinroot.com/pico/
   - source in OF++ https://github.com/Bentleyj/BeyondPhotography
   - images https://www.instagram.com/james.g.bentley/

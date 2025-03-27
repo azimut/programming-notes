@@ -15,6 +15,8 @@ RESUME 6:19
   - W65C02S (890 pesos at 15Aug/20) (15k pesos at 25Mar/25)
     - 16bit/2^16 addresses 128K of memory
   - AT28C256 (1887 pesos at 15Aug/20) (15k pesos at 25Mar/25)
+  - W65C22 - VIA
+  - HD44780U - LCD
 
 ** 01 - "Hello, world" from scratch on a 6502
 
@@ -103,6 +105,7 @@ https://www.youtube.com/watch?v=LnzuMJLZRdU
 ** 02 - How do CPUs read machine code?
 https://www.youtube.com/watch?v=yl8vPW5hydQ
 - 6502 - Little Endian, reads the lower order byte followed by the high order byte
+- Final Result: using 65C22 auxiliary chip with our 6502
 *** EEPROM Connecting
 - Adding a EEPROM, so instructions are loaded from it.
 - 1x AT28C256 - 32Kilobytes (or 256Kilobits)
@@ -128,8 +131,8 @@ Python script, jumping to beggining of memory, AND programming
   rom[0] = 0xa9 # LDA, load acc with immediate value
   rom[1] = 0x42 # acc = 0x42
 
-  rom[2] = 0x8d # STA, memory address
-  rom[3] = 0x00 # Memory address 6000
+  rom[2] = 0x8d # STA, stores acc in given memory address
+  rom[3] = 0x00 # memory_address = 6000
   rom[4] = 0x60 # Note: address outside 0x800-0xfff range the EEPROM has currently
 
   rom[0x7ffc] = 0x00 # Fill reset vector with address 8000
@@ -139,48 +142,50 @@ Python script, jumping to beggining of memory, AND programming
 #+end_src
 
 *** 65C22 Register - Hooked into CPU's Address and Data Bus
-- We can use the write to some memory addressed (STA) as "commands" for external hardware
-  (Address Decoder) HW Will have to look at the address BUS of the CPU
-  (Latch)           HW Will have to then look at the data BUS
-- 65C22 - VIA - Versitale Interface Adapter
-  - D0-7: Data lines from the CPU
-  - RWB: Read/Write signal, from the CPU
-  - RS0-3: Register Selector: Select which port we are talking
+- We will use memory write instructions (STA) as "commands" for external hardware.
+  - While targetting to a pre-arranged range of addresses.
+  - Hardware will respond to them, while the EEPROM will ignore them.
+- 65C22 - "VIA - Versitale Interface Adapter"
+  - 16 internal registers, enable different functions
+  - from the CPU: D0-D7, PHI2, RWB, RST (same signal CPU gets)
+  - RS0-3: Register/Port Selector (of the 16)
   - CS1/CS2B: Chip Select, to let it know WHEN the CPU will talk to the chip
   - PA0-7, PB0-7: Port A and B, with latched I/O
-  - 16 internal registers
-- We want to detect the address ~0x0600~
-  - Binary: 011 0000 0000 0000
-  - We JUST check the first 3 bits. (good enough)
-  - A15, A14 to two CS2B, on the VIA IC
-    Connected through NAND gates.
+**** Step 1: detect the address ~0x0600~
+- in binary: 011 0000 0000 0000
+- We just NEED to check the first 3 bits.
+- And CS the 652CC if found (needs both CS to be active)
+  - A15, A14 to two CS2B through NAND gates.
   - A13, to the CS1 directly.
-- We want to select the ouput port (PA,PB)
-  - We connect the lower A0-3 to RS0-3
-  - This maps memory location to RS flags
-    0x600-0x60f to RS flags combinations
-  - After the flag is set we write what the register is going to have
-    - For example to setup each pin either as input or output
-*** 65C22 Register - Programming a loop
+**** Step 2: write to 652CC registers
+- We connect the lower A0-3 from 6502 to RS0-3 of 65C22
+  - This memory maps 0x600-0x60f to RS flags
+  - So, if we want to set DDRB
+    - for data direction register B on the 65C22
+    - we write to address 0x6002
+*** 65C22 Register - Blinking leds on Port B
 #+begin_src python
-code = bytearray([
-  0xa9, 0xff,       # LDA #$ff -- Putting 1's to mark all pins of port B as output
-  0x8d, 0x02, 0x60, # STA 6002 -- RS to configure port B mode
+  code = bytearray([
+    # Setup Port B pins as outputs
+    0xa9, 0xff,       # LDA #$ff -- Putting all 1's to mark all pins of port B as output
+    0x8d, 0x02, 0x60, # STA 6002 -- RS to configure port B mode
 
-  0xa9, 0x55,       # LDA #$55 -- Outputs in port B 0x55
-  0x8d, 0x00, 0x60, # STA 6000
-  0xa9, 0xaa,       # LDA #$aa -- Outputs in port B 0xaa
-  0x8d, 0x00, 0x60, # STA 6000
+    0xa9, 0x55,       # LDA #$55 -- Outputs in port B 0x55 -- 0101 0101
+    0x8d, 0x00, 0x60, # STA 6000
 
-  0x4c, 0x05, 0x80, # JMP $8005 -- Jumps back to LDA #$55
-])
-rom = code + bytearray([0xea] * (32768 - len(code)))
+    0xa9, 0xaa,       # LDA #$aa -- Outputs in port B 0xaa -- 1010 1010
+    0x8d, 0x00, 0x60, # STA 6000
 
-rom[0x7ffc] = 0x00 # Address 1000000000000000
-rom[0x7ffd] = 0x80 # Address 8000 on the CPU (which is the zero on the ROM)
+    0x4c, 0x05, 0x80, # JMP $8005 -- Jumps back to line with "LDA #$55"
+  ])
 
-with open("rom.bin", "wb") as out_file:
-    out_file.write(rom)
+  rom = code + bytearray([0xea] * (32768 - len(code)))
+
+  rom[0x7ffc] = 0x00 # Address 1000000000000000
+  rom[0x7ffd] = 0x80 # Address 8000 on the CPU (which is the zero on the ROM)
+
+  with open("rom.bin", "wb") as out_file:
+      out_file.write(rom)
 #+end_src
 ** 03 - Assembly language vs. machine code
 - Replacing the python script used before

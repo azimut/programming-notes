@@ -1,6 +1,6 @@
 - A brief interview with AWK creator Dr. Brian Kernighan https://pldb.io/blog/brianKernighan.html
 - https://wizardzines.com/comics/awk/
-- https://hoi.st/posts/2024-01-22-lets-play-some-cards-in-awk.txt
+- 97 | [[https://web.archive.org/web/20140926113347/http://www.wra1th.plus.com:80/awk/awkfri.txt][Why GAWK for AI?]]
 - 10 | https://gregable.com/2010/09/why-you-should-know-just-little-awk.html
 - 13 | https://codegolf.stackexchange.com/questions/13014/tips-for-golfing-in-awk
 - 16 | https://blog.0branch.com/posts/2016-05-13-awk-tco.html
@@ -18,8 +18,9 @@
 - 21 | https://web.archive.org/web/20210505004021/https://portal.drewdevault.com/2021/05/03/awk-is-the-coolest-tool-you-dont-know.gmi
 - 22 | https://benhoyt.com/writings/goawk-compiler-vm/
 - 24 | https://www.raygard.net/awkdoc/pages/awk_parsing_is_tricky.html
-- https://github.com/freznicek/awesome-awk
 - 24 | AWK As A Major Systems Programming Language — Revisited http://www.skeeve.com/awk-sys-prog.html
+- 24 | https://hoi.st/posts/2024-01-22-lets-play-some-cards-in-awk.txt
+- https://github.com/freznicek/awesome-awk
 
 * 99 | Juergen Kahrs      | Network Administration with AWK
 
