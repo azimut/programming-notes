@@ -1,0 +1,9 @@
+- https://en.wikipedia.org/wiki/Bill_Joy
+  - William Nelson Joy
+  - 1954-
+  - Cofounder of Sun Microsystems
+  - Author of:
+    - BSD UNIX
+    - vi
+    - chroot
+    - termcap
