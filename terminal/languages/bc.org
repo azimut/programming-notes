@@ -156,35 +156,6 @@
 - [[https://vimeo.com/101977655][Linux in the Shell Ep 25 - bc]]
 - 23 [[https://www.youtube.com/watch?v=HcRMo0wGq44][video Is Python a souped up Basic Calculator?]]
 
-* codebases
-
-- math and bitcoin
-  - https://github.com/fivepiece/btc-bash-ng/
-  - https://github.com/fivepiece/btc-bash
-- gcd, fibo https://literateprograms.org/category_programming_language_bc.html
-- official examples https://github.com/fivepiece/gnu-bc/tree/master/Examples
-- resources http://www.phodd.net/gnu-bc/
-- http://www.numbertheory.org/gnubc/gnubc.html
-- https://rosettacode.org/wiki/Category:Bc
-- functions https://github.com/mikepierce/GNU-bc-Functions
-- functions https://web.archive.org/web/20160304092132/http://x-bc.sourceforge.net/extensions_bc.html
-- functions https://github.com/idealvin/bc
-- constants https://web.archive.org/web/20160304081309/http://x-bc.sourceforge.net/scientific_constants_bc.html
-** sergiosgc/AdventOfCode2021
-- day6 [[https://github.com/sergiosgc/AdventOfCode2021/blob/main/src/day06/one.bc][part 1]]
-  #+begin_src bash
-  for (; i>0; i-=1) {
-      n = timer[0]
-      for (t=0; t<8; t+=1) timer[t] = timer[t+1]
-      timer[8] = n
-      timer[6] += n
-  }
-  for (i=0; i<9; i+=1) result += timer[i]
-  print result
-  print "\n"
-  #+end_src
-
-
 * snippets
 
 - needed to handle fractional exponents, uses e() and l()
@@ -229,6 +200,37 @@ $ cat /usr/local/bin/solve
   quit
   EOF
 #+end_src
+
+* codebases
+
+#+CAPTION: Lorinda Cherry in 1982
+[[./bc_bell.png]]
+
+- math and bitcoin
+  - https://github.com/fivepiece/btc-bash-ng/
+  - https://github.com/fivepiece/btc-bash
+- gcd, fibo https://literateprograms.org/category_programming_language_bc.html
+- official examples https://github.com/fivepiece/gnu-bc/tree/master/Examples
+- resources http://www.phodd.net/gnu-bc/
+- http://www.numbertheory.org/gnubc/gnubc.html
+- https://rosettacode.org/wiki/Category:Bc
+- functions https://github.com/mikepierce/GNU-bc-Functions
+- functions https://web.archive.org/web/20160304092132/http://x-bc.sourceforge.net/extensions_bc.html
+- functions https://github.com/idealvin/bc
+- constants https://web.archive.org/web/20160304081309/http://x-bc.sourceforge.net/scientific_constants_bc.html
+** sergiosgc/AdventOfCode2021
+- day6 [[https://github.com/sergiosgc/AdventOfCode2021/blob/main/src/day06/one.bc][part 1]]
+  #+begin_src bash
+  for (; i>0; i-=1) {
+      n = timer[0]
+      for (t=0; t<8; t+=1) timer[t] = timer[t+1]
+      timer[8] = n
+      timer[6] += n
+  }
+  for (i=0; i<9; i+=1) result += timer[i]
+  print result
+  print "\n"
+  #+end_src
 
 * other implementations
 - alternative [[https://qalculate.github.io/][qalc]]
