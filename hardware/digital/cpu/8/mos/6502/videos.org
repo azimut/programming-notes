@@ -12,11 +12,11 @@ RESUME 6:19
 * Videos: Build a 65c02-based computer from scratch
 
 - https://www.youtube.com/playlist?list=PLowKtXNTBypFbtuVMUVXNR0z1mu7dp7eH
-  - W65C02S (890 pesos at 15Aug/20) (15k pesos at 25Mar/25)
-    - 16bit/2^16 addresses 128K of memory
-  - AT28C256 (1887 pesos at 15Aug/20) (15k pesos at 25Mar/25)
-  - W65C22 - VIA
-  - HD44780U - LCD
+- W65C02S (890 pesos at 15Aug/20) (15k pesos at 25Mar/25)
+  - 16bit/2^16 addresses 128K of memory
+- AT28C256 (1887 pesos at 15Aug/20) (15k pesos at 25Mar/25)
+- W65C22 - VIA
+- HD44780U (LDC-II) - "Dot matrix Liquid Crystal Display Controller/Driver"
 
 ** 01 - "Hello, world" from scratch on a 6502
 
@@ -188,77 +188,89 @@ Python script, jumping to beggining of memory, AND programming
       out_file.write(rom)
 #+end_src
 ** 03 - Assembly language vs. machine code
-- Replacing the python script used before
-- Using an assembler: vasm
-  - Old 8-bit style syntax
-  - Raw, binary output
-  - $ make CPU=6502 SYNTAX=oldstyle
-- Directives: .org .word
-- Labels: loop: reset:
-- Example: needs to have spaces at the beggining
-  #+NAME: bare jump + directives for memory layout
-  #+begin_src asm
-  .org $8000 // From the CPU perspective
-  lda #$ff  // "#" meeans load immediate
-  sta $6002 // "$" means the number is hexadecimal
 
-  lda #$55
-  sta $6000
-  lda #$aa
-  sta $6000
+- Replace the python script used before
+- Using ~vasm~ assembler
+  - using "Old 8-bit style syntax"
+  - to build the assembler
+    - $ make CPU=6502 SYNTAX=oldstyle
+  - to build a the binary output from .asm in
+    - -Fbin to output binary
+    - -dotdir to enable directives
+    - $ vasm6502_oldstyle -Fbin -dotdir blink.s
+    - $ hexdump -C a.out
+- Assembly
+  - $ in a number means hexadecimal
+  - # means load immediate
+  - % used for binary literals
+  - Directives:
+    - .org (for origin)
+    - .word (puts a word, a 16 bit value, in output)
+  - Labels: loop: reset:
 
-  jmp $8005
+*** Example: bare jump + directives for memory layout
+#+begin_src asm
+  .org $8000  // From the CPU perspective
+    lda #$ff
+    sta $6002
+
+    lda #$55
+    sta $6000
+    lda #$aa
+    sta $6000
+
+    jmp $8005
 
   .org $fffc
-  .word $8000
-  .word $0000
-  #+end_src
-  #+NAME: label jump
-  #+begin_src asm
+    .word $8000 // reset vector
+    .word $0000 // two extra bytes for padding
+#+end_src
+
+*** Example: refactor to a labeled jump
+#+begin_src asm
   .org $8000 // From the CPU perspective
 
-reset:
-  lda #$ff  // "#" meeans load immediate
-  sta $6002 // "$" means the number is hexadecimal
+  reset: // label
+    lda #$ff
+    sta $6002
 
-loop: // label
-  lda #$55
-  sta $6000
-  lda #$aa
-  sta $6000
+  loop: // label
+    lda #$55
+    sta $6000
 
-  jmp loop
+    lda #$aa
+    sta $6000
+
+    jmp loop
 
   .org $fffc
   .word reset
   .word $0000
-  #+end_src
-  #+NAME: ror
-  #+begin_src asm
-  .org $8000 // From the CPU perspective
+#+end_src
 
+*** Example: ror - to rotate led pattern around
+#+begin_src asm
+.org $8000 // From the CPU perspective
 reset:
-  lda #$ff  // "#" meeans load immediate
-  sta $6002 // "$" means the number is hexadecimal
+  lda #$ff
+  sta $6002
 
-  lda #$50
+  lda #$50 // we output something right away
   sta $6000
 
-loop: // label
+loop:
   ror // shifting pattern to the right
-  sta $6000
+  sta $6000 // send it
 
   jmp loop
 
-  .org $fffc
+.org $fffc
   .word reset
   .word $0000
-  #+end_src
-- $ vasm6502_oldstyle -Fbin -dotdir example.s
-  $ hexdump -C a.out
+#+end_src
 ** 04 - Connecting an LCD to our computer
 - HD44780U (LDC-II) - "Dot matrix Liquid Crystal Display Controller/Driver"
-  - V0: contrast (to ground to a resistor 10K)
+  - V0: contrast adjust (to ground to a variable resistor of 10K)
   - A: Anode (5V) has a current limit resistor
   - K: Katode (GND)
   - Connected to through the (internal) MPU
@@ -274,53 +286,51 @@ PORTA = $6001
 DDRB = $6002
 DDRA = $6003
 
-E  = %10000000
+E  = %10000000 ; "%" used for binary literals
 RW = %01000000
 RS = %00100000
 
-  .org $8000
-
-; "%" used for binary literals
+.org $8000
 reset:
   lda #%11111111 ; Set all pins for output
   sta DDRB
-  lda #%11100000  ; Set top 3 pins for Output
+  lda #%11100000 ; Set top 3 pins for Output
   sta DDRA
 
   lda #%00111000 ; Set 8-bit mode, 2-line display, 5x8 font
   sta PORTB
-  lda #0   ; Clear RS/RW/E bits
+  lda #0         ; Clear RS/RW/E bits
   sta PORTA
-  lda #E   ; Set E bit to send instruction
+  lda #E         ; Set E bit to send instruction
   sta PORTA
-  lda #0   ; Clear RS/RW/E bits
+  lda #0         ; Clear RS/RW/E bits
   sta PORTA
 
   lda #%00001110 ; Display on, cursor on, blink off
   sta PORTB
-  lda #0   ; Clear RS/RW/E bits
+  lda #0         ; Clear RS/RW/E bits
   sta PORTA
-  lda #E   ; Set E bit to send instruction
+  lda #E         ; Set E bit to send instruction
   sta PORTA
-  lda #0   ; Clear RS/RW/E bits
+  lda #0         ; Clear RS/RW/E bits
   sta PORTA
 
   lda #%00000110 ; Increment and shift cursor, don't shift display
   sta PORTB
-  lda #0   ; Clear RS/RW/E bits
+  lda #0         ; Clear RS/RW/E bits
   sta PORTA
-  lda #E   ; Set E bit to send instruction
+  lda #E         ; Set E bit to send instruction
   sta PORTA
-  lda #0   ; Clear RS/RW/E bits
+  lda #0         ; Clear RS/RW/E bits
   sta PORTA
 
   lda #"H"
   sta PORTB
-  lda #RS       ; Set RS (we are sending data not an instruction), Clears RW/E bits
+  lda #RS        ; Set RS (we are sending data not an instruction), Clears RW/E bits
   sta PORTA
-  lda #(RS | E) ; Set E bit to send instruction
+  lda #(RS | E)  ; Set E bit to send instruction
   sta PORTA
-  lda #RS       ; Clear E bits
+  lda #RS        ; Clear E bits
   sta PORTA
 
 loop:
