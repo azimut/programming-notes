@@ -11,7 +11,7 @@
 |------------+--------------------------------------------------|
 
 - 1974, Bell Labs
-- Lee E. McMahon
+- Lee E. McMahon (43)
 - "Stream EDitor"
 - _line-oriented_ text processing utility
 

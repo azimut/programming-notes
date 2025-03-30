@@ -1,0 +1,9 @@
+- wiki es https://es.wikipedia.org/wiki/Dennis_Ritchie
+- wiki en https://en.wikipedia.org/wiki/Dennis_Ritchie
+  - aka "dmr"
+  - B, C, Unix, Plan9
+- article https://spectrum.ieee.org/discovering-computer-legend-dennis-ritchies-lost-dissertation
+  - +thompson
+- photos https://dmrthesis.net/dennis-family-photos/
+  - +pike
+  - +thompson

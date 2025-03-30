@@ -16,9 +16,9 @@
 
 - 1977
 - Authors
-  - Aho Alfred Vaino
-  - Weinberger Peter Jay
-  - Kernighan Brian Wilson
+  - Aho Alfred Vaino (36)
+  - Weinberger Peter Jay (35)
+  - Kernighan Brian Wilson (35)
 
 * cli
 

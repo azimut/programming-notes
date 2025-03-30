@@ -1,8 +1,8 @@
 #+TITLE: Tcl
 
 - https://en.wikipedia.org/wiki/Tcl
-  - Author: John Ousterhout
-  - 1988
+  - 1988, at Berkeley Univeristy
+  - John Ousterhout (34)
   - Scripting Language, embeded in C
   - Changelog
     - 1999 8.1 full utf-8 support

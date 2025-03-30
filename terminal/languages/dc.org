@@ -12,8 +12,8 @@
 
 - 1971
 - Authors:
-  - Robert H. Morris Sr.
-  - Lorinda Cherry
+  - Robert H. Morris Sr. (39)
+  - Lorinda Cherry (27)
 - "Desk Calculator"
 - a reverse-polish (RPN) calculator, with a stack based language
 - up to 1M digits of decimal precision

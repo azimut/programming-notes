@@ -18,7 +18,7 @@
 |--------+----------------------------------------------------------|
 
 - 1993
-- by [[https://en.wikipedia.org/wiki/Roberto_Ierusalimschy][Roberto Ierusalimschy]], Luiz Henrique Figueiredo, Waldemar Celes
+- by [[https://en.wikipedia.org/wiki/Roberto_Ierusalimschy][Roberto Ierusalimschy]] (33), Luiz Henrique Figueiredo, Waldemar Celes
 - scripting language for extending applications
 - embeddable, implemented as a library
 - written in ISO/ANSI C
