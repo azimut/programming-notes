@@ -576,9 +576,14 @@ https://www.youtube.com/watch?v=BA12Z7gQ4P0
   - OE disabled (aka set to high)
   - Press button of RC circuit in WE
   - Will latch the *address* first and at the end of the pulse the *data*
+
 *** 3 - Build an Arduino EEPROM programmer
 
-https://www.youtube.com/watch?v=K88pgWhEb1M&list=PLowKtXNTBypGqImE405J2565dvjafglHU&index=32
+- videos https://www.youtube.com/watch?v=K88pgWhEb1M&list=PLowKtXNTBypGqImE405J2565dvjafglHU&index=32
+- source https://github.com/beneater/eeprom-programmer?tab=readme-ov-file
+
+#+ATTR_ORG: :width 600
+[[https://raw.githubusercontent.com/beneater/eeprom-programmer/master/schematic.png]]
 
 - Goal: Programming the addresses (input) and data for the hex display (output)
 
@@ -674,8 +679,7 @@ https://www.youtube.com/watch?v=K88pgWhEb1M&list=PLowKtXNTBypGqImE405J2565dvjafg
 
 **** Code Arduino - writeEEPROM()
 #+begin_src c
-  void
-  writeEEPROM(int address, byte data) {
+  void writeEEPROM(int address, byte data) {
     for (int pin = EEPROM_D0; pin <= EEPROM_D7; pin += 1) {
       pinMode(pin, OUTPUT)
     }

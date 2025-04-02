@@ -1,8 +1,8 @@
 - home https://factorcode.org/
 - wiki https://en.wikipedia.org/wiki/Factor_(programming_language)
-  - Author: Slave Pestov
-  - Stack-Oriented Programming Language
   - 2003
+  - Slava Pestov
+  - Stack-Oriented Programming Language
   - Created as scripting language for a video game (aka JFactor)
   - Dynamically typed
   - Object System

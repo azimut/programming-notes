@@ -1,11 +1,26 @@
-- Roberto Ierusalimschy • Talks and Interviews https://www.inf.puc-rio.br/~roberto/talks/index.html
-  - DConf '22: Lua and Pallene https://www.youtube.com/watch?v=H3inzGGFefg
-    - TODO: 22:40
-
-- https://www.youtube.com/watch?v=lRPMrWt-ojw
+- 17 Lua Workshop 2017: Lua's coroutines: The secret sauce in NSE - Patrick Donnelly (Red Hat, Inc.) https://www.youtube.com/watch?v=lRPMrWt-ojw
 - course https://www.youtube.com/watch?v=1srFmjt1Ib0
 - love2d tutorials https://www.youtube.com/channel/UCcq3KOawHtjyN0ibjL4RzXQ
 - Pico-8 Tutorial - Shmup https://www.youtube.com/playlist?list=PLea8cjCua_P3Sfq4XJqNVbd1vsWnh7LZd
+
+* Roberto Ierusalimschy
+
+- List https://www.inf.puc-rio.br/~roberto/talks/index.html
+- 22 What about Pallene https://www.youtube.com/watch?v=pGF2UFG7n6Y
+- 22: Lua and Pallene https://www.youtube.com/watch?v=H3inzGGFefg
+  - TODO: 22:40
+- 20 GC in Lua https://www.youtube.com/watch?v=wGizKsOJQuE
+- 19 Why (and Why not) Lua https://www.youtube.com/watch?v=XxcSvnEIUq4
+- 18 Lua https://www.youtube.com/watch?v=Nw_GE6yKo8E
+- 18 How Much Does it Cost? https://www.youtube.com/watch?v=EUvgoxBm7uc
+- 17 Scripting with Lua https://www.youtube.com/watch?v=57jKNEKSNWA
+- 17 Functions in Lua https://www.youtube.com/watch?v=wdRGOE1N-FA
+- 16 On the Design of Lua https://www.youtube.com/watch?v=QystqRlz6bw
+- 16 Testing Lua https://www.youtube.com/watch?v=yU5QNKpATxk
+- 14 Integers in Lua https://www.youtube.com/watch?v=bjqNK1jA77M
+- 13 What is Next for Lua https://www.youtube.com/watch?v=izhUbMGUIPE
+- 13 Q&A https://www.youtube.com/watch?v=-VQBw5OpJIQ
+- 07 About Lua https://www.youtube.com/watch?v=EEv4yjm63ds
 
 * Channels
 

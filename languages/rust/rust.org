@@ -9,6 +9,9 @@
 | packages | https://crates.io/                                        |
 |----------+-----------------------------------------------------------|
 
+- 2012, at Mozilla
+- Graydon Hoare [[https://www.reddit.com/r/rust/comments/7qels2/i_wonder_why_graydon_hoare_the_author_of_rust/][(left on 2013)]]
+
 * Language
 
 #+begin_src rust

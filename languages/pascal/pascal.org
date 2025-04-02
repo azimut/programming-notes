@@ -1,7 +1,7 @@
 - https://en.wikipedia.org/wiki/Object_Pascal
 - https://en.wikipedia.org/wiki/Pascal_(programming_language)
-  - 1970-
-  - Author: Niklaus Pascal
+  - 1970
+  - Niklaus Pascal (36)
   - typing: static/strong/safe
 
 - https://github.com/Fr0sT-Brutal/awesome-pascal

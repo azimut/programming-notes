@@ -7,8 +7,8 @@
 | monks    | https://www.perlmonks.org/                     |
 |----------+------------------------------------------------|
 
-- 1987-
-- Creator: Larry Wall
+- 1987
+- Larry Wall (33)
 - Versions
   - 5.4  1994
   - 5.10 2009

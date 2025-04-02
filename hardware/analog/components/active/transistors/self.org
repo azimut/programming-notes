@@ -43,6 +43,12 @@
   - has 2 transistors in 1 package
   - with increases gain
   - and more _voltage drop_ :(
+  - darling array = 2NPN + 3res + 2dio
+    - https://www.youtube.com/watch?v=AO4faM1yhLw
+      - very sensible, to detect something
+      - slow
+      - never 0v
+
 - BC327/BC337 https://www.inventable.eu/2018/04/18/los-transistores-bc327-y-bc337/
 
 ** BC548

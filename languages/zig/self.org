@@ -1,7 +1,8 @@
 - source (Zig) https://github.com/ziglang/zig
 - home https://ziglang.org/
 - wiki https://en.wikipedia.org/wiki/Zig_(programming_language)
-  - Author: Andrew Kelley
+  - 2016
+  - Andrew Kelley
   - built-in testing framework
   - not included GC (has an option type)
 

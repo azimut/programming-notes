@@ -1,21 +1,6 @@
 http://www.8052mcu.com/tutorial
 https://timeline.intel.com/
 
-* MCS-85 (1976)
-
-- wiki https://en.wikipedia.org/wiki/Intel_8085
-- Intel 8085
-- 8-bit
-- 20 1970's Intel MCS-85 8085 Design Kit! https://www.youtube.com/watch?v=SBkW_pzhUSs
-- https://www.youtube.com/watch?v=7PNWR2QSjjc
-  - intel:
-    - mcs-4 / 4040
-    - mcs-8 / 8008
-    - 8080
-      - multiple power supplies
-      - higher voltages
-    - mcs-85 / 8085
-
 * MCS-51 (1980)
 
 - https://en.wikipedia.org/wiki/MCS-51

@@ -130,6 +130,16 @@ https://www.youtube.com/playlist?list=PLGs0VKk2DiYx6CMdOQR_hmJ2NbB4mZQn-
 - https://www.youtube.com/c/Seytonic/playlists
 - https://github.com/mlochen/mouse-scanner/
 - https://github.com/Avamander/arduino-tvout/
+* snippets
+
+#+begin_src c
+  const char DATA[] = {1,2} // sizeof(char) = 1
+#+end_src
+
+#+begin_src c
+  #define alength(x) (sizeof(x)/sizeof(x[0]))
+#+end_src
+
 * Tutorial
 ** Digital Pins
   - All(almost) pins can be used as Digital pins.

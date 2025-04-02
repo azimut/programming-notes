@@ -5,7 +5,7 @@
 
 - https://en.wikipedia.org/wiki/Zilog_Z80
   - 1976-2024
-  - Creators:
+  - Creators: same team that worked on Intel 8080
     - Federico Faggin
     - Masatoshi Shima
     - Ralph Ungermann

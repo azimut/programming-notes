@@ -1,3 +1,5 @@
+- ascii IC pinouts http://web.archive.org/web/20090321171657/http://mil.ufl.edu:80/3701/pinouts/index.html
+
 - Chip Tips by Rober Baruch
   https://www.youtube.com/playlist?list=PLEeZWGE3PwbbCry_aGdOg87IXSAA7c6LQ
 
@@ -48,4 +50,3 @@
   - M  1-char month
   - [[http://bedienungsanleitung.elektronotdienst-nuernberg.de/din-en-60062.html][West german (year) code dates]]
   [[https://telcontar.net/KBK/tech/images/IC_dates/IC_dates--GoldStar_YYWW.svgz]]
-

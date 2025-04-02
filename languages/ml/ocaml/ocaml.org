@@ -7,9 +7,9 @@
 | manual (04) | https://caml.inria.fr/pub/old_caml_site/ocaml/htmlman/index.html |
 |-------------+------------------------------------------------------------------|
 
-- 1996-
+- 1996
 - Authors:
-  - Xavier Leroy, Jerome Voiullon, Damien Doligez, Didier Remy, Ascander Suarez
+  - Xavier Leroy (28), Jerome Voiullon, Damien Doligez, Didier Remy, Ascander Suarez
 
 * Language
 

@@ -4,10 +4,10 @@
 - doc https://www.erlang.org/doc/readme.html
 - wiki https://en.wikipedia.org/wiki/Erlang_(programming_language)
 
-- 1986- (opensourced in 1998)
+- 1986 (opensourced in 1998)
   - @Ericsson
 - Authors:
-  - Joe Armstrong
+  - Joe Armstrong (36)
   - Robert Virding
   - Mike Williams
 - OTP (Open Telecom Platform)

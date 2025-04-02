@@ -1,0 +1,14 @@
+- https://en.wikipedia.org/wiki/Stepper_motor
+  - brushless DC electric motor
+  - given a step position
+  - don't need a position sensor for feedback
+
+- Phases
+  - Two phase
+    - unipolar
+    - bipolar
+  - High-phase count
+
+- Drivers:
+  - L/R (aka constant voltage)
+  - Chopper

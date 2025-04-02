@@ -1,10 +1,9 @@
 - home https://www.forth.com/resources/forth-programming-language/
 - home https://forth-standard.org/
 - wiki https://en.wikipedia.org/wiki/Forth_(programming_language)
-  - Author: Charles H. Moore (aka Chuck Moore) https://en.wikipedia.org/wiki/Charles_H._Moore
   - 1970
+  - [[https://en.wikipedia.org/wiki/Charles_H._Moore][Charles H. Moore]] aka "Chuck Moore" (32)
   - Used by NASA https://web.archive.org/web/20101024223709/http://forth.gsfc.nasa.gov/
-
 
 - Implementations
   - https://github.com/gmpalter/cl-forth

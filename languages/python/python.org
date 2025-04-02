@@ -23,8 +23,8 @@
       main()
 #+end_src
 
-- 1991-
-- Author: Guido van Rossum
+- 1991
+- Guido van Rossum (35)
 - PEP - Python Enhancement Proposals
 - .format() https://pyformat.info/
 - f"string" https://fstring.help/

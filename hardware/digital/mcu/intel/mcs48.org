@@ -364,6 +364,7 @@ MSB | 11 | 8-10 | 0-7 | LSB
 - https://hackaday.io/project/19278-8048-maze-generator
   - code https://cdn.hackaday.io/files/19278824789952/maze.asm
 
+- https://x.com/RueNahcMohr/status/1431910449185005571
 - 20 breadboard computer, based on Ben Eater's 6502 project https://www.reddit.com/r/beneater/comments/gbmv8u/inspired_by_bens_6502_project_ive_decided_to/#lightbox
 - https://web.archive.org/web/20140717062700/http://coprolite.com:80/8048.html
 - http://www.moria.de/~michael/comp/ecb/sbcmcs48/hardware.html

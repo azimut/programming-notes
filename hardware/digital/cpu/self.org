@@ -1,3 +1,13 @@
+- ECE 165 - Digtl Integrated Circuit Desgn - LE [A00]
+  https://podcast.ucsd.edu/watch/sp16/ece165sp16/10
+
+- http://www.homebrewcpu.com/
+- homebrew https://www.youtube.com/@fabianschuiki/playlists
+
+- Livestream - Digital Design and Computer Architecture - ETH Zürich (Spring 2023) https://www.youtube.com/playlist?list=PL5Q2soXY2Zi-EImKxYYY1SZuGiOAOBKaf
+- Fall 2021 - Computer Architecture - ETH Zurich https://www.youtube.com/playlist?list=PL5PHm2jkkXmiSGtFXE8IKRQyIZ1wNFknx
+
+* definitions
 - Registers
   - transparent: not visible to the programmer
     - eg: accumulator latch, temporary register
@@ -41,7 +51,7 @@
 - Word = number of BITS that can be transmitted between ~CPU~ and ~memory~ at one time.
   - = data bus length in BITS
   - might not match with the ALU size
-
+* architectures
 - https://en.wikipedia.org/wiki/Von_Neumann_architecture
   - 1945
   - aka princeton architecture
@@ -56,28 +66,28 @@
   - used for
     - real time processing (DSPs)
     - low-power applications
+* intel
+|--------+------+----+------+---+-------------|
+| [[https://en.wikipedia.org/wiki/Intel_4004][mcs-4]]  | 4004 | 16 | 1971 | 4 |             |
+| [[https://en.wikipedia.org/wiki/Intel_8008][mcs-8]]  | 8008 | 18 | 1972 | 8 |             |
+| [[https://en.wikipedia.org/wiki/Intel_4040][mcs-40]] | 4040 | 24 | 1974 | 4 |             |
+| [[https://en.wikipedia.org/wiki/Intel_8080][mcs-80]] | 8080 | 40 | 1974 | 8 | +5v -5v 12v |
+| [[https://en.wikipedia.org/wiki/Intel_8085][mcs-85]] | 8085 | 40 | 1976 | 8 | +5v         |
+|--------+------+----+------+---+-------------|
+** MCS-85 (1976)
 
-- ECE 165 - Digtl Integrated Circuit Desgn - LE [A00]
-  https://podcast.ucsd.edu/watch/sp16/ece165sp16/10
+- wiki https://en.wikipedia.org/wiki/Intel_8085
+- 20 1970's Intel MCS-85 8085 Design Kit! https://www.youtube.com/watch?v=SBkW_pzhUSs
+- Just 5v, instead of 8080 12v & 5v
+- https://www.youtube.com/watch?v=7PNWR2QSjjc
 
-- 1 bit
-  - https://laughtonelectronics.com/oldsite/arcana/One-bit%20computer.html
-  - 1-Bit Breadboard Computer
-    - by Usagi Electric
-    - https://www.youtube.com/playlist?list=PLnw98JPyObn1GUapiXLlGm8RrpQF-J_c1
-
-- Video: 486 breakout board https://www.youtube.com/watch?v=wSiDSdHS2QQ
-  - 1989 Intel
-  - 8Mhz should be the min speed that could run
-  - Manual clock does NOT work
-  - From the comments
-    - internal cache refresh times might limit the min clock speed you could have
-
-- http://www.homebrewcpu.com/
-- homebrew https://www.youtube.com/@fabianschuiki/playlists
-
-- Livestream - Digital Design and Computer Architecture - ETH Zürich (Spring 2023) https://www.youtube.com/playlist?list=PL5Q2soXY2Zi-EImKxYYY1SZuGiOAOBKaf
-- Fall 2021 - Computer Architecture - ETH Zurich https://www.youtube.com/playlist?list=PL5PHm2jkkXmiSGtFXE8IKRQyIZ1wNFknx
+* Video: 486 breakout board
+https://www.youtube.com/watch?v=wSiDSdHS2QQ
+- 1989 Intel
+- 8Mhz should be the min speed that could run
+- Manual clock does NOT work
+- From the comments
+  - internal cache refresh times might limit the min clock speed you could have
 
 * Book: The Manga Guide to Microprocessors
 Author: Michio Shibuya

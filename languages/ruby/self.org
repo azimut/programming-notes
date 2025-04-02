@@ -9,8 +9,8 @@
 | wiki | https://en.wikibooks.org/wiki/Ruby_Programming            |
 |------+-----------------------------------------------------------|
 
-- Author: Yukihiro Matsumoto (matz)
 - 1995, Japan
+- Yukihiro Matsumoto "matz" (30)
 - Written in C
 - Author wanted an OO language.
   - Didn't liked Python, because it wasn't true OO.
