@@ -1,18 +1,18 @@
 #+TITLE: bc
 #+DATE: <2024-04-12 vie>
 
-|---------+-------------------------------------------------------------|
-|   <c>   |                             <c>                             |
-|   gnu   |                        [[https://github.com/fivepiece/gnu-bc/][source]] [[https://www.gnu.org/software/bc/manual/html_mono/bc.html][manual]]                        |
-| howard  |                           [[https://github.com/gavinhoward/bc][source]]                            |
-|  posix  |                             [[https://pubs.opengroup.org/onlinepubs/9699919799/utilities/bc.html][man]]                             |
-|   bsd   |                         [[https://man.freebsd.org/cgi/man.cgi?query=bc&sektion=1][man]] [[https://cgit.freebsd.org/src/tree/contrib/bc][source]]                          |
-| busybox |                           [[https://git.busybox.net/busybox/tree/miscutils/bc.c][source]]                            |
-| toybox  |                           [[https://github.com/landley/toybox/blob/master/toys/pending/bc.c][source]]                            |
-|   faq   |             http://phodd.net/gnu-bc/bcfaq.html              |
-|  wiki   | https://en.wikipedia.org/wiki/Bc_%28programming_language%29 |
-| online  |                     https://bc.js.org/                      |
-|---------+-------------------------------------------------------------|
+|---------+------------------------------------|
+|   <c>   |                <c>                 |
+|  wiki   |     [[https://en.wikipedia.org/wiki/Bc_%28programming_language%29][english]] [[https://es.wikipedia.org/wiki/Bc_(lenguaje_de_programaci%C3%B3n)][spanish]] [[https://en.wikibooks.org/wiki/Guide_to_Unix/Explanations/bc][wikibooks]]      |
+|   faq   | http://phodd.net/gnu-bc/bcfaq.html |
+|   gnu   |           [[https://github.com/fivepiece/gnu-bc/][source]] [[https://www.gnu.org/software/bc/manual/html_mono/bc.html][manual]]            |
+| howard  |               [[https://github.com/gavinhoward/bc][source]]               |
+|  posix  |                [[https://pubs.opengroup.org/onlinepubs/9699919799/utilities/bc.html][man]]                 |
+|   bsd   |             [[https://man.freebsd.org/cgi/man.cgi?query=bc&sektion=1][man]] [[https://cgit.freebsd.org/src/tree/contrib/bc][source]]             |
+| busybox |               [[https://git.busybox.net/busybox/tree/miscutils/bc.c][source]]               |
+| toybox  |               [[https://github.com/landley/toybox/blob/master/toys/pending/bc.c][source]]               |
+| online  |         https://bc.js.org/         |
+|---------+------------------------------------|
 
 - 1975
 - "Basic/Bench Calculator"
@@ -151,7 +151,9 @@
 - 19 [[https://www.johndcook.com/blog/2019/10/29/computing-pi-with-bc/][Computing pi with bc]]
 - 14 [[https://unixetc.co.uk/2014/01/19/bc-rounding-errors/][bc Rounding Errors]]
 - 14 [[https://www.johndcook.com/blog/2010/07/14/bc-math-library/][Three surprises with bc]]
+- 10 [[https://www.pixelbeat.org/programming/oss_bug_flow.html][Open source bug work flow]]
 - ?? [[http://www.physics.smu.edu/coan/linux/bc.html][6. (Very) Brief intro to bc]]
+- ?? https://learnxinyminutes.com/bc/
 
 * videos
 
@@ -187,6 +189,7 @@
   #+end_src
 
 - functions https://github.com/mikepierce/GNU-bc-Functions
+- functions https://github.com/susca/bc-extensions
 - functions https://github.com/idealvin/bc
 - functions http://www.numbertheory.org/gnubc/bc_programs.html
 - functions https://web.archive.org/web/20160304092132/http://x-bc.sourceforge.net/extensions_bc.html
