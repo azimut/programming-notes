@@ -46,6 +46,10 @@
 
 * language
 
+#+ATTR_ORG: :width 600
+#+CAPTION: from go.embeddedexpert.io
+[[./makefile.png]]
+
 - defines a dependency tree of ~rules~ (aka recipe)
   - made of ~targets~ (the vertices)
   - final exe is the root vertex

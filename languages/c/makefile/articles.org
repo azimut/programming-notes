@@ -1,4 +1,5 @@
 - https://news.ycombinator.com/item?id=15041986
+- https://n64squid.com/homebrew/n64-sdk/compiling-roms/makefile/
 - 98 Recursive Make Consided Harmful https://aegis.sourceforge.net/auug97.pdf
 - 13 http://web.archive.org/web/20131218224259/http://zmjones.com:80/make/
 - 13 https://bost.ocks.org/mike/make/
@@ -7,6 +8,7 @@
 - 15 https://kbroman.org/minimal_make/
 - +15 https://gist.github.com/isaacs/62a2d1825d04437c6f08+
 - 16 Non-recursive Make Considered Harmful https://www.microsoft.com/en-us/research/wp-content/uploads/2016/03/hadrian.pdf
+- 16 Embed With Elliot: ARM Makefile Madness https://hackaday.com/2016/03/22/embed-with-elliot-arm-makefile-madness/
 - 16 Reproducible bioinformatics pipelines using Make http://byronjsmith.com/make-bml/
 - 17 http://flukus.github.io/building-a-blog-engine.html
 - 17 http://flukus.github.io/rediscovering-make.html

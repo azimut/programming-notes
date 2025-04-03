@@ -11,6 +11,10 @@
     - 1959-
     - Creator: Robert Noyce @Fairchild Semiconductor
 
+* packages / form factors
+
+[[https://en.wikipedia.org/wiki/Chip_carrier][PLCC]] - Plastic Lead Chip Carrier
+
 * pins
 |-----------+------------------------------------|
 |           | description                        |
