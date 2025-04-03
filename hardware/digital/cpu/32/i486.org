@@ -1,0 +1,9 @@
+- https://en.wikipedia.org/wiki/I486
+
+* Video: 486 breakout board
+https://www.youtube.com/watch?v=wSiDSdHS2QQ
+- 1989 Intel
+- 8Mhz should be the min speed that could run
+- Manual clock does NOT work
+- From the comments
+  - internal cache refresh times might limit the min clock speed you could have

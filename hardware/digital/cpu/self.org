@@ -1,3 +1,4 @@
+- https://github.com/gurugio/lowlevelprogramming-university
 - ECE 165 - Digtl Integrated Circuit Desgn - LE [A00]
   https://podcast.ucsd.edu/watch/sp16/ece165sp16/10
 
@@ -80,14 +81,6 @@
 - 20 1970's Intel MCS-85 8085 Design Kit! https://www.youtube.com/watch?v=SBkW_pzhUSs
 - Just 5v, instead of 8080 12v & 5v
 - https://www.youtube.com/watch?v=7PNWR2QSjjc
-
-* Video: 486 breakout board
-https://www.youtube.com/watch?v=wSiDSdHS2QQ
-- 1989 Intel
-- 8Mhz should be the min speed that could run
-- Manual clock does NOT work
-- From the comments
-  - internal cache refresh times might limit the min clock speed you could have
 
 * Book: The Manga Guide to Microprocessors
 Author: Michio Shibuya

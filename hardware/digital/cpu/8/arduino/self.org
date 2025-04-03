@@ -1,3 +1,4 @@
+- reversing https://github.com/thomasbbrunner/arduino-reverse-engineering
 - https://www.microchip.com/wwwproducts/en/ATmega328P#datasheet-toggle
 - https://www.arduino.cc/en/uploads/Main/arduino-uno-schematic.pdf
 - Stop auto-reset of arduino on connection
@@ -59,13 +60,20 @@ I -----------|
   2) buffers D13, removing the load created by the L LED and its current limiting resistor.
 
 * language
+
 https://www.arduino.cc/reference/en/
+https://www.arduino.cc/reference/cs/
+
 ** types
 
 - [[https://www.arduino.cc/reference/en/language/variables/data-types/array][array]]
 - [[https://www.arduino.cc/reference/en/language/variables/data-types/string][string]]
 - [[https://www.arduino.cc/reference/en/language/variables/data-types/stringobject/][String()]]
 - [[https://www.arduino.cc/reference/en/language/variables/data-types/void][void]]
+- number:
+  - bases: 123, B1010, 0712, 0xea
+  - 2.34E5 = 2.34 * 10^5   = 234000
+  - 67e-12 = 67.0 * 10^-12 = 0.000000000067
 
 |-----+-----------------+----------------+---------------+---------------------------|
 | <c> |                 |            <r> |           <r> |                           |
@@ -77,11 +85,11 @@ https://www.arduino.cc/reference/en/
 |  8  | [[https://www.arduino.cc/reference/en/language/variables/data-types/unsignedchar][unsigned char]]   |              0 |           255 |                           |
 |  8  | [[https://www.arduino.cc/reference/en/language/variables/data-types/byte][byte()]]          |              0 |           255 |                           |
 | 16  | [[https://www.arduino.cc/reference/en/language/variables/data-types/word][word()]]          |              0 |        65,535 |                           |
-| 16* | [[https://www.arduino.cc/reference/en/language/variables/data-types/unsignedint][(unsigned int)]]  |              0 |        65,535 |                           |
+| 16* | [[https://www.arduino.cc/reference/en/language/variables/data-types/unsignedint][(unsigned int)]]  |              0 |        65,535 | eg: 127U, 127u            |
 | 16  | [[https://www.arduino.cc/reference/en/language/variables/data-types/short][short]]           |        -32,768 |        32,767 |                           |
 | 16* | [[https://www.arduino.cc/reference/en/language/variables/data-types/int][int()]]           |        -32,768 |        32,767 |                           |
-| 32  | [[https://www.arduino.cc/reference/en/language/variables/data-types/long][long()]]          | -2,147,483,648 | 2,147,483,648 |                           |
-| 32  | [[https://www.arduino.cc/reference/en/language/variables/data-types/unsignedlong][(unsigned long)]] |              0 | 4,294,967,295 |                           |
+| 32  | [[https://www.arduino.cc/reference/en/language/variables/data-types/long][long()]]          | -2,147,483,648 | 2,147,483,648 | eg: 127L,  127l           |
+| 32  | [[https://www.arduino.cc/reference/en/language/variables/data-types/unsignedlong][(unsigned long)]] |              0 | 4,294,967,295 | eg: 127UL, 127ul          |
 | 32  | [[https://www.arduino.cc/reference/en/language/variables/data-types/float][float()]]         | -3.4028235E+38 | 3.4028235E+38 | 6~7 decimals of precision |
 | 64  | [[https://www.arduino.cc/reference/en/language/variables/data-types/double][double]]          |                |               |                           |
 |  ?  | [[https://www.arduino.cc/reference/en/language/variables/data-types/size_t][size_t]]          |              0 |             ? | represent size in bytes   |

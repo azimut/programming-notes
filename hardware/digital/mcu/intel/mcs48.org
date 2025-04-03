@@ -395,6 +395,7 @@ MSB | 11 | 8-10 | 0-7 | LSB
 
 * support chips
 
+- https://en.wikipedia.org/wiki/Intel_MCS-48#Variants
 - mcs-80 peripherals https://en.wikipedia.org/wiki/Intel_8080#Support_chips
 - mcs-85 peripherals https://en.wikipedia.org/wiki/Intel_8085#Periphery
 
@@ -407,6 +408,17 @@ MSB | 11 | 8-10 | 0-7 | LSB
 | [[https://en.wikipedia.org/wiki/Intel_8253][8253]] | 24 | Programmable Interval Timer, PITs              |
 | 8259 |    | Programmable Interrupt Controller, handle IRQs |
 |------+----+------------------------------------------------|
+
+** 8042AH UPI
+
+- circuit https://x.com/RueNahcMohr/status/1863546130740515323/photo/1
+- circuit https://x.com/RueNahcMohr/status/1863547404336718220/photo/2
+- differences https://x.com/RueNahcMohr/status/1432563658329137153
+  - The answer seems to be:
+    - only 8 address lines work ??
+    - to take the SYNC, invert it, feed that to a 74374 latch
+    - feed port 1 thru that to the address lines of the ROM.
+    - Data lines on the ROM go directly to the DB lines, with /CS and /OE tied low. (!!)"
 
 * tools
 
@@ -435,8 +447,9 @@ MSB | 11 | 8-10 | 0-7 | LSB
 - pwm https://github.com/retiredfeline/8048-pwmctl
 - ⭐ display https://github.com/retiredfeline/beckman-clock
 - maze https://cdn.hackaday.io/files/19278824789952/maze.asm
-- i2c https://github.com/retiredfeline/8042-clock/
-- metronome https://github.com/retiredfeline/8042-metronome
+- 8042
+  - i2c https://github.com/retiredfeline/8042-clock/
+  - metronome https://github.com/retiredfeline/8042-metronome
 - clock https://web.archive.org/web/20220630074502/https://www.wraith.sf.ca.us/8048/
   - source https://web.archive.org/web/20041210150149/http://www.wraith.sf.ca.us/8048/block-sig.asm
   - sheet https://web.archive.org/web/20210913152817/https://www.wraith.sf.ca.us/8048/clock-8048.gif
