@@ -1,14 +1,13 @@
 #+TITLE: bc
 #+DATE: <2024-04-12 vie>
 
-|------------+-------------------------------------------------------------|
-|    <c>     |                                                             |
-| source (C) | https://github.com/fivepiece/gnu-bc/                        |
-|   manual   | https://www.gnu.org/software/bc/manual/html_mono/bc.html    |
-|    faq     | http://phodd.net/gnu-bc/bcfaq.html                          |
-|    wiki    | https://en.wikipedia.org/wiki/Bc_%28programming_language%29 |
-|   online   | https://bc.js.org/                                          |
-|------------+-------------------------------------------------------------|
+|--------+-------------------------------------------------------------|
+|  <c>   |                                                             |
+|  gnu   | [[https://github.com/fivepiece/gnu-bc/][source (C)]] [[https://www.gnu.org/software/bc/manual/html_mono/bc.html][manual]]                                           |
+|  faq   | http://phodd.net/gnu-bc/bcfaq.html                          |
+|  wiki  | https://en.wikipedia.org/wiki/Bc_%28programming_language%29 |
+| online | https://bc.js.org/                                          |
+|--------+-------------------------------------------------------------|
 
 - 1975
 - "Basic/Bench Calculator"
@@ -181,6 +180,11 @@
     define degtorad (x) { return x*(a(1)/45) }
   #+end_src
 
+- functions https://github.com/mikepierce/GNU-bc-Functions
+- functions https://github.com/idealvin/bc
+- functions http://www.numbertheory.org/gnubc/bc_programs.html
+- functions https://web.archive.org/web/20160304092132/http://x-bc.sourceforge.net/extensions_bc.html
+- constants https://web.archive.org/web/20160304081309/http://x-bc.sourceforge.net/scientific_constants_bc.html
 
 ** pi
 
@@ -189,9 +193,10 @@
   4*a(1)
 #+end_src
 
-** solve
+** solve.sh
+
 #+begin_src sh
-$ solve "4*49+732"
+$ solve.sh "4*49+732"
 $ cat /usr/local/bin/solve
   #!/bin/sh
   bc << EOF
@@ -209,15 +214,11 @@ $ cat /usr/local/bin/solve
 - math and bitcoin
   - https://github.com/fivepiece/btc-bash-ng/
   - https://github.com/fivepiece/btc-bash
-- gcd, fibo https://literateprograms.org/category_programming_language_bc.html
-- official examples https://github.com/fivepiece/gnu-bc/tree/master/Examples
-- resources http://www.phodd.net/gnu-bc/
-- http://www.numbertheory.org/gnubc/gnubc.html
-- https://rosettacode.org/wiki/Category:Bc
-- functions https://github.com/mikepierce/GNU-bc-Functions
-- functions https://web.archive.org/web/20160304092132/http://x-bc.sourceforge.net/extensions_bc.html
-- functions https://github.com/idealvin/bc
-- constants https://web.archive.org/web/20160304081309/http://x-bc.sourceforge.net/scientific_constants_bc.html
+- example https://literateprograms.org/category_programming_language_bc.html
+- example https://github.com/fivepiece/gnu-bc/tree/master/Examples
+- example http://www.phodd.net/gnu-bc/
+- example https://rosettacode.org/wiki/Category:Bc
+
 ** sergiosgc/AdventOfCode2021
 - day6 [[https://github.com/sergiosgc/AdventOfCode2021/blob/main/src/day06/one.bc][part 1]]
   #+begin_src bash
@@ -232,10 +233,12 @@ $ cat /usr/local/bin/solve
   print "\n"
   #+end_src
 
-* other implementations
-- alternative [[https://qalculate.github.io/][qalc]]
-- howard? https://github.com/gavinhoward/bc
-- posix https://pubs.opengroup.org/onlinepubs/9699919799/utilities/bc.html
-- bsd [[https://man.freebsd.org/cgi/man.cgi?query=bc&sektion=1][man]] [[https://cgit.freebsd.org/src/tree/contrib/bc][source]]
-- busybox https://git.busybox.net/busybox/tree/miscutils/bc.c
-- toybox https://github.com/landley/toybox/blob/master/toys/pending/bc.c
+* implementations
+|---------+------------|
+|   <c>   |    <c>     |
+| howard  |   [[https://github.com/gavinhoward/bc][source]]   |
+|  posix  |    [[https://pubs.opengroup.org/onlinepubs/9699919799/utilities/bc.html][man]]     |
+|   bsd   | [[https://man.freebsd.org/cgi/man.cgi?query=bc&sektion=1][man]] [[https://cgit.freebsd.org/src/tree/contrib/bc][source]] |
+| busybox |   [[https://git.busybox.net/busybox/tree/miscutils/bc.c][source]]   |
+| toybox  |   [[https://github.com/landley/toybox/blob/master/toys/pending/bc.c][source]]   |
+|---------+------------|
