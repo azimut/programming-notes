@@ -46,6 +46,7 @@
 
 * language
 
+#+ATTR_HTML: :style filter: invert()
 #+ATTR_ORG: :width 600
 #+CAPTION: from go.embeddedexpert.io
 [[./makefile.png]]
