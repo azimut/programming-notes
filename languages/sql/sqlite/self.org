@@ -1,6 +1,9 @@
 #+TITLE: SQLite
 #+DATE: <2024-03-16 sáb>
 
+#+ATTR_HTML: :width 400
+[[./sqlite.png]]
+
 |------------+------------------------------------------------|
 | home       | https://sqlite.org/                            |
 | source (C) | https://www.sqlite.org/src/doc/trunk/README.md |
@@ -36,6 +39,50 @@
 - diy https://cstack.github.io/db_tutorial/
   source https://github.com/cstack/db_tutorial
 
+* cli
+
+- https://www.sqlite.org/cli.html (TODO 6)
+- $ sqlite3 :memory: # or just not pass any argument
+
+** metacomands
+|------------+-------------------+---------------------------------------------------|
+|            | ARGUMENT          | DESCRIPTION                                       |
+|------------+-------------------+---------------------------------------------------|
+| .bail      | on/off            | exits on error (also -bail)                       |
+| .dump      | [TABLEPAT]        | sql dump whole db or table                        |
+| .headers   | on/off            | toggle header display                             |
+| .schema    | [TABLEPAT]        | shows schema of whole db or table                 |
+| .show      | -                 | shows settings                                    |
+| .stats     | -                 | session? stats                                    |
+| .timer     | on/off            | show runtime after queries                        |
+| .import    | --csv foo.csv bar | import csv file into "bar" table                  |
+| .tables    | -                 | list all tables                                   |
+| .output    | FILE              | redirects output to FILE                          |
+| .load      | EXNAME            | loads an ~extension~                              |
+| .open      | DBFILE            | opens database when non was already opened        |
+| .save      | DBFILE            | write in-memory db into FILE                      |
+| .separator | "¦"               | change the separator for ".mode list"             |
+| .eqp       | on/off/full       | explain query planner                             |
+|------------+-------------------+---------------------------------------------------|
+| .mode      |                   | change output format                              |
+|            | list              | DEFAULT                                           |
+|            | csv               |                                                   |
+|            | tabs              | aka tsv                                           |
+|            | json              | returns an array of json objects                  |
+|            | insert [TNAME]    | sql INSERT statements                             |
+|            | html              | html <table> code                                 |
+|            | markdown          |                                                   |
+|            | ascii             | ??? broken ???                                    |
+|            | =line=            | human? vertical, one column per line              |
+|            | column            | human readable, ascii table                       |
+|            | =box=             | human readable, utf8 table                        |
+|            | --wrap N          | some modes accept a max length to wrap, default 0 |
+|------------+-------------------+---------------------------------------------------|
+| PRAGMA     | compile_options;  | show sqlite's compile options                     |
+| PRAGMA     | journal_mode=WAL  | useful for concurrent writes                      |
+| PRAGMA     | busy_timeout=5000 | how long a write transaction will wait            |
+| PRAGMA     | foreign_keys=ON   | disabled by default                               |
+|------------+-------------------+---------------------------------------------------|
 * language
 
 - https://exercism.org/tracks/sqlite
@@ -248,47 +295,6 @@ https://www.sqlite.org/fts5.html
   where col1 match ? AND col2 match ?;
 #+end_src
 
-* cli (metacomands)
-- $ sqlite3 :memory: # or just not pass any argument
-- cli getting started https://www.sqlite.org/cli.html (TODO 6)
-|------------+-------------------+---------------------------------------------------|
-|            | ARGUMENT          | DESCRIPTION                                       |
-|------------+-------------------+---------------------------------------------------|
-| .bail      | on/off            | exits on error (also -bail)                       |
-| .dump      | [TABLEPAT]        | sql dump whole db or table                        |
-| .headers   | on/off            | toggle header display                             |
-| .schema    | [TABLEPAT]        | shows schema of whole db or table                 |
-| .show      | -                 | shows settings                                    |
-| .stats     | -                 | session? stats                                    |
-| .timer     | on/off            | show runtime after queries                        |
-| .import    | --csv foo.csv bar | import csv file into "bar" table                  |
-| .tables    | -                 | list all tables                                   |
-| .output    | FILE              | redirects output to FILE                          |
-| .load      | EXNAME            | loads an ~extension~                              |
-| .open      | DBFILE            | opens database when non was already opened        |
-| .save      | DBFILE            | write in-memory db into FILE                      |
-| .separator | "¦"               | change the separator for ".mode list"             |
-| .eqp       | on/off/full       | explain query planner                             |
-|------------+-------------------+---------------------------------------------------|
-| .mode      |                   | change output format                              |
-|            | list              | DEFAULT                                           |
-|            | csv               |                                                   |
-|            | tabs              | aka tsv                                           |
-|            | json              | returns an array of json objects                  |
-|            | insert [TNAME]    | sql INSERT statements                             |
-|            | html              | html <table> code                                 |
-|            | markdown          |                                                   |
-|            | ascii             | ??? broken ???                                    |
-|            | =line=            | human? vertical, one column per line              |
-|            | column            | human readable, ascii table                       |
-|            | =box=             | human readable, utf8 table                        |
-|            | --wrap N          | some modes accept a max length to wrap, default 0 |
-|------------+-------------------+---------------------------------------------------|
-| PRAGMA     | compile_options;  | show sqlite's compile options                     |
-| PRAGMA     | journal_mode=WAL  | useful for concurrent writes                      |
-| PRAGMA     | busy_timeout=5000 | how long a write transaction will wait            |
-| PRAGMA     | foreign_keys=ON   | disabled by default                               |
-|------------+-------------------+---------------------------------------------------|
 * extensions
 
 - column oriented https://github.com/dgllghr/stanchion

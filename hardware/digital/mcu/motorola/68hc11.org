@@ -20,6 +20,7 @@
 
 * projects
 
+- pinout connection https://www.instagram.com/p/Y-S949C_L_/
 - board https://github.com/EtchedPixels/Mini11
 - board https://www.axman.com/content/cme-11e9-evbu-single-chip-expanded-mode-development-system-mc68hc11e9-32k-sram-8k-eeprom
 - fizzbuzz https://vimeo.com/83468278
