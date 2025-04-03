@@ -1,13 +1,18 @@
 #+TITLE: bc
 #+DATE: <2024-04-12 vie>
 
-|--------+-------------------------------------------------------------|
-|  <c>   |                                                             |
-|  gnu   | [[https://github.com/fivepiece/gnu-bc/][source (C)]] [[https://www.gnu.org/software/bc/manual/html_mono/bc.html][manual]]                                           |
-|  faq   | http://phodd.net/gnu-bc/bcfaq.html                          |
-|  wiki  | https://en.wikipedia.org/wiki/Bc_%28programming_language%29 |
-| online | https://bc.js.org/                                          |
-|--------+-------------------------------------------------------------|
+|---------+-------------------------------------------------------------|
+|   <c>   |                             <c>                             |
+|   gnu   |                        [[https://github.com/fivepiece/gnu-bc/][source]] [[https://www.gnu.org/software/bc/manual/html_mono/bc.html][manual]]                        |
+| howard  |                           [[https://github.com/gavinhoward/bc][source]]                            |
+|  posix  |                             [[https://pubs.opengroup.org/onlinepubs/9699919799/utilities/bc.html][man]]                             |
+|   bsd   |                         [[https://man.freebsd.org/cgi/man.cgi?query=bc&sektion=1][man]] [[https://cgit.freebsd.org/src/tree/contrib/bc][source]]                          |
+| busybox |                           [[https://git.busybox.net/busybox/tree/miscutils/bc.c][source]]                            |
+| toybox  |                           [[https://github.com/landley/toybox/blob/master/toys/pending/bc.c][source]]                            |
+|   faq   |             http://phodd.net/gnu-bc/bcfaq.html              |
+|  wiki   | https://en.wikipedia.org/wiki/Bc_%28programming_language%29 |
+| online  |                     https://bc.js.org/                      |
+|---------+-------------------------------------------------------------|
 
 - 1975
 - "Basic/Bench Calculator"
@@ -126,8 +131,9 @@
 
 ** control flow
 
-- continue/break/halt/return
-#+begin_src bash
+- continue (works only with "for")
+- break/halt/return
+#+begin_src sh
   if (20 > 0) { print "bigger" }
   if (20 > 0) { print "bigger" } else { print "smaller" }
   for (i=1; i<42; ++i) {
@@ -233,12 +239,3 @@ $ cat /usr/local/bin/solve
   print "\n"
   #+end_src
 
-* implementations
-|---------+------------|
-|   <c>   |    <c>     |
-| howard  |   [[https://github.com/gavinhoward/bc][source]]   |
-|  posix  |    [[https://pubs.opengroup.org/onlinepubs/9699919799/utilities/bc.html][man]]     |
-|   bsd   | [[https://man.freebsd.org/cgi/man.cgi?query=bc&sektion=1][man]] [[https://cgit.freebsd.org/src/tree/contrib/bc][source]] |
-| busybox |   [[https://git.busybox.net/busybox/tree/miscutils/bc.c][source]]   |
-| toybox  |   [[https://github.com/landley/toybox/blob/master/toys/pending/bc.c][source]]   |
-|---------+------------|
