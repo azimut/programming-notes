@@ -165,6 +165,10 @@
 
 * snippets
 
+#+ATTR_ORG: :width 200
+#+CAPTION: Robert H. Morris in 1988
+[[./morris88.jpg]]
+
 - needed to handle fractional exponents, uses e() and l()
   #+begin_src bash
     define pow (b,x) { return e(x*l(b)) }
@@ -220,13 +224,12 @@ $ cat /usr/local/bin/solve
 #+CAPTION: Lorinda Cherry in 1982
 [[./bc_bell.png]]
 
-- math and bitcoin
-  - https://github.com/fivepiece/btc-bash-ng/
-  - https://github.com/fivepiece/btc-bash
-- example https://literateprograms.org/category_programming_language_bc.html
-- example https://github.com/fivepiece/gnu-bc/tree/master/Examples
-- example http://www.phodd.net/gnu-bc/
-- example https://rosettacode.org/wiki/Category:Bc
+- bitcoin https://github.com/fivepiece/btc-bash-ng/
+- bitcoin https://github.com/fivepiece/btc-bash
+- https://literateprograms.org/category_programming_language_bc.html
+- https://github.com/fivepiece/gnu-bc/tree/master/Examples
+- http://www.phodd.net/gnu-bc/
+- https://rosettacode.org/wiki/Category:Bc
 
 ** sergiosgc/AdventOfCode2021
 - day6 [[https://github.com/sergiosgc/AdventOfCode2021/blob/main/src/day06/one.bc][part 1]]

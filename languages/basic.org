@@ -4,7 +4,7 @@
     Symbolic
     Instruction
     Code
-  - 1964-
+  - 1964
   - Authors: John G. Kemeny, Thomas E. Kurtz
   - *BASIC, is a family of languages
   - Inspired by fortran
@@ -24,3 +24,6 @@
   - <> unequal
   - or
   - and
+
+* articles
+- 25 https://www.gatesnotes.com/meet-bill/source-code/reader/my-first-memoir-source-code

@@ -15,7 +15,8 @@
   - Robert H. Morris Sr. (39)
   - Lorinda Cherry (27)
 - "Desk Calculator"
-- a reverse-polish (RPN) calculator, with a stack based language
+- a reverse-polish (RPN) calculator
+- a stack based language
 - up to 1M digits of decimal precision
 - ~/.dcrc
 
@@ -199,6 +200,10 @@
 - [[https://github.com/tckmn/polyaoc-2019/blob/master/05/dc/05.dc][05.dc]]
 
 * articles
+
+#+ATTR_ORG: :width 200
+#+CAPTION: Robert H. Morris in 1988
+[[./morris88.jpg]]
 
 - 24 [[https://bash-hackers.gabe565.com/howto/calculate-dc/][Calculating with dc - The Bash Hackers Wiki]]
 - 22 [[https://blogs.perl.org/users/laurent_r/2022/07/perl-weekly-challenge-173-sylvesters-sequence-in-dc.html][Perl Weekly Challenge 173: Sylvester's Sequence in dc]]

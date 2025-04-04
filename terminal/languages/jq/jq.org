@@ -448,7 +448,6 @@ https://jqlang.github.io/jq/manual/v1.7/#math
 - with_entries(filter), is equivalent to:
   to_entries | map(filter) | from_entries
 
-
 * snippets
 
 - Get 5 random emails
