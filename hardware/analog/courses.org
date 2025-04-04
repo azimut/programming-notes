@@ -39,9 +39,6 @@
 
 - 1946 First Computer (ENIAC), had 20k vacuum tubes.
 
-- Ohm's law
-  - I = V/R
-
 - Electric Power
   - in Watts
   - P = I*V

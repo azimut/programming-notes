@@ -1,0 +1,40 @@
+* languages
+
+- https://en.wikipedia.org/wiki/Netlist
+
+** SPICE
+
+- Simulators
+  - https://en.wikipedia.org/wiki/Electronic_circuit_simulation
+  - https://en.wikipedia.org/wiki/List_of_free_electronics_circuit_simulators
+  - https://en.wikipedia.org/wiki/LTspice
+  - https://en.wikipedia.org/wiki/Ngspice
+  - https://en.wikipedia.org/wiki/GNU_Circuit_Analysis_Package
+  - https://en.wikipedia.org/wiki/Comparison_of_EDA_software
+  - https://en.wikipedia.org/wiki/SPICE_OPUS
+
+- https://en.wikipedia.org/wiki/SPICE
+  - 1973(1), 1975(2), 1989(3)
+  - by Laurance/Larry W. Nagel(28)
+  - at Berkeley
+  - from the beginning targeted ICs besides analog components
+
+- Book: The designers guide to SPICE & Spectre
+
+*** videos
+
+- https://www.youtube.com/watch?v=PlFE6_atAxw
+- https://www.youtube.com/watch?v=uBg7J-tuiLs
+- 11 https://www.youtube.com/watch?v=Ta0KiizCRzI
+- 13 https://www.youtube.com/watch?v=SNKkZXZzdj4
+- 18 https://www.youtube.com/watch?v=IkOb19FwgqY
+- 21 https://www.youtube.com/watch?v=TQ8cJ9-GyGo
+- 22 Behind the scenes of the SPICE Circuit Simulator https://www.youtube.com/playlist?list=PLZU5hLL_713yYOPBksz8AI4vWyRagf4G6
+  - https://www.youtube.com/watch?v=1ZhzhWAt7xc
+  - https://www.youtube.com/watch?v=Zk0y4J8y9nY
+  - https://www.youtube.com/watch?v=PrYmqYbrJLA
+
+*** articles
+
+- https://www.reddit.com/r/emacs/comments/q2eu14/spice_simulation_in_gnu_emacs/
+- 16 [[https://tiagoweber.github.io/blog/entry1.html][Simulating Circuits with Emacs, Org-mode, Babel and Ngspice]]
