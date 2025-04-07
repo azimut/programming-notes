@@ -19,6 +19,7 @@
   - https://www.datawars.io/
   - https://hanukkah.bluebird.sh/5784/data/
 - Projects
+  - http://web.archive.org/web/20191211182057/http://web.eecs.utk.edu/~azh/blog/challengingprojects.html
   - https://codecrafters.io/
   - https://roadmap.sh/backend/projects
   - https://github.com/codecrafters-io/build-your-own-x

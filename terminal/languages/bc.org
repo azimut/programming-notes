@@ -145,10 +145,14 @@
 
 * snippets
 
-#+ATTR_ORG: :width 200
-#+CAPTION: Robert H. Morris in 1988
-[[./morris88.jpg]]
+#+CAPTION: Morris and Cherry on 1974
+[[./morrischerry74-bright.png]]
 
+- [[https://github.com/mikepierce/GNU-bc-Functions][mikepierce/GNU-bc-Functions]]
+- [[https://github.com/susca/bc-extensions][susca/bc-extensions]]
+- [[https://github.com/idealvin/bc][idealvin/bc]]
+- [[https://web.archive.org/web/20160304092132/http://x-bc.sourceforge.net/extensions_bc.html][extensions.bc]]
+- [[https://web.archive.org/web/20160304081309/http://x-bc.sourceforge.net/scientific_constants_bc.html][scientific_constants.bc]]
 - needed to handle fractional exponents, uses e() and l()
   #+begin_src bash
     define pow (b,x) { return e(x*l(b)) }
@@ -172,20 +176,21 @@
     define degtorad (x) { return x*(a(1)/45) }
   #+end_src
 
-- functions https://github.com/mikepierce/GNU-bc-Functions
-- functions https://github.com/susca/bc-extensions
-- functions https://github.com/idealvin/bc
-- functions http://www.numbertheory.org/gnubc/bc_programs.html
-- functions https://web.archive.org/web/20160304092132/http://x-bc.sourceforge.net/extensions_bc.html
-- constants https://web.archive.org/web/20160304081309/http://x-bc.sourceforge.net/scientific_constants_bc.html
+- pi
+  #+begin_src sh
+    scale=10
+    4*a(1)
+  #+end_src
 
-** pi
+* codebases
 
-#+begin_src sh
-  scale=10
-  4*a(1)
-#+end_src
-
+- bitcoin https://github.com/fivepiece/btc-bash-ng/
+- bitcoin https://github.com/fivepiece/btc-bash
+- http://www.numbertheory.org/gnubc/bc_programs.html
+- https://literateprograms.org/category_programming_language_bc.html
+- https://github.com/fivepiece/gnu-bc/tree/master/Examples
+- http://www.phodd.net/gnu-bc/
+- https://rosettacode.org/wiki/Category:Bc
 ** solve.sh
 
 #+begin_src sh
@@ -198,19 +203,6 @@ $ cat /usr/local/bin/solve
   quit
   EOF
 #+end_src
-
-* codebases
-
-#+CAPTION: Lorinda Cherry in 1982
-#+ATTR_HTML: :width 400
-[[./bc_bell.png]]
-
-- bitcoin https://github.com/fivepiece/btc-bash-ng/
-- bitcoin https://github.com/fivepiece/btc-bash
-- https://literateprograms.org/category_programming_language_bc.html
-- https://github.com/fivepiece/gnu-bc/tree/master/Examples
-- http://www.phodd.net/gnu-bc/
-- https://rosettacode.org/wiki/Category:Bc
 
 ** sergiosgc/AdventOfCode2021
 - day6 [[https://github.com/sergiosgc/AdventOfCode2021/blob/main/src/day06/one.bc][part 1]]
@@ -227,8 +219,9 @@ $ cat /usr/local/bin/solve
   #+end_src
 * articles
 
-#+CAPTION: Morris and Cherry on 1974
-[[./morrischerry74-bright.png]]
+#+ATTR_ORG: :width 200
+#+CAPTION: Robert H. Morris in 1988
+[[./morris88.jpg]]
 
 - 23 [[https://org.coloradomesa.edu/~mapierce2/bc/][The GNU Basic Calculator (bc): a Quick-Start Guide for Mathematicians]]
 - 21 [[https://www.computerhope.com/unix/ubc.htm][Linux bc command]]
@@ -241,6 +234,10 @@ $ cat /usr/local/bin/solve
 - ?? https://learnxinyminutes.com/bc/
 
 * videos
+
+#+CAPTION: Lorinda Cherry in 1982
+#+ATTR_HTML: :width 400
+[[./bc_bell.png]]
 
 - [[https://www.youtube.com/watch?v=_UwhS0IvwQk][bc - geeksforgeeks]]
 - [[https://www.youtube.com/watch?v=JkyodHenTuc][Command Line Calculator - gotbletu]]

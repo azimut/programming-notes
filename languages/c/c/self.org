@@ -564,6 +564,7 @@ https://0x00sec.org/t/remote-shells-part-i/269/1
 - https://valgrind.org/docs/manual/quick-start.html
 - https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html
 * Tools
+- cscout [[https://github.com/dspinellis/cscout][source]] [[https://www.spinellis.gr/cscout/][home]]
 - clang-format
   - https://emacs.stackexchange.com/questions/55635/how-can-i-set-up-clang-format-in-emacs
     clang-format -style=llvm -dump-config > .clang-format

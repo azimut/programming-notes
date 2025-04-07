@@ -56,6 +56,7 @@
   - Similation Program with Integrated Circuit Emphasis
 
 - Book: "The designers guide to SPICE & Spectre" by Ken Kundert
+- datasets https://github.com/symbench/spice-datasets
 
 *** videos
 

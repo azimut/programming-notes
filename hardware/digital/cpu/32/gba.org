@@ -1,0 +1,3 @@
+- https://en.wikipedia.org/wiki/Game_Boy_Advance
+- 25 https://brainbaking.com/post/2025/03/an-ode-to-the-game-boy-advance/
+- 04 [[https://archive.md/20180709175720/http://www.kernelthread.com/publications/gbaunix/][UNIX® on the Game Boy Advance]]

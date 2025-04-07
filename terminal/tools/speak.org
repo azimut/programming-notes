@@ -1,0 +1,9 @@
+- wiki https://en.wikipedia.org/wiki/Speak_(Unix)
+- 1973
+- Douglas D. McIlroy
+- at Bell Labs
+
+- 11 Jonathan Gevaryahu recover of code https://www.spinellis.gr/blog/20210102/
+- https://web.archive.org/web/20140620170452/https://minnie.tuhs.org/pipermail/tuhs/2011-December/002538.html
+- c/rust https://github.com/dspinellis/speak
+- demo https://www.youtube.com/watch?v=RO00-eby6_E
