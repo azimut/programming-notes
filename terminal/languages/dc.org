@@ -1,18 +1,16 @@
 #+TITLE: dc
 #+DATE: <2025-01-11 sáb>
 
-|--------+------------------------------------------------------------------|
-|  <c>   |                                                                  |
-| manual | https://wolfram.schneider.org/bsd/7thEdManVol2/dc/dc.html        |
-| manual | https://www.gnu.org/software/bc/manual/dc-1.05/html_mono/dc.html |
-| source | [[https://github.com/dspinellis/unix-history-repo/blob/Research-V7-Snapshot-Development/usr/src/cmd/dc/dc.c][/usr/src/cmd/dc/dc.c]]                                             |
-|  wiki  | https://en.wikipedia.org/wiki/Dc_(computer_program)              |
-|  wiki  | https://es.wikipedia.org/wiki/DC_(Unix)                          |
-|--------+------------------------------------------------------------------|
+|--------+-----------------|
+|  <c>   |       <c>       |
+| manual |     [[https://www.gnu.org/software/bc/manual/dc-1.05/html_mono/dc.html][gnu]] [[https://wolfram.schneider.org/bsd/7thEdManVol2/dc/dc.html][bsd]]     |
+| source |      [[https://github.com/dspinellis/unix-history-repo/blob/Research-V7-Snapshot-Development/usr/src/cmd/dc/dc.c][unix]]       |
+|  wiki  | [[https://en.wikipedia.org/wiki/Dc_(computer_program)][english]] [[https://es.wikipedia.org/wiki/DC_(Unix)][spanish]] |
+|--------+-----------------|
 
 - 1971
 - Authors:
-  - Robert H. Morris Sr. (39)
+  - Robert H. Morris (39)
   - Lorinda Cherry (27)
 - "Desk Calculator"
 - a reverse-polish (RPN) calculator
@@ -51,24 +49,25 @@
 
 - supports recursion
 
-- types
-  - numbers
-    - hex numbers must be upcased (A-F)
-    - use _ for negative numbers
-  - strings
-    - can only be printed or execute them as macros
-    - delimited by []
-  - arrays
+** types
 
-- registers (256)
-  - valid names: a A 0 . " ...
-    - one char length
-    - you CAN use a register name that overlaps with a command
-    - and it will stil work
-  - each register has his own stack
+- numbers
+  - hex numbers MUST be upcased (A-F)
+  - use _ for negative numbers
+- strings
+  - can only be printed or execute them as macros
+  - delimited by []
+- arrays
+
+** registers (256)
+
+- valid names: a A 0 . " ...
+  - one char length
+  - you CAN use a register name that overlaps with a command
+  - and the command will stil work
+- each register has his own stack
 
 ** commands
-
 #+CAPTION: T=take P=put
 |---+----+---+-----------------------------------------------|
 | T |    | P |                                               |
@@ -89,8 +88,10 @@
 |   | lR | 1 | load from register R, 0 if empty              |
 |   | LR | 1 | " and pops it from register R                 |
 |---+----+---+-----------------------------------------------|
-| 1 | a  | 1 | pop top, and push back 1st char/byte          |
+| 1 | a  | 1 | push 1st char/byte                            |
 |   | ?  | 1 | ask user input, and execute it as a macro     |
+| 1 | Z  |   | push number of decimal digits                 |
+| 1 | X  |   | push number of fraction digits                |
 |---+----+---+-----------------------------------------------|
 |   | !  |   | system command                                |
 |   | #  |   | comment                                       |
@@ -99,48 +100,49 @@
 |---+----+---+-----------------------------------------------|
 *** control flow
 |---+-----+---+-----------------------|
-|   | <r> |   |                       |
+|   | <r> |   |          <c>          |
 | T |     | P |                       |
 |---+-----+---+-----------------------|
-| 1 |   x |   | executes as a macro   |
-| 2 |  >R |   | x R if >              |
-| 2 | !>R |   | x R if <=             |
-| 2 |  <R |   | x R if <              |
-| 2 | !<R |   | x R if >=             |
-| 2 |  =R |   | x R if =              |
-| 2 | !=R |   | x R if !=             |
-|   |   q |   | exits 2 level macro   |
+| 1 |   x |   |  executes as a macro  |
+| 2 |  >R |   |       x R if >        |
+| 2 | !>R |   |       x R if <=       |
+| 2 |  <R |   |       x R if <        |
+| 2 | !<R |   |       x R if >=       |
+| 2 |  =R |   |       x R if =        |
+| 2 | !=R |   |       x R if !=       |
+|   |   q |   |  exits 2 level macro  |
 | 1 |   Q |   | exits Nth level macro |
 |---+-----+---+-----------------------|
-*** numbers
+*** parameters
+...that control its operations
+|---+---+---+------------------------|
+|   |   |   |          <c>           |
+| 1 | i |   |    set input radix     |
+| 1 | o |   |    set output radix    |
+| 1 | k |   | set decimal precision  |
+|   | I | 1 |    push input radix    |
+|   | O | 1 |   push output radix    |
+|   | K | 1 | push decimal precision |
+|---+---+---+------------------------|
+*** arithmetic
 |---+---+---+-----------------------------|
-| T |   | P |                             |
-|---+---+---+-----------------------------|
-| 1 | Z |   | number of decimal digits    |
-| 1 | X |   | number of fraction digits   |
-|---+---+---+-----------------------------|
-| 1 | i |   | set input radix             |
-| 1 | o |   | set output radix            |
-| 1 | k |   | set decimal precision       |
-|   | I | 1 | push input radix            |
-|   | O | 1 | push output radix           |
-|   | K | 1 | push decimal precision      |
-|---+---+---+-----------------------------|
-| 2 | + | 1 |                             |
-| 2 | - | 1 | fst - snd                   |
-| 2 | * | 1 |                             |
-| 2 | / | 1 | fst / snd                   |
-| 2 | % | 1 | remainder of /              |
-| 2 | ~ | 2 | quotient and remainder of / |
-| 2 | ^ | 1 | fst ^ snd                   |
-| 3 | ¦ | 1 | mod(fst, snd ^ trd)         |
-| 1 | v | 1 | square root                 |
+|   |   |   |             <c>             |
+| 2 | + | 1 |          fst + snd          |
+| 2 | - | 1 |          fst - snd          |
+| 2 | * | 1 |          fst * snd          |
+| 2 | / | 1 |          fst / snd          |
+| 2 | % | 1 |       remainder of /        |
+| 2 | ~ | 2 | quotient AND remainder of / |
+| 2 | ^ | 1 |          fst ^ snd          |
+| 3 | ¦ | 1 |     mod(fst, snd ^ trd)     |
+| 1 | v | 1 |            sqrt             |
 |---+---+---+-----------------------------|
 * snippets
 
+#+CAPTION: Morris and Cherry on 1974
+[[./morrischerry74-bright.png]]
+
 - https://rosettacode.org/wiki/Category:Dc
-- [[https://github.com/Alhadis/language-etc/blob/1455feb6de582239b67e8bbde8086569db377e3d/samples/dirsize.dc][Alhadis/language-etc/dirsize.dc]]
-- [[https://github.com/brunk23/code-challenges/blob/7b7afc5088142102ce9610cbda7bac5cd9583829/trend.error][brunk23/code-challenges/trend.error]]
 - [[https://github.com/brunk23/dc-programs][brunk23/dc-programs]]
 - sum of first 36 integers
   #+begin_src
@@ -151,19 +153,16 @@
   [d1<g]Sf[d1-lfx*]Sg 13lfx
   #+end_src
 
-** grondilu/bitcoin-bash-tools
-
-- [[https://github.com/grondilu/bitcoin-bash-tools/blob/master/bitcoin.sh][bitcoin.sh]]
-- [[https://github.com/grondilu/bitcoin-bash-tools/blob/master/t/basics.t][basics.t]]
-
-** makenowjust/quine
-
-[[https://github.com/makenowjust/quine/blob/1d33bee091f4b37352f5f5c2dd5813095da331e9/quine.dc][quine.c]]
-
-#+begin_src
-[91aPP93aP[dx]p]dx
-#+end_src
-
+* codebases
+- [[https://github.com/Alhadis/language-etc/blob/1455feb6de582239b67e8bbde8086569db377e3d/samples/dirsize.dc][Alhadis/language-etc/dirsize.dc]]
+- [[https://github.com/brunk23/code-challenges/blob/7b7afc5088142102ce9610cbda7bac5cd9583829/trend.error][brunk23/code-challenges/trend.error]]
+- [[https://github.com/makenowjust/quine/blob/1d33bee091f4b37352f5f5c2dd5813095da331e9/quine.dc][makenowjust/quine]]
+  #+begin_src
+  [91aPP93aP[dx]p]dx
+  #+end_src
+- grondilu/bitcoin-bash-tools
+  - [[https://github.com/grondilu/bitcoin-bash-tools/blob/master/bitcoin.sh][bitcoin.sh]]
+  - [[https://github.com/grondilu/bitcoin-bash-tools/blob/master/t/basics.t][basics.t]]
 ** sergiosgc/AdventOfCode2021
 
 - day1 [[https://github.com/sergiosgc/AdventOfCode2021/blob/main/src/day01/one.dc][part 1]]
@@ -192,8 +191,8 @@
   #+begin_src
     0
     [lbxszlsx?z1<a]sa
-        [3/2-dd8<b]sb
-            [+z1<s]ss
+    [3/2-dd8<b]sb
+    [+z1<s]ss
     ?laxp
   #+end_src
 - [[https://github.com/tckmn/polyaoc-2019/blob/master/02/dc/02_1.dc][02_1.dc]]
@@ -211,7 +210,7 @@
 - 21 https://www.computerhope.com/unix/udc.htm
 - 20 [[http://web.archive.org/web/20200607102626/https://ben165.github.io/unix_dc/index.html][A deeper introduction in Unix dc]]
 - 18 [[https://eklitzke.org/summing-integer-ranges-with-dc][Summing Integer Ranges With dc]]
-- 97 https://wolfram.schneider.org/bsd/7thEdManVol2/dc/dc.pdfa
+- 97 [[https://wolfram.schneider.org/bsd/7thEdManVol2/dc/dc.pdf]]
 - ?? [[https://cs.unh.edu/~charpov/dc.html][Fun with dc]]
 
 * videos
