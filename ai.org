@@ -9,6 +9,7 @@
 
 - deep learning https://www.youtube.com/playlist?list=PLoROMvodv4rPOWA-omMM6STXaWW4FvJT8
 - https://github.com/AudioLLMs/AudioLLM
+- Course: Introduction to ML https://www.youtube.com/playlist?list=PLuh62Q4Sv7BUhFs1KpeVctFmOYpTTxj33
 - Course: intro for probability for cs https://www.youtube.com/playlist?list=PLoROMvodv4rOpr_A7B9SriE_iZmkanvUg
 - Course: zero to neural networks https://www.youtube.com/@datacorelinux/videos
 - https://microsoft.github.io/generative-ai-for-beginners/#/

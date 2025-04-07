@@ -128,11 +128,17 @@
 - LED
   - have a thin P-type layer
   - light is created at the junction
+  - tip: find led resistor
+    - supply voltage = Vs
+    - led forward voltage = Vf (in datasheet)
+    - led forward current = If (in datasheet)
+    - R = (Vs-Vf) / If (R is in omhms)
+    - common Vf values by led color
+      |-----+--------------|
+      |  Vf | color        |
+      |-----+--------------|
+      | 1.6 | red          |
+      | 2.5 | yellow/green |
+      |   3 | blue/white   |
+      |-----+--------------|
   - ~20mA needed
-  |-----+--------------|
-  |  Vf | color        |
-  |-----+--------------|
-  | 1.6 | red          |
-  | 2.5 | yellow/green |
-  |   3 | blue/white   |
-  |-----+--------------|

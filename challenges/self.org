@@ -20,6 +20,7 @@
   - https://hanukkah.bluebird.sh/5784/data/
 - Projects
   - https://codecrafters.io/
+  - https://roadmap.sh/backend/projects
   - https://github.com/codecrafters-io/build-your-own-x
   - https://github.com/vicky002/1000_Projects
   - books https://github.com/AlgoryL/Projects-from-Scratch

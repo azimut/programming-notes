@@ -1,6 +1,7 @@
 |----------+------------------------------------------------|
 | wiki     | https://en.wikipedia.org/wiki/Perl             |
 | wiki     | https://en.wikibooks.org/wiki/Perl_Programming |
+| 2source  | https://github.com/Perl/perl5                  |
 | home     | https://www.perl.org/                          |
 | packages | https://metacpan.org/                          |
 | packages | https://github.com/hachiojipm/awesome-perl     |

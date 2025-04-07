@@ -1,38 +1,120 @@
-* languages
+- kicad
+- fritzing
+* Circuits
 
-- https://en.wikipedia.org/wiki/Netlist
+- AC/DC components can describe an ~electrical signal~
+  - DC component - what doesn change, aka offset
+  - AC component - what changes around offset, aka oscillation
 
-** SPICE
+- Amplifiers
+  - Classes
+    - A: uses transistors continuosly running at full power
+      - (+) good quality
+      - (-) power efficiency
+      - (-) expensive
+    - D: uses PWM output at a higher frequency square wave, then LPF
+      - (+) power efficiency
+      - needs a good filter
+      - (+) expensive
 
+** AC coupling (aka capacitance coupling)
+
+- removes DC component from electrical signal
+- isolates AC signals (eg: audio input)
+- add ~capacitor~ in series with _signal source_
+  - making a LPF, bigger capacitance == lower filter?
+
+* Simulation
+
+- Netlist is the "programming language", SPICE is the "compiler" (the simulator)
 - Simulators
   - https://en.wikipedia.org/wiki/Electronic_circuit_simulation
   - https://en.wikipedia.org/wiki/List_of_free_electronics_circuit_simulators
   - https://en.wikipedia.org/wiki/LTspice
+    - 1999
+    - Mike Engelhardt
   - https://en.wikipedia.org/wiki/Ngspice
   - https://en.wikipedia.org/wiki/GNU_Circuit_Analysis_Package
+    - 17 https://www.youtube.com/watch?v=zyeMORbswKk
+    - 18 https://www.youtube.com/watch?v=UQCkTGkpm2E
   - https://en.wikipedia.org/wiki/Comparison_of_EDA_software
   - https://en.wikipedia.org/wiki/SPICE_OPUS
 
-- https://en.wikipedia.org/wiki/SPICE
-  - 1973(1), 1975(2), 1989(3)
-  - by Laurance/Larry W. Nagel(28)
-  - at Berkeley
-  - from the beginning targeted ICs besides analog components
+** Netlist
 
-- Book: The designers guide to SPICE & Spectre
+- https://en.wikipedia.org/wiki/Netlist
+  - plaintext
+- 14 [[https://www.youtube.com/watch?v=uBg7J-tuiLs][KiCad 3.0 - The Role Of Netlists In KiCad]]
+- 23 [[https://www.youtube.com/watch?v=PlFE6_atAxw][What is Netlist]]
+
+** SPICE
+
+- https://en.wikipedia.org/wiki/SPICE
+  - 1973(v1), 1975(v2), 1989(v3)
+  - by Laurance/Larry W. Nagel (28)
+  - at Berkeley
+  - Similation Program with Integrated Circuit Emphasis
+
+- Book: "The designers guide to SPICE & Spectre" by Ken Kundert
 
 *** videos
 
-- https://www.youtube.com/watch?v=PlFE6_atAxw
-- https://www.youtube.com/watch?v=uBg7J-tuiLs
-- 11 https://www.youtube.com/watch?v=Ta0KiizCRzI
-- 13 https://www.youtube.com/watch?v=SNKkZXZzdj4
-- 18 https://www.youtube.com/watch?v=IkOb19FwgqY
-- 21 https://www.youtube.com/watch?v=TQ8cJ9-GyGo
-- 22 Behind the scenes of the SPICE Circuit Simulator https://www.youtube.com/playlist?list=PLZU5hLL_713yYOPBksz8AI4vWyRagf4G6
+- 11 [[https://www.youtube.com/watch?v=Ta0KiizCRzI][SPICE Simulation Program with Integrated Circuit Emphasis]] by Kim Hailey, Ken Kundert, Larry Nagel, Ron Rohrer
+- 11 [[https://vimeo.com/user6253815/ltspice][Introducción a LTspice]]
+- 13 [[https://www.youtube.com/watch?v=SNKkZXZzdj4][History of Spice]] by Laurence Nagel
+- 13 [[https://www.youtube.com/watch?v=FEGT5dUpdrc][EEVblog #516 - LTSPICE Tutorial - DC Operating Point Analysis]]
+   #+begin_src
+   meg = megon
+     m = milli
+     u = micro
+   #+end_src
+  - power supply is default DC (aka non shape)
+  - tip: putting a series resistance to your voltage source
+  - simulations
+    - transient (aka oscilloscope one)
+    - dc operating point:
+      - output: no plot, just a textbox of voltage through each component
+      - simplest
+      - threats capacitance as open circuit
+      - threats inductances as short circuits
+      - ok when no linear active components (eg: opamps)
+      - can be usefult to find resistance orientation to not have negative voltage
+- 18 [[https://www.youtube.com/watch?v=IkOb19FwgqY][The Life of SPICE]] by Laurence Nagel
+- 18 [[https://www.youtube.com/playlist?list=PLlD2eDv5CIe9u7jbKUkZ5xrLLSCrn0z_e][LTSPICE]] by Mike Engelhardt
+  - https://www.youtube.com/watch?v=x6TrbD7-IwU
+    - F2 - browse symbols
+    - Example 1: switch mode power supply
+      - Components
+        * LT1624 ic
+        * MOSFET
+        * Diode
+        * Inductor
+        * Resistors (x4)
+        * Capacitor (x2)
+        * Voltage Source
+    - "Startup transient analysis" ??
+      - turn power supply during simulation
+      - can it start up into the load?
+      - would it destroy it (oversrhoot)
+      - would it power the load (keep chugging along)
+    - Editing simbols
+      - Expert: right click on symbol letter, opens gui
+      - Assist: right click on the component, opens gui
+      - Super-Expert: ctrl+right click on component
+  - https://www.youtube.com/watch?v=6gKThjZIj-s
+  - https://www.youtube.com/watch?v=3X1spktoSWg
+  - https://www.youtube.com/watch?v=CE2k8xVEX1g
+  - https://www.youtube.com/watch?v=Dslpy9zosaw
+  - https://www.youtube.com/watch?v=mro7C0YUqT8
+  - https://www.youtube.com/watch?v=d8DqWvMYyWg
+- 20 [[https://www.youtube.com/watch?v=e496smXS7TY][Intro to SPICE]] by Kiss Analog
+- 20 [[https://www.youtube.com/watch?v=BnbcD-k4PD8][Introduction to SPICE, the General-Purpose Electrical Circuit Simulator]] by Paul E. Dahlen
+- 21 [[https://www.youtube.com/watch?v=TQ8cJ9-GyGo][SPICE – 50 Years and One Billion Transistors Later]] by Prof. Vladimirescu
+- 22 [[https://www.youtube.com/playlist?list=PLZU5hLL_713yYOPBksz8AI4vWyRagf4G6][Behind the scenes of the SPICE Circuit Simulator]]
   - https://www.youtube.com/watch?v=1ZhzhWAt7xc
   - https://www.youtube.com/watch?v=Zk0y4J8y9nY
   - https://www.youtube.com/watch?v=PrYmqYbrJLA
+- 23 [[https://www.youtube.com/watch?v=u3xkLTgoQec][LTspice is dead but QSPICE is born]] by Kiss Analog
 
 *** articles
 

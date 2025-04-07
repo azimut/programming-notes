@@ -1,0 +1,6 @@
+- uses PWM to control speed and direction
+- tip: those that have a potentiometer inside
+  - can return it's position on a cable
+  - can be used to record some previous movement
+  - and replay it
+  - also can fix drifting (aka not stopping completely)

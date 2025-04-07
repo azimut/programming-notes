@@ -2,6 +2,7 @@
 - stores energy in ~magnetic field~
 
 - cannot have immediate changes of current
+  #+CAPTION: current & voltage across plots
   [[https://eepower.com/uploads/articles/time-constant-and-energy-storage-in-dc-circuit-inductors-fig2.jpg]]
 
 - Usages
@@ -9,7 +10,7 @@
     - by alternately storing / releasing energy
     - helping maximize battery life
 
-- =inductance= measured in henry, the higher the more resistance
+- =inductance= measured in ~henries~, the higher the more resistance
   - nanohenry ones, will only filter high frequencies (+100Mhz)
     - in radios
   - microhenry ones, 50kHz-2Mhz

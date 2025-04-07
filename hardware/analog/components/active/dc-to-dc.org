@@ -1,0 +1,11 @@
+- https://en.wikipedia.org/wiki/DC-to-DC_converter
+- https://es.wikipedia.org/wiki/Convertidor_DC_a_DC
+
+- can replace a voltage regulator, as they are more power efficient
+- source of interference in circuits (bad for radios)
+- have a bit of output ripple (?
+- types
+  - buck: step down convertor
+  - boost: step up convertor
+  - buck-boost
+  - cuk

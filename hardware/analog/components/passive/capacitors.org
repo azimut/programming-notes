@@ -47,3 +47,5 @@
 |  Three-Terminal Filter | filter, prevents wandering waves | ferrite beads                                         | copper wire                 |
 |------------------------+----------------------------------+-------------------------------------------------------+-----------------------------|
 - Dipped Tantalum has 1(one) correct direction, otherwise it will damage tehoxide layer.
+- Ceramic: pf - ~10uF, >10.000Hz (aka fast fluctiations)
+- Electrolitic: work best with <100Hz

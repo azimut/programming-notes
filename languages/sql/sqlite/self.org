@@ -9,6 +9,7 @@
 | source (C) | https://www.sqlite.org/src/doc/trunk/README.md |
 | faq        | https://www.sqlite.org/faq.html                |
 | wiki       | https://en.wikipedia.org/wiki/SQLite           |
+| gotchas    | https://sqlite.org/quirks.html                 |
 |------------+------------------------------------------------|
 
 - 2000 (db format released in 2004)
@@ -23,19 +24,6 @@
   - Types are assigned to individual values, NOT columns
   - BUT sqlite will try to convert it to the prefered column type
 
-- [[https://www.sqlite.org/changes.html][Changelog]]
-  |----+--------+-------------------------|
-  |    | <l>    |                         |
-  | 23 | 3.44   | CONCAT()                |
-  | 20 | 3.32   | csv import              |
-  | 16 | 3.14   | csv virtual table       |
-  | 15 | 3.37.1 | strictly typed tables   |
-  | 15 | 3.8.11 | FTS5                    |
-  | 10 | 3.7.4  | FTS4                    |
-  | 09 | 3.6.19 | foreign key constraints |
-  |----+--------+-------------------------|
-
-- gotchas https://sqlite.org/quirks.html
 - diy https://cstack.github.io/db_tutorial/
   source https://github.com/cstack/db_tutorial
 
@@ -295,6 +283,18 @@ https://www.sqlite.org/fts5.html
   where col1 match ? AND col2 match ?;
 #+end_src
 
+* changelog
+https://www.sqlite.org/changes.html
+|----+--------+-------------------------|
+|    | <l>    |                         |
+| 23 | 3.44   | CONCAT()                |
+| 20 | 3.32   | csv import              |
+| 16 | 3.14   | csv virtual table       |
+| 15 | 3.37.1 | strictly typed tables   |
+| 15 | 3.8.11 | FTS5                    |
+| 10 | 3.7.4  | FTS4                    |
+| 09 | 3.6.19 | foreign key constraints |
+|----+--------+-------------------------|
 * extensions
 
 - column oriented https://github.com/dgllghr/stanchion
@@ -349,6 +349,7 @@ https://www.sqlite.org/fts5.html
   - https://fly.io/docs/litefs/
 
 * bindings
+
 - go https://github.com/mattn/go-sqlite3
 - go (pure) https://pkg.go.dev/modernc.org/sqlite
 - go https://github.com/crawshaw/sqlite
@@ -357,6 +358,7 @@ https://www.sqlite.org/fts5.html
     1) streaming blobs
     2) session extension
     3) shared cache
+
 * exercism
 
 - subselects or WITH RECURSIVE, do =not= well with UPDATE

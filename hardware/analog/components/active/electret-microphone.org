@@ -1,0 +1,8 @@
+https://en.wikipedia.org/wiki/Electret_microphone
+
+#+ATTR_ORG: :width 200
+[[https://upload.wikimedia.org/wikipedia/commons/5/57/Electret_condenser_microphone_schematic.png]]
+
+- has a JFET transistor
+- he diafragm forms a capacitor (aka condenser)
+  - which excites the transistor
