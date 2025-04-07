@@ -1,5 +1,6 @@
 - kicad
 - fritzing
+
 * Circuits
 
 - AC/DC components can describe an ~electrical signal~
@@ -44,8 +45,10 @@
 
 - https://en.wikipedia.org/wiki/Netlist
   - plaintext
-- 14 [[https://www.youtube.com/watch?v=uBg7J-tuiLs][KiCad 3.0 - The Role Of Netlists In KiCad]]
-- 23 [[https://www.youtube.com/watch?v=PlFE6_atAxw][What is Netlist]]
+
+- Videos
+  - 14 [[https://www.youtube.com/watch?v=uBg7J-tuiLs][KiCad 3.0 - The Role Of Netlists In KiCad]]
+  - 23 [[https://www.youtube.com/watch?v=PlFE6_atAxw][What is Netlist]]
 
 ** SPICE
 
@@ -58,30 +61,15 @@
 - Book: "The designers guide to SPICE & Spectre" by Ken Kundert
 - datasets https://github.com/symbench/spice-datasets
 
-*** videos
+*** course
 
-- 11 [[https://www.youtube.com/watch?v=Ta0KiizCRzI][SPICE Simulation Program with Integrated Circuit Emphasis]] by Kim Hailey, Ken Kundert, Larry Nagel, Ron Rohrer
-- 11 [[https://vimeo.com/user6253815/ltspice][Introducción a LTspice]]
-- 13 [[https://www.youtube.com/watch?v=SNKkZXZzdj4][History of Spice]] by Laurence Nagel
-- 13 [[https://www.youtube.com/watch?v=FEGT5dUpdrc][EEVblog #516 - LTSPICE Tutorial - DC Operating Point Analysis]]
-   #+begin_src
-   meg = megon
-     m = milli
-     u = micro
-   #+end_src
-  - power supply is default DC (aka non shape)
-  - tip: putting a series resistance to your voltage source
-  - simulations
-    - transient (aka oscilloscope one)
-    - dc operating point:
-      - output: no plot, just a textbox of voltage through each component
-      - simplest
-      - threats capacitance as open circuit
-      - threats inductances as short circuits
-      - ok when no linear active components (eg: opamps)
-      - can be usefult to find resistance orientation to not have negative voltage
-- 18 [[https://www.youtube.com/watch?v=IkOb19FwgqY][The Life of SPICE]] by Laurence Nagel
-- 18 [[https://www.youtube.com/playlist?list=PLlD2eDv5CIe9u7jbKUkZ5xrLLSCrn0z_e][LTSPICE]] by Mike Engelhardt
+- FesZ https://www.youtube.com/playlist?list=PLT84nve2j1g_wgGcm0Bv3K4RSl2Jdjsey
+- EETechStuff https://www.youtube.com/playlist?list=PLGtyXSn57qnKRiIqfpVK3ZtzOD8eb_2ro
+- LABi https://www.youtube.com/playlist?list=PLPYWiDnEtp4N6emDF98TFxZyw-EDc3pcw
+- Renato https://www.youtube.com/playlist?list=PL7o_-mu0UR-LetFwsEiGG7L11m1lM49pC
+- Electronic Circuit Hub https://www.youtube.com/playlist?list=PLIF5pQnxzucWDl87PLVS-AL5h-AeIOtMB
+
+**** 18 [[https://www.youtube.com/playlist?list=PLlD2eDv5CIe9u7jbKUkZ5xrLLSCrn0z_e][LTSPICE]] by Mike Engelhardt
   - https://www.youtube.com/watch?v=x6TrbD7-IwU
     - F2 - browse symbols
     - Example 1: switch mode power supply
@@ -108,14 +96,39 @@
   - https://www.youtube.com/watch?v=Dslpy9zosaw
   - https://www.youtube.com/watch?v=mro7C0YUqT8
   - https://www.youtube.com/watch?v=d8DqWvMYyWg
-- 20 [[https://www.youtube.com/watch?v=e496smXS7TY][Intro to SPICE]] by Kiss Analog
-- 20 [[https://www.youtube.com/watch?v=BnbcD-k4PD8][Introduction to SPICE, the General-Purpose Electrical Circuit Simulator]] by Paul E. Dahlen
-- 21 [[https://www.youtube.com/watch?v=TQ8cJ9-GyGo][SPICE – 50 Years and One Billion Transistors Later]] by Prof. Vladimirescu
-- 22 [[https://www.youtube.com/playlist?list=PLZU5hLL_713yYOPBksz8AI4vWyRagf4G6][Behind the scenes of the SPICE Circuit Simulator]]
+
+**** 22 [[https://www.youtube.com/playlist?list=PLZU5hLL_713yYOPBksz8AI4vWyRagf4G6][Behind the scenes of the SPICE Circuit Simulator]]
   - https://www.youtube.com/watch?v=1ZhzhWAt7xc
   - https://www.youtube.com/watch?v=Zk0y4J8y9nY
   - https://www.youtube.com/watch?v=PrYmqYbrJLA
+*** videos
+
+- 11 [[https://www.youtube.com/watch?v=Ta0KiizCRzI][SPICE Simulation Program with Integrated Circuit Emphasis]] by Kim Hailey, Ken Kundert, Larry Nagel, Ron Rohrer
+- 11 [[https://vimeo.com/user6253815/ltspice][Introducción a LTspice]]
+- 13 [[https://www.youtube.com/watch?v=SNKkZXZzdj4][History of Spice]] by Laurence Nagel
+- 13 [[https://www.youtube.com/watch?v=FEGT5dUpdrc][EEVblog #516 - LTSPICE Tutorial - DC Operating Point Analysis]]
+   #+begin_src
+   meg = megon
+     m = milli
+     u = micro
+   #+end_src
+  - power supply is default DC (aka non shape)
+  - tip: putting a series resistance to your voltage source
+  - simulations
+    - transient (aka oscilloscope one)
+    - dc operating point:
+      - output: no plot, just a textbox of voltage through each component
+      - simplest
+      - threats capacitance as open circuit
+      - threats inductances as short circuits
+      - ok when no linear active components (eg: opamps)
+      - can be usefult to find resistance orientation to not have negative voltage
+- 18 [[https://www.youtube.com/watch?v=IkOb19FwgqY][The Life of SPICE]] by Laurence Nagel
+- 20 [[https://www.youtube.com/watch?v=e496smXS7TY][Intro to SPICE]] by Kiss Analog
+- 20 [[https://www.youtube.com/watch?v=BnbcD-k4PD8][Introduction to SPICE, the General-Purpose Electrical Circuit Simulator]] by Paul E. Dahlen
+- 21 [[https://www.youtube.com/watch?v=TQ8cJ9-GyGo][SPICE – 50 Years and One Billion Transistors Later]] by Prof. Vladimirescu
 - 23 [[https://www.youtube.com/watch?v=u3xkLTgoQec][LTspice is dead but QSPICE is born]] by Kiss Analog
+- 23 [[https://www.youtube.com/watch?v=3J-WtsmkgOc][how to generate SPICE netlist | ltspice]]
 
 *** articles
 

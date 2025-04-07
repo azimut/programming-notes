@@ -69,6 +69,8 @@
   - width, style
   - width, style, color
 
+- https://phuoc.ng/collection/html-dom/
+- https://www.w3schools.com/howto/default.asp
 - https://getbem.com/
 - default css https://www.w3schools.com/cssref/css_default_values.php
 - https://css-tricks.com/examples/nth-child-tester/
@@ -85,7 +87,7 @@
   - https://stylus-lang.com/#get-styling-with-stylus
     https://github.com/stylus/stylus
 
-* Language
+* language
 - A browser ignores declaration it doesn't understand.
 ** margin / padding / border
 |------+----+---+---|

@@ -279,4 +279,3 @@ where ID is a color id between 0 and 255
 - 20 https://pspodcasting.net/dan/blog/2020/complexity.pdf
 - 22 https://pspodcasting.net/dan/blog/2022/ancient_unix.html
 - 23 https://muhammadraza.me/2023/webscraping-in-bash/
-

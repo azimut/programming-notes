@@ -1,6 +1,10 @@
+- https://phuoc.ng/collection/html-dom/
+- https://www.w3schools.com/howto/default.asp
+
 - https://developer.mozilla.org/en-US/docs/Web/API
 - https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
   https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API/Timing_element_visibility
+
 * snippets
 
 #+begin_src js

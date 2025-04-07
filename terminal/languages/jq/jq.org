@@ -2,19 +2,17 @@
 #+DATE: <2023-11-27 lun>
 
 |--------------+---------------------------------------------------------|
-| wiki         | https://en.wikipedia.org/wiki/Jq_(programming_language) |
-| source (C)   | https://github.com/jqlang/jq/                           |
-| basic manual | https://jqlang.github.io/jq/manual/                     |
-| home         | https://jqlang.github.io/jq/                            |
-| repl online  | https://jqplay.org/                                     |
-| repl         | https://github.com/gpanders/ijq                         |
-| awesome      | https://github.com/fiatjaf/awesome-jq                   |
-| rust rewrite | https://github.com/01mf02/jaq                           |
+|     <c>      |                           <c>                           |
+|     wiki     | https://en.wikipedia.org/wiki/Jq_(programming_language) |
+|     home     |                   [[https://jqlang.github.io/jq/][home]] [[https://jqlang.github.io/jq/manual/][manual]] [[https://github.com/jqlang/jq/][source]]                    |
+|     repl     |                   [[https://jqplay.org/][online]] [[https://github.com/gpanders/ijq][ijq]] [[https://github.com/simeji/jid][jid]] [[https://github.com/fiatjaf/jiq][jiq]]                    |
+|   awesome    |          https://github.com/fiatjaf/awesome-jq          |
+| rust rewrite |              https://github.com/01mf02/jaq              |
 |--------------+---------------------------------------------------------|
 
 - 2012
 - Author: Stephen Dolan
-- reads ~/.jq
+- ~/.jq
 - jq binary is 33k
 - first written in Haskell, but early rewritten in C for performance (?)
 

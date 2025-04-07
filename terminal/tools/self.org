@@ -46,6 +46,19 @@
 - tool: svg into png https://manpages.ubuntu.com/manpages/trusty/man1/rsvg-convert.1.html
 - tool: w3m-img - display image on shell
   - used by fff
+- tool: notify
+  - https://github.com/joh/when-changed (python)
+  - https://github.com/eradman/entr
+  - https://emcrisostomo.github.io/fswatch/
+  - https://inotify.aiken.cz/?section=incron&page=about&lang=en
+  - https://github.com/inotify-tools/inotify-tools
+    - https://superuser.com/questions/181517/how-to-execute-a-command-whenever-a-file-changes
+      #+begin_src sh
+        inotifywait -q -m -e close_write myfile.py |
+            while read -r file event; do
+                ./myfile.py
+            done
+      #+end_src
 
 - articles
   - https://archive.md/20180422220932/https://kadekillary.work/post/cli-4-ds/
@@ -58,6 +71,7 @@
   - https://exple.tive.org/blarg/2023/02/17/modern-problems-require-modern-solutions/
 
 * pwd manager
+
 - https://www.passwordstore.org/
   - http://web.archive.org/web/20210302020838/https://osiux.com/2021-02-19-no-me-acuerdo-de-nada-dejame-en-pass.html
 - https://github.com/charmbracelet/skate
