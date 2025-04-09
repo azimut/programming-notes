@@ -1,3 +1,5 @@
+- envsubst
+
 - todo
   - https://github.com/decalage2/oletools
   - networking

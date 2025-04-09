@@ -8,3 +8,7 @@
   - https://en.wikibooks.org/wiki/LaTeX/Tables
   - https://tex.stackexchange.com/questions/320686/itemize-within-a-multirow
 - https://latex-ninja.com/2020/06/14/is-latex-a-programming-language/
+- drawing
+  - https://en.wikipedia.org/wiki/PGF/TikZ
+  - https://en.wikipedia.org/wiki/MetaPost
+  - postscript https://en.wikipedia.org/wiki/PSTricks

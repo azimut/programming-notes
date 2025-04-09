@@ -1,6 +1,86 @@
-- kicad
+- PHDL (vhdl extension) https://sourceforge.net/p/phdl/wiki/Home/
+- SKiDL (python dsl) https://github.com/devbisme/skidl
+- pycircuit (python dsl) https://github.com/dvc94ch/pycircuit
+- netlistsvg (json netlist to svg) https://github.com/nturley/netlistsvg
+- replicad https://github.com/monostable/replicad
+- electro-grammar (parses string into meaninful struct) https://github.com/kitspace/electro-grammar
+  - [X] 17 video [[https://www.youtube.com/watch?v=Wkh8zAumNW8][34C3 - Designing PCBs with code]]
+  - [X] 18 video [[https://www.youtube.com/watch?v=awUYFO3Pwqk][FOSDEM - Designing PCBs with code Designing circuits with code instead of CAD]]
+- m4+dpic electric circuits https://zyedidia.github.io/other/circuit_macros.pdf
+  - [X] 07 https://amespinosa.wordpress.com/2007/06/16/collated-schematic-diagrams/
+    - more output only examples
+    - https://www.flickr.com/photos/yecartes/tags/electronics
+    - https://www.flickr.com/photos/yecartes/554239140/
+  - [X] 12 https://latex.net/pic-for-expressive-latex-diagrams/
+    - command
+      #+begin_src sh
+        $ cat foo.m4pic | m4 -I ./circuit_macros | pic -t > foo.tex
+      #+end_src
+    - example m4
+      #+begin_src m4
+        .PS
+        include(libcct.m4)
+        cct_init
+
+        qrt=dimen_/4;
+        hlf=dimen_/2;
+        dim=dimen_;
+        mm=1/25.4;
+        pi=atan2(0,-1);
+        IC: box ht 2*dim wid 3*dim "SA612"
+        In: capacitor(left_ at IC.w hlf);
+        ...
+    #+end_src
+    - embed generated ~pic -t~ latex output file
+      #+begin_src latex
+        \input{figexample.tex}
+        \box\graph
+      #+end_src
+  - [ ] http://web.archive.org/web/20090726114837/http://staff.ee.sun.ac.za:80/pjrandewijk/wiki/index.php/M4_Circuit_Macros_-_Getting_Started
+  - [ ] https://www.ctan.org/pkg/circuit-macros
+  - [ ] https://gitlab.com/aplevich/circuit_macros
+  - [ ] https://yingtongdiddleipo.eie.wits.ac.za/cct.html
+  - [ ] https://circuit4us.medium.com/create-beautiful-circuit-diagram-with-circuit-macro-package-f6286f02710f
+  - [ ] https://www.fabrice-salvaire.fr/en/blog/electronic-circuit-diagrams/
+  - [ ] https://www.ntg.nl/maps/31/07.pdf
+  - [ ] https://m4cmpy.wordpress.com/2020/02/23/getting-started-with-m4-circuit-macros/
+  - [ ] https://m4cmpy.wordpress.com/2020/02/29/getting-started-with-m4-circuit-macros-part-ii/
+  - [ ] https://m4cmpy.wordpress.com/2020/02/29/getting-started-with-m4-circuit-macros-part-iii/
+  - [ ] https://m4cmpy.wordpress.com/2020/03/07/getting-started-with-m4-circuit-macros-part-iv/
+  - [ ] 18 [[https://www.youtube.com/watch?v=pFRIBvUJHS4][Drawing Circuit Diagrams with Circuits Macros]]
+  - [ ] 20 [[https://www.youtube.com/watch?v=S163wqMRNyg][Quality diagrams with PyCirkuit]] [[https://archive.fosdem.org/2020/schedule/event/pycirkuit/attachments/slides/4182/export/events/attachments/pycirkuit/slides/4182/Slides.pdf][slides]]
+
+- [ ] 17 [[https://www.youtube.com/watch?v=9aXb3OYW9kM][Integrated Spice Simulation with Kicad]]
+- [ ] 24 [[https://www.youtube.com/watch?v=hnkTLkVplBI][ngspice circuit simulator stand alone and embedded into kicad]]
+
+* EDA - Electronic Design Automation
+
+- gEDA
 - fritzing
 
+** KiCad
+
+- home https://www.kicad.org/
+- sexpr https://dev-docs.kicad.org/en/file-formats/sexpr-intro/
+- wiki https://en.wikipedia.org/wiki/KiCad
+  - 1992
+  - Jean-Pierre Charras
+
+- Course
+  - DigiKey https://www.youtube.com/playlist?list=PLEBQazB0HUyR24ckSZ5u05TZHV9khgA1O
+  - PlumPot https://www.youtube.com/playlist?list=PLZNH6jlLeFXsg9ohRMbJ0qqSfUrRyAn7b
+  - John's Basement https://www.youtube.com/playlist?list=PL3by7evD3F51fKkyrUbH-PCdwPCWc9F8a
+    - KiCad 5
+    - 1 - new project
+    - 2 - schematic
+    - 3 - footprint
+    - 4 - pcb
+
+* CAD
+- OpenSCAD
+- QCAD
+- FreeCAD
+- Blender
 * Circuits
 
 - AC/DC components can describe an ~electrical signal~

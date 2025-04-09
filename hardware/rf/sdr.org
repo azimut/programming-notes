@@ -1,0 +1,2 @@
+- [[https://www.youtube.com/playlist?list=PLu0BPYzTjiHru1KmPThmbY-8rRm3EWvUQ][SDR with HackRF]]
+- [[https://www.youtube.com/playlist?list=PLu0BPYzTjiHqnqMgh0Gg5TAcrTiOeW76P][HackRF]]

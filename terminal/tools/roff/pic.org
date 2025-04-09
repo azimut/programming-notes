@@ -1,0 +1,166 @@
+- https://en.wikipedia.org/wiki/PIC_(markup_language)
+  - Procedural programming language
+  - "intended for the comfort of non-programmers"
+  - 1984 (present in unix v8), 1988 (released)
+
+|--------+-----------------+-----+------+-----------------|
+|    <r> |       <c>       |     |      |                 |
+|    pic |       [[https://pikchr.org/home/uv/pic.pdf][doc]]       | ps  | 1984 | Brian Kernighan |
+|   gpic |    [[https://pikchr.org/home/uv/gpic.pdf][pdf]] [[https://www.chiark.greenend.org.uk/doc/groff-base/html/pic.html][html]]     | ps  | 1995 | Eric Raymond    |
+|   dpic | [[https://ece.uwaterloo.ca/~aplevich/dpic/][home]] [[https://gitlab.com/aplevich/dpic][source]] [[https://ece.uwaterloo.ca/~aplevich/dpic/dpic-doc.pdf][doc]] | svg |      | Dwight Aplevich |
+| pikchr |    [[https://pikchr.org/home/doc/trunk/homepage.md][home]] [[https://cran.r-project.org/web//packages/pikchr/vignettes/userman.html][doc]]     | svg | 2020 | Richard Hipp    |
+|--------+-----------------+-----+------+-----------------|
+
+- tool pic2svg https://github.com/klorenz/pic2svg
+- online https://yushih.github.io/web-pic/
+
+* cli
+
+#+begin_src sh
+  $ pic foo.pic | groff | ps2es | gs -dBATCH -sOutputFile ...
+  $ pic foo.pic | groff > hello.ps
+  $ pic -p foo.pic > hello.ps
+  $ dpic -v foo.pic > foo.svg
+#+end_src
+
+|----+--------------|
+| -t | LaTeX output |
+|----+--------------|
+
+** pic2graph
+
+#+begin_src sh
+  $ pic2graph < foo.me > foo.png
+  $ sed '1d,$d' foo.pic | pic2graph -background white -alpha remove -alpha off -border 10 -bordercolor white > foo.png
+#+end_src
+
+- converts a PIC given in stdin program to PNG
+- must NOT have a .PS/.PE
+- flags are passed down to ImageMagick's convert
+- remove transparency by default
+  #+begin_src sh
+    -background white -alpha remove -alpha off
+  #+end_src
+- add additional border space
+  #+begin_src sh
+    -border 10 -bordercolor white
+  #+end_src
+- use the full page canvas
+  #+begin_src sh
+    -flatten
+  #+end_src
+
+* language
+
+#+begin_src nroff
+.PS <SCALE?>
+box "A"
+line
+box "B"
+.PE
+#+end_src
+
+- by default draws from left to right
+- optional ";" to end statements(?
+- one line statements(?, can be separated into multiple lines with "\"
+- default unit is inches
+  - scale=2.54 - changes it to centimeters
+
+- LABEL: circle "A"
+
+** control flow
+
+#+begin_src
+if i == 0 then { }
+for i = 0 to 5 do { }
+#+end_src
+
+** macro
+
+#+begin_src
+  define treecolor % color "green" %
+  define smiley {
+    r0 = $3
+    r1 = 0.4*r0
+    r2 = 0.04*r0
+    ...
+  }
+  pi2 = 2*atan2( 0, -1 )
+  for x=0.1 to 1.3 by 0.08 do {
+    smiley( 1.5*x*cos(x*pi2), 1.1*x*sin(x*pi2), 0.23*x )
+  }
+#+end_src
+
+** directives
+
+- "\D'P 1 1 1 -1'" - drawing a filled (P) triangle with troff
+- .start/.center/.end (line/arrow/spline)
+- ljust
+- at (NUM,NUM) - define where to put the center of shape
+
+- move
+  - to
+  - up/down/left/right [then|NUMBER]
+
+- SHAPE
+  - with .[ns][we] at Here
+
+- LINE/ARROW
+  - from/to
+    - LABEL
+    - [udlr] [1st|[2nd] [last]] [shape]
+      - .[ns][we]
+        - .[x|y]
+
+** elements / shape
+
+"foo"
+box/1
+circle/1
+ellipse/1
+arrow/2
+line/2
+arc/0
+spline???
+
+** decorations
+
+- wid[th]/1 h[eigh]t/1
+- rad/1 - rounded
+- dotted/0
+- dashed/1
+- <->   - double arrow
+-  ->
+- fill/1 - gray intensity to fill
+- color/1
+
+* codebases
+
+- http://wiki.christophchamp.com/index.php?title=Pic_language
+- https://brownian.org.ua/?p=1674
+- https://literateprograms.org/category_programming_language_pic.html
+- [[http://www.kohala.com/start/troff/Setup.pic.txt][macros]]
+- [[http://www.kohala.com/start/troff/pic.examples.ps ][examples]]
+
+* snippets
+
+- tree drawing macro
+  #+begin_src
+define tree %
+    line down 0.25i
+    { line right 0.15i; move right 0.2i; "$1" ljust }
+%
+  #+end_src
+* articles
+
+- [ ] ?? [[http://www.kohala.com/start/troff/pic2html.html][Turning pic into HTML]]
+- [X] 17 https://thelimberlambda.com/2017/08/03/drawing-with-pic/
+- [X] 19 http://www.micronarrativ.org/2019/2019-compile_pictures_with_gnu_pic.html
+  - use-case: document something for posterity, cleaner than a handrawn sketch
+- [ ] 22 https://janert.me/guides/praise-of-pic/
+  - originally posted in [[http://web.archive.org/web/20091004130903/http://onlamp.com:80/pub/a/onlamp/2007/06/21/in-praise-of-pic.html?page=1][2007]]
+
+* videos
+- [X] 20 [[https://www.youtube.com/watch?v=xMijdTWSUEE][Christmas Cards The Unix Way - with pic and troff]] by Gavin Freeborn
+- [X] 20 [[https://www.youtube.com/watch?v=oG2A_1vC6aM][drawing pictures with pic and troff]] by Gavin Freeborn
+- [X] 22 [[https://www.youtube.com/watch?v=RDpuOFkpiXM][Pictures on the Terminal with pic!]] by Bryce Vandegrift

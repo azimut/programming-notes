@@ -1,7 +1,9 @@
 - home https://www.gnu.org/software/autoconf/
+- docs https://www.gnu.org/software/m4/manual/m4.html
+
 - wiki https://en.wikipedia.org/wiki/M4_(computer_language)
   - Authors: Brian Kernighan, Dennis Ritchie
-  - 1977-
+  - 1977
   - general purpose macro pre-processor
   - used by sendmail
   - mostly used by *autoconf* (part of autotools)
@@ -9,8 +11,14 @@
     - Author: David Makenzie
     - 1991-
 
-- article https://dev.to/taw/100-languages-speedrun-episode-45-m4-pgg
-- used in the "xz backdoor"
+- codebases
+  - css preprocessor https://github.com/djanowski/hasp
+  - BASIC to C http://www.basic-converter.org/m4basic/
+  - z80 forth https://github.com/DW0RKiN/M4_FORTH
+  - https://github.com/nevali/m4
+
+* the "xz backdoor"
+
   - https://git.savannah.gnu.org/gitweb/?p=gnulib.git;a=blob;f=m4/build-to-host.m4
   - https://felipec.wordpress.com/2024/04/04/xz-backdoor-and-autotools-insanity/
     #+begin_src m4
@@ -23,3 +31,30 @@
       1) Two "test files" which contain the payload;
       2) and a modified =m4= script (m4/build-to-host.m4)
          which initiates the process of loading the payload.
+
+* articles
+
+- "I view it in the same light as Microsoft Excel: good at what it does, but too powerful for its own good. If your not careful, it will grow until you wish you had been using a proper programming language from the begging."
+
+- TODO
+  - https://news.ycombinator.com/item?id=17781062
+  - https://news.ycombinator.com/item?id=22757645
+  - https://news.ycombinator.com/item?id=27994092
+  - https://news.ycombinator.com/item?id=34159699
+
+- 24 https://mastodon.social/@seindal/112205415790637632
+- 22 https://emiruz.com/post/2022-12-28-composable-sql/
+- 22 https://dev.to/taw/100-languages-speedrun-episode-45-m4-pgg
+- 19 http://web.archive.org/web/20190910195316/https://www.linuxtoday.com/blog/macro-magic-m4-complete-guide.html
+- 20 https://chrisman.github.io/9.html
+- 08 https://mbreen.com/m4.html
+- 94 [[https://www.cs.stir.ac.uk/~kjt/research/pdf/expl-m4.pdf][Exploiting the m4 language]]
+
+* videos
+
+- 11 [[https://www.youtube.com/watch?v=ULZxHSPWn98][Bart Massey: The M4 Macro Processor]]
+- 19 [[https://www.youtube.com/watch?v=-1w-vx6y4GU][Using Makefile and m4 macro preprocessor to bundle Javascript]]
+- 20 [[https://www.youtube.com/watch?v=yrurIUEGo1c][m4 - add macro power to boost any programming language]]
+- 22 [[https://www.youtube.com/watch?v=euh0gaT3tA0][Using macros with the Suite8080 assembler]]
+- 22 [[https://www.youtube.com/watch?v=Jhte76l2mP4][Can GNU m4 replace my need for react based framework]]
+- 23 [[https://www.youtube.com/watch?v=h164R46NWBMH][Hacking GNU Utilities - m4]]
