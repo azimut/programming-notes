@@ -255,6 +255,9 @@ see https://www.electronics-tutorials.ws/opamp/opamp_1.html
 - Aaron's Analog Chip Collection (ECE Design Fundamentals, Georgia Tech class) https://www.youtube.com/watch?v=fVFukSjWQjk
 - LM1875 DIY audio amplifier https://www.youtube.com/playlist?list=PL9zJKV-F2eMzatbAfKcEIOSK2qt0VTn7Z
 
+* Articles
+- [[http://seti.harvard.edu/unusual_stuff/misc/lorenz.htm][Build a Lorenz Attractor]]
+- [[https://remcycles.net/blog/SIR_model.html][An Analog Computer Circuit for the SIR Model]]
 * OTA (69)
 
 - Ideal infinite Zin (input impedance) and Zout (output impedance)

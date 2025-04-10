@@ -1,0 +1,48 @@
+#+TITLE: eqn
+#+DATE: <2025-04-08 mar>
+
+- wiki https://en.wikipedia.org/wiki/Eqn_(software)
+  - 1974
+  - Brian Kernighan, Lorinda Cherry
+
+- https://www.gnu.org/software/emacs/manual/html_node/calc/Eqn-Language-Mode.html
+  - it's main idiosyncrasy is that whitespace plays a significant part in the parsing of the language
+  - only requiring braces when argument contains spaces
+
+- examples
+  - 78 https://lists.gnu.org/archive/html/groff/2023-05/pdfcUXIwC9MH5.pdf
+    ps source http://web.archive.org/web/20110808234517/http://www.kohala.com/start/troff/v7man/eqn/eqn2e.ps
+
+* cli
+
+#+begin_src sh
+  $ eqn -Tpdf - < foo.eqn | groff -me -T pdf > eqn.pdf
+  $ eqn -Troff -Tutf8 - < foo.eqn | groffer --text | less -R
+#+end_src
+
+* language
+
+#+begin_src calc
+sum x+1 + y
+#+end_src
+
+#+RESULTS:
+: sum x + y + 1
+
+- space is "*" (?
+- sub, sup
+- ^,~ are threated as spaces
+
+* articles
+
+- 87 [[https://www.oreilly.com/library/view/unix-text-processing/9780810462915/Chapter09.html][Typesetting Equations with eqn]]
+- 23 [[https://technicallywewrite.com/2023/07/16/groffeqn][Groff by example: equations with eqn]]
+- 23 [[https://douglasrumbaugh.com/post/groff-eqn/][eqn: Formatting Equations in groff]]
+- 25 [[https://douglasrumbaugh.com/post/eqn-mathml/][Using eqn for Website Equation Formatting]]
+
+* videos
+
+- 24 [[https://www.youtube.com/watch?v=axEhZ7RPjsY][Using eqn to create beautiful mathematical equations!]]
+- 24 [[https://www.youtube.com/watch?v=4i1tutp24TY][Ditching MathJax: Back-end Website Equation Rendering on Linux]] by Douglas Rumbaugh
+- 23 [[https://www.youtube.com/watch?v=njdKIbbiSZU][1000 IQ Math equations with eqn]] by Bryce Vandegrift
+- 18 [[https://www.youtube.com/watch?v=sp0qgpeG6EY][High-Intellect Mathematical Formatting with eqn! (groff and troff)]] by Luke Smith

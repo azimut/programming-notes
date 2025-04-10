@@ -1,4 +1,5 @@
 - https://wiki.tcl-lang.org/page/Articles
+- 25 [[https://remcycles.net/blog/tcl_presentation.html][A Short Introduction to Tcl]] [[https://remcycles.net/files/tcl_intro.pdf][slides]]
 - 24 https://world-playground-deceit.net/blog/2024/10/tcl-closures.html
 - 24 Why I Like Tcl https://world-playground-deceit.net/blog/2024/why_tcl.html
 - 23 Why Tcl? https://gist.github.com/nat-418/bdccb2428cde750c9f42bf9bbc1a50d3

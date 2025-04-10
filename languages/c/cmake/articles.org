@@ -8,3 +8,4 @@
   - https://feabhasblog.wpengine.com/2021/07/cmake-part-2-release-and-debug-builds/
   - https://feabhasblog.wpengine.com/2021/08/cmake-part-3-source-file-organisation/
 - 23 https://izzys.casa/2023/06/everything-you-never-wanted-to-know-about-cmake-redux/
+- 24 [[https://remcycles.net/blog/c_experiments.html][A Makefile for Quick C Experiments]]

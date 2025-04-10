@@ -12,3 +12,4 @@
   - https://en.wikipedia.org/wiki/PGF/TikZ
   - https://en.wikipedia.org/wiki/MetaPost
   - postscript https://en.wikipedia.org/wiki/PSTricks
+- vim https://castel.dev/post/lecture-notes-1/

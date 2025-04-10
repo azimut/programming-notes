@@ -18,10 +18,8 @@
   - 21 Neatroff - Minimalist Documents Done Right https://www.youtube.com/watch?v=sUbHGCnAZic
 - Bryce Vandegrift
   - +20 Groff: Making Documents the Unix Way https://www.youtube.com/watch?v=Cg9GfpNv1Yk+ ms
-  - 23 *1000 IQ* Math equations with eqn (groff/troff) https://www.youtube.com/watch?v=njdKIbbiSZU
 - Luke Smith
   - +18 [[https://www.youtube.com/watch?v=w8EKH_fjmXA][groff/troff: MUH MINIMALIST Documents]]+ ms
   - +18 [[https://www.youtube.com/watch?v=kJ_TXZB4Gm4][Customizing groff/troff Macros and Other Basics]]+ ms
   - 18 [[https://www.youtube.com/watch?v=XfOwRYmb5bQ][LaTeX OWNED EPIC STYLE by LOGICAL groff and refer]]
-  - 18 [[https://www.youtube.com/watch?v=sp0qgpeG6EY][High-Intellect Mathematical Formatting with eqn! (groff and troff)]] ms eqn
-  - 18 https://www.youtube.com/watch?v=yTQbi_E_Gys
+  - 18 [[https://www.youtube.com/watch?v=yTQbi_E_Gys][Your Brain Using REFER to do your bibliographies automatically]]

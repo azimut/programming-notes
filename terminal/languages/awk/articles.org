@@ -9,6 +9,9 @@
 - 16 | Example Code in Shell, Awk, and Make https://www.oilshell.org/blog/2016/11/14.html
 - 17 | Comments About Shell, Awk, and Make https://www.oilshell.org/blog/2017/10/25.html
 - 18 | https://benhoyt.com/writings/goawk/
+- 19 [[https://remcycles.net/blog/gdb_and_awk.html][Awk Saves the Day]]
+- 19 [[https://remcycles.net/blog/awk_presentation.html][Awk: A Short Introduction]]
+  - [[https://remcycles.net/files/awk_presentation.pdf][slides]]
 - 19 | Using AWK and R to parse 25tb https://livefreeordichotomize.com/posts/2019-06-04-using-awk-and-r-to-parse-25tb/
 - 20 | The state of the AWK | Ben Hoyt https://lwn.net/Articles/820829/
 - 20 | awk BEGIN/END
@@ -17,6 +20,10 @@
 - 20 | https://ketancmaheshwari.github.io/posts/2020/05/24/SMC18-Data-Challenge-4.html
 - 21 | https://web.archive.org/web/20210505004021/https://portal.drewdevault.com/2021/05/03/awk-is-the-coolest-tool-you-dont-know.gmi
 - 22 | https://benhoyt.com/writings/goawk-compiler-vm/
+- 23 | [[https://stephenramsay.net/posts/unreasonable-awk.html][The Unreasonable Effectiveness of AWK]]
+- 23 | [[https://remcycles.net/blog/awk_anagrams.html][Finding Anagrams with Persistent Memory Gawk (pm-gawk)]]
+- 23 | [[https://remcycles.net/blog/awk_noise.html][Awk Generated White Noise (AGWN)]]
+- 24 | [[https://remcycles.net/blog/awk_stats.html][Running Stats with Awk]]
 - 24 | https://www.raygard.net/awkdoc/pages/awk_parsing_is_tricky.html
 - 24 | AWK As A Major Systems Programming Language — Revisited http://www.skeeve.com/awk-sys-prog.html
 - 24 | https://hoi.st/posts/2024-01-22-lets-play-some-cards-in-awk.txt

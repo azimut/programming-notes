@@ -1,3 +1,5 @@
+- 24 [[https://stephenramsay.net/posts/groff-mom2.html][Beautiful Documents with Groff (Part II)]]
+- 23 [[https://stephenramsay.net/posts/groff-mom.html][Beautiful Documents with Groff (Part I)]]
 - 21 Writing formal letters with roff's "mm" package http://web.archive.org/web/20230605030324/https://www.woozle.org/papers/roff-letters.html
 - 23 Man Pages — The Complete Guide https://medium.com/better-programming/man-pages-the-complete-guide-800ad93425fe
 - 21 Adventures with man color https://felipec.wordpress.com/2021/06/05/adventures-with-man-color/
@@ -29,7 +31,6 @@
 - 23 Tables with groff tbl https://technicallywewrite.com/2023/08/19/grofftbl
 - 23 Modern troff with GNU groff https://technicallywewrite.com/2023/08/04/gnugroff
 - 23 GNU groff: Powerful document formatting in a small package https://technicallywewrite.com/2023/08/01/groffinterview
-- 23 Groff by example: equations with eqn https://technicallywewrite.com/2023/07/16/groffeqn
 - 23 Watch: How to write documents with groff -me https://technicallywewrite.com/2023/06/24/groffvideo
 - +23 Nroff by example: Manual pages Nroff by example: Manual pages https://technicallywewrite.com/2023/07/02/manpages+
 - 23 Nroff by example: The basics https://technicallywewrite.com/2023/06/04/nroffexample

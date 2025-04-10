@@ -1,27 +1,30 @@
-- https://en.wikipedia.org/wiki/PIC_(markup_language)
-  - Procedural programming language
-  - "intended for the comfort of non-programmers"
-  - 1984 (present in unix v8), 1988 (released)
+#+TITLE: pic
+#+DATE: <2025-04-08 mar>
 
-|--------+-----------------+-----+------+-----------------|
-|    <r> |       <c>       |     |      |                 |
-|    pic |       [[https://pikchr.org/home/uv/pic.pdf][doc]]       | ps  | 1984 | Brian Kernighan |
-|   gpic |    [[https://pikchr.org/home/uv/gpic.pdf][pdf]] [[https://www.chiark.greenend.org.uk/doc/groff-base/html/pic.html][html]]     | ps  | 1995 | Eric Raymond    |
-|   dpic | [[https://ece.uwaterloo.ca/~aplevich/dpic/][home]] [[https://gitlab.com/aplevich/dpic][source]] [[https://ece.uwaterloo.ca/~aplevich/dpic/dpic-doc.pdf][doc]] | svg |      | Dwight Aplevich |
-| pikchr |    [[https://pikchr.org/home/doc/trunk/homepage.md][home]] [[https://cran.r-project.org/web//packages/pikchr/vignettes/userman.html][doc]]     | svg | 2020 | Richard Hipp    |
-|--------+-----------------+-----+------+-----------------|
+|--------+------------------------+-----+------+-----------------|
+|    <r> |          <c>           |     |      |                 |
+|    pic |        [[https://en.wikipedia.org/wiki/PIC_(markup_language)][wiki]] [[https://pikchr.org/home/uv/pic.pdf][doc]]        | ps  | 1984 | Brian Kernighan |
+|   gpic |    [[https://git.savannah.gnu.org/cgit/groff.git/tree/src/preproc/pic][source]] [[https://pikchr.org/home/uv/gpic.pdf][pdf]] [[https://www.chiark.greenend.org.uk/doc/groff-base/html/pic.html][html]]     | png | 1995 | Eric Raymond    |
+|   dpic | [[https://ece.uwaterloo.ca/~aplevich/dpic/][home]] [[https://gitlab.com/aplevich/dpic][source]] [[https://ece.uwaterloo.ca/~aplevich/dpic/dpic-doc.pdf][doc]] [[https://yushih.github.io/web-pic/][online]] | svg |      | Dwight Aplevich |
+| pikchr | [[https://pikchr.org/home/doc/trunk/homepage.md][home]] [[https://github.com/drhsqlite/pikchr][source]] [[https://cran.r-project.org/web//packages/pikchr/vignettes/userman.html][doc]] [[https://pikchr.org/home/pikchrshow][online]] | svg | 2020 | Richard Hipp    |
+|--------+------------------------+-----+------+-----------------|
 
-- tool pic2svg https://github.com/klorenz/pic2svg
-- online https://yushih.github.io/web-pic/
+- 1984 (in unix v8), 1988 (released)
+- a procedural programming language
+- a troff preprocessor, it passes most of its input untouched
+- "intended for the comfort of non-programmers"
+- inspired by [[https://dl.acm.org/doi/pdf/10.1145/357299.357303][ideal]], PICTURE, v(iewgraph), [[https://dl.acm.org/doi/pdf/10.1145/6424.6429][grap]]
 
 * cli
 
 #+begin_src sh
-  $ pic foo.pic | groff | ps2es | gs -dBATCH -sOutputFile ...
-  $ pic foo.pic | groff > hello.ps
+  $ pic foo.pic | groff -ms | ps2es | gs -dBATCH -sOutputFile ...
+  $ pic foo.pic | groff -ms > hello.ps
   $ pic -p foo.pic > hello.ps
   $ dpic -v foo.pic > foo.svg
 #+end_src
+
+- -ms on groff will use defaults of .PS/.PE, will center drawing
 
 |----+--------------|
 | -t | LaTeX output |
@@ -52,88 +55,204 @@
 
 * language
 
-#+begin_src nroff
-.PS <SCALE?>
-box "A"
-line
-box "B"
-.PE
+#+begin_src pikchr :file example.svg :result graphics
+  Eat:   box     "eat" ; arrow
+         ellipse "work"; arrow
+  Sleep: box     "sleep"
+         arc <- from Eat.s to Sleep.s rad 1
 #+end_src
 
-- by default draws from left to right
-- optional ";" to end statements(?
-- one line statements(?, can be separated into multiple lines with "\"
-- default unit is inches
-  - scale=2.54 - changes it to centimeters
+#+ATTR_ORG: :width 400
+#+ATTR_HTML: :width 200
+#+RESULTS:
+[[file:example.svg]]
 
-- LABEL: circle "A"
+- by default draws from left to right
+  - changes when you put a direction (up/down/left/right)
+  - from then on it becomes the new one
+  - with the entrypoint of the new one attached to the exitpoint of the last
+- use {} to preserve/restore *position* and *direction* after the block is finished
+- optional ";" to end statements
+- use "#" to start comments
+- one line statements, can be separated into multiple lines with "\"
+- coordinates: x=rightward y=upward
+- first object put at 0,0
+- default unit is inches
+  - use ~scale=2.54~ to change it to centimeters
+
+** blocks
+
+- use [] to defines a ~block~, which can be later threated as a single object
+  - defines a "bounding box" for its content
+  - referenced as just "[]"
+  - labels & variables are local to it
+  - internal labels can be used
+    - in "with" positioning outside
+    - or directly "[].A"
+
+** roff commands
+|------+-----------+---------------------------------------------------------|
+| .PS  | [W] [H]   | start of pic, with optional width and height            |
+| .PS  | <file.pic |                                                         |
+| .PE  |           | end of pic                                              |
+| .ft  | [RBIP]    | switch font shape, P=previous                           |
+| .ps  | , N, +N   | change font size, thickness, previous, new, or relative |
+| .fam | [TH]      | changes font family T=Times, H=Helvetica                |
+|------+-----------+---------------------------------------------------------|
+** labels
+
+- a label start with uppercase
+- objects can be labeled
+  - refers the center of the object
+- a position can be labeled
+  #+begin_src pikchr
+    A: ( 0, sqrt(3/4) )
+  #+end_src
+- can be reset
+  #+begin_src pikchr
+    Box1: Box1 + 1,1
+  #+end_src
 
 ** control flow
 
-#+begin_src
-if i == 0 then { }
-for i = 0 to 5 do { }
+#+begin_src nroff
+ if i == 0 then { }
+ if i == 0 then { } else { }
+for i=0 to 5 do { }
+for i=0 to 5 by 0.1 do { }
 #+end_src
 
 ** macro
 
-#+begin_src
-  define treecolor % color "green" %
-  define smiley {
-    r0 = $3
-    r1 = 0.4*r0
-    r2 = 0.04*r0
-    ...
-  }
-  pi2 = 2*atan2( 0, -1 )
-  for x=0.1 to 1.3 by 0.08 do {
-    smiley( 1.5*x*cos(x*pi2), 1.1*x*sin(x*pi2), 0.23*x )
-  }
+- non existing arguments are replaced by nulls strings
+- remove a definition with ~undef~
+- arguments inside macro replaced with $1,$2,...
+
+#+begin_src pikchr
+define treecolor % color "green" %
+define smiley {
+  r0 = $3
+  r1 = 0.4*r0
+  r2 = 0.04*r0
+  ...
+}
+pi2 = 2*atan2( 0, -1 )
+for x=0.1 to 1.3 by 0.08 do {
+  smiley( 1.5*x*cos(x*pi2), 1.1*x*sin(x*pi2), 0.23*x )
+}
 #+end_src
 
-** directives
+** commands
+*** primitive objects
+|---------+------------+-------------------------------|
+|   <c>   |    <c>     |                               |
+|  "foo"  |            | troff text                    |
+|   box   | 0.75 x 0.5 |                               |
+| circle  |   0.25 r   |                               |
+| ellipse | 0.75 x 0.5 |                               |
+|  arrow  |    1/2"    | a/t/b - synonym for "line ->" |
+|  line   |    1/2"    | a/t/b                         |
+|   arc   |   1/2"R    | 90° anti-clockwise            |
+| arc cw  |   1/2"R    | 90° clockwise                 |
+| spline  |            |                               |
+|  move   |    1/2"    | moves in current direction    |
+|---------+------------+-------------------------------|
+a/t/b = above top below, where the given strings will be put
+*** attributes - cosmetic
+|----------+-----+---------------------------------------|
+|   <c>    | <c> |                                       |
+|  above   |  -  | for text, can stack                   |
+|  below   |  -  | for text, can stack                   |
+| [rl]just |  -  | for text, can stack                   |
+| h[eigh]t |  1  |                                       |
+| wid[th]  |  1  |                                       |
+|   same   |  -  | same dimensions as previous one       |
+|   rad    |  1  | box with rounded corners              |
+|  dotted  | 0/1 | for line/box                          |
+|  dashed  | 0/1 | for line/box                          |
+|   <->    |  -  | double arrow for line/arc             |
+|    ->    |  -  | sinle arrow for line/arc              |
+|   fill   |  1  | gray intensity for box/circle/ellipse |
+|  color   |  1  |                                       |
+|  invis   |  -  | invisible                             |
+|----------+-----+---------------------------------------|
+*** attributes - others
 
+- sh {CMD} - runs arbitrary shell command, supports redirections
+- copy "file.txt" [thru MACRO] - includes pic file, ignores .PS/.PE lines
+  - eg: a file with lines like "A: (0.2,0.5)"
+  - *thru MACRO* makes it runs given macro with each line field as argument
+- copy "file.txt" thru { ... }
+  - you can give a literal macro
+- copy thru MACRO
+  - runs it with all the following lines (me: a "here strings" of sorts)
+
+- up 0.1 right 0.2 == + 0.2,0.1
+
+- top/bottom/left/right - same as
+  north/south/west/east
+
+- reset - reset all variables or given ones
 - "\D'P 1 1 1 -1'" - drawing a filled (P) triangle with troff
-- .start/.center/.end (line/arrow/spline)
-- ljust
-- at (NUM,NUM) - define where to put the center of shape
+- chop [N] [chop N] - chops line by circlerad at each end
 
-- move
-  - to
-  - up/down/left/right [then|NUMBER]
+- a position is:
+  - (XNUM,YNUM)
+  - Here - the current position
+  - [1st|2nd] [last] SHAPE
+  - LABEL1
+  - f<p1,p2> - interpolation by "f" between "p1" and "p2"
+    - f of the way between p1 and p2
+
+- object attributes/modifiers:
+  - .[ns][we] - objects corners / compass points
+  - .start/.center/.end (line/arrow/spline)
+  - .wid/.ht
+  - .rad
+  - .[x|y]
+  - + (N,N)
 
 - SHAPE
-  - with .[ns][we] at Here
+  - [udlr] N [ [udlr] N ]
+    - then [udlr] N [ [udlr] N ] - define a path
+  - [with .[ns][we]] at *POSITION* - define where to put the center of shape
+  - move
+    - NUMBER - inches in the current default direction
+    - same - uses the same argument of last "move"
+    - to *POSITION*
+    - up/down/left/right [then|NUMBER]
+  - from/to/by
+    - *POSITION*
+    - [udlr] [1st|2nd] [last] [shape]
+      - then from/to/by... - define a path
 
-- LINE/ARROW
-  - from/to
-    - LABEL
-    - [udlr] [1st|[2nd] [last]] [shape]
-      - .[ns][we]
-        - .[x|y]
-
-** elements / shape
-
-"foo"
-box/1
-circle/1
-ellipse/1
-arrow/2
-line/2
-arc/0
-spline???
-
-** decorations
-
-- wid[th]/1 h[eigh]t/1
-- rad/1 - rounded
-- dotted/0
-- dashed/1
-- <->   - double arrow
--  ->
-- fill/1 - gray intensity to fill
-- color/1
-
+** stdlib functions
+|------------+------------+---------------+------------|
+| sin(E)     | in radians | cos(E)        | in radians |
+| atan2(y,x) | in radians | sqrt(E)       | -          |
+| log(E)     | base 10    | exp(E)        | base 10    |
+| max(E,E)   | -          | min(E,E)      | -          |
+| int(E)     | -          | sprintf(F,..) | F=format   |
+|------------+------------+---------------+------------|
+- E=expr
+** default variables sizes
+|------------+------+------------+------|
+|    <c>     |      |    <c>     |      |
+|   boxwid   | 0.75 |   boxht    |  0.5 |
+|  linewid   | 0.75 |   lineht   |  0.5 |
+| circlerad  | 0.25 |   arcrad   | 0.25 |
+| ellipsewid | 0.75 | ellispseht |  0.5 |
+|  movewid   | 0.75 |   moveht   |  0.5 |
+|  textwid   |    0 |   textht   |    0 |
+|  arrowwid  | 0.05 |  arrowht   |  0.1 |
+|  dashwid   | 0.05 | arrowhead  |    2 |
+|  maxpswid  |   11 |  maxpsht   |  8.5 |
+|  fillval   |  0.3 |   scale    |    1 |
+|------------+------+------------+------|
+- maxps*, for max picture dimensions
+- arrowhead, changes the head style
+- use *fillval* command, smaller values are darker
+- use *reset* command, to reset all variables values, or given ones
 * codebases
 
 - http://wiki.christophchamp.com/index.php?title=Pic_language
@@ -145,22 +264,41 @@ spline???
 * snippets
 
 - tree drawing macro
-  #+begin_src
+  #+begin_src pikchr
 define tree %
     line down 0.25i
     { line right 0.15i; move right 0.2i; "$1" ljust }
 %
   #+end_src
+
 * articles
 
 - [ ] ?? [[http://www.kohala.com/start/troff/pic2html.html][Turning pic into HTML]]
-- [X] 17 https://thelimberlambda.com/2017/08/03/drawing-with-pic/
-- [X] 19 http://www.micronarrativ.org/2019/2019-compile_pictures_with_gnu_pic.html
+- [ ] 87 [[https://www.oreilly.com/library/view/unix-text-processing/9780810462915/Chapter10.html#ch10][Drawing Pictures]]
+- [X] 17 [[https://thelimberlambda.com/2017/08/03/drawing-with-pic/][Drawing with Pic]]
+- [X] 19 [[http://www.micronarrativ.org/2019/2019-compile_pictures_with_gnu_pic.html][Compile pictures with gnu pic]]
   - use-case: document something for posterity, cleaner than a handrawn sketch
-- [ ] 22 https://janert.me/guides/praise-of-pic/
+- [X] 22 [[https://janert.me/guides/praise-of-pic/][In Praise of Pic (and pikchr)]]
   - originally posted in [[http://web.archive.org/web/20091004130903/http://onlamp.com:80/pub/a/onlamp/2007/06/21/in-praise-of-pic.html?page=1][2007]]
+- [ ] 22 [[https://zellyn.com/2022/01/gopikchr-a-yakshave/][gopikchr: a yakshave]]
+- [ ] 22 [[https://remcycles.net/blog/crc_diagrams.html][Generating CRC Diagrams with Pikchr and Bash]]
+- [ ] 23 [[https://remcycles.net/blog/pikchr_plots.html][Phasor Diagrams and Z-Plane Plots with Pikchr]]
 
 * videos
+
 - [X] 20 [[https://www.youtube.com/watch?v=xMijdTWSUEE][Christmas Cards The Unix Way - with pic and troff]] by Gavin Freeborn
 - [X] 20 [[https://www.youtube.com/watch?v=oG2A_1vC6aM][drawing pictures with pic and troff]] by Gavin Freeborn
 - [X] 22 [[https://www.youtube.com/watch?v=RDpuOFkpiXM][Pictures on the Terminal with pic!]] by Bryce Vandegrift
+
+* tools
+
+- ps2eps - converts postscript to encapsulated postscript that only contains given shape
+- eps[to]pdf - converts eps to pdf
+- pic2svg https://github.com/klorenz/pic2svg
+
+** pikchr
+
+- https://pikchr.org/home/doc/trunk/doc/differences.md
+- drop support for loops
+- drop support for conditionals
+- emacs pikchr integration https://github.com/kljohann/pikchr-mode

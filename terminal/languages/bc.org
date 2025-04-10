@@ -120,14 +120,12 @@
 - undefined variables return 0
 - lowercase (uppercase used for bases >10)
 
-|-------+--------------------------------|
-|  <c>  |                                |
-| last  | last command output            |
-|   .   | shorthand for "last"           |
-| scale | number of decimals (default 0) |
-| obase | "output base" (default 10)     |
-| ibase | "input base"                   |
-|-------+--------------------------------|
+|-------+---------------------+-------+----------------------|
+|  <c>  |                     |  <c>  |                      |
+| last  | last command output |   .   | shorthand for "last" |
+| obase | output base         | ibase | input base           |
+| scale | decimals, default=0 |       |                      |
+|-------+---------------------+-------+----------------------|
 
 ** control flow
 

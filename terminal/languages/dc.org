@@ -115,33 +115,27 @@
 |---+-----+---+-----------------------|
 *** parameters
 ...that control its operations
-|---+---+---+------------------------|
-|   |   |   |          <c>           |
-| 1 | i |   |    set input radix     |
-| 1 | o |   |    set output radix    |
-| 1 | k |   | set decimal precision  |
-|   | I | 1 |    push input radix    |
-|   | O | 1 |   push output radix    |
-|   | K | 1 | push decimal precision |
-|---+---+---+------------------------|
+|---+-----+---+-----------------------+---+-----+---+------------------------|
+|   | <c> |   |          <c>          |   | <c> |   |          <c>           |
+| 1 |  i  |   |    set input radix    |   |  I  | 1 |    push input radix    |
+| 1 |  o  |   |   set output radix    |   |  O  | 1 |   push output radix    |
+| 1 |  k  |   | set decimal precision |   |  K  | 1 | push decimal precision |
+|---+-----+---+-----------------------+---+-----+---+------------------------|
 *** arithmetic
-|---+---+---+-----------------------------|
-|   |   |   |             <c>             |
-| 2 | + | 1 |          fst + snd          |
-| 2 | - | 1 |          fst - snd          |
-| 2 | * | 1 |          fst * snd          |
-| 2 | / | 1 |          fst / snd          |
-| 2 | % | 1 |       remainder of /        |
-| 2 | ~ | 2 | quotient AND remainder of / |
-| 2 | ^ | 1 |          fst ^ snd          |
-| 3 | ¦ | 1 |     mod(fst, snd ^ trd)     |
-| 1 | v | 1 |            sqrt             |
-|---+---+---+-----------------------------|
+|---+-----+---+----------------+---+-----+---+-------------------|
+|   | <c> |   |      <c>       |   | <c> |   |        <c>        |
+| 2 |  +  | 1 |   fst + snd    | 2 |  -  | 1 |     fst - snd     |
+| 2 |  *  | 1 |   fst * snd    | 2 |  /  | 1 |     fst / snd     |
+| 2 |  %  | 1 | remainder of / | 2 |  ~  | 2 |  divmod(fst,snd)  |
+| 2 |  ^  | 1 |   fst ^ snd    | 3 |  ¦  | 1 | mod(fst, snd^trd) |
+| 1 |  v  | 1 |      sqrt      |   |     |   |                   |
+|---+-----+---+----------------+---+-----+---+-------------------|
 * snippets
 
 #+CAPTION: Morris and Cherry on 1974
 [[./morrischerry74-bright.png]]
 
+- https://literateprograms.org/category_programming_language_dc.html
 - https://rosettacode.org/wiki/Category:Dc
 - [[https://github.com/brunk23/dc-programs][brunk23/dc-programs]]
 - sum of first 36 integers

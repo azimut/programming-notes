@@ -11,6 +11,12 @@
 - case sensitive search, M-c after input search
   https://stackoverflow.com/questions/11602505/how-can-i-do-a-case-sensitive-search-in-emacs
 
+- babel
+  - shell https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-shell.html#org152b7a3
+
+- exporters
+  - groff https://orgmode.org/worg/exporters/ox-groff.html
+
 * configs
 - full https://eshelyaron.com/esy.html
 - full https://github.com/higham/dot-emacs/blob/3bc53cce471ec9f6b4b08fb5b32ad19761468d42/.emacs#L3123

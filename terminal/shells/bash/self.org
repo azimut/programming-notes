@@ -62,6 +62,13 @@
 
 - << EOF here document
   <<- EOF here document, ignore leading tabs
+  #+begin_src sh
+    $ eqn -Tpdf - <<eof | groff -me -T pdf > eqn.pdf
+    .EQ
+    sum from i=0 to infinity x sub i = pi over 2
+    .EN
+    eof
+  #+end_src
 
 - https://zwischenzugs.com/2018/10/12/eleven-bash-tips-you-might-want-to-know/
   https://zwischenzugs.com/2020/05/09/some-relatively-obscure-bash-tips/
