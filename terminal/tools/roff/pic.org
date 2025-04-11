@@ -79,6 +79,7 @@
 - first object put at 0,0
 - default unit is inches
   - use ~scale=2.54~ to change it to centimeters
+  - use ~scale=25.5~ to change it to millimiters
 
 ** blocks
 
@@ -101,8 +102,8 @@
 |------+-----------+---------------------------------------------------------|
 ** labels
 
-- a label start with uppercase
-- objects can be labeled
+- start with upper-case
+- a object can be labeled
   - refers the center of the object
 - a position can be labeled
   #+begin_src pikchr
@@ -120,6 +121,7 @@
  if i == 0 then { } else { }
 for i=0 to 5 do { }
 for i=0 to 5 by 0.1 do { }
+for i=0 to 5 by *0.1 do { }
 #+end_src
 
 ** macro
@@ -143,19 +145,19 @@ for x=0.1 to 1.3 by 0.08 do {
 #+end_src
 
 ** commands
-*** primitive objects
+*** primitive objects - planar & linear
 |---------+------------+-------------------------------|
 |   <c>   |    <c>     |                               |
-|  "foo"  |            | troff text                    |
 |   box   | 0.75 x 0.5 |                               |
 | circle  |   0.25 r   |                               |
 | ellipse | 0.75 x 0.5 |                               |
-|  arrow  |    1/2"    | a/t/b - synonym for "line ->" |
 |  line   |    1/2"    | a/t/b                         |
+|  arrow  |    1/2"    | a/t/b - synonym for "line ->" |
+| spline  |            |                               |
 |   arc   |   1/2"R    | 90° anti-clockwise            |
 | arc cw  |   1/2"R    | 90° clockwise                 |
-| spline  |            |                               |
 |  move   |    1/2"    | moves in current direction    |
+|  "foo"  |            | troff text                    |
 |---------+------------+-------------------------------|
 a/t/b = above top below, where the given strings will be put
 *** attributes - cosmetic
@@ -175,6 +177,8 @@ a/t/b = above top below, where the given strings will be put
 |   fill   |  1  | gray intensity for box/circle/ellipse |
 |  color   |  1  |                                       |
 |  invis   |  -  | invisible                             |
+|  shaded  |  1  | DPIC, take a rgbstring()              |
+| outlined |  1  | DPIC, take a rgbstring()              |
 |----------+-----+---------------------------------------|
 *** attributes - others
 
@@ -194,37 +198,40 @@ a/t/b = above top below, where the given strings will be put
 
 - reset - reset all variables or given ones
 - "\D'P 1 1 1 -1'" - drawing a filled (P) triangle with troff
-- chop [N] [chop N] - chops line by circlerad at each end
 
 - a position is:
   - (XNUM,YNUM)
+  - (POS1,POS2) == (POS1.x,POS2.y)
   - Here - the current position
   - [1st|2nd] [last] SHAPE
-  - LABEL1
+  - LABEL1 - if object, it refers to .center
   - f<p1,p2> - interpolation by "f" between "p1" and "p2"
-    - f of the way between p1 and p2
+    - f [of the way] between p1 and p2
 
 - object attributes/modifiers:
   - .[ns][we] - objects corners / compass points
   - .start/.center/.end (line/arrow/spline)
-  - .wid/.ht
-  - .rad
+  - .wid[th] / .h[eigh]t
+  - .rad[ius] / .diameter
   - .[x|y]
   - + (N,N)
 
-- SHAPE
-  - [udlr] N [ [udlr] N ]
-    - then [udlr] N [ [udlr] N ] - define a path
+- LINEAR
+  - [udlr] DIST [ [udlr] DIST ] [then...]
+  - from *POSITION* [then...] to *POSITION* [chop [N] [chop N]]
+    - "[then]" defines segments of a path
+      - [udlr] DIST [ [udlr] DIST ] [then...]
+    - chop - chops line by radius around object
+
+- PLANAR & LINEAR
   - [with .[ns][we]] at *POSITION* - define where to put the center of shape
   - move
     - NUMBER - inches in the current default direction
     - same - uses the same argument of last "move"
     - to *POSITION*
-    - up/down/left/right [then|NUMBER]
-  - from/to/by
-    - *POSITION*
-    - [udlr] [1st|2nd] [last] [shape]
-      - then from/to/by... - define a path
+    - [udlr] DIST [ [udlr] DIST ] [then...]
+      - then [udlr] N [ [udlr] N ] - define a path
+  - +by *POSITION* - attachment position+ UNDOCUMENTED
 
 ** stdlib functions
 |------------+------------+---------------+------------|
@@ -274,7 +281,8 @@ define tree %
 * articles
 
 - [ ] ?? [[http://www.kohala.com/start/troff/pic2html.html][Turning pic into HTML]]
-- [ ] 87 [[https://www.oreilly.com/library/view/unix-text-processing/9780810462915/Chapter10.html#ch10][Drawing Pictures]]
+- [ ] 86 [[https://www.cs.toronto.edu/~chechik/courses18/csc2125/paper13.pdf][Little Languages]] by Jon Bentley
+- [ ] 87 [[https://www.oreilly.com/library/view/unix-text-processing/9780810462915/Chapter10.html#ch10][Drawing Pictures]] by Dale Dougherty
 - [X] 17 [[https://thelimberlambda.com/2017/08/03/drawing-with-pic/][Drawing with Pic]]
 - [X] 19 [[http://www.micronarrativ.org/2019/2019-compile_pictures_with_gnu_pic.html][Compile pictures with gnu pic]]
   - use-case: document something for posterity, cleaner than a handrawn sketch
@@ -302,3 +310,9 @@ define tree %
 - drop support for loops
 - drop support for conditionals
 - emacs pikchr integration https://github.com/kljohann/pikchr-mode
+
+** dpic
+
+#+CAPTION: dpic output formats
+#+ATTR_ORG: :width 500
+[[./pycirkuit.pdf.13.png]]

@@ -7,6 +7,8 @@
   - [X] 17 video [[https://www.youtube.com/watch?v=Wkh8zAumNW8][34C3 - Designing PCBs with code]]
   - [X] 18 video [[https://www.youtube.com/watch?v=awUYFO3Pwqk][FOSDEM - Designing PCBs with code Designing circuits with code instead of CAD]]
 - m4+dpic electric circuits https://zyedidia.github.io/other/circuit_macros.pdf
+  - source https://gitlab.com/aplevich/circuit_macros
+  - repo https://www.ctan.org/pkg/circuit-macros
   - [X] 07 https://amespinosa.wordpress.com/2007/06/16/collated-schematic-diagrams/
     - more output only examples
     - https://www.flickr.com/photos/yecartes/tags/electronics
@@ -37,11 +39,9 @@
         \box\graph
       #+end_src
   - [ ] http://web.archive.org/web/20090726114837/http://staff.ee.sun.ac.za:80/pjrandewijk/wiki/index.php/M4_Circuit_Macros_-_Getting_Started
-  - [ ] https://www.ctan.org/pkg/circuit-macros
-  - [ ] https://gitlab.com/aplevich/circuit_macros
-  - [ ] https://yingtongdiddleipo.eie.wits.ac.za/cct.html
-  - [ ] https://circuit4us.medium.com/create-beautiful-circuit-diagram-with-circuit-macro-package-f6286f02710f
-  - [ ] https://www.fabrice-salvaire.fr/en/blog/electronic-circuit-diagrams/
+  - [ ] 11 [[https://yingtongdiddleipo.eie.wits.ac.za/cct.html][Using Circuit Macros]]
+  - [ ] 18 [[https://circuit4us.medium.com/create-beautiful-circuit-diagram-with-circuit-macro-package-f6286f02710f][Create beautiful circuit diagram with Circuit_macro package]]
+  - [ ] 14 [[https://www.fabrice-salvaire.fr/en/blog/electronic-circuit-diagrams/][Electronic Circuit Diagrams]]
   - [ ] https://www.ntg.nl/maps/31/07.pdf
   - [ ] https://m4cmpy.wordpress.com/2020/02/23/getting-started-with-m4-circuit-macros/
   - [ ] https://m4cmpy.wordpress.com/2020/02/29/getting-started-with-m4-circuit-macros-part-ii/
@@ -49,6 +49,7 @@
   - [ ] https://m4cmpy.wordpress.com/2020/03/07/getting-started-with-m4-circuit-macros-part-iv/
   - [ ] 18 [[https://www.youtube.com/watch?v=pFRIBvUJHS4][Drawing Circuit Diagrams with Circuits Macros]]
   - [ ] 20 [[https://www.youtube.com/watch?v=S163wqMRNyg][Quality diagrams with PyCirkuit]] [[https://archive.fosdem.org/2020/schedule/event/pycirkuit/attachments/slides/4182/export/events/attachments/pycirkuit/slides/4182/Slides.pdf][slides]]
+    - it has non-interactive batch mode
 
 - [ ] 17 [[https://www.youtube.com/watch?v=9aXb3OYW9kM][Integrated Spice Simulation with Kicad]]
 - [ ] 24 [[https://www.youtube.com/watch?v=hnkTLkVplBI][ngspice circuit simulator stand alone and embedded into kicad]]
