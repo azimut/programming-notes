@@ -1,5 +1,7 @@
 - home https://www.gnu.org/software/autoconf/
 - docs https://www.gnu.org/software/m4/manual/m4.html
+- manual 77 https://wolfram.schneider.org/bsd/7thEdManVol2/m4/m4.pdf
+- manual 21 https://www.gnu.org/software/m4/manual/m4.pdf
 
 - wiki https://en.wikipedia.org/wiki/M4_(computer_language)
   - Authors: Brian Kernighan, Dennis Ritchie
@@ -9,7 +11,7 @@
   - mostly used by *autoconf* (part of autotools)
     - in configure.ac
     - Author: David Makenzie
-    - 1991-
+    - 1991
 
 - codebases
   - css preprocessor https://github.com/djanowski/hasp
@@ -17,6 +19,9 @@
   - z80 forth https://github.com/DW0RKiN/M4_FORTH
   - https://github.com/nevali/m4
 
+* language
+- 24 commands
+- turing complete
 * the "xz backdoor"
 
   - https://git.savannah.gnu.org/gitweb/?p=gnulib.git;a=blob;f=m4/build-to-host.m4
@@ -49,6 +54,11 @@
 - 20 https://chrisman.github.io/9.html
 - 08 https://mbreen.com/m4.html
 - 94 [[https://www.cs.stir.ac.uk/~kjt/research/pdf/expl-m4.pdf][Exploiting the m4 language]]
+- 89 https://web.mit.edu/gnu/doc/html/m4_1.html
+- 99 http://www.linuxfocus.org/English/September1999/article111.html
+- 09 https://gopherproxy.meulie.net/box.matto.nl/0/m4.txt
+- 94 https://www.nesssoftware.com/home/mwc/doc/coherent/manual/pdf/m4.pdf
+  - from "COHERENT manual"
 
 * videos
 

@@ -61,65 +61,68 @@
 
 ** registers (256)
 
+- each register has his own stack
 - valid names: a A 0 . " ...
   - one char length
   - you CAN use a register name that overlaps with a command
   - and the command will stil work
-- each register has his own stack
 
 ** commands
 #+CAPTION: T=take P=put
-|---+----+---+-----------------------------------------------|
-| T |    | P |                                               |
-|---+----+---+-----------------------------------------------|
-|   | f  |   | print full stack                              |
-|   | p  |   | print top of stack, with \n                   |
-| 1 | n  |   | print top of stack, no \n                     |
-| 1 | P  | 1 | print top of stack, no \n, as char if number  |
-|---+----+---+-----------------------------------------------|
-|   | z  | 1 | number of element in stack                    |
-| * | c  |   | clear stack                                   |
-| 1 | d  | 2 | dup top of stack                              |
-| 2 | r  | 2 | swap top 2 values                             |
-| 1 | R  |   | rotates the top Nth items once                |
-|---+----+---+-----------------------------------------------|
-| 1 | sR |   | stores in register R                          |
-| 1 | SR |   | stores in register R, nuke prev content on R  |
-|   | lR | 1 | load from register R, 0 if empty              |
-|   | LR | 1 | " and pops it from register R                 |
-|---+----+---+-----------------------------------------------|
-| 1 | a  | 1 | push 1st char/byte                            |
-|   | ?  | 1 | ask user input, and execute it as a macro     |
-| 1 | Z  |   | push number of decimal digits                 |
-| 1 | X  |   | push number of fraction digits                |
-|---+----+---+-----------------------------------------------|
-|   | !  |   | system command                                |
-|   | #  |   | comment                                       |
-| 2 | :r |   | store *fst* in r =array=, at idx *snd*        |
-| 1 | ;r | 1 | get from r =array=, element at *top* position |
-|---+----+---+-----------------------------------------------|
+|---+----+---+-------------------------------------------|
+| T |    | P |                                           |
+|---+----+---+-------------------------------------------|
+| 1 | a  | 1 | push 1st char/byte in fst                 |
+| 1 | Z  | 1 | push number of decimal digits in fst      |
+| 1 | X  | 1 | push number of fraction digits in fst     |
+|---+----+---+-------------------------------------------|
+| - | !  | - | system command                            |
+| - | #  | - | comment                                   |
+| - | ?  | 1 | ask user input, and execute it as a macro |
+|---+----+---+-------------------------------------------|
+| 1 | sR | - | R.push(fst)                               |
+| - | LR | 1 | R.pop()                                   |
+| 1 | SR | - | R = [fst]                                 |
+| - | lR | 1 | R[R.length] ¦¦ 0                          |
+|---+----+---+-------------------------------------------|
+| 2 | :A | - | A[snd] = fst                              |
+| 1 | ;A | 1 | A[fst]                                    |
+|---+----+---+-------------------------------------------|
+*** stack manipulation
+|---+---+---+----------------------------------------------|
+| T |   | P | description                                  |
+|---+---+---+----------------------------------------------|
+|   | f |   | print full stack                             |
+|   | p |   | print top of stack, with \n                  |
+| 1 | n |   | print top of stack, no \n                    |
+| 1 | P | 1 | print top of stack, no \n, as char if number |
+|---+---+---+----------------------------------------------|
+|   | z | 1 | stack size                                   |
+| * | c |   | clear all stack                              |
+| 1 | d | 2 | dup                                          |
+| 2 | r | 2 | swap                                         |
+| 1 | R |   | rotates the top Nth items once               |
+|---+---+---+----------------------------------------------|
 *** control flow
 |---+-----+---+-----------------------|
 |   | <r> |   |          <c>          |
-| T |     | P |                       |
-|---+-----+---+-----------------------|
-| 1 |   x |   |  executes as a macro  |
-| 2 |  >R |   |       x R if >        |
-| 2 | !>R |   |       x R if <=       |
-| 2 |  <R |   |       x R if <        |
-| 2 | !<R |   |       x R if >=       |
-| 2 |  =R |   |       x R if =        |
-| 2 | !=R |   |       x R if !=       |
-|   |   q |   |  exits 2 level macro  |
-| 1 |   Q |   | exits Nth level macro |
+| 1 |   x | - |  executes as a macro  |
+| 2 |  >R | - |       x R if >        |
+| 2 | !>R | - |       x R if <=       |
+| 2 |  <R | - |       x R if <        |
+| 2 | !<R | - |       x R if >=       |
+| 2 |  =R | - |       x R if =        |
+| 2 | !=R | - |       x R if !=       |
+| - |   q | - |  exits 2 level macro  |
+| 1 |   Q | - | exits Nth level macro |
 |---+-----+---+-----------------------|
 *** parameters
 ...that control its operations
 |---+-----+---+-----------------------+---+-----+---+------------------------|
 |   | <c> |   |          <c>          |   | <c> |   |          <c>           |
-| 1 |  i  |   |    set input radix    |   |  I  | 1 |    push input radix    |
-| 1 |  o  |   |   set output radix    |   |  O  | 1 |   push output radix    |
-| 1 |  k  |   | set decimal precision |   |  K  | 1 | push decimal precision |
+| 1 |  i  | - |    set input radix    | - |  I  | 1 |    push input radix    |
+| 1 |  o  | - |   set output radix    | - |  O  | 1 |   push output radix    |
+| 1 |  k  | - | set decimal precision | - |  K  | 1 | push decimal precision |
 |---+-----+---+-----------------------+---+-----+---+------------------------|
 *** arithmetic
 |---+-----+---+----------------+---+-----+---+-------------------|

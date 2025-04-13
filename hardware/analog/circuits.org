@@ -7,8 +7,14 @@
   - [X] 17 video [[https://www.youtube.com/watch?v=Wkh8zAumNW8][34C3 - Designing PCBs with code]]
   - [X] 18 video [[https://www.youtube.com/watch?v=awUYFO3Pwqk][FOSDEM - Designing PCBs with code Designing circuits with code instead of CAD]]
 - m4+dpic electric circuits https://zyedidia.github.io/other/circuit_macros.pdf
+  - tool https://github.com/KDE/cirkuit
   - source https://gitlab.com/aplevich/circuit_macros
   - repo https://www.ctan.org/pkg/circuit-macros
+  - examples
+    - https://github.com/PySpice-org/PySpice/tree/master/examples
+    - https://github.com/orestesmas/pycirkuit/tree/master/pycirkuit/examples
+    - https://github.com/eudean/analog-circuits-labs
+    - ? https://blogs.upm.es/oscarperpinan/libros/esf/
   - [X] 07 https://amespinosa.wordpress.com/2007/06/16/collated-schematic-diagrams/
     - more output only examples
     - https://www.flickr.com/photos/yecartes/tags/electronics
@@ -141,6 +147,7 @@
 
 - Book: "The designers guide to SPICE & Spectre" by Ken Kundert
 - datasets https://github.com/symbench/spice-datasets
+- https://github.com/PySpice-org/PySpice
 
 *** course
 
@@ -210,6 +217,7 @@
 - 21 [[https://www.youtube.com/watch?v=TQ8cJ9-GyGo][SPICE – 50 Years and One Billion Transistors Later]] by Prof. Vladimirescu
 - 23 [[https://www.youtube.com/watch?v=u3xkLTgoQec][LTspice is dead but QSPICE is born]] by Kiss Analog
 - 23 [[https://www.youtube.com/watch?v=3J-WtsmkgOc][how to generate SPICE netlist | ltspice]]
+- 24 [[https://www.youtube.com/playlist?list=PLUDjAvCu6yf5ipkNTheSCAK9FHgyp0cY6][Learning SPICE]]
 
 *** articles
 

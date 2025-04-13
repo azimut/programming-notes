@@ -1,3 +1,6 @@
+#+TITLE: tbl
+#+DATE: <2025-04-10 jue>
+
 * articles
 
 - [ ] 87 [[https://www.oreilly.com/library/view/unix-text-processing/9780810462915/Chapter08.html#ch8][Formatting with tbl]]

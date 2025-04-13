@@ -228,6 +228,7 @@ $ cat /usr/local/bin/solve
 - 14 [[https://unixetc.co.uk/2014/01/19/bc-rounding-errors/][bc Rounding Errors]]
 - 14 [[https://www.johndcook.com/blog/2010/07/14/bc-math-library/][Three surprises with bc]]
 - 10 [[https://www.pixelbeat.org/programming/oss_bug_flow.html][Open source bug work flow]]
+- 94 https://www.nesssoftware.com/home/mwc/doc/coherent/manual/pdf/bc.pdf
 - ?? [[http://www.physics.smu.edu/coan/linux/bc.html][6. (Very) Brief intro to bc]]
 - ?? https://learnxinyminutes.com/bc/
 

@@ -1,9 +1,12 @@
 #+TITLE: roff
 #+DATE: <2025-01-22 mié>
 
+#+CAPTION: GNU roff's logo
+[[https://www.gnu.org/software/groff/gnu-head-groff.png]]
+
 - https://en.wikipedia.org/wiki/Roff_(software)
   - 1971
-  - Joe Ossanna, Ken Thompson
+  - Joe Ossanna(43), Ken Thompson(28)
   - typesetting *markup language*
   - Unix version of _runoff_ from Multics
     https://bxriver.net/obscure/runoff/
@@ -12,14 +15,12 @@
 
 - [[https://en.wikipedia.org/wiki/Nroff][nroff]] for terminals
 - [[https://en.wikipedia.org/wiki/Troff][troff]] for typesetting
-
-#+CAPTION: GNU roff's logo
-[[https://www.gnu.org/software/groff/gnu-head-groff.png]]
-
+- heirloom doctools [[https://n-t-roff.github.io/heirloom/doctools.html][home]] [[https://github.com/n-t-roff/heirloom-doctools][source]]
 - [[https://en.wikipedia.org/wiki/Groff_(software)][groff]] aka gnu ~troff~
   - home https://www.gnu.org/software/groff/
   - includes: [[https://en.wikipedia.org/wiki/Eqn_(software)][eqn]] (formats equations), tbl, [[https://en.wikipedia.org/wiki/PIC_(markup_language)][pic]] (for diagrams), seolim
-  - manual https://www.gnu.org/software/groff/manual/
+  - document https://www.gnu.org/software/groff/manual/
+  - man https://linux.die.net/man/7/groff
 
 * cli
 
@@ -30,11 +31,12 @@
   $ eqn eqn.ms -Tpdf | groff -ms -Tpdf > eqn.pdf
   $ nroff -man refill.man > refill.txt
   $ man 7 man # man macro language help
+  $ man groff_man
+  $ man groff_mdoc
 #+end_src
 
 * language
 
-- language ref https://linux.die.net/man/7/groff
 - line based
 - do NOT put blank text lines on the file
   - use control lines "." to space things around
@@ -73,6 +75,20 @@
 |-------+------------------------------|
 ** macros
 - https://www.fileformat.info/info/man-pages/macro.htm
+*** sets
+- Bell Labs: ms -> mm
+- Berkeley: me
+|--------+------------------------------------- |
+|        | for creating...                     |
+|--------+-------------------------------------|
+| man    | manual pages                        |
+| mdoc   | semantically-annotated manual pages |
+| ms     | books, reports, and technical docs  |
+| mm     | memorandums                         |
+| me     | research papers                     |
+| ?mv    | mountable transparencies            |
+| www    |                                     |
+|--------+-------------------------------------|
 *** new
 
 1) defining in macros.roff file
@@ -95,54 +111,84 @@ Here
 more
    #+end_src
 
+*** mom
+.HEADER_COLOR      darkred1
+.HEADER_RULE_COLOR blue1
+.FOOTER_RULE       off
 *** predefined
-|---------------+----+----+-----+------------------------------------------------------|
-|               | ms | me | man | description                                          |
-|---------------+----+----+-----+------------------------------------------------------|
-| .TL           |    |    |     | title                                                |
-| .AU           |    |    |     | author name                                          |
-| .AI           |    |    |     | author institution                                   |
-| .NH           |    |    |     | new section heading                                  |
-| .NH N         |    |    |     | new section with N depth, starts at 1 by default     |
-| .IP [s] [d]   |    |    | x   | indented list                                        |
-|               |    |    |     | with optional bullet s (eg: \(bu )                   |
-|               |    |    |     | with optional number of indent n spaces              |
-|---------------+----+----+-----+------------------------------------------------------|
-| .TH t i d v m | -  | -  | x   | title, section number, date, version, manual         |
-| .SH s         |    |    | x   | new un-numbered major section heading                |
-| .SH s N       |    |    | x   |                                                      |
-| .SS s         |    |    | x   | new sub-section                                      |
-|---------------+----+----+-----+------------------------------------------------------|
-| .(c ¦ .)c     |    | x  |     | start/end center                                     |
-| .AB ¦ .AE     | x  |    |     | begin/end abstract                                   |
-| .EX ¦ .EE     |    |    | x   | begin/end example                                    |
-| .RS ¦ .RE     |    |    | x   | start/end record?, adds identation                   |
-| .SY ¦ .YS     |    |    | x   | start/end synopsis                                   |
-|---------------+----+----+-----+------------------------------------------------------|
-| .P            |    |    | x   | blank line, make paragraph                           |
-| .PP           |    | x  | x   | blank line, makes an indented paragraph              |
-| .TP           |    |    | x   | indent, tagged paragraph, used for man options       |
-| .TQ           |    |    | x   | tagged paragraph continuation                        |
-| .LP           |    | x  | x   | blank line, makes a leading paragram, with no indent |
-| .IP           |    |    | x   | indented paragraph                                   |
-|---------------+----+----+-----+------------------------------------------------------|
-| .R  s a b     |    |    | x   | regular text for s                                   |
-| .B  s a b     |    | x  | x   | bold s, with a after and b before                    |
-| .I  s a b     |    | x  | x   | italic s                                             |
-| .SM           |    |    | x   | small                                                |
-| .SB           |    |    | x   | small bold                                           |
-| .BR b s       |    |    | x   | no space between                                     |
-| .BI s a b     |    |    | x   | no space between                                     |
-| .IR i s       |    |    | x   | no space between                                     |
-| .IB i b       |    |    | x   | no space between                                     |
-| .RB s b       |    |    | x   | no space between                                     |
-| .RI s i       |    |    | x   | no space between                                     |
-| .UL s         |    |    |     | underline                                            |
-| .BX s         |    |    |     | boxed                                                |
-| .UR ¦ .UE     |    |    | x   | url start/end                                        |
-| .ME ¦ .MT     |    |    | x   | mail start/end                                       |
-|---------------+----+----+-----+------------------------------------------------------|
+|---------------+----+----+-----+--------------------------------------------------|
+|               | ms | me | man | description                                      |
+|---------------+----+----+-----+--------------------------------------------------|
+| .TL           |    |    |     | title                                            |
+| .AU           |    |    |     | author name                                      |
+| .AI           |    |    |     | author institution                               |
+| .NH           |    |    |     | new section heading                              |
+| .NH N         |    |    |     | new section with N depth, starts at 1 by default |
+| .IP [s] [d]   |    |    | x   | indented list                                    |
+|               |    |    |     | with optional bullet s (eg: \(bu )               |
+|               |    |    |     | with optional number of indent n spaces          |
+|---------------+----+----+-----+--------------------------------------------------|
+| .TH t i d v m | -  | -  | x   | title, section number, date, version, manual     |
+| .SH s         |    |    | x   | new un-numbered major section heading            |
+| .SH s N       |    |    | x   |                                                  |
+| .SS s         |    |    | x   | new sub-section                                  |
+|---------------+----+----+-----+--------------------------------------------------|
+| .(c ¦ .)c     |    | x  |     | start/end center                                 |
+| .AB ¦ .AE     | x  |    |     | begin/end abstract                               |
+| .EX ¦ .EE     |    |    | x   | begin/end example                                |
+| .RS ¦ .RE     |    |    | x   | start/end record?, adds identation               |
+| .SY ¦ .YS     |    |    | x   | start/end synopsis                               |
+|---------------+----+----+-----+--------------------------------------------------|
+*** predefined - paragraph spacing
+|-----+----+----+-----+--------------------------------------------------------|
+|     | ms | me | man | description                                            |
+|-----+----+----+-----+--------------------------------------------------------|
+| .IP |    |    | x   | _indented_ paragraph                                   |
+| .LP |    | x  | x   | blank line, makes a _leading_ paragram, with no indent |
+| .P  |    |    | x   | blank line, make paragraph                             |
+| .PP |    | x  | x   | blank line, makes an _indented_ paragraph              |
+| .TP |    |    | x   | _indent, tagged_ paragraph, used for man options       |
+| .TQ |    |    | x   | _tagged_ paragraph continuation                        |
+|-----+----+----+-----+--------------------------------------------------------|
+*** predefined - font style
+|-----------+----+----+-----+-----------------------------------|
+|           | ms | me | man | description                       |
+|-----------+----+----+-----+-----------------------------------|
+| .R  s a b |    |    | x   | regular text for s                |
+| .B  s a b |    | x  | x   | bold s, with a after and b before |
+| .I  s a b |    | x  | x   | italic s                          |
+| .SM       |    |    | x   | small                             |
+| .SB       |    |    | x   | small bold                        |
+| .BR b s   |    |    | x   | no space between                  |
+| .BI s a b |    |    | x   | no space between                  |
+| .IR i s   |    |    | x   | no space between                  |
+| .IB i b   |    |    | x   | no space between                  |
+| .RB s b   |    |    | x   | no space between                  |
+| .RI s i   |    |    | x   | no space between                  |
+| .UL s     |    |    |     | underline                         |
+| .BX s     |    |    |     | boxed                             |
+| .UR ¦ .UE |    |    | x   | url start/end                     |
+| .ME ¦ .MT |    |    | x   | mail start/end                    |
+|-----------+----+----+-----+-----------------------------------|
 * codebases
+
+- examples https://froude.eu/groff/
+- slides
+  - tutorial https://lists.gnu.org/archive/html/groff/2018-03/pdfSryOlhMjrh.pdf
+  - tutorial https://www.schaffter.ca/mom/momdoc/docprocessing.html#slides
+  - mom doc
+    - https://www.schaffter.ca/mom/momdoc/toc.html
+    - https://www.schaffter.ca/mom/momdoc/docelement.html
+    - https://www.gnu.org/software/groff/groff-and-mom.pdf
+    - https://www.eos-numerique.com/doc/groff-base/html/mom/headfootpage.html
+    - https://pipeline.lbl.gov/code/3rd_party/licenses.win/groff/1.19.2/html/mom/toc.html
+  - troff-slider http://repo.cat-v.org/troff-slider/files/
+  - example https://froude.eu/groff/documents/conference.html
+  - example https://froude.eu/groff/documents/decision-making.html
+  - mom example https://github.com/sschober/mato/tree/main/samples/slides
+  - gpresent
+    - home https://bob.diertens.org/corner/useful/gpresent/
+    - fork https://github.com/rhaberkorn/gpresent
 
 - http://www.kohala.com/start/troff/troff.html
 - http://froude.eu/groff/

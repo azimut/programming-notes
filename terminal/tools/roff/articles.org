@@ -1,3 +1,4 @@
+- 22 [[https://www.gijutsuya.jp/a4b51f03affa4dfab5d24bdcb3dfa442][Joshua Stutter Writing my PhD using groff]]
 - 24 [[https://stephenramsay.net/posts/groff-mom2.html][Beautiful Documents with Groff (Part II)]]
 - 23 [[https://stephenramsay.net/posts/groff-mom.html][Beautiful Documents with Groff (Part I)]]
 - 21 Writing formal letters with roff's "mm" package http://web.archive.org/web/20230605030324/https://www.woozle.org/papers/roff-letters.html
@@ -11,7 +12,10 @@
   - https://unix.stackexchange.com/questions/119/colors-in-man-pages
 - 17 learn: Ancient troff sources vs. modern-day groff https://virtuallyfun.com/2017/12/22/learn-ancient-troff-sources-vs-modern-day-groff/
 - 98 Basic Formatting with troff/nroff https://cmd.inp.nsk.su/old/cmd2/manuals/unix/UNIX_Unleashed/ch08.htm
-- 84 UNIX Text Formatting Using the -ms Macros https://www.hactrn.net/ietf/rfcgen/textms.html
+- 97 [[https://docs-archive.freebsd.org/44doc/usd/19.memacros/paper.pdf][Writing Papers with NROFF using −me]]
+- 94 https://www.nesssoftware.com/home/mwc/doc/coherent/manual/pdf/nroff.pdf
+- 84 [[https://www.hactrn.net/ietf/rfcgen/textms.html][UNIX Text Formatting Using the -ms Macros]]
+- 82 [[https://lists.gnu.org/archive/html/groff/2021-08/pdfKMMq6i1eE9.pdf][A Typesetter-independent TROFF]] by BWK
 
 * technicallywewrite
 

@@ -1,3 +1,4 @@
+- [[https://www.schaffter.ca/mom/mom-01.html][What, exactly, is mom?]]
 - 23 Technical writing history with ed and nroff https://www.youtube.com/watch?v=pXmS501wKlU
 - 23 How to write documents with nroff -me https://www.youtube.com/watch?v=DhQ2Tk8vuc8
 - +23 Lets create a Linux Man Page https://www.youtube.com/watch?v=tGF6Q8tEKPka+
@@ -5,7 +6,9 @@
 - +21 How to make resume like a chad. feat. groff https://www.youtube.com/watch?v=DhQ2Tk8vuc8+
 - 20 typesetting with gnu roff https://www.youtube.com/watch?v=hkZWMbU4KTI
 - ⭐ +20 Introduction to groff https://www.youtube.com/watch?v=YSWmKLjigIs+
+- 20 https://www.youtube.com/watch?v=U96G-_Vk_xI
 - +20 Troff Tutorial: how to write a linux manpage with troff https://www.youtube.com/watch?v=r2JrbyezhM4+
+- 18 [[https://www.youtube.com/playlist?list=PLhvYefy49nBmc1EtWDF8ibjgrjmIz39UE][Tutorial de Groff]]
 - 17 History of Markup Languages https://www.youtube.com/watch?v=qQMXPXzrE_s https://www.youtube.com/watch?v=P-7hwjocEpM
 - 15 WT2015: How to write Linux/Unix man pages (quick and dirty method) https://www.youtube.com/watch?v=rEc0taDAFBw
   - 23:30

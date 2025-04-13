@@ -1,5 +1,6 @@
 - https://news.ycombinator.com/item?id=15041986
 - https://n64squid.com/homebrew/n64-sdk/compiling-roms/makefile/
+- 94 https://www.nesssoftware.com/home/mwc/doc/coherent/manual/pdf/make.pdf
 - 98 Recursive Make Consided Harmful https://aegis.sourceforge.net/auug97.pdf
 - 13 http://web.archive.org/web/20131218224259/http://zmjones.com:80/make/
 - 13 https://bost.ocks.org/mike/make/
