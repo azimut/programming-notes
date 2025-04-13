@@ -1,5 +1,6 @@
 - A brief interview with AWK creator Dr. Brian Kernighan https://pldb.io/blog/brianKernighan.html
 - https://wizardzines.com/comics/awk/
+- https://pmitev.github.io/to-awk-or-not/Case_studies/awk_network/
 - 94 | https://www.nesssoftware.com/home/mwc/doc/coherent/manual/pdf/awk.pdf
 - 89 | [[https://sci-hub.se/https://onlinelibrary.wiley.com/doi/abs/10.1002/j.1538-7305.1989.tb00075.x][Little languages for pictures in AWK]]
 - 97 | [[https://web.archive.org/web/20140926113347/http://www.wra1th.plus.com:80/awk/awkfri.txt][Why GAWK for AI?]]
