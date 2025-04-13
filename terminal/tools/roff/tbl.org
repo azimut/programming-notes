@@ -4,3 +4,4 @@
 * articles
 
 - [ ] 87 [[https://www.oreilly.com/library/view/unix-text-processing/9780810462915/Chapter08.html#ch8][Formatting with tbl]]
+- [ ] [[https://9p.io/10thEdMan/tbl.pdf][tbl - a program to format tables]] by Lorinda Cherry, Mike E. Lesk

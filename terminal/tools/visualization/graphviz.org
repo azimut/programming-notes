@@ -1,24 +1,42 @@
 |-----------+----------------------------------------------------------------|
-|       <r> |                                                                |
-|      wiki | https://en.wikipedia.org/wiki/Graphviz                         |
-|      wiki | https://en.wikipedia.org/wiki/DOT_(graph_description_language) |
-|      home | https://graphviz.org/                                          |
+|    <c>    |                                                                |
+|   wiki    | https://en.wikipedia.org/wiki/Graphviz                         |
+|   wiki    | https://en.wikipedia.org/wiki/DOT_(graph_description_language) |
+|   home    | https://graphviz.org/                                          |
 | source(C) | https://gitlab.com/graphviz/graphviz                           |
-|    online | https://dreampuf.github.io/GraphvizOnline/                     |
+|  online   | https://dreampuf.github.io/GraphvizOnline/                     |
 |-----------+----------------------------------------------------------------|
 
-https://graphviz.org/Gallery/undirected/root.html
-http://www.yifanhu.net/GALLERY/GRAPHS/
-
-* language
 - GRAPH VIZualiation software
 - 1991
 - .gv extension
 - AT&T
-** layouts
+
+* cli
+
+one binary for each layout filter
+
+* language
+
+** layout filters
+
 https://graphviz.org/docs/layouts/
-neato
-fdp
+
+|-----------+----------------------------|
+|    <c>    |            <c>             |
+|           |     filter for drawing     |
+|-----------+----------------------------|
+|    dot    |      directed graphs       |
+|   neato   |     undirected graphs      |
+|    fdp    |     undirected graphs      |
+|   sfdp    |  large undirected graphs   |
+|-----------+----------------------------|
+|   twopi   |  radial layouts of graphs  |
+|   circo   | circular layouts of graphs |
+| patchwork |    squarified tree maps    |
+|   osage   |    array-based layouts     |
+|-----------+----------------------------|
+
 ** props
 - for: node, edge
 |-------+-----------------|
@@ -46,3 +64,8 @@ fdp
 * videos
 - 09 GraphViz step-by-step walkthrough https://vimeo.com/7860697
 - demo: Automatic book building from markdown with inline graphviz (2x speed) https://vimeo.com/108337533
+
+* codebases
+
+https://graphviz.org/Gallery/undirected/root.html
+http://www.yifanhu.net/GALLERY/GRAPHS/

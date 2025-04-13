@@ -13,6 +13,14 @@
 - 1986
 - Thomas Williams, Colin Kelley, Russell Lang, Dave Kotz, John Campbell, Gershon Elber, Alexander Woo
 
+* cli
+|----------------+---------------------------------|
+| -e CMDS        |                                 |
+| -c FILE [ARG]  | runs script S with given args   |
+| -p ¦ --persist | keep window after plotting ends |
+| -s ¦ --slow    | wait for slow font init         |
+| -d ¦ --default | do NOT read ~/.gnuplot          |
+|----------------+---------------------------------|
 * language
 #+begin_src sh
   #!/usr/bin/gnuplot -persist
@@ -62,14 +70,6 @@
 - splot - 3d surface
 - hist
 - scatter3 - 3d points
-* flags
-|----------------+---------------------------------|
-| -e CMDS        |                                 |
-| -c FILE [ARG]  | runs script S with given args   |
-| -p ¦ --persist | keep window after plotting ends |
-| -s ¦ --slow    | wait for slow font init         |
-| -d ¦ --default | do NOT read ~/.gnuplot          |
-|----------------+---------------------------------|
 * snippets
 
 - simple pipe

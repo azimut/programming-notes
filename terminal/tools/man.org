@@ -41,15 +41,16 @@
 | 9 | Kernel routines [Non standard]                           |
 |---+----------------------------------------------------------|
 * roff macros
-- tbl, eqn and refer are preprocessors used with man pages
+- *tbl*, *eqn* and *refer* are preprocessors used with man pages
 |---------------+----------------------------------------------|
+|      <c>      |                                              |
 | .TH t i d v m | title, section number, date, version, manual |
-| .SH s [n]     | new un/numbered major section heading        |
-| .SS s         | new sub-section                              |
-| .IP [s] [d]   | indented list                                |
-| .EX ¦ .EE     | begin/end example                            |
-| .RS ¦ .RE     | start/end record?, adds identation           |
-| .SY ¦ .YS     | start/end synopsis                           |
+|   .SH s [n]   | new un/numbered major section heading        |
+|     .SS s     | new sub-section                              |
+|    .E[XE]     | begin/end example                            |
+|    .R[SE]     | start/end relative inset                     |
+|   .SY ¦ .YS   | start/end synopsis                           |
+|      .MR      | man page cross reference                     |
 |---------------+----------------------------------------------|
 ** paragraph / spacing
 |-----+--------------------------------------------------------|
@@ -61,19 +62,16 @@
 | .TQ | _tagged_ paragraph continuation                        |
 |-----+--------------------------------------------------------|
 ** font style
-a=after   b=before
-|-----------+------------------|
-| .R  r a b | regular text     |
-| .B  b a b | bold             |
-| .I  i a b | italic           |
-| .SM s     | small            |
-| .SB sb    | small bold       |
-| .BR b r   | no space between |
-| .BI b i   | no space between |
-| .IR i r   | no space between |
-| .IB i b   | no space between |
-| .RB r b   | no space between |
-| .RI r i   | no space between |
-| .UR ¦ .UE | url start/end    |
-| .ME ¦ .MT | mail start/end   |
-|-----------+------------------|
+- R = regular / regular
+- B = bold
+- I = italic
+- a = after
+- b = before
+|-------------------+----------------|
+|        <c>        |                |
+| .[RBI][RBI] ? a b | formatted text |
+|       .SM s       | small          |
+|      .SB sb       | small bold     |
+|      .U[RE]       | url start/end  |
+|      .M[ET]       | mail start/end |
+|-------------------+----------------|

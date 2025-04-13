@@ -9,10 +9,6 @@
   - it's main idiosyncrasy is that whitespace plays a significant part in the parsing of the language
   - only requiring braces when argument contains spaces
 
-- examples
-  - 78 https://lists.gnu.org/archive/html/groff/2023-05/pdfcUXIwC9MH5.pdf
-    ps source http://web.archive.org/web/20110808234517/http://www.kohala.com/start/troff/v7man/eqn/eqn2e.ps
-
 * cli
 
 #+begin_src sh
@@ -35,7 +31,10 @@ sum x+1 + y
 
 * articles
 
+- 78 [[https://lists.gnu.org/archive/html/groff/2023-05/pdfcUXIwC9MH5.pdf][Typesetting mathematics - User Guide]] by Lorinda Cherry, Brian Kernighan
+  - .ps [[http://web.archive.org/web/20110808234517/http://www.kohala.com/start/troff/v7man/eqn/eqn2e.ps][source]]
 - 87 [[https://www.oreilly.com/library/view/unix-text-processing/9780810462915/Chapter09.html][Typesetting Equations with eqn]]
+- 11 [[https://lists.gnu.org/archive/html/groff/2013-10/pdfTyBN2VWR1c.pdf][A guide to typesetting mathematics using gnu eqn]] by Ted Harding
 - 23 [[https://technicallywewrite.com/2023/07/16/groffeqn][Groff by example: equations with eqn]]
 - 23 [[https://douglasrumbaugh.com/post/groff-eqn/][eqn: Formatting Equations in groff]]
 - 25 [[https://douglasrumbaugh.com/post/eqn-mathml/][Using eqn for Website Equation Formatting]]

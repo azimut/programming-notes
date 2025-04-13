@@ -1,3 +1,5 @@
+- resources https://github.com/mamccollum/troff-resources
+- ms cheatshett https://l04db4l4nc3r.github.io/groff-cheatsheet/
 - 22 [[https://www.gijutsuya.jp/a4b51f03affa4dfab5d24bdcb3dfa442][Joshua Stutter Writing my PhD using groff]]
 - 24 [[https://stephenramsay.net/posts/groff-mom2.html][Beautiful Documents with Groff (Part II)]]
 - 23 [[https://stephenramsay.net/posts/groff-mom.html][Beautiful Documents with Groff (Part I)]]
@@ -5,6 +7,7 @@
 - 23 Man Pages — The Complete Guide https://medium.com/better-programming/man-pages-the-complete-guide-800ad93425fe
 - 21 Adventures with man color https://felipec.wordpress.com/2021/06/05/adventures-with-man-color/
 - 20 An Introduction to groff https://douglasrumbaugh.com/post/groff-introduction/
+- 20 https://josh8.com/blog/typesetting_with_groff.html
 - 19 roff https://www.bencode.net/posts/2019-03-15-groff/
 - 19 Writing a resume in groff https://noxz.tech/articles/writing_a_resume_in_groff/
 - +18 Adding Colors to man https://russellparker.me/post/2018/02/23/adding-colors-to-man/+

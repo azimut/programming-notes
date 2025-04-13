@@ -4,23 +4,13 @@
 #+CAPTION: GNU roff's logo
 [[https://www.gnu.org/software/groff/gnu-head-groff.png]]
 
-- https://en.wikipedia.org/wiki/Roff_(software)
-  - 1971
-  - Joe Ossanna(43), Ken Thompson(28)
-  - typesetting *markup language*
-  - Unix version of _runoff_ from Multics
-    https://bxriver.net/obscure/runoff/
+|-------+---------------+------+-----------------------------------|
+| roff  | [[https://github.com/mamccollum/troff-resources][home]] [[https://www.troff.org/54.pdf][doc]] [[https://en.wikipedia.org/wiki/Roff_(software)][wiki]] | 1971 | Joe Ossanna(43), Ken Thompson(28) |
+| groff | [[https://www.gnu.org/software/groff/][home]] [[https://www.gnu.org/software/groff/manual/groff.html][doc]] [[https://en.wikipedia.org/wiki/Groff_(software)][wiki]] | 1990 | James Clark(26)                   |
+|-------+---------------+------+-----------------------------------|
 
-* implementations
-
-- [[https://en.wikipedia.org/wiki/Nroff][nroff]] for terminals
-- [[https://en.wikipedia.org/wiki/Troff][troff]] for typesetting
-- heirloom doctools [[https://n-t-roff.github.io/heirloom/doctools.html][home]] [[https://github.com/n-t-roff/heirloom-doctools][source]]
-- [[https://en.wikipedia.org/wiki/Groff_(software)][groff]] aka gnu ~troff~
-  - home https://www.gnu.org/software/groff/
-  - includes: [[https://en.wikipedia.org/wiki/Eqn_(software)][eqn]] (formats equations), tbl, [[https://en.wikipedia.org/wiki/PIC_(markup_language)][pic]] (for diagrams), seolim
-  - document https://www.gnu.org/software/groff/manual/
-  - man https://linux.die.net/man/7/groff
+- typesetting *markup language*
+- Unix version of [[https://bxriver.net/obscure/runoff/][runoff]] from Multics
 
 * cli
 
@@ -28,42 +18,41 @@
   $ groff -ms foo.ms > groff.ps
   $ groff -ms foo.ms -Tpdf > foo.pdf
   $ groff -ms -e eqn.ms -Tpdf > eqn.pdf
-  $ eqn eqn.ms -Tpdf | groff -ms -Tpdf > eqn.pdf
   $ nroff -man refill.man > refill.txt
   $ man 7 man # man macro language help
   $ man groff_man
   $ man groff_mdoc
+  $ man gropdf
+  $ man pdfmom
 #+end_src
 
 * language
 
 - line based
-- do NOT put blank text lines on the file
+- do NOT put blank/empty text lines on the file
   - use control lines "." to space things around
+  - they are interpreted
 - types of line
   1) text line
   2) control lines (macro, request aka low level commands)
 
 ** preprocessors
-
 |-----------+-----------------+-----------------+-------------------------------------|
-|       <r> |                 |                 |                                     |
-|    soelim | ?               | ?               | preprocesses sourced input files    |
-|      chem | .cstart         | .cend           | draws chemical structure, using pic |
-|       eqn | .EQ             | .EN             | typesets mathematics                |
-|      grap | .G1             | .G2             | ?                                   |
-|       grn | .GS             | .GE             | draw diagrams gremlim               |
-|     ideal | .IS             | .IE ¦ .IF       | ?                                   |
-|       pic | .PS             | .PE ¦ .PF ¦ .PY | draw diagrams                       |
-|     refer | .R1             | .R2             | bibliographic references            |
-|       tbl | .TS             | .TE             | layout tables                       |
+|    <c>    |       <c>       |       <c>       |                                     |
+|  soelim   |        ?        |        ?        | preprocesses sourced input files    |
+|   chem    |     .cstart     |      .cend      | draws chemical structure, using pic |
+|    eqn    |       .EQ       |       .EN       | typesets mathematics                |
+|   grap    |       .G1       |       .G2       | plotting                            |
+|    grn    |       .GS       |       .GE       | draw diagrams gremlim               |
+|   ideal   |       .IS       |    .IE ¦ .IF    | ?                                   |
+|    pic    |       .PS       | .PE ¦ .PF ¦ .PY | draw diagrams                       |
+|   refer   |       .R1       |       .R2       | bibliographic references            |
+|    tbl    |       .TS       |       .TE       | layout tables                       |
 | glilypond | .lilypond start | .lilypond stop  | embeds sheet music                  |
-|     gperl | .Perl start     | .Perl stop      | populates regiters and strings      |
-|   gpinyin | .pinyin start   | .pinyin stop    | mandain chinese, using Hanyu Pinyin |
+|   gperl   |   .Perl start   |   .Perl stop    | populates regiters and strings      |
+|  gpinyin  |  .pinyin start  |  .pinyin stop   | mandain chinese, using Hanyu Pinyin |
 |-----------+-----------------+-----------------+-------------------------------------|
-
 ** requests
-- =me= dialect, use after .pp
 |-------+------------------------------|
 | .bp   | begin new page               |
 | .br   | break output line here       |
@@ -78,32 +67,35 @@
 *** sets
 - Bell Labs: ms -> mm
 - Berkeley: me
-|--------+------------------------------------- |
-|        | for creating...                     |
-|--------+-------------------------------------|
-| man    | manual pages                        |
-| mdoc   | semantically-annotated manual pages |
-| ms     | books, reports, and technical docs  |
-| mm     | memorandums                         |
-| me     | research papers                     |
-| ?mv    | mountable transparencies            |
-| www    |                                     |
-|--------+-------------------------------------|
+|------+-------------------------------------|
+| <c>  | for creating...                     |
+|------+-------------------------------------|
+| man  | manual pages                        |
+| mdoc | semantically-annotated manual pages |
+|  ms  | books, reports, and technical docs  |
+|  mm  | memorandums                         |
+|  me  | research papers                     |
+|  mv  | mountable transparencies            |
+| www  |                                     |
+|------+-------------------------------------|
 *** new
 
-1) defining in macros.roff file
+https://www.gnu.org/software/groff/manual/groff.html.node/Writing-Macros.html
+https://www.gnu.org/software/groff/manual/groff.html.node/Requests-and-Macros.html
+
+1) new macro from ".de" until "..", in macros.roff
    #+begin_src nroff
 .de BL
 .IP \(bu 1
 ..
    #+end_src
 
-2) sourcing
+2) sourcing on a different roff
    #+begin_src nroff
 .so macros.roff
    #+end_src
 
-3) using
+3) using it
    #+begin_src nroff
 .BL
 Here
@@ -111,86 +103,78 @@ Here
 more
    #+end_src
 
-*** mom
-.HEADER_COLOR      darkred1
-.HEADER_RULE_COLOR blue1
-.FOOTER_RULE       off
-*** predefined
-|---------------+----+----+-----+--------------------------------------------------|
-|               | ms | me | man | description                                      |
-|---------------+----+----+-----+--------------------------------------------------|
-| .TL           |    |    |     | title                                            |
-| .AU           |    |    |     | author name                                      |
-| .AI           |    |    |     | author institution                               |
-| .NH           |    |    |     | new section heading                              |
-| .NH N         |    |    |     | new section with N depth, starts at 1 by default |
-| .IP [s] [d]   |    |    | x   | indented list                                    |
-|               |    |    |     | with optional bullet s (eg: \(bu )               |
-|               |    |    |     | with optional number of indent n spaces          |
-|---------------+----+----+-----+--------------------------------------------------|
-| .TH t i d v m | -  | -  | x   | title, section number, date, version, manual     |
-| .SH s         |    |    | x   | new un-numbered major section heading            |
-| .SH s N       |    |    | x   |                                                  |
-| .SS s         |    |    | x   | new sub-section                                  |
-|---------------+----+----+-----+--------------------------------------------------|
-| .(c ¦ .)c     |    | x  |     | start/end center                                 |
-| .AB ¦ .AE     | x  |    |     | begin/end abstract                               |
-| .EX ¦ .EE     |    |    | x   | begin/end example                                |
-| .RS ¦ .RE     |    |    | x   | start/end record?, adds identation               |
-| .SY ¦ .YS     |    |    | x   | start/end synopsis                               |
-|---------------+----+----+-----+--------------------------------------------------|
-*** predefined - paragraph spacing
-|-----+----+----+-----+--------------------------------------------------------|
-|     | ms | me | man | description                                            |
-|-----+----+----+-----+--------------------------------------------------------|
-| .IP |    |    | x   | _indented_ paragraph                                   |
-| .LP |    | x  | x   | blank line, makes a _leading_ paragram, with no indent |
-| .P  |    |    | x   | blank line, make paragraph                             |
-| .PP |    | x  | x   | blank line, makes an _indented_ paragraph              |
-| .TP |    |    | x   | _indent, tagged_ paragraph, used for man options       |
-| .TQ |    |    | x   | _tagged_ paragraph continuation                        |
-|-----+----+----+-----+--------------------------------------------------------|
-*** predefined - font style
-|-----------+----+----+-----+-----------------------------------|
-|           | ms | me | man | description                       |
-|-----------+----+----+-----+-----------------------------------|
-| .R  s a b |    |    | x   | regular text for s                |
-| .B  s a b |    | x  | x   | bold s, with a after and b before |
-| .I  s a b |    | x  | x   | italic s                          |
-| .SM       |    |    | x   | small                             |
-| .SB       |    |    | x   | small bold                        |
-| .BR b s   |    |    | x   | no space between                  |
-| .BI s a b |    |    | x   | no space between                  |
-| .IR i s   |    |    | x   | no space between                  |
-| .IB i b   |    |    | x   | no space between                  |
-| .RB s b   |    |    | x   | no space between                  |
-| .RI s i   |    |    | x   | no space between                  |
-| .UL s     |    |    |     | underline                         |
-| .BX s     |    |    |     | boxed                             |
-| .UR ¦ .UE |    |    | x   | url start/end                     |
-| .ME ¦ .MT |    |    | x   | mail start/end                    |
-|-----------+----+----+-----+-----------------------------------|
+*** ms
+|-----------+--------------------------------------------------|
+| .TL       | title                                            |
+| .AU       | author name                                      |
+| .AI       | author institution                               |
+| .NH       | new section heading                              |
+| .NH N     | new section with N depth, starts at 1 by default |
+|           | with optional bullet s (eg: \(bu )               |
+|           | with optional number of indent n spaces          |
+| .A[BE]    | begin/end abstract                               |
+| .R  s a b | regular text for s                               |
+| .B  s a b | bold s, with a after and b before                |
+| .I  s a b | italic s                                         |
+| .SM       | small                                            |
+| .BI s a b | no space between                                 |
+| .UL s     | underline                                        |
+| .BX s     | boxed                                            |
+|-----------+--------------------------------------------------|
 * codebases
 
 - examples https://froude.eu/groff/
-- slides
-  - tutorial https://lists.gnu.org/archive/html/groff/2018-03/pdfSryOlhMjrh.pdf
-  - tutorial https://www.schaffter.ca/mom/momdoc/docprocessing.html#slides
-  - mom doc
-    - https://www.schaffter.ca/mom/momdoc/toc.html
-    - https://www.schaffter.ca/mom/momdoc/docelement.html
-    - https://www.gnu.org/software/groff/groff-and-mom.pdf
-    - https://www.eos-numerique.com/doc/groff-base/html/mom/headfootpage.html
-    - https://pipeline.lbl.gov/code/3rd_party/licenses.win/groff/1.19.2/html/mom/toc.html
-  - troff-slider http://repo.cat-v.org/troff-slider/files/
-  - example https://froude.eu/groff/documents/conference.html
-  - example https://froude.eu/groff/documents/decision-making.html
-  - mom example https://github.com/sschober/mato/tree/main/samples/slides
-  - gpresent
-    - home https://bob.diertens.org/corner/useful/gpresent/
-    - fork https://github.com/rhaberkorn/gpresent
-
 - http://www.kohala.com/start/troff/troff.html
 - http://froude.eu/groff/
 - https://github.com/pintman/groff101
 - http://www.sgerwk.altervista.org/roff/roff.html
+
+** slides
+- troff-slider http://repo.cat-v.org/troff-slider/files/
+*** mom
+- example https://lists.gnu.org/archive/html/groff/2018-03/pdfSryOlhMjrh.pdf
+- example https://github.com/sschober/mato/tree/main/samples/slides
+- https://www.schaffter.ca/mom/momdoc/toc.html
+- https://www.schaffter.ca/mom/momdoc/docprocessing.html#slides
+- https://www.schaffter.ca/mom/momdoc/docelement.html
+- https://www.gnu.org/software/groff/groff-and-mom.pdf
+- https://www.eos-numerique.com/doc/groff-base/html/mom/headfootpage.html
+- https://pipeline.lbl.gov/code/3rd_party/licenses.win/groff/1.19.2/html/mom/toc.html
+**** No native support for images
+
+- ME: as of 1.23.0, there is NO NATIVE SUPPORT FOR IMAGES, only of something called PDF_IMAGES
+
+- Example: script
+  #+begin_src sh
+    $ convert bar.png jpg:- | convert jpg:- bar.pdf
+    $ cat slides.mom
+     .PDF_IMAGE -L bar.pdf 1.9c 1.9c # width height
+    $ pdfmom slides.mom > slides.pdf
+  #+end_src
+
+- Example: Makefile
+  #+begin_src makefile
+IMAGES_RAW := $(wildcard *.png)
+IMAGES_PDF := $(patsubst %.png,%.pdf,$(IMAGES_RAW))
+
+slides.pdf: slides.mom $(IMAGES_PDF)
+	pdfmom $< > $@
+
+%.pdf: %.png
+	convert $< jpg:- | convert jpg:- $@
+  #+end_src
+
+*** gpresent
+- home https://bob.diertens.org/corner/useful/gpresent/
+- fork https://github.com/rhaberkorn/gpresent
+- example https://froude.eu/groff/documents/conference.html
+  - [[https://froude.eu/groff/documents/conference.html][info]] [[https://froude.eu/groff/resources/eurobsdcon2018-mandoc.pdf][pdf]] [[https://froude.eu/groff/resources/eurobsdcon2018-mandoc.roff][roff]]
+- example https://froude.eu/groff/documents/decision-making.html
+* implementations
+
+- [[https://en.wikipedia.org/wiki/Nroff][nroff]] for terminals
+- [[https://en.wikipedia.org/wiki/Troff][troff]] for typesetting
+- heirloom doctools [[https://n-t-roff.github.io/heirloom/doctools.html][home]] [[https://github.com/n-t-roff/heirloom-doctools][source]]
+- [[https://en.wikipedia.org/wiki/Groff_(software)][groff]] aka gnu ~troff~
+  - includes: [[https://en.wikipedia.org/wiki/Eqn_(software)][eqn]], tbl, [[https://en.wikipedia.org/wiki/PIC_(markup_language)][pic]], seolim
+  - man https://linux.die.net/man/7/groff
