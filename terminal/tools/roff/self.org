@@ -6,7 +6,7 @@
 
 |-------+---------------+------+-----------------------------------|
 | roff  | [[https://github.com/mamccollum/troff-resources][home]] [[https://www.troff.org/54.pdf][doc]] [[https://en.wikipedia.org/wiki/Roff_(software)][wiki]] | 1971 | Joe Ossanna(43), Ken Thompson(28) |
-| groff | [[https://www.gnu.org/software/groff/][home]] [[https://www.gnu.org/software/groff/manual/groff.html][doc]] [[https://en.wikipedia.org/wiki/Groff_(software)][wiki]] | 1990 | James Clark(26)                   |
+| groff | [[https://www.gnu.org/software/groff/][home]] [[https://www.gnu.org/software/groff/manual/groff.html][doc]] [[https://en.wikipedia.org/wiki/Groff_(software)][wiki]] | 1990 | James J. Clark(26)                |
 |-------+---------------+------+-----------------------------------|
 
 - typesetting *markup language*
