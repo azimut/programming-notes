@@ -1,13 +1,13 @@
 #+TITLE: pic
 #+DATE: <2025-04-08 mar>
 
-|--------+------------------------+-----+------+-----------------|
-|    <r> |          <c>           |     |      |                 |
-|    pic |        [[https://en.wikipedia.org/wiki/PIC_(markup_language)][wiki]] [[https://pikchr.org/home/uv/pic.pdf][doc]]        | ps  | 1984 | Brian Kernighan |
-|   gpic |    [[https://git.savannah.gnu.org/cgit/groff.git/tree/src/preproc/pic][source]] [[https://pikchr.org/home/uv/gpic.pdf][pdf]] [[https://www.chiark.greenend.org.uk/doc/groff-base/html/pic.html][html]]     | png | 1995 | James J. Clark  |
-|   dpic | [[https://ece.uwaterloo.ca/~aplevich/dpic/][home]] [[https://gitlab.com/aplevich/dpic][source]] [[https://ece.uwaterloo.ca/~aplevich/dpic/dpic-doc.pdf][doc]] [[https://yushih.github.io/web-pic/][online]] | svg |      | Dwight Aplevich |
-| pikchr | [[https://pikchr.org/home/doc/trunk/homepage.md][home]] [[https://github.com/drhsqlite/pikchr][source]] [[https://cran.r-project.org/web//packages/pikchr/vignettes/userman.html][doc]] [[https://pikchr.org/home/pikchrshow][online]] | svg | 2020 | Richard Hipp    |
-|--------+------------------------+-----+------+-----------------|
+|--------+------------------------+-----+------+---------------------|
+|    <r> |          <c>           |     |      |                     |
+|    pic |        [[https://en.wikipedia.org/wiki/PIC_(markup_language)][wiki]] [[https://pikchr.org/home/uv/pic.pdf][doc]]        | ps  | 1984 | Brian Kernighan(42) |
+|   gpic |    [[https://git.savannah.gnu.org/cgit/groff.git/tree/src/preproc/pic][source]] [[https://pikchr.org/home/uv/gpic.pdf][pdf]] [[https://www.chiark.greenend.org.uk/doc/groff-base/html/pic.html][html]]     | png | 1995 | James J. Clark      |
+|   dpic | [[https://ece.uwaterloo.ca/~aplevich/dpic/][home]] [[https://gitlab.com/aplevich/dpic][source]] [[https://ece.uwaterloo.ca/~aplevich/dpic/dpic-doc.pdf][doc]] [[https://yushih.github.io/web-pic/][online]] | svg |      | Dwight Aplevich     |
+| pikchr | [[https://pikchr.org/home/doc/trunk/homepage.md][home]] [[https://github.com/drhsqlite/pikchr][source]] [[https://cran.r-project.org/web//packages/pikchr/vignettes/userman.html][doc]] [[https://pikchr.org/home/pikchrshow][online]] | svg | 2020 | Richard Hipp        |
+|--------+------------------------+-----+------+---------------------|
 
 - 1984 (in unix v8), 1988 (released)
 - a procedural programming language
