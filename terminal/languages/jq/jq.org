@@ -114,15 +114,14 @@
   - falsy values: null, false
 
 |---------+------------------------------|
-| type    | example                      |
-|---------+------------------------------|
+|   <c>   |             <c>              |
 | number  | 42, 3.14, 1e6, nan, infinite |
-| string  | "hello"                      |
-| boolean | true, false                  |
-| array   | [1, "2", {"foo": "bar"}]     |
-| object  | {"foo": 2}                   |
-| null    | null                         |
-| empty   |                              |
+| string  |           "hello"            |
+| boolean |         true, false          |
+|  array  |   [1, "2", {"foo": "bar"}]   |
+| object  |          {"foo": 2}          |
+|  null   |             null             |
+|  empty  |                              |
 |---------+------------------------------|
 
 ** modules
@@ -189,33 +188,35 @@
 ** stdlib functions
 *** general
 |-------------------+----------------------------------------------|
+|        <c>        |                                              |
 |                   | description                                  |
 |-------------------+----------------------------------------------|
-| debug             | like (.) but it prints to stderr too         |
-| range(TO)         |                                              |
-| range(FROM;TO)    |                                              |
+|       debug       | like (.) but it prints to stderr too         |
+|     range(TO)     |                                              |
+|  range(FROM;TO)   |                                              |
 | range(FROM;TO;BY) | produces a stream of numbers                 |
-| empty             | returns empty                                |
+|       empty       | returns empty                                |
 |-------------------+----------------------------------------------|
-| input             | outputs 1 NEW input                          |
-| inputs            | outputs all *remaining* inputs, one by one   |
+|       input       | outputs 1 NEW input                          |
+|      inputs       | outputs all *remaining* inputs, one by one   |
 |-------------------+----------------------------------------------|
-| halt              | exit                                         |
-| halt_error/0      | exit                 AND prints input        |
-| halt_error/1      | exit with given code AND prints input        |
+|       halt        | exit                                         |
+|   halt_error/0    | exit                 AND prints input        |
+|   halt_error/1    | exit with given code AND prints input        |
 |-------------------+----------------------------------------------|
-| error/0           | returns an error, can be catched (try/catch) |
-| error/1           | with message given                           |
+|      error/0      | returns an error, can be catched (try/catch) |
+|      error/1      | with message given                           |
 |-------------------+----------------------------------------------|
 *** casting
-|-------------+----------+---------------+---|
-| [1,"1"]     | tonumber | 1,1           |   |
-| [1,"1",[1]] | tostring | "1","1","[1]" |   |
-| 0           | type     | "number"      |   |
-|-------------+----------+---------------+---|
+|-------------+----------+---------------|
+|     <c>     |          |      <c>      |
+|   [1,"1"]   | tonumber |      1,1      |
+| [1,"1",[1]] | tostring | "1","1","[1]" |
+|      0      | type     |   "number"    |
+|-------------+----------+---------------|
 ***    date
-|          <c>           |                  <c>                  |           <c>            |
 |------------------------+---------------------------------------+--------------------------|
+|          <c>           |                  <c>                  |           <c>            |
 |       1425599507       |                todate                 |  "2015-03-05T23:51:47Z"  |
 | "2015-03-05T23:51:47Z" |               fromdate                |        1425599507        |
 | "2015-03-05T23:51:47Z" |    strptime("%Y-%m-%dT%H:%M:%SZ")     | [2015,2,5,23,51,47,4,63] |
@@ -224,10 +225,11 @@
 |       1425599507       |         strftime("%H:%M:%S")          |        "23:51:47"        |
 |------------------------+---------------------------------------+--------------------------|
 ***  stream
-|------------+-----------+-------------------+---|
-| 86, 99, 13 | . + 1     | 87, 100, 14       |   |
-| 86, 99, 13 | [ . + 1 ] | [87], [100], [14] |   |
-|------------+-----------+-------------------+---|
+|------------+-----------+-------------------|
+|    <c>     |    <c>    |        <c>        |
+| 86, 99, 13 |   . + 1   |    87, 100, 14    |
+| 86, 99, 13 | [ . + 1 ] | [87], [100], [14] |
+|------------+-----------+-------------------|
 ***   regex
 
 - https://jqlang.github.io/jq/manual/v1.7/#regular-expressions
@@ -250,43 +252,43 @@
   - x: extend regex format, ignores whitespaces and comments (#)
 
 |------------------+------------------------------------------------+----------------------------------------------------+--------------------------------------------|
-|       <c>        |                      <c>                       |                                                    |                                            |
-|      input       |                     filter                     | output                                             | description                                |
+|       <c>        |                      <c>                       |                        <c>                         |                                            |
+|      input       |                     filter                     |                       output                       | description                                |
 |------------------+------------------------------------------------+----------------------------------------------------+--------------------------------------------|
-|  "Hello World!"  |                   test("W")                    | true                                               | to know if a substring matches the pattern |
-|  "Goodbye Mars"  |                   test("W")                    | false                                              |                                            |
+|  "Hello World!"  |                   test("W")                    |                        true                        | to know if a substring matches the pattern |
+|  "Goodbye Mars"  |                   test("W")                    |                       false                        |                                            |
 |                  |               test(REGEX;FLAGS)                |                                                    |                                            |
 |                  |              test([REGEX,FLAGS])               |                                                    |                                            |
 |------------------+------------------------------------------------+----------------------------------------------------+--------------------------------------------|
 |                  |              match([REGEX,FLAGS])              |                                                    |                                            |
-|  "Hello World!"  |             match("([aeiou])\\1")              | empty                                              | to extract the substring that matched      |
-|  "Goodbye Mars"  |             match("([aeiou])\\1")              | {"offset": 1, "length": 2, "string": "oo"          |                                            |
-|                  |                                                | ,"captures": [                                     |                                            |
-|                  |                                                | {"offset": 1                                       |                                            |
-|                  |                                                | ,"length": 1                                       |                                            |
-|                  |                                                | ,"string": "o"                                     |                                            |
-|                  |                                                | ,"name": null }]}                                  |                                            |
+|  "Hello World!"  |             match("([aeiou])\\1")              |                       empty                        | to extract the substring that matched      |
+|  "Goodbye Mars"  |             match("([aeiou])\\1")              |     {"offset": 1, "length": 2, "string": "oo"      |                                            |
+|                  |                                                |                   ,"captures": [                   |                                            |
+|                  |                                                |                    {"offset": 1                    |                                            |
+|                  |                                                |                    ,"length": 1                    |                                            |
+|                  |                                                |                   ,"string": "o"                   |                                            |
+|                  |                                                |                 ,"name": null }]}                  |                                            |
 |  "Goodbye Mars"  |              match("[aeiou]";"g")              | {"offset":1,"length":1,"string":"o","captures":[]} |                                            |
 |                  |                                                | {"offset":2,"length":1,"string":"o","captures":[]} |                                            |
 |                  |                                                | {"offset":6,"length":1,"string":"e","captures":[]} |                                            |
 |                  |                                                | {"offset":9,"length":1,"string":"a","captures":[]} |                                            |
 |------------------+------------------------------------------------+----------------------------------------------------+--------------------------------------------|
-| "JIRAISSUE-1234" | capture("(?<project>\\w+)-(?<issue_num>\\d+)") | {"project":"JIRAISSUE","issue_num":"1234"}         | object of named captures                   |
+| "JIRAISSUE-1234" | capture("(?<project>\\w+)-(?<issue_num>\\d+)") |     {"project":"JIRAISSUE","issue_num":"1234"}     | object of named captures                   |
 |                  |                 capture(REGEX)                 |                                                    |                                            |
 |                  |              capture(REGEX;FLAGS)              |                                                    |                                            |
 |                  |             capture([REGEX,FLAGS])             |                                                    |                                            |
 |------------------+------------------------------------------------+----------------------------------------------------+--------------------------------------------|
-|  "Goodbye Mars"  |                scan("[aeiou]")                 | "o", "o", "e", "a"                                 | only substrings, like match(RE,"g")        |
-|  "Goodbye Mars"  |               [scan("[aeiou]")]                | ["o", "o", "e", "a"]                               |                                            |
+|  "Goodbye Mars"  |                scan("[aeiou]")                 |                 "o", "o", "e", "a"                 | only substrings, like match(RE,"g")        |
+|  "Goodbye Mars"  |               [scan("[aeiou]")]                |                ["o", "o", "e", "a"]                |                                            |
 |------------------+------------------------------------------------+----------------------------------------------------+--------------------------------------------|
-|  "first second"  |               split("\\s+"; "")                | ["first","second"]                                 |                                            |
+|  "first second"  |               split("\\s+"; "")                |                 ["first","second"]                 |                                            |
 |                  |              split(REGEX; FLAGS)               |                                                    |                                            |
 |------------------+------------------------------------------------+----------------------------------------------------+--------------------------------------------|
 |                  |            sub(REGEX; REPLACEMENT)             |                                                    |                                            |
 |                  |         sub(REGEX; REPLACEMENT; FLAGS)         |                                                    |                                            |
 |                  |            gsub(REGEX; REPLACEMENT)            |                                                    |                                            |
 |                  |        gsub(REGEX; REPLACEMENT; FLAGS)         |                                                    |                                            |
-| "this: gnu, csv" |      gsub("\\b(?<tla>[[:alpha:]{3})\\b")       | "this: GNU, CSV"                                   |                                            |
+| "this: gnu, csv" |      gsub("\\b(?<tla>[[:alpha:]{3})\\b")       |                  "this: GNU, CSV"                  |                                            |
 |                  |         ;    "\(.tla ¦ ascii_upcase)")         |                                                    |                                            |
 |------------------+------------------------------------------------+----------------------------------------------------+--------------------------------------------|
 
