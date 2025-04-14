@@ -248,3 +248,19 @@ SHELL = /bin/bash -o pipefail
 - ~=~ assignment is perpetually evaluated
 - ~$~ needs to be always escaped with ~$$~ to be sent to commands as such
 - ~\t~ for indentation, NOT spaces
+
+* trivia
+
+** Why the tab in column 1?
+
+#+begin_src
+"Yacc was new, Lex was brand new. I hadn't tried either, so I figured
+this would be a good excuse to learn. After getting myself snarled up
+with my first stab at Lex, I just did something simple with the
+pattern newline-tab. It worked, it stayed. And then a few weeks later
+I had a user population of about a dozen, most of them friends, and I
+didn't want to screw up my embedded base. The rest, sadly, is
+history."
+
+-- Stuart Feldman, from "The Art of Unix Programming"
+#+end_src
