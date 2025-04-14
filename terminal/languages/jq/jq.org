@@ -1,17 +1,16 @@
 #+TITLE: jq
 #+DATE: <2023-11-27 lun>
 
-|--------------+---------------------------------------------------------|
-|     <c>      |                           <c>                           |
-|     wiki     | https://en.wikipedia.org/wiki/Jq_(programming_language) |
-|     home     |                   [[https://jqlang.github.io/jq/][home]] [[https://jqlang.github.io/jq/manual/][manual]] [[https://github.com/jqlang/jq/][source]]                    |
-|     repl     |                   [[https://jqplay.org/][online]] [[https://github.com/gpanders/ijq][ijq]] [[https://github.com/simeji/jid][jid]] [[https://github.com/fiatjaf/jiq][jiq]]                    |
-|   awesome    |          https://github.com/fiatjaf/awesome-jq          |
-| rust rewrite |              https://github.com/01mf02/jaq              |
-|--------------+---------------------------------------------------------|
+|---------+---------------------------------------|
+|   <c>   |                  <c>                  |
+|  home   |        [[https://jqlang.github.io/jq/][home]] [[https://jqlang.github.io/jq/manual/][manual]] [[https://github.com/jqlang/jq/][source]] [[https://en.wikipedia.org/wiki/Jq_(programming_language)][wiki]]        |
+|  repl   |          [[https://jqplay.org/][online]] [[https://github.com/gpanders/ijq][ijq]] [[https://github.com/simeji/jid][jid]] [[https://github.com/fiatjaf/jiq][jiq]]           |
+| awesome | https://github.com/fiatjaf/awesome-jq |
+| rewrite |              [[https://github.com/01mf02/jaq][rust]] [[https://github.com/itchyny/gojq][golang]]              |
+|---------+---------------------------------------|
 
 - 2012
-- Author: Stephen Dolan
+- Stephen Dolan
 - ~/.jq
 - jq binary is 33k
 - first written in Haskell, but early rewritten in C for performance (?)
@@ -209,10 +208,10 @@
 |-------------------+----------------------------------------------|
 *** casting
 |-------------+----------+---------------|
-|     <c>     |          |      <c>      |
+|     <c>     |   <c>    |      <c>      |
 |   [1,"1"]   | tonumber |      1,1      |
 | [1,"1",[1]] | tostring | "1","1","[1]" |
-|      0      | type     |   "number"    |
+|      0      |   type   |   "number"    |
 |-------------+----------+---------------|
 ***    date
 |------------------------+---------------------------------------+--------------------------|

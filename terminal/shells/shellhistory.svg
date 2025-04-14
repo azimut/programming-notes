@@ -1,0 +1,17 @@
+<svg xmlns='http://www.w3.org/2000/svg' style='font-size:initial;' class="pikchr" viewBox="0 0 525.254 54.72" data-pikchr-date="20250321215505">
+<text x="51.408" y="17.28" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">Thompson</text>
+<text x="51.408" y="37.44" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">1971</text>
+<polygon points="172.656,27.36 161.136,31.68 161.136,23.04" style="fill:rgb(0,0,0)"/>
+<path d="M100.656,27.36L166.896,27.36"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="208.886" y="17.28" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">Bourne</text>
+<text x="208.886" y="37.44" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">1979</text>
+<polygon points="317.117,27.36 305.597,31.68 305.597,23.04" style="fill:rgb(0,0,0)"/>
+<path d="M245.117,27.36L311.357,27.36"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="343.843" y="17.28" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">Korn</text>
+<text x="343.843" y="37.44" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">1983</text>
+<polygon points="442.57,27.36 431.05,31.68 431.05,23.04" style="fill:rgb(0,0,0)"/>
+<path d="M370.57,27.36L436.81,27.36"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="482.832" y="17.28" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">POSIX.2</text>
+<text x="482.832" y="37.44" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">1992</text>
+</svg>
+

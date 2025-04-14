@@ -2,6 +2,7 @@
 - tool: json to grep-able format https://github.com/tomnomnom/gron
 
 ** html
+- https://github.com/mgdm/htmlq
 - https://github.com/TUVIMEN/reliq
 - https://github.com/htacg/tidy-html5
 - https://github.com/ericchiang/pup

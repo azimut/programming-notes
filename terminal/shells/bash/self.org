@@ -2,7 +2,7 @@
 - manual https://www.gnu.org/software/bash/manual/bash.html
 - wiki https://en.wikipedia.org/wiki/Bash_(Unix_shell)
   - Author: Brian Fox
-  - 1989-
+  - 1989
 
 - PS1's
   - ";"

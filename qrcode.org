@@ -19,21 +19,20 @@
     |--------------+-----------+-------|
 
 * tools
+** decoders
 
-- decoder https://github.com/mchehab/zbar
-
+- https://github.com/mchehab/zbar
 - https://github.com/JohnHammond/qr2unicode
   - qrencode -> python(PIL) -> unicode
 
-- https://github.com/anezatra/exploit-qrgen
-  - generates qrcodes images trying to exploit readers
+** encoders
 
 - qrencode
-  - encoder
   - qrencode --verbose -s 10 --background=00000000 --foreground=FFFFFFFF -o $label.png $address
   - https://fukuchi.org/works/qrencode/
   - https://github.com/fukuchi/libqrencode
-
+- https://github.com/anezatra/exploit-qrgen
+  - generates qrcodes images trying to exploit readers
 - https://github.com/Shell-Company/QRExfil
   - POC
   - file to qrs to gif
@@ -49,7 +48,7 @@
   - 22 The Math behind QR code, what happens inside there? https://www.youtube.com/watch?v=Rc3ul6RRANU
   - 24 I built a QR code with my bare hands to see how it works https://www.youtube.com/watch?v=w5ebcowAJD8
 
-- attacks
+- hacking
   - 20 Hacking QR Codes with QRGen to Attack Scanning Devices https://www.youtube.com/watch?v=Tjc-Xs-1fq8
     - exploit qr code readers
   - 24 Evading Modern Defenses When Phishing with Pixels - Melvin Langvik https://www.youtube.com/watch?v=l89qpmb2CAQ
