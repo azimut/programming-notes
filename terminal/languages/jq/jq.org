@@ -448,9 +448,15 @@ https://jqlang.github.io/jq/manual/v1.7/#math
 
 * snippets
 
-- Get 5 random emails
-  $ curl -s "https://randomuser.me/api/1.2/?results=5&seed=dsatcl2e" | jq -r '.results[].email'
+#+CAPTION: Stephen Dolan
+#+ATTR_ORG: :width 200
+#+ATTR_HTML: :width 200
+[[./sdolan.jpg]]
 
+- Get 5 random emails
+  #+begin_src sh
+    $ curl -s "https://randomuser.me/api/1.2/?results=5&seed=dsatcl2e" | jq -r '.results[].email'
+  #+end_src
 
 |-------------------------------------------------------+-------------------------------------|
 |                          <c>                          |                                     |

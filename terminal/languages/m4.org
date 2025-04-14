@@ -20,22 +20,9 @@
   - https://github.com/nevali/m4
 
 * language
+
 - 24 commands
 - turing complete
-* the "xz backdoor"
-
-  - https://git.savannah.gnu.org/gitweb/?p=gnulib.git;a=blob;f=m4/build-to-host.m4
-  - https://felipec.wordpress.com/2024/04/04/xz-backdoor-and-autotools-insanity/
-    #+begin_src m4
-    AC_CONFIG_COMMANDS([build-to-host],
-                       [eval $gl_config_gt | $SHELL 2>/dev/null],
-                       [gl_config_gt="eval \$gl_[$1]_config"])
-    #+end_src
-  - https://lwn.net/Articles/967205/
-    - The exploit is in two parts.
-      1) Two "test files" which contain the payload;
-      2) and a modified =m4= script (m4/build-to-host.m4)
-         which initiates the process of loading the payload.
 
 * articles
 
@@ -47,24 +34,44 @@
   - https://news.ycombinator.com/item?id=27994092
   - https://news.ycombinator.com/item?id=34159699
 
+- ?? [[https://www2.gvsu.edu/miljours/m4critique.html][Critique of the M4 Macro Language]]
 - 24 https://mastodon.social/@seindal/112205415790637632
 - 22 https://emiruz.com/post/2022-12-28-composable-sql/
 - 22 https://dev.to/taw/100-languages-speedrun-episode-45-m4-pgg
-- 19 http://web.archive.org/web/20190910195316/https://www.linuxtoday.com/blog/macro-magic-m4-complete-guide.html
 - 20 https://chrisman.github.io/9.html
-- 08 https://mbreen.com/m4.html
-- 94 [[https://www.cs.stir.ac.uk/~kjt/research/pdf/expl-m4.pdf][Exploiting the m4 language]]
-- 89 https://web.mit.edu/gnu/doc/html/m4_1.html
-- 99 http://www.linuxfocus.org/English/September1999/article111.html
+- 19 http://web.archive.org/web/20190910195316/https://www.linuxtoday.com/blog/macro-magic-m4-complete-guide.html
+- 15 [[https://modelingwithdata.org/arch/00000188.htm][m4 without the misery]]
 - 09 https://gopherproxy.meulie.net/box.matto.nl/0/m4.txt
+- 08 https://mbreen.com/m4.html
+- 99 http://www.linuxfocus.org/English/September1999/article111.html
+- 94 [[https://www.cs.stir.ac.uk/~kjt/research/pdf/expl-m4.pdf][Exploiting the m4 language]]
 - 94 https://www.nesssoftware.com/home/mwc/doc/coherent/manual/pdf/m4.pdf
   - from "COHERENT manual"
+- 89 https://web.mit.edu/gnu/doc/html/m4_1.html
 
 * videos
 
-- 11 [[https://www.youtube.com/watch?v=ULZxHSPWn98][Bart Massey: The M4 Macro Processor]]
+- 13 [[https://www.youtube.com/watch?v=ULZxHSPWn98][Bart Massey: The M4 Macro Processor]]
 - 19 [[https://www.youtube.com/watch?v=-1w-vx6y4GU][Using Makefile and m4 macro preprocessor to bundle Javascript]]
+  - pdf https://conference.libreoffice.org/assets/Conference/Almeria/HenryUsing-makefile-m4-to-bundle-javascript.pdf
 - 20 [[https://www.youtube.com/watch?v=yrurIUEGo1c][m4 - add macro power to boost any programming language]]
 - 22 [[https://www.youtube.com/watch?v=euh0gaT3tA0][Using macros with the Suite8080 assembler]]
 - 22 [[https://www.youtube.com/watch?v=Jhte76l2mP4][Can GNU m4 replace my need for react based framework]]
-- 23 [[https://www.youtube.com/watch?v=h164R46NWBMH][Hacking GNU Utilities - m4]]
+- 23 [[https://www.youtube.com/watch?v=h164R46NWBMH][Hacking GNU Utilities - m4]] by tsoding
+
+* trivia
+** the "xz backdoor"
+
+- https://git.savannah.gnu.org/gitweb/?p=gnulib.git;a=blob;f=m4/build-to-host.m4
+- https://felipec.wordpress.com/2024/04/04/xz-backdoor-and-autotools-insanity/
+  #+begin_src m4
+  AC_CONFIG_COMMANDS([build-to-host],
+                     [eval $gl_config_gt | $SHELL 2>/dev/null],
+                     [gl_config_gt="eval \$gl_[$1]_config"])
+  #+end_src
+
+- https://lwn.net/Articles/967205/
+  - The exploit is in two parts.
+    1) Two "test files" which contain the payload;
+    2) and a modified =m4= script (m4/build-to-host.m4)
+       which initiates the process of loading the payload.

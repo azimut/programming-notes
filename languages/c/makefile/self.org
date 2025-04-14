@@ -51,7 +51,8 @@
 #+CAPTION: from go.embeddedexpert.io
 [[./makefile.png]]
 
-- defines a dependency tree of ~rules~ (aka recipe)
+- defines a dependency tree (DAG) of ~rules~ (aka recipe)
+  - between his structure and dependencies
   - made of ~targets~ (the vertices)
   - final exe is the root vertex
 

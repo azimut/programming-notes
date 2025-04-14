@@ -5,8 +5,8 @@
 - replicad https://github.com/monostable/replicad
 - electro-grammar (parses string into meaninful struct) https://github.com/kitspace/electro-grammar
   - [X] 17 video [[https://www.youtube.com/watch?v=Wkh8zAumNW8][34C3 - Designing PCBs with code]]
-  - [X] 18 video [[https://www.youtube.com/watch?v=awUYFO3Pwqk][FOSDEM - Designing PCBs with code Designing circuits with code instead of CAD]]
-- m4+dpic electric circuits https://zyedidia.github.io/other/circuit_macros.pdf
+  - [X] 18 video [[https://www.youtube.com/watch?v=awUYFO3Pwqk][FOSDEM - Designing PCBs with code Designing circuits with code instead of CAD]]-
+ m4+dpic electric circuits https://zyedidia.github.io/other/circuit_macros.pdf
   - tool https://github.com/KDE/cirkuit
   - source https://gitlab.com/aplevich/circuit_macros
   - repo https://www.ctan.org/pkg/circuit-macros
@@ -133,6 +133,11 @@
 - https://en.wikipedia.org/wiki/Netlist
   - plaintext
 
+- 14 [[http://web.archive.org/web/20140915083039/http://blog.optimumdesign.com:80/schematic-vs.-netlist-a-guide-to-pcb-deisgn-integration][Schematic vs. Netlist: A Guide to PCB Design Integration]]
+- http://www.vlsiip.com/asic_dictionary/N/netlist.html
+- Examples https://www.allaboutcircuits.com/textbook/reference/chpt-7/example-circuits-and-netlists/
+- [[https://reference.wolfram.com/applications/insydes/Tutorial/TheNetlistFormat.html][The Netlist format]]
+- pdf [[https://www.expresspcb.com/ExpressPCBBin/NetlistFileFormat.pdf][NetList File Format]]
 - Videos
   - 14 [[https://www.youtube.com/watch?v=uBg7J-tuiLs][KiCad 3.0 - The Role Of Netlists In KiCad]]
   - 23 [[https://www.youtube.com/watch?v=PlFE6_atAxw][What is Netlist]]
