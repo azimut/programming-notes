@@ -4,6 +4,7 @@
 - https://en.wikipedia.org/wiki/Man_page
 - https://wiki.gentoo.org/wiki/Man_page
 - https://wiki.archlinux.org/title/Man_page
+- https://medium.com/better-programming/man-pages-the-complete-guide-800ad93425fe
 - online
   - https://linux.die.net/man/
   - https://man7.org/linux/man-pages/
@@ -41,6 +42,11 @@
 | 9 | Kernel routines [Non standard]                           |
 |---+----------------------------------------------------------|
 * roff macros
+
+#+CAPTION: from "better programming" in medium.com
+#+ATTR_ORG: :width 500
+[[https://miro.medium.com/v2/resize:fit:720/format:webp/1*gFD50QtY2yBc1gLypIpx_g.png]]
+
 - *tbl*, *eqn* and *refer* are preprocessors used with man pages
 |---------------+----------------------------------------------|
 |      <c>      |                                              |

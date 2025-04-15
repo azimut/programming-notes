@@ -71,10 +71,12 @@
     until ssh root@10.10.10.10; do sleep 3; done
   #+end_src
 
-|-----------+--------------------+-----------|
-|           |                <r> |    <c>    |
-| head -n 5 |      first 5 lines |   take    |
-| tail -n+5 | skip first 4 lines |   drop    |
-| tail -n 5 |       last 5 lines | take-last |
-| head -n-5 |  skip last 5 lines | drop-last |
-|-----------+--------------------+-----------|
+|-----------+---------------+-----------|
+|           |      <c>      |    <c>    |
+|           |     lines     |    aka    |
+|-----------+---------------+-----------|
+| head -n 5 |    first 5    |   take    |
+| tail -n+5 | skips first 4 |   drop    |
+| tail -n 5 |    last 5     | take-last |
+| head -n-5 | skips last 5  | drop-last |
+|-----------+---------------+-----------|

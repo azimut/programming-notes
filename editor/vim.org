@@ -1,13 +1,12 @@
 - vi https://en.wikipedia.org/wiki/Vi_(text_editor)
   - Bill Joy
   - 1976
-
-- wikipedia https://en.wikipedia.org/wiki/Vim_(text_editor)
-  - Bram Moolenaar
+- vim https://en.wikipedia.org/wiki/Vim_(text_editor)
   - 1991
-
-- wiki https://en.wikipedia.org/wiki/Vim_(text_editor)#Neovim
+  - Bram Moolenaar
+- neovim https://en.wikipedia.org/wiki/Vim_(text_editor)#Neovim
   - 2015
+  - fork
 
 - article http://howivim.com/2016/andy-stewart/
 - lua https://neovim.io/doc/user/lua-guide.html#lua-guide
@@ -22,3 +21,10 @@
 - Learn Vimscript The Hard Way
   - home https://learnvimscriptthehardway.stevelosh.com/
   - behind the scenes footage https://vimeo.com/31177198
+
+* videos
+
+- 22 [[https://www.youtube.com/watch?v=DOtM1mrWjUo][How I take notes as a Math major using Vim + LaTeX]]
+- 15 [[https://www.youtube.com/watch?v=wlR5gYd6um0][Mastering the VIM language]]
+- 14 [[https://www.youtube.com/watch?v=Jaa-LGyagRA][VIM grammar]]
+- 12 [[https://www.youtube.com/watch?v=pksX5m8D1B4][VIM]] by cs50

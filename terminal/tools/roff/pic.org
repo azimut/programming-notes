@@ -55,7 +55,7 @@
 
 * language
 
-#+begin_src pikchr :file example.svg :result graphics
+#+begin_src pikchr :file example.svg :result graphics :exports both
   Eat:   box     "eat" ; arrow
          ellipse "work"; arrow
   Sleep: box     "sleep"
@@ -63,7 +63,7 @@
 #+end_src
 
 #+ATTR_ORG: :width 400
-#+ATTR_HTML: :width 200
+#+ATTR_HTML: :width 400
 #+RESULTS:
 [[file:example.svg]]
 
