@@ -5,13 +5,12 @@
 |   <c>   |                <c>                 |
 |  wiki   |     [[https://en.wikipedia.org/wiki/Bc_%28programming_language%29][english]] [[https://es.wikipedia.org/wiki/Bc_(lenguaje_de_programaci%C3%B3n)][spanish]] [[https://en.wikibooks.org/wiki/Guide_to_Unix/Explanations/bc][wikibooks]]      |
 |   faq   | http://phodd.net/gnu-bc/bcfaq.html |
-|   gnu   |           [[https://github.com/fivepiece/gnu-bc/][source]] [[https://www.gnu.org/software/bc/manual/html_mono/bc.html][manual]]            |
+|   gnu   |        [[https://github.com/fivepiece/gnu-bc/][source]] [[https://www.gnu.org/software/bc/manual/html_mono/bc.html][manual]] [[https://bc.js.org/][online]]        |
 | howard  |               [[https://github.com/gavinhoward/bc][source]]               |
 |  posix  |                [[https://pubs.opengroup.org/onlinepubs/9699919799/utilities/bc.html][man]]                 |
 |   bsd   |             [[https://man.freebsd.org/cgi/man.cgi?query=bc&sektion=1][man]] [[https://cgit.freebsd.org/src/tree/contrib/bc][source]]             |
 | busybox |               [[https://git.busybox.net/busybox/tree/miscutils/bc.c][source]]               |
 | toybox  |               [[https://github.com/landley/toybox/blob/master/toys/pending/bc.c][source]]               |
-| online  |         https://bc.js.org/         |
 |---------+------------------------------------|
 
 - 1975
@@ -182,6 +181,11 @@
 
 * codebases
 
+#+ATTR_ORG: :width 200
+#+ATTR_HTML: :style filter: grayscale(1)
+#+CAPTION: Robert H. Morris in 1988
+[[./morris88.jpg]]
+
 - bitcoin https://github.com/fivepiece/btc-bash-ng/
 - bitcoin https://github.com/fivepiece/btc-bash
 - http://www.numbertheory.org/gnubc/bc_programs.html
@@ -189,6 +193,7 @@
 - https://github.com/fivepiece/gnu-bc/tree/master/Examples
 - http://www.phodd.net/gnu-bc/
 - https://rosettacode.org/wiki/Category:Bc
+
 ** solve.sh
 
 #+begin_src sh
@@ -215,11 +220,12 @@ $ cat /usr/local/bin/solve
   print result
   print "\n"
   #+end_src
+
 * articles
 
-#+ATTR_ORG: :width 200
-#+CAPTION: Robert H. Morris in 1988
-[[./morris88.jpg]]
+#+CAPTION: Lorinda Cherry in 1982
+#+ATTR_HTML: :width 400 :style filter: grayscale(1)
+[[./cherry82.2.png]]
 
 - 23 [[https://org.coloradomesa.edu/~mapierce2/bc/][The GNU Basic Calculator (bc): a Quick-Start Guide for Mathematicians]]
 - 21 [[https://www.computerhope.com/unix/ubc.htm][Linux bc command]]
@@ -233,10 +239,6 @@ $ cat /usr/local/bin/solve
 - ?? https://learnxinyminutes.com/bc/
 
 * videos
-
-#+CAPTION: Lorinda Cherry in 1982
-#+ATTR_HTML: :width 400
-[[./bc_bell.png]]
 
 - [[https://www.youtube.com/watch?v=_UwhS0IvwQk][bc - geeksforgeeks]]
 - [[https://www.youtube.com/watch?v=JkyodHenTuc][Command Line Calculator - gotbletu]]

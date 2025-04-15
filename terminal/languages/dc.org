@@ -30,12 +30,8 @@
 |     --file=FILE     | "                                |
 |      -e SCRIPT      | runs commands in script on input |
 | --expression=SCRIPT | "                                |
+|  DC_LINE_LENGTH=0   | disable line break               |
 |---------------------+----------------------------------|
-
-#+begin_src sh
-  DC_LINE_LENGTH=0   # disable line break
-  DC_LINE_LENGTH=999 # < 2^16 -1
-#+end_src
 
 #+begin_src sh
   $ dc script.dc
@@ -136,6 +132,7 @@
 | - |   q |   |  exits 2 level macro  |
 | 1 |   Q |   | exits Nth level macro |
 |---+-----+---+-----------------------|
+
 * snippets
 
 #+CAPTION: Morris and Cherry on 1974
@@ -154,6 +151,12 @@
   #+end_src
 
 * codebases
+
+#+ATTR_ORG: :width 200
+#+ATTR_HTML: :style filter: grayscale(1)
+#+CAPTION: Robert H. Morris in 1988
+[[./morris88.jpg]]
+
 - https://x.com/nixcraft/status/1493822005262491651
 - [[https://github.com/Alhadis/language-etc/blob/1455feb6de582239b67e8bbde8086569db377e3d/samples/dirsize.dc][Alhadis/language-etc/dirsize.dc]]
 - [[https://github.com/brunk23/code-challenges/blob/7b7afc5088142102ce9610cbda7bac5cd9583829/trend.error][brunk23/code-challenges/trend.error]]
@@ -201,9 +204,9 @@
 
 * articles
 
-#+ATTR_ORG: :width 200
-#+CAPTION: Robert H. Morris in 1988
-[[./morris88.jpg]]
+#+CAPTION: Lorinda Cherry in 1974
+#+ATTR_HTML: :width 300
+[[./cherry74.png]]
 
 - 24 [[https://bash-hackers.gabe565.com/howto/calculate-dc/][Calculating with dc - The Bash Hackers Wiki]]
 - 22 [[https://blogs.perl.org/users/laurent_r/2022/07/perl-weekly-challenge-173-sylvesters-sequence-in-dc.html][Perl Weekly Challenge 173: Sylvester's Sequence in dc]]
@@ -216,10 +219,6 @@
 - ?? [[https://wiki.c2.com/?DeeCee][Dee Cee]]
 
 * videos
-
-#+CAPTION: Lorinda Cherry in 1982
-#+ATTR_HTML: :width 400
-[[./dc_bell.png]]
 
 - 23 [[https://www.youtube.com/watch?v=9M8sQrrS_f8][RPN, dc, and the HP-12C]]
 - 23 [[https://www.youtube.com/watch?v=MDENRcTWDSY][Découvrons & Programmons "dc" (desk calculator) - 1971]] [[https://blog.univ-angers.fr/mathsinfo/dc/][(article)]]
