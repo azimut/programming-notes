@@ -1,0 +1,7 @@
+#+TITLE: qemu-avr
+
+- https://raw.githubusercontent.com/qemu/qemu/e75941331e4cdc05878119e08635ace437aae721/scripts/qemu-binfmt-conf.sh
+- https://qemu.readthedocs.io/en/latest/system/target-avr.html
+  https://yeah.nah.nz/embedded/qemu-avr/
+  https://patchwork.kernel.org/project/qemu-devel/patch/20200123000307.11541-15-richard.henderson@linaro.org/
+  https://www.youtube.com/watch?v=3yP3QOT-h98

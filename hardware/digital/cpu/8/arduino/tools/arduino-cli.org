@@ -1,0 +1,7 @@
+- source https://github.com/arduino/arduino-cli
+
+- https://arduino.github.io/arduino-cli/latest/getting-started/
+  > arduino-cli config init
+  > arduino-cli core update-index
+
+- $ arduino-cli compile --fqbn arduino:avr:uno --port /dev/ttyACM0 --upload /home/sendai/Arduino/eeprom/ -t

@@ -1,0 +1,64 @@
+#+TITLE: avrdude
+
+- "AVRDUDE is software for programming Atmel AVR Microcontrollers."
+- source https://github.com/avrdudes/avrdude ([[https://github.com/sigmike/avrdude][old]])
+- wiki https://github.com/avrdudes/avrdude/wiki
+- manual https://avrdudes.github.io/avrdude/7.0/avrdude_toc.html
+- common errors https://support.arduino.cc/hc/en-us/articles/4401874331410--Error-avrdude-when-uploading
+
+* cli
+
+#+begin_src
+  avrdude [options]
+#+end_src
+
+|-----+-------------------------------+------------------------------|
+| <c> |              <c>              |             <c>              |
+| -b  |          <baudrate>           |          eg: 115200          |
+| -p  |           <partno>            | ~REQUIRED~ eg: m2560, m328p  |
+| -P  |            <port>             |        eg: usb, com4         |
+| -c  |         <programmer>          | eg: arduino, usbtiny, wiring |
+| -U  | <memtype>:[rwv]:<file>:format |       memory operation       |
+|     |                               |        memtype: flash        |
+|     |                               |    format: r(aw), i(hex)     |
+|-----+-------------------------------+------------------------------|
+| -l  |          <log-file>           |  output stderr to log-file   |
+| -C  |         <config-file>         |                              |
+|-----+-------------------------------+------------------------------|
+| -n  |               -               |          dummy mode          |
+| -s  |               -               |         silent mode          |
+| -t  |               -               |        terminal mode         |
+| -v  |               -               |         verbose mode         |
+|-----+-------------------------------+------------------------------|
+| -D  |               -               | disable auto-erase for flash |
+| -F  |               -               |   disable signature check    |
+| -u  |               -               |       disable safemode       |
+| -V  |               -               |     disable verification     |
+|-----+-------------------------------+------------------------------|
+
+#+begin_src
+  -B <bitclock>              Specify JTAG/STK500v2 bit clock period (us).
+  -i <delay>                 ISP Clock Delay [in microseconds]
+  -O                         Perform RC oscillator calibration (see AVR053).
+  -E <exitspec>[,<exitspec>] List programmer exit specifications.
+  -x <extended_param>        Pass <extended_param> to programmer.
+  -y                         Count # erase cycles in EEPROM.
+  -e                         Perform a chip erase.
+  -Y <number>                Initialize erase cycle # in EEPROM.
+  -q                         Quell progress output. -q -q for less.
+#+end_src
+
+* snippets
+
+- dump/restore current arduino uno R3 image (-D optional?)
+  #+begin_src sh
+    $ avrdude -D -p atmega328p -c arduino -P /dev/ttyACM0 -U flash:r:flashdump.bin:r -v
+    $ avrdude -D -p atmega328p -c arduino -P /dev/ttyACM0 -U flash:w:flashdump.bin:r -v
+  #+end_src
+
+* avrdudess
+
+- https://github.com/zkemble/AVRDUDESS
+- UI for avrdude, C#, can run with MONO...
+[[./avrdudess.png]]
+
