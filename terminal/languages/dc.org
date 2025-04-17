@@ -48,7 +48,7 @@
 
 ** strings
 
-- can only be printed or execute them as macros
+- can only be printed or executed as macros
 - delimited by []
 
 ** numbers
@@ -111,14 +111,14 @@
 | 1 | P | 1 | print top of stack, no \n, as char if number |
 |---+---+---+----------------------------------------------|
 *** stack manipulation
-|---+---+---+--------------------------------|
-|   |   |   |              <c>               |
-|   | z | 1 |           stack size           |
-| * | c |   |        clear all stack         |
-| 1 | d | 2 |              dup               |
-| 2 | r | 2 |              swap              |
-| 1 | R |   | rotates the top Nth items once |
-|---+---+---+--------------------------------|
+|---+---+---+----------------------------|
+|   |   |   |            <c>             |
+|   | z | 1 |         stack size         |
+| * | c |   |      clear all stack       |
+| 1 | d | 2 |            dup             |
+| 2 | r | 2 |            swap            |
+| 1 | R |   | rotates top Nth items once |
+|---+---+---+----------------------------|
 *** control flow
 |---+-----+---+-----------------------|
 |   | <r> |   |          <c>          |

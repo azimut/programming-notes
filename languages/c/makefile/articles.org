@@ -1,5 +1,6 @@
 - https://news.ycombinator.com/item?id=15041986
 - https://n64squid.com/homebrew/n64-sdk/compiling-roms/makefile/
+- https://www.matheusmoreira.com/articles/managing-dotfiles-with-make
 - 94 https://www.nesssoftware.com/home/mwc/doc/coherent/manual/pdf/make.pdf
 - 98 Recursive Make Consided Harmful https://aegis.sourceforge.net/auug97.pdf
 - 13 http://web.archive.org/web/20131218224259/http://zmjones.com:80/make/
@@ -8,6 +9,7 @@
 - 15 Practical Makefiles, by example http://nuclear.mutantstargoat.com/articles/make/
 - 15 https://kbroman.org/minimal_make/
 - +15 https://gist.github.com/isaacs/62a2d1825d04437c6f08+
+- 16 Self-Documented Makefile https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 - 16 Non-recursive Make Considered Harmful https://www.microsoft.com/en-us/research/wp-content/uploads/2016/03/hadrian.pdf
 - 16 Embed With Elliot: ARM Makefile Madness https://hackaday.com/2016/03/22/embed-with-elliot-arm-makefile-madness/
 - 16 Reproducible bioinformatics pipelines using Make http://byronjsmith.com/make-bml/
@@ -19,8 +21,15 @@
 - 17 https://zwischenzugs.com/2017/08/07/a-non-cloud-serverless-application-pattern-using-git-and-docker/
 - +18 https://text.causal.agency/001-make.txt+
 - 18 https://clarkgrubb.com/makefile-style-guide
+- 18 https://danyspin97.org/blog/makefiles-best-practices/
+- 18 https://www.olioapps.com/blog/the-lost-art-of-the-makefile
 - +19 https://tech.davis-hansson.com/p/make/+
+- 19 http://web.archive.org/web/20191120194706/https://blog.mindlessness.life/makefile/2019/11/17/the-language-agnostic-all-purpose-incredible-makefile.html
+- 20 http://web.archive.org/web/20200515171004/http://agdr.org/2020/05/14/Polyglot-Makefiles.html
 - 20 https://book.the-turing-way.org/reproducible-research/make/make-examples
+- 22 https://8thlight.com/insights/make-developing-easier-by-building-a-beautiful-makefile
+- 22 https://trofi.github.io/posts/238-new-make-shuffle-mode.html
+- 22 https://rosszurowski.com/log/2022/makefiles
 - 25 https://blog.yossarian.net/2025/01/10/Be-aware-of-the-Makefile-effect
 - https://swcarpentry.github.io/make-novice/reference.html
 - https://swcarpentry.github.io/make-novice/aio.html

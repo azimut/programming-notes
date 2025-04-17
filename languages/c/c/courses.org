@@ -1,0 +1,40 @@
+* FrontEnd Masters - C Fundamentals
+
+TODO: 01:09:00
+
+** 1
+
+- Richard Feldman
+- [[https://github.com/rtfeldman/c-workshop-v1][source]] [[https://docs.google.com/presentation/d/1CGtDVSazrJHI52OnwwJXgogQEHs63lrasfQWJvmcYM0/edit?usp=sharing][slides]]
+- no windows version of the course
+  - course uses unix/posix apis
+- "print()" comes from the "teletype" era
+- PDP-11 (Unix/C ran on it)
+  - CPU 125kHz
+  - 256Kb of memory
+- "C is the most universal language"
+  - has interop with many/all
+- in asm ~scope~ is not a thing
+- in OSX, syscall numbers may change between os versions
+  - forcing you to use the stdlib
+  - unlike in Linux
+
+*** Example: Hello World
+
+#+begin_src c
+  #include <unistd.h>
+  void main() {
+    write(1, "Hello, World!", 13);
+  }
+#+end_src
+
+#+CAPTION: equivalent in x86 assembly
+#+begin_src asm
+  .LC0: ; local constant 0
+          .string "Hello, World!"
+  main:
+          mov edx, 13
+          mov esi, OFFSET FLAT:.LC0
+          mov edi, 1
+          jmp write ; OS provided
+#+end_src

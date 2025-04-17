@@ -23,6 +23,7 @@
 - 20 | https://ketancmaheshwari.github.io/posts/2020/05/24/SMC18-Data-Challenge-4.html
 - 21 | https://web.archive.org/web/20210505004021/https://portal.drewdevault.com/2021/05/03/awk-is-the-coolest-tool-you-dont-know.gmi
 - 22 | https://benhoyt.com/writings/goawk-compiler-vm/
+- 23 https://benhoyt.com/writings/awk-make/
 - 23 | [[https://stephenramsay.net/posts/unreasonable-awk.html][The Unreasonable Effectiveness of AWK]]
 - 23 | [[https://remcycles.net/blog/awk_anagrams.html][Finding Anagrams with Persistent Memory Gawk (pm-gawk)]]
 - 23 | [[https://remcycles.net/blog/awk_noise.html][Awk Generated White Noise (AGWN)]]

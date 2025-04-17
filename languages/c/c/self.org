@@ -1,12 +1,12 @@
 - https://en.wikipedia.org/wiki/C_(programming_language)
   - 1972
   - by Dennis Ritchie (31)
-  - Influenced by Algol and B (of Ken Thompson)
+  - Influenced by ~Algol~ and ~B~ (of Ken Thompson)
   - Loosely typed language
 
 * Language
 
-- 0 is true
+- 0 is false
 - main() entry point for a program that's executed in a hosted environment
   - a *return* from it, is equivalent to calling *exit*
 
