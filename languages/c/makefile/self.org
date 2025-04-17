@@ -25,23 +25,23 @@
 - bare run of "make", defaults to running the first target found
 - you can give more than 1 target
 
-|-----------+--------------------------+--------------------------------|
-|    <c>    |           <c>            |                                |
-| -f=MAKEF  |   (make)file=MAKEFILE    |                                |
-| -o TARGET |     old-file=TARGET      | never remake TARGET            |
-|    -k     |        keep-going        | keep on errors                 |
-|    -s     |          silent          | silent command print           |
-|    -i     |      ignore-errors       |                                |
-|    -e     |  environment-overrides   | env>make vars                  |
-|    -B     |       always-make        | make ALL targets               |
-|   -j N    |          jobs=N          | parallel jobs                  |
-|    -n     |         dry-run          |                                |
-|    -t     |          touch           | touch targets, without running |
-|    -d     | --debug=[a¦b¦v¦i¦j¦m¦n]  | print debug                    |
-|           | warn-undefined-variables | when referenced                |
-|    -r     |     no-builtin-rules     |                                |
-|    -R     |   no-builtin-variables   |                                |
-|-----------+--------------------------+--------------------------------|
+|-----+----------------------------+-----------------+--------------------------------|
+| <c> |            <c>             |       <c>       |              <c>               |
+| -f  |        --[make]file        |      file       |                                |
+| -o  |         --old-file         |     target      |      never remake TARGET       |
+| -k  |        --keep-going        |        -        |         keep on errors         |
+| -s  |          --silent          |        -        |      silent command print      |
+| -i  |      --ignore-errors       |        -        |                                |
+| -e  |  --environment-overrides   |        -        |         env>make vars          |
+| -B  |       --always-make        |        -        |        make ALL targets        |
+| -j  |           --jobs           |     n_jobs      |         parallel jobs          |
+| -n  |         --dry-run          |        -        |                                |
+| -t  |          --touch           |        -        | touch targets, without running |
+| -d  |          --debug           | [a¦b¦v¦i¦j¦m¦n] |          print debug           |
+|     | --warn-undefined-variables |        -        |        when referenced         |
+| -r  |     --no-builtin-rules     |        -        |                                |
+| -R  |   --no-builtin-variables   |        -        |                                |
+|-----+----------------------------+-----------------+--------------------------------|
 
 * language
 
