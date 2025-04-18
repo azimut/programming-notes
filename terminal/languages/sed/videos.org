@@ -1,3 +1,4 @@
+- 23 [[https://www.youtube.com/watch?v=Zxe7WaAkvIg][Let's read the GNU Sed source code]]
 - 18 Using `sed` and Regular Expressions https://www.youtube.com/watch?v=QaGhpqRll_k
 - 21 The command-line GNU sed: become the MASTER of plain text - mouselessdev
   * Part 01 - Basics https://www.youtube.com/watch?v=R-3EahsCmpg

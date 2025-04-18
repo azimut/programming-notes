@@ -1,3 +1,5 @@
+- 18 "Fields.awk: Flat-file Database Tutorial" by Ian R. Forsyth
+  - https://www.amazon.com/Fields-awk-Flat-file-Database-Ian-Forsyth/dp/1775310310
 - book packt https://github.com/PacktPublishing/Learning-AWK-Programming
 - book
   - https://learnbyexample.github.io/learn_gnuawk/

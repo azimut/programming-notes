@@ -36,6 +36,8 @@
 | -V  |               -               |     disable verification     |
 |-----+-------------------------------+------------------------------|
 
+- partno: UNO-R3(atmega328p), MEGA-R3(atmega2560)
+
 #+begin_src
   -B <bitclock>              Specify JTAG/STK500v2 bit clock period (us).
   -i <delay>                 ISP Clock Delay [in microseconds]
@@ -50,10 +52,16 @@
 
 * snippets
 
-- dump/restore current arduino uno R3 image (-D optional?)
+- dump/restore current ARDUINO uno R3 image (-D optional?)
   #+begin_src sh
     $ avrdude -D -p atmega328p -c arduino -P /dev/ttyACM0 -U flash:r:flashdump.bin:r -v
     $ avrdude -D -p atmega328p -c arduino -P /dev/ttyACM0 -U flash:w:flashdump.bin:r -v
+  #+end_src
+
+- dump/restore current ARDUINO MEGA R3 image (-D optional?)
+  #+begin_src sh
+    $ avrdude -D -p atmega2560 -c wiring -P /dev/ttyACM0 -U flash:r:flashdump.bin:r -v
+    $ avrdude -D -p atmega2560 -c wiring -P /dev/ttyACM0 -U flash:w:flashdump.bin:r -v # NOT TESTED
   #+end_src
 
 * avrdudess

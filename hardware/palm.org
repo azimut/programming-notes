@@ -1,0 +1,12 @@
+- https://en.wikipedia.org/wiki/Palm_Tungsten
+  - 2002-2005
+  - Palm OS 5.2.1
+
+- [[https://www.netmeister.org/palm/PalmMisc/PalmMisc.html][Software Development for the Palm OS]]
+- [[https://palm.wiki/dev][Developing Programs for Palm OS in the Present-Day]]
+- 19 Serial Communication with Palm OS - [[https://palm2000.com/articles/6][1]] [[https://palm2000.com/articles/7][2]] [[https://palm2000.com/articles/8][3]] [[https://palm2000.com/articles/9][4]]
+- 19 A Mp3-Player for old Palm OS devices - [[https://palm2000.com/articles/10][1]] [[https://palm2000.com/articles/11][2]]
+- 19 [[https://palm2000.com/articles/3][Installing POSE (Palm OS Emulator) on Ubuntu 18.04 LTS (64-Bit)]]
+- 20 Bluetooth Communication with Palm OS - [[https://palm2000.com/articles/15][1]] [[https://palm2000.com/articles/16][2]]
+- 19 [[https://palm2000.com/articles/4][Compiling and building Palm-OS-Applications on Ubuntu 18.04 LTS (64 Bit)]]
+- 20 [[https://palm2000.com/articles/17][Compiling and building Palm-OS-Applications on Ubuntu 20.04 LTS (64 Bit)]]

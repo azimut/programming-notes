@@ -40,7 +40,7 @@ I -----------|
 - Arduino
   - Leonardo
     - chip has built in usb interface, can emulate keyboard or mouse
-  - Mega
+  - Mega [[http://web.archive.org/web/20150122044427/http://pighixxx.com:80/megapdf.pdf][pinout.pdf]]
   - Nano
   - Pro-mini (needs a programmer)
 
@@ -78,7 +78,7 @@ https://www.arduino.cc/reference/cs/
 
 |-----+-----------------+----------------+---------------+---------------------------|
 | <c> |       <c>       |            <r> |           <r> |                           |
-| bit |   type / cast   |            min |           max |                           |
+| siz |   type / cast   |            min |           max |                           |
 |-----+-----------------+----------------+---------------+---------------------------|
 |  -  |     [[https://www.arduino.cc/reference/en/language/variables/data-types/boolean][boolean]]     |              - |             - | alias of "bool"           |
 |  8  |      [[https://www.arduino.cc/reference/en/language/variables/data-types/bool][bool]]       |           true |         false |                           |

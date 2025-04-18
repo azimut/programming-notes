@@ -24,11 +24,13 @@
 - 18 https://danyspin97.org/blog/makefiles-best-practices/
 - 18 https://www.olioapps.com/blog/the-lost-art-of-the-makefile
 - +19 https://tech.davis-hansson.com/p/make/+
+- 19 https://wiki.netbsd.org/tutorials/bsd_make/
 - 19 http://web.archive.org/web/20191120194706/https://blog.mindlessness.life/makefile/2019/11/17/the-language-agnostic-all-purpose-incredible-makefile.html
 - 20 http://web.archive.org/web/20200515171004/http://agdr.org/2020/05/14/Polyglot-Makefiles.html
 - 20 https://book.the-turing-way.org/reproducible-research/make/make-examples
 - 22 https://8thlight.com/insights/make-developing-easier-by-building-a-beautiful-makefile
 - 22 https://trofi.github.io/posts/238-new-make-shuffle-mode.html
+- 22 https://suragu.net/tech_posts/bsd_make.html
 - 22 https://rosszurowski.com/log/2022/makefiles
 - 25 https://blog.yossarian.net/2025/01/10/Be-aware-of-the-Makefile-effect
 - https://swcarpentry.github.io/make-novice/reference.html

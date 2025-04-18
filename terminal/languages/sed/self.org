@@ -1,11 +1,12 @@
 #+TITLE: sed
 #+DATE: <2023-09-04 lun>
 
-|------+---------------------------|
-| <c>  |            <c>            |
-| gnu  | [[https://www.gnu.org/software/sed/][home]] [[https://www.gnu.org/software/sed/manual/sed.html][doc]] [[https://github.com/mirror/sed][source]] [[https://fossies.org/linux/sed/ChangeLog][changelog]] |
-| wiki |      [[https://en.wikibooks.org/wiki/Sed][english]] [[https://es.wikipedia.org/wiki/Sed_(inform%C3%A1tica)][spanish]]      |
-|------+---------------------------|
+|--------+----------------------------|
+|  <c>   |            <c>             |
+|  gnu   |     [[https://www.gnu.org/software/sed/][home]] [[https://www.gnu.org/software/sed/manual/sed.html][doc]] [[https://fossies.org/linux/sed/ChangeLog][changelog]]     |
+| source | [[https://github.com/mirror/sed][gnu]] [[https://github.com/landley/toybox/blob/master/toys/posix/sed.c][toybox]] [[https://github.com/brgl/busybox/blob/master/editors/sed.c][busybox]] [[https://github.com/tar-mirror/minised/][minised]] |
+|  wiki  |      [[https://en.wikibooks.org/wiki/Sed][english]] [[https://es.wikipedia.org/wiki/Sed_(inform%C3%A1tica)][spanish]]       |
+|--------+----------------------------|
 
 - 1974, Bell Labs
 - Lee E. McMahon (43)
@@ -19,22 +20,22 @@
   sed [OPTION] [SCRIPT] [INPUTFILE]
 #+end_src
 
-|---------+-----------------+--------+---------------------------------------------------------|
-|   <c>   |       <c>       |        |                                                         |
-|   -e    |   expression    | script | inline script                                           |
-|   -f    |      file       | file   | path to script file                                     |
-|   -n    | quiet ¦ silent  |        | output only via the *p* command                         |
-|   -i    |    in-place     |        | inplace edit                                            |
-|   -i    |    in-place     | .bkp   | inplace edit, saves old version with the .bkp extension |
-| -E ¦ -r | regexp-extended |        | enables extended regex, instead of default posix        |
-|   -u    |   unbuffered    |        | flushes output more often                               |
-|   -z    |    null-data    |        | separate by NUL characters                              |
-|   -s    |    separate     |        | consider files as separate                              |
-|         |     sandbox     |        | disable e/r/w commands                                  |
-|         |      posix      |        | disable GNU extensions                                  |
-|         |      debug      |        | annotate execution                                      |
-|         | follow-symlinks |        | when doing (-i)nplace editing                           |
-|---------+-----------------+--------+---------------------------------------------------------|
+|---------+--------------------+--------+---------------------------------------------------------|
+|   <c>   |        <c>         |  <c>   |                                                         |
+|   -e    |    --expression    | script | inline script                                           |
+|   -f    |       --file       |  file  | path to script file                                     |
+|   -n    | --quiet ¦ --silent |        | output only via the *p* command                         |
+|   -i    |     --in-place     |        | inplace edit                                            |
+|   -i    |     --in-place     |  .bkp  | inplace edit, saves old version with the .bkp extension |
+| -E ¦ -r | --regexp-extended  |        | enables extended regex, instead of default posix        |
+|   -u    |    --unbuffered    |        | flushes output more often                               |
+|   -z    |    --null-data     |        | separate by NUL characters                              |
+|   -s    |     --separate     |        | consider files as separate                              |
+|         |     --sandbox      |        | disable e/r/w commands                                  |
+|         |      --posix       |        | disable GNU extensions                                  |
+|         |      --debug       |        | annotate execution                                      |
+|         | --follow-symlinks  |        | when doing (-i)nplace editing                           |
+|---------+--------------------+--------+---------------------------------------------------------|
 
 * language
 

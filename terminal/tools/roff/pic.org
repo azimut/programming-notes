@@ -146,19 +146,24 @@ for x=0.1 to 1.3 by 0.08 do {
 
 ** commands
 *** primitive objects - planar & linear
-|---------+------------+-------------------------------|
-|   <c>   |    <c>     |                               |
-|   box   | 0.75 x 0.5 |                               |
-| circle  |   0.25 r   |                               |
-| ellipse | 0.75 x 0.5 |                               |
-|  line   |    1/2"    | a/t/b                         |
-|  arrow  |    1/2"    | a/t/b - synonym for "line ->" |
-| spline  |            |                               |
-|   arc   |   1/2"R    | 90° anti-clockwise            |
-| arc cw  |   1/2"R    | 90° clockwise                 |
-|  move   |    1/2"    | moves in current direction    |
-|  "foo"  |            | troff text                    |
-|---------+------------+-------------------------------|
+|----------+------------+-------------------------------|
+|   <c>    |    <c>     |                               |
+|   box    | 0.75 x 0.5 |                               |
+|  circle  |   0.25 r   |                               |
+| ellipse  | 0.75 x 0.5 |                               |
+|   oval   |            | pikchr                        |
+| diamond  |            | pikchr                        |
+|   file   |            | pikchr                        |
+| cylinder |            | pikchr                        |
+|   dot    |            | pikchr                        |
+|   line   |    1/2"    | a/t/b                         |
+|  arrow   |    1/2"    | a/t/b - synonym for "line ->" |
+|  spline  |            |                               |
+|   arc    |   1/2"R    | 90° anti-clockwise            |
+|  arc cw  |   1/2"R    | 90° clockwise                 |
+|   move   |    1/2"    | moves in current direction    |
+|  "foo"   |            | troff text                    |
+|----------+------------+-------------------------------|
 a/t/b = above top below, where the given strings will be put
 *** attributes - cosmetic
 |-------------+-----+---------------------------------------|
@@ -181,6 +186,10 @@ a/t/b = above top below, where the given strings will be put
 |  outlined   |  1  | DPIC, take a rgbstring()              |
 | thick[ness] |  1  | DPIC + GPIC                           |
 | l[ine]thick |  1  | DPIC + GPIC                           |
+|   italic    |  -  | pikchr                                |
+|    bold     |  -  | pikchr                                |
+|    small    |  -  | pikchr                                |
+|     big     |  -  | pikchr                                |
 |-------------+-----+---------------------------------------|
 *** attributes - others
 

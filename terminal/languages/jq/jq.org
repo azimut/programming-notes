@@ -233,8 +233,7 @@
 
 - https://jqlang.github.io/jq/manual/v1.7/#regular-expressions
 - compatible with Perl v5.8 regexes
-- uses oniguruma implementation
-  https://github.com/kkos/oniguruma/blob/6fa38f4084b448592888ed9ee43c6e90a46b5f5c/doc/RE
+- [[https://github.com/kkos/oniguruma/blob/6fa38f4084b448592888ed9ee43c6e90a46b5f5c/doc/RE][uses]] oniguruma implementation
 - as strings the backslash for classes needs to be escaped
   "\\d" for characters
 
