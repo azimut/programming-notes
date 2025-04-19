@@ -103,47 +103,47 @@
   * cmd1;cmd2
   * -e cmd2 -e cmd2
 
-|------------+-------------+-----+---------------------------------------------------------------------|
-|    <c>     |     <c>     | <c> |                                                                     |
-|            |             | GNU |                                                                     |
-|------------+-------------+-----+---------------------------------------------------------------------|
-|  q [CODE]  |    quit     |     | exit with optional return code                                      |
-|     z      |     zap     |  x  | empties the *pattern space*                                         |
-|     d      |   delete    |     | empties the *pattern space*, and starts a new cycle                 |
-|     D      |   delete    |     | if *pattern space* drop 1st line if many, else starts a new cycle   |
-|     n      |    next     |     | reads   next line into the *pattern space* AND prints its old value |
-|     N      |    next     |     | appends next line into the *pattern space* in a new line            |
-|     p      |    print    |     | the *pattern space*                                                 |
-|     P      |    print    |     | the 1st line on the *pattern space*                                 |
-|     =      |             |     | prints the current line number plus a new line                      |
-| y/src/dst/ |             |     | (tr)ansliterates src chars for dst chars                            |
-|     l      |    list     |     | list the *pattern space* unambigously, nice for debugging           |
-|------------+-------------+-----+---------------------------------------------------------------------|
-|   a STR    |   append    |     | string after current *pattern space*                                |
-|   i STR    |   insert    |     | string before current *pattern space*                               |
-|   c STR    |   change    |     | replaces current *pattern space* with a given STR                   |
-|------------+-------------+-----+---------------------------------------------------------------------|
-|  s/p/r/f   | substitute  |     | /pattern/replacement/flags                                          |
-|            |             |     | uses address for pattern if missing                                 |
-|            |             |     | replacement: "&" /pattern/ matched, \N where N is the N-match group |
-|            |             |     | flags: [w FILE,g,p,I,NUMBEROFMATCH]                                 |
-|            |             |     | hk                                                                  |
-|------------+-------------+-----+---------------------------------------------------------------------|
-|  e [CMD]   |   execute   |  x  | given shell CMD, and store its output in the *pattern space*        |
-|   r FILE   |    read     |     | given file and prints it into stdout                                |
-|   w FILE   |    write    |     | *pattern space* to given file                                       |
-|   W FILE   |    write    |  x  | *pattern space* to given file, but only the 1st line                |
-|------------+-------------+-----+---------------------------------------------------------------------|
-|  b LABEL   |   branch    |     | jump to given tag, to the end of script if none given               |
-|  t LABEL   | test branch |     | jump to given tag, IF previous substitution succeded                |
-|  T LABEL   | test branch |     | jump to given tag, IF previous substitution failed                  |
-|------------+-------------+-----+---------------------------------------------------------------------|
-|     h      |    hold     |     | copy     pattern -> hold                                            |
-|     H      |    hold     |     | append \npattern -> hold                                            |
-|     g      |     get     |     | copy        hold -> pattern                                         |
-|     G      |     get     |     | append    \nhold -> pattern                                         |
-|     x      |  exchange   |     | aka swap content between /hold space/ and /pattern space/           |
-|------------+-------------+-----+---------------------------------------------------------------------|
+|------------+-------------+---------------------------------------------------------------------|
+|    <c>     |     <c>     |                                                                     |
+|            |             |                                                                     |
+|------------+-------------+---------------------------------------------------------------------|
+|  q [CODE]  |    quit     | exit with optional return CODE                                      |
+|     z      |     zap     | empties the *pattern space* (GNU)                                   |
+|     d      |   delete    | empties the *pattern space*, and starts a new cycle                 |
+|     D      |   delete    | if *pattern space* drop 1st line if many, else starts a new cycle   |
+|     n      |    next     | reads   next line into the *pattern space* AND prints its old value |
+|     N      |    next     | appends next line into the *pattern space* in a new line            |
+|     p      |    print    | the *pattern space*                                                 |
+|     P      |    print    | the 1st line on the *pattern space*                                 |
+|     =      |             | prints the current line number plus a new line                      |
+| y/src/dst/ |             | (tr)ansliterates src chars for dst chars                            |
+|     l      |    list     | list the *pattern space* unambigously, nice for debugging           |
+|------------+-------------+---------------------------------------------------------------------|
+|   a STR    |   append    | string after current *pattern space*                                |
+|   i STR    |   insert    | string before current *pattern space*                               |
+|   c STR    |   change    | replaces current *pattern space* with a given STR                   |
+|------------+-------------+---------------------------------------------------------------------|
+|  s/p/r/f   | substitute  | /pattern/replacement/flags                                          |
+|            |             | uses address for pattern if missing                                 |
+|            |             | replacement: "&" /pattern/ matched, \N where N is the N-match group |
+|            |             | flags: [w FILE,g,p,I,NUMBEROFMATCH]                                 |
+|            |             | hk                                                                  |
+|------------+-------------+---------------------------------------------------------------------|
+|  e [CMD]   |   execute   | given shell CMD, and stores its output in the *pattern space* (GNU) |
+|   r FILE   |    read     | given file and prints it into stdout                                |
+|   w FILE   |    write    | *pattern space* to given file                                       |
+|   W FILE   |    write    | *pattern space* to given file, but only the 1st line (GNU)          |
+|------------+-------------+---------------------------------------------------------------------|
+|  b LABEL   |   branch    | jump to given tag, to the end of script if none given               |
+|  t LABEL   | test branch | jump to given tag, IF previous substitution succeded                |
+|  T LABEL   | test branch | jump to given tag, IF previous substitution failed                  |
+|------------+-------------+---------------------------------------------------------------------|
+|     h      |    hold     | copy     pattern -> hold                                            |
+|     H      |    hold     | append \npattern -> hold                                            |
+|     g      |     get     | copy        hold -> pattern                                         |
+|     G      |     get     | append    \nhold -> pattern                                         |
+|     x      |  exchange   | aka swap content between /hold space/ and /pattern space/           |
+|------------+-------------+---------------------------------------------------------------------|
 
 * snippets
 
