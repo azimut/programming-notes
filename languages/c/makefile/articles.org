@@ -22,7 +22,7 @@
 - +18 https://text.causal.agency/001-make.txt+
 - 18 https://clarkgrubb.com/makefile-style-guide
 - 18 https://danyspin97.org/blog/makefiles-best-practices/
-- 18 https://www.olioapps.com/blog/the-lost-art-of-the-makefile
+- 18 [[https://www.olioapps.com/blog/the-lost-art-of-the-makefile][The Lost Art of the Makefile]]
 - +19 https://tech.davis-hansson.com/p/make/+
 - 19 https://wiki.netbsd.org/tutorials/bsd_make/
 - 19 http://web.archive.org/web/20191120194706/https://blog.mindlessness.life/makefile/2019/11/17/the-language-agnostic-all-purpose-incredible-makefile.html
@@ -32,6 +32,7 @@
 - 22 https://trofi.github.io/posts/238-new-make-shuffle-mode.html
 - 22 https://suragu.net/tech_posts/bsd_make.html
 - 22 https://rosszurowski.com/log/2022/makefiles
+- 23 [[https://stackabuse.com/how-to-write-a-makefile-automating-python-setup-compilation-and-testing/][How to Write a Makefile - Automating Python Setup, Compilation, and Testing]]
 - 25 https://blog.yossarian.net/2025/01/10/Be-aware-of-the-Makefile-effect
 - https://swcarpentry.github.io/make-novice/reference.html
 - https://swcarpentry.github.io/make-novice/aio.html
@@ -111,7 +112,7 @@ clean:
 .PHONY: all clean
 #+end_src
 
-* A Tutorial on Portable Makefiles
+* 17 A Tutorial on Portable Makefiles
 
 https://nullprogram.com/blog/2017/08/20/
 - POSIX Make https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html

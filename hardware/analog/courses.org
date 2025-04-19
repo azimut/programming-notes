@@ -1,3 +1,5 @@
+- [[https://www.youtube.com/playlist?list=PLLs0XGQCqp0peSsgkpm8hsWLC5C9hUg8x][Learning Electronics]] by Leo's Bag of Tricks
+
 - 07 6.002 | Circuits and Electronics
   * https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/video_galleries/video-lectures/
 

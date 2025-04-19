@@ -6,6 +6,7 @@
 
 * Language
 
+- no stacktraces by default
 - 0 is false
 - main() entry point for a program that's executed in a hosted environment
   - a *return* from it, is equivalent to calling *exit*

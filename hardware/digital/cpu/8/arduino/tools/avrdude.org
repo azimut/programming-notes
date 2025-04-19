@@ -69,4 +69,3 @@
 - https://github.com/zkemble/AVRDUDESS
 - UI for avrdude, C#, can run with MONO...
 [[./avrdudess.png]]
-

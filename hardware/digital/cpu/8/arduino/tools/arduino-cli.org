@@ -5,3 +5,7 @@
   > arduino-cli core update-index
 
 - $ arduino-cli compile --fqbn arduino:avr:uno --port /dev/ttyACM0 --upload /home/sendai/Arduino/eeprom/ -t
+
+- gotchas
+  - Error: "Main file missing from sketch"
+    - [[https://github.com/microsoft/vscode-arduino/issues/1665#issuecomment-1636869924][means that the filename does not match the folder name]]

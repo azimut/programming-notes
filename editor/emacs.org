@@ -13,6 +13,8 @@
 
 - babel
   - shell https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-shell.html#org152b7a3
+  - results https://orgmode.org/manual/Results-of-Evaluation.html
+  - C https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-C.html
 
 - exporters
   - groff https://orgmode.org/worg/exporters/ox-groff.html

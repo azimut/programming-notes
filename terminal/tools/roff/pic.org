@@ -314,13 +314,15 @@ define tree %
 - ps2eps - converts postscript to encapsulated postscript that only contains given shape
 - eps[to]pdf - converts eps to pdf
 - pic2svg https://github.com/klorenz/pic2svg
+- emacs org support https://github.com/ddoherty03/ob-pic
 
 ** pikchr
 
 - https://pikchr.org/home/doc/trunk/doc/differences.md
-- drop support for loops
-- drop support for conditionals
-- emacs pikchr integration https://github.com/kljohann/pikchr-mode
+- modern pic's replacement
+- drops support for loops
+- drops support for conditionals
+- emacs org mode for pikchr https://github.com/kljohann/pikchr-mode
 
 ** dpic
 
