@@ -58,16 +58,27 @@ https://en.wikipedia.org/wiki/List_of_video_game_console_palettes
 | fffe |      | interrupt vector  |
 |------+------+-------------------|
 
+#+CAPTION: asm "addressing modes"
+|------------+--------------------------------+---------------------------|
+|    <c>     |                                |                           |
+|    #80     | literal decimal value          | immediate mode            |
+|    #$80    | literal hexadecimal value      |                           |
+| #%11111111 | literal binary value           |                           |
+|    $80     | memory address                 | absolute (zero page) mode |
+|  $80 , Y   | memory address, $80 + Y offset | indexed mode              |
+|------------+--------------------------------+---------------------------|
+
 * Hardware
 
-|-------------+---------------+----------------|
-| CPU         | 1.19 MHz      | 6507 processor |
-| RAM         | 128 bytes     | 6532 RIOT Chip |
-| ROM         | 4kB           | Game Cartridge |
-| Audio/Video |               | TIA Chip       |
-| Input       | 2 controllers |                |
-| Output      | RCA           | NTSC/PAL/SECAM |
-|-------------+---------------+----------------|
+|-------------+-----------+----------------|
+|     <c>     |       <r> |                |
+|     CPU     |  1.19 MHz | 6507 processor |
+|     RAM     | 128 bytes | 6532 RIOT Chip |
+|     ROM     |       4kB | Game Cartridge |
+| Audio/Video |           | TIA Chip       |
+|    Input    |      2 🕹️ |                |
+|   Output    |       RCA | NTSC/PAL/SECAM |
+|-------------+-----------+----------------|
 
 TIA  = Television Interface Adapter
 RIOT = Ram IO Timer
@@ -151,10 +162,10 @@ https://www.atariage.com/2600/archives/schematics/index.html
 *** example: with hex opcodes
 
 #+begin_src asm
-          LDA #2     ; a9 02
-          STA $2B    ; 85 2b
-          LDX $1234  ; ae 34 12
-          DEX        ; ca
+  LDA #2     ; a9 02
+  STA $2B    ; 85 2b
+  LDX $1234  ; ae 34 12
+  DEX        ; ca
 #+end_src
 
 *** example: simple loop
@@ -224,16 +235,6 @@ Start:
 #+end_src
 
 ** 4 6502 Instruction Set
-
-- =Zero page= is the range of addresses $00 to $FF
-- =Addressing modes=
-  |------------+--------------------------------+---------------------------|
-  | #80        | literal decimal value          | immediate mode            |
-  | #$80       | literal hexadecimal value      |                           |
-  | #%11111111 | literal binary value           |                           |
-  | $80        | memory address                 | absolute (zero page) mode |
-  | $80,Y      | memory address, $80 + Y offset | indexed mode              |
-  |------------+--------------------------------+---------------------------|
 
 *** Exercise 5 - load, storing and adding zero page
 

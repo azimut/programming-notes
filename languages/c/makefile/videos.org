@@ -1,3 +1,7 @@
+- 12 [[https://www.youtube.com/watch?v=qD-RmoBf9v0][Making Makefiles (Lonnie)]]
+- 16 [[https://www.youtube.com/watch?v=GExnnTaBELk][C Programming: Makefiles]] by Barry Brown
+- 16 [[https://www.youtube.com/watch?v=OZ_ra8CCDDA][BIVBlog #41: Makefile Basics (not only) for Microcontrollers]]
+- 20 [[https://www.youtube.com/watch?v=FfG-QqRK4cY][Makefiles, but in English]] by 801Labs
 - 20 COS 217 Fall 2020 Lecture 7 - Building with make https://www.youtube.com/watch?v=0gBhNNnd1LM
 * 20 - Lecture 8: Metaprogramming
 https://www.youtube.com/watch?v=_Ms1Z4xfqv4

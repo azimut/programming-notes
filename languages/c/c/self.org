@@ -36,12 +36,15 @@
 |              restrict | optimization on pointers, when they are the unique point to the object |
 |-----------------------+------------------------------------------------------------------------|
 *** numerical / arithmetic
+
+- literal defaults to 32bit int
 - Floating-point: float, double, long double
 - Numerical:
   - signed char, short int, int, long int, long long int
   - *int* word can be ommited on declaration
   - <limits.h> has the maximun and minumun of each type
   - <inttypes.h> or <stdinit.h> to define uint32_t or uintmax_t
+
 *** boolean
 
 - defined in ~<stdbool.h>~

@@ -15,10 +15,6 @@ https://timeline.intel.com/
     - 89C51 FLASH (ATMEL)
     - 89C2051 DIP20 (ATMEL)
 
-- tool: as31
-- tool: C89 https://www.keil.com/c51/default.asp
-- tool: C https://sdcc.sourceforge.net/
-
 - KIT: https://www.dos4ever.com/8031board/8031board.html
 
 - tutoriales
@@ -40,3 +36,19 @@ https://timeline.intel.com/
 
 - 19 Programming 8051
   - https://www.youtube.com/watch?v=QEI55gpt7zM
+
+** tools
+
+- riscv on mcs-51 https://github.com/cyrozap/rv51
+
+- compiler
+  - as31
+  - C89 https://www.keil.com/c51/default.asp
+  - C https://sdcc.sourceforge.net/
+
+- simulator
+  - https://github.com/jarikomppa/emu8051
+  - https://8051-simulator.vercel.app/
+  - https://gsim51.sourceforge.net/
+  - https://github.com/yevhenchmykhun/OpenSim51
+  - https://edsim51.com/

@@ -1,43 +1,42 @@
-- https://news.ycombinator.com/item?id=15041986
-- https://n64squid.com/homebrew/n64-sdk/compiling-roms/makefile/
-- https://www.matheusmoreira.com/articles/managing-dotfiles-with-make
-- 94 https://www.nesssoftware.com/home/mwc/doc/coherent/manual/pdf/make.pdf
-- 98 Recursive Make Consided Harmful https://aegis.sourceforge.net/auug97.pdf
-- 13 http://web.archive.org/web/20131218224259/http://zmjones.com:80/make/
-- 13 https://bost.ocks.org/mike/make/
-- 14 http://makefiletutorial.com/
-- 15 Practical Makefiles, by example http://nuclear.mutantstargoat.com/articles/make/
-- 15 https://kbroman.org/minimal_make/
+- 94 [[https://www.nesssoftware.com/home/mwc/doc/coherent/manual/pdf/make.pdf][The make Programming Discipline]]
+- 98 [[https://aegis.sourceforge.net/auug97.pdf][Recursive Make Consided Harmful]]
+- 13 [[http://web.archive.org/web/20131218224259/http://zmjones.com:80/make/][GNU Make for Reproducible Data Analysis]]
+- 13 [[https://bost.ocks.org/mike/make/][Why Use Make]]
+- 14 [[http://makefiletutorial.com/][Learn Makefiles: With the tastiest examples]]
+- 15 [[http://nuclear.mutantstargoat.com/articles/make/][Practical Makefiles, by example]]
+- 15 [[https://kbroman.org/minimal_make/][minimal make: A minimal tutorial on make]]
 - +15 https://gist.github.com/isaacs/62a2d1825d04437c6f08+
-- 16 Self-Documented Makefile https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
-- 16 Non-recursive Make Considered Harmful https://www.microsoft.com/en-us/research/wp-content/uploads/2016/03/hadrian.pdf
-- 16 Embed With Elliot: ARM Makefile Madness https://hackaday.com/2016/03/22/embed-with-elliot-arm-makefile-madness/
-- 16 Reproducible bioinformatics pipelines using Make http://byronjsmith.com/make-bml/
-- 17 http://flukus.github.io/building-a-blog-engine.html
-- 17 http://flukus.github.io/rediscovering-make.html
-- 17 https://www.cs.swarthmore.edu/~newhall/unixhelp/howto_makefiles.html
-- 17 Afraid of Makefiles? Don't be! https://endler.dev/2017/makefiles/
+- 16 [[https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html][Self-Documented Makefile]]
+- 16 [[https://www.microsoft.com/en-us/research/wp-content/uploads/2016/03/hadrian.pdf][Non-recursive Make Considered Harmful]]
+- 16 [[https://hackaday.com/2016/03/22/embed-with-elliot-arm-makefile-madness/][Embed With Elliot: ARM Makefile Madness]]
+- 16 [[http://byronjsmith.com/make-bml/][Reproducible bioinformatics pipelines using Make]]
+- 17 [[http://flukus.github.io/building-a-blog-engine.html][Building a Blog Engine]]
+- 17 [[http://flukus.github.io/rediscovering-make.html][Rediscovering Make]]
+- 17 [[https://www.cs.swarthmore.edu/~newhall/unixhelp/howto_makefiles.html][Using make and writing Makefiles]]
+- 17 [[https://endler.dev/2017/makefiles/][Afraid of Makefiles? Don't be!]]
   - https://news.ycombinator.com/item?id=15041986
-- 17 https://zwischenzugs.com/2017/08/07/a-non-cloud-serverless-application-pattern-using-git-and-docker/
-- +18 https://text.causal.agency/001-make.txt+
-- 18 https://clarkgrubb.com/makefile-style-guide
-- 18 https://danyspin97.org/blog/makefiles-best-practices/
+- 17 [[https://zwischenzugs.com/2017/08/07/a-non-cloud-serverless-application-pattern-using-git-and-docker/][A Non-Cloud Serverless Application Pattern Using Git and Docker]]
+- +18 [[https://text.causal.agency/001-make.txt][Using Make – writing less Makefile]]+
+- 18 [[https://n64squid.com/homebrew/n64-sdk/compiling-roms/makefile/][Writing a Makefile for the N64]]
+- 18 [[https://clarkgrubb.com/makefile-style-guide][Makfile style guide]]
+- 18 [[https://danyspin97.org/blog/makefiles-best-practices/][Makefiles, Best Practices]]
 - 18 [[https://www.olioapps.com/blog/the-lost-art-of-the-makefile][The Lost Art of the Makefile]]
-- +19 https://tech.davis-hansson.com/p/make/+
-- 19 https://wiki.netbsd.org/tutorials/bsd_make/
-- 19 http://web.archive.org/web/20191120194706/https://blog.mindlessness.life/makefile/2019/11/17/the-language-agnostic-all-purpose-incredible-makefile.html
-- 20 http://web.archive.org/web/20200515171004/http://agdr.org/2020/05/14/Polyglot-Makefiles.html
-- 20 https://book.the-turing-way.org/reproducible-research/make/make-examples
-- 22 https://8thlight.com/insights/make-developing-easier-by-building-a-beautiful-makefile
-- 22 https://trofi.github.io/posts/238-new-make-shuffle-mode.html
-- 22 https://suragu.net/tech_posts/bsd_make.html
-- 22 https://rosszurowski.com/log/2022/makefiles
+- +19 [[https://tech.davis-hansson.com/p/make/][Your Makefiles are wrong]]+
+- 19 [[https://wiki.netbsd.org/tutorials/bsd_make/][bsd make]]
+- 19 [[http://web.archive.org/web/20191120194706/https://blog.mindlessness.life/makefile/2019/11/17/the-language-agnostic-all-purpose-incredible-makefile.html][The Language Agnostic, All-Purpose, Incredible, Makefile]]
+- 20 [[http://web.archive.org/web/20200515171004/http://agdr.org/2020/05/14/Polyglot-Makefiles.html][Polyglot Makefiles]]
+- 20 [[https://book.the-turing-way.org/reproducible-research/make/make-examples][Learn “Make” by Examples]]
+- 22 [[https://8thlight.com/insights/make-developing-easier-by-building-a-beautiful-makefile][Make Developing Easier by Building a Beautiful Makefile]]
+- 22 [[https://trofi.github.io/posts/238-new-make-shuffle-mode.html][New make --shuffle mode]]
+- 22 [[https://suragu.net/tech_posts/bsd_make.html][Using BSD make for your (small) project]]
+- 22 [[https://rosszurowski.com/log/2022/makefiles][Makefiles for Web Work]]
 - 23 [[https://stackabuse.com/how-to-write-a-makefile-automating-python-setup-compilation-and-testing/][How to Write a Makefile - Automating Python Setup, Compilation, and Testing]]
-- 25 https://blog.yossarian.net/2025/01/10/Be-aware-of-the-Makefile-effect
+- 24 [[https://www.matheusmoreira.com/articles/managing-dotfiles-with-make][Managing dotfiles with Make]]
+- 25 [[https://blog.yossarian.net/2025/01/10/Be-aware-of-the-Makefile-effect][Be aware of the Makefile effect]]
 - https://swcarpentry.github.io/make-novice/reference.html
 - https://swcarpentry.github.io/make-novice/aio.html
 - https://github.com/mbcrawfo/GenericMakefile/
-- https://stat545.com/automating-pipeline.html
+- [[https://stat545.com/automating-pipeline.html][Chapter 36 Automating data-analysis pipelines]]
 - +https://devhints.io/makefile+
 - +https://learnxinyminutes.com/docs/make/+
 
@@ -48,8 +47,7 @@
   #include <stdio.h>
   #include <math.h>
 
-  int
-  main (void) {
+  int main (void) {
     printf("log of 5: %f\n", log(5.0));
   }
 #+end_src
@@ -117,11 +115,13 @@ clean:
 https://nullprogram.com/blog/2017/08/20/
 - POSIX Make https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html
 - GNU Make, on BSD is named *gmake*
+
 * Example
 
 #+begin_src makefile
 .POSIX:
 .SUFFIXES:
+
 CC     = cc
 CFLAGS = -W -O
 LDLIBS = -lm

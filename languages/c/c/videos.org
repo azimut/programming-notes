@@ -1,12 +1,4 @@
-- Course: COS 217 @Princeton
-  - 20 Lecture https://www.youtube.com/playlist?list=PLwXw5yrGdQS55Q2ZODSqDNjm7Zhk4wFE3
-  - 21 Lecture https://www.youtube.com/playlist?list=PLwXw5yrGdQS7zpF7M7yKQPJu7s7fFpnF3
-  - 21 Q&A https://www.youtube.com/playlist?list=PLwXw5yrGdQS4HKVilgAm4mepG-7ZBS-2T
 - talks https://nullprogram.com/blog/2018/11/21/
-- Course: Defensive Programming and Debugging
-  - https://www.futurelearn.com/courses/defensive-programming-and-debugging
-  - https://gjbex.github.io/Defensive_programming_and_debugging/
-  - https://github.com/gjbex/DPD
 - Channel. https://www.youtube.com/@antirez/videos
 - Channel: https://www.youtube.com/@Mr4thProgramming/videos
 - 15 | Advice for Writing Small Programs in C  https://www.youtube.com/watch?v=eAhWIO1Ra6M
@@ -14,7 +6,17 @@
 - 11 Advanced C Coding For Fun! by Rusty Russell https://www.youtube.com/watch?v=BEQ3sRakIs0
 - 08 Writing application fault handlers by Gilad Ben-Yossef https://bootlin.com/pub/video/2008/ols/ols2008-gilad-ben-yossef-fault-handlers.ogg
 - 90 [[https://archive.org/details/learning-c-programming-viagrafix-1990][Learning C Programming (Viagrafix, 1990)]]
+- Tsoding
+  - Genetic Programming https://www.youtube.com/playlist?list=PLpM-Dvs8t0VZhPhStYD0aS30Y1awAv-DO
+  - Lisp in C https://www.youtube.com/playlist?list=PLpM-Dvs8t0VYbTFO5tBwxG4Q20BJuqXD_
+  - Virtual Machine in C https://www.youtube.com/playlist?list=PLpM-Dvs8t0VY73ytTCQqgvgCWttV3m8LM
+  - Build System in C https://www.youtube.com/playlist?list=PLpM-Dvs8t0VZpih2sTx6povEocoKEUBnk
+  - Cellular Automata https://www.youtube.com/playlist?list=PLpM-Dvs8t0VYX7q4RQsx6mOSWFDzvvnxg
+  - GC in C https://www.youtube.com/playlist?list=PLpM-Dvs8t0VYuYxRxjfnkdHvosHH8faqc
+  - Mini Excel in C https://www.youtube.com/playlist?list=PLpM-Dvs8t0VYfQc5dq21Vc81G1rGHwkmT
+
 * Course: 6.S081: Learning by doing
+
 Catalog description: Design and implementation of operating systems,
 and their use as a foundation for systems programming. Topics include
 virtual memory; file systems; threads; context switches; kernels;

@@ -1,3 +1,4 @@
+- https://bitwisecmd.com/
 - wiki https://en.wikipedia.org/wiki/Arduino
 - reversing https://github.com/thomasbbrunner/arduino-reverse-engineering
 - https://www.microchip.com/wwwproducts/en/ATmega328P#datasheet-toggle
@@ -6,6 +7,16 @@
   - 10uF capacitor between reset and gnd (or 100nF ceramic capacitor)
   - 120ohm resistor between 5v and reset pin (or 110-124)
   https://playground.arduino.cc/Main/DisablingAutoResetOnSerialConnection/
+
+* second
+
+10^-3 === 1e+3
+
+|-------+----+---------------------+---------------+-------+------|
+| milli | ms | delay()             |         1.000 | 10^-3 | 1e+3 |
+| micro | μs | delayMicroseconds() |     1.000.000 | 10^-6 | 1e+6 |
+| nano  | ns |                     | 1.000.000.000 | 10^-9 | 1e+9 |
+|-------+----+---------------------+---------------+-------+------|
 
 * How GPIO works?
 
@@ -34,6 +45,45 @@ I -----------|
   - produces a series of pulses
   - changing the duration of the pulse
   [[https://docs.arduino.cc/54ef6da144b4531dd9ada686a7e67c56/pwm.gif]]
+
+* Ports
+
+- [[https://docs.arduino.cc/retired/hacking/software/PortManipulation/][Arduino docs]]
+- https://docs.arduino.cc/learn/programming/bit-math/
+- 8 bit wide
+- 3 UNO ports, some bits/pins are not usable
+  |---+--------+------|
+  |   |  <c>   |      |
+  | D | D0-D7  | 0,1* |
+  | B | D8-D13 | 6,7  |
+  | C |  A0-5  | 6,7  |
+  |---+--------+------|
+  - D0: aka RX set as 0=input
+  - D1: aka TX set as 1=output
+- 3 registers for each port
+  |------+----+--------------------------------------|
+  | DDR  | rw | configure direction 0=INPUT 1=OUTPUT |
+  | PORT | rw | controls LOW/HIGH                    |
+  | PIN  | r  | reads INPUT ins                      |
+  |------+----+--------------------------------------|
+
+** videos
+
+- 16 [[https://www.youtube.com/watch?v=yPoLAlI-ObI][Arduino: Registros de puertos + Timer1]] by TechKrowd
+
+** snippets
+
+- configure mode
+  #+begin_src c
+    DDRD = B11111110;       // sets pin 0 as INPUT
+    DDRD = DDR | B11111100; // sets pin 2-7 as OUTPUT
+                            // without changing RX/TX
+  #+end_src
+
+- set output
+  #+begin_src c
+    PORTD = B10101000; // pins 7,5,3 to HIGH
+  #+end_src
 
 * Models
 

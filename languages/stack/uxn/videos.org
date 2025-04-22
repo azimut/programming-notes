@@ -1,3 +1,4 @@
+- 24 [[https://www.youtube.com/watch?v=qogCwa12jEg][Uxn: Permacomputing & Roguelikes]] by Eiríkr Åsheim
 * DONE 21 | Intro to Uxn                | Babycastles/sejo
 
 https://www.youtube.com/watch?v=LrNuq_JgaOA

@@ -30,6 +30,7 @@
 #+end_src
 
 * sections
+
 |---+----------------------------------------------------------|
 | 1 | Executable programs or shell commands                    |
 | 2 | System calls (functions provided by the kernel)          |
@@ -41,6 +42,7 @@
 | 8 | Sysadmin commands (usually only for root)                |
 | 9 | Kernel routines [Non standard]                           |
 |---+----------------------------------------------------------|
+
 * roff macros
 
 #+CAPTION: from "better programming" in medium.com

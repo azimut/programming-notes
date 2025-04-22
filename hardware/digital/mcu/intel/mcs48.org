@@ -16,12 +16,11 @@
   - loose separation between code and data
   - _allows memory that contains instructions to be accesed as data_
 
-- notes https://jhnbyrn.github.io/951-KLR-PAGES/reading_code.html
-
 * architecture
 
 |------+-----+-----------|
 |      | ROM | RAM       |
+|------+-----+-----------|
 | 8048 | 1k  | 64 bytes  |
 | 8049 | 2k  | 128 bytes |
 | 8050 | 4k  | 256 bytes |
@@ -358,41 +357,6 @@ MSB | 11 | 8-10 | 0-7 | LSB
     2) statically non-latched input
     3) statically latched output
 
-* projects
-
-- homebrew computer https://github.com/jim11662418/Intel_8048_Single_Board_Computer
-- https://hackaday.io/project/19278-8048-maze-generator
-  - code https://cdn.hackaday.io/files/19278824789952/maze.asm
-
-- https://x.com/RueNahcMohr/status/1431910449185005571
-- 20 breadboard computer, based on Ben Eater's 6502 project https://www.reddit.com/r/beneater/comments/gbmv8u/inspired_by_bens_6502_project_ive_decided_to/#lightbox
-- https://web.archive.org/web/20140717062700/http://coprolite.com:80/8048.html
-- http://www.moria.de/~michael/comp/ecb/sbcmcs48/hardware.html
-- https://github.com/romavis/metra-m1t380-doc
-- https://www.delabs-circuits.com/cirdir/micro/micro4.html
-- programmer https://www.sbprojects.net/projects/8049spy/index.php
-- programmer https://minuszerodegrees.net/willem/Willem%20MCS-48%20adapter.htm
-- programmer
-  - original https://www.jelora.fr/post/2024/06/15/Programmateur-de-microcontrleur-Intel-MCS-48-experimental-sur-Arduino.html
-  - translation https://www-jelora-fr.translate.goog/post/2024/06/15/Programmateur-de-microcontrleur-Intel-MCS-48-experimental-sur-Arduino.html?_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=es&_x_tr_pto=wapp
-  - had a "MAB 8048H" IC from Philips
-
-- 8042 keyboard https://wiki.osdev.org/%228042%22_PS/2_Controller
-  - CHMOS
-  - Slave microcontroller (?)
-  - OTP EPROM
-  - UPI-42 family
-    - UPI-C42
-    - UPI-L42
-
-- Reversing of Porsche computer https://jhnbyrn.github.io/951-KLR-PAGES/
-- Used in
-  - [[https://en.wikipedia.org/wiki/Magnavox_Odyssey_2][Magnavox's Oddysey 2]] video game console (1978)
-  - Korg Trident Series
-  - Korg Poly-61
-  - Roland Jupiter-4
-  - Roland Promars
-
 * support chips
 
 - https://en.wikipedia.org/wiki/Intel_MCS-48#Variants
@@ -424,38 +388,115 @@ MSB | 11 | 8-10 | 0-7 | LSB
 
 - HSE-49: Original Dev Board https://en.wikipedia.org/wiki/Intel_system_development_kit#HSE-49
 - AS output to binary to be written into ROM https://linux.die.net/man/1/p2bin
+- simulator
+  - https://web.archive.org/web/20130601085340/http://www.coprolite.com/art27.html
+  - https://www.acebus.com/8048.htm
+  - https://www.ucsim.hu/news.html
+    - comes in ubuntu
+    - doc pdf https://www.baigar.de/irix/ucsim.pdf
+    - commands https://www.ucsim.hu/cmd_general.html
+    - example https://x.com/hiroki7v11/status/1572917676783341568
+    - source https://github.com/danieldrotos/ucsim
+      - https://github.com/danieldrotos/ucsim/issues/6
+        #+begin_src
+         "Behaviour of P1, P2 ports is not simulated yet,
+          so all instructions working on these ports (and on Bus)
+          are unimplemented yet."
+        #+end_src
+
+- dissasembler ? https://github.com/pmackinlay/binaryninja-mcs48
+  - for https://binary.ninja/
 - assemblers
   - asm48 https://github.com/daveho/asm48
   - fasm macros https://board.flatassembler.net/topic.php?t=18398
   - sbasm https://www.sbprojects.net/sbasm/8080.php
+    - https://github.com/sbprojects/sbasm3
+  - asX https://github.com/jaw0/asX
+    - example https://github.com/jaw0/nametag48/
 - VHDL https://github.com/devsaurus/t48
 - ROM programmer story https://laughtonelectronics.com/oldsite/lab_oem/lab_mcs48.html
 - https://jhnbyrn.github.io/951-KLR-PAGES/reading_code.html
 - dumping ROM https://www.sbprojects.net/projects/8049spy/index.php
 - dumping ROM https://www.eevblog.com/forum/projects/intel-mcs-48-(8749-8049)-hmos-vs-cmos-differences-bus-driver-(dumping-woe)/
-- dissasembler ? https://github.com/pmackinlay/binaryninja-mcs48
-  - for https://binary.ninja/
 - KIT: internal EPROM programmer for UV ereasable ones
   - https://www.mattmillman.com/projects/hveprom-project/an-easy-to-build-mcs-48-8748-8749-8741-8742-8048-8049-programmer-reader/
   - https://www.mattmillman.com/projects/an-intel-mcs-48-based-dual-temperature-sensor/
 
 * codebases
 
+- https://github.com/AngryTroll/i8048_board
+- hello world https://x.com/RueNahcMohr/status/1431910449185005571
+- homebrew computer https://github.com/jim11662418/Intel_8048_Single_Board_Computer
+- https://github.com/Lefucjusz/MAB8048_led_clock
 - https://github.com/marekw1986/8048/blob/main/code/ascii/ascii.asm
-- korg trident mk2 https://github.com/wohali/polysix/blob/457212866bcf8875156f871fd5cc638a6e59b143/docs/klm8048.asm#L4
 - game https://github.com/tcr/8bit-demos/
-- pwm https://github.com/retiredfeline/8048-pwmctl
-- ⭐ display https://github.com/retiredfeline/beckman-clock
-- maze https://cdn.hackaday.io/files/19278824789952/maze.asm
-- 8042
-  - i2c https://github.com/retiredfeline/8042-clock/
-  - metronome https://github.com/retiredfeline/8042-metronome
 - clock https://web.archive.org/web/20220630074502/https://www.wraith.sf.ca.us/8048/
   - source https://web.archive.org/web/20041210150149/http://www.wraith.sf.ca.us/8048/block-sig.asm
   - sheet https://web.archive.org/web/20210913152817/https://www.wraith.sf.ca.us/8048/clock-8048.gif
 
+- https://hackaday.io/project/19278-8048-maze-generator
+  - code https://cdn.hackaday.io/files/19278824789952/maze.asm
+
+- https://web.archive.org/web/20140717062700/http://coprolite.com:80/8048.html
+- https://www.delabs-circuits.com/cirdir/micro/micro4.html
+- 8042 keyboard https://wiki.osdev.org/%228042%22_PS/2_Controller
+  - CHMOS
+  - Slave microcontroller (?)
+  - OTP EPROM
+  - UPI-42 family
+    - UPI-C42
+    - UPI-L42
+- Used in
+  - [[https://en.wikipedia.org/wiki/Magnavox_Odyssey_2][Magnavox's Oddysey 2]] video game console (1978)
+  - Korg Trident Series
+  - Korg Poly-61
+  - Roland Jupiter-4
+  - Roland Promars
+
+** reversing
+
+- multimeter https://github.com/romavis/metra-m1t380-doc
+- Porsche computer https://jhnbyrn.github.io/951-KLR-PAGES/
+- keyboard: commented dissassembled code https://github.com/Halicery/8042
+- korg trident mk2 https://github.com/wohali/polysix/blob/457212866bcf8875156f871fd5cc638a6e59b143/docs/klm8048.asm#L4
+
+** programmer
+
+- https://www.sbprojects.net/projects/8049spy/index.php
+- https://minuszerodegrees.net/willem/Willem%20MCS-48%20adapter.htm
+- programmer
+  - original https://www.jelora.fr/post/2024/06/15/Programmateur-de-microcontrleur-Intel-MCS-48-experimental-sur-Arduino.html
+  - translation https://www-jelora-fr.translate.goog/post/2024/06/15/Programmateur-de-microcontrleur-Intel-MCS-48-experimental-sur-Arduino.html?_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=es&_x_tr_pto=wapp
+  - had a "MAB 8048H" IC from Philips
+
+** by rcgoff
+
+- https://github.com/rcgoff/pokroller
+- https://github.com/rcgoff/vostok-doorbell-emifon
+- https://github.com/rcgoff/therm8048
+
+** by retiredfeline
+
+- https://hackaday.io/project/161909-8042-clock
+- https://hackaday.io/project/184942-ancient-12-hour-display
+- https://github.com/retiredfeline/8048-board
+- https://github.com/retiredfeline/8042-clock/
+
+- https://hackaday.io/project/185235-pwm-led-bench-light
+- https://github.com/retiredfeline/8048-pwmctl
+
+- https://hackaday.io/project/162159-8042-metronome
+- https://github.com/retiredfeline/8042-metronome
+
+- https://hackaday.io/project/160958-restoring-a-beckman-neon-display-clock
+- https://github.com/retiredfeline/beckman-clock
+
 * articles
 
+- book https://www.controller-designs.de/index.php?lang=de&cat=projekte&cont=demon48_128k&sub=documentation_0
+  - When operating at 11MHz, the instruction cycle time is 1.364µs (T[µs] = 15 / fosc[MHz]), in which 1-byte/1-cycle instructions are executed
+- https://web.archive.org/web/20140703075839/http://www.atarihq.com/danb/files/8048.txt
+- http://www.moria.de/~michael/comp/ecb/sbcmcs48/hardware.html
 - https://www.cpu-world.com/Arch/8048.html
 - 22 https://www.eejournal.com/article/a-history-of-early-microcontrollers-part-4-the-intel-8048-and-8748/
 - 20 https://www.mattmillman.com/mcs-48-the-quest-for-16-bit-division-on-the-8-bit-cpu-which-cant-divide-anything/
@@ -467,6 +508,8 @@ MSB | 11 | 8-10 | 0-7 | LSB
   - To signal what state the bus is in.
   - This was done to save costs and keep pin count down.
   - Unfortunately this complicates the connection to an external PROM.
+- 20 Ben Eater's computer based on 8048
+  - [[https://www.reddit.com/r/beneater/comments/gbmv8u/inspired_by_bens_6502_project_ive_decided_to/#lightbox][PIC ONLY]], unreleased source
 
 * videos
 

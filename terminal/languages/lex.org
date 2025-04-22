@@ -1,1 +1,4 @@
+- https://en.wikipedia.org/wiki/Lex_(software)
+  - 1975
+  - Mike Lesk, Eric Schmidt
 - https://www.nesssoftware.com/home/mwc/doc/coherent/manual/pdf/lex.pdf

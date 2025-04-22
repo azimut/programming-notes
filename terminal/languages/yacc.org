@@ -1,1 +1,5 @@
-https://www.nesssoftware.com/home/mwc/doc/coherent/manual/pdf/yacc.pdf
+- https://en.wikipedia.org/wiki/Yacc
+  - Stephen C. Johnson
+  - 1975 (published)
+
+- https://www.nesssoftware.com/home/mwc/doc/coherent/manual/pdf/yacc.pdf

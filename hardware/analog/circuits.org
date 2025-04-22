@@ -1,12 +1,13 @@
 - PHDL (vhdl extension) https://sourceforge.net/p/phdl/wiki/Home/
 - SKiDL (python dsl) https://github.com/devbisme/skidl
 - pycircuit (python dsl) https://github.com/dvc94ch/pycircuit
+- picsimlab https://github.com/lcgamboa/picsimlab
 - netlistsvg (json netlist to svg) https://github.com/nturley/netlistsvg
 - replicad https://github.com/monostable/replicad
 - electro-grammar (parses string into meaninful struct) https://github.com/kitspace/electro-grammar
   - [X] 17 video [[https://www.youtube.com/watch?v=Wkh8zAumNW8][34C3 - Designing PCBs with code]]
   - [X] 18 video [[https://www.youtube.com/watch?v=awUYFO3Pwqk][FOSDEM - Designing PCBs with code Designing circuits with code instead of CAD]]-
- m4+dpic electric circuits https://zyedidia.github.io/other/circuit_macros.pdf
+  m4+dpic electric circuits https://zyedidia.github.io/other/circuit_macros.pdf
   - tool https://github.com/KDE/cirkuit
   - source https://gitlab.com/aplevich/circuit_macros
   - repo https://www.ctan.org/pkg/circuit-macros

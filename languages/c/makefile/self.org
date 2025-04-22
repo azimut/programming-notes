@@ -71,13 +71,13 @@
 
 *** special targets
 
-|------------------+-----------------------------------------------------------|
-| .ONESHELL        | runs all commands the same shell                          |
-| .POSIX           | should be the first line                                  |
-| .SUFFIXES        | disable all default *inference rules*                     |
-| .DELETE_ON_ERROR | will delete the target if a command fails (NO BY DEFAULT) |
-| .PHONY           | make target not a regular target file                     |
-|------------------+-----------------------------------------------------------|
+|-------------------+-----------------------------------------------------------|
+| .ONESHELL:        | runs all commands the same shell                          |
+| .POSIX:           | should be the first line                                  |
+| .SUFFIXES:        | disable all default *inference rules*                     |
+| .DELETE_ON_ERROR: | will delete the target if a command fails (NO BY DEFAULT) |
+| .PHONY:           | make target not a regular target file                     |
+|-------------------+-----------------------------------------------------------|
 
 *** default targets
 
