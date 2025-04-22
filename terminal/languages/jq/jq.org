@@ -1,6 +1,9 @@
 #+TITLE: jq
 #+DATE: <2023-11-27 lun>
 
+#+ATTR_HTML: :style background: transparent
+[[./jq.svg]]
+
 |---------+---------------------------------------|
 |   <c>   |                  <c>                  |
 |  home   |        [[https://jqlang.github.io/jq/][home]] [[https://jqlang.github.io/jq/manual/][manual]] [[https://github.com/jqlang/jq/][source]] [[https://en.wikipedia.org/wiki/Jq_(programming_language)][wiki]]        |
