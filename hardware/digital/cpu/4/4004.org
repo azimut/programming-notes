@@ -9,3 +9,11 @@
   - First comercially produced microprocessor
 
 - Intel https://www.4004.com/
+
+* videos
+
+- 71 [[https://www.youtube.com/watch?v=gPKZSuXAVMU][The MCS-4 Story]]
+- 06 https://www.youtube.com/watch?v=j00AULJLCNo
+- 18 https://www.youtube.com/watch?v=1JJbZ5kIBFE
+- 20 https://www.youtube.com/watch?v=S13RkgsM_y4
+- 22 https://www.youtube.com/watch?v=4XxYtJnMeVw
