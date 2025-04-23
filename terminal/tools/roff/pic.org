@@ -104,7 +104,7 @@ for i=0 to 5 by 0.1 do { }
 for i=0 to 5 by *0.1 do { }
 #+end_src
 
-** macro
+** macros
 
 - non existing arguments are replaced by nulls strings
 - remove a definition with ~undef~
@@ -171,8 +171,30 @@ a/t/b = above top below, where the given strings will be put
 |    small    |  -  | pikchr                                |
 |     big     |  -  | pikchr                                |
 |-------------+-----+---------------------------------------|
+*** object dot(.) modifiers
+|---------------------+----------------------------------|
+|         <c>         |                                  |
+|       .[x¦y]        |                                  |
+|      .[ns][we]      | objects corners / compass points |
+| .wid[th]/.h[eigh]t  |                                  |
+| .rad[ius]/.diameter |                                  |
+| .start/.center/.end | for line,arrow,spline            |
+|---------------------+----------------------------------|
+*** a position can be
+|----------------------------------+--------------------------------------------|
+|               <c>                |                                            |
+|              (X,Y)               | a coordinate                               |
+|           (POS1,POS2)            | sugar for (POS1.x,POS2.y)                  |
+|           OBJ + (X,Y)            | relative to another object                 |
+|               Here               | literal for the current position           |
+|     [1st¦2nd] [last] ASHAPE      |                                            |
+|              ALABEL              | if object, it refers to its .center        |
+|             f<p1,p2>             | interpolation by "f" between "p1" and "p2" |
+| f [of the way] between p1 and p2 | "                                          |
+|----------------------------------+--------------------------------------------|
 *** attributes - others
 
+- reset - reset all variables or given ones
 - sh {CMD} - runs arbitrary shell command, supports redirections
 - copy "file.txt" [thru MACRO] - includes pic file, ignores .PS/.PE lines
   - eg: a file with lines like "A: (0.2,0.5)"
@@ -187,25 +209,7 @@ a/t/b = above top below, where the given strings will be put
 - top/bottom/left/right - same as
   north/south/west/east
 
-- reset - reset all variables or given ones
 - "\D'P 1 1 1 -1'" - drawing a filled (P) triangle with troff
-
-- a position is:
-  - (XNUM,YNUM)
-  - (POS1,POS2) == (POS1.x,POS2.y)
-  - Here - the current position
-  - [1st|2nd] [last] SHAPE
-  - LABEL1 - if object, it refers to .center
-  - f<p1,p2> - interpolation by "f" between "p1" and "p2"
-    - f [of the way] between p1 and p2
-
-- object attributes/modifiers:
-  - .[ns][we] - objects corners / compass points
-  - .start/.center/.end (line/arrow/spline)
-  - .wid[th] / .h[eigh]t
-  - .rad[ius] / .diameter
-  - .[x|y]
-  - + (N,N)
 
 - LINEAR
   - [udlr] DIST [ [udlr] DIST ] [then...]
@@ -226,11 +230,12 @@ a/t/b = above top below, where the given strings will be put
 
 ** stdlib functions
 |------------+------------+---------------+------------|
-| sin(E)     | in radians | cos(E)        | in radians |
-| atan2(y,x) | in radians | sqrt(E)       | -          |
-| log(E)     | base 10    | exp(E)        | base 10    |
-| max(E,E)   | -          | min(E,E)      | -          |
-| int(E)     | -          | sprintf(F,..) | F=format   |
+|    <c>     |    <c>     |      <c>      |    <c>     |
+|   sin(E)   | in radians |    cos(E)     | in radians |
+| atan2(y,x) | in radians |    sqrt(E)    |     -      |
+|   log(E)   | in base 10 |    exp(E)     | in base 10 |
+|  max(E,E)  |     -      |   min(E,E)    |     -      |
+|   int(E)   |     -      | sprintf(F,..) |  F=format  |
 |------------+------------+---------------+------------|
 - E=expr
 ** default variables sizes

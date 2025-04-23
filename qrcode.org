@@ -22,6 +22,8 @@
 ** decoders
 
 - https://github.com/mchehab/zbar
+  - apt install zbar-tools
+  - zbarimg foo.png
 - https://github.com/JohnHammond/qr2unicode
   - qrencode -> python(PIL) -> unicode
 
