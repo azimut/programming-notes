@@ -1,0 +1,15 @@
+<svg xmlns='http://www.w3.org/2000/svg' style='font-size:initial;' class="pikchr" viewBox="0 0 214.776 245.776" data-pikchr-date="20250321215505">
+<ellipse cx="56.16" cy="110.16" rx="54" ry="36"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="56.16" y="110.16" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">eat</text>
+<polygon points="146.16,74.16 150.48,85.68 141.84,85.68" style="fill:rgb(0,0,0)"/>
+<path d="M110.16,110.16Q146.16,110.16 146.16,79.92"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<ellipse cx="146.16" cy="38.16" rx="54" ry="36"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="146.16" y="38.16" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">work</text>
+<ellipse cx="143.976" cy="207.616" rx="54" ry="36"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="143.976" y="207.616" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">sleep</text>
+<polygon points="197.976,207.616 198.668,195.332 206.575,198.816" style="fill:rgb(0,0,0)"/>
+<path d="M146.16,74.16Q238.796,114.98 200.299,202.345"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<polygon points="56.16,146.16 57.0992,158.427 48.8013,156.02" style="fill:rgb(0,0,0)"/>
+<path d="M89.9762,207.616Q42.3402,193.796 54.5551,151.692"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+</svg>
+

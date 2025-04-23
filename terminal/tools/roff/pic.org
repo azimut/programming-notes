@@ -1,17 +1,17 @@
 #+TITLE: pic
 #+DATE: <2025-04-08 mar>
 
-|--------+------------------------+-----+------+---------------------|
-|    <r> |          <c>           |     |      |                     |
-|    pic |        [[https://en.wikipedia.org/wiki/PIC_(markup_language)][wiki]] [[https://pikchr.org/home/uv/pic.pdf][doc]]        | ps  | 1984 | Brian Kernighan(42) |
-|   gpic |    [[https://git.savannah.gnu.org/cgit/groff.git/tree/src/preproc/pic][source]] [[https://pikchr.org/home/uv/gpic.pdf][pdf]] [[https://www.chiark.greenend.org.uk/doc/groff-base/html/pic.html][html]]     | png | 1995 | James J. Clark      |
-|   dpic | [[https://ece.uwaterloo.ca/~aplevich/dpic/][home]] [[https://gitlab.com/aplevich/dpic][source]] [[https://ece.uwaterloo.ca/~aplevich/dpic/dpic-doc.pdf][doc]] [[https://yushih.github.io/web-pic/][online]] | svg |      | Dwight Aplevich     |
-| pikchr | [[https://pikchr.org/home/doc/trunk/homepage.md][home]] [[https://github.com/drhsqlite/pikchr][source]] [[https://cran.r-project.org/web//packages/pikchr/vignettes/userman.html][doc]] [[https://pikchr.org/home/pikchrshow][online]] | svg | 2020 | Richard Hipp        |
-|--------+------------------------+-----+------+---------------------|
+|------+--------+------------------------+-----+---------------------|
+| <c>  |  <c>   |          <c>           | <c> |                     |
+| 1984 |  pic   |        [[https://en.wikipedia.org/wiki/PIC_(markup_language)][wiki]] [[https://pikchr.org/home/uv/pic.pdf][doc]]        | ps  | Brian Kernighan(42) |
+| 1995 |  gpic  |    [[https://git.savannah.gnu.org/cgit/groff.git/tree/src/preproc/pic][source]] [[https://pikchr.org/home/uv/gpic.pdf][pdf]] [[https://www.chiark.greenend.org.uk/doc/groff-base/html/pic.html][html]]     | png | James J. Clark      |
+| 2008 |  dpic  | [[https://ece.uwaterloo.ca/~aplevich/dpic/][home]] [[https://gitlab.com/aplevich/dpic][source]] [[https://ece.uwaterloo.ca/~aplevich/dpic/dpic-doc.pdf][doc]] [[https://yushih.github.io/web-pic/][online]] | svg | Dwight Aplevich     |
+| 2020 | pikchr | [[https://pikchr.org/home/doc/trunk/homepage.md][home]] [[https://github.com/drhsqlite/pikchr][source]] [[https://cran.r-project.org/web//packages/pikchr/vignettes/userman.html][doc]] [[https://pikchr.org/home/pikchrshow][online]] | svg | Richard Hipp        |
+|------+--------+------------------------+-----+---------------------|
 
 - 1984 (in unix v8), 1988 (released)
-- a procedural programming language
 - a troff preprocessor, it passes most of its input untouched
+- a procedural programming language
 - "intended for the comfort of non-programmers"
 - inspired by [[https://dl.acm.org/doi/pdf/10.1145/357299.357303][ideal]], PICTURE, v(iewgraph), [[https://dl.acm.org/doi/pdf/10.1145/6424.6429][grap]]
 
@@ -30,42 +30,22 @@
 | -t | LaTeX output |
 |----+--------------|
 
-** pic2graph
-
-#+begin_src sh
-  $ pic2graph < foo.me > foo.png
-  $ sed '1d,$d' foo.pic | pic2graph -background white -alpha remove -alpha off -border 10 -bordercolor white > foo.png
-#+end_src
-
-- converts a PIC given in stdin program to PNG
-- must NOT have a .PS/.PE
-- flags are passed down to ImageMagick's convert
-- remove transparency by default
-  #+begin_src sh
-    -background white -alpha remove -alpha off
-  #+end_src
-- add additional border space
-  #+begin_src sh
-    -border 10 -bordercolor white
-  #+end_src
-- use the full page canvas
-  #+begin_src sh
-    -flatten
-  #+end_src
-
 * language
 
-#+begin_src pikchr :file example.svg :result graphics :exports both
-  Eat:   box     "eat" ; arrow
-         ellipse "work"; arrow
-  Sleep: box     "sleep"
-         arc <- from Eat.s to Sleep.s rad 1
+#+begin_src pikchr :file pic-life.svg :result graphics :exports both
+  Eat:   ellipse "eat"
+         arc ->
+  Work:  ellipse "work"
+         move down from Eat.sw then right
+  Sleep: ellipse "sleep"
+         arc cw -> from Work.s to Sleep.e
+         arc cw -> rad 0 from Sleep.w to Eat.s
 #+end_src
 
-#+ATTR_ORG: :width 400
-#+ATTR_HTML: :width 400
+#+ATTR_ORG: :width 300
+#+ATTR_HTML: :width 300
 #+RESULTS:
-[[file:example.svg]]
+[[file:pic-life.svg]]
 
 - by default draws from left to right
   - changes when you put a direction (up/down/left/right)
@@ -289,6 +269,53 @@ define tree %
 %
   #+end_src
 
+* tools
+
+|------------+--------+------------------------------------------------|
+| ps2eps     |        | converts postscript to encapsulated postscript |
+| eps[to]pdf |        | converts eps to pdf                            |
+| pic2svg    | [[https://github.com/klorenz/pic2svg][source]] |                                                |
+| org-mode   | [[https://github.com/ddoherty03/ob-pic][source]] |                                                |
+|------------+--------+------------------------------------------------|
+
+** pic2graph
+
+#+begin_src sh
+  $ pic2graph < foo.me > foo.png
+  $ sed '1d,$d' foo.pic | pic2graph -background white -alpha remove -alpha off -border 10 -bordercolor white > foo.png
+#+end_src
+
+- converts a PIC given in stdin program to PNG
+- must NOT have a .PS/.PE
+- flags are passed down to ImageMagick's convert
+- remove transparency by default
+  #+begin_src sh
+    -background white -alpha remove -alpha off
+  #+end_src
+- add additional border space
+  #+begin_src sh
+    -border 10 -bordercolor white
+  #+end_src
+- use the full page canvas
+  #+begin_src sh
+    -flatten
+  #+end_src
+
+* implementations
+** pikchr
+
+- https://pikchr.org/home/doc/trunk/doc/differences.md
+- modern pic's replacement
+- drops support for loops
+- drops support for conditionals
+- emacs org mode for pikchr https://github.com/kljohann/pikchr-mode
+
+** dpic
+
+#+CAPTION: dpic output formats
+#+ATTR_HTML: :width 500
+#+ATTR_ORG: :width 500
+[[./pic-dpic.png]]
 * articles
 
 - [ ] ?? [[http://www.kohala.com/start/troff/pic2html.html][Turning pic into HTML]]
@@ -309,23 +336,3 @@ define tree %
 - [X] 20 [[https://www.youtube.com/watch?v=oG2A_1vC6aM][drawing pictures with pic and troff]] by Gavin Freeborn
 - [X] 22 [[https://www.youtube.com/watch?v=RDpuOFkpiXM][Pictures on the Terminal with pic!]] by Bryce Vandegrift
 
-* tools
-
-- ps2eps - converts postscript to encapsulated postscript that only contains given shape
-- eps[to]pdf - converts eps to pdf
-- pic2svg https://github.com/klorenz/pic2svg
-- emacs org support https://github.com/ddoherty03/ob-pic
-
-** pikchr
-
-- https://pikchr.org/home/doc/trunk/doc/differences.md
-- modern pic's replacement
-- drops support for loops
-- drops support for conditionals
-- emacs org mode for pikchr https://github.com/kljohann/pikchr-mode
-
-** dpic
-
-#+CAPTION: dpic output formats
-#+ATTR_ORG: :width 500
-[[./pycirkuit.pdf.13.png]]
