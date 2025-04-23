@@ -42,8 +42,8 @@
          arc cw -> rad 0 from Sleep.w to Eat.s
 #+end_src
 
-#+ATTR_ORG: :width 300
-#+ATTR_HTML: :width 300
+#+ATTR_ORG: :width 250
+#+ATTR_HTML: :width 250
 #+RESULTS:
 [[file:pic-life.svg]]
 
