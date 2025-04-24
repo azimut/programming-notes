@@ -572,6 +572,8 @@ use "|&" to send and receive
 #+ATTR_HTML: :width 480
 [[./bwk.png]]
 
+https://www.gnu.org/software/gawk/manual/html_node/Other-Versions.html
+
 |--------+-------------------------------------------------------------------------------|
 |    <r> |                                                                               |
 |   gawk | https://www.gnu.org/software/gawk/                                            |

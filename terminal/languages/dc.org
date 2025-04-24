@@ -88,21 +88,26 @@
   - you CAN use a register name that overlaps with a command
   - and the command will stil work
 
-|---+----+---+----------------|
-| 1 | sR |   | R.push(fst)    |
-|   | LR | 1 | R.pop()        |
-| 1 | SR |   | R = [fst]      |
-|   | lR | 1 | R[R.size] ¦¦ 0 |
-|---+----+---+----------------|
+|---+-----+---+-------------+---+-----+---+--------------|
+|   | <r> |   |             |   | <r> |   |              |
+| 1 |  sR |   | R.push(fst) | 1 |  SR |   | R=[fst]      |
+|   |  LR | 1 | R.pop()     |   |  lR | 1 | R[R.size]¦¦0 |
+| 2 |  >R |   | x R if >    | 2 |  <R |   | x R if <     |
+| 2 | !<R |   | x R if >=   | 2 | !>R |   | x R if <=    |
+| 2 |  =R |   | x R if =    | 2 | !=R |   | x R if !=    |
+|---+-----+---+-------------+---+-----+---+--------------|
 
 ** other commands
-|---+-----+---+---------------------------|
-|   | <c> |   |            <c>            |
-| 1 |  a  | 1 |       1st char/byte       |
-|   |  !  |   |      system command       |
-|   |  #  |   |       comment line        |
-|   |  ?  | 1 | ask user input, and x it  |
-|---+-----+---+---------------------------|
+|---+-----+---+--------------------------|
+|   | <c> |   |           <c>            |
+| 1 |  a  | 1 |      1st char/byte       |
+|   |  !  |   |      system command      |
+|   |  #  |   |       comment line       |
+|   |  ?  | 1 | ask user input, and x it |
+| 1 |  x  |   |   executes as a macro    |
+|   |  q  |   |   exits 2 level macro    |
+| 1 |  Q  |   |  exits Nth level macro   |
+|---+-----+---+--------------------------|
 *** print
 |---+---+---+----------------------------------------------|
 |   | f |   | print full stack                             |
@@ -119,19 +124,6 @@
 | 2 | r | 2 |            swap            |
 | 1 | R |   | rotates top Nth items once |
 |---+---+---+----------------------------|
-*** control flow
-|---+-----+---+-----------------------|
-|   | <r> |   |          <c>          |
-| 1 |   x |   |  executes as a macro  |
-| 2 |  >R |   |       x R if >        |
-| 2 | !>R |   |       x R if <=       |
-| 2 |  <R |   |       x R if <        |
-| 2 | !<R |   |       x R if >=       |
-| 2 |  =R |   |       x R if =        |
-| 2 | !=R |   |       x R if !=       |
-| - |   q |   |  exits 2 level macro  |
-| 1 |   Q |   | exits Nth level macro |
-|---+-----+---+-----------------------|
 
 * snippets
 
@@ -151,11 +143,6 @@
   #+end_src
 
 * codebases
-
-#+ATTR_ORG: :width 200
-#+ATTR_HTML: :style filter: grayscale(1)
-#+CAPTION: Robert H. Morris in 1988
-[[./morris88.jpg]]
 
 - https://x.com/nixcraft/status/1493822005262491651
 - [[https://github.com/Alhadis/language-etc/blob/1455feb6de582239b67e8bbde8086569db377e3d/samples/dirsize.dc][Alhadis/language-etc/dirsize.dc]]
