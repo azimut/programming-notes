@@ -12,6 +12,12 @@
 - Models: 8048, 8035, 8748/9 (EPROM)
 - Intel's first =Microcontroller= (aka microcomputer)
 - Still manufactured in the 90's to support older designs (cheap)
+- Used in
+  - [[https://en.wikipedia.org/wiki/Magnavox_Odyssey_2][Magnavox's Oddysey 2]] video game console (1978)
+  - Korg Trident Series
+  - Korg Poly-61
+  - Roland Jupiter-4
+  - Roland Promars
 
 * architecture
 
@@ -426,34 +432,18 @@
 
 * tools
 
-- HSE-49: Original Dev Board https://en.wikipedia.org/wiki/Intel_system_development_kit#HSE-49
+- board
+  - [[https://www.punsmann.de/retro/prompt-48.html][The INTEL Prompt 48 Deveopment System]]
+  - [[https://en.wikipedia.org/wiki/Intel_system_development_kit#HSE-49][HSE-49: Original Dev Board]]
+  - [[https://vintagecomputer.ca/imsai-8048-control-computer/][IMSAI 8048 Control Computer]]
+
 - AS output to binary to be written into ROM https://linux.die.net/man/1/p2bin
-- simulator
-  - https://web.archive.org/web/20130601085340/http://www.coprolite.com/art27.html
-  - https://www.acebus.com/8048.htm
-  - https://www.ucsim.hu/news.html
-    - comes in ubuntu
-    - doc pdf https://www.baigar.de/irix/ucsim.pdf
-    - commands https://www.ucsim.hu/cmd_general.html
-    - example https://x.com/hiroki7v11/status/1572917676783341568
-    - source https://github.com/danieldrotos/ucsim
-      - https://github.com/danieldrotos/ucsim/issues/6
-        #+begin_src
-         "Behaviour of P1, P2 ports is not simulated yet,
-          so all instructions working on these ports (and on Bus)
-          are unimplemented yet."
-        #+end_src
 
 - dissasembler ? https://github.com/pmackinlay/binaryninja-mcs48
   - for https://binary.ninja/
-- assemblers
-  - asm48 https://github.com/daveho/asm48
-    - $ asm48 -o foo.bin foo.asm
-  - fasm macros https://board.flatassembler.net/topic.php?t=18398
-  - sbasm https://www.sbprojects.net/sbasm/8080.php
-    - https://github.com/sbprojects/sbasm3
-  - asX https://github.com/jaw0/asX
-    - example https://github.com/jaw0/nametag48/
+  - https://github.com/nejohnson/dasmxx
+    - old https://www.oocities.org/pclareuk/DASMx/
+
 - VHDL https://github.com/devsaurus/t48
 - ROM programmer story https://laughtonelectronics.com/oldsite/lab_oem/lab_mcs48.html
 - https://jhnbyrn.github.io/951-KLR-PAGES/reading_code.html
@@ -462,6 +452,36 @@
 - KIT: internal EPROM programmer for UV ereasable ones
   - https://www.mattmillman.com/projects/hveprom-project/an-easy-to-build-mcs-48-8748-8749-8741-8742-8048-8049-programmer-reader/
   - https://www.mattmillman.com/projects/an-intel-mcs-48-based-dual-temperature-sensor/
+
+** assembler
+
+- asm48 https://github.com/daveho/asm48
+  - $ asm48 -o foo.bin foo.asm
+- fasm macros https://board.flatassembler.net/topic.php?t=18398
+- tasm (?
+- sbasm https://www.sbprojects.net/sbasm/8080.php
+  - source https://github.com/sbprojects/sbasm3
+  - doc https://www.sbprojects.net/sbasm/8048.php
+- asxxxx https://shop-pdp.net/ashtml/asxxxx.php
+- asX https://github.com/jaw0/asX
+  - example https://github.com/jaw0/nametag48/
+
+** simulator
+
+- https://web.archive.org/web/20130601085340/http://www.coprolite.com/art27.html
+- https://www.acebus.com/8048.htm
+- https://www.ucsim.hu/news.html
+  - comes in ubuntu
+  - doc pdf https://www.baigar.de/irix/ucsim.pdf
+  - commands https://www.ucsim.hu/cmd_general.html
+  - example https://x.com/hiroki7v11/status/1572917676783341568
+  - source https://github.com/danieldrotos/ucsim
+    - https://github.com/danieldrotos/ucsim/issues/6
+      #+begin_src
+       "Behaviour of P1, P2 ports is not simulated yet,
+        so all instructions working on these ports (and on Bus)
+        are unimplemented yet."
+      #+end_src
 
 * gotchas
 
@@ -486,7 +506,7 @@
 - https://github.com/Lefucjusz/MAB8048_led_clock
 - https://github.com/marekw1986/8048/blob/main/code/ascii/ascii.asm
 - game https://github.com/tcr/8bit-demos/
-- clock https://web.archive.org/web/20220630074502/https://www.wraith.sf.ca.us/8048/
+- clock [[https://web.archive.org/web/20220630074502/https://www.wraith.sf.ca.us/8048/][8048 Assembly Code Tomb]]
   - source https://web.archive.org/web/20041210150149/http://www.wraith.sf.ca.us/8048/block-sig.asm
   - sheet https://web.archive.org/web/20210913152817/https://www.wraith.sf.ca.us/8048/clock-8048.gif
 
@@ -494,20 +514,7 @@
   - code https://cdn.hackaday.io/files/19278824789952/maze.asm
 
 - https://web.archive.org/web/20140717062700/http://coprolite.com:80/8048.html
-- https://www.delabs-circuits.com/cirdir/micro/micro4.html
-- 8042 keyboard https://wiki.osdev.org/%228042%22_PS/2_Controller
-  - CHMOS
-  - Slave microcontroller (?)
-  - OTP EPROM
-  - UPI-42 family
-    - UPI-C42
-    - UPI-L42
-- Used in
-  - [[https://en.wikipedia.org/wiki/Magnavox_Odyssey_2][Magnavox's Oddysey 2]] video game console (1978)
-  - Korg Trident Series
-  - Korg Poly-61
-  - Roland Jupiter-4
-  - Roland Promars
+- [[https://www.delabs-circuits.com/cirdir/micro/micro4.html][80C39-8749 MCS-48 Examples and code]]
 
 ** reversing
 
@@ -533,16 +540,11 @@
 
 ** by retiredfeline
 
-- https://hackaday.io/project/161909-8042-clock
 - https://hackaday.io/project/184942-ancient-12-hour-display
 - https://github.com/retiredfeline/8048-board
-- https://github.com/retiredfeline/8042-clock/
 
 - https://hackaday.io/project/185235-pwm-led-bench-light
 - https://github.com/retiredfeline/8048-pwmctl
-
-- https://hackaday.io/project/162159-8042-metronome
-- https://github.com/retiredfeline/8042-metronome
 
 - https://hackaday.io/project/160958-restoring-a-beckman-neon-display-clock
 - https://github.com/retiredfeline/beckman-clock
@@ -723,3 +725,63 @@
    timer_event_done:
           retr
 #+end_src
+
+* 8041/8042
+
+#+begin_src
+NOTE: I own a couple of 8042 so I am making a special section for them.
+#+end_src
+
+- Can use a 8243 IO expander
+- Can be found in old motherboards as [[https://wiki.osdev.org/%228042%22_PS/2_Controller][Keyboard controllers]]
+- UPI-(C¦L)42
+  - Universal Peripherical Interface
+  - DMA support
+  - 8-bit slave microcontroller
+    - a MCU with a slave interface
+    - interface registers
+
+- Many dissimilar pins to the 8048
+  - XTAL1(2) can act as a single clock input if we are following a _master chip_
+  - D0-D7 have no dual purpose of communicate addresses besides data
+  - P1 pins communicates the addresses
+  - DMA suport with P2_6(37) for DRQ and P2_7(38) for DACK#
+  - RD#(8) and WR#(10) are inputs from the _master chip_ to enable either, not probes like in 8048
+  - new A_0(9) input from the _master chip_ to indicate if it is tranfering data or a command
+  - new SYNC(11) output clock signal which occurs once per cycle
+
+- Variants:
+  - D80C42C by NEC
+    - no A20GATE(22) support (?)
+    - no Vdd(26) pin, instead has STOP#(26)
+
+- tool:
+  - asm https://shop-pdp.net/ashtml/asxxxx.php
+  - sbasm support 8041
+
+- 05 article https://devster.monkeeh.com/z80/upi42/
+- https://web.archive.org/web/20041103235910/http://my.execpc.com/~geezer/osd/kbd/kbd.txt
+- Arduino Shield https://groups.io/g/retroshield/topic/intel_8042/33042489#
+  - idea being that code runs on the ic CPU, but Arduino emulates the URDP, RAM, ROM
+  - https://www.youtube.com/watch?v=VJ7JLX6Icxo
+
+** videos
+
+- 8042 with external memory https://www.youtube.com/watch?v=ODCTIAD-vM0
+  - has a schematic on a dropbox link
+- https://www.youtube.com/watch?v=vSlNIeMoWZk
+
+** codebases
+
+- as a keyboard controller https://wiki.osdev.org/I8042_PS/2_Controller
+- RueNahcMohr
+  - photos & discussion https://x.com/RueNahcMohr/status/1432549586032283650
+  - code+circuit https://x.com/RueNahcMohr/status/1863547404336718220
+  - https://x.com/RueNahcMohr/status/1892981146863955973
+
+- https://hackaday.io/project/161909-8042-clock
+- https://github.com/retiredfeline/8042-clock/
+- https://cdn.hackaday.io/images/8029931540730926617.png
+
+- https://hackaday.io/project/162159-8042-metronome
+- https://github.com/retiredfeline/8042-metronome

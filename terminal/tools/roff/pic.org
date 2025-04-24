@@ -186,6 +186,8 @@ a/t/b = above top below, where the given strings will be put
 |              (X,Y)               | a coordinate                               |
 |           (POS1,POS2)            | sugar for (POS1.x,POS2.y)                  |
 |           OBJ + (X,Y)            | relative to another object                 |
+|           [up¦down] N            | OBJ + (0,±N)                                |
+|          [right¦left] N          | OBJ + (±N,0)                                |
 |               Here               | literal for the current position           |
 |     [1st¦2nd] [last] ASHAPE      |                                            |
 |              ALABEL              | if object, it refers to its .center        |
@@ -204,10 +206,7 @@ a/t/b = above top below, where the given strings will be put
 - copy thru MACRO
   - runs it with all the following lines (me: a "here strings" of sorts)
 
-- up 0.1 right 0.2 == + 0.2,0.1
-
-- top/bottom/left/right - same as
-  north/south/west/east
+- top/bottom/left/right - alias for north/south/west/east
 
 - "\D'P 1 1 1 -1'" - drawing a filled (P) triangle with troff
 
@@ -340,4 +339,3 @@ define tree %
 - [X] 20 [[https://www.youtube.com/watch?v=xMijdTWSUEE][Christmas Cards The Unix Way - with pic and troff]] by Gavin Freeborn
 - [X] 20 [[https://www.youtube.com/watch?v=oG2A_1vC6aM][drawing pictures with pic and troff]] by Gavin Freeborn
 - [X] 22 [[https://www.youtube.com/watch?v=RDpuOFkpiXM][Pictures on the Terminal with pic!]] by Bryce Vandegrift
-

@@ -1,0 +1,29 @@
+<svg xmlns='http://www.w3.org/2000/svg' style='font-size:initial;' class="pikchr" viewBox="0 0 891.101 105.12" data-pikchr-date="20250321215505">
+<text x="22.2552" y="65.16" text-anchor="middle" font-weight="bold" fill="rgb(0,0,0)" font-size="125%" dominant-baseline="central">0  </text>
+<path d="M42.3504,102.96L344.75,102.96L344.75,2.16L42.3504,2.16Z"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="193.55" y="32.4" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">stack pointer</text>
+<text x="193.55" y="52.56" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central"></text>
+<text x="193.55" y="72.72" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">3</text>
+<path d="M344.75,102.96L445.55,102.96L445.55,2.16L344.75,2.16Z"  style="fill:rgb(128,128,128);stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="395.15" y="32.4" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">unused</text>
+<text x="395.15" y="52.56" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central"></text>
+<text x="395.15" y="72.72" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">1</text>
+<path d="M445.55,102.96L546.35,102.96L546.35,2.16L445.55,2.16Z"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="495.95" y="32.4" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">BS</text>
+<text x="495.95" y="52.56" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central"></text>
+<text x="495.95" y="72.72" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">1</text>
+<path d="M546.35,102.96L647.15,102.96L647.15,2.16L546.35,2.16Z"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="596.75" y="32.4" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">F0</text>
+<text x="596.75" y="52.56" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central"></text>
+<text x="596.75" y="72.72" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">1</text>
+<path d="M647.15,102.96L747.95,102.96L747.95,2.16L647.15,2.16Z"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="697.55" y="32.4" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">AC</text>
+<text x="697.55" y="52.56" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central"></text>
+<text x="697.55" y="72.72" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">1</text>
+<path d="M747.95,102.96L848.75,102.96L848.75,2.16L747.95,2.16Z"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="798.35" y="32.4" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">CY</text>
+<text x="798.35" y="52.56" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central"></text>
+<text x="798.35" y="72.72" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">1</text>
+<text x="868.846" y="65.16" text-anchor="middle" font-weight="bold" fill="rgb(0,0,0)" font-size="125%" dominant-baseline="central">  7</text>
+</svg>
+
