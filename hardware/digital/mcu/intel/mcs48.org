@@ -14,6 +14,7 @@
 - Still manufactured in the 90's to support older designs (cheap)
 - Used in
   - [[https://en.wikipedia.org/wiki/Magnavox_Odyssey_2][Magnavox's Oddysey 2]] video game console (1978)
+  - [[https://en.wikipedia.org/wiki/Entex_Adventure_Vision][Adventure Vision]] video game console (1982)
   - Korg Trident Series
   - Korg Poly-61
   - Roland Jupiter-4
@@ -419,17 +420,6 @@
 | 8259 |    | Programmable Interrupt Controller, handle IRQs |
 |------+----+------------------------------------------------|
 
-** 8042AH UPI
-
-- circuit https://x.com/RueNahcMohr/status/1863546130740515323/photo/1
-- circuit https://x.com/RueNahcMohr/status/1863547404336718220/photo/2
-- differences https://x.com/RueNahcMohr/status/1432563658329137153
-  - The answer seems to be:
-    - only 8 address lines work ??
-    - to take the SYNC, invert it, feed that to a 74374 latch
-    - feed port 1 thru that to the address lines of the ROM.
-    - Data lines on the ROM go directly to the DB lines, with /CS and /OE tied low. (!!)"
-
 * tools
 
 - board
@@ -500,6 +490,7 @@
 
 * codebases
 
+- demoscene [[https://www.pouet.net/prod.php?which=61201][source]] [[https://www.youtube.com/watch?v=1q-4Ie5wjus][video]]
 - https://github.com/AngryTroll/i8048_board
 - hello world https://x.com/RueNahcMohr/status/1431910449185005571
 - homebrew computer https://github.com/jim11662418/Intel_8048_Single_Board_Computer
@@ -520,7 +511,6 @@
 
 - multimeter https://github.com/romavis/metra-m1t380-doc
 - Porsche computer https://jhnbyrn.github.io/951-KLR-PAGES/
-- keyboard: commented dissassembled code https://github.com/Halicery/8042
 - korg trident mk2 https://github.com/wohali/polysix/blob/457212866bcf8875156f871fd5cc638a6e59b143/docs/klm8048.asm#L4
 
 ** programmer
@@ -729,11 +719,11 @@
 * 8041/8042
 
 #+begin_src
-NOTE: I own a couple of 8042 so I am making a special section for them.
+  NOTE: I own a couple of 8042 so I am making a special section for them.
 #+end_src
 
-- Can use a 8243 IO expander
 - Can be found in old motherboards as [[https://wiki.osdev.org/%228042%22_PS/2_Controller][Keyboard controllers]]
+- Can use a 8243 IO expander
 - UPI-(C¦L)42
   - Universal Peripherical Interface
   - DMA support
@@ -742,22 +732,37 @@ NOTE: I own a couple of 8042 so I am making a special section for them.
     - interface registers
 
 - Many dissimilar pins to the 8048
-  - XTAL1(2) can act as a single clock input if we are following a _master chip_
+  - *XTAL1(2)* can act as a single clock input if we are following a _master chip_
   - D0-D7 have no dual purpose of communicate addresses besides data
   - P1 pins communicates the addresses
-  - DMA suport with P2_6(37) for DRQ and P2_7(38) for DACK#
-  - RD#(8) and WR#(10) are inputs from the _master chip_ to enable either, not probes like in 8048
-  - new A_0(9) input from the _master chip_ to indicate if it is tranfering data or a command
-  - new SYNC(11) output clock signal which occurs once per cycle
+  - DMA suport with *P2_6(37)* for DRQ and *P2_7(38)* for DACK#
+  - *RD#(8)* and *WR#(10)* are inputs from the _master chip_ to enable either, not probes like in 8048
+  - new *A_0(9)* input from the _master chip_ to indicate if it is tranfering data or a command
+  - new *SYNC(11)* output clock signal which occurs once per cycle
+  - no *INT(6)* pin
 
-- Variants:
+- Second Sources:
   - D80C42C by NEC
-    - no A20GATE(22) support (?)
-    - no Vdd(26) pin, instead has STOP#(26)
+    - no *A20GATE(22)* support (?)
+    - no *Vdd(26)* pin
+    - new *STOP* instruction and INPUT pin *#(26)* to enable a _STOP mode_
+      - for lower power consumption
+      - stops the oscillator
+      - keeps ram powered
+      - lowers voltage
+        - to 2.0v if done by pin
+        - to 2.5v if done by instruction
+    - new *HALT* instruction for a _HALT mode_
+      - for low power consumption
+      - keeps the oscillator active
+      - internal clock stops
+      - reset by *TEST0(1)* and *RST#(4)*
 
 - tool:
-  - asm https://shop-pdp.net/ashtml/asxxxx.php
-  - sbasm support 8041
+  - any 8048 asm should work, except for instructions that don't
+  - asxxxx https://shop-pdp.net/ashtml/asxxxx.php
+  - sbasm supports 8041
+  - tasm (maybe)
 
 - 05 article https://devster.monkeeh.com/z80/upi42/
 - https://web.archive.org/web/20041103235910/http://my.execpc.com/~geezer/osd/kbd/kbd.txt
@@ -774,6 +779,8 @@ NOTE: I own a couple of 8042 so I am making a special section for them.
 ** codebases
 
 - as a keyboard controller https://wiki.osdev.org/I8042_PS/2_Controller
+- reversed keyboard controller https://github.com/Halicery/8042
+
 - RueNahcMohr
   - photos & discussion https://x.com/RueNahcMohr/status/1432549586032283650
   - code+circuit https://x.com/RueNahcMohr/status/1863547404336718220

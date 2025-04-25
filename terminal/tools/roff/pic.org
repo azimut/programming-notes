@@ -148,46 +148,46 @@ a/t/b = above top below, where the given strings will be put
 *** attributes - cosmetic
 |-------------+-----+---------------------------------------|
 |     <c>     | <c> |                                       |
-|    above    |  -  | for text, can stack                   |
-|    below    |  -  | for text, can stack                   |
-|  [rl]just   |  -  | for text, can stack                   |
+|    above    |     | for text, can stack                   |
+|    below    |     | for text, can stack                   |
+|  [rl]just   |     | for text, can stack                   |
 |  h[eigh]t   |  1  |                                       |
 |   wid[th]   |  1  |                                       |
-|    same     |  -  | same dimensions as previous one       |
+|    same     |     | same dimensions as previous one       |
 |     rad     |  1  | box with rounded corners              |
 |   dotted    | 0/1 | for line/box                          |
 |   dashed    | 0/1 | for line/box                          |
-|     <->     |  -  | double arrow for line/arc             |
-|     ->      |  -  | sinle arrow for line/arc              |
+|     <->     |     | double arrow for line/arc             |
+|     ->      |     | sinle arrow for line/arc              |
 |    fill     |  1  | gray intensity for box/circle/ellipse |
 |    color    |  1  |                                       |
-|    invis    |  -  | invisible                             |
+|    invis    |     | invisible                             |
 |   shaded    |  1  | DPIC, take a rgbstring()              |
 |  outlined   |  1  | DPIC, take a rgbstring()              |
 | thick[ness] |  1  | DPIC + GPIC                           |
 | l[ine]thick |  1  | DPIC + GPIC                           |
-|   italic    |  -  | pikchr                                |
-|    bold     |  -  | pikchr                                |
-|    small    |  -  | pikchr                                |
-|     big     |  -  | pikchr                                |
+|   italic    |     | pikchr                                |
+|    bold     |     | pikchr                                |
+|    small    |     | pikchr                                |
+|     big     |     | pikchr                                |
 |-------------+-----+---------------------------------------|
 *** object dot(.) modifiers
-|---------------------+----------------------------------|
-|         <c>         |                                  |
-|       .[x¦y]        |                                  |
-|      .[ns][we]      | objects corners / compass points |
-| .wid[th]/.h[eigh]t  |                                  |
-| .rad[ius]/.diameter |                                  |
-| .start/.center/.end | for line,arrow,spline            |
-|---------------------+----------------------------------|
+|-----------------------+----------------------------------|
+|          <c>          |                                  |
+|        .[x¦y]         |                                  |
+|       .[ns][we]       | objects corners / compass points |
+|  .wid[th]/.h[eigh]t   |                                  |
+| .rad[ius]/.diam[eter] |                                  |
+|  .start/.center/.end  | for line,arrow,spline            |
+|-----------------------+----------------------------------|
 *** a position can be
 |----------------------------------+--------------------------------------------|
 |               <c>                |                                            |
 |              (X,Y)               | a coordinate                               |
 |           (POS1,POS2)            | sugar for (POS1.x,POS2.y)                  |
 |           OBJ + (X,Y)            | relative to another object                 |
-|           [up¦down] N            | OBJ + (0,±N)                                |
-|          [right¦left] N          | OBJ + (±N,0)                                |
+|           [up¦down] N            | OBJ + (0,±N)                               |
+|          [right¦left] N          | OBJ + (±N,0)                               |
 |               Here               | literal for the current position           |
 |     [1st¦2nd] [last] ASHAPE      |                                            |
 |              ALABEL              | if object, it refers to its .center        |
@@ -255,6 +255,7 @@ a/t/b = above top below, where the given strings will be put
 - arrowhead, changes the head style
 - use *fillval* command, smaller values are darker
 - use *reset* command, to reset all variables values, or given ones
+
 * codebases
 
 - http://wiki.christophchamp.com/index.php?title=Pic_language

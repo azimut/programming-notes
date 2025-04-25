@@ -21,7 +21,8 @@ RESUME 6:19
 ** 01 - "Hello, world" from scratch on a 6502
 
 https://www.youtube.com/watch?v=LnzuMJLZRdU
-- Connecting for a basic setup
+
+- Pin connections for a basic setup
   - 5v VDD(+) VCC(-)
   - Outputs: kept disconnected (VPB,A0-15,D0-D7...)
   - Inputs: connected (RDY,IRQB,NMIB,BE,PHI2(clock),...) some to HIGH/UP and some to LOW/DOWN
