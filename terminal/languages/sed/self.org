@@ -1,6 +1,8 @@
 #+TITLE: sed
 #+DATE: <2023-09-04 lun>
 
+[[./sedawkbook.jpg]]
+
 |--------+----------------------------|
 |  <c>   |            <c>             |
 |  gnu   |     [[https://www.gnu.org/software/sed/][home]] [[https://www.gnu.org/software/sed/manual/sed.html][doc]] [[https://fossies.org/linux/sed/ChangeLog][changelog]]     |
@@ -147,7 +149,7 @@
 
 * snippets
 
-#+CAPTION: Lee McMahon (left), [[https://archive.org/details/belltelephone6667mag00amerrich/page/n365/mode/2up]["Bell Telephone Magazine"]] 1967
+#+CAPTION: Lee McMahon (left), "Bell Telephone Magazine" 1967
 #+ATTR_ORG: :width 400
 [[./lee67.png]]
 
