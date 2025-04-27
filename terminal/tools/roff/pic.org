@@ -1,5 +1,6 @@
 #+TITLE: pic
 #+DATE: <2025-04-08 mar>
+#+KEYWORDS: pic, dpic, gpic, roff, groff, pikchr, programming, cheatsheet, quick reference
 
 |------+--------+------------------------+-----+---------------------|
 | <c>  |  <c>   |          <c>           | <c> |                     |
@@ -73,13 +74,24 @@
 
 ** roff commands
 |------+-----------+---------------------------------------------------------|
-| .PS  | [W] [H]   | start of pic, with optional width and height            |
+|      |    <c>    |                                                         |
+| .PS  |  [W] [H]  | start of pic, with optional width and height            |
 | .PS  | <file.pic |                                                         |
 | .PE  |           | end of pic                                              |
-| .ft  | [RBIP]    | switch font shape, P=previous                           |
-| .ps  | , N, +N   | change font size, thickness, previous, new, or relative |
-| .fam | [TH]      | changes font family T=Times, H=Helvetica                |
+| .ft  |  [RBIP]   | switch font shape, P=previous                           |
+| .ps  |  , N, +N  | change font size, thickness, previous, new, or relative |
+| .fam |   [TH]    | changes font family T=Times, H=Helvetica                |
 |------+-----------+---------------------------------------------------------|
+** roff escape
+|----------------+------------------------------------------|
+| \D'P 1 1 1 -1' | drawing a filled (P) triangle with troff |
+| \fR, \f1       | roman font (default)                     |
+| \fI, \f2       | italic font                              |
+| \fB, \f3       | bold font                                |
+| \fP            | revert prev style                        |
+| \h             | horizontal motion                        |
+| \v             | vertical motion                          |
+|----------------+------------------------------------------|
 ** labels
 
 - start with upper-case
@@ -158,12 +170,13 @@ a/t/b = above top below, where the given strings will be put
 |   dotted    | 0/1 | for line/box                          |
 |   dashed    | 0/1 | for line/box                          |
 |     <->     |     | double arrow for line/arc             |
-|     ->      |     | sinle arrow for line/arc              |
+|     ->      |     | single arrow for line/arc             |
 |    fill     |  1  | gray intensity for box/circle/ellipse |
 |    color    |  1  |                                       |
 |    invis    |     | invisible                             |
 |   shaded    |  1  | DPIC, take a rgbstring()              |
 |  outlined   |  1  | DPIC, take a rgbstring()              |
+| [xy]slanted |  1  | GPIC                                  |
 | thick[ness] |  1  | DPIC + GPIC                           |
 | l[ine]thick |  1  | DPIC + GPIC                           |
 |   italic    |     | pikchr                                |
@@ -207,8 +220,6 @@ a/t/b = above top below, where the given strings will be put
   - runs it with all the following lines (me: a "here strings" of sorts)
 
 - top/bottom/left/right - alias for north/south/west/east
-
-- "\D'P 1 1 1 -1'" - drawing a filled (P) triangle with troff
 
 - LINEAR
   - [udlr] DIST [ [udlr] DIST ] [then...]

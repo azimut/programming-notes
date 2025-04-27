@@ -1,5 +1,6 @@
 #+TITLE: AWK
 #+DATE: <2023-09-04 lun>
+#+KEYWORDS: awk, programming, cheatsheet, quick reference
 
 #+CAPTION: mascot adopted by AWK's bibliography
 #+ATTR_ORG: :width 200

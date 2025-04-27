@@ -1,5 +1,6 @@
 #+TITLE: Make
 #+DATE: <2020-12-17 jue>
+#+KEYWORDS: make, makefile, gnu make, programming, cheatsheet, quick reference
 
 #+ATTR_HTML: :height 400
 [[./makebook.png]]

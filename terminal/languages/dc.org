@@ -1,5 +1,6 @@
 #+TITLE: dc
 #+DATE: <2025-01-11 sáb>
+#+KEYWORDS: dc, desk calculator, programming, cheatsheet, quick reference
 
 |--------+-----------------|
 |  <c>   |       <c>       |

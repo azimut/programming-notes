@@ -1,5 +1,6 @@
 #+TITLE: bc
 #+DATE: <2024-04-12 vie>
+#+KEYWORDS: bc, bench calculator, programming, cheatsheet, quick reference
 
 |---------+------------------------------------|
 |   <c>   |                <c>                 |

@@ -1,5 +1,6 @@
 #+TITLE: sed
 #+DATE: <2023-09-04 lun>
+#+KEYWORDS: sed, stream editor, programming, cheatsheet, quick reference
 
 [[./sedawkbook.jpg]]
 
