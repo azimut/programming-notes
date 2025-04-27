@@ -1,0 +1,1 @@
+- [[https://en.wikipedia.org/wiki/Universal_synchronous_and_asynchronous_receiver-transmitter][Universal Synchronous and Asynchronous Receiver-Transmitter]]

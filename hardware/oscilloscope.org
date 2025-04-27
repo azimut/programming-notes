@@ -51,13 +51,31 @@
 - https://upcommons.upc.edu/bitstream/handle/2099.1/11082/Mem%C3%B2ria.pdf;jsessionid=29E34C6F24916C9888E7BACEBBE3ACB1?sequence=2
 - https://sired.udenar.edu.co/3304/1/85707.pdf
 
+- thunderscope https://github.com/EEVengers/ThunderScope
+  - max 1 Ghz
+  - ThunderScope Analog Front End - Gain And Attenuation https://www.youtube.com/watch?v=OU12bTZnh7g
+
+- https://www.ngscopeclient.org/
+
 - Scoppy
   - max 250 Khz (with software hacks)
   - https://oscilloscope.fhdm.xyz/
   - https://www.youtube.com/watch?v=fR8VwuvkIAc
+  - examples
+    - https://www.hackster.io/ignoramus-pettigrew-the-third/parts-bin-oscilloscope-c8a413
 
 - 25 [[https://www.reddit.com/r/electronics/comments/1k6zst4/showcase_my_finished_digital_oscilloscope_project/#lightbox][Showcase: My Finished Digital Oscilloscope Project (Through-Hole & SMD Versions)]]
   - https://github.com/RoseDaggerDev/MiniOscilloscope
+
+- 20 https://github.com/thanks4opensource/buck50
+  - STM32
+  - 8 channel
+  - 6 Mhz
+
+- 25 flea-scope https://rtestardi.github.io/usbte/flea-scope.pdf
+  - max 18 MSPS (4MHz?)
+  - PIC32
+  - https://news.ycombinator.com/item?id=43068585
 
 ** 18 Homemade Oscilloscope - Arduino UNO and Unity
 

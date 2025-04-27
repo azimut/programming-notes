@@ -1,5 +1,3 @@
-* sitemap.xml
-- https://en.wikipedia.org/wiki/Sitemaps
 * in <meta>
 - https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag
 - https://en.wikipedia.org/wiki/Meta_element#The_robots_attribute

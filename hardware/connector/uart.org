@@ -1,0 +1,13 @@
+- [[https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter][Universal Asynchronous Receiver-Transmitter]]
+  - async serial communication
+  - common signal levels are:
+    - RS-232
+    - RS-485
+    - raw TTL (for short debugging links)
+  - simple protocol
+  - can be emulated by bit-banging GPIO pins in software
+
+- Chip: CP2102/9 USB-to-UART bridge
+  - I own 3 (red)
+- Chip: PL-2303HX USB-to-Serial
+  - I own 1

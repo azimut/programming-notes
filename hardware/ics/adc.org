@@ -1,0 +1,43 @@
+#+CAPTION: Nyquist-Shannon Theorem
+#+begin_src eqn
+f_sample = 2 * f_signal
+#+end_src
+
+* types
+** parallel/flash comparator:
+
+- $++, fast (GHz), ~accurate
+- all comparators have a clock is important that it happens at the same time
+- the bits determine it's _resolution_
+#+CAPTION: 2-bit paralell ADC
+[[https://i.ytimg.com/vi/oo1yjB56ltU/sddefault.jpg]]
+
+** succesive approximation
+
+ - only 1 comparator
+ - uses a DAC to provide the Vref
+ - supplied by a ever changing supply signal (ME: seems like it does a kind of "binary search")
+ - takes longer
+ - SAR = Successive Approximation Register
+ #+CAPTION: successive approximation ADC
+ #+ATTR_ORG: :width 200
+ [[https://upload.wikimedia.org/wikipedia/commons/6/61/SA_ADC_block_diagram.png]]
+
+* videos
+- 17 [[https://www.youtube.com/watch?v=EnfjYwe2A0w][Electronic Basics #27: ADC (Analog to Digital Converter)]]
+- 21 [[https://www.youtube.com/watch?v=g4BvbAKNQ90][How ADCs work?]]
+- 20 [[https://www.youtube.com/watch?v=UAJMLTzrM9Q][How good are the ADCs inside Arduinos, ESP8266, and ESP32? And external ADCs (ADS1115)]]
+  - by Andreas Spiess
+  - UNO:
+    - uses Vcc as Vref
+* ics
+
+- PCF8591
+  - 8bit
+- ADS7816
+  - 12bit
+  - SPI
+- AD7705
+  - 16bit
+  - 2 input channels
+  - SPI
