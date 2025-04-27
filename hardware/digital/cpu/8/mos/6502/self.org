@@ -19,6 +19,18 @@
   - http://skilldrick.github.io/easy6502/
   - https://www.middle-engine.com/blog/posts/2020/06/23/programming-the-nes-the-6502-in-detail
 
+- Assembly
+  - $ in a number means hexadecimal
+  - # means load immediate, load as value
+  - % used for binary literals
+  - Directives:
+    - .org (for origin)
+      - tells the assembler _where_ the following assembly goes in memory
+      - it handles explicit memory offsets
+      - ex: if the first line is ".org $8000" it does NOT create a initial padding, it start there
+    - .word (puts a word, a 16 bit value, in output)
+  - Labels: loop: reset:
+
 * opcodes
 
 http://www.6502.org/tutorials/6502opcodes.html
@@ -169,4 +181,17 @@ https://en.wikipedia.org/wiki/MOS_Technology_6507
   - https://dasm-assembler.github.io/
     - $ dasm file.asm -f3 -v0 -ocart.bin
   - http://sun.hasenbraten.de/vasm/
-
+    - using "Old 8-bit style syntax"
+    - to build the assembler
+      #+begin_src sh
+        $ make CPU=6502 SYNTAX=oldstyle
+      #+end_src
+    - to build the binary output from an .asm
+      |---------+----------------------|
+      | -Fbin   | to output binary     |
+      | -dotdir | to enable directives |
+      |---------+----------------------|
+      #+begin_src sh
+      $ vasm6502_oldstyle -Fbin -dotdir blink.s
+      $ hexdump -C a.out
+      #+end_src

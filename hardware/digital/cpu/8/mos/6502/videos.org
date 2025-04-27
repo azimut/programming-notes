@@ -3,39 +3,39 @@ https://malisper.me/defaddress/
 https://github.com/kingcons/cl-6502
 http://redlinernotes.com/docs/cl-6502.pdf
 https://lukego.github.io/blog/2012/10/24/readable-programs/
-* Videos: 2012 - On programmer archaeology - https://vimeo.com/47364930
+* 2012 - On programmer archaeology - https://vimeo.com/47364930
 RESUME 6:19
   - slides: http://redlinernotes.com/docs/talks/opa.html
   - https://en.wikipedia.org/wiki/A_Deepness_in_the_Sky
   - https://www.drdobbs.com/architecture-and-design/interview-with-alan-kay/240003442
 
-* Videos: Build a 65c02-based computer from scratch
+* Build a 65c02-based computer from scratch
 
 - https://www.youtube.com/playlist?list=PLowKtXNTBypFbtuVMUVXNR0z1mu7dp7eH
+
+** BOM
+
 - W65C02S (890 pesos at 15Aug/20) (15k pesos at 25Mar/25)
   - 16bit/2^16 addresses 128K of memory
 - AT28C256 (1887 pesos at 15Aug/20) (15k pesos at 25Mar/25)
 - W65C22 - VIA
 - HD44780U (LDC-II) - "Dot matrix Liquid Crystal Display Controller/Driver"
+- EEPROM programmer TL866II+
 
 ** 01 - "Hello, world" from scratch on a 6502
 
 https://www.youtube.com/watch?v=LnzuMJLZRdU
 
-- Pin connections for a basic setup
-  - 5v VDD(+) VCC(-)
-  - Outputs: kept disconnected (VPB,A0-15,D0-D7...)
-  - Inputs: connected (RDY,IRQB,NMIB,BE,PHI2(clock),...) some to HIGH/UP and some to LOW/DOWN
-    - RST: connected to (+) with a 1k resitor, and a button to GND
-    - RWB: tells if it is and read or write operation
-  - Min PHI2(clock): new 6502 model allows stopping and doing step by step execution
-  - Max PHI2(clock): orig 1mhz, new model 16mhz
+*** Pin connections for a basic setup
 
-- Final result: We hardwire the DATA (D0-D5) pins with 1k resistors connected to vcc or vdd.
-  - 0xea 11101010
-  - this particular pattern makes it so when it RST jumps to address ~0xeaea~
-  - when it jumps, it runs the instruction there, with is a NOP=ea
-  - and it goes on and on...
+- 5v Vdd(+) Vcc(-)
+- Outputs: kept disconnected (VPB,A0-15,D0-D7...)
+- Inputs: connected (RDY,IRQB,NMIB,BE,PHI2(clock),...) some to HIGH/UP and some to LOW/DOWN
+  - RST: connected to (+) with a 1k resitor, and a button to GND
+  - RWB: tells if it is and read or write operation
+  - PHI2(clock)
+    - Min: new 6502 model allows stopping it and doing step by step execution
+    - Max: orig 1Mhz, new model 16Mhz
 
 *** How to study what is happening once plugged?
 
@@ -43,7 +43,7 @@ https://www.youtube.com/watch?v=LnzuMJLZRdU
 - We can use a "logic analyzer" to capture each signal.
   - Overkill. Especially useful for fast speed circuits.
 
-**** Using Arduino - Read Addresses Bus
+**** Using Arduino - Read Address Bus
 
 1) define address pins and initialize pinmode
    #+begin_src c
@@ -64,7 +64,7 @@ https://www.youtube.com/watch?v=LnzuMJLZRdU
     } // and after add a Serial.println()
   #+end_src
 
-**** Using Arduino - Read Clock
+**** Using Arduino - Read Address Bus on CLOCK
 
 - Read Clock Pulse (have it trigger an interrupt)
  #+begin_src c++
@@ -75,16 +75,16 @@ https://www.youtube.com/watch?v=LnzuMJLZRdU
    }
    void onClock(){
     // put what you want to run JUST on a clock
-    // in our case the print of Addresses
+    // in our case the print of addresses input pins
    }
  #+end_src
 
 **** Using Arduino - Read Data Bus
 
-2) Read D0-D7
+1) Read D0-D7
   #+begin_src c++
     const char DATA[] = {39,41,...};
-    pinMode(DATA[n], INPUT); // on setup, where 0<n<8
+    pinMode(DATA[n], INPUT); // on setup(), where 0<n<8
     void onClock() { // we add this
       char output[];
       unsigned int data = 0;
@@ -96,27 +96,41 @@ https://www.youtube.com/watch?v=LnzuMJLZRdU
       Serial.println(output);
     }
   #+end_src
-4) Read READ_WRITE pin
-   #+begin_src c
+
+2) Read READ_WRITE pin
+   #+begin_src c++
      #define READ_WRITE 3
      pinMode(READ_WRITE, INPUT); // setup()
      digitalRead(READ_WRITE) ? 'r' : 'W'; // use this to add to sprintf
    #+end_src
 
+*** Explaination of hardwiring D0-D8 = 0xea = 11101010
+
+- with 1k resistors
+- on RST, tries to read address from ~0xfffc~ and ~0xfffd~
+- gets ~0xeaea~
+- sets PC to it
+- it runs the instruction there, which is a NOP (0xea)
+- seeks next to address ~0xeaeb~, reads a NOP...
+
 ** 02 - How do CPUs read machine code?
+
 https://www.youtube.com/watch?v=yl8vPW5hydQ
-- 6502 - Little Endian, reads the lower order byte followed by the high order byte
-- Final Result: using 65C22 auxiliary chip with our 6502
+
+- 6502
+  - stores and reads addressed in =Little Endian=
+  - reading the lower order byte first,
+  - followed by the high order byte
+
 *** EEPROM Connecting
 - Adding a EEPROM, so instructions are loaded from it.
 - 1x AT28C256 - 32Kilobytes (or 256Kilobits)
-- CE/WE/OE
-- 15 Addresses pins (while 6502 has 16)
-  - We connect the extra bit to CE of the EEPROM but inverted
+- 15 Addresses pins *WHILE 6502 HAS 16*
+  - We connect the extra addr pin to CE of the EEPROM but inverted
+    - Because we want to keep the 0xfffd and 0xfffc addressed used on RST
+    - And we don't want to see the contents repeated when accessing low addresses
     - We use a NAND gate, instead of a NOT
-    - Because we want to keep the FFFD and FFFC addressed used on RST
-  - We do that so CPU will only see half of the memory, the upper half, NOT repeated
-*** Programming NOPs
+*** Flashing EEPROM - Programming NOPs
 - Python script that creates a file with NOPs
   #+begin_src python
     rom = bytearray([0xea] * 32768)
@@ -124,17 +138,22 @@ https://www.youtube.com/watch?v=yl8vPW5hydQ
         out_file.write(rom)
   #+end_src
 - EEPROM programmer TL866II+
-  > minipro -p AT28C256 -w some.bin
-*** Programming ASM, save to EEPROM from CPU
-Python script, jumping to beggining of memory, AND programming
+  #+begin_src sh
+    $ minipro -p AT28C256 -w rom.bin
+  #+end_src
+*** Flashing EEPROM - Programming IC instructions
+
+- Python script, jumping to beggining of memory, AND programming
+- Note: addresses outside 0x800-0xfff range the EEPROM has currently
+
 #+begin_src python
   rom = bytearray([0xea] * 32768)
-  rom[0] = 0xa9 # LDA, load acc with immediate value
-  rom[1] = 0x42 # acc = 0x42
+  rom[0] = 0xa9 # LDA (immediate)
+  rom[1] = 0x42 # 0x42 | acc = 0x42
 
-  rom[2] = 0x8d # STA, stores acc in given memory address
-  rom[3] = 0x00 # memory_address = 6000
-  rom[4] = 0x60 # Note: address outside 0x800-0xfff range the EEPROM has currently
+  rom[2] = 0x8d # STA (address)
+  rom[3] = 0x00 # 0x600 | eeprom[0x6000] = acc
+  rom[4] = 0x60
 
   rom[0x7ffc] = 0x00 # Fill reset vector with address 8000
   rom[0x7ffd] = 0x80 # which is addr 0 on the ROM for our setup
@@ -143,39 +162,56 @@ Python script, jumping to beggining of memory, AND programming
 #+end_src
 
 *** 65C22 Register - Hooked into CPU's Address and Data Bus
-- We will use memory write instructions (STA) as "commands" for external hardware.
-  - While targetting to a pre-arranged range of addresses.
-  - Hardware will respond to them, while the EEPROM will ignore them.
+- We'll use memory write instructions (STA) for IO
+  - aka "commands" for external hardware
+  - since, =6502 does not have separate IO pins/lines=
+  - by targetting a pre-arranged range of addresses
+  - target hardware will
+    1) monitor
+       - address lines from CPU
+       - WE# pin from the CPU
+       - data lines on the a latched bus
+    2) when responding to some, the EEPROM will ignore them
 - 65C22 - "VIA - Versitale Interface Adapter"
+  - made to work with the 6502 (all timings match)
+  - pins from the CPU:
+    - D0-D7, PHI2, RW#, RST
   - 16 internal registers, enable different functions
-  - from the CPU: D0-D7, PHI2, RWB, RST (same signal CPU gets)
-  - RS0-3: Register/Port Selector (of the 16)
-  - CS1/CS2B: Chip Select, to let it know WHEN the CPU will talk to the chip
-  - PA0-7, PB0-7: Port A and B, with latched I/O
+    - RS0-3: Register/Port Selector pins (of the 16)
+    - [O¦I]R[A¦B]
+    - DDR[A¦B]
+      - data direction registry for ports A&B
+      - can set it up at pin level
+  - CS1/CS2#
+    - Chip Select
+    - to let it know WHEN the CPU will talk to the chip
+    - we'll use some address decode logic
+  - PA0-7, PB0-7: Port A and B, are the I/O
 **** Step 1: detect the address ~0x0600~
 - in binary: 011 0000 0000 0000
-- We just NEED to check the first 3 bits.
-- And CS the 652CC if found (needs both CS to be active)
-  - A15, A14 to two CS2B through NAND gates.
+- We just NEED to check just the first 3 bits (011)
+  - Doing this "wastes" address space, but saves on logic gates
+- And CS the 652CC if match (needs both CS to be active)
+  - A15, A14 to two CS2# through NAND gates.
   - A13, to the CS1 directly.
 **** Step 2: write to 652CC registers
-- We connect the lower A0-3 from 6502 to RS0-3 of 65C22
-  - This memory maps 0x600-0x60f to RS flags
-  - So, if we want to set DDRB
-    - for data direction register B on the 65C22
-    - we write to address 0x6002
+- We connect the lower 4 A0-3 from 6502 to RS0-3 of 65C22
+- This memory maps 0x600-0x60f to each of the 16 registers on 65C22
+- Example: if we want to set DDRB
+  - for data direction register B on the 65C22
+  - we write to address 0x6002
 *** 65C22 Register - Blinking leds on Port B
 #+begin_src python
   code = bytearray([
     # Setup Port B pins as outputs
-    0xa9, 0xff,       # LDA #$ff -- Putting all 1's to mark all pins of port B as output
-    0x8d, 0x02, 0x60, # STA 6002 -- RS to configure port B mode
+    0xa9, 0xff,       # LDA #$ff -- mark all pins as OUTPUT
+    0x8d, 0x02, 0x60, # STA 6002 -- for Port B (DDRB)
 
-    0xa9, 0x55,       # LDA #$55 -- Outputs in port B 0x55 -- 0101 0101
-    0x8d, 0x00, 0x60, # STA 6000
+    0xa9, 0x55,       # LDA #$55 -- outputs 0x55 -- 0101 0101
+    0x8d, 0x00, 0x60, # STA 6000 --  in Port B (ORB)
 
-    0xa9, 0xaa,       # LDA #$aa -- Outputs in port B 0xaa -- 1010 1010
-    0x8d, 0x00, 0x60, # STA 6000
+    0xa9, 0xaa,       # LDA #$aa -- outputs 0xaa -- 1010 1010
+    0x8d, 0x00, 0x60, # STA 6000 --  in Port B (ORB)
 
     0x4c, 0x05, 0x80, # JMP $8005 -- Jumps back to line with "LDA #$55"
   ])
@@ -190,28 +226,12 @@ Python script, jumping to beggining of memory, AND programming
 #+end_src
 ** 03 - Assembly language vs. machine code
 
-- Replace the python script used before
-- Using ~vasm~ assembler
-  - using "Old 8-bit style syntax"
-  - to build the assembler
-    - $ make CPU=6502 SYNTAX=oldstyle
-  - to build a the binary output from .asm in
-    - -Fbin to output binary
-    - -dotdir to enable directives
-    - $ vasm6502_oldstyle -Fbin -dotdir blink.s
-    - $ hexdump -C a.out
-- Assembly
-  - $ in a number means hexadecimal
-  - # means load immediate
-  - % used for binary literals
-  - Directives:
-    - .org (for origin)
-    - .word (puts a word, a 16 bit value, in output)
-  - Labels: loop: reset:
+- Replace the python script used before with ~vasm~
+  - using the "old 8-bit style syntax"
 
-*** Example: bare jump + directives for memory layout
+*** Example: blink
 #+begin_src asm
-  .org $8000  // From the CPU perspective
+  .org $8000  // from the CPU perspective 0 is $8000 - A15=1
     lda #$ff
     sta $6002
 
@@ -223,44 +243,45 @@ Python script, jumping to beggining of memory, AND programming
     jmp $8005
 
   .org $fffc
-    .word $8000 // reset vector
+    .word $8000 // "Reset Vector"
     .word $0000 // two extra bytes for padding
 #+end_src
 
-*** Example: refactor to a labeled jump
+*** Example: blink - labeled jump
 #+begin_src asm
   .org $8000 // From the CPU perspective
 
-  reset: // label
+  reset:
     lda #$ff
     sta $6002
 
-  loop: // label
+  loop:
     lda #$55
     sta $6000
 
     lda #$aa
     sta $6000
 
-    jmp loop
+    jmp loop // <- using the label
 
   .org $fffc
-  .word reset
+  .word reset // <- using the label
   .word $0000
 #+end_src
 
-*** Example: ror - to rotate led pattern around
+*** Example: blink - using ROR to rotate the lights
+
 #+begin_src asm
 .org $8000 // From the CPU perspective
 reset:
   lda #$ff
   sta $6002
 
-  lda #$50 // we output something right away
+  lda #$50  // we output something right away
   sta $6000
 
 loop:
-  ror // shifting pattern to the right
+  ror       // shifting acc pattern to the right
   sta $6000 // send it
 
   jmp loop
@@ -269,18 +290,30 @@ loop:
   .word reset
   .word $0000
 #+end_src
+
 ** 04 - Connecting an LCD to our computer
+
 - HD44780U (LDC-II) - "Dot matrix Liquid Crystal Display Controller/Driver"
-  - V0: contrast adjust (to ground to a variable resistor of 10K)
-  - A: Anode (5V) has a current limit resistor
-  - K: Katode (GND)
-  - Connected to through the (internal) MPU
-    - D0-7: Data (it has a mode to make it work with 4 pins), it can send data to the Intruction Register or Data Register
-    - RS: Registry Select signal, select if we write to the IR (instruction register) or DR (data register) (high)
-    - RW: Whether we are reading or writing
+
+- 16 pins
+  - Vcc, Vdd
+  - Backlight Display
+    - A: Anode (5V) - has a current limit resistor
+    - K: Katode (GND)
+  - V0: contrast adjust
+    - hardwired to GND through a variable resistor of 10K
+  - Connected to through the (internal) *MPU*
+    - D0-7:
+      - data to/from? registers
+      - has a mode to make it work with 4 pins
     - E: Enable signal
-- MPU: Micro Processor Unit
-- Assembly, using variables, writting a character to the LCD
+    - RW: Whether we are reading or writing
+    - RS: Registry Select
+      - LOW  write to the IR (Instruction Register)
+      - HIGH write to the DR (Data Register)
+
+*** Final asm code
+
 #+begin_src asm
 PORTB = $6000
 PORTA = $6001
@@ -341,6 +374,7 @@ loop:
   .word reset
   .word $0000
 #+end_src
+
 ** 05 - What is a stack and how does it work?
 - Assembler: Using a sub-routine
   #+begin_src asm

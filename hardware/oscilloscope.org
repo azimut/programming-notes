@@ -48,7 +48,20 @@
   - https://www.youtube.com/playlist?list=PLGtyXSn57qnInTZngJuuPtx0tXbxurhtZ
   - C#
 
-** Homemade Oscilloscope -  Arduino Uno and Unity - Simply Put
+- https://upcommons.upc.edu/bitstream/handle/2099.1/11082/Mem%C3%B2ria.pdf;jsessionid=29E34C6F24916C9888E7BACEBBE3ACB1?sequence=2
+- https://sired.udenar.edu.co/3304/1/85707.pdf
+
+- Scoppy
+  - max 250 Khz (with software hacks)
+  - https://oscilloscope.fhdm.xyz/
+  - https://www.youtube.com/watch?v=fR8VwuvkIAc
+
+- 25 [[https://www.reddit.com/r/electronics/comments/1k6zst4/showcase_my_finished_digital_oscilloscope_project/#lightbox][Showcase: My Finished Digital Oscilloscope Project (Through-Hole & SMD Versions)]]
+  - https://github.com/RoseDaggerDev/MiniOscilloscope
+
+** 18 Homemade Oscilloscope - Arduino UNO and Unity
+
+- by Simply Put
 
 *** 1) Sep 18 Intro
 
@@ -105,3 +118,20 @@ https://www.youtube.com/watch?v=tH_jIedH_2c
 - unity package
 
 *** 3) Jan 19 https://www.youtube.com/watch?v=9W2BjgwCu_Q
+** 19 Desarrollo de un osciloscopio digital en Android
+
+- https://web.archive.org/web/20200615230158/http://uvadoc.uva.es/handle/10324/38830
+- by Ortiz de Latierro Delgado, David
+
+** 07 Oscilloscopio USB
+
+https://web.archive.org/web/20080821183814/http://pablohoffman.com/oscusb/
+https://web.archive.org/web/20080119144459/http://pablohoffman.com/cgi-bin/twiki/bin/view/Oscusb/DocumentoPresentacion
+
+- by Pablo Hoffman
+- Max: 8 MSPS / 8 Mhz (40?)
+- BOM
+  - pic18f
+  - SRAM
+  - ADC
+  - 8bit counter
