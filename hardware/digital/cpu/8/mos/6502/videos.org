@@ -21,6 +21,7 @@ RESUME 6:19
 - W65C22 - VIA
 - HD44780U (LDC-II) - "Dot matrix Liquid Crystal Display Controller/Driver"
 - EEPROM programmer TL866II+
+- SRAM AS6C62256 (32 Kilobytes)
 
 ** 01 - "Hello, world" from scratch on a 6502
 
@@ -292,83 +293,83 @@ loop:
 #+end_src
 
 ** 04 - Connecting an LCD to our computer
+*** HD44780U (LDC-II)
 
-- HD44780U (LDC-II) - "Dot matrix Liquid Crystal Display Controller/Driver"
-
+- "Dot matrix Liquid Crystal Display Controller/Driver"
+- We hardwire it to a 65C22 port
 - 16 pins
-  - Vcc, Vdd
+  - Vss(GND), Vdd(5v)
   - Backlight Display
     - A: Anode (5V) - has a current limit resistor
     - K: Katode (GND)
   - V0: contrast adjust
-    - hardwired to GND through a variable resistor of 10K
-  - Connected to through the (internal) *MPU*
+    - hardwired to GND through a 10k variable resistor
+  - Connect to the internal *MPU* that handles the display
+    - E: Enable control signal
     - D0-7:
-      - data to/from? registers
+      - data to/from registers (or address counter)
       - has a mode to make it work with 4 pins
-    - E: Enable signal
-    - RW: Whether we are reading or writing
-    - RS: Registry Select
-      - LOW  write to the IR (Instruction Register)
-      - HIGH write to the DR (Data Register)
+    - RW: Whether we are reading or writing - control signal
+    - RS: Registry Select control signal
+      - 0/LOW  write to the IR (Instruction Register)
+      - 1/HIGH write to the DR (Data Register)
 
-*** Final asm code
+*** Code: Display letter "H"
 
 #+begin_src asm
 PORTB = $6000
 PORTA = $6001
-DDRB = $6002
-DDRA = $6003
-
-E  = %10000000 ; "%" used for binary literals
-RW = %01000000
-RS = %00100000
+DDRB  = $6002
+DDRA  = $6003
+E     = %10000000 ; "%" used for binary literals
+RW    = %01000000
+RS    = %00100000
 
 .org $8000
 reset:
-  lda #%11111111 ; Set all pins for output
+  lda #%11111111 ; Set all pins on port B as OUTPUT
   sta DDRB
-  lda #%11100000 ; Set top 3 pins for Output
+  lda #%11100000 ; Set top 3 pins on port A as OUTPUT
   sta DDRA
 
-  lda #%00111000 ; Set 8-bit mode, 2-line display, 5x8 font
+  lda #%00111000 ; fSet(8-bit mode, 2-line display, 5x8 font)
   sta PORTB
-  lda #0         ; Clear RS/RW/E bits
+  lda #0         ; RS=RW=E=0
   sta PORTA
-  lda #E         ; Set E bit to send instruction
+  lda #E         ; RS=RW=0;   E=1
   sta PORTA
-  lda #0         ; Clear RS/RW/E bits
+  lda #0         ; RS=RW=E=0
   sta PORTA
 
-  lda #%00001110 ; Display on, cursor on, blink off
+  lda #%00001110 ; displayOnOff(display, cursor, blink)
   sta PORTB
-  lda #0         ; Clear RS/RW/E bits
+  lda #0         ; RS=RW=E=0
   sta PORTA
-  lda #E         ; Set E bit to send instruction
+  lda #E         ; RS=RW=0;   E=1
   sta PORTA
-  lda #0         ; Clear RS/RW/E bits
+  lda #0         ; RS=RW=E=0
   sta PORTA
 
-  lda #%00000110 ; Increment and shift cursor, don't shift display
+  lda #%00000110 ; entryModeSet(ac_direction=inc, display=shift)
   sta PORTB
-  lda #0         ; Clear RS/RW/E bits
+  lda #0         ; RS=RW=E=0
   sta PORTA
-  lda #E         ; Set E bit to send instruction
+  lda #E         ; RS=RW=0;   E=1
   sta PORTA
-  lda #0         ; Clear RS/RW/E bits
+  lda #0         ; RS=RW=E=0
   sta PORTA
 
-  lda #"H"
+  lda #"H"       ; Put letter "H" on Port B
   sta PORTB
-  lda #RS        ; Set RS (we are sending data not an instruction), Clears RW/E bits
+  lda #RS        ; RS=1, Clears RW/E control signals
   sta PORTA
-  lda #(RS | E)  ; Set E bit to send instruction
+  lda #(RS | E)  ; E=1; RS=1
   sta PORTA
-  lda #RS        ; Clear E bits
+  lda #RS        ; E=0
   sta PORTA
 
 loop:
-  jmp loop ;; "halts" the program, infinite loop
+  jmp loop ;; effectively "halts" the program, infinite loop
 
   .org $ffc
   .word reset
@@ -376,107 +377,158 @@ loop:
 #+end_src
 
 ** 05 - What is a stack and how does it work?
-- Assembler: Using a sub-routine
-  #+begin_src asm
+*** Code: Display letter "H", using subroutines
+
+#+begin_src asm
 PORTB = $6000
 PORTA = $6001
-DDRB = $6002
-DDRA = $6003
+DDRB  = $6002
+DDRA  = $6003
+E     = %10000000
+RW    = %01000000
+RS    = %00100000
 
-E  = %10000000
-RW = %01000000
-RS = %00100000
-
-  .org $8000
-
-; "%" used for binary literals
+.org $8000
 reset:
-  lda #%11111111 ; Set all pins for output
+  lda #%11111111 ; all Port B as OUTPUT
   sta DDRB
-  lda #%11100000  ; Set top 3 pins for Output
+  lda #%11100000 ; top 3 pins of Port A as OUTPUT
   sta DDRA
 
-  lda #%00111000 ; Set 8-bit mode, 2-line display, 5x8 font
+  lda #%00111000
   jsr lcd_instruction
-  lda #%00001110 ; Display on, cursor on, blink off
+  lda #%00001110
   jsr lcd_instruction
-  lda #%00000110 ; Increment and shift cursor, don't shift display
+  lda #%00000110
   jsr lcd_instruction
 
   lda #"H"
   jsr print_char
 
 loop:
-  jmp loop ;; "halts" the program, infinite loop
+  jmp loop       ; "halts" the program, infinite loop
 
-lcd_instruction: ; subroutine declaration
+lcd_instruction: ; sends instructions to LCD module
   sta PORTB
-  lda #0   ; Clear RS/RW/E bits
+  lda #0         ; RS=RW=E=0
   sta PORTA
-  lda #E   ; Set E bit to send instruction
+  lda #E         ; E=1
   sta PORTA
-  lda #0   ; Clear RS/RW/E bits
+  lda #0         ; RS=RW=E=0
   sta PORTA
-  rts ; return from subroutine
+  rts            ; return
 
 print_char:
   sta PORTB
-  lda #RS       ; Set RS (we are sending data not an instruction), Clears RW/E bits
+  lda #RS        ; Set RS (we are sending data not an instruction), Clears RW/E bits
   sta PORTA
-  lda #(RS | E) ; Set E bit to send instruction
+  lda #(RS | E)  ; Set E bit to send instruction
   sta PORTA
-  lda #RS       ; Clear E bits
+  lda #RS        ; Clear E bits
   sta PORTA
   rts
 
-  .org $ffc
-  .word reset
-  .word $0000
+.org $ffc
+.word reset
+.word $0000
 #+end_src
-- Stack: example of extra steps the CPU does when a subroutine is called
-  #+begin_src
-  0124 r 5d
-  0124 W 80
-  0123 W 0e
+
+*** The Stack
+
+- CPU does "extra steps" when a _subroutine_ is called
+  #+CAPTION: storing a return address in the stack
+  #+begin_src sh
+    800c r 20 #     JSR
+    800d r 5d #     JSR addr_1
+
+    0124 r 5d #   ????
+    0124 W 80 #   storing the address to return on RTS
+    0123 W 0e #   which is 0x800e
+
+    800e r 80 #     JSR addr_2
+    805d r 8d #   now in subroutine addr
   #+end_src
-- Stack uses memory from 0100 to 01ff
-  - It wraps around when it runs out of it
-  - Stack pointer starts with a random value (an offset in the range)
-  - *TXS* transfer X to Stack Register
-  #+begin_src asm
-  ldx #$ff
-  txs
-  #+end_src
-- Calls to subroutine/stack changes the A register
-- *pha* puts value of register A into the stack
-  *pla* puts back the value into the register A
-- Current problem is that it can't read the return address
-  Due to the half memory "hack" we have with the CE and upper half of memory addresses
+
+- Stack uses memory from 0x0100 to 0x01ff
+- Stack pointer
+  - an offset in the range of the stack
+  - grows by decreasing/downwards
+  - *TXS* instruction, transfer X to Stack Register
+  - wraps around
+  - initialized at a random value
+     - It can be useful to set it at start
+      #+begin_src asm
+       ldx #$ff
+       txs
+      #+end_src
+
+- If our subroutine changes the A register, and we care:
+  - we can manually restore by stashing it it on the stack
+    + *PHA* push value of register A into the stack
+    + *PLA* puts back the value into the register A
+
+*** Problem
+
+- it can't read the return address back from the stack
+- due to the "half memory" hack we made with the CE, and the upper half of memory addresses
+
 ** 06 - RAM and bus timing
-- We want to have some writable memory, not just to allocate the stack.
-- 1x 62256 (32 Kilobytes)
-  - A0-14n
-  - D0-7:
-  - WE: connected to the RW signal of the CPU
-  - OE: A14
-  - CS: A15
-- We are going to use 16K of the 32K in our memory layout
-  - Active when A15 and A14 are both 0
-    0000-3fff
-- Just plugging OE,CS to A14-15 *might not* work.
-  There might be an access delay when reading from the ram.
-  For read/write operations, look at the times of the setup&hold of data
-  If not looking carefully to the protocol/timings of the communication.
-  - Might not work under certain conditions
-  - Like high temperature
-- Other timing issues might happen if you overclock the CPU, as it will shorter times.
-- Timing Issue: Address gets invalid before data. Due Timing on CS and WE.
-  - We need to make sure CS is only LOW when the *clock* is HIGH
-    - negate the 15 and NAND it with the *clock*
-  - Propagation delay is 8ns (worst case 15ns)
+
+- We need some _writable_ memory, not just for the stack.
+
+*** 1x AS6C62256 (32 Kilobytes)
+
+- A0-A14, D0-D7 - connected to CPU bus, along with the EEPROM
+- WE: connected to the RW pin of the CPU
+- OE: A14 from the CPU
+- CS: A15 from the CPU
+
+*** New Memory Maping
+
+|------+------+--------+-----------|
+| 0000 | 3FFF | SRAM   | A15=A14=0 |
+|    ? | ?    |        |           |
+| 6000 | 6010 | VIA    |           |
+|    ? | ?    |        |           |
+| 8000 | F000 | EEPROM |           |
+|------+------+--------+-----------|
+
+*** Timings
+
+- Wiring OE,CS of the RAM to A14-15 of the CPU *might NOT* work.
+  - Might randomly fail under certain conditions
+    - eg: high temperature
+
+- Check for timings between CPU and RAM data sheets
+  - SRAM takes up to 70ns to return valid DATA, after it gets an ADDRESS
+  - CPU
+    - at 14Mhz
+      - we are NOT able to use the RAM at this speed
+      - ME: since it will take 70ns per cycle, and will wait even less for the DATA to be ready
+    - at 1Mhz
+      - 1 clock cycle happens in 1000ns
+      - more than enough time to wait for the RAM
+
+*** Problem
+
+- Problem: Address gets invalid before data.
+  - Due timings on CS and WE.
+- Solution:
+  - We need to make sure CS is only LOW =when= the *clock* is HIGH
+  - by negating the A15 and NAND it with the *clock*, before going to CS
+  - NAND gate =propagation delay= is 8ns (worst case 15ns)
+    - which is fine for our use case
+
 ** 07 - Subroutine calls, now with RAM
-- Connecting and seeing it works with the Stack/RAM now.
+- Wiring
+  - reusing NAND gate IC previously used for ROM
+  - hardwired non used NAND gates high to avoid floating outputs.
+  - it works, now we have a Stack on the RAM
 - Added instruction to clear display
+  #+begin_src asm
+    lda #%00000001
+    jsr lcd_instruction
+  #+end_src
 ** 08 - Why build an entire computer on breadboards?
 - The quality of the vertical springs, wether are flexible or not. Make the quality of the breadboard.
   - Shopping list https://eater.net/breadboards

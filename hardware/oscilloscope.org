@@ -151,5 +151,5 @@ https://web.archive.org/web/20080119144459/http://pablohoffman.com/cgi-bin/twiki
 - BOM
   - pic18f
   - SRAM
-  - ADC
+  - ADC: TLC5540
   - 8bit counter

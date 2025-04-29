@@ -270,6 +270,17 @@ where ID is a color id between 0 and 255
  '[48;2;{r};{g};{b}m' # bg color
 #+end_src
 
+** snippets
+
+- scroll colors https://x.com/climagic/status/1005103669233311744
+  #+begin_src sh
+    yes "$(seq 231 -1 16)" |
+        while read i; do
+            printf "\x1b[48;5;${i}m\n";
+            sleep .02;
+        done
+  #+end_src
+
 ** video 23 |  Weaponizing Plain Text ANSI Escape Sequences as a Forensic Nightmare - STÖK https://www.youtube.com/watch?v=3T2Al3jdY38
 * articles
 

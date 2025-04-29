@@ -32,6 +32,8 @@ f_sample = 2 * f_signal
     - uses Vcc as Vref
 * ics
 
+- TLC5540
+  - 8bit
 - PCF8591
   - 8bit
 - ADS7816
