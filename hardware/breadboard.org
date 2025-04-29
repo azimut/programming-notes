@@ -1,0 +1,15 @@
+- https://en.wikipedia.org/wiki/Breadboard
+
+- Good Models: BB830
+- The quality of the vertical springs, wether are flexible or not.
+  - Make the quality of the breadboard.
+
+
+- https://www.ece.rice.edu/~jdw/unilab/breadboard.html
+  #+CAPTION: solderless breadboard springs
+  #+ATTR_ORG: :width 150
+  [[https://www.ece.rice.edu/~jdw/figs/ap2.jpg]] [[https://www.ece.rice.edu/~jdw/figs/ap4.jpg]]
+
+- https://eater.net/breadboards
+  #+CAPTION: different spring qualities
+  [[https://eater.net/images/breadboard-comparison.jpg]]

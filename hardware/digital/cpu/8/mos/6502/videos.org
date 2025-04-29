@@ -11,7 +11,8 @@ RESUME 6:19
 
 * Build a 65c02-based computer from scratch
 
-- https://www.youtube.com/playlist?list=PLowKtXNTBypFbtuVMUVXNR0z1mu7dp7eH
+- https://eater.net/6502
+- [[https://www.youtube.com/playlist?list=PLowKtXNTBypFbtuVMUVXNR0z1mu7dp7eH][youtube playlist]]
 
 ** BOM
 
@@ -232,20 +233,20 @@ https://www.youtube.com/watch?v=yl8vPW5hydQ
 
 *** Example: blink
 #+begin_src asm
-  .org $8000  // from the CPU perspective 0 is $8000 - A15=1
-    lda #$ff
-    sta $6002
+ .org $8000  // from the CPU perspective 0 is $8000 - A15=1
+  lda #$ff
+  sta $6002
 
-    lda #$55
-    sta $6000
-    lda #$aa
-    sta $6000
+  lda #$55
+  sta $6000
+  lda #$aa
+  sta $6000
 
-    jmp $8005
+  jmp $8005
 
   .org $fffc
-    .word $8000 // "Reset Vector"
-    .word $0000 // two extra bytes for padding
+  .word $8000 // "Reset Vector"
+  .word $0000 // two extra bytes for padding
 #+end_src
 
 *** Example: blink - labeled jump
@@ -317,120 +318,119 @@ loop:
 *** Code: Display letter "H"
 
 #+begin_src asm
-PORTB = $6000
-PORTA = $6001
-DDRB  = $6002
-DDRA  = $6003
-E     = %10000000 ; "%" used for binary literals
-RW    = %01000000
-RS    = %00100000
+          PORTB = $6000
+          PORTA = $6001
+          DDRB  = $6002
+          DDRA  = $6003
+          E     = %10000000 ; "%" used for binary literals
+          RW    = %01000000
+          RS    = %00100000
+          .org $8000
+  reset:
+          lda #%11111111 ; Set all pins on port B as OUTPUT
+          sta DDRB
+          lda #%11100000 ; Set top 3 pins on port A as OUTPUT
+          sta DDRA
 
-.org $8000
-reset:
-  lda #%11111111 ; Set all pins on port B as OUTPUT
-  sta DDRB
-  lda #%11100000 ; Set top 3 pins on port A as OUTPUT
-  sta DDRA
+          lda #%00111000 ; fSet(8-bit mode, 2-line display, 5x8 font)
+          sta PORTB
+          lda #0         ; RS=RW=E=0
+          sta PORTA
+          lda #E         ; RS=RW=0;   E=1
+          sta PORTA
+          lda #0         ; RS=RW=E=0
+          sta PORTA
 
-  lda #%00111000 ; fSet(8-bit mode, 2-line display, 5x8 font)
-  sta PORTB
-  lda #0         ; RS=RW=E=0
-  sta PORTA
-  lda #E         ; RS=RW=0;   E=1
-  sta PORTA
-  lda #0         ; RS=RW=E=0
-  sta PORTA
+          lda #%00001110 ; displayOnOff(display, cursor, blink)
+          sta PORTB
+          lda #0         ; RS=RW=E=0
+          sta PORTA
+          lda #E         ; RS=RW=0;   E=1
+          sta PORTA
+          lda #0         ; RS=RW=E=0
+          sta PORTA
 
-  lda #%00001110 ; displayOnOff(display, cursor, blink)
-  sta PORTB
-  lda #0         ; RS=RW=E=0
-  sta PORTA
-  lda #E         ; RS=RW=0;   E=1
-  sta PORTA
-  lda #0         ; RS=RW=E=0
-  sta PORTA
+          lda #%00000110 ; entryModeSet(ac_direction=inc, display=shift)
+          sta PORTB
+          lda #0         ; RS=RW=E=0
+          sta PORTA
+          lda #E         ; RS=RW=0;   E=1
+          sta PORTA
+          lda #0         ; RS=RW=E=0
+          sta PORTA
 
-  lda #%00000110 ; entryModeSet(ac_direction=inc, display=shift)
-  sta PORTB
-  lda #0         ; RS=RW=E=0
-  sta PORTA
-  lda #E         ; RS=RW=0;   E=1
-  sta PORTA
-  lda #0         ; RS=RW=E=0
-  sta PORTA
+          lda #"H"       ; Put letter "H" on Port B
+          sta PORTB
+          lda #RS        ; RS=1, Clears RW/E control signals
+          sta PORTA
+          lda #(RS | E)  ; E=1; RS=1
+          sta PORTA
+          lda #RS        ; E=0
+          sta PORTA
 
-  lda #"H"       ; Put letter "H" on Port B
-  sta PORTB
-  lda #RS        ; RS=1, Clears RW/E control signals
-  sta PORTA
-  lda #(RS | E)  ; E=1; RS=1
-  sta PORTA
-  lda #RS        ; E=0
-  sta PORTA
+  loop:
+          jmp loop ;; effectively "halts" the program, infinite loop
 
-loop:
-  jmp loop ;; effectively "halts" the program, infinite loop
-
-  .org $ffc
-  .word reset
-  .word $0000
+          .org $ffc
+          .word reset
+          .word $0000
 #+end_src
 
 ** 05 - What is a stack and how does it work?
 *** Code: Display letter "H", using subroutines
 
 #+begin_src asm
-PORTB = $6000
-PORTA = $6001
-DDRB  = $6002
-DDRA  = $6003
-E     = %10000000
-RW    = %01000000
-RS    = %00100000
+          PORTB = $6000
+          PORTA = $6001
+          DDRB  = $6002
+          DDRA  = $6003
+          E     = %10000000
+          RW    = %01000000
+          RS    = %00100000
 
-.org $8000
-reset:
-  lda #%11111111 ; all Port B as OUTPUT
-  sta DDRB
-  lda #%11100000 ; top 3 pins of Port A as OUTPUT
-  sta DDRA
+          .org $8000
+  reset:
+          lda #%11111111 ; all Port B as OUTPUT
+          sta DDRB
+          lda #%11100000 ; top 3 pins of Port A as OUTPUT
+          sta DDRA
 
-  lda #%00111000
-  jsr lcd_instruction
-  lda #%00001110
-  jsr lcd_instruction
-  lda #%00000110
-  jsr lcd_instruction
+          lda #%00111000
+          jsr lcd_instruction
+          lda #%00001110
+          jsr lcd_instruction
+          lda #%00000110
+          jsr lcd_instruction
 
-  lda #"H"
-  jsr print_char
+          lda #"H"
+          jsr print_char
 
-loop:
-  jmp loop       ; "halts" the program, infinite loop
+  loop:
+          jmp loop       ; "halts" the program, infinite loop
 
-lcd_instruction: ; sends instructions to LCD module
-  sta PORTB
-  lda #0         ; RS=RW=E=0
-  sta PORTA
-  lda #E         ; E=1
-  sta PORTA
-  lda #0         ; RS=RW=E=0
-  sta PORTA
-  rts            ; return
+  lcd_instruction: ; sends instructions to LCD module
+          sta PORTB
+          lda #0         ; RS=RW=E=0
+          sta PORTA
+          lda #E         ; E=1
+          sta PORTA
+          lda #0         ; RS=RW=E=0
+          sta PORTA
+          rts            ; return
 
-print_char:
-  sta PORTB
-  lda #RS        ; Set RS (we are sending data not an instruction), Clears RW/E bits
-  sta PORTA
-  lda #(RS | E)  ; Set E bit to send instruction
-  sta PORTA
-  lda #RS        ; Clear E bits
-  sta PORTA
-  rts
+  print_char:
+          sta PORTB
+          lda #RS        ; Set RS (we are sending data not an instruction), Clears RW/E bits
+          sta PORTA
+          lda #(RS | E)  ; Set E bit to send instruction
+          sta PORTA
+          lda #RS        ; Clear E bits
+          sta PORTA
+          rts
 
-.org $ffc
-.word reset
-.word $0000
+          .org $ffc
+          .word reset
+          .word $0000
 #+end_src
 
 *** The Stack
@@ -458,8 +458,8 @@ print_char:
   - initialized at a random value
      - It can be useful to set it at start
       #+begin_src asm
-       ldx #$ff
-       txs
+                ldx #$ff
+                txs
       #+end_src
 
 - If our subroutine changes the A register, and we care:
@@ -526,183 +526,264 @@ print_char:
   - it works, now we have a Stack on the RAM
 - Added instruction to clear display
   #+begin_src asm
-    lda #%00000001
-    jsr lcd_instruction
+            lda #%00000001
+            jsr lcd_instruction
   #+end_src
 ** 08 - Why build an entire computer on breadboards?
-- The quality of the vertical springs, wether are flexible or not. Make the quality of the breadboard.
+
+- Breadboards
+  - The quality of the vertical springs, wether are flexible or not. Make the quality of the breadboard.
   - Shopping list https://eater.net/breadboards
-- Capacitance: Any time you have 2 wires close together, you have a capacitor. Oppose the change of voltage.
-- Inductance: everytime you have a current, you have a magnetic field. Opposes the change of current.
-- Both, can cause some phase-shifting and attenuated
-- To avoid drops on the power rail
+
+- Problems
+  - Capacitance
+    - It opposes the change of voltage.
+    - Any 2 wires close together create a capacitor.
+  - Inductance
+    - everytime you have a current, you have a magnetic field.
+    - opposes the change of current.
+  - Both, can cause some phase-shifting and attenuation
+    - at high frequencies >1Mhz
+    - on non-sine waves is more noticeable
+
+- Solution: To avoid drops on the power rail
   1) is a good practice add capacitors (0.1mf) across the power riel
-  2) AND/OR extra 1 Capacitor for every Chip, across the power lines
-- CPU: Fall time, Rise time are 5 ns
+  2) or across the IC input power lines, the closer the better
+
+- CPU's clock Fall Time, and Rise Time are 5 ns
+  - 1 = >3.5v
+  - 0 = <1.5v
   - All square waves are sum of sine waves
   - we have less perfect square waves the lower the frequency (as they are less sine waves too)
+
 - 1Mhz oscillator
   - Issue: on the LED, sending data too early. Without checking for "busy flag"
+  - Needs code to wait for the LCD *busy flag*
+
 ** 09 - How assembly language loops work
-- Display doesn't work with the 1Mhz due we are not waiting for the LCD to finish the instructions that we send.
-  Clock cycles are 37us and instructions on the LCD run on 35us
-  We *could* add NOP's to add delay. (750 nops)
+- Physically each line is 16 char long, but internally is 40
+- You an put things on the second line by offsetting
+*** Problem: Display doesn't work at 1Mhz
+
+- we need to wait for the LCD to finish the instructions that we send
+- instructions on the LCD, takes up to 37us to complete
+  - equivalent to 37 clock cycles of the CPU at 1Mhz
+- CPU asm code to send instructions takes 35 clock cycles ~ 35us
+- However the LCD datasheet says if you don't check the BUSY FLAG it will take longer.
+
+*** Solution
+
+- We *could* add NOP's to add delay. (750 NOPs ~ 1.5ms), or....
 - We do it properly and read the CPU's *busy flag*, and loop while the flag is up.
-- Conditional jumps use the CPU "Process Status Register"
-#+NAME: while loop for busy flag to clear
+- Conditional jumps use the CPU's "Process Status Register"
+
+*** Code: a "while loop" until the busy flag clears
 #+begin_src asm
-lcd_wait:
-  pha ; Push A register to stack
-  lda #%00000000 ; Port B is input for now
-  sta DDRB
-lcdbusy:
-  lda #RW
-  sta PORTA
-  lda #(RW | E)
-  sta PORTA
-  lda PORTB
-  and #%10000000
-  bne lcdbusy
+  lcd_wait:
+          pha            ; push A register to stack
+          lda #%00000000 ; pinMode(PortB, INPUT)
+          sta DDRB
 
-  lda #%11111111 ; Port B is output for now
-  sta DDRB
-  pla ; Restore A register
-  rts
+  lcdbusy:
+          lda #RW
+          sta PORTA
+          lda #(RW | E)
+          sta PORTA
+          lda PORTB      ; A = PortB
+          and #%10000000 ; A |= %10000000
+          bne lcdbusy    ; <-- LOOP if Z=1
 
-lcd_instruction:
-  jsr lcd_wait
-  ...
-print_char:
-  jsr lcd_wait
-  ...
-  #+end_src
-#+NAME: Put string into memory
-#+begin_src asm
-  ldx #0
-print:
-  lda message,x ;; Adds to the X register
-  beq loop      ;; If we Loaded a zero, we exit "jmp" loop
-  jsr print_char
-  inx
-  jmp print
+          lda #%11111111 ; pinMode(PortB, OUTPUT)
+          sta DDRB
+          pla            ; restore A register from stack
+          rts
 
-message: .byte "H"
-message: .asciiz "Hello, world!" ; ascii with and extra zero
+  lcd_instruction:
+          jsr lcd_wait
+          ...
+  print_char:
+          jsr lcd_wait
+          ...
 #+end_src
-- Using a oscilloscope to debug performance
-** 10 - Binary to decimal can't be that hard, right?
-- 164 lines of assembly
-- We want to display a binary number in decimal.
-  We could use binary shifting to run division which will separate the decimal digits.
-  Since we don't have OP codes for division.
-- Algorithm??????
-#+NAME: for loop, and division algorithm, reverse word
+
+*** Code: putting a string in memory
+
 #+begin_src asm
-value = $0200 ; 2 bytes
-mod10 = $0202 ; 2 bytes
-message = $0204 ; 6 bytes
+          ldx #0         ; X = 0
+  print:
+          lda message, x ; A = memory[message + X]
+          beq loop       ; exit IF A=0
+          jsr print_char
+          inx            ; X = X + 1
+          jmp print
 
-  lda #0
-  sta message
+  message: .byte "H"               ; put a byte, or...
+  message: .asciiz "Hello, world!" ; put a ascii string + 0x00
 
-  ; Initialize value to be the number to convert
-  lda number
-  sta value
-  lda number + 1
-  sta value + 1
-
-divide:
-  ; Initialize the remainder to zero
-  lda #0
-  sta mod10
-  sta mod10 + 1
-  clc
-
-  ldx #16 ; loop counter
-
-divloop:
-  ; Rotate quotation and reminder
-  rol value
-  rol value + 1
-  rol mod10
-  rol mod10 + 1
-
-  ; a,y = dividend - divisor
-  ; Subtracting to the mod10
-  ; Since we can only subtract 8-bits at the time
-  sec
-  lda mod10 ; The right half of mod10
-  sbc #10   ; Subtract with carry
-  tay       ; Save the Low byte in Y
-  lda mod10 + 1
-  sbc #0
-  bcc ignore_result ; branch if carry clear, if dividend is < divisor
-  sty mod10         ; Store the result
-  sta mod10 + 1
-
-ignore_result:
-  dex
-  bne divloop
-  rol value ; shift in the last bit of the quotient
-  rol value + 1
-
-  lda mod10
-  clc
-  add #"0"
-  jsr push_char;print_char
-
-  ; if value != 0, then continue dividing
-  lda value
-  ora value + 1
-  bne divide ; branch if value not zero
-
-  ldx #0
-print:
-  lda message,x
-  beq loop
-  jsr print_char
-  inx
-  jmp print
-
-loop:
-  jmp loop ; Halt
-
-; Add the character in the A register to the beginning of the
-; null-terminated string `message`
-push_char:
-  pha ; Push new first char onto stack
-  ldy #0 ; index into the message
-
-char_loop:
-  lda message,y ; Get char on string and put into X
-  tax
-  pla
-  sta message,y ; Pull char off stack and add it to the string
-  iny
-  txa
-  pha           ; PUsh char from string onto stack
-  bne char_loop
-
-  pla
-  sta message,y ; PUll the null off the stack and add to the end of the string
-
-  rts
-
-number: .word 1729
+  loop: ;...
 #+end_src
-** TODO Part 11 - Hardware Interrupts
-- 6502 pins
-  IRQ: interrupt request pin, high on low
-  NMI: non-masquable interrupt pin, high on low
-- 0xfffa for NMI
-  0xfffe for IRQ
-#+NAME: setup the code that runs on interrupt
+
+** TODO 10 - Binary to decimal can't be that hard, right?
+
+- TODO: 10:00
+- Goal: We want to display a binary number in decimal.
+  - Since we don't have OP codes for division.
+  - We could use _binary shifting_ to run divisions
+    - which will separate the decimal digits.
+
+*** Code: "for loop", and division algorithm (reverseword?)
+
 #+begin_src asm
-nmi:
-irq:
-  .org $fffa
-  .word nmi
-  .word reset
-  .word irq
+  value   = $0200 ; 2 bytes
+  mod10   = $0202 ; 2 bytes
+  message = $0204 ; 6 bytes
+
+    lda #0
+    sta message
+
+    ; Initialize value to be the number to convert
+    lda number
+    sta value
+    lda number + 1
+    sta value + 1
+
+  divide:
+    ; Initialize the remainder to zero
+    lda #0
+    sta mod10
+    sta mod10 + 1
+    clc
+
+    ldx #16 ; loop counter
+
+  divloop:
+    ; Rotate quotation and reminder
+    rol value
+    rol value + 1
+    rol mod10
+    rol mod10 + 1
+
+    ; a,y = dividend - divisor
+    ; Subtracting to the mod10
+    ; Since we can only subtract 8-bits at the time
+    sec
+    lda mod10 ; The right half of mod10
+    sbc #10   ; Subtract with carry
+    tay       ; Save the Low byte in Y
+    lda mod10 + 1
+    sbc #0
+    bcc ignore_result ; branch if carry clear, if dividend is < divisor
+    sty mod10         ; Store the result
+    sta mod10 + 1
+
+  ignore_result:
+    dex
+    bne divloop
+    rol value ; shift in the last bit of the quotient
+    rol value + 1
+
+    lda mod10
+    clc
+    add #"0"
+    jsr push_char;print_char
+
+    ; if value != 0, then continue dividing
+    lda value
+    ora value + 1
+    bne divide ; branch if value not zero
+
+    ldx #0
+  print:
+    lda message,x
+    beq loop
+    jsr print_char
+    inx
+    jmp print
+
+  loop:
+    jmp loop ; Halt
+
+  ; Add the character in the A register to the beginning of the
+  ; null-terminated string `message`
+  push_char:
+    pha ; Push new first char onto stack
+    ldy #0 ; index into the message
+
+  char_loop:
+    lda message,y ; Get char on string and put into X
+    tax
+    pla
+    sta message,y ; Pull char off stack and add it to the string
+    iny
+    txa
+    pha           ; PUsh char from string onto stack
+    bne char_loop
+
+    pla
+    sta message,y ; PUll the null off the stack and add to the end of the string
+
+    rts
+
+  number: .word 1729
 #+end_src
+
+** 11 - Hardware Interrupts
+
+|--------+------+-------------------------|
+| 0xfffa | NMI# | Non-Masquable Interrupt |
+| 0xfffc | RST# |                         |
+| 0xfffe | IRQ# | Interrupt ReQuest       |
+|--------+------+-------------------------|
+
+*** IRQ#
+
+- The IRQ# should be held until the interrupt handlers clears the interrupt request.
+- Because it might come from different sources
+
+#+begin_src asm
+          counter = $020a ; 2 bytes
+  reset:
+          cli             ; enable IRQ
+          lda #0
+          sta counter
+          sta counter + 1
+  nmi:
+          rti
+  irq:
+          inc counter
+          bne ext_irq     ; doesn't rollover
+          inc counter + 1 ; if rolls over
+  exit_irq:
+          rti
+
+          .org $fffa      ; Vector Locations
+          .word nmi
+          .word reset
+          .word irq
+#+end_src
+
+*** NMI#
+
+- Edge triggered, on the falling edge of the interrupt signal.
+- Pros
+  - emergency code (eg: low power)
+- Cons
+  - not appropiate when there is time sensitive code that might be 0ffected by running this
+  - no way to protect shared memory SEI/CLI
+
+#+begin_src asm
+          counter = $020a ; 2 bytes
+
+  nmi:
+          inc counter
+          bne exit_nmi
+          inc counter + 1
+  exit_nmi:
+          rti        ; return from interruption
+
+          .org $fffa ; Vector Locations
+          .word nmi
+          .word reset
+#+end_src
+
 ** TODO Part 12 - Interrupt Handling

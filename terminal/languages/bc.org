@@ -54,6 +54,7 @@
 - "/**/" multi line comments
 - accepts bases from 2 to 36
 - 1 is true, 0 is false
+- no bitwise operations
 
 ** arrays
 
@@ -228,6 +229,7 @@ $ cat /usr/local/bin/solve
 - 23 [[https://org.coloradomesa.edu/~mapierce2/bc/][The GNU Basic Calculator (bc): a Quick-Start Guide for Mathematicians]]
 - 21 [[https://www.computerhope.com/unix/ubc.htm][Linux bc command]]
 - 21 [[https://leancrew.com/all-this/2021/02/some-bc-stuff/][Some bc stuff]]
+- 21 [[https://seattlewebsitedevelopers.medium.com/the-power-of-bc-dd8a83b3a976][The Power of BC]]
 - 19 [[https://www.johndcook.com/blog/2019/10/29/computing-pi-with-bc/][Computing pi with bc]]
 - 14 [[https://unixetc.co.uk/2014/01/19/bc-rounding-errors/][bc Rounding Errors]]
 - 14 [[https://www.johndcook.com/blog/2010/07/14/bc-math-library/][Three surprises with bc]]

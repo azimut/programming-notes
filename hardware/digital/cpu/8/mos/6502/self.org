@@ -31,6 +31,19 @@
     - .word (puts a word, a 16 bit value, in output)
   - Labels: loop: reset:
 
+|--------+------+-------------------------|
+| 0xfffa | NMI# | Non-Masquable Interrupt |
+| 0xfffe | IRQ# | Interrupt ReQuest       |
+| 0xfffc | RST# |                         |
+|--------+------+-------------------------|
+
+#+begin_src asm
+  .org $fffa      ; Vector Locations
+  .word nmi
+  .word reset
+  .word irq
+#+end_src
+
 * opcodes
 
 http://www.6502.org/tutorials/6502opcodes.html

@@ -73,6 +73,7 @@ https://en.wikipedia.org/wiki/Field-programmable_gate_array
 - https://github.com/litex-hub/fpga_101
 - https://www.youtube.com/channel/UC4ls2cPrXHfEO_oTHZcCclA/videos
 - https://projectf.io/posts/racing-the-beam/
+- https://www.eevblog.com/forum/fpga/devices-containing-re-purposable-fpgas/
 ** Languages
 - ABEL
 - VHDL
