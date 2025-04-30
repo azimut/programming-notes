@@ -1,0 +1,2 @@
+- driver bitbanging https://floppy.cafe/
+  - [[https://news.ycombinator.com/item?id=38699201][HN]]

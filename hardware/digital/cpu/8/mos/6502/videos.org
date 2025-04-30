@@ -739,6 +739,7 @@ loop:
 
 - The IRQ# should be held until the interrupt handlers clears the interrupt request.
 - Because it might come from different sources
+- Can be disabled/enabled with SEI/CLI
 
 #+begin_src asm
           counter = $020a ; 2 bytes
@@ -786,4 +787,135 @@ loop:
           .word reset
 #+end_src
 
-** TODO Part 12 - Interrupt Handling
+** 12 - Interrupt Handling
+
+- VIA 65C22 supported interrupts
+  - timers, shift register, C[AB][12] pins
+
+- Goal: handle IRQ# using the VIA 65C22
+- Solution:
+  - using it's own _IRQ#_ to communicate it to the CPU one
+  - using its memory mapped _internal registers_
+    - IER = Interrupt Enable Register ($0E)
+      - bitmask to enable/disable interrupts
+    - IFR = Interrupt Flag Register ($0D)
+      - bitmask with the cause of the interrupt
+      - cleared by r/w ORA/B (aka Port A/B)
+    - PCR = Peripheral Control Register ($0C)
+      - to configure C[AB][12] +/- edge trigger
+
+*** Code: setup CA1 interrupt
+#+begin_src asm
+          PCR = $600c
+          IFR = $600d
+          IER = $600e
+  reset:
+          lda #$82  ; enable CA1 interrupts
+          sta IER
+          lda #$00  ; trigger CA1 on (-) active edge
+          sta PCR
+  exit_irq:
+          bit PORTA ; clear CA1 interrupt, by reading it
+          rti
+#+end_src
+
+*** Code: add software delay, with 2 inner loops
+
+CAUTION: this is a too long delay
+
+#+begin_src asm
+  irq:
+          ;; Save X and Y
+          pha       ; stack.push(A)
+          txa       ; A = X
+          pha       ; stack.push(A) -- X
+          tya       ; A = Y
+          pha       ; stack.push(A) -- Y
+          ...
+  exit_irq:
+          ldy #$ff  ; delay outer
+          ldx #$ff  ; delay inner
+  delay:
+          dex
+          bne delay ; end of delay
+          dey
+          bne delay
+
+          bit PORTA
+
+          ;; Restore X and Y
+          pla
+          tay
+          pla
+          tax
+          pla
+
+          rti
+#+end_src
+
+** 13 - How does a PS/2 keyboard interface works?
+
+- The keyboard does NOT track internally if a "bloq" is active
+  - Bi-directional communications takes care of that
+
+- We use 2x shift register 74595 to convert the PS2 serial signals to parallel.
+  - kclock -> NOT -> shift_clock
+  - kdata -> serial_data
+  - shift_clock -> NOT -> NOT -> latch_clock
+    - =to delay it a bit and avoid incorrect states=
+  - OE# to low, RST to high
+
+- To read *scancodes* that come in 2 packages
+  - we use another 2x shift registers
+  - connecting
+    - the 11bit of the previous one -> data input
+
+** 14 - Keyboard interface hardware
+*** Naive Setup: through 65C22
+- CLOCK to CA1
+- DATA to a PORTA pin
+- not ideal
+  - 85us per ps2 clock
+  - CPU at 1Mhz
+    - at 1us per cpu clock cycle
+    - leaves us 85 clock cycles
+    - not enough time to run a lot of instructions per interrupt
+*** Final Setup: 2x shift register + 7414 NOT gate with schmit trigger
+
+- 8 data bits of SR to VIA Port B input
+- kclock -> shift_clock
+- given that there is a pause between packets
+- we can reshape the CLOCK signal
+  - to capture the whole event with a single pulse
+  - with a resistor, diode, capacitor, NOT gate with schmitt trigger
+  - carefully to avoid noise that might be interpreted as interrupts by the NOT gate
+  - this new CLOCK goes to
+    - latch_clock
+    - CA1 interrupt after 11 bits were read
+      - = 935 cpu cycles (85*11) to handle the interrupt
+
+#+begin_src asm
+  reset:
+          lda #$01 ; look in the rising edge
+          sta PCR
+  inc_counter:     ; the IRQ vector
+          pha
+          lda PORTA
+          sta counter
+          pla
+          rti
+#+end_src
+
+** TODO 15 - Keyboard interface software
+
+Goal: write a better interrupt handler
+
+#+CAPTION: using a circular buffer to process keys
+#+begin_src asm
+          kb_buffer = $0200 ; 256-byte buffer 0200-02ff
+          kb_wptr   = $0000 ; write pointer
+          kb_rptr   = $0001 ;  read pointer
+  loop:
+          lda kb_rptr
+          cmp kb_wptr
+#+end_src

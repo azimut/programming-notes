@@ -1,0 +1,2 @@
+- 22 https://hackaday.com/2022/12/03/bit-banging-bidirectional-ethernet-on-a-pi-pico/
+  - [[https://github.com/osnr/rpi-bitbang-ethernet][source]]

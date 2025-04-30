@@ -7,6 +7,10 @@
   - simple protocol
   - can be emulated by bit-banging GPIO pins in software
 
+- https://en.wikipedia.org/wiki/Bit_banging
+- https://blog.jgc.org/2012/09/the-joy-of-bit-banging.html
+  - [[https://news.ycombinator.com/item?id=4521140][HN]]
+
 - Chip: CP2102/9 USB-to-UART bridge
   - I own 3 (red)
 - Chip: PL-2303HX USB-to-Serial

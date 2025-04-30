@@ -1,3 +1,6 @@
+- 24 [[https://www.youtube.com/watch?v=dfF57MakzkQ][Will Machine Learning Replace The WAF?]] by John Graham-Cumming
+- 13 [[https://www.youtube.com/watch?v=_41bkNr7eik][Profiling Go Programs]] by John Graham-Cumming
+- 15 [[https://www.youtube.com/watch?v=8igk2ylk_X4][How Go spread at CloudFlare]] by John Graham-Cumming
 - 2012 -  Obscure Go Optimisations - Bryan Boreham  https://www.youtube.com/watch?app=desktop&v=rRtihWOcaLI
 - https://earthly.dev/blog/golang-streamers/
 - GameDev with GO https://www.youtube.com/user/Velovix

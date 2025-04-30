@@ -1,0 +1,39 @@
+#+TITLE: PS/2
+
+https://en.wikipedia.org/wiki/PS/2_port
+https://wiki.osdev.org/PS/2_Keyboard
+
+* Pinout
+|---+----+---+-------|
+| 6 | -  | 5 | CLOCK |
+| 4 | 5v | 3 | GND   |
+| 2 | -  | 1 | DATA  |
+|---+----+---+-------|
+
+#+CAPTION: ps/2 female pinout
+#+ATTR_ORG: :width 110
+[[https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/MiniDIN-6_Connector_Pinout.svg/800px-MiniDIN-6_Connector_Pinout.svg.png]]
+
+* Protocol
+
+#+CAPTION: ps/2 CLOCK and DATA readings
+[[http://www.pyroelectro.com/tutorials/ps2_keyboard_lcd/img/ps2_waveform.gif]]
+
+- 11 clock pulses per key
+- 11 data bits
+  - 0   is the _start bit_ always 0
+  - 1-8 is the _scancode_
+    - that map to a key
+    - they come in 1 and 2 bytes packages
+      #+CAPTION: f0=release e0=extension ??=key
+      |----+----+----+-----------------|
+      | ?? |    |    | key *press*     |
+      | f0 | ?? |    | key release     |
+      | e0 | ?? |    | ext key *press* |
+      | f0 | e0 | ?? | ext key release |
+      |----+----+----+-----------------|
+    - with an additional "F0" 1byte package for release
+  - 9 is the _parity bit_
+    - 1 only to make the nr of 1's "odd"
+    - a "checksum"
+  - 10 is the _stop bit_ always 1
