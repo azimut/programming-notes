@@ -1,1 +1,4 @@
 - AVR Advent Calendar https://www.youtube.com/playlist?list=PLCGpd0Do5-I3cpoRJyqYOG4tCD6pVk_qs
+
+#+CAPTION: atmega328p diagram
+[[https://www.ultralibrarian.com/wp-content/uploads/2023/03/ATmega328p-block-diagram.jpg]]
