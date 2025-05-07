@@ -1,1 +1,22 @@
+* videos
+
+- Ben Eater USB
+  - https://www.youtube.com/watch?v=wdgULBpRoXk
+  - https://www.youtube.com/watch?v=N0O5Uwc3C0o
+  - https://www.youtube.com/watch?v=2lPzTU-3ONI
 - 25 [[https://www.youtube.com/watch?v=eedIlLA37XU][ShmooCon 2025: Building and Hacking USB with FPGAs]]
+- rv003usb
+  - ch32v003funn - tensa riscv 48Mhz
+  - https://github.com/cnlohr/rv003usb
+  - 23
+    - [[https://www.youtube.com/watch?v=x73uFmvcBwI][Trying to write a Bit-Banged USB Stack from Scratch]]
+    - https://www.youtube.com/watch?v=q4RMlwLv2F8
+    - https://www.youtube.com/watch?v=M2s9SNby_bM
+    - https://www.youtube.com/watch?v=sZHF-vvelYY
+    - https://www.youtube.com/watch?v=AvJLSiZl7uw
+    - https://www.youtube.com/watch?v=qbfnBAqssxI
+  - 23 [[https://www.youtube.com/watch?v=j-QazXghkLY][rv003usb - bit banged USB on the ch32v003]]
+
+* articles
+- 22 cheatsheet https://fabiensanglard.net/usbcheat/index.html
+- 19 [[https://blog.benjojo.co.uk/post/userspace-usb-drivers][Writing userspace USB drivers for abandoned devices]]

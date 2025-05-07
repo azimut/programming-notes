@@ -1,5 +1,44 @@
 - https://en.wikipedia.org/wiki/Serial_Peripheral_Interface
-  - SS
-  - SCLK
-  - MOSI
-  - MISO
+- https://www.analog.com/en/resources/analog-dialogue/articles/introduction-to-spi-interface.html
+
+- synchoronous
+- asymetrical communication
+  - master/slave
+  - controlled by the MCU
+- simpler han I2C
+- no spec
+
+* pins
+
+#+CAPTION: single SPI pinout
+#+ATTR_ORG: :width 550
+[[./spi-pinout.png]]
+
+- 3/4 pins:
+  - CS/SS: "slave select", from the MCU
+    - useful to re-use the same MOSI/MISO connections
+  - SCLK: "slave clock" from the MCU
+    - 1 bit of data per clock, on both MOSI/MISO
+  - MOSI/SDI/DIN
+    - Master Out Slave In
+    - Serial Data In
+    - Data In
+  - MISO/SDO
+    - Master In Slave Out
+    - Serial Data Out
+    - Can be missing (eg: on a display)
+
+* timings
+
+#+CAPTION: SPI timings, MODE 0, latched on the SCK +edge
+#+ATTR_ORG: :width 550
+[[./spi-timings.png]]
+
+- Modes of Operation
+   #+CAPTION: data sampled at ↕ edge of CLOCK, and default state of CLOCK (aka polarity)
+  |---+---+------|
+  | 0 | ↑ | low  |
+  | 1 | ↓ | low  |
+  | 2 | ↓ | high |
+  | 3 | ↑ | high |
+  |---+---+------|

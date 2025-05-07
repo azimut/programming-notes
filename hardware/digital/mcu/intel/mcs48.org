@@ -2,8 +2,7 @@
 
 |----------+----------------------------------------------------|
 | manual   | https://devsaurus.github.io/mcs-48/mcs-48.pdf      |
-| wiki     | https://en.wikipedia.org/wiki/Intel_MCS-48         |
-| wiki     | https://es.wikipedia.org/wiki/Intel_MCS-48         |
+| wiki     | [[https://en.wikipedia.org/wiki/Intel_MCS-48][english]] [[https://es.wikipedia.org/wiki/Intel_MCS-48][spanish]] [[https://en.wikipedia.org/wiki/Intel_MCS-48#/media/File:EPROM-Microcontroller_Intel_8749H_(chip)_-_(1).jpg][die]]                                |
 | wiki     | https://handwiki.org/wiki/Engineering:Intel_MCS-48 |
 | timeline | https://timeline.intel.com/1976/mcs-48             |
 |----------+----------------------------------------------------|
@@ -425,7 +424,7 @@
 - board
   - [[https://www.punsmann.de/retro/prompt-48.html][The INTEL Prompt 48 Deveopment System]]
   - [[https://en.wikipedia.org/wiki/Intel_system_development_kit#HSE-49][HSE-49: Original Dev Board]]
-  - [[https://vintagecomputer.ca/imsai-8048-control-computer/][IMSAI 8048 Control Computer]]
+  - [[https://vintagecomputer.ca/imsai-8048-control-computer/][IMSAI 8048 Control Computer]] [[https://x.com/Arduining/status/1897729027756245281/photo/1][photo]]
 
 - AS output to binary to be written into ROM https://linux.die.net/man/1/p2bin
 
@@ -442,6 +441,10 @@
 - KIT: internal EPROM programmer for UV ereasable ones
   - https://www.mattmillman.com/projects/hveprom-project/an-easy-to-build-mcs-48-8748-8749-8741-8742-8048-8049-programmer-reader/
   - https://www.mattmillman.com/projects/an-intel-mcs-48-based-dual-temperature-sensor/
+  - https://x.com/Arduining/status/1706457993120796910
+  - https://x.com/Arduining/status/1706719963925434722
+  - https://x.com/Arduining/status/1707078033666941267
+  - https://x.com/Arduining/status/1707053856570458391
 
 ** assembler
 
@@ -460,6 +463,9 @@
 
 - https://web.archive.org/web/20130601085340/http://www.coprolite.com/art27.html
 - https://www.acebus.com/8048.htm
+- S48
+  - https://web.synchro.net/files/Simtel.Sep-1997/EMULATE/
+  - by William Luitje
 - https://www.ucsim.hu/news.html
   - comes in ubuntu
   - doc pdf https://www.baigar.de/irix/ucsim.pdf
@@ -506,6 +512,14 @@
 
 - https://web.archive.org/web/20140717062700/http://coprolite.com:80/8048.html
 - [[https://www.delabs-circuits.com/cirdir/micro/micro4.html][80C39-8749 MCS-48 Examples and code]]
+- dev board
+  - part 1 [[https://vintagechips.wordpress.com/2025/02/19/wrt8749/][japan]] [[https://vintagechips-wordpress-com.translate.goog/2025/02/19/wrt8749/?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=es&_x_tr_pto=wapp][english]]
+  - part 2 [[https://vintagechips.wordpress.com/2025/02/21/mcs8749/][japan]] [[https://vintagechips-wordpress-com.translate.goog/2025/02/21/mcs8749/?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=es&_x_tr_pto=wapp][english]]
+  - https://github.com/vintagechips/mcs8749
+  - https://x.com/vintagechips/status/1677939391690358784
+- Led blinking
+  - part1 [[https://elchika-com.translate.goog/article/1ab5a4a9-b14d-476f-b835-b1a01120d7b8/?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=es&_x_tr_pto=wapp&_x_tr_hist=true][english]]
+  - part2 [[https://elchika.com/article/9dd6b829-8672-4a28-b671-d379db1bad90/][japanese]] [[https://elchika-com.translate.goog/article/9dd6b829-8672-4a28-b671-d379db1bad90/?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=es&_x_tr_pto=wapp&_x_tr_hist=true#h_MCS-48%E3%81%AE%E5%A0%B4%E5%90%88%20(FLASH.ASM)][english]] [[https://x.com/elchika_info/status/1457636146062585858][video]]
 
 ** reversing
 
@@ -716,29 +730,34 @@
           retr
 #+end_src
 
-* 8041/8042
+* MCS-41 - UPI-41 - 8041/8042
 
 #+begin_src
   NOTE: I own a couple of 8042 so I am making a special section for them.
 #+end_src
 
-- Can be found in old motherboards as [[https://wiki.osdev.org/%228042%22_PS/2_Controller][Keyboard controllers]]
-- Can use a 8243 IO expander
-- UPI-(C¦L)42
-  - Universal Peripherical Interface
+- 1979
+- 8-bit slave microcontroller
+  - a MCU with a slave interface
+  - interface registers
   - DMA support
-  - 8-bit slave microcontroller
-    - a MCU with a slave interface
-    - interface registers
+- UPI-(C¦L)42 Universal Peripherical Interface
+- use cases:
+  - keyboard control
+  - ADC control
+- Can use a 8243 IO expander
+- Followed by 8742
 
 - Many dissimilar pins to the 8048
   - *XTAL1(2)* can act as a single clock input if we are following a _master chip_
   - D0-D7 have no dual purpose of communicate addresses besides data
   - P1 pins communicates the addresses
   - DMA suport with *P2_6(37)* for DRQ and *P2_7(38)* for DACK#
-  - *RD#(8)* and *WR#(10)* are inputs from the _master chip_ to enable either, not probes like in 8048
+  - *RD#(8)* and *WR#(10)* are INPUTS from the _master chip_ to enable either
+    - not OUTPUT probes like in 8048
+    - no support for extended SRAM (?
   - new *A_0(9)* input from the _master chip_ to indicate if it is tranfering data or a command
-  - new *SYNC(11)* output clock signal which occurs once per cycle
+  - new *SYNC(11)* output clock signal which occurs once per cycle (works as an ALE?)
   - no *INT(6)* pin
 
 - Second Sources:
@@ -763,8 +782,9 @@
   - asxxxx https://shop-pdp.net/ashtml/asxxxx.php
   - sbasm supports 8041
   - tasm (maybe)
+  - disassembler http://web.archive.org/web/20130304035717/http://www.halicery.com/8042/dasm42.c
 
-- 05 article https://devster.monkeeh.com/z80/upi42/
+- ⭐ 05 article https://devster.monkeeh.com/z80/upi42/
 - https://web.archive.org/web/20041103235910/http://my.execpc.com/~geezer/osd/kbd/kbd.txt
 - Arduino Shield https://groups.io/g/retroshield/topic/intel_8042/33042489#
   - idea being that code runs on the ic CPU, but Arduino emulates the URDP, RAM, ROM
@@ -778,9 +798,6 @@
 
 ** codebases
 
-- as a keyboard controller https://wiki.osdev.org/I8042_PS/2_Controller
-- reversed keyboard controller https://github.com/Halicery/8042
-
 - RueNahcMohr
   - photos & discussion https://x.com/RueNahcMohr/status/1432549586032283650
   - code+circuit https://x.com/RueNahcMohr/status/1863547404336718220
@@ -792,3 +809,14 @@
 
 - https://hackaday.io/project/162159-8042-metronome
 - https://github.com/retiredfeline/8042-metronome
+
+*** on keyboards
+
+- Can be found in old motherboards as [[https://wiki.osdev.org/%228042%22_PS/2_Controller][Keyboard controllers]]
+  - https://aeb.win.tue.nl/linux/kbd/A20.html
+  - https://groups.google.com/g/alt.os.development/c/LJHRZcBMMws
+  - analysis https://web.archive.org/web/20121026015851/https://halicery.com/8042/8042_INTERN_TXT.htm
+  - disassembled http://web.archive.org/web/20110826011846/http://www.halicery.com/8042/8042_1503033.TXT
+  - photos https://x.com/TubeTimeUS/status/1149793632859246592
+  - as a keyboard controller https://wiki.osdev.org/I8042_PS/2_Controller
+  - reversed keyboard controller https://github.com/Halicery/8042

@@ -1,12 +1,106 @@
+- https://en.wikipedia.org/wiki/Zire_Handheld
+- https://en.wikipedia.org/wiki/Palm_Treo
 - https://en.wikipedia.org/wiki/Palm_Tungsten
   - 2002-2005
   - Palm OS 5.2.1
 
-- [[https://www.netmeister.org/palm/PalmMisc/PalmMisc.html][Software Development for the Palm OS]]
-- [[https://palm.wiki/dev][Developing Programs for Palm OS in the Present-Day]]
-- 19 Serial Communication with Palm OS - [[https://palm2000.com/articles/6][1]] [[https://palm2000.com/articles/7][2]] [[https://palm2000.com/articles/8][3]] [[https://palm2000.com/articles/9][4]]
-- 19 A Mp3-Player for old Palm OS devices - [[https://palm2000.com/articles/10][1]] [[https://palm2000.com/articles/11][2]]
+- wiki [[https://palm.wiki/dev][Developing Programs for Palm OS in the Present-Day]]
+- 00 [[https://www.netmeister.org/palm/PalmMisc/PalmMisc.html][Software Development for the Palm OS]]
 - 19 [[https://palm2000.com/articles/3][Installing POSE (Palm OS Emulator) on Ubuntu 18.04 LTS (64-Bit)]]
+- 19 A Mp3-Player for old Palm OS devices - [[https://palm2000.com/articles/10][1]] [[https://palm2000.com/articles/11][2]]
+- 19 Serial Communication with Palm OS - [[https://palm2000.com/articles/6][1]] [[https://palm2000.com/articles/7][2]] [[https://palm2000.com/articles/8][3]] [[https://palm2000.com/articles/9][4]]
 - 20 Bluetooth Communication with Palm OS - [[https://palm2000.com/articles/15][1]] [[https://palm2000.com/articles/16][2]]
 - 19 [[https://palm2000.com/articles/4][Compiling and building Palm-OS-Applications on Ubuntu 18.04 LTS (64 Bit)]]
 - 20 [[https://palm2000.com/articles/17][Compiling and building Palm-OS-Applications on Ubuntu 20.04 LTS (64 Bit)]]
+
+* E2
+
+- 2005
+- OS: 5.4.7
+- Screen: 320x320
+- CPU: 200Mhz Intel [[https://en.wikipedia.org/wiki/XScale#PXA210/PXA25x][XScale PXA255]]
+  - instruction set based on ARMv5TE without floating point instructions
+- RAM: 32Mb
+- IRDA, Bluetooth
+- Storage:
+  - non-volatile flash
+  - SD: Max 1GB with stock driver (see SDHC)
+
+* irda
+
+- https://palm.wiki/development/docs/601/PalmOSCompanion2/Beaming.html
+- https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ApplicationNotes/ApplicationNotes/00888a.pdf
+- OmniRemote
+- "The IR transmitter on most Palm devices is pretty weak, so it's only good if you're close to the device" by someredditor
+- https://www.instructables.com/Use-Palm-infrared-keyboard-with-Android-devices/
+- https://www.embeddedrelated.com/showthread/comp.arch.embedded/71695-1.php
+
+* bluetooth
+
+- App: AudioGateWay https://drive.google.com/file/d/1OWuoVHGLjZ0gp73ddq0dcIQBRTSMhXI4/view
+- Profiles
+  - A2DP
+  - DUN (Dial Up Networking)
+
+* apps
+
+https://www.reddit.com/r/Palm/comments/9vgtpy/my_experience_with_the_palm_tungsten_e2_so_far_in/
+
+- IRC https://palmdb.net/app/upirc
+- OmniRemote https://drive.google.com/file/d/1Fj7ONT5k9DLbPyr14Q911YttAxQYaAQW/view
+- AudioGateWay https://drive.google.com/file/d/1OWuoVHGLjZ0gp73ddq0dcIQBRTSMhXI4/view
+  - A2DP Bluetooth profile
+- Core Player - A media player
+- warpSpeed - overclocker
+- OperaMini
+- Google Maps
+
+* linux
+
+- Cocoboot - Linux
+  - runs on the SDCard, doesn't write itself to the flash memory
+  - lacks blutooth, wifi drivers
+
+- https://palmdb.net/app/uclinux
+- https://palmdb.net/app/palm-linux
+
+* videos
+
+- Channel https://www.youtube.com/@walnuthills11/videos
+- https://www.youtube.com/playlist?list=PLB6EEEA0B9154EF2D
+
+- [[https://www.youtube.com/watch?v=cTMSJ2skMHg][The Power Of Palm (Tungsten T5)]]
+- [[https://www.youtube.com/watch?v=1nfg4YIoYas][Palm OS | PDA Gaming on M515]]
+  - serious sam
+  - rayman
+  - zap 2016
+  - pocket pinball
+  - LJP "little john paul" Console emulator
+
+* codebases
+
+- homebrew games
+  - https://github.com/RobbieNesmith/PalmWordle
+  - https://github.com/naa/2048-palm in scheme
+  - https://www.netmeister.org/palm/Example/PalmExample.html
+
+* tools
+
+- https://github.com/desrod/pilot-link
+
+- GUI: Palm Desktop alternative
+  https://www.jpilot.org/
+
+- emulator
+  - https://github.com/meepingsnesroms/Mu
+  - https://github.com/uARM-Palm/uARM
+  - https://www.netmeister.org/palm/POSE-HOWTO.html
+
+** programming
+
+- sdk https://github.com/jichu4n/palm-os-sdk
+- resource compiler https://github.com/jichu4n/pilrc
+- gcc programming
+  - https://prc-tools.sourceforge.net/
+    https://prc-tools.sourceforge.net/doc/prc-tools_toc.html#SEC_Contents
+  - https://github.com/jichu4n/prc-tools-remix

@@ -23,6 +23,9 @@ RESUME 6:19
 - HD44780U (LDC-II) - "Dot matrix Liquid Crystal Display Controller/Driver"
 - EEPROM programmer TL866II+
 - SRAM AS6C62256 (32 Kilobytes)
+- MAX232 - Dual EIA-232 Driver/Receiver
+- W65C51S - ACIA - Asynchronous Communications Interface Adapter
+  - aka UART Universal Receiver Transmitter
 
 ** 01 - "Hello, world" from scratch on a 6502
 
@@ -885,10 +888,10 @@ CAUTION: this is a too long delay
 - 8 data bits of SR to VIA Port B input
 - kclock -> shift_clock
 - given that there is a pause between packets
-- we can reshape the CLOCK signal
+- we can reshape the keyboard CLOCK signal
   - to capture the whole event with a single pulse
-  - with a resistor, diode, capacitor, NOT gate with schmitt trigger
-  - carefully to avoid noise that might be interpreted as interrupts by the NOT gate
+  - by using a resistor, diode, capacitor, and NOT gate with schmitt trigger
+  - carefully avoiding noise that might be interpreted as interrupts by the NOT gate
   - this new CLOCK goes to
     - latch_clock
     - CA1 interrupt after 11 bits were read
@@ -910,12 +913,416 @@ CAUTION: this is a too long delay
 
 Goal: write a better interrupt handler
 
-#+CAPTION: using a circular buffer to process keys
+*** Code: new interrupt handler
+
+- using a circular buffer to process keys
+  - with a read and a write pointer
+  - if both pointers are the same, it means there is nothing more to process
+
 #+begin_src asm
           kb_buffer = $0200 ; 256-byte buffer 0200-02ff
           kb_wptr   = $0000 ; write pointer
           kb_rptr   = $0001 ;  read pointer
+  reset:
+          lda #$00
+          sta kb_wptr
+          sta kb_rptr
   loop:
-          lda kb_rptr
-          cmp kb_wptr
+          sei         ; disable interrupts
+          lda kb_rptr ; A = kb_rptr
+          cmp kb_wptr ; kb_rptr == kb_wptr
+          cli         ; enable interrupts
+          bne key_pressed
+          jmp loop
+  key_pressed:
+          ldx kb_rptr      ; X = kb_rptr
+          lda kb_buffer, x ; A = kb_buffer[x]
+          jsr print_char   ; NOTE: assume ascii
+          inc kb_rptr      ; kb_rptr++
+          jmp loop
+  keyboard_interrupt: ; IRQ vector handler
+          pha
+          txa
+          lda PORTA
+          ldx kb_wptr      ; X = kb_wptr
+          sta kb_buffer, x ; kb_buffer[X] = A
+          inc kb_wptr      ; kb_wptr++
+          pla
+          tax
+          pla
+          rti
 #+end_src
+
+*** Code: add mapping table to detect non ascii chars
+
+#+begin_src asm
+  keyboard_interrupt:
+          pha
+          txa
+          pha
+          lda PORTA     ; read scancode
+          tax           ; X = A (scancode)
+          lda keymap, x ; A = keymap[X]
+          ldx kb_wptr
+          sta kb_buffer, x
+          inc kb_wptr
+          pla
+          tax
+          pla
+          rti
+
+          .org $fe00
+  keymap:
+          .byte "????????????? `?" ; 00-0f
+          .byte "?????q1???zsaw2?" ; 10-1f
+          ;; ..
+          .byte "????????????????" ; f0-ff
+#+end_src
+
+*** Code: add flags to filter out release key
+
+#+begin_src asm
+  kb_flags = $0002
+  RELEASE = %00000001
+  keyboard_interrupt:
+          pha
+          txa
+          pha
+          lda kb_flags
+          and #RELEASE
+          beq read_key
+
+          lda kb_flags
+          eor #RELEASE
+          sta kb_flags
+          lda PORTA ; reset interrupt
+          jmp exit
+
+          lda PORTA
+          cmp #$f0
+          beq key_release
+
+          tax
+          lda keymap, x
+          ldx kb_wptr
+          sta kb_buffer, x
+          inc kb_wptr
+          jmp exit
+
+  key_release:
+          lda kb_flags
+          ora #RELEASE
+          sta kb_flags
+
+  exit:
+          pla
+          tax
+          pla
+          rti
+#+end_src
+
+*** TODO Code: add shift
+
+10:00
+** 16 - SPI
+
+- Serial communications
+  - high-speed/complex
+    - SATA, PCIE
+  - low-speed
+    - SPI: peripherical devices (sdcards, sensors, touchscreens)
+
+- Using a BME280 to read Temperature, Humidity and Pressure through SPI
+  - works at 3.3v
+  - board has some circuitry to level shift from 5v to 3.3v
+
+*** Code: bitbang SPI - getting ID of BME280
+
+#+begin_src asm
+  SCK  = %00000001
+  MOSI = %00000010
+  CS   = %00000100
+  MISO = %00001000
+
+          .org $8000
+
+  reset:
+          ;; Initialize SPI
+          lda #CS
+          sta PORTA
+          lda #%00000111
+          sta DDRA
+
+          ;; Bit bang $d0 %11010000
+          lda #MOSI
+          sta PORTA
+          lda # (SCK | MOSI)
+          sta PORTA
+
+          lda #MOSI
+          sta PORTA
+          lda # (SCK | MOSI)
+          sta PORTA
+
+          lda #0
+          sta PORTA
+          lda SCK
+          sta PORTA
+          ;; 110...
+
+          ;; bitbang 8 more clocks
+          lda #0
+          sta PORTA
+          lda #SCK
+          sta PORTA
+          ;; x7
+          lda #CS
+          sta PORTA
+#+end_src
+
+*** Code: bitbang SPI - refactor
+
+#+begin_src asm
+  spi_tranceive:
+          stz spiin  ; clear the input buffer
+          sta spiout ; store the output data
+          ldy #8     ; initiliaze bit counter
+          lda #MOSI  ; set A register to MOSI bitmask
+  spi_loop:
+          asl spiout ; move MSB of output into carry flag; next bit to send
+          bcs spi_1  ; test carry flag
+          trb PORTA
+          jmp spi_2
+  spi_1:
+          tsb PORTA  ; MSB was 1, set MOSI high
+  spi_2:
+          inc PORTA  ; set SCK high
+          bit PORTA  ; put MISO into overflow flag
+          clc        ; clear carry flag
+          bvc spi_3  ; test overflow flag
+          sec        ; overflow was set, set carry
+  spi_3:
+          rol spiin  ; rotate carry flag into receive buffer
+          dec PORTA  ; set SCK low
+          dey
+#+end_src
+
+*** Code: bitbang SPI - using the refactor
+
+#+begin_src asm
+          stz PORTA
+          lda #$75
+          jsr spi_transceive
+          lda #%00010000
+          jsr spi_tranceive
+          lda #$74
+          jsr spi_tranceive
+          lda #%00110111
+          lsr spi_tranceive
+          lda #CS
+          sta PORTA
+#+end_src
+
+*** Code: bitbang SPI - main loop
+#+begin_src asm
+  loop:
+          lda timer
+          and #$20
+          beq loop  ; wait until timer reaches value
+          stz timer ; reset timer
+
+          stz PORTA          ; begin packet
+          lda #$fa
+          jsr spi_transceive ; send FA instruction
+          jsr spi_transceive ; read result into A
+          sta value + 1
+          jsr spi_transceive ; read result into A
+          sta value
+          lda #CS
+          sta PORTA
+
+          lda #%00000001 ; clear display
+          jsr lcd_instruction
+          jsr print_num
+          jmp loop
+#+end_src
+** TODO 17 - Hardware Interrupt
+
+TODO 06:00
+
+- how to delay?
+  - nop
+  - loop of nops
+  - loop of loop of nops
+  - hardware timer interrupt
+
+- we use VIA T1 interrupt
+
+#+begin_src asm
+  T1CL = $6004
+  T1CH = $6005
+  ACR  = $600B ; aux control registry
+
+          .org $8000
+
+  reset:
+          lda #0
+          sta PORTA
+          sta ACR ; set 1-shot timer mode
+#+end_src
+** 18 RS-232 Protocol
+
+- We build a voltage shifter with a single transistor.
+  - To _receive_ RS-232 signals
+  - from the -7v - +7v range
+  - to 0v - 5v
+
+*** Code: test we can read from PORTA.6
+#+begin_src asm
+  rx_wait:
+          bit PORTA   ; put PORTA.6 into V flag
+          bvs rx_wait ; loop IF no start bit yet
+
+          lda #"x"
+          jsr print_char
+          jmp rx_wait
+#+end_src
+
+*** Code: read from PORTA.6
+
+#+begin_src asm
+  read_wait:
+          bit PORTA   ; put PORTA.6 into V flag
+          bvs rx_wait ; loop if NO start bit yet
+          ldx #8
+  read_bit:
+          bit PORTA   ; put PORTA.6 into V flag
+          bvs recv_1
+          clc         ; we read a 0, put a 0 into the C flag
+          jmp rx_done
+  recv_1:
+          sec         ; we read a 1, put a 1 into the C flag
+  rx_done:
+          ror         ; rotate A right, putting C flag as new MSB
+          dex
+          bne read_bit
+
+          ;; all 8 bits are now in A
+          jsr print_char
+
+          jmp rx_wait
+#+end_src
+
+*** Code: add delay
+
+#+begin_src asm
+  read_bit:
+          jsr bit_delay
+
+  bit_delay:
+          phx
+          ldx #13 ; = 104µS
+  bit_delay_1:
+          dex
+          bne bit_delay_1
+          plx
+          rts
+#+end_src
+
+*** Code: add half delay, to read just in the middle of signal
+
+#+CAPTION: just as the bit_delay
+#+begin_src asm
+  rx_wait:
+          bit PORTA
+          bvs rx_wait
+
+          jsr half_bit_delay ; !!!!
+
+          ldx #8
+
+  half_bit_delay:
+          phx ldx #6         ; half
+  half_bit_delay_1:
+          dex
+          bne half_bit_delay_1
+          plx
+          rts
+#+end_src
+** 19 Let's Build a Voltage Multiplier
+
+- We want a way to increase our input voltage
+  - not by adding more power in serie
+  - 2x by using capacitors ON&OFF (aka a [[https://en.wikipedia.org/wiki/Charge_pump][charge pump]])
+  - 3x by adding a 2nd ON&OFF signal inverted and +capacitors
+    - we use a MOSFET to invert signal
+
+- Not useful to deliver energy.
+
+- Useful to deliver a signal.
+
+** 20 6502 Serial Interface
+
+- For RS-232, we need a way to _generate_ voltages >+5v
+- MAX232 - Dual EIA-232 Driver/Receiver
+  - has a =charge pump=
+    - you need to provide the 1uF capacitors
+  - to generate supply voltages for TIA-232
+    - +5v -5v
+  - from 5v
+
+*** Code: Draft of how to send using TSB/TRB
+
+- We connected our OUTPUT RS-232 pin in the PA_0
+
+#+begin_src asm
+  lda #1    ; initialize on idle state ON
+  sta PORTA
+
+  lda #$01
+  tsb PORTA ; ORit with A, setting that bit ON
+
+  lda #$01
+  trb PORTA ; ANDit with the NOT A, set bit to OFF
+#+end_src
+
+*** Code: send code
+
+#+begin_src asm
+          lda #"*"  ; char to send to terminal (DTE)
+          sta $0200
+          lda #$01
+          trb PORTA ; send start bit
+          ldx #8    ; send 8 bits
+  write_bit:
+          jsr bit_delay
+          ror $0200 ; rotate the next bit right into C flag
+          bcs send_1
+          trb PORTA ; send a 0
+  send_1:
+          tsb PORTA ; send a 1
+  tx_done:
+          dex
+          bne write_bit
+          jsr bit_delay
+          tsb PORTA ; send stop bit
+          jsr bit_delay
+#+end_src
+
+** 21 RS232 interface with 6551 UART
+
+- W65C51S - ACIA - Asynchronous Communications Interface Adapter
+  - aka UART Universal Receiver Transmitter
+  - baudrate range: 50 - 19200
+  - DIP28
+
+- issues at the end of the previous video:
+  - cpu expensive
+  - we would need to change the bit_delay if we change the baudrate
+  - we would have issues changing to too high speeds
+  - we are no handling a duplex connection
+    - when we send we cannot receive (and visceversa)
+
+- solution:
+  - not doing the low level serial communication in software
+  - use an UART chip

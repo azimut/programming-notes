@@ -1,0 +1,39 @@
+- specs https://www.sony.es/electronics/support/reader-digital-book-prs-series/prs-300/specifications
+- wiki https://en.wikipedia.org/wiki/Sony_Reader
+  - 2009
+
+- 200dpi (from Calibre)
+- 800x600 (h/w)
+- 5 inch
+- EPUB, PDF, Word, TXT, RTF, BBeB
+- 440Mib
+- Locking and Mounting: "Note if the device is locked, using the optional 4 digit pin it will not mount via USB, the lock option needs to be disabled in order to mount the device."
+
+* firmwares
+
+- original https://archive.org/details/ebook-applications-firmware
+- prs-plus
+  - ANT based build
+  - https://code.google.com/archive/p/prs-plus/
+  - https://code.google.com/archive/p/prs-plus/wikis/UserGuide.wiki
+  - mirror https://github.com/kartu/prs-plus
+  - mirror https://github.com/natowi/prs-plus/
+  - mirror https://github.com/retrography/prs-plus.v2-0
+
+* Hard reset
+
+https://www.mobileread.com/forums/showthread.php?t=130903
+
+
+1. Power off
+
+2. On the bottom edge of the Reader, using a pin or paper clip, press the RESET button.
+
+3. Turn on
+
+4. While the screen displays Opening book... , simultaneously press and hold down the down arrow of the directional button and the 0 button until the Reset All screen is displayed.
+
+NOTE: If Opening book... does not display on the screen, charge the Reader's battery for several hours before
+attempting the reset process again.
+
+5. Press the 5 button to reset the Reader.

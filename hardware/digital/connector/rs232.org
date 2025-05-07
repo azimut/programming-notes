@@ -1,10 +1,68 @@
 - https://en.wikipedia.org/wiki/RS-232
   - 1960
-  - Defines signal connecting between
-    - DTE = data terminal equipement
-      - eg: computer
-    - DCE = data circuit-terminating equipement
-      - eg: modem
   - Still used in short-range, point-to-point, low-speed  wired connections.
+  - Standard between DTE and DCE
+    - DTE - Data Terminal Equipment (eg: pc)
+    - DCE - Data Circuit-Terminating Equipment (eg: modem)
+  - RS-232
+    - "Recommended Standard 232"
+    - aka TIA-232
 
-- tool: http://kt8216.unixcab.org/elek/serterm.html
+- "Console" ports on Routers are actually Serial ports (!)
+
+* voltages
+
+- *MC* < -3v < *TR* < +3v < *SC*
+  - Marking Condition
+  - Transition Region
+  - Spacing Condition
+
+* pins
+
+#+CAPTION: TIA-574, 9-pin connector
+#+ATTR_ORG: :width 400
+[[https://www.cable-tester.com/references/rs232-pinout/rs232-pinout-dsub-male.png]]
+
+- Names defined from DTE's POV
+
+- Standard spec used 25 pins
+  - has a "secondary" serial data channel pins
+  - has 3 pins for clocks
+  - irl were mostly unused
+
+- Manufacturers ended up using 9 pin connectors
+  - aka =TIA-574=
+  - *Does NOT include a clock* to tell us where each bit is
+  - time divisions is given by choosen *baudrate*
+    - baud = symbols per second (with a bit is a symbol)
+    - uses first bit to resync clocks, aka =start bit=
+    - and last bit low, the =stop bit=
+  - to send a packet we need at least 10 bits
+    - 1 start bit
+    - 8 data
+    - 1 stop bit
+
+* videos
+
+- 22 [[https://www.youtube.com/watch?v=AHYNxpqKqwo][The RS-232 Protocol]] by Ben Eater
+
+* tools
+
+- http://kt8216.unixcab.org/elek/serterm.html
+- sniffer - jpnevulator [[https://jpnevulator.snarl.nl/][home]] [[https://github.com/snarlistic/jpnevulator][source]] [[https://jpnevulator.snarl.nl/src/current/manual.html][man]]
+  #+begin_src sh
+    sudo jpnevulator --ascii --timing-print --tty /dev/ttyUSB0 --read
+  #+end_src
+- stty
+  #+begin_src sh
+    $ stty -F /dev/ttyUSB0 9600
+  #+end_src
+
+* ics
+
+- MAX232 - Dual EIA-232 Driver/Receiver
+  - has a =charge pump=
+    - you need to provide the 1uF capacitors
+  - to generate supply voltages for TIA-232
+    - +5v -5v
+  - from 5v

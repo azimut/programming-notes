@@ -11,12 +11,15 @@
   - a variable resistors
 
 - Types
-  - TTL (Transistor Transistor Logic)
-    - BJT (Bipolar Juntion Transistor)
-      - PNP
-      - NPN
-  - CMOS (Complimentary MOSFET)
-    - MOSFET
+  - MOSFET
+  - BJT (Bipolar Juntion Transistor)
+    - PNP
+    - NPN
+  - [[https://en.wikipedia.org/wiki/PMOS_logic][PMOS]] (60) -> [[https://en.wikipedia.org/wiki/Transistor%E2%80%93transistor_logic][TTL]] (70) ->  [[https://en.wikipedia.org/wiki/NMOS_logic][NMOS]] (80) -> [[https://en.wikipedia.org/wiki/CMOS][CMOS]] (80)
+    - p-channel (24v)
+    - Transistor-Transistor Logic (3.3v)
+    - n-type
+    - complementary
 
 - States
   - =Saturation=: when there is current in base

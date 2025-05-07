@@ -93,8 +93,6 @@
     + frequency: number of cycles per second (Hz)
   - in US: 120v, 60Hz powerlines (peak 170v, rms 120v)
 
-- Voltage regulators
-
 ** 5 Up the Trebble, Down the Bass
 
 - aka filter circuits (with capacitors)
@@ -124,8 +122,10 @@
 - Types of diodes: zener, photovoltaicell, led
 
 ** 7 Transistors: How they work
+
 - FET(MOS,J), BJT
 - BJT(NPN,PNP)
+
 ** 8 Transistors: as amplifiers
 
 - Common Emitter Amplifier
