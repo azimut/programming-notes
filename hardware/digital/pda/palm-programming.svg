@@ -1,0 +1,10 @@
+<svg xmlns='http://www.w3.org/2000/svg' style='font-size:initial;' class="pikchr" viewBox="0 0 292.32 112.32" data-pikchr-date="20250321215505">
+<path d="M2.16,110.16L74.16,110.16L74.16,23.76L52.56,2.16L2.16,2.16Z"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<path d="M52.56,2.16L52.56,23.76L74.16,23.76"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="38.16" y="56.16" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">.rcp</text>
+<polygon points="146.16,56.16 134.64,60.48 134.64,51.84" style="fill:rgb(0,0,0)"/>
+<path d="M74.16,56.16L140.4,56.16"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<path d="M146.16,56.16L218.16,110.16L290.16,56.16L218.16,2.16Z"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="218.16" y="56.16" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">PilRC</text>
+</svg>
+

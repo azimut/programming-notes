@@ -5,6 +5,7 @@
   - Palm OS 5.2.1
 
 - wiki [[https://palm.wiki/dev][Developing Programs for Palm OS in the Present-Day]]
+- 00 [[https://www.netmeister.org/palm/LJ/embedded.html][Using Linux to Develop Software for the Palm OS]]
 - 00 [[https://www.netmeister.org/palm/PalmMisc/PalmMisc.html][Software Development for the Palm OS]]
 - 19 [[https://palm2000.com/articles/3][Installing POSE (Palm OS Emulator) on Ubuntu 18.04 LTS (64-Bit)]]
 - 19 A Mp3-Player for old Palm OS devices - [[https://palm2000.com/articles/10][1]] [[https://palm2000.com/articles/11][2]]
@@ -13,18 +14,26 @@
 - 19 [[https://palm2000.com/articles/4][Compiling and building Palm-OS-Applications on Ubuntu 18.04 LTS (64 Bit)]]
 - 20 [[https://palm2000.com/articles/17][Compiling and building Palm-OS-Applications on Ubuntu 20.04 LTS (64 Bit)]]
 
-* E2
+* E
 
-- 2005
-- OS: 5.4.7
+https://palmtelinux.sourceforge.net/inside.shtml
+
+- 2003
+- OS: 5.2.1
+- CPU: 126Mhz [[https://en.wikipedia.org/wiki/OMAP#Basic_multimedia_applications_processors][TI OMAP311]]/0
+  - MMU (means we can use vanilla kernel, not uClinux)
+  - Similar to OMAP5910
+  - [[https://en.wikipedia.org/wiki/ARM9][ARM926]]
+  - ARMv5TE
 - Screen: 320x320
-- CPU: 200Mhz Intel [[https://en.wikipedia.org/wiki/XScale#PXA210/PXA25x][XScale PXA255]]
-  - instruction set based on ARMv5TE without floating point instructions
+  - TSC2102 (? - Programmable Touch Screen Controller With Integrated Stereo Audio DAC
+    - 4wire touch screen (X+ X- Y+ Y-)
+    - Stereo audio playback up to 48 ksps
 - RAM: 32Mb
-- IRDA, Bluetooth
+- IRDA
 - Storage:
   - non-volatile flash
-  - SD: Max 1GB with stock driver (see SDHC)
+  - SD
 
 * irda
 
@@ -46,6 +55,12 @@
 
 https://www.reddit.com/r/Palm/comments/9vgtpy/my_experience_with_the_palm_tungsten_e2_so_far_in/
 
+- Compiling
+  - Can be compiled for M68k for full backwards compatibility.
+  - ARM based devices will run then on a emulation layer
+  - Can also be compiled in ARM, apps then use =PceNativeCall()=
+  - "you must create a 68k binary which bundles your ARM binary as a ressource"
+
 - IRC https://palmdb.net/app/upirc
 - OmniRemote https://drive.google.com/file/d/1Fj7ONT5k9DLbPyr14Q911YttAxQYaAQW/view
 - AudioGateWay https://drive.google.com/file/d/1OWuoVHGLjZ0gp73ddq0dcIQBRTSMhXI4/view
@@ -57,9 +72,18 @@ https://www.reddit.com/r/Palm/comments/9vgtpy/my_experience_with_the_palm_tungst
 
 * linux
 
-- Cocoboot - Linux
-  - runs on the SDCard, doesn't write itself to the flash memory
-  - lacks blutooth, wifi drivers
+- runs on the SDCard, doesn't write itself to the flash memory
+- lacks blutooth, wifi drivers
+
+- PDA OS http://web.archive.org/web/20100128181424/http://familiar.handhelds.org/
+  - OpenEmbedded based
+  - ipkg
+  - DE https://en.wikipedia.org/wiki/GPE_Palmtop_Environment
+  - DE http://web.archive.org/web/20050112061446/http://opie.handhelds.org/cgi-bin/moin.cgi/
+
+- kernel https://github.com/hackndev/cocoboot http://web.archive.org/web/20111104175013/http://l4p.hackndev.org/node/379
+- bootloader https://garux.sourceforge.net/
+- kernel https://palmtelinux.sourceforge.net/index.shtml
 
 - https://palmdb.net/app/uclinux
 - https://palmdb.net/app/palm-linux
@@ -86,8 +110,10 @@ https://www.reddit.com/r/Palm/comments/9vgtpy/my_experience_with_the_palm_tungst
 
 * tools
 
-- https://github.com/desrod/pilot-link
-
+- https://github.com/desrod/pilot-link [[https://tldp.org/HOWTO/PalmOS-HOWTO/pilotlink.html][how-to]]
+  #+begin_src sh
+    $ pilot-xfer /dev/pilot -i program.pc
+  #+end_src
 - GUI: Palm Desktop alternative
   https://www.jpilot.org/
 
@@ -98,8 +124,18 @@ https://www.reddit.com/r/Palm/comments/9vgtpy/my_experience_with_the_palm_tungst
 
 ** programming
 
-- sdk https://github.com/jichu4n/palm-os-sdk
-- resource compiler https://github.com/jichu4n/pilrc
+#+begin_src pikchr :file palm-programming.svg :result graphics :exports both
+  file ".rcp"
+  arrowp
+  diamond "PilRC"
+  # arrow;  box ".prc"
+#+end_src
+
+#+RESULTS:
+[[file:palm-programming.svg]]
+
+- PilRC - PILot Resource Compiler https://github.com/jichu4n/pilrc
+- Palm OS SDK https://github.com/jichu4n/palm-os-sdk
 - gcc programming
   - https://prc-tools.sourceforge.net/
     https://prc-tools.sourceforge.net/doc/prc-tools_toc.html#SEC_Contents

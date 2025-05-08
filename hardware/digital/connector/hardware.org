@@ -1,0 +1,4 @@
+- Bus Pirate v4 jhttp://dangerousprototypes.com/docs/Bus_Pirate_v4_design_overview
+- JTAGULATOR
+  - home https://grandideastudio.com/portfolio/security/jtagulator/
+  - source https://github.com/grandideastudio/jtagulator

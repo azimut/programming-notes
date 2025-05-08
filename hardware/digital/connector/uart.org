@@ -7,11 +7,35 @@
   - simple protocol
   - can be emulated by bit-banging GPIO pins in software
 
+- On Linux to access /dev/ttyUSB0 your used needs to be in *dialout* group
 - https://en.wikipedia.org/wiki/Bit_banging
 - https://blog.jgc.org/2012/09/the-joy-of-bit-banging.html
   - [[https://news.ycombinator.com/item?id=4521140][HN]]
 
-- Chip: CP2102/9 USB-to-UART bridge
+* Chips
+
+- CP2102/9 USB-to-UART bridge
   - I own 3 (red)
-- Chip: PL-2303HX USB-to-Serial
+- PL-2303HX USB-to-Serial
   - I own 1
+- CH340 (not recommended? low clock accuraccy)
+
+* How to find UART?
+
+- 20 video with example boards images [[https://www.youtube.com/watch?v=01mw0oTHwxg][Hacker's Guide to UART Root Shells]]
+- unpluggeed
+  - measure continuity/resistance
+  - against *GND* and *Vcc*, it will be 0(zero)
+- plugged
+  - measure voltage
+  - connect a probe to GND
+  - *TX* pin, on boot, will oscillate between 3.3v and 0v
+
+* Connecting
+
+- try [[https://en.wikipedia.org/wiki/Serial_port#Speed][common baud rates]] : 115200, 9600, 57600, 38400, 19200
+- to use them with an adaptor
+  - connect TX,RX,GND
+    - RX on adapter to TX on the board
+    - TX on adapter to RX on the board
+  - do NOT connect Vcc

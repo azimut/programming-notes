@@ -1,0 +1,20 @@
+<svg xmlns='http://www.w3.org/2000/svg' style='font-size:initial;' class="pikchr" viewBox="0 0 969.12 47.7" data-pikchr-date="20250321215505">
+<path d="M2.16,45.36L189.36,45.36L189.36,2.16L2.16,2.16Z"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="95.76" y="23.76" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">avr-gcc</text>
+<polygon points="261.36,23.76 249.84,28.08 249.84,19.44" style="fill:rgb(0,0,0)"/>
+<path d="M189.36,23.76L255.6,23.76"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="225.36" y="35.46" text-anchor="middle" font-weight="bold" fill="rgb(0,0,0)" dominant-baseline="central">obj</text>
+<path d="M261.36,45.36L448.56,45.36L448.56,2.16L261.36,2.16Z"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="354.96" y="23.76" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">avr-gcc</text>
+<polygon points="520.56,23.76 509.04,28.08 509.04,19.44" style="fill:rgb(0,0,0)"/>
+<path d="M448.56,23.76L514.8,23.76"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="484.56" y="35.46" text-anchor="middle" font-weight="bold" fill="rgb(0,0,0)" dominant-baseline="central">elf</text>
+<path d="M520.56,45.36L707.76,45.36L707.76,2.16L520.56,2.16Z"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="614.16" y="23.76" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">avr-objcopy</text>
+<polygon points="779.76,23.76 768.24,28.08 768.24,19.44" style="fill:rgb(0,0,0)"/>
+<path d="M707.76,23.76L774,23.76"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="743.76" y="35.46" text-anchor="middle" font-weight="bold" fill="rgb(0,0,0)" dominant-baseline="central">bin</text>
+<path d="M779.76,45.36L966.96,45.36L966.96,2.16L779.76,2.16Z"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="873.36" y="23.76" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">avrdude</text>
+</svg>
+

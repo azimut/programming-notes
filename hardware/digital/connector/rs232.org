@@ -37,9 +37,10 @@
     - baud = symbols per second (with a bit is a symbol)
     - uses first bit to resync clocks, aka =start bit=
     - and last bit low, the =stop bit=
-  - to send a packet we need at least 10 bits
+  - to send a packet we need at least 10/11 bits
     - 1 start bit
     - 8 data
+    - 1 optional parity bit
     - 1 stop bit
 
 * videos
@@ -57,6 +58,8 @@
   #+begin_src sh
     $ stty -F /dev/ttyUSB0 9600
   #+end_src
+- gnu screen
+- minicom
 
 * ics
 
