@@ -1,0 +1,11 @@
+- https://en.wikipedia.org/wiki/Coreboot
+  - 1999
+  - replaces common firmware (aka BIOS/UEFI)
+  - CPU: IA-32, x86-64, ARM, ARM64, MIPS, RISC-V
+  - SOC: AMD Geode
+  - Can load:
+    - Kernel
+    - Standalone ELF executable (iPXE, gPXE, Etherboot)
+
+- https://en.wikipedia.org/wiki/Libreboot
+  - 2013

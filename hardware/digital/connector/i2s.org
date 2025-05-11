@@ -1,0 +1,8 @@
+- https://en.wikipedia.org/wiki/I%C2%B2S
+- 1986
+- 3 pins
+  - SCK - Serial Clock
+  - WS - Word Select
+  - SD - Serial Data
+
+- https://www.youtube.com/playlist?list=PLjUbKCHhzPExyfSCF_d9oH97dmMvn3tBD

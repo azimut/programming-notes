@@ -1,0 +1,17 @@
+- "SN33260A" board
+- 2010?
+- MCU: NVP2040E by NextChip
+  - Input: 760HH CCD or NTSC/PAL
+  - Output: CVBS or S-Video NTSC/PAL
+    - [[https://en.wikipedia.org/wiki/Composite_video][CVBS]] - Composite Video Baseband Signal
+- ROM: FM24C16B - non-volative memory Serial (i2c) F-RAM
+
+- AD9943KCPZ - CCD Signal Processor
+  - Complete 10-Bit and 12-bit, 25Mhz
+- AA8722 - CCD Vertical Driver - by Agamem
+  - 3.3v / 5v Input
+  - 15v, 0v, -8.5v
+
+- photos
+  - SatVision SVC-S45V repair https://pikabu.ru/story/remont_ulichnoy_videokameryi_4307278
+    - demo video https://www.youtube.com/watch?v=GG_3LVxvLuQ

@@ -13,6 +13,8 @@
 - Homemade Flash Memory Programmer
   - https://www.youtube.com/playlist?list=PLd0Jb8MtKHOPvd8nIFa7q3OW3F3grJMLO
 
+- Arduino based NAND chip reader http://hwreblog.com/projects/arduino_nand_reader.html
+
 - 21 Replace EEPROMs with FLASH Memory from Scratch
   - https://www.youtube.com/watch?v=2crXqNlBazg
   - SST39SF010A

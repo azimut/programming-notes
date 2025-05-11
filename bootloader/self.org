@@ -1,0 +1,1 @@
+- 22 [[https://serhack.me/articles/os-embedded-booting-phase-uboot/][Booting an Embedded OS: the Booting and U-Boot Phase]]

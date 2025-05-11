@@ -1,0 +1,10 @@
+* /etc/passwd
+
+- see man crypt(5)
+- descrypt:
+  - https://crack.sh/des_crypt/
+  - salted
+  - found in [[https://blog.markdepalma.com/?p=246][old routers]]
+  #+begin_src conf
+    root:9szj4G6pgOGeA:0:0:root:/root:/bin/sh # h@11oCAM
+  #+end_src

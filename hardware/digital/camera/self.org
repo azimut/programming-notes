@@ -1,0 +1,24 @@
+* image sensors
+
+- a grid of photodiodes (a one way valve for electrons)
+
+** CCD
+
+- readout hapens one row at the time
+
+- wiki [[https://en.wikipedia.org/wiki/Charge-coupled_device][Charge-coupled device]]
+- video [[https://www.youtube.com/watch?v=wsdmt0De8Hw][CCD: The heart of a digital camera (how a charge-coupled device works)]]
+  - row shifting is done to avoid artifacts
+- video [[https://www.youtube.com/watch?v=w5COC1ZmH7c][CCDs and CMOS Imaging Devices]]
+  - immediate predeccessor:
+    - BBD https://en.wikipedia.org/wiki/Bucket-brigade_device
+    - for audio delays
+    - using capacitors
+  - CCD = light sensitive BBD
+    - by rows, still used in fax machines
+    - matrix of photosensitive cells, still working one column at the time
+    - shifted out one row at the time
+  - explains "bloom effect"
+** CMOS
+
+- read out happens at the local sensor

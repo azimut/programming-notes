@@ -1,0 +1,17 @@
+* modules
+
+- [[https://gist.github.com/0xff07/d286f45649a7e05c32c4523631bd15e0][An Example of Linux Kernel Module using GPIO Subsystem]]
+
+|------------------+------------------------------------------|
+|       <c>        |                                          |
+|    [[https://www.kernel.org/doc/Documentation/devicetree/bindings/leds/leds-gpio.txt][leds_gpio]]     | leds connected to GPIO lines             |
+| [[https://www.kernel.org/doc/Documentation/devicetree/bindings/input/gpio-keys-polled.txt][gpio_keys_polled]] | keyboard driver                          |
+|     [[https://www.kernel.org/doc/Documentation/gpio/drivers-on-gpio.txt][spi_gpio]]     | bitbang SPI over, at least, 2 GPIO lines |
+|     gpiommc      | by openwrt                               |
+|------------------+------------------------------------------|
+
+** leds_gpio
+
+- /sys/class/leds
+- https://www.armadeus.org/wiki/index.php?title=GPIO_LEDS
+- https://www.kernel.org/doc/Documentation/leds/leds-class.txt

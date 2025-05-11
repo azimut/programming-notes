@@ -1,0 +1,39 @@
+* B2
+
+https://openwrt.org/toh/d-link/dir-300revb
+https://wiki.dd-wrt.com/wiki/index.php/DIR-600
+https://dd-wrt.com/support/router-database/?model=DIR-600_B1%20/%20B2
+
+- 2009
+- FCC ID: [[https://fccid.io/KA2DIR300B1][KA2DIR300B1]]
+- D-LINK
+- CPU
+  - Ralink RT3050
+  - 320Mhz
+  - MIPS
+- RAM: 32Mb W9825G6EH-6
+- ROM: 4Mb S29GL032N90TFI040
+- USB: no
+- x5 RJ45 100M RT3050
+- Serial: 57600
+
+* gpio mod
+
+https://forum.dd-wrt.com/phpBB2/viewtopic.php?p=269511
+https://tinyhack.com/2010/04/04/d-link-dir-300-serial-port-and-sd-mod/
+https://forum.archive.openwrt.org/viewtopic.php?id=36986&p=1#p183660
+
+|------------------+---------|
+|       <c>        |         |
+|    leds_gpio     | remove  |
+| gpio_keys_polled | remove  |
+|     gpiommc      | enable  |
+|     spi_gpio     | enable* |
+|------------------+---------|
+
+#+begin_src
+ Data Input = GPIO9 (Green Power LED)
+Data Output = GPIO13 (WPS LED)
+      Clock = GPIO8 (Amber Power LED)
+    ChipSel = GPIO0 (WPS Switch)
+#+end_src

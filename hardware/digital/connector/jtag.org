@@ -1,6 +1,39 @@
 - https://en.wikipedia.org/wiki/JTAG
+  - Join Task Action Group
   - 1990 (Intel 80486)
   - Implemented on ICs
-  - Used to diagnosticate production issues
-  - Pins 2-5
+  - a way to interface and diagnosticate production issues
+  - Goals
+    - Controlability: set 0 and 1 internal memory
+    - Observability: read internal memory registers
+  - Can
+    - rw EEPROM
+    - in-circuit debugging
+    - daisy chain multiple ics
+    - break into boot cycle
   - https://en.wikipedia.org/wiki/Boundary_scan_description_language
+
+* pins
+
+- TCK  - Test Clock
+- TDO  - Test Data Out
+- TDI  - Test Data In
+- TMS  - Test Mode Select
+- TRST - Test Reset (optional)
+
+* tools
+
+- OpenOCD - Open On-Chip Debugger
+  - https://openocd.org/
+  - https://www.youtube.com/watch?v=_1u7IOnivnM
+  - opencd opens a gdb server port
+    #+begin_src sh
+      $ opencd -f ft232h.cfg -f raspi.cfg
+    #+end_src
+  - use gdb-multiarch to connect to it
+    #+begin_src sh
+      $ gdb-multiarch  ./blink-led.elf
+      gdb> set arch arm
+      gdb> target extended-remote localhost:3333
+      gdb> x10i 0xc0136dd4 # show 10 instructions on given memory
+    #+end_src

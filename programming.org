@@ -24,8 +24,12 @@
     - no stemming of symbols
   - html, js, css https://publicwww.com/
 
+- [[https://en.wikipedia.org/wiki/Robustness_principle][Robustness principle]]
+  - "be conservative in what you do, be liberal in what you accept from others"
+
 - [[https://www.linfo.org/rule_of_silence.html][The Rule of Silence]] (aka the silence is golden rule)
-  - part of the Unix philosophy that states that when a program has nothing surprising, interesting or useful to say, it should say nothing
+  - part of the Unix philosophy that states that:
+    - when a program has nothing surprising, interesting or useful to say, it should say nothing
 
 - [[https://en.wikipedia.org/wiki/Leaning_toothpick_syndrome][Leaning Toothpick Syndrome]]
   - when a quoted expresion becomes unreadable because it contains a large number of escape characters

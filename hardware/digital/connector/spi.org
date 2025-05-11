@@ -2,6 +2,7 @@
 - https://www.analog.com/en/resources/analog-dialogue/articles/introduction-to-spi-interface.html
 
 - synchoronous
+- full-duplex serial
 - asymetrical communication
   - master/slave
   - controlled by the MCU
@@ -15,7 +16,7 @@
 [[./spi-pinout.png]]
 
 - 3/4 pins:
-  - CS/SS: "slave select", from the MCU
+  - SS/CS: "slave select", from the MCU
     - useful to re-use the same MOSI/MISO connections
   - SCLK: "slave clock" from the MCU
     - 1 bit of data per clock, on both MOSI/MISO
@@ -35,7 +36,7 @@
 [[./spi-timings.png]]
 
 - Modes of Operation
-   #+CAPTION: data sampled at ↕ edge of CLOCK, and default state of CLOCK (aka polarity)
+  #+CAPTION: data sampled at ↕ edge of CLOCK, and default state of CLOCK (aka polarity)
   |---+---+------|
   | 0 | ↑ | low  |
   | 1 | ↓ | low  |

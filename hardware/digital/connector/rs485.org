@@ -1,0 +1,11 @@
+- https://en.wikipedia.org/wiki/RS-485
+- 1983
+- aka TIA-485
+- half-duplex, you can transmit(5v) or receive(0v) at one time
+- longer distance than 232
+- no common GND
+- 2 pins
+
+* ICS
+
+- MAX485

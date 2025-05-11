@@ -2,6 +2,7 @@
   - async serial communication
   - common signal levels are:
     - RS-232
+    - RS-422?
     - RS-485
     - raw TTL (for short debugging links)
   - simple protocol
@@ -30,6 +31,7 @@
   - measure voltage
   - connect a probe to GND
   - *TX* pin, on boot, will oscillate between 3.3v and 0v
+  - *RX* pin, should have a stable voltage, since is waiting for input
 
 * Connecting
 

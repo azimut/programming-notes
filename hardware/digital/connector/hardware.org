@@ -1,4 +1,24 @@
+- FlashcatUSB https://www.embeddedcomputers.net/products/FlashcatUSB/
+- FT232H
+  - High Speed RS-232
+  - FTDI
+  - 8 wires of data
+  - 30Mbps
+- Logic Analyzers
+  - ?
+- CH341a https://github.com/boseji/CH341-Store
+  - I2C/SPI flash/bios programmer
+  - to dump a ROM
+- J-Link https://www.segger.com/products/debug-probes/j-link/models/j-link-base/
+- Shikra DISCONTINUED https://www.blackhillsinfosec.com/hardware-hacking-with-shikra/
+  - MX25L6406E/MX25L6408E
+- Bus Blaster http://dangerousprototypes.com/docs/Bus_Blaster
 - Bus Pirate v4 jhttp://dangerousprototypes.com/docs/Bus_Pirate_v4_design_overview
+  - Old?
+  - PIC based
+  - speaks I2C, SPI, UART
+- https://github.com/tigard-tools/tigard
+  - An FTDI FT2232H-based multi-protocol tool for hardware hacking.
 - JTAGULATOR
   - home https://grandideastudio.com/portfolio/security/jtagulator/
   - source https://github.com/grandideastudio/jtagulator

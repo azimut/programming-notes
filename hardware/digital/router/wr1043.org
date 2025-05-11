@@ -1,0 +1,38 @@
+- tp-link https://www.tp-link.com/en/support/download/tl-wr1043nd/v1/
+
+- v1.8
+- 2011
+- FCC ID: [[https://fccid.io/TE7WR1043NX][TE7WR1043NX]]
+- Bootloader: U-Boot 1.1.4
+- CPU:
+  - [[https://en.wikipedia.org/wiki/MIPS_architecture#MIPS32/MIPS64][MIPS32]] [[https://wikidevi.wi-cat.ru/MIPS_24K][24k]]
+  - Atheros AR9132
+  - 400Mhz
+- RAM: 32Mb
+- ROM: 8Mb (ST 25P64V6P?)
+- USB:
+  - original framework used for FTP server
+  - 1x 2.0
+  - host, device, OTG
+- Connectivity:
+  - Serial: [[https://www.youtube.com/watch?v=IHNrnLnLakE][video]]
+    - 3.3v
+    - 115200/8/None/1/None
+- 5x RJ45 1Gb
+  - RealTek RTL8366RB? (rtl8366 on linux)
+- WIFI:
+  - 24 dBm
+  - Atheros AR9103
+  - b/g/n
+
+* dd-wrt
+
+https://dd-wrt.com/support/router-database/?model=WR1043N(D)_1.x
+
+* openwrt
+
+- https://openwrt.org/toh/tp-link/tl-wr1043nd#folded_ef1f3f4dedd3ee82bd4bac763829f29a_1
+- https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr1043nd_v1
+  - 2022 ended support
+  - not enough ROM/RAM https://openwrt.org/supported_devices/openwrt_on_432_devices
+  - 19.07.10 https://openwrt.org/releases/19.07/start

@@ -1,0 +1,48 @@
+- [[https://www.sourcesecurity.com/datasheets/vivotek-ip7135-ip7137/co-1795-ga/ip7135datasheet.pdf][datasheet]]
+- VIVOTEK
+- 2008?
+- Linux 2.4
+- CPU:
+  - VVTK-1000
+  - Vatics Vivaldi ([[https://www.vivotek.com/company/about_us/milestone][Vivotek's own SOC]])
+  - [[https://github.com/AFLplusplus/AFLplusplus/issues/733][armv4]]? includes rootfs
+
+- RAM: 32Mb SDRAM (2x EM639165)
+- ROM: 4Mb FLASH (MX29LV320DBTI-70G)
+- Camera:
+  - Lens: board lens, f=4.0mm, F2.0, Fixed
+  - Image Sensor: 1/4" CMOS sensor
+
+- diy 3d enclosure https://www.printables.com/model/2857-vivotek-ip7135-enclosure
+- firmware https://ftpmirror.your.org/pub/misc/ftp.vivotek.com/Firmware/IP7135/
+- program? https://github.com/jimliu08/fyd_ipcam/tree/master/venc
+- different camera pinout https://habr.com/en/articles/424919/
+  - D-link DCS-5220A1
+  - PTZ = Pan - Tilt - Zoom
+  - 192.168.0.99
+  - Bootloader: ARMboot https://armboot.sourceforge.net/
+    - seems not officially supported
+  - http: //IPHERE/cgi/admin/telnetd.cgi?command=on
+  - PINOUT [[https://habrastorage.org/r/w1560/webt/t-/z1/zu/t-z1zudcynj2vjmg29sqnwppyzu.jpeg]]
+    - ICE JTAG
+    - UART:
+      - +3.3v, Tx, Rx, GND
+      - 38400/8/1/NO/NO
+      - Author used a FTDI232 convertor
+      - ME: use a "4-pin [[https://en.wikipedia.org/wiki/Berg_connector][berg]]" female connector?
+  - Boot output
+    #+begin_src
+      ARMboot 1.1.0 (Nov 23 2006 - 17:31:45)
+      CPU: FA526id(wb) revision 1
+      Machine: Vivotek VVTK1000
+    #+end_src
+- include/config/mach/vvtk1000.h
+- debboostrap with vtk1000 kernel module loaded https://stewarts.org.uk/project/wdsharespacedebootstrap/
+
+
+* Connectivity
+- 1x RJ45 100 baseT (RTL8100B ethernet controller)
+- +WiFi b/g+ on IP7137
+* Audio
+- UDA1345TS
+- GSM-AMR/MPEG4 AAC

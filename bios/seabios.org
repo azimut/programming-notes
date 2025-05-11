@@ -1,0 +1,5 @@
+- https://en.wikipedia.org/wiki/SeaBIOS
+  - x86 BIOS
+  - 2008
+  - by Kevin O'Connor
+  - default bios by QEMU/KVM

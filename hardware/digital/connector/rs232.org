@@ -58,8 +58,15 @@
   #+begin_src sh
     $ stty -F /dev/ttyUSB0 9600
   #+end_src
-- gnu screen
-- minicom
+- cu (OLD)
+  #+begin_src sh
+    $ cu -l /dev/ttyUSB0 -s 9600
+  #+end_src
+- gnu screen (CLASSIC)
+  #+begin_src sh
+    $ screen /dev/ttyUSB0 9600
+  #+end_src
+- minicom (NEW?)
 
 * ics
 

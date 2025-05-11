@@ -1,9 +1,10 @@
 - https://en.wikipedia.org/wiki/I%C2%B2C
+  - 1980
   - supports multiple devices on the same bus
-  - must be assigned an unique address
+  - must be assigned an unique =address=
   - Has no minimum CLOCK speed
   - Open drain output
-  - you might need a =level shifter= to communicate from a 5v MCU to a 3v I2C device
+  - you might need a =level shifter= to communicate from a *5v* MCU to a *3v* I2C device
   - pins
     - Vcc
     - GND

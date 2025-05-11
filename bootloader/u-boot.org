@@ -1,0 +1,19 @@
+- wiki https://en.wikipedia.org/wiki/Das_U-Boot
+- home https://www.u-boot.org/
+- documentation https://docs.u-boot.org/en/latest/
+- C source https://github.com/u-boot/u-boot
+
+- 1999
+- Wolfgang Denk
+- 8xxROM(99) -> PPCBoot(00) -> ARMBoot(02) -> PPCBoot2(02) -> U-Boot(02)
+- 1st & 2nd stage bootloader
+- cli interface
+- supports booting: linux, android, chromeos...
+
+* video
+
+- https://www.youtube.com/playlist?list=PLM6hZ9mOhBWuWBz7REa_Gg3HZPbwHad-f
+- 12 [[https://www.youtube.com/watch?v=pteHg54WBbQ][Linux as a Boot Loader]] by Peter Chubb
+- 13 [[https://www.youtube.com/watch?v=RCTRSK45bS4][DIY Using Trust to Secure Embedded Projects]]
+- 14 [[https://www.youtube.com/watch?v=6QKBy-7qLyM][Linux Bootloaders & Kernel Configuration]]
+- 17 [[https://www.youtube.com/watch?v=2-Y4X81QHys][I Boot when U-Boot]] by Bernardo Maia Rodrigues & Vincent Ruijter

@@ -1,0 +1,5 @@
+- https://en.wikipedia.org/wiki/MultiMediaCard
+  - 1997
+  - memory card standard
+  - serial interface
+  - sometimes as a card, sometimes as a IC (eMMC)

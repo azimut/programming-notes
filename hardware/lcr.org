@@ -1,0 +1,4 @@
+- LCR Meter https://en.wikipedia.org/wiki/LCR_meter
+  - (L) inductance
+  - (C) capacitance
+  - (R) resistance

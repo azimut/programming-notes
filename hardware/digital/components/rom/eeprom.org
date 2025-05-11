@@ -29,7 +29,8 @@ https://en.wikipedia.org/wiki/EEPROM
 
 * Serial bus devices
 
-- common interfaces: spi, i2c, microwire, uni/o, 1-wire
+- common interfaces: spi, i2c, microwire, uni/o, 1-wire-
+- some "new" devices might retrieve a firmware from it at start (?
 
 - protocol
   - phases
@@ -74,3 +75,10 @@ https://en.wikipedia.org/wiki/I%C2%B2C
   // if(Wire.available()) return Wire.read();
   Wire.read();
 #+end_src
+
+* Flashrom
+
+- wiki https://en.wikipedia.org/wiki/Flashrom_(utility)
+- home https://www.flashrom.org/
+- Pomona 5250 - SOIC clip
+- CH341A chip

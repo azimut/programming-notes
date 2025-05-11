@@ -1,0 +1,20 @@
+- [[https://openwrt.org/docs/guide-user/hardware/usb.overview][Turning USB power on/off]]
+  #+begin_src sh
+    $ echo 1 > /sys/class/gpio/<gpioN>/value # ON
+    $ echo 0 > /sys/class/gpio/<gpioN>/value # OFF
+  #+end_src
+
+- discovery steps
+  - download latest mips busybox for "netstat"
+  - get architecture
+    #+begin_src sh
+      $ uname -a
+    #+end_src
+  - mounted partitions rw permissions
+    #+begin_src sh
+      $ mount
+    #+end_src
+  - process owners
+    #+begin_src sh
+      $ ps ww
+    #+end_src
