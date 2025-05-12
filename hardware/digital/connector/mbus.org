@@ -1,0 +1,3 @@
+- Mbus
+- half-duplex
+- 9600

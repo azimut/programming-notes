@@ -1,0 +1,10 @@
+- https://techinfodepot.shoutwiki.com/wiki/ZTE_ZXDSL_831II
+- ZTE - ZXDSL 831 II
+- 2008
+- FCC ID: [[https://fccid.io/Q78-ZXDSL831II][Q78-ZXDSL831II]]
+- CPU:
+  - Broadcom BCM6332
+  - BMIPS3000
+  - 240Mhz
+- ROM: 2Mb
+- RAM: 8Mb

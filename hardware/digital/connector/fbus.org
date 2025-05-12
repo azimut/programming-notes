@@ -1,0 +1,17 @@
+- https://en.wikipedia.org/wiki/FBus
+  - used in: [[https://en.wikipedia.org/wiki/Backplane][backplanes]], cellphones
+  - asymetric (master-slave)
+  - full-duplex, serial (rs232 like)
+  - 115200 bps, 8 data bit, no parity, one stop
+  - 3pin: Tx, Rx, GND
+
+- use case:
+  - [[https://www.youtube.com/watch?v=dtK14rSaQPg][power on off]]
+  - calls
+  - sms
+
+- tool: https://wammu.eu/gammu/
+
+- https://ka23.blogspot.com/2011/02/nokia-1110i-power-up-and-power-down-via.html
+- https://web.archive.org/web/20130714203425/http://www.embedtronics.com:80/nokia/fbus.html
+- https://hackaday.com/2021/05/09/fix-your-nokias-white-screen-of-death/

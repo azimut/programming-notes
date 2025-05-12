@@ -1,14 +1,23 @@
 - https://en.wikipedia.org/wiki/JTAG
-  - Join Task Action Group
+  - Join Task/Test Action Group
   - 1990 (Intel 80486)
   - Implemented on ICs
   - a way to interface and diagnosticate production issues
+  - not fast (boundary scans are bitshifted by design)
+  - boundary scans
+    - around a chip
+    - can be extended to many other components/ics through its bitshifting nature
+    - can be skipped through physical jumpers
+  - NEEDS A BSDL TO READ
+    - Boundary Scan Description Language
+    - describes what each pin does, description ID of each chip
   - Goals
     - Controlability: set 0 and 1 internal memory
     - Observability: read internal memory registers
   - Can
-    - rw EEPROM
-    - in-circuit debugging
+    - boundary scan (aka testing pin connectivity)
+    - rw EEPROM (aka program)
+    - in-circuit debugging (aka control)
     - daisy chain multiple ics
     - break into boot cycle
   - https://en.wikipedia.org/wiki/Boundary_scan_description_language
@@ -37,3 +46,13 @@
       gdb> target extended-remote localhost:3333
       gdb> x10i 0xc0136dd4 # show 10 instructions on given memory
     #+end_src
+
+* SWD
+
+- https://en.wikipedia.org/wiki/JTAG#Similar_interface_standards
+- ARM's JTAG implementation
+- 2 pins: CLOCK, IO
+
+* videos
+
+- 11 [[https://www.youtube.com/watch?v=TlWlLeC5BUs][EEVblog #499 - What is JTAG and Boundary Scan?]]
