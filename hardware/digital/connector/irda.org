@@ -1,4 +1,5 @@
 - https://en.wikipedia.org/wiki/Infrared_Data_Association
+- https://www.sbprojects.net/knowledge/ir/
 
 - there is a *carrier frequency* of 38kHz
 - 4 byte packet
@@ -7,6 +8,15 @@
   - 2 byte command
 
 * videos
+
 - 25 [[https://www.youtube.com/watch?v=B6y6Pbr0ENI][IR Remote Controllers protocol: 101 to advanced]]
 - 17 [[https://www.youtube.com/watch?v=gADIb1Xw8PE][#171 Arduino Guide to Infrared (IR) Communication also for ESP32 and ESP8266]]
 - 13 [[https://www.youtube.com/watch?v=vOzaDQmAW0g][EEVblog #505 - IR Learning Remote Control Hack]]
+
+* protocols
+** rc5
+- https://en.wikipedia.org/wiki/RC-5
+- https://robots-argentina.com.ar/Comunicacion_protocolorc5.htm
+- https://www.sbprojects.net/knowledge/ir/rc5.php
+** nec
+- https://www.sbprojects.net/knowledge/ir/nec.php

@@ -1,3 +1,4 @@
+- UART? https://forums.raspberrypi.com/viewtopic.php?t=375382
 - Hardware https://www.raspberrypi.com/documentation/computers/raspberry-pi.html
 - https://github.com/thibmaek/awesome-raspberry-pi
 - Learning OS development using Linux kernel and Raspberry Pi
@@ -10,6 +11,19 @@
     - CPU+Interrupt Controller+Timers
     - UART, I2C, SPI, GPIO, PWM
     - DMA
+
+* 2B
+
+- 2014
+- CPU
+  - https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/processors/bcm2836.adoc
+  - https://datasheets.raspberrypi.com/bcm2836/bcm2836-peripherals.pdf
+  - https://developer.arm.com/documentation/ddi0464/f/
+  - Broadcom - BCM2836RIFBG
+- RAM:
+  - SDRAM
+  - El Pida -  B8132B4PB-80-F
+- SMSC - LAN9514-JZX
 
 * Founders
 

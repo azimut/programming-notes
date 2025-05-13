@@ -1,6 +1,7 @@
-- https://en.wikipedia.org/wiki/Personal_Internet_Communicator
+- wiki https://en.wikipedia.org/wiki/Personal_Internet_Communicator
+- home https://web.archive.org/web/20080225043230/http://www.amd.com/us-en/ConnectivitySolutions/ProductInformation/0,,50_2330_12264_12262,00.html
+- PIC 1MM (aka "AMD PIC" aka "decTOP")
 - 2004
-- PIC 1MM (aka decTOP)
 - CPU: AMD [[https://en.wikipedia.org/wiki/Geode_(processor)][Geode]] GX2-X28-CD nsc2001 2.1
   - MMX 3DNow!
   - 1600x1200 24bit (with video scaling)
@@ -8,12 +9,15 @@
 - NorthBridge: CS5535-UDC
   - USB 1.1
   - UART
-- RAM: SODIMM DDR PC2700S 128Mb (upto 512Mb)
+- RAM: SODIMM DDR PC2700S 128Mb
+  - upto 512Mb (according to wiki)
+  - upto 256Mb per bank (according to datasheet)
 - Audio:
   - RealTek ALC203 - Audio Decodec
   - 20bit DAC, 18bit ADC
 - Photos https://radagast.ca/linux/dectop/opening_the_dectop.html
-- power consumption: [[https://blog.codinghorror.com/the-cost-of-leaving-your-pc-on/][4W with SSD]]
+- power consumption idle:
+  - [[https://blog.codinghorror.com/the-cost-of-leaving-your-pc-on/][4W with SSD]]
 
 * other ics
 

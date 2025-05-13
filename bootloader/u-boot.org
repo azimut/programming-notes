@@ -11,21 +11,29 @@
 - supports booting: linux, android, chromeos...
 
 * commands
-|--------------------------------------------+-----------------|
-| env print                                  | see environment |
-| sunxi_card0_probe                          | detect sdcard   |
-| mmcinfo                                    |                 |
-| mmc part                                   |                 |
-| fatls mmc 0:1                              |                 |
-| fatwrite mmc 0:1 45000000 boot.img 4000000 |                 |
-| fastboot flash boot patched.img            |                 |
-|--------------------------------------------+-----------------|
+|-------------------+-----------------------------------+-----------------|
+|        <c>        |                                   |                 |
+|        env        | print                             | see environment |
+|      setenv       | VARIABLE VALUE                    |                 |
+|      saveenv      | -                                 |                 |
+| sunxi_card0_probe |                                   | detect sdcard   |
+|      mmcinfo      |                                   |                 |
+|       fatls       | mmc 0:1                           |                 |
+|        mmc        | part                              |                 |
+|     fatwrite      | mmc 0:1 45000000 boot.img 4000000 |                 |
+|     fastboot      | flash boot patched.img            |                 |
+|-------------------+-----------------------------------+-----------------|
 * environment
-|-------------+--------------------------------------+----------------|
-|             |                 <c>                  |                |
-| bootdelay   |                  0                   |                |
-| boot_normal | sunxi_flash read 45000000 boot;bootm | boot sequence? |
-|-------------+--------------------------------------+----------------|
+|-----------------+--------------------------------------+----------------|
+|                 |                 <c>                  |                |
+| ipaddr          |                  IP                  |                |
+| serverip        |                  IP                  |                |
+| ethact          |              usb_ether               |                |
+| usbnet_devaddr  |                 MAC                  |                |
+| usbnet_hostaddr |                 MAC                  |                |
+| bootdelay       |                  0                   |                |
+| boot_normal     | sunxi_flash read 45000000 boot;bootm | boot sequence? |
+|-----------------+--------------------------------------+----------------|
 * video
 
 - https://www.youtube.com/playlist?list=PLM6hZ9mOhBWuWBz7REa_Gg3HZPbwHad-f

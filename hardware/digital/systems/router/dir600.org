@@ -11,9 +11,10 @@ https://dd-wrt.com/support/router-database/?model=DIR-600_B1%20/%20B2
   - Ralink RT3050
   - 320Mhz
   - MIPS
+  - Support for USB
 - RAM: 32Mb W9825G6EH-6
 - ROM: 4Mb S29GL032N90TFI040
-- USB: no
+- USB: *no*
 - x5 RJ45 100M RT3050
 - Serial: 57600
 
