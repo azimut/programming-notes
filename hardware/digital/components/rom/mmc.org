@@ -3,3 +3,4 @@
   - memory card standard
   - serial interface
   - sometimes as a card, sometimes as a IC (eMMC)
+  - eMMC - Embedded MultiMedia Card

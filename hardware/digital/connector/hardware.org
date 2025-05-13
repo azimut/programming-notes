@@ -1,3 +1,5 @@
+- https://hydrabus.com/hydranfc-v2-sniffer-decoder-specifications/?v=c582dec943ff
+- logic analyzer https://www.saleae.com/
 - FlashcatUSB https://www.embeddedcomputers.net/products/FlashcatUSB/
 - FT232H
   - High Speed RS-232
@@ -22,3 +24,5 @@
 - JTAGULATOR
   - home https://grandideastudio.com/portfolio/security/jtagulator/
   - source https://github.com/grandideastudio/jtagulator
+  - bom https://grandideastudio.com/wp-content/uploads/jtagulator_bom.pdf
+    - P8X32A-Q44

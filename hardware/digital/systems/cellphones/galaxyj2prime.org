@@ -1,0 +1,21 @@
+- https://en.wikipedia.org/wiki/Samsung_Galaxy_J2_Prime
+- 2016-2018
+- SM-G532M
+- SoC: MediaTek MT6737
+  - GPU:
+    - ARM Mali-T720MP2
+    - 1.5GB RAM
+  - CPU:
+    - ARM Cortex-A53
+    - Quad-Core 1.4Ghz
+- ROM: 8GB
+- RAM: 1.5GB
+- Android: 6.0.1
+- Linux: 3.18.19
+  - dpi@SWHD7007
+
+* os
+- AOSP
+- LineageOS - not supported (never?)
+- e/os - not supported
+- https://xdaforums.com/f/samsung-galaxy-j2-roms-kernels-recoveries-oth.6450/

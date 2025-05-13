@@ -13,12 +13,6 @@
 - Docker
   incomplete https://github.com/samuelololol/docker-gentoo-crossdev-distccd
   armv6 https://github.com/samuelololol/docker-gentoo-crossdev-distccd
-- Alternatives
-  - YOCTO https://www.yoctoproject.org/
-  - OPENWRT (fork of years old buildroot)
-  - Crosstool-ng https://crosstool-ng.github.io/
-  - buildroot (glibc,uclibc) https://buildroot.org/
-    https://buildroot.org/downloads/manual/manual.html
 - Gentoo Bionic
   https://stackoverflow.com/questions/36331048/compiling-gentoo-bionic-on-a-x86-64-linux-machine
   https://github.com/gentoobionic/bionic

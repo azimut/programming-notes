@@ -1,0 +1,31 @@
+- https://en.wikipedia.org/wiki/Personal_Internet_Communicator
+- 2004
+- PIC 1MM (aka decTOP)
+- CPU: AMD [[https://en.wikipedia.org/wiki/Geode_(processor)][Geode]] GX2-X28-CD nsc2001 2.1
+  - MMX 3DNow!
+  - 1600x1200 24bit (with video scaling)
+  - 15µm
+- NorthBridge: CS5535-UDC
+  - USB 1.1
+  - UART
+- RAM: SODIMM DDR PC2700S 128Mb (upto 512Mb)
+- Audio:
+  - RealTek ALC203 - Audio Decodec
+  - 20bit DAC, 18bit ADC
+- Photos https://radagast.ca/linux/dectop/opening_the_dectop.html
+- power consumption: [[https://blog.codinghorror.com/the-cost-of-leaving-your-pc-on/][4W with SSD]]
+
+* other ics
+
+- Agere CSP1034S - DP2 Data Pump Chip Sets
+  - Modem
+- Agere 1648C-TV5 segv 0420s
+  - Modem
+
+- MK1491
+  - AMD Geode (CPU) Clock Source
+
+* articles
+- building linux https://docs.ampnuts.ru/eevblog.docs/AMD/32089_gxlinuximage.pdf
+- 07 [[https://mozy.org/amd-pic/][Unlocking WindowsCE and switching to Linux]]
+- 08 [[https://archive.md/20121217195107/http://users.xplornet.com/~coyoterun/crc/DecTOP.html][24/7 Information Using a decTOP as a Server]]

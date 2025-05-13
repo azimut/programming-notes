@@ -6,9 +6,19 @@
       - or reset back to 1
   - Types
     - 1987 NOR flash architecture
+      - SOIC8
       - allows single word writes
+      - byte per byte rw
+      - SPI interface
+      - 25L
     - 1989 NAND flash architecture
+      - TSOP48
+      - read by blocks
+      - accessed raw by the OS (no build-in controller)
       - eg: memory card, usb flash drive, ssd (2009-)
+    - ???? eMMC Flash
+      - BGA{153}
+      - build-in controller
 
 - Homemade Flash Memory Programmer
   - https://www.youtube.com/playlist?list=PLd0Jb8MtKHOPvd8nIFa7q3OW3F3grJMLO

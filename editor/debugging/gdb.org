@@ -1,17 +1,38 @@
 - /proc/PID/maps: has the section memory address ranges
 - inferior: the program being debugged
+
+* gdbserver
+
+- https://en.wikipedia.org/wiki/Gdbserver
+- runs on the "target"
+- while the source and copy of the binary is on the "host"
+
+#+CAPTION: on target
+#+begin_src sh
+  $ gdbserver 5.5.5.5:1234 --attach `pidof PROGNAME`
+#+end_src
+
+#+CAPTION: on host
+#+begin_src sh
+  $ gdb-multiarch /foo/PROGNAME
+  gdb> target remote 5.5.5.5:1234
+  gdb> info registers
+  gdb> bt
+  gdb> info proc mappings
+#+end_src
+
 * Commands
 |-----------------+---------+---------------------------------|
-|             <r> |   <c>   |                                 |
-|        set args |  1 2 3  |                                 |
+|       <c>       |   <c>   |                                 |
+|    set args     |  1 2 3  |                                 |
 | run < input.txt |         |                                 |
-|          (n)ext |   [N]   | step out, next source code line |
-|         (n)exti |   [N]   | step out, next asm instruction  |
-|          (s)tep |         | step into                       |
-|         (p)rint |         |                                 |
-|  info registers |         |                                 |
-|             x/i |   $pc   |                                 |
-|            file | EXEPATH | opens EXE as current program    |
+|     (n)ext      |   [N]   | step out, next source code line |
+|     (n)exti     |   [N]   | step out, next asm instruction  |
+|     (s)tep      |         | step into                       |
+|     (p)rint     |         |                                 |
+| info registers  |         |                                 |
+|       x/i       |   $pc   |                                 |
+|      file       | EXEPATH | opens EXE as current program    |
 |-----------------+---------+---------------------------------|
 * Emacs
 

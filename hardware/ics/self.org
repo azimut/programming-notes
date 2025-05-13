@@ -14,6 +14,7 @@
 * packages / form factors
 
 [[https://en.wikipedia.org/wiki/Chip_carrier][PLCC]] - Plastic Lead Chip Carrier
+[[https://en.wikipedia.org/wiki/Ball_grid_array][BGA]]  - Ball Grid Array
 
 * pins
 |-----------+------------------------------------|

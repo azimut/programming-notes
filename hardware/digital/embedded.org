@@ -1,9 +1,16 @@
 - FCC
-- https://openwrt.org/
-- https://freshtomato.org/
-- https://code.google.com/archive/p/snake-os/
 - https://techinfodepot.shoutwiki.com/wiki/Main_Page
-
 
 - 20 [[https://www.youtube.com/playlist?list=PLoFdAHrZtKkhcd9k8ZcR4th8Q8PNOx7iU][Hardware Hacking Tutorial]]
   - https://github.com/digiampietro/hacking-gemtek
+
+* distros
+- https://openwrt.org/ (buildroot fork)
+- https://freshtomato.org/
+- https://code.google.com/archive/p/snake-os/
+
+* toolchains
+- https://crosstool-ng.github.io/
+- https://buildroot.org/ (glibc,uclibc)
+  https://buildroot.org/downloads/manual/manual.html
+- https://www.yoctoproject.org/

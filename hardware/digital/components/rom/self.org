@@ -4,3 +4,23 @@
    EPROM - Can be ereased through UV lights
   EEPROM - Erased programmatically
 #+end_src
+
+* Flashrom
+
+- wiki https://en.wikipedia.org/wiki/Flashrom_(utility)
+- home https://www.flashrom.org/
+- Pomona 5250 - SOIC clip
+- CH341A chip
+
+#+CAPTION: dumping flash through SPI, setting custom speed
+#+begin_src sh
+  $ flashrom -p serprog:dev=/dev/ttyACM0,spispeed=160k -r dump_spi.bin -c "MX25L6406E/MX25L6408E"
+#+end_src
+
+** flags
+
+|----+-------------------------|
+| -c | specify the target chip |
+| -r | outputfile              |
+| -p |                         |
+|----+-------------------------|

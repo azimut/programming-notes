@@ -17,18 +17,26 @@
   - Can
     - boundary scan (aka testing pin connectivity)
     - rw EEPROM (aka program)
-    - in-circuit debugging (aka control)
-    - daisy chain multiple ics
     - break into boot cycle
+      - in-circuit debugging (aka control)
+    - daisy chain multiple ics
   - https://en.wikipedia.org/wiki/Boundary_scan_description_language
 
 * pins
+|------+----+-----------------------+----------------------|
+| TCK  | -> | Test Clock            |                      |
+| TDO  | <- | Test Data Out         | high impedance input |
+| TDI  | -> | Test Data In          | pullup               |
+| TMS  | -> | Test Mode Select      | pullup               |
+| TRST | -> | Test Reset (optional) | pullup/down          |
+|------+----+-----------------------+----------------------|
+- sometimes might have missing pull-up on TRST
+- sometimes might have missing resistors
+* pinouts
 
-- TCK  - Test Clock
-- TDO  - Test Data Out
-- TDI  - Test Data In
-- TMS  - Test Mode Select
-- TRST - Test Reset (optional)
+- sometimes determined by the SoC
+- sometimes determined by the board manufacturer
+- popular ones http://jtagtest.com/pinouts/
 
 * tools
 

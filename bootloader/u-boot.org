@@ -10,6 +10,22 @@
 - cli interface
 - supports booting: linux, android, chromeos...
 
+* commands
+|--------------------------------------------+-----------------|
+| env print                                  | see environment |
+| sunxi_card0_probe                          | detect sdcard   |
+| mmcinfo                                    |                 |
+| mmc part                                   |                 |
+| fatls mmc 0:1                              |                 |
+| fatwrite mmc 0:1 45000000 boot.img 4000000 |                 |
+| fastboot flash boot patched.img            |                 |
+|--------------------------------------------+-----------------|
+* environment
+|-------------+--------------------------------------+----------------|
+|             |                 <c>                  |                |
+| bootdelay   |                  0                   |                |
+| boot_normal | sunxi_flash read 45000000 boot;bootm | boot sequence? |
+|-------------+--------------------------------------+----------------|
 * video
 
 - https://www.youtube.com/playlist?list=PLM6hZ9mOhBWuWBz7REa_Gg3HZPbwHad-f
