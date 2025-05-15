@@ -15,11 +15,13 @@
 
 * Chips
 
-- CP2102/9 USB-to-UART bridge
-  - I own 3 (red)
-- PL-2303HX USB-to-Serial
-  - I own 1
 - CH340 (not recommended? low clock accuraccy)
+- CP2102/9 by Sillicon Labs
+  - I own 3 (red) boards
+- PL-2303HX by Prolific
+  - I own 1 board
+- FT232BL by FTDI
+  - i own 1 ic
 
 * How to find UART?
 

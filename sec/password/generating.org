@@ -1,0 +1,5 @@
+* passwd / shadow
+
+#+begin_src sh
+  $ echo 'MYSECRETPASSWORD' | openssl passwd -6 -stdin
+#+end_src

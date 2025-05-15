@@ -45,6 +45,8 @@
 | -4  | -family inet  | for show cmd      |
 | -6  | -family inet6 | for show cmd      |
 |-----+---------------+-------------------|*
+** ip link
+set dev eth1 up
 ** ip neighbor
 show - aka ARP/NDP neighbours
 show dev IFACE

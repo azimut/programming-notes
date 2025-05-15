@@ -10,39 +10,59 @@
 - RAM: 32Mb SDRAM (2x EM639165)
 - ROM: 4Mb FLASH (MX29LV320DBTI-70G)
 - Camera:
+  - 5fps, 640x480 (as per rtsp)
   - Lens: board lens, f=4.0mm, F2.0, Fixed
   - Image Sensor: 1/4" CMOS sensor
 
 - diy 3d enclosure https://www.printables.com/model/2857-vivotek-ip7135-enclosure
 - firmware https://ftpmirror.your.org/pub/misc/ftp.vivotek.com/Firmware/IP7135/
 - program? https://github.com/jimliu08/fyd_ipcam/tree/master/venc
-- different camera pinout https://habr.com/en/articles/424919/
-  - D-link DCS-5220A1
-  - PTZ = Pan - Tilt - Zoom
-  - 192.168.0.99
-  - Bootloader: ARMboot https://armboot.sourceforge.net/
-    - seems not officially supported
-  - http: //IPHERE/cgi/admin/telnetd.cgi?command=on
-  - PINOUT [[https://habrastorage.org/r/w1560/webt/t-/z1/zu/t-z1zudcynj2vjmg29sqnwppyzu.jpeg]]
-    - ICE JTAG
-    - UART:
-      - +3.3v, Tx, Rx, GND
-      - 38400/8/1/NO/NO
-      - Author used a FTDI232 convertor
-      - ME: use a "4-pin [[https://en.wikipedia.org/wiki/Berg_connector][berg]]" female connector?
-  - Boot output
-    #+begin_src
-      ARMboot 1.1.0 (Nov 23 2006 - 17:31:45)
-      CPU: FA526id(wb) revision 1
-      Machine: Vivotek VVTK1000
-    #+end_src
 - include/config/mach/vvtk1000.h
 - debboostrap with vtk1000 kernel module loaded https://stewarts.org.uk/project/wdsharespacedebootstrap/
 
+* article on a different camera, same chipset (?
 
-* Connectivity
+- https://habr.com/en/articles/424919/
+- D-link DCS-5220A1
+- PTZ = Pan - Tilt - Zoom
+- 192.168.0.99
+- Bootloader: ARMboot https://armboot.sourceforge.net/
+  - seems not officially supported
+- http: //IPHERE/cgi/admin/telnetd.cgi?command=on
+- PINOUT [[https://habrastorage.org/r/w1560/webt/t-/z1/zu/t-z1zudcynj2vjmg29sqnwppyzu.jpeg]]
+  - ICE JTAG
+  - UART:
+    - +3.3v, Tx, Rx, GND
+    - 38400/8/1/NO/NO
+    - Author used a FTDI232 convertor
+    - ME: use a "4-pin [[https://en.wikipedia.org/wiki/Berg_connector][berg]]" female connector?
+- Boot output
+  #+begin_src
+    ARMboot 1.1.0 (Nov 23 2006 - 17:31:45)
+    CPU: FA526id(wb) revision 1
+    Machine: Vivotek VVTK1000
+  #+end_src
+
+* connectivity
 - 1x RJ45 100 baseT (RTL8100B ethernet controller)
 - +WiFi b/g+ on IP7137
-* Audio
+* audio
 - UDA1345TS
 - GSM-AMR/MPEG4 AAC
+* snippets
+
+- visit http://172.16.0.100/
+- no DHCP by default
+
+** direct network access
+
+#+begin_src sh
+  $ sudo ip addr add 172.16.0.1/24 dev eth1
+  $ sudo ip link set dev eth1 up
+#+end_src
+
+** check video with mpv
+
+#+begin_src sh
+  $ mpv rtsp://172.16.0.100:1026/test
+#+end_src

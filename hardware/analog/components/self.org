@@ -3,3 +3,15 @@
   - active
   - passive
   - electromechanic
+
+* buzzer
+
+- types
+  - active:
+    - has polarity
+    - single frequency
+  - passive
+    - no polarity
+    - multiple frequencies
+- [[https://docs.arduino.cc/language-reference/en/functions/advanced-io/tone/][tone()]] arduino function, generates square wave (50% duty cycle)
+- ringtones http://arcadetones.emuunlim.com/

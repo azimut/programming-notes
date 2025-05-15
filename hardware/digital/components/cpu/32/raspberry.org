@@ -1,3 +1,5 @@
+- pxe guide https://warmestrobot.com/blog/2024/06/27/raspberry-pi-network-boot-guide-2/
+- http://rpf.io/configtxt
 - UART? https://forums.raspberrypi.com/viewtopic.php?t=375382
 - Hardware https://www.raspberrypi.com/documentation/computers/raspberry-pi.html
 - https://github.com/thibmaek/awesome-raspberry-pi
@@ -12,18 +14,29 @@
     - UART, I2C, SPI, GPIO, PWM
     - DMA
 
-* 2B
+* Operative Systems
 
-- 2014
-- CPU
-  - https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/processors/bcm2836.adoc
-  - https://datasheets.raspberrypi.com/bcm2836/bcm2836-peripherals.pdf
-  - https://developer.arm.com/documentation/ddi0464/f/
-  - Broadcom - BCM2836RIFBG
-- RAM:
-  - SDRAM
-  - El Pida -  B8132B4PB-80-F
-- SMSC - LAN9514-JZX
+- lists https://github.com/thibmaek/awesome-raspberry-pi?tab=readme-ov-file#os-images
+- kodi https://libreelec.tv/downloads/raspberry/
+- netbsd https://wiki.netbsd.org/ports/evbarm/raspberry_pi/
+- freebsd https://wiki.freebsd.org/arm/Raspberry%20Pi
+- openwrt https://openwrt.org/toh/raspberry_pi_foundation/raspberry_pi
+- raspbian https://www.raspberrypi.com/software/operating-systems/
+- Gentoo
+  - https://wiki.gentoo.org/wiki/Raspberry_Pi
+  - https://wiki.gentoo.org/wiki/Raspberry_Pi/Installation
+
+* cmdline.txt
+
+#+begin_src
+console=serial0,115200
+console=tty1
+root=PARTUUID=6c586e13-02
+rootfstype=ext4
+elevator=deadline
+fsck.repair=yes
+rootwait
+#+end_src
 
 * Founders
 
@@ -45,6 +58,20 @@
   - ARM Cortex-A53 (Rev 1.2)
 - 2016 3B ARMv8 A53 BCM2837
   - no analog inputs
+
+** 2B v1.1
+
+- 2014
+- CPU
+  - https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/processors/bcm2836.adoc
+  - https://datasheets.raspberrypi.com/bcm2836/bcm2836-peripherals.pdf
+  - https://developer.arm.com/documentation/ddi0464/f/
+  - Broadcom - BCM2836RIFBG
+- RAM:
+  - SDRAM
+  - El Pida - B8132B4PB-80-F
+- SMSC - LAN9514-JZX
+- MAC: b8:27:eb:b5:c7:b4
 
 * IO
 

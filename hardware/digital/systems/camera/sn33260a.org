@@ -1,4 +1,6 @@
 - "SN33260A" board
+- CCTV module?
+- 12v?
 - 2010?
 - MCU: NVP2040E by NextChip
   - Input: 760HH CCD or NTSC/PAL
@@ -12,6 +14,10 @@
   - 3.3v / 5v Input
   - 15v, 0v, -8.5v
 
+- JTAG:
+  - PLD-JTAG?   http://jtagtest.com/pinouts/pld-jtag
+  - Lattice 9pin ispDOWNLOAD http://jtagtest.com/pinouts/lattice_ispdownload9
 - photos
   - SatVision SVC-S45V repair https://pikabu.ru/story/remont_ulichnoy_videokameryi_4307278
     - demo video https://www.youtube.com/watch?v=GG_3LVxvLuQ
+- board sold at https://www.alibaba.com/product-detail/security-camera-system-600tvl-Sony-NVP2040-60292369753.html

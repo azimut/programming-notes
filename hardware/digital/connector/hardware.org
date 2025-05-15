@@ -1,3 +1,5 @@
+- https://github.com/Aodrulez/blueTag
+  - jtagulator alternative on RPI zero/pico
 - https://hydrabus.com/hydranfc-v2-sniffer-decoder-specifications/?v=c582dec943ff
 - logic analyzer https://www.saleae.com/
 - FlashcatUSB https://www.embeddedcomputers.net/products/FlashcatUSB/
@@ -6,8 +8,6 @@
   - FTDI
   - 8 wires of data
   - 30Mbps
-- Logic Analyzers
-  - ?
 - CH341a https://github.com/boseji/CH341-Store
   - I2C/SPI flash/bios programmer
   - to dump a ROM

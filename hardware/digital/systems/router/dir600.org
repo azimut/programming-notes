@@ -1,20 +1,20 @@
 * B2
 
+https://techinfodepot.shoutwiki.com/wiki/D-Link_DIR-600_rev_B2
 https://openwrt.org/toh/d-link/dir-300revb
 https://wiki.dd-wrt.com/wiki/index.php/DIR-600
 https://dd-wrt.com/support/router-database/?model=DIR-600_B1%20/%20B2
 
-- 2009
+- 2009-2017
 - FCC ID: [[https://fccid.io/KA2DIR300B1][KA2DIR300B1]]
 - D-LINK
 - CPU
   - Ralink RT3050
   - 320Mhz
   - MIPS
-  - Support for USB
 - RAM: 32Mb W9825G6EH-6
 - ROM: 4Mb S29GL032N90TFI040
-- USB: *no*
+- USB: *NO* (CPU supports it tho :()
 - x5 RJ45 100M RT3050
 - Serial: 57600
 
