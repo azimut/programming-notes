@@ -1,0 +1,24 @@
+- source https://github.com/ReFirmLabs/binwalk/
+
+* cli
+
+|-------+----------------------------------------|
+| -E    | (mat)plot entropy                      |
+| -e    | extract whatever possible              |
+| -t    | format logn lines for terminal         |
+| -W -i | diff only 2 files, only when different |
+|-------+----------------------------------------|
+
+* modules
+
+- identify architecture of intructions in file https://github.com/airbus-seclab/cpu_rec
+
+* extractors
+
+- https://github.com/ReFirmLabs/binwalk/tree/master/src/extractors
+- [[https://github.com/ReFirmLabs/binwalk/blob/master/dependencies/pip.sh][pip3]]
+  - https://github.com/sviehb/jefferson
+  - uefi_firmware
+  - ubi-reader
+  - pip3 install --upgrade git+https://github.com/marin-m/vmlinux-to-elf $PIP_OPTIONS
+  - pip3 install --upgrade lz4 zstandard git+https://github.com/clubby789/python-lzo@b4e39df $PIP_OPTIONS

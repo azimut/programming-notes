@@ -1,5 +1,6 @@
 - https://en.wikipedia.org/wiki/Infrared_Data_Association
 - https://www.sbprojects.net/knowledge/ir/
+- argentina codes https://github.com/estebanramos/Flipper-ArgentinaIRDB
 
 - there is a *carrier frequency* of 38kHz
 - 4 byte packet

@@ -1,5 +1,8 @@
 - An inductor wound with +1 coil of wire
 - Changes in voltage between wires change the current
+- split transformers return +/- voltage
+  - making 4diode rectifiers not necessary, no voltage drop
+  - instead using 2 diodes, 1 for each polarity
 
 |----------+---------------------+-----------------------|
 | toroidal | ferrite donut, coil | stepping +/- voltages |

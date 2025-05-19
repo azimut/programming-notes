@@ -4,6 +4,48 @@
 - 20 [[https://www.youtube.com/playlist?list=PLoFdAHrZtKkhcd9k8ZcR4th8Q8PNOx7iU][Hardware Hacking Tutorial]]
   - https://github.com/digiampietro/hacking-gemtek
 
+- tool: helpfun when extracting firmwares https://wiki.debian.org/FakeRoot
+- TIP: there is a "factory mode" on the init scripts of many devices (HHT)
+
+- video course
+  - [[https://www.youtube.com/playlist?list=PLEBQazB0HUyTpoJoZecRK6PpDG31Y7RPB][Introduction to Embedded in Linux]] by digikey
+  - [[https://www.youtube.com/playlist?list=PLPW8O6W-1chwyTzI3BHwBLbGQoPFxPAPM][Modern Embedded Systems Programming Course]]
+- course
+  - https://bootlin.com/doc/training/embedded-linux/
+  - https://bootlin.com/doc/training/linux-kernel/
+  - https://bootlin.com/doc/training/yocto/
+  - https://bootlin.com/doc/training/buildroot/
+  - https://bootlin.com/doc/training/graphics/
+  - https://bootlin.com/doc/training/debugging/
+  - https://bootlin.com/doc/training/preempt-rt/
+  - https://bootlin.com/training/networking/
+
+* article
+
+** 20 [[https://krinkinmu.github.io/2020/07/05/beaglebone-software-update.html][Updating kernel and bootloader on BeagleBone Black Wireless]]
+
+- kernel:
+  - enable usb gadget for networking
+  - we get a "device tree" once build
+- u-boot:
+  - enable "emmc boot"
+  - enable nand support
+  - we get small MLO as a "first stage" bootloader loaded in memory
+  - we get "u-boot.img" loaded by MLO
+- busybox
+  - config: buils static binary
+  - config: prefix ../rootfs as the destination path
+- tftp
+  - serves the kernel (zImage) and the .dtb (device tree)
+- sdcard
+  - holds the MLO and u-boot.img
+- u-boot boot
+  #+begin_src sh
+    tftp 0x81000000 zImage # load zImage from ftp and store it there
+    setenv bootargs root=/dev/nfs rw ip=192.168.1.100:::::usb0 console=ttyO0,115200n8 g_ether.dev_addr=f8:dc:7a:00:00:02 g_ether.host_addr=f8:dc:7a:00:00:01 nfsroot=192.169.1.1:/home/kmu/ws/nfsroot,nfsvers=3
+    setenv bootcmd 'tftp 0x81000000 zImage; tftp 0x82000000 am335x-boneblack-wireless.dtb; bootz 0x81000000 - 0x82000000'
+  #+end_src
+
 * distros
 
 - https://www.gargoyle-router.com/
@@ -12,7 +54,18 @@
 - https://code.google.com/archive/p/snake-os/
 
 * toolchains
+
+#+CAPTION: k=kernel r=rootfs p=packages
+|-----------+---+---+---|
+|           | k | r | p |
+|-----------+---+---+---|
+| [[https://www.yoctoproject.org/][yocto]]     | x | x | x |
+| [[https://buildroot.org/][buildroot]] | x | x |   |
+| openwrt   | x | x |   |
+|-----------+---+---+---|
+
 - https://crosstool-ng.github.io/
-- https://buildroot.org/ (glibc,uclibc)
-  https://buildroot.org/downloads/manual/manual.html
-- https://www.yoctoproject.org/
+
+** buildroot
+- man https://buildroot.org/downloads/manual/manual.html
+- https://wiki.in-circuit.de/index.php5?title=Category:Buildroot

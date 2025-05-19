@@ -19,6 +19,8 @@
   |   strip | remove symbols                  |
   |---------+---------------------------------|
 
+- use -n to change *strings* min width of ascii chars for printing, default is 4
+
 - as ld example makefile
   #+begin_src makefile
     prog:   prog.o; ld prog -o prog

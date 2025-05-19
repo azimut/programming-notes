@@ -1,1 +1,2 @@
+- https://www.youtube.com/watch?v=vznYVh5ugnk
 - https://github.com/cpq/bare-metal-programming-guide

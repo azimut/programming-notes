@@ -1,3 +1,4 @@
+- https://wiki.archlinux.org/title/Arduino
 - https://bitwisecmd.com/
 - wiki https://en.wikipedia.org/wiki/Arduino
 - reversing https://github.com/thomasbbrunner/arduino-reverse-engineering

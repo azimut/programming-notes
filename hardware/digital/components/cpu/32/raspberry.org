@@ -22,6 +22,7 @@
 - freebsd https://wiki.freebsd.org/arm/Raspberry%20Pi
 - openwrt https://openwrt.org/toh/raspberry_pi_foundation/raspberry_pi
 - raspbian https://www.raspberrypi.com/software/operating-systems/
+  - systemd disable: wpa_supplicant, ModemManager, avahi-daemon[.socket]
 - Gentoo
   - https://wiki.gentoo.org/wiki/Raspberry_Pi
   - https://wiki.gentoo.org/wiki/Raspberry_Pi/Installation
@@ -36,6 +37,7 @@ rootfstype=ext4
 elevator=deadline
 fsck.repair=yes
 rootwait
+ipv6.disable=1
 #+end_src
 
 * Founders
@@ -80,6 +82,7 @@ rootwait
 - SPI
 - Serial
 - GPIO: 3.3v, 18mA max
+  - https://www.pi4j.com/1.2/pins/model-2b-rev1.html
   - you will likely need a transistor
   - with a resistor in base calculated with Ohm's Law
 

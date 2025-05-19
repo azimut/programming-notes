@@ -11,32 +11,62 @@
 - supports booting: linux, android, chromeos...
 
 * commands
-|-------------------+-----------------------------------+-----------------|
-|        <c>        |                                   |                 |
-|        env        | print                             | see environment |
-|      setenv       | VARIABLE VALUE                    |                 |
-|      saveenv      | -                                 |                 |
-| sunxi_card0_probe |                                   | detect sdcard   |
-|      mmcinfo      |                                   |                 |
-|       fatls       | mmc 0:1                           |                 |
-|        mmc        | part                              |                 |
-|     fatwrite      | mmc 0:1 45000000 boot.img 4000000 |                 |
-|     fastboot      | flash boot patched.img            |                 |
-|-------------------+-----------------------------------+-----------------|
+|-------------------+-----------------------------------+--------------------------------|
+|        <c>        |                <c>                |                                |
+|        env        |               print               | see environment                |
+|     printenv      |             VARIABLE              |                                |
+|      setenv       |          VARIABLE VALUE           |                                |
+|       reset       |                 -                 |                                |
+|      saveenv      |                 -                 | makes the changes permanent    |
+| sunxi_card0_probe |                                   | detect sdcard                  |
+|       fatls       |              mmc 0:1              |                                |
+|       tftp        |             ADDR FILE             | writes tftp FILE in given ADDR |
+|        mmc        |               part                |                                |
+|      mmcinfo      |                                   |                                |
+|       nand        |              page N               | dumps N page in hex            |
+|     fatwrite      | mmc 0:1 45000000 boot.img 4000000 |                                |
+|     fastboot      |      flash boot patched.img       |                                |
+|-------------------+-----------------------------------+--------------------------------|
 * environment
 |-----------------+---------------------------------+-------------------|
-|                 |               <c>               |                   |
-| ipaddr          |               IP                |                   |
-| serverip        |               IP                |                   |
-| ethact          |            usb_ether            | active iface      |
+|       <c>       |               <c>               |                   |
+|     ipaddr      |               IP                |                   |
+|    serverip     |               IP                |                   |
+|     ethact      |            usb_ether            | active iface      |
 | usbnet_devaddr  |               MAC               |                   |
 | usbnet_hostaddr |               MAC               |                   |
-| bootdelay       |                0                |                   |
-| bootcmd         |                                 | runs at boot time |
-| bootargs        |                                 | kernel cmdline    |
-| boot_normal     | sunxi_flash read 45000000 boot; | boot sequence?    |
+|    bootdelay    |                0                |                   |
+|    bootargs     |                                 | kernel cmdline    |
+|     bootcmd     |                                 | runs at boot time |
+|   boot_normal   | sunxi_flash read 45000000 boot; | boot sequence?    |
 |                 |              bootm              |                   |
 |-----------------+---------------------------------+-------------------|
+** boot steps
+
+#+begin_src conf
+tftp 0x81000000 zImage;
+tftp 0x82000000 am335x-boneblack-wireless.dtb;
+bootz 0x81000000 - 0x82000000
+#+end_src
+
+** cmdline
+
+#+CAPTION: for NFS
+#+begin_src conf
+root=/dev/nfs
+rw
+ip=192.168.1.100:::::usb0
+console=ttyO0,115200n8
+g_ether.dev_addr=f8:dc:7a:00:00:02
+g_ether.host_addr=f8:dc:7a:00:00:01
+nfsroot=192.169.1.1:/home/kmu/ws/nfsroot,nfsvers=3
+#+end_src
+
+* image header
+
+#+CAPTION: u-boot image header in 0-31 bits
+[[https://i.imgur.com/BHaEoL4.png]]
+
 * video
 
 - https://www.youtube.com/playlist?list=PLM6hZ9mOhBWuWBz7REa_Gg3HZPbwHad-f
@@ -44,3 +74,16 @@
 - 13 [[https://www.youtube.com/watch?v=RCTRSK45bS4][DIY Using Trust to Secure Embedded Projects]]
 - 14 [[https://www.youtube.com/watch?v=6QKBy-7qLyM][Linux Bootloaders & Kernel Configuration]]
 - 17 [[https://www.youtube.com/watch?v=2-Y4X81QHys][I Boot when U-Boot]] by Bernardo Maia Rodrigues & Vincent Ruijter
+
+* build example
+
+#+begin_src sh
+  $ git clone git://github.com/u-boot/u-boot.git
+  $ cd u-boot
+  $ export ARCH=arm
+  $ export CROSS_COMPILE=arm-linux-guneabi-
+  $ make am335x_evm_defconfig
+  $ make menuconfig # manual setup of other config
+  $ make -j 8
+  $ ls -l u-boot.img MLO # MLO = first stage in-memory bootloader, that loads u-boot.img
+#+end_src

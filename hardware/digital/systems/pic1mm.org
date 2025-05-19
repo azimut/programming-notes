@@ -15,7 +15,7 @@
 - Audio:
   - RealTek ALC203 - Audio Decodec
   - 20bit DAC, 18bit ADC
-- Photos https://radagast.ca/linux/dectop/opening_the_dectop.html
+- Photos https://radagtast.ca/linux/dectop/opening_the_dectop.html
 - power consumption idle:
   - [[https://blog.codinghorror.com/the-cost-of-leaving-your-pc-on/][4W with SSD]]
 
@@ -31,5 +31,7 @@
 
 * articles
 - building linux https://docs.ampnuts.ru/eevblog.docs/AMD/32089_gxlinuximage.pdf
+- https://github.com/cellularmitosis/amd-pic-linux
+- 07 [[https://jsco.org/dectop/][Installing Ubuntu on the decTOP (AMD PIC)]]
 - 07 [[https://mozy.org/amd-pic/][Unlocking WindowsCE and switching to Linux]]
 - 08 [[https://archive.md/20121217195107/http://users.xplornet.com/~coyoterun/crc/DecTOP.html][24/7 Information Using a decTOP as a Server]]

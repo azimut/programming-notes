@@ -1,3 +1,5 @@
+- hashcat
+
 * /etc/passwd
 
 - see man crypt(5)

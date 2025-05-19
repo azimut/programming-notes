@@ -81,6 +81,7 @@ https://en.wikipedia.org/wiki/Field-programmable_gate_array
   - 21 article https://dev.to/taw/100-languages-speedrun-episode-28-verilog-18jp
 ** Videos
 *** Playlist
+- [[https://www.youtube.com/playlist?list=PLEBQazB0HUyT1WmMONxRZn9NmQ_9CIKhb][Intro to FPGA]] by digikey
 - 17 https://www.youtube.com/playlist?list=PLKcjQ_UFkrd7UcOVMm39A6VdMbWWq-e_c
 - 20 DE1-SoC FPGA Lectures
   - https://www.youtube.com/playlist?list=PLDqMkB5cbBA4OW0fDTu1FY6aw4uBWOpBa

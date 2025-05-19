@@ -1,5 +1,5 @@
 - https://en.wikipedia.org/wiki/Fuse_(electrical)
 - test them with a continiuty tester
 - types
-  - glass
+  - glass (with/out sand)
   - ceramic
