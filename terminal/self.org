@@ -36,6 +36,7 @@
   - https://www.arewesixelyet.com/ (!!)
   - home https://saitoha.github.io/libsixel/
   - tmux fork/rant https://github.com/csdvrx/sixel-tmux
+  - https://github.com/ueber-devel/ueberzug
 
 * termcap / terminfo
 

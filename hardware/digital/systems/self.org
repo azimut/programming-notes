@@ -1,0 +1,22 @@
+* tower
+
+- NF6G-VSTA
+  - 2007
+  - AM2+
+  - DDR2
+  - https://download.asrock.com/Manual/ALiveNF6G-VSTA.pdf
+
+- A68HM-E33 V2
+  - 2015
+  - "black"
+  - FM2+ AMD A-Series/Athlon
+  - microATX
+
+- MIH61R MB 10097-1
+  - inspiron 620
+  - 2018?
+  - microATX
+  - ddr3
+  - LGA 1155
+  - i3
+  - "dell"

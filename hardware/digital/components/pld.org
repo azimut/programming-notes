@@ -80,6 +80,11 @@ https://en.wikipedia.org/wiki/Field-programmable_gate_array
 - verilog
   - 21 article https://dev.to/taw/100-languages-speedrun-episode-28-verilog-18jp
 ** Videos
+
+- TODO 24 [[https://www.youtube.com/watch?v=uXH3xof4BNg][FPGAs para password/hash cracking]] by Ignacio Agustin Randazzo
+  - in many CPU's there is no division op
+  - fpga's are made from a matrix of programmable CLB
+
 *** Playlist
 - [[https://www.youtube.com/playlist?list=PLEBQazB0HUyT1WmMONxRZn9NmQ_9CIKhb][Intro to FPGA]] by digikey
 - 17 https://www.youtube.com/playlist?list=PLKcjQ_UFkrd7UcOVMm39A6VdMbWWq-e_c

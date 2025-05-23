@@ -23,6 +23,8 @@
 |       tftp        |             ADDR FILE             | writes tftp FILE in given ADDR |
 |        mmc        |               part                |                                |
 |      mmcinfo      |                                   |                                |
+|        md         |              ADDR N-4bytes        | memory display                 |
+|      bdinfo       |                                   | board info structure           |
 |       nand        |              page N               | dumps N page in hex            |
 |     fatwrite      | mmc 0:1 45000000 boot.img 4000000 |                                |
 |     fastboot      |      flash boot patched.img       |                                |

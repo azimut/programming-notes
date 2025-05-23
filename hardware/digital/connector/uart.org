@@ -18,10 +18,14 @@
 - CH340 (not recommended? low clock accuraccy)
 - CP2102/9 by Sillicon Labs
   - I own 3 (red) boards
+  - USB 2.0
 - PL-2303HX by Prolific
+  - 2006
   - I own 1 board
+  - USB 1.1
 - FT232BL by FTDI
   - i own 1 ic
+  - USB 1.1/2.0
 
 * How to find UART?
 
@@ -37,9 +41,27 @@
 
 * Connecting
 
-- try [[https://en.wikipedia.org/wiki/Serial_port#Speed][common baud rates]] : 115200, 9600, 57600, 38400, 19200
-- to use them with an adaptor
-  - connect TX,RX,GND
-    - RX on adapter to TX on the board
-    - TX on adapter to RX on the board
-  - do NOT connect Vcc
+- try [[https://en.wikipedia.org/wiki/Serial_port#Speed][common baud rates]] : 115200, 9600, 57600, 38400, 19200, 921600 (mediatek?)
+
+** Web Serial
+
+- https://developer.mozilla.org/en-US/docs/Web/API/Web_Serial_API
+- https://wicg.github.io/serial/
+
+** other form factors
+
+- audio jack https://www.pabr.org/consolejack/consolejack.en.html
+- microusb
+  - https://wiki.postmarketos.org/wiki/Serial_debugging/Cable_schematics
+  - https://xdaforums.com/t/info-r-d-i9300-uart-and-nvdata-guide.2928854/
+  - https://www.stevenhoneyman.co.uk/2014/11/mtk-mediatek-debug-cable.html
+  - kernel cmdline
+    - nousb
+    - console=ttyMT1,921600n1
+    - printk.disable_uart=0
+
+** to use them with an adaptor
+- do NOT connect Vcc
+- connect TX,RX,GND
+  - RX on adapter to TX on the board
+  - TX on adapter to RX on the board

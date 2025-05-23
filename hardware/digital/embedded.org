@@ -1,4 +1,5 @@
 - FCC
+- talks https://github.com/indetectables-net/embedded
 - https://techinfodepot.shoutwiki.com/wiki/Main_Page
 
 - 20 [[https://www.youtube.com/playlist?list=PLoFdAHrZtKkhcd9k8ZcR4th8Q8PNOx7iU][Hardware Hacking Tutorial]]

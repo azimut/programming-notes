@@ -1,0 +1,5 @@
+- A2107? https://www.androidheadlines.com/2013/04/featured-review-lenovo-ideatab-a2107-ics-tablet-on-a-budget.html
+- 2013?
+
+- different uart
+  - https://wiki.postmarketos.org/wiki/Lenovo_IdeaTab_A3000_%28lenovo-a3000%29

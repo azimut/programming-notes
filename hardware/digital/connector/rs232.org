@@ -51,6 +51,7 @@
 
 - https://github.com/cyphunk/RS232enum
 - http://kt8216.unixcab.org/elek/serterm.html
+- putty, realterm
 - sniffer - jpnevulator [[https://jpnevulator.snarl.nl/][home]] [[https://github.com/snarlistic/jpnevulator][source]] [[https://jpnevulator.snarl.nl/src/current/manual.html][man]]
   #+begin_src sh
     sudo jpnevulator --ascii --timing-print --tty /dev/ttyUSB0 --read

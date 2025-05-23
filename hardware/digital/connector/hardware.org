@@ -8,6 +8,7 @@
 
 ** speaks
 
+- EasyJTAG https://easy-jtag.com/
 - GoodFET https://goodfet.sourceforge.net/ MSP430 based
 - FlashcatUSB https://www.embeddedcomputers.net/products/FlashcatUSB/
 - Bus Pirate v4 http://dangerousprototypes.com/docs/Bus_Pirate_v4_design_overview

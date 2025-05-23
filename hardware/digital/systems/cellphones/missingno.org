@@ -1,0 +1,51 @@
+- Lenovo Tab 7?
+  - 2017
+  - aarch64 (aka ARM64)
+  - FLASH: 8Gb eMMC
+  - RAM: 1Gb DDR4 - 2x 7RB75 D9TGQ DDR?
+  - https://fccid.io/O57TB7304X (similar internal hw)
+  - https://www.devicespecifications.com/es/model/ac204675
+  - https://wiki.postmarketos.org/wiki/Lenovo_Tab_7_Essential_(lenovo-tb7304f)
+    - vol+ BROM
+    - vol- fastboot?
+  - uart: 921600 baudrate
+  - https://wiki.postmarketos.org/wiki/Mtkclient
+  - owner https://val.packett.cool/
+
+- ARM Mediatek
+  - MT8167A?
+  - some random kernel https://android.googlesource.com/kernel/mediatek/+/android-mediatek-sprout-3.4-kitkat-mr2
+
+- board beh67571
+- screen tv070wsm tl1
+
+* uart
+
+- pmic = power management IC
+  - MT6392A (mediatek) https://patchwork.kernel.org/project/linux-arm-kernel/cover/20241226050205.30241-1-val@packett.cool/
+
+** [4942] cmdline
+
+#+begin_src conf
+  androidboot.bootreason=power_key
+  androidboot.hardware=mt8167
+  androidboot.sbc=1
+  androidboot.serialno=HGCG9EDL
+  androidboot.verifiedbootstate=green
+  boot_reason=0
+  bootopt=64S3,32N2,64N2
+  bootprof.lk_t=4935
+  bootprof.pl_t=8874
+  console=tty0
+  console=ttyMT0,921600n1
+  earlycon=uart8250,mmio32,0x11005000
+  printk.disable_uart=1
+  root=/dev/ram
+  vmalloc=496M
+#+end_src
+
+* cameras
+
+- BLX2375H-A1960-F
+  - front facing
+- C10721 V1 1803 ????????

@@ -1,5 +1,6 @@
 - https://en.wikipedia.org/wiki/Samsung_Galaxy_J2_Prime
 - 2016-2018
+- FCC ID: [[https://fcc.report/FCC-ID/A3LSMG532M][A3LSMG532M]]
 - SM-G532M
 - SoC: MediaTek MT6737
   - GPU:
@@ -14,8 +15,51 @@
 - Linux: 3.18.19
   - dpi@SWHD7007
 
+- usb JIG https://www.instructables.com/USB-JIG-to-give-life-to-your-Bricked-mobile/
+- eemc repair through jtag
+  - https://www.youtube.com/watch?v=_n7s4US2Q2A
+  - https://scontent.faep9-1.fna.fbcdn.net/v/t1.6435-9/36580382_403301206847519_7561248070151700480_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=mDMmaCJuURIQ7kNvwEUlwpK&_nc_oc=Adlm0xIF6ISaETiCCHnhHe4dsHuSjDnljeyA-bysjS7_2Ks2Q0hBVndVaG9Ob-g-ezc&_nc_zt=23&_nc_ht=scontent.faep9-1.fna&_nc_gid=TlTV98KTVWsPB7OxtNAoOg&oh=00_AfKimHSguSANlVm3X2kUXm2spZcmPpHs6rzypOsyq9veXg&oe=6855BE0F
+  - EasyJTAG and pinout https://pikabu.ru/story/podnimaem_boot_na_telefone_samsung_galaxy_j2_primeg532g_5115433
+
+* adb getprops
+
+[ro.build.version.sdk]:             [23]
+[ro.build.selinux]:                 [1]
+[ro.build.selinux.enforce]:         [1]
+[ro.build.version.incremental]:     [G532MUMU1ASH2]
+[ro.build.version.security_patch]:  [2018-08-01]
+[ro.product.cpu.abilist32]:         [armeabi-v7a,armeabi]
+[ro.product.cpu.abilist64]:         []
+[ro.product.manufacturer]:          [samsung]
+[ro.product.model]:                 [SM-G532M]
+[ro.product.name]:                  [grandpplteub]
+[dalvik.vm.isa.arm.variant]:        [cortex-a53]
+
+
+* tools
+
+- tool https://github.com/Benjamin-Dobell/Heimdall
+- tool https://en.wikipedia.org/wiki/Odin_(firmware_flashing_software)
+
 * os
 - AOSP
 - LineageOS - not supported (never?)
 - e/os - not supported
+- https://xdaforums.com/t/rom-aroma-stable-xtreme-ultimate-v6-0-by-xtreme-team-g532m-g-f-6-0-1.3763904/
 - https://xdaforums.com/f/samsung-galaxy-j2-roms-kernels-recoveries-oth.6450/
+* android recovery
+
+#+begin_src
+  mmb29t.g532mumu1ash2
+  samsunsg/grandpplteub/grandpplte
+  6.01/mmb29t/g532mumu1ash2
+
+  nosupport single-sku
+  supported api: 3
+
+  manual mode
+  appling multi-csc
+  appliesd csc-code psn
+  successfully applied multi-csv
+  successfully verify tofor dmverity hash tree
+#+end_src
