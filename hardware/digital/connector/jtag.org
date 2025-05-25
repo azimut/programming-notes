@@ -46,6 +46,7 @@
 
 * tools
 
+- UrJTAG https://urjtag.sourceforge.io/
 - OpenOCD - Open On-Chip Debugger
   - https://openocd.org/
   - https://www.youtube.com/watch?v=_1u7IOnivnM

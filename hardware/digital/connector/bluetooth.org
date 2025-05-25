@@ -1,9 +1,0 @@
-* tool
-- sniffer https://wiki.wireshark.org/Bluetooth
-- security https://github.com/zenware/bluemaho
-- security: https://github.com/ZeroChaos-/blue_hydra
-- security: mitm https://github.com/bettercap/bettercap
-- security: mitm BLE https://github.com/securing/gattacker
-  - ESP32 based
-* hardware
-- ubertooth one https://greatscottgadgets.com/ubertoothone/

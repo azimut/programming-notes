@@ -1,0 +1,44 @@
+* Forger
+- https://tools.kali.org/wireless-attacks/packetforge-ng
+- https://tools.kali.org/wireless-attacks/wifitap
+* Sniffer
+- visualize kismet
+  https://tools.kali.org/wireless-attacks/giskismet
+- sniffer and IDS
+  https://tools.kali.org/wireless-attacks/kismet
+* autopwn
++ https://github.com/v1s1t0r1sh3r3/airgeddon
+- impersonates auth server
+  https://tools.kali.org/wireless-attacks/hostapd-wpe
+- fake ap
+  https://tools.kali.org/wireless-attacks/wifi-honey
+- phishing AP
+  https://tools.kali.org/wireless-attacks/wifiphisher
+- macchanger, deauth clients, crack
+  https://tools.kali.org/wireless-attacks/wifite
+- UI for attacks
+  https://tools.kali.org/wireless-attacks/fern-wifi-cracker
+- UI for more attacks
+  https://tools.kali.org/information-gathering/ghost-phisher
+* WEP
+- ivs generation?
+  https://tools.kali.org/wireless-attacks/makeivs-ng
+- merge and convert ivs files
+  https://tools.kali.org/wireless-attacks/ivstools
+- auto
+  https://tools.kali.org/wireless-attacks/wesside-ng
+* WPA
+- radius impersonation
+  https://tools.kali.org/wireless-attacks/freeradius-wpe
+- downgrade to wep
+  https://tools.kali.org/wireless-attacks/mdk3
+- pre-generate ssid/pwd auth
+  https://tools.kali.org/wireless-attacks/pyrit
+- wps attack
+  https://tools.kali.org/wireless-attacks/reaver
+- wps offline hack
+  https://tools.kali.org/wireless-attacks/pixiewps
+- wpa/tkip attack
+  https://tools.kali.org/wireless-attacks/tkiptun-ng
+- clean cap of non hanshakes
+  https://tools.kali.org/wireless-attacks/wpaclean

@@ -1,0 +1,25 @@
+https://tools.kali.org/tools-listing - wireless INCOMPLETE
+
+- BLE
+  - Hardware: Ubertooth
+  - gattool, hcitool
+- LoRa
+- Z-Wave
+- zigbee
+  https://tools.kali.org/wireless-attacks/killerbee
+- gsm, calculate "local oscillator frequency offset" (? of a base station
+  https://tools.kali.org/wireless-attacks/kalibrate-rtl
+- RFID:
+  - Hardware: Proxmark
+- SDR
+  - Software: GNURadio, OSMOCOM
+  - Hardware: HackRF
+  - Hardware: BladeRF
+  - Hardware: PandaRF
+  - https://tools.kali.org/wireless-attacks/gqrx
+  - https://tools.kali.org/wireless-attacks/gr-scan
+
+- ? digital radio?
+  https://tools.kali.org/wireless-attacks/multimon-ng
+- usb tv, frequency scanner
+  https://tools.kali.org/wireless-attacks/rtlsdr-scanner

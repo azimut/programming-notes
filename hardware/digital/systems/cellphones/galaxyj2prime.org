@@ -1,3 +1,4 @@
+- https://wiki.postmarketos.org/wiki/Galaxy_J2_Prime_(SM-G532M)
 - https://en.wikipedia.org/wiki/Samsung_Galaxy_J2_Prime
 - 2016-2018
 - FCC ID: [[https://fcc.report/FCC-ID/A3LSMG532M][A3LSMG532M]]

@@ -43,7 +43,7 @@
 
 - try [[https://en.wikipedia.org/wiki/Serial_port#Speed][common baud rates]] : 115200, 9600, 57600, 38400, 19200, 921600 (mediatek?)
 
-** Web Serial
+** web serial
 
 - https://developer.mozilla.org/en-US/docs/Web/API/Web_Serial_API
 - https://wicg.github.io/serial/
@@ -60,8 +60,57 @@
     - console=ttyMT1,921600n1
     - printk.disable_uart=0
 
-** to use them with an adaptor
+** when using and an adaptor
+
 - do NOT connect Vcc
 - connect TX,RX,GND
   - RX on adapter to TX on the board
   - TX on adapter to RX on the board
+
+* tools
+** connecting
+
+- http://kt8216.unixcab.org/elek/serterm.html
+- windows: putty, realterm
+- linux:
+  #+begin_src sh
+    $ minicom                    # new
+    $ picom -b 9600 /dev/ttyUSBO # nice (works with default scroll)
+    $ cu -l /dev/ttyUSB0 -s 9600 # old
+    $ screen /dev/ttyUSB0 9600   # classic
+  #+end_src
+
+** enum
+
+- https://github.com/sickcodes/python3-baudrate
+- https://github.com/cyphunk/RS232enum
+
+** other
+
+- sniffer - jpnevulator [[https://jpnevulator.snarl.nl/][home]] [[https://github.com/snarlistic/jpnevulator][source]] [[https://jpnevulator.snarl.nl/src/current/manual.html][man]]
+  #+begin_src sh
+    sudo jpnevulator --ascii --timing-print --tty /dev/ttyUSB0 --read
+  #+end_src
+
+- stty - set baudrate
+  #+begin_src sh
+    $ stty -F /dev/ttyUSB0 9600
+  #+end_src
+
+* snippets
+
+- dumping NAND using u-boot's "nand page N"
+  https://github.com/digiampietro/hacking-gemtek/blob/master/serial-flash-dump.expect
+  https://github.com/digiampietro/hacking-gemtek/blob/master/hexdump2bin.pl
+  #+begin_src sh
+    $ ./serial-flash-dump.expect /dev/ttyUSB0 | tee eeprom.txt
+    # 10 hours later...
+    $ ./hexdump2bin.pl -v eeprom.txt > eeprom.bin
+    # 5 seconds later...
+    $ binwalk eeprom.bin
+  #+end_src
+
+- dumping blob
+  #+begin_src sh
+    $ openssl enc -base64 -in BLOB
+  #+end_src

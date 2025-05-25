@@ -4,3 +4,8 @@
   - 45 instructions
   - "Micro Computer Set 4" (cpu,rom,ram,shift register for IO expansion)
   - 71 video [[https://www.youtube.com/watch?v=gPKZSuXAVMU][The MCS-4 Story]]
+
+- tool: https://wiki.archlinux.org/title/Intel_graphics
+- tool: performance counter monitor https://github.com/intel/pcm
+  - needs harware support for it ([[https://github.com/intel/pcm/issues/504][all of them?]])
+  - Intel® Core™, Xeon®, Atom™ and Xeon Phi™

@@ -1,6 +1,9 @@
 - Lenovo Tab 7?
   - 2017
   - aarch64 (aka ARM64)
+  - ARM Mediatek
+    - MT8167A
+    - some random kernel https://android.googlesource.com/kernel/mediatek/+/android-mediatek-sprout-3.4-kitkat-mr2
   - FLASH: 8Gb eMMC
   - RAM: 1Gb DDR4 - 2x 7RB75 D9TGQ DDR?
   - https://fccid.io/O57TB7304X (similar internal hw)
@@ -11,10 +14,13 @@
   - uart: 921600 baudrate
   - https://wiki.postmarketos.org/wiki/Mtkclient
   - owner https://val.packett.cool/
+    - https://social.treehouse.systems/@valpackett/113513815481771395
+      #+begin_src sh
+        $ doas python mtk.py w boot
+        mkbootimg --kernel
+        mtk_mkimage.sh KERNEL
+      #+end_src
 
-- ARM Mediatek
-  - MT8167A?
-  - some random kernel https://android.googlesource.com/kernel/mediatek/+/android-mediatek-sprout-3.4-kitkat-mr2
 
 - board beh67571
 - screen tv070wsm tl1

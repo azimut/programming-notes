@@ -1,0 +1,34 @@
+- https://wiki.gentoo.org/wiki/Bluetooth
+- https://wiki.archlinux.org/title/Bluetooth
+
+* articles
+
+- https://blog.ornx.net/post/bluetooth-volume-fix/
+
+* pulseaudio
+
+- module-bluetooth-policy
+- module-bluetooth-discover
+
+* tools
+
+- [[https://tools.kali.org/wireless-attacks/spooftooph][spooftooph]] - spoof device id
+- [[https://tools.kali.org/wireless-attacks/redfang][redfang]] - discover invisible by bruteforce
+
+- blueman-applet
+- bluetoothctl --agent KeyboardDisplay
+- btmgmt
+  - discov yes
+  - connectable yes
+  - pairable yes
+  - power yes
+
+- sniffer https://wiki.wireshark.org/Bluetooth
+- security https://github.com/zenware/bluemaho
+- security: https://github.com/ZeroChaos-/blue_hydra
+- security: mitm https://github.com/bettercap/bettercap
+- security: mitm BLE https://github.com/securing/gattacker
+  - ESP32 based
+
+* hardware
+- ubertooth one https://greatscottgadgets.com/ubertoothone/

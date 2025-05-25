@@ -1,0 +1,86 @@
+- https://xdaforums.com/t/guide-how-to-unbrick-your-mediatek-mt65xx.1943442/
+- https://github.com/DavidBuchanan314/rabbit_r1_boot_notes/blob/main/README.md
+- https://gist.github.com/lopestom/ce250f5de64a2764ee85092a2c01939e
+- https://www.hovatek.com/forum/thread-46342.html
+
+* tools
+
+- [[https://www.hovatek.com/forum/thread-46342.html][[Tutorial] How to use MTK Client + SP Flash tool to back up or flash]]
+  - [[https://www.hovatek.com/forum/thread-159.html][How to use SP flash tool to flash MediaTek devices]]
+  - [[https://www.hovatek.com/forum/thread-46323.html][How to use WWR v2.51 + SP Flash tool to backup Mediatek devices]]
+  - [[https://www.hovatek.com/forum/thread-40866.html][How to use MTK Client to flash Mediatek firmware]]
+  - [[https://www.hovatek.com/forum/thread-40865.html][How to use MTK Client to backup Mediatek firmware]]
+
+- tool: windows drivers "Mediatek USB VCOM drivers" https://www.thecustomdroid.com/mediatek-preloader-usb-vcom-drivers/
+  - to recognize MTK Preloader on windows and use it
+  - alternative: "Mediatek Preloader Drivers"
+- tool: sp flash tool
+  - https://spflashtool.com/
+  - https://www.rigacci.org/wiki/doku.php/doc/appunti/android/sp_flash_tool
+  - https://github.com/gesangtome/SP_Flash_Tool_Linux
+  - https://usuariodebian.blogspot.com/2017/01/sp-flash-tool-en-linux.html
+- tool: https://tinyhack.com/2021/01/31/dissecting-a-mediatek-bootrom-exploit/
+- tool: https://github.com/bkerler/mtkclient
+  - 21 video [[https://www.youtube.com/watch?v=NulWJo2RSKE][Introduction to MTK Reverse Engineering]]
+    - attacks
+      - amonet
+      - kamakiri
+      - hashimoto
+
+* preloader
+
+- in mtk the bootloader is called "preloader"
+- it also can act as an interface to dump/flash firmware files to nand memory of the device
+  - this includes everything on NAND, even the preloader itself
+
+* boot
+
+- mtk preloader https://blog.csdn.net/mcgrady_tracy/article/details/39340209
+  - Startup Process [[https://img-blog.csdn.net/20140917112820661]]
+    - Each chip has a "Boot ROM"
+    - Loads the Preloader (from NAND) into SRAM
+      - that is before external (D)RAM is initialized
+    - Everything else stored in NAND flash
+  - Download Mode https://img-blog.csdn.net/20140917112827556
+  - Components
+    - Mediatek/platform/mt6582/preloader
+    - Mediatek/custom/mt6582/preloader
+    - mediatek/custom/hexing82_wet_jb5/preloader
+
+* Usb Connection
+
+- Lenovo A2107 - MT6575A
+- Lenovo Tab 7 - MT8167A
+
+** Pressing Vol+
+
+This appears very briefly (2 seconds) before continuing normally.
+
+"Meta Mode" I assume.
+
+#+CAPTION: lsusb + dmesg
+#+begin_src
+Bus 001 Device 030: ID 0e8d:0003 MediaTek Inc. MT6227 phone
+
+usb 1-2: new full-speed USB device number 33 using xhci_hcd
+usb 1-2: New USB device found, idVendor=0e8d, idProduct=0003, bcdDevice= 1.00
+usb 1-2: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+cdc_acm 1-2:1.0: ttyACM0: USB ACM device
+usb 1-2: USB disconnect, device number 33
+#+end_src
+
+** Normal Connection
+
+#+CAPTION: lsusb + dmesg
+#+begin_src
+Bus 001 Device 027: ID 0e8d:2000 MediaTek Inc. MT65xx Preloader
+
+usb 1-2: new high-speed USB device number 34 using xhci_hcd
+usb 1-2: New USB device found, idVendor=0e8d, idProduct=2000, bcdDevice= 1.00
+usb 1-2: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+usb 1-2: Product: MT65xx Preloader
+usb 1-2: Manufacturer: MediaTek
+cdc_acm 1-2:1.0: Zero length descriptor references
+cdc_acm: probe of 1-2:1.0 failed with error -22
+cdc_acm 1-2:1.1: ttyACM0: USB ACM device
+#+end_src

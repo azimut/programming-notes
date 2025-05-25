@@ -1,0 +1,2 @@
+- EDL Mode https://www.thecustomdroid.com/qualcomm-edl-mode-guide/
+  - Interface to download/flash firmware
