@@ -1,6 +1,8 @@
 - /proc/PID/maps: has the section memory address ranges
 - inferior: the program being debugged
 
+- https://stackoverflow.com/questions/2611624/low-level-qemu-based-debugging/2615816#2615816
+
 * gdbserver
 
 - https://en.wikipedia.org/wiki/Gdbserver

@@ -1,8 +1,9 @@
 - Lenovo Tab 7?
   - 2017
   - aarch64 (aka ARM64)
-  - ARM Mediatek
-    - MT8167A
+  - SOC: ARM Mediatek *MT8167A*
+    - GPU:
+      - Adreno 200?
     - some random kernel https://android.googlesource.com/kernel/mediatek/+/android-mediatek-sprout-3.4-kitkat-mr2
   - FLASH: 8Gb eMMC
   - RAM: 1Gb DDR4 - 2x 7RB75 D9TGQ DDR?
@@ -17,10 +18,18 @@
     - https://social.treehouse.systems/@valpackett/113513815481771395
       #+begin_src sh
         $ doas python mtk.py w boot
-        mkbootimg --kernel
-        mtk_mkimage.sh KERNEL
+           (~/src/github.com/osm0sis/mkbootimg/mkbootimg
+              --kernel (sh ~/Downloads/mtk_mkimage.sh KERNEL (cat ~/src/git.kernel.org/pub/scm/linux/kernel/git/next/linux-next/arch/arm64/boot/{Image.gz,dts/mediatek/mt8167-lenovo-tb7304f.dtb} | psub) /dev/stdout | psub)
+              --ramdisk (sh ~/Downloads/mtk_mkimage.sh ROOTFS ~/.local/var/pmbootstrap/chroot_rootfs_Lenovo-tb7304f/boot/initramfs /dev/stdout | psub)
+              --kernel_offset 0x00008000
+              --ramdisk_offset 0x03f88000
+              --base 0x40078000
+              --pagesize 2048
+              --tags_offset 0x0df88000
+              --header_version 0
+              --cmdline "bootopt=64S3,32N2,64N2 earlycon=mtk8250,mmio32,0x11005000 console=ttyS0,921600n1"
+              -o /dev/stdout | psub)
       #+end_src
-
 
 - board beh67571
 - screen tv070wsm tl1
@@ -55,3 +64,89 @@
 - BLX2375H-A1960-F
   - front facing
 - C10721 V1 1803 ????????
+
+* partitions
+
+** table
+|-----------+---------+---+----------------------------+----------|
+|           |  blocks |   |                            |          |
+|-----------+---------+---+----------------------------+----------|
+| proinfo   |    6144 |   |                            |          |
+| nvram     |   10240 |   |                            |          |
+| protect1  |   20480 |   |                            |          |
+| protect2  |   20480 |   |                            |          |
+| persist   |   98304 |   |                            |          |
+| seccfg    |     512 |   |                            |          |
+| lk        |     768 | x |                            |          |
+| lk2       |     768 |   |                            |          |
+| boot      |   32768 | x | bootimg                    | 16M + 5M |
+|           |         |   | kernel = ARM64 4.4 gpu_rgx |          |
+|           |         |   | ramdisk = AOSP init 0.8    |          |
+| recovery  |   32768 |   |                            |          |
+| para      |    1024 |   |                            |          |
+| logo      |   16384 |   |                            |          |
+| expdb     |   20480 |   |                            |          |
+| frp       |    2048 |   |                            |          |
+| tee1      |   10240 |   |                            |          |
+| tee2      |   10240 |   |                            |          |
+| kb        |    4096 |   |                            |          |
+| dkb       |    4096 |   |                            |          |
+| metadata  |   67584 |   |                            |          |
+| system    | 6930432 |   |                            |          |
+| cache     |  884736 |   |                            |          |
+| userdata  | 7060480 | x |                            |          |
+| flashinfo |   32768 |   |                            |          |
+|-----------+---------+---+----------------------------+----------|
+
+** log
+
+#+begin_src
+[PART] [0x0000000000080000-0x000000000037FFFF] "proinfo" (6144 blocks)
+[PART] [0x0000000000380000-0x000000000087FFFF] "nvram" (10240 blocks)
+[PART] [0x0000000000880000-0x000000000127FFFF] "protect1" (20480 blocks)
+[PART] [0x0000000001280000-0x0000000001C7FFFF] "protect2" (20480 blocks)
+[PART] [0x0000000001C80000-0x0000000004C7FFFF] "persist" (98304 blocks)
+[PART] [0x0000000004C80000-0x0000000004CBFFFF] "seccfg" (512 blocks)
+[PART] [0x0000000004CC0000-0x0000000004D1FFFF] "lk" (768 blocks)
+[PART] [0x0000000004D20000-0x0000000004D7FFFF] "lk2" (768 blocks)
+[PART] [0x0000000004D80000-0x0000000005D7FFFF] "boot" (32768 blocks)
+[PART] [0x0000000005D80000-0x0000000006D7FFFF] "recovery" (32768 blocks)
+[PART] [0x0000000006D80000-0x0000000006DFFFFF] "para" (1024 blocks)
+[PART] [0x0000000006E00000-0x00000000075FFFFF] "logo" (16384 blocks)
+[PART] [0x0000000007600000-0x0000000007FFFFFF] "expdb" (20480 blocks)
+[PART] [0x0000000008000000-0x00000000080FFFFF] "frp" (2048 blocks)
+[PART] [0x0000000008100000-0x00000000085FFFFF] "tee1" (10240 blocks)
+[PART] [0x0000000008600000-0x0000000008AFFFFF] "tee2" (10240 blocks)
+[PART] [0x0000000008B00000-0x0000000008CFFFFF] "kb" (4096 blocks)
+[PART] [0x0000000008D00000-0x0000000008EFFFFF] "dkb" (4096 blocks)
+[PART] [0x0000000008F00000-0x000000000AFFFFFF] "metadata" (67584 blocks)
+[PART] [0x000000000B000000-0x00000000DE7FFFFF] "system" (6930432 blocks)
+[PART] [0x00000000DE800000-0x00000000F97FFFFF] "cache" (884736 blocks)
+[PART] [0x00000000F9800000-0x00000001D0F7FFFF] "userdata" (7060480 blocks)
+[PART] [0x00000001D0F80000-0x00000001D1F7FFFF] "flashinfo" (32768 blocks)
+#+end_src
+
+** fstab.mt8167 on boot
+
+#+begin_src
+/dev/block/platform/bootdevice/by-name/system    /system       ext4  ro                                            wait,verify
+/dev/block/platform/bootdevice/by-name/userdata  /data         ext4  noatime,nosuid,nodev,noauto_da_alloc,discard  wait,check,resize,forceencrypt=/dev/block/platform/bootdevice/by-name/metadata,
+/dev/block/platform/bootdevice/by-name/cache     /cache        ext4  noatime,nosuid,nodev,noauto_da_alloc,discard  wait,check
+/devices/platform/soc/11130000.mmc*              auto          vfat  defaults                                      voldmanaged=sdcard1:auto,encryptable=userdata
+/devices/platform/mt_usb*                        auto          vfat  defaults                                      voldmanaged=usbotg:auto
+/devices/platform/soc/11190000.usb*              auto          vfat  defaults                                      voldmanaged=usbotg:auto
+/dev/block/platform/bootdevice/by-name/nvram     /nvram        emmc  defaults                                      defaults
+/dev/block/platform/bootdevice/by-name/proinfo   /proinfo      emmc  defaults                                      defaults
+/dev/block/platform/bootdevice/by-name/lk        /bootloader   emmc  defaults                                      defaults
+/dev/block/platform/bootdevice/by-name/lk2       /bootloader2  emmc  defaults                                      defaults
+/dev/block/platform/bootdevice/by-name/para      /misc         emmc  defaults                                      defaults
+/dev/block/platform/bootdevice/by-name/boot      /boot         emmc  defaults                                      defaults
+/dev/block/platform/bootdevice/by-name/recovery  /recovery     emmc  defaults                                      defaults
+/dev/block/platform/bootdevice/by-name/logo      /logo         emmc  defaults                                      defaults
+/dev/block/platform/bootdevice/by-name/expdb     /expdb        emmc  defaults                                      defaults
+/dev/block/platform/bootdevice/by-name/seccfg    /seccfg       emmc  defaults                                      defaults
+/dev/block/platform/bootdevice/by-name/tee1      /tee1         emmc  defaults                                      defaults
+/dev/block/platform/bootdevice/by-name/tee2      /tee2         emmc  defaults                                      defaults
+/dev/block/platform/bootdevice/by-name/kb        /kb           emmc  defaults                                      defaults
+/dev/block/platform/bootdevice/by-name/dkb       /dkb          emmc  defaults                                      defaults
+#+end_src

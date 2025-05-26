@@ -1,3 +1,9 @@
+- wiki [[https://web.archive.org/web/20180614215104/https://en.wikipedia.org/wiki/List_of_devices_using_Mediatek_SoCs][List of devices using Mediatek SoCs]]
+- record flashing process https://web.archive.org/web/20201109011938/https://wiki.postmarketos.org/wiki/Dump_proprietary_flashing_procedures
+  - wireshark usb traffic
+- https://wiki.postmarketos.org/wiki/Category:MediaTek
+- https://wiki.postmarketos.org/wiki/MediaTek_Glossary
+- https://www.sodnpoo.com/posts.xml/mediatek_mt6261_rom_dumping_via_the_vibration_motor.xml
 - https://xdaforums.com/t/guide-how-to-unbrick-your-mediatek-mt65xx.1943442/
 - https://github.com/DavidBuchanan314/rabbit_r1_boot_notes/blob/main/README.md
 - https://gist.github.com/lopestom/ce250f5de64a2764ee85092a2c01939e
@@ -14,7 +20,11 @@
 - tool: windows drivers "Mediatek USB VCOM drivers" https://www.thecustomdroid.com/mediatek-preloader-usb-vcom-drivers/
   - to recognize MTK Preloader on windows and use it
   - alternative: "Mediatek Preloader Drivers"
+  - you can bypass chains of trust of some devices (aka rw any data)
+    - https://tinyhack.com/2021/01/31/dissecting-a-mediatek-bootrom-exploit/
+    - https://github.com/MTK-bypass/bypass_utility
 - tool: sp flash tool
+  - propietary
   - https://spflashtool.com/
   - https://www.rigacci.org/wiki/doku.php/doc/appunti/android/sp_flash_tool
   - https://github.com/gesangtome/SP_Flash_Tool_Linux
@@ -27,6 +37,11 @@
       - kamakiri
       - hashimoto
 
+- 2625 https://github.com/Wiz-IO/Mediatek-MT2625-Flash-Utility
+- 6580 https://github.com/saleemrashid/mediatek_flash_tool
+- 6735 https://github.com/McBitter/flasher
+- 76x7 https://github.com/MediaTek-Labs/mt76x7-uploader
+
 * preloader
 
 - in mtk the bootloader is called "preloader"
@@ -35,24 +50,26 @@
 
 * boot
 
+- https://web.archive.org/web/20180614215051/https://www.lieberbiber.de/2015/07/04/mediatek-details-partitions-and-preloader/
 - mtk preloader https://blog.csdn.net/mcgrady_tracy/article/details/39340209
   - Startup Process [[https://img-blog.csdn.net/20140917112820661]]
     - Each chip has a "Boot ROM"
-    - Loads the Preloader (from NAND) into SRAM
+    - It loads the Preloader (from NAND) into SRAM
       - that is before external (D)RAM is initialized
     - Everything else stored in NAND flash
   - Download Mode https://img-blog.csdn.net/20140917112827556
-  - Components
+  - Preloader Components: https://web.archive.org/web/20180614215051/https://github.com/keesj/alps-fairphone-gpl/tree/master/mediatek/platform/mt6589/preloader/src
     - Mediatek/platform/mt6582/preloader
     - Mediatek/custom/mt6582/preloader
     - mediatek/custom/hexing82_wet_jb5/preloader
 
-* Usb Connection
+* logs
+** Usb Connection
 
 - Lenovo A2107 - MT6575A
 - Lenovo Tab 7 - MT8167A
 
-** Pressing Vol+
+*** Pressing Vol+
 
 This appears very briefly (2 seconds) before continuing normally.
 
@@ -69,7 +86,7 @@ cdc_acm 1-2:1.0: ttyACM0: USB ACM device
 usb 1-2: USB disconnect, device number 33
 #+end_src
 
-** Normal Connection
+*** Normal Connection
 
 #+CAPTION: lsusb + dmesg
 #+begin_src
@@ -84,3 +101,8 @@ cdc_acm 1-2:1.0: Zero length descriptor references
 cdc_acm: probe of 1-2:1.0 failed with error -22
 cdc_acm 1-2:1.1: ttyACM0: USB ACM device
 #+end_src
+* videos
+- 14 [[https://www.youtube.com/watch?v=hpEqDPYtf9s][Fernvale: An Open Hardware and Software Platform, Based on the (nominally) Closed-Sour]]
+  - by bunnie & Xobs
+  - use Baidu for search in chinese sites (find CAD files!?)
+  - MT6250

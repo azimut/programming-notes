@@ -1,0 +1,1 @@
+- 18 [[https://behind.pretix.eu/2018/01/20/cups-driver/][Writing your own CUPS printer driver in 100 lines of Python]]

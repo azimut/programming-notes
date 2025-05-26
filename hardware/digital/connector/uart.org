@@ -1,3 +1,4 @@
+- https://wiki.postmarketos.org/wiki/Serial_debugging
 - [[https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter][Universal Asynchronous Receiver-Transmitter]]
   - async serial communication
   - common signal levels are:
@@ -87,6 +88,8 @@
 
 ** other
 
+- https://chris.ex-parrot.com/consolidate/
+- https://github.com/dun/conman
 - sniffer - jpnevulator [[https://jpnevulator.snarl.nl/][home]] [[https://github.com/snarlistic/jpnevulator][source]] [[https://jpnevulator.snarl.nl/src/current/manual.html][man]]
   #+begin_src sh
     sudo jpnevulator --ascii --timing-print --tty /dev/ttyUSB0 --read

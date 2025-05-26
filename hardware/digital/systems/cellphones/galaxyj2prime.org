@@ -3,7 +3,7 @@
 - 2016-2018
 - FCC ID: [[https://fcc.report/FCC-ID/A3LSMG532M][A3LSMG532M]]
 - SM-G532M
-- SoC: MediaTek MT6737
+- SoC: MediaTek *MT6737*
   - GPU:
     - ARM Mali-T720MP2
     - 1.5GB RAM
@@ -49,6 +49,10 @@
 - https://xdaforums.com/t/rom-aroma-stable-xtreme-ultimate-v6-0-by-xtreme-team-g532m-g-f-6-0-1.3763904/
 - https://xdaforums.com/f/samsung-galaxy-j2-roms-kernels-recoveries-oth.6450/
 * android recovery
+
+apply update from sd card
+apply update from adb
+reboot to bootloader
 
 #+begin_src
   mmb29t.g532mumu1ash2

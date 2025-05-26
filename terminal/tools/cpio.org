@@ -1,0 +1,10 @@
+- https://en.wikipedia.org/wiki/Cpio
+- "copy in and out"
+- by Dick Haight at Bell Labs
+- 1977 (Unix v7)
+- originally created for tape archiving
+- removed from POSIX in favor of *pax*
+
+#+begin_src sh
+  $ cpio -i -F CPIOFILE # extract HERE
+#+end_src
