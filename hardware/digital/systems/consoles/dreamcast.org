@@ -1,0 +1,5 @@
+- https://en.wikipedia.org/wiki/Dreamcast
+- Sega
+- 1998
+- 2000 Team Utopia's
+  - Found backdoor in ROM BIOS that allowed boot games from CD

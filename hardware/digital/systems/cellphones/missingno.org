@@ -1,5 +1,6 @@
 - Lenovo Tab 7?
   - 2017
+  - Codename: lenovo-tb7304f
   - aarch64 (aka ARM64)
   - SOC: ARM Mediatek *MT8167A*
     - GPU:
@@ -68,35 +69,38 @@
 * partitions
 
 ** table
-|-----------+---------+---+----------------------------+----------|
-|           |  blocks |   |                            |          |
-|-----------+---------+---+----------------------------+----------|
-| proinfo   |    6144 |   |                            |          |
-| nvram     |   10240 |   |                            |          |
-| protect1  |   20480 |   |                            |          |
-| protect2  |   20480 |   |                            |          |
-| persist   |   98304 |   |                            |          |
-| seccfg    |     512 |   |                            |          |
-| lk        |     768 | x |                            |          |
-| lk2       |     768 |   |                            |          |
-| boot      |   32768 | x | bootimg                    | 16M + 5M |
-|           |         |   | kernel = ARM64 4.4 gpu_rgx |          |
-|           |         |   | ramdisk = AOSP init 0.8    |          |
-| recovery  |   32768 |   |                            |          |
-| para      |    1024 |   |                            |          |
-| logo      |   16384 |   |                            |          |
-| expdb     |   20480 |   |                            |          |
-| frp       |    2048 |   |                            |          |
-| tee1      |   10240 |   |                            |          |
-| tee2      |   10240 |   |                            |          |
-| kb        |    4096 |   |                            |          |
-| dkb       |    4096 |   |                            |          |
-| metadata  |   67584 |   |                            |          |
-| system    | 6930432 |   |                            |          |
-| cache     |  884736 |   |                            |          |
-| userdata  | 7060480 | x |                            |          |
-| flashinfo |   32768 |   |                            |          |
-|-----------+---------+---+----------------------------+----------|
+|-----------+---+---------+------+---+----------------------------+------|
+|    <c>    |   |         |  <r> |   |            <c>             | <c>  |
+|           |   |  blocks |      |   |                            |      |
+|-----------+---+---------+------+---+----------------------------+------|
+|  proinfo  | / |    6144 |   3M | x |       [[https://github.com/AlikornSause/Notes-on-QIN-F21-PRO/blob/main/README.md][serial numbers]]       |      |
+|   nvram   | / |   10240 |   5M | x |    persistent settings     |      |
+|  seccfg   | / |     512 | 256K | x |             ?              |  ?   |
+|    lk     | / |     768 | 384K | x |        same as lk2?        |  ?   |
+|    lk2    | / |     768 | 384K | x |        same as lk?         |  ?   |
+|   boot    | / |   32768 |  16M | x |         *bootimg*          |      |
+|           |   |         |      |   | kernel = ARM64 4.4 gpu_rgx | 16M  |
+|           |   |         |      |   |  ramdisk = AOSP init 0.8   |  6M  |
+| recovery  | / |   32768 |  16M | x |  *bootimg* recovery mode   |      |
+|           |   |         |      |   |           kernel           | 16M  |
+|           |   |         |      |   |          ramdisk           | 7.2M |
+|   para    | / |    1024 | 512K | x |             ?              |  ?   |
+|   logo    | / |   16384 |   8M | x |     logo & animations      |  ?   |
+|    frp    |   |    2048 |   1M | x | factory reset protection?  |      |
+|   tee1    | / |   10240 |   5M | x |       same as tee2?        |  ?   |
+|   tee2    | / |   10240 |   5M | x |       same as tee1?        |  ?   |
+| metadata  |   |   67584 |  33M | x |          cryptfs           |  ?   |
+|  system   | / | 6930432 |      |   |            ext4            |      |
+|   cache   | / |  884736 | 432M | x |   ext4, boot logs (kmsg)   | 600K |
+| userdata  | / | 7060480 | 3.4G | x |    ext4, disk encrypted    |      |
+| flashinfo |   |   32768 |  16M | x |             ?              |      |
+|    kb     | / |    4096 |   2M | x |         zero'd out         | 0x00 |
+|    dkb    | / |    4096 |   2M | x |         zero'd out         | 0x00 |
+|   expdb   | / |   20480 |  10M | x |         zero'd out         | 0x00 |
+| protect1  |   |   20480 |  10M | x |         zero'd out         | 0x00 |
+| protect2  |   |   20480 |  10M | x |         zero'd out         | 0x00 |
+|  persist  |   |   98304 |  48M | x |         zero'd out         | 0x00 |
+|-----------+---+---------+------+---+----------------------------+------|
 
 ** log
 
@@ -149,4 +153,204 @@
 /dev/block/platform/bootdevice/by-name/tee2      /tee2         emmc  defaults                                      defaults
 /dev/block/platform/bootdevice/by-name/kb        /kb           emmc  defaults                                      defaults
 /dev/block/platform/bootdevice/by-name/dkb       /dkb          emmc  defaults                                      defaults
+#+end_src
+
+* mtkclient
+
+#+begin_src conf
+Exploitation - Kamakiri Run
+Exploitation - Done sending payload...
+PLTools - Successfully sent payload: mtkclient/payloads/mt8167_payload.bin
+#+end_src
+
+** all
+#+begin_src conf
+Port - Device detected :)
+Preloader -     CPU:                    MT8167/MT8516/MT8362()
+Preloader -     HW version:             0x0
+Preloader -     WDT:                    0x10007000
+Preloader -     Uart:                   0x11005000
+Preloader -     Brom payload addr:      0x100a00
+Preloader -     DA payload addr:        0x201000
+Preloader -     CQ_DMA addr:            0x10212c00
+Preloader -     Var1:                   0xcc
+Preloader - Disabling Watchdog...
+Preloader - HW code:                    0x8167
+Preloader - Target config:              0xe5
+Preloader -     SBC enabled:            True
+Preloader -     SLA enabled:            False
+Preloader -     DAA enabled:            True
+Preloader -     SWJTAG enabled:         True
+Preloader -     EPP_PARAM at 0x600 after EMMC_BOOT/SDMMC_BOOT:  False
+Preloader -     Root cert required:     False
+Preloader -     Mem read auth:          True
+Preloader -     Mem write auth:         True
+Preloader -     Cmd 0xC8 blocked:       True
+Preloader - Get Target info
+Preloader - BROM mode detected.
+Preloader -     HW subcode:             0x8a00
+Preloader -     HW Ver:                 0xcb00
+Preloader -     SW Ver:                 0x1
+Preloader - ME_ID:                      1EB73236D05F44623CAD903271D93952
+Preloader - SOC_ID:                     0000000000000000000000000000000000000000000000000000000000000000
+Preloader
+Preloader - [LIB]: Auth file is required. Use --auth option.
+DaHandler - Device is protected.
+DaHandler - Device is in BROM-Mode. Bypassing security.
+PLTools - Loading payload from mt8167_payload.bin, 0x264 bytes
+Exploitation - Kamakiri Run
+Exploitation - Done sending payload...
+PLTools - Successfully sent payload: /home/sendai/projects/thirdparty/mkt/venv/lib/python3.10/site-packages/mtkclient/payloads/mt8167_payload.bin
+
+
+Port - Device detected :)
+DaHandler
+DaHandler - [LIB]: Device is in BROM mode. No preloader given, trying to dump preloader from ram.
+DAXFlash - Uploading xflash stage 1 from MTK_DA_V5.bin
+XFlashExt - Patching da1 ...
+Mtk - Patched "Patched loader msg" in preloader
+Mtk - Patched "hash_check" in preloader
+Mtk - Patched "Patched loader msg" in preloader
+Mtk - Patched "get_vfy_policy" in preloader
+XFlashExt - Patching da2 ...
+XFlashExt - Security check patched
+XFlashExt - SBC patched to be disabled
+XFlashExt - Register read/write not allowed patched
+DAXFlash - Successfully uploaded stage 1, jumping ..
+Preloader - Jumping to 0x200000
+Preloader - Jumping to 0x200000: ok.
+DAXFlash - Successfully received DA sync
+DAXFlash - Sending emi data ...
+DAXFlash - DRAM setup passed.
+DAXFlash - Sending emi data succeeded.
+DAXFlash - Uploading stage 2...
+DAXFlash - Upload data was accepted. Jumping to stage 2...
+DAXFlash - Boot to succeeded.
+DAXFlash - Successfully uploaded stage 2
+DAXFlash - DA SLA is disabled
+DAXFlash - EMMC FWVer:      0x0
+DAXFlash - EMMC ID:         H8G4a2
+DAXFlash - EMMC CID:        90014a483847346132a5043b046b9449
+DAXFlash - EMMC Boot1 Size: 0x400000
+DAXFlash - EMMC Boot2 Size: 0x400000
+DAXFlash - EMMC GP1 Size:   0x0
+DAXFlash - EMMC GP2 Size:   0x0
+DAXFlash - EMMC GP3 Size:   0x0
+DAXFlash - EMMC GP4 Size:   0x0
+DAXFlash - EMMC RPMB Size:  0x400000
+DAXFlash - EMMC USER Size:  0x1d2000000
+DAXFlash - HW-CODE         : 0x8167
+DAXFlash - HWSUB-CODE      : 0x8A00
+DAXFlash - HW-VERSION      : 0xCB00
+DAXFlash - SW-VERSION      : 0x1
+DAXFlash - CHIP-EVOLUTION  : 0x0
+DAXFlash - DA-VERSION      : 1.0
+DAXFlash - Reconnecting to stage2 with higher speed
+DeviceClass - [Errno 2] Entity not found
+DAXFlash - Connected to stage2 with higher speed
+DAXFlash - Extensions were accepted. Jumping to extensions...
+DAXFlash - Boot to succeeded.
+DAXFlash - DA Extensions successfully added
+DaHandler - Requesting available partitions ....
+#+end_src
+
+* /system
+
+- toybox based (130 bins) "-0b95e297be7b-android"
+- android's toolbox based https://android.googlesource.com/platform/system/core/+/froyo/toolbox
+  #+begin_src
+   ./dd           ->  toolbox
+   ./getevent     ->  toolbox
+   ./iftop        ->  toolbox
+   ./ioctl        ->  toolbox
+   ./log          ->  toolbox
+   ./nandread     ->  toolbox
+   ./newfs_msdos  ->  toolbox
+   ./prlimit      ->  toolbox
+   ./ps           ->  toolbox
+   ./sendevent    ->  toolbox
+   ./start        ->  toolbox
+   ./stop         ->  toolbox
+   ./top          ->  toolbox
+  #+end_src
+- apks https://xdaforums.com/t/basicdreams-apk-does-what.2507764/
+
+|--------------+-----------------------|
+|     <c>      |          <c>          |
+|     app/     |        apks ?         |
+|     bin/     | executables (no init) |
+|    data/     |  recovery_rootcheck   |
+|     etc/     |                       |
+|   etc/init   |          .rc          |
+|  fake-libs/  |       libart.so       |
+| fake-libs64/ |       libart.so       |
+|    fonts/    |         .ttf          |
+|  framework/  |         .jar          |
+|     lib/     |          .so          |
+|    lib64/    |          .so          |
+|    media/    | ringtones, exit video |
+|  priv-app/   |         apks          |
+|     tts/     |    language packs?    |
+|     usr/     |        share?         |
+|   vendor/    |                       |
+|    xbin/     |   dexlist, tcpdump    |
+|--------------+-----------------------|
+
+* /system/vendor
+
+- /app/ seems to be all stuff that Lenovo left ready for this particular device
+
+|-------------+-----------------------------------------|
+|     <c>     |                   <c>                   |
+|    app/     |                  apks                   |
+|   *bin/*    |           less generic stuff            |
+|    data/    | *ProjectConfig.mk* (linux? android NDK? |
+|    etc/     |                                         |
+| etc/gallery |                  apks                   |
+|  firmware/  |                  blobs                  |
+| framework/  |                                         |
+|    lib/     |                   .so                   |
+|   lib64/    |                   .so                   |
+|   media/    |                    ?                    |
+|  operator/  |                  apks                   |
+|   plugin/   |      apk - com.mediatek.fwk.plugin      |
+|  priv-app/  |                  apks                   |
+|    res/     |              stock photos               |
+|-------------+-----------------------------------------|
+
+- etc/custom.conf - template for browser user agents, ssids
+
+** etc/LenovoSuite_pad_row_170519.iso
+
+#+begin_src
+-r-xr-xr-x 1 root   root         47 ago 17  2015 Autorun.inf
+-r-xr-xr-x 1 root   root     699016 jun  3  2016 Lenovo_Suite.exe
+-r-xr-xr-x 1 root   root    9864461 may 19  2017 LenovoUsbDriver_autorun_1.1.49_user.exe
+-r-xr-xr-x 1 root   root   32629384 jul  7  2016 MagicPlus_setup.exe
+-r-xr-xr-x 1 root   root        162 may 19  2017 SetupConfig.txt
+-r-xr-xr-x 1 root   root      26694 ago 17  2015 suite.ico
+#+end_src
+
+** etc/throttle.sh
+
+#+begin_src sh
+#!/system/bin/sh
+# traffic control; arg1:ifname, arg2: rx, arg 3 tx.
+#
+export PATH=/data:$PATH
+
+# clear rules
+tc qdisc del dev $1 root
+tc qdisc del dev $1 ingress
+tc qdisc del dev ifb0 root
+
+# set interface throttle
+tc qdisc add dev $1 root handle 1: htb default 1 r2q 1000
+tc class add dev $1 parent 1: classid 1:1 htb rate $3kbit
+ifconfig ifb0 up
+tc qdisc add dev ifb0 root handle 1: htb default 1 r2q 1000
+tc class add dev ifb0 parent 1: classid 1:1 htb rate $2kbit
+tc qdisc add dev $1 ingress
+tc filter add dev $1 parent ffff: protocol ip prio 10 u32 match \
+            u32 0 0 flowid 1:1 action mirred egress redirect dev ifb0
 #+end_src

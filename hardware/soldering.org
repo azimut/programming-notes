@@ -1,0 +1,8 @@
+- solder:
+  - Pb-Sn alloy
+  - 245 no clean flux
+  - 331 flux core
+- desoldering braid
+- flux: liquid, pen, paste
+- tips https://nz.rs-online.com/web/content/discovery/ideas-and-advice/how-to-solder-guide
+  [[https://res.cloudinary.com/rspoc/image/upload/f_auto/q_auto/v1674041260/RS%20CONTENTFUL/Discovery/Other%20image%20assets/soldering-iron-tips.jpg]]

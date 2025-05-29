@@ -1,9 +1,31 @@
+* characteristics
+
+- Speed: in Hz
+- Depth?: in bits (of the ADC?)
+- Number of Channels
+
 * math (on input signals)
 
 - add
 - subtract
 - multiply
 - fft
+
+* analogue
+
+** curve tracer add-on
+
+https://en.wikipedia.org/wiki/Curve_tracer
+
+** pulse
+
+#+begin_src
+It is normal to do this on an analogue scope but not as easy as on a digital scope. You need a good analogue scope with delay sweep, external trigger input and decent phosphor.
+
+Identify when the pulse happens. Work out how to trigger on it. Usually you can trigger on another system event that happens before it. If you can't, trigger on the event. You may have to knock up a little circuit to pick up the event, usually an RC differentiator. Then use delay sweep to delay the signal until it can sweep. Good phosphor and a bright beam allows some persistence of the pulse/event.
+
+Problem with DSOs is that a fast event capture device like an MDO4000 costs 500x an old Tek 7104 so YMMV. At audio frequencies any old DSO would work.
+#+end_src
 
 * probe attenuation
 
@@ -30,36 +52,29 @@
 - how long to wait to retrigger
 - useful when looking at digital data packets
 
+* theory
+
+- Q: [[https://electronics.stackexchange.com/questions/714496/how-are-oscilloscopes-able-to-fill-ddr-sdram-memory-without-interruptions-from-m][How are oscilloscopes able to fill DDR SDRAM memory without interruptions from memory refresh?]]
+- A: The DDR RAM works in bursts anyway.
+
 * projects
 
-- https://www.instructables.com/Girino-Fast-Arduino-Oscilloscope/
-
-- 3KHz, Processing
-  - https://github.com/rogeriobego/oscilloscope-arduino-processing
-  - https://projecthub.arduino.cc/Veldekiaan/arduino-uno-library-for-a-sampling-scope-counter-751bf1
-- Nano+Oled+20Khz https://hackaday.io/project/183702/gallery#ffe05fb68daee5a5fbdfde10fd07383a
-
-- Arduino Oscilloscope (6-Channel)
-  - max 1 Hz?????
-  - Standalone Arduino 6-channel triggered oscilloscope with optional freeze frame.
-  - https://projecthub.arduino.cc/Meeker6751/arduino-oscilloscope-6-channel-8d0be8
-
-- Arduino Oscilloscope by EETechStuff
-  - https://www.youtube.com/playlist?list=PLGtyXSn57qnInTZngJuuPtx0tXbxurhtZ
-  - C#
-
-- https://upcommons.upc.edu/bitstream/handle/2099.1/11082/Mem%C3%B2ria.pdf;jsessionid=29E34C6F24916C9888E7BACEBBE3ACB1?sequence=2
-- https://sired.udenar.edu.co/3304/1/85707.pdf
-
-- thunderscope https://github.com/EEVengers/ThunderScope
-  - max 1 Ghz
-  - ThunderScope Analog Front End - Gain And Attenuation https://www.youtube.com/watch?v=OU12bTZnh7g
+- many https://www.instructables.com/PiScope-Raspberry-Pi-based-Oscilloscope/
 
 - https://www.ngscopeclient.org/
+  - ui
+  - supports many scopes https://www.ngscopeclient.org/manual/OscilloscopeDrivers.html#oscilloscope-drivers
+  - protocol decoders
+  - https://www.crowdsupply.com/eevengers/thunderscope/updates/an-introduction-to-ngscopeclient
+
+- https://sired.udenar.edu.co/3304/1/85707.pdf
+  - mini2440
 
 - Scoppy
+  - raspberry pi pico
   - max 250 Khz (with software hacks)
   - https://oscilloscope.fhdm.xyz/
+  - https://github.com/fhdm-dev/scoppy
   - https://www.youtube.com/watch?v=fR8VwuvkIAc
   - examples
     - https://www.hackster.io/ignoramus-pettigrew-the-third/parts-bin-oscilloscope-c8a413
@@ -77,11 +92,76 @@
   - PIC32
   - https://news.ycombinator.com/item?id=43068585
 
-** 18 Homemade Oscilloscope - Arduino UNO and Unity
+- https://web.archive.org/web/20080104062542/dos4ever.com/uscope/uscope_e.html
 
-- by Simply Put
+- bitscope https://www.bitscope.com/
 
-*** 1) Sep 18 Intro
+** pic
+
+- https://upcommons.upc.edu/bitstream/handle/2099.1/11082/Mem%C3%B2ria.pdf;jsessionid=29E34C6F24916C9888E7BACEBBE3ACB1?sequence=2
+  - *pic18f4550*
+
+*** 07 Oscilloscopio USB
+
+home https://web.archive.org/web/20080821183814/http://pablohoffman.com/oscusb/
+https://web.archive.org/web/20080119144459/http://pablohoffman.com/cgi-bin/twiki/bin/view/Oscusb/DocumentoPresentacion
+pdf https://web.archive.org/web/20060619211104/http://pablohoffman.com/twiki/pub/Oscusb/OscusbDocumentacion/oscusb_doc_draft.pdf
+
+- by Pablo Hoffman
+- Max: 8 MSPS / 8 Mhz (40?)
+- BOM
+  - pic18f has an USB interface
+  - SRAM
+  - ADC: TLC5540
+  - 8bit counter
+
+** FPGA
+
+- Thunderscope https://github.com/EEVengers/ThunderScope
+  - max 1 Ghz
+  - ThunderScope Analog Front End - Gain And Attenuation https://www.youtube.com/watch?v=OU12bTZnh7g
+
+- Haasoscope
+  - 25 [[https://www.youtube.com/watch?v=iFVRcHPmOKk][Teardown Session 53: open source real-time USB oscilloscope design with Dr. Andy Haas]]
+  - ADC -> FPGA -> DDR
+
+** Sound Card
+
+- software: ARTA https://artalabs.hr/
+- software: REW https://www.roomeqwizard.com/
+- they have 2x DAC & 2x ADC
+- only works with AC
+- produce and measure small voltages
+  - use a voltage divider for input to ADC, keep it below 1v
+
+- +https://www.youtube.com/watch?v=dX0QkL8xMmE+
+- https://homediyelectronics.com/projects/howtomakeafreesoundcardpcoscilloscope/
+- https://www.instructables.com/Use-Your-Laptop-as-Oscilloscope/
+- https://makezine.com/projects/sound-card-oscilloscope/
+- https://www.phil-mont.org/presos/Sound_Card_Oscilloscopes.pdf
+- https://atomfizika.elte.hu/muszerek/virt_muszerek/manual_scope_v141.pdf
+- https://physlab.org/wp-content/uploads/2016/04/Sound_Card.pdf
+- http://www-mdp.eng.cam.ac.uk/web/CD/engapps/xoscope/xoscope.pdf
+
+** Arduino
+
+- [[https://www.youtube.com/watch?v=S6mBdO1EHq0][Create Your Own Arduino Oscilloscope]]
+- https://www.instructables.com/Girino-Fast-Arduino-Oscilloscope/
+  - ADC
+- Arduino Oscilloscope (6-Channel)
+  - max 1 Hz?????
+  - Standalone Arduino 6-channel triggered oscilloscope with optional freeze frame.
+  - https://projecthub.arduino.cc/Meeker6751/arduino-oscilloscope-6-channel-8d0be8
+- Arduino Oscilloscope by EETechStuff
+  - https://www.youtube.com/playlist?list=PLGtyXSn57qnInTZngJuuPtx0tXbxurhtZ
+  - C#
+- 3KHz, Processing
+  - https://github.com/rogeriobego/oscilloscope-arduino-processing
+  - https://projecthub.arduino.cc/Veldekiaan/arduino-uno-library-for-a-sampling-scope-counter-751bf1
+- Nano+Oled+20Khz https://hackaday.io/project/183702/gallery#ffe05fb68daee5a5fbdfde10fd07383a
+
+*** 18 Homemade Oscilloscope - Arduino UNO and Unity - by Simply Put
+**** 1) Sep 18 Intro
 
 - https://www.youtube.com/watch?v=SbviDLQEcu8
 - Sep 9, 2018
@@ -127,7 +207,7 @@
     }
   #+end_src
 
-*** 2) Sep 18 Download link
+**** 2) Sep 18 Download link
 
 https://www.youtube.com/watch?v=tH_jIedH_2c
 - download link https://drive.google.com/file/d/1TjVVjrxWDnyxGktV07938b4Di30IMwRH/view
@@ -135,21 +215,8 @@ https://www.youtube.com/watch?v=tH_jIedH_2c
 - win10, 64 bit, 1920x1080 screen
 - unity package
 
-*** 3) Jan 19 https://www.youtube.com/watch?v=9W2BjgwCu_Q
+**** 3) Jan 19 https://www.youtube.com/watch?v=9W2BjgwCu_Q
 ** 19 Desarrollo de un osciloscopio digital en Android
 
 - https://web.archive.org/web/20200615230158/http://uvadoc.uva.es/handle/10324/38830
 - by Ortiz de Latierro Delgado, David
-
-** 07 Oscilloscopio USB
-
-https://web.archive.org/web/20080821183814/http://pablohoffman.com/oscusb/
-https://web.archive.org/web/20080119144459/http://pablohoffman.com/cgi-bin/twiki/bin/view/Oscusb/DocumentoPresentacion
-
-- by Pablo Hoffman
-- Max: 8 MSPS / 8 Mhz (40?)
-- BOM
-  - pic18f
-  - SRAM
-  - ADC: TLC5540
-  - 8bit counter

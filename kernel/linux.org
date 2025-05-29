@@ -1,3 +1,13 @@
+* logging
+
+** printk
+
+- https://www.kernel.org/doc/html/next/core-api/printk-basics.html
+- has a log level: from more critical (0) to less so (7)
+- all exported through */dev/kmsg* (read by using dmesg)
+- current log level at */proc/sys/kernel/printk*
+  - returns: current default minimum boot-time-default
+
 * modules
 
 - [[https://gist.github.com/0xff07/d286f45649a7e05c32c4523631bd15e0][An Example of Linux Kernel Module using GPIO Subsystem]]

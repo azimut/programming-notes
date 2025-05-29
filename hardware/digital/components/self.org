@@ -1,0 +1,3 @@
+- MCP https://en.wikipedia.org/wiki/Multi-chip_module
+  - aka MCM
+  - usually RAM(SDAM) + ROM (Flash)

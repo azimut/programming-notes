@@ -74,6 +74,13 @@ https://en.wikipedia.org/wiki/Field-programmable_gate_array
 - https://www.youtube.com/channel/UC4ls2cPrXHfEO_oTHZcCclA/videos
 - https://projectf.io/posts/racing-the-beam/
 - https://www.eevblog.com/forum/fpga/devices-containing-re-purposable-fpgas/
+** projects
+
+- https://github.com/ufrisk/pcileech-fpga
+- https://github.com/ufrisk/pcileech
+- https://github.com/thunderclap-io
+  https://thunderclap.io/
+
 ** Languages
 - ABEL
 - VHDL

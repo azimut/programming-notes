@@ -102,6 +102,7 @@ cdc_acm: probe of 1-2:1.0 failed with error -22
 cdc_acm 1-2:1.1: ttyACM0: USB ACM device
 #+end_src
 * videos
+- 21 [[https://www.youtube.com/watch?v=0UmK9aHO4Go][Knockin' On MediaTek ADSP’s Door]] by Slava Makkaveev
 - 14 [[https://www.youtube.com/watch?v=hpEqDPYtf9s][Fernvale: An Open Hardware and Software Platform, Based on the (nominally) Closed-Sour]]
   - by bunnie & Xobs
   - use Baidu for search in chinese sites (find CAD files!?)

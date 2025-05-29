@@ -1,0 +1,6 @@
+- https://en.wikipedia.org/wiki/Baseband_processor
+- aka radio, aka baseband modem
+- manages all radio functions (those that require an antenna)
+  - gsm
+- run a RTOS: [[https://en.wikipedia.org/wiki/ENEA_AB#OSE][OSE]], [[https://en.wikipedia.org/wiki/Nucleus_RTOS][Nucleus]], [[https://en.wikipedia.org/wiki/ThreadX][ThreadX]], [[https://en.wikipedia.org/wiki/Versatile_Real-Time_Executive][VRTX]]
+- tool: osmocomBB - GSM baseband software

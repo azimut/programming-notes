@@ -16,7 +16,8 @@ https://dd-wrt.com/support/router-database/?model=DIR-600_B1%20/%20B2
 - ROM: 4Mb S29GL032N90TFI040
 - USB: *NO* (CPU supports it tho :()
 - x5 RJ45 100M RT3050
-- Serial: 57600
+- Serial: 57600, 3.3v
+- JTAG: no? (pins are there...)
 
 * gpio mod
 

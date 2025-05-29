@@ -1,3 +1,5 @@
+- https://wiki.dd-wrt.com/wiki/index.php/JTAG
+- https://openwrt.org/docs/techref/hardware/port.jtag
 - https://en.wikipedia.org/wiki/JTAG
   - Join Task/Test Action Group
   - 1990 (Intel 80486)
@@ -42,14 +44,17 @@
 
 - sometimes determined by the SoC
 - sometimes determined by the board manufacturer
-- popular ones http://jtagtest.com/pinouts/
+- popular ones
+  - on routers https://openwrt.org/docs/techref/hardware/port.jtag#headers
+  - http://jtagtest.com/pinouts/
 
 * tools
 
-- UrJTAG https://urjtag.sourceforge.io/
+- https://github.com/balau/JTAGduino
 - OpenOCD - Open On-Chip Debugger
   - https://openocd.org/
   - https://www.youtube.com/watch?v=_1u7IOnivnM
+  - https://openwrt.org/docs/guide-user/hardware/debrick.ath79.using.jtag
   - opencd opens a gdb server port
     #+begin_src sh
       $ opencd -f ft232h.cfg -f raspi.cfg
@@ -61,6 +66,16 @@
       gdb> target extended-remote localhost:3333
       gdb> x10i 0xc0136dd4 # show 10 instructions on given memory
     #+end_src
+- Openwince (-2003) https://openwince.sourceforge.net/jtag/
+  - works with boxes or custom parallel port cables
+- UrJTAG (2007) https://urjtag.sourceforge.io/
+  - Openwince successor
+  - usb cables support
+  - https://github.com/zoobab/urjtag_arduiggler
+- HairyMaiden https://openwrt.org/docs/techref/hardware/port.jtag#hairydairymaid
+  - parallel port, with unbuffered cable
+  - tjtag [[https://github.com/oxplot/tjtag-pi][rpi]] [[https://github.com/acidice333/tjtag-pi][rpi3]] [[https://github.com/zoobab/tjtag-arduino][arduino]]
+  - https://sourceforge.net/p/freetzlinux/code/HEAD/tree/trunk/wrtjp/
 
 * SWD
 

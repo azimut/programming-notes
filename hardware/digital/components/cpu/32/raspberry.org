@@ -17,6 +17,7 @@
 * Operative Systems
 
 - lists https://github.com/thibmaek/awesome-raspberry-pi?tab=readme-ov-file#os-images
+- FreeRTOS https://github.com/raspberrypi/FreeRTOS-Kernel
 - kodi https://libreelec.tv/downloads/raspberry/
 - netbsd https://wiki.netbsd.org/ports/evbarm/raspberry_pi/
 - freebsd https://wiki.freebsd.org/arm/Raspberry%20Pi

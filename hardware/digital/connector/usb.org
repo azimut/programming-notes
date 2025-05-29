@@ -1,4 +1,5 @@
 - https://en.wikipedia.org/wiki/USB
+- Universal Serial Bus
 |-----+----+--------|
 |     |    | Mbit/s |
 | 1.0 | 96 |    1.5 |

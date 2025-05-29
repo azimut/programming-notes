@@ -1,0 +1,7 @@
+- https://en.wikipedia.org/wiki/Xbox_(console)
+- 2002
+- Harware based on a standard PC
+- CPU: Intel Pentium III 733Mhz
+- RAM: 64Mb DDR SDRAM
+- GPU: Nvidia NV2A 233Mhz
+- HDD: 8Gb

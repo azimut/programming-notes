@@ -6,10 +6,12 @@
 - SoC:
   - MediaTek ARM
   - *MT6575A*
+  - CPU: ARMv7 Cortex-A9 32bit
   - Other Hw
-    - https://www.kimovil.com/es/listado-moviles-por-grupo-procesador/mt6575
+    - https://wiki.postmarketos.org/wiki/NGM_WeMove_Action_(ngn-wemove-action)
+    - list https://www.geektopia.es/es/product/mediatek/mt6575/
+    - list https://www.kimovil.com/es/listado-moviles-por-grupo-procesador/mt6575
       - LG Optimus L4/5 II / Dual
-        https://wiki.postmarketos.org/wiki/LG_Optimus_L5_(lg-e610)
 - eMMC: https://www.tvsat.com.pl/pdf/K/klmag2ge4a_sam.pdf
   - 16Gb?
   - NAND

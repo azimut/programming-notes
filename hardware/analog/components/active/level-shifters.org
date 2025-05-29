@@ -1,0 +1,41 @@
+- https://en.wikipedia.org/wiki/Level_shifter
+
+- 24 [[https://www.youtube.com/watch?v=hvf990VPiRg][#1855 BSS138 Logic Level Translation]]
+
+* ics
+
+** 3.3v -> 5v
+
+- 3.3v TTL output signals can drive 5v TTL input without additional hardware
+  - use a buffer if current++ is needed
+
+- 3.3v TTL output signals CANNOT drive 5v CMOS input
+  - inverting mosfet, inverts logic
+    [[https://hackaday.com/wp-content/uploads/2016/11/mosfet-step-up-microchip-ds41285a.jpg]]
+  - step up circuit https://hackaday.com/2016/12/05/taking-it-to-another-level-making-3-3v-and-5v-logic-communicate-with-level-shifters/
+    [[https://hackaday.com/wp-content/uploads/2016/11/diode-step-up-microchip-ds41285a.jpg]]
+
+** 5v   -> 3.3v
+
+- BC547 https://electrocredible.com/logic-level-converter-circuit-schematic-working/
+
+- Voltage divider
+  - R1 1k/2.2k omh
+  - R2 2k/3.3k omh
+  #+ATTR_ORG: :width 200
+  [[https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2015/09/voltage-divider-circuit.png]]
+
+** 5v  <-> 3.3
+
+- list https://www.ti.com/logic-voltage-translation/voltage-translators-level-shifters/overview.html
+- TXS0108E
+- 74LVC245 https://en.wikipedia.org/wiki/List_of_7400-series_integrated_circuits#Voltage_translation
+  - LVC are 5v input voltage tolerant, while they operate at 3.3v
+- ? https://www.analog.com/en/resources/design-notes/how-to-level-shift-1wire-systems.html
+
+*** MOSFET
+
+- 2N7000 [[http://jamgo.org.uk/electronics/BiDirectional_Logic_Level_Converter.note.html][jamgo.org.uk]] [[https://hackaday.com/2016/12/05/taking-it-to-another-level-making-3-3v-and-5v-logic-communicate-with-level-shifters/][hackday.com]] [[https://cdn-shop.adafruit.com/datasheets/an97055.pdf][.pdf]]
+  [[http://jamgo.org.uk/electronics/Bi-Directional_mosfet_level_converter.jpg]]
+- IRF540N https://electrocredible.com/logic-level-converter-circuit-schematic-working/
+- BSS138/BS170 (FET) https://cdn.sparkfun.com/datasheets/BreakoutBoards/Logic_Level_Bidirectional.pdf

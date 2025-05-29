@@ -6,11 +6,20 @@
 
 * jtag
 
+** cables
+
+- wiggler https://ciclamab.altervista.org/hard_corpo_jtag.htm
+  - buffered cable
+  - requires external power supply (? although some JTAG connectors might provide a Vref
+  - M74HC244B1
+
 ** speaks
 
 - EasyJTAG https://easy-jtag.com/
 - GoodFET https://goodfet.sourceforge.net/ MSP430 based
 - FlashcatUSB https://www.embeddedcomputers.net/products/FlashcatUSB/
+- Bus Pirate v5 https://buspirate.com/bus-pirate-5-rev-10-now-available/
+- Bus Pirate v6 https://buspirate.com/bus-pirate-5xl-6/
 - Bus Pirate v4 http://dangerousprototypes.com/docs/Bus_Pirate_v4_design_overview
   - PIC based
   - speaks JTAG, I2C, SPI, UART
@@ -26,8 +35,13 @@
 
 ** enumerator
 
+- https://github.com/cyphunk/JTAGenum
+  - arduino based jtag discovery
+  - 5v (on UNO)
+
 - https://github.com/Aodrulez/blueTag
-  - jtagulator alternative on RPI zero/pico
+  - RP2040 (Raspberry Pico/Zero)
+  - 3.3v (external level shifter required for 5v)
 
 - JTAGULATOR
   - jtag discovery
@@ -35,5 +49,3 @@
   - source https://github.com/grandideastudio/jtagulator
   - bom https://grandideastudio.com/wp-content/uploads/jtagulator_bom.pdf
     - P8X32A-Q44
-- https://github.com/cyphunk/JTAGenum
-  - arduino based jtag discovery

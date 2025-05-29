@@ -15,6 +15,7 @@
   - 1x 2.0
   - host, device, OTG
 - Connectivity:
+  - JTAG: yes (no write permissions?)
   - Serial: [[https://www.youtube.com/watch?v=IHNrnLnLakE][video]]
     - 3.3v
     - 115200/8/None/1/None

@@ -1,0 +1,10 @@
+- https://en.wikipedia.org/wiki/CAN_bus
+- Controlled Area Network
+- Bosch
+- serial, half-duplex, asynchronous
+- Supports multiple devices (32,64,127)
+- 83, 86 (released), 87 (first chip), 91 (first car), 91 (2.0)
+
+* videos
+- 23 [[https://www.youtube.com/watch?v=XrlrbfGZo2k][37C3 - Breaking "DRM" in Polish trains]]
+- 24 [[https://www.youtube.com/watch?v=8OB2NqcSDXQ][38C3 - We've not been trained for this: life after the Newag DRM disclosure]]
