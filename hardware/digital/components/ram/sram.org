@@ -6,8 +6,10 @@
 - used for cache/registers (while DRAM is used for main memory)
   - sometimes used as L2 cache on old motherboards (?
 - volatile: data is lost when power is lost
-- holds data permanently, does not decay like *DRAM*
-  - no need to refresh it periodically
+- vs DRAM
+  - needs more transistors for each cell, lower density
+  - data does not decay, no need to refresh it periodically
+  - consumes less power
 - Control pins
   - CE Chip Enable
   - WE Write Enable

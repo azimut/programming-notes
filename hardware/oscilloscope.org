@@ -59,6 +59,7 @@ Problem with DSOs is that a fast event capture device like an MDO4000 costs 500x
 
 * projects
 
+- 19 [[https://www.youtube.com/watch?v=99u53V7uDFY][Ted Yapo - Towards an Open-Source Multi-GHz Sampling Oscilloscope]]
 - many https://www.instructables.com/PiScope-Raspberry-Pi-based-Oscilloscope/
 
 - https://www.ngscopeclient.org/
@@ -101,19 +102,61 @@ Problem with DSOs is that a fast event capture device like an MDO4000 costs 500x
 - https://upcommons.upc.edu/bitstream/handle/2099.1/11082/Mem%C3%B2ria.pdf;jsessionid=29E34C6F24916C9888E7BACEBBE3ACB1?sequence=2
   - *pic18f4550*
 
-*** 07 Oscilloscopio USB
+*** 07 Oscilloscopio USB by Pablo Hoffman
 
 home https://web.archive.org/web/20080821183814/http://pablohoffman.com/oscusb/
+pdf 06 https://web.archive.org/web/20060619211104/http://pablohoffman.com/twiki/pub/Oscusb/OscusbDocumentacion/oscusb_doc_draft.pdf
+pdf https://web.archive.org/web/20090711091115/http://pablohoffman.com/twiki/pub/Oscusb/OscusbDocumentacion/oscusb-documentacion.pdf
 https://web.archive.org/web/20080119144459/http://pablohoffman.com/cgi-bin/twiki/bin/view/Oscusb/DocumentoPresentacion
-pdf https://web.archive.org/web/20060619211104/http://pablohoffman.com/twiki/pub/Oscusb/OscusbDocumentacion/oscusb_doc_draft.pdf
 
-- by Pablo Hoffman
-- Max: 8 MSPS / 8 Mhz (40?)
-- BOM
-  - pic18f has an USB interface
-  - SRAM
-  - ADC: TLC5540
-  - 8bit counter
+- Depth: 16b it
+- Speed:
+  - Max: 8 MSPS / 8 Mhz
+    - theorical of 40Mhz, but didn't worked out due board design (?
+  - usa *submuestreo* para 10Mhz
+
+#+begin_src
+                v --- ASwitch -> 2 bit Demux -----+
+  OpAmp /+ -> OpAmp * -> ADC -> RAM -> Buffer -> PIC
+   ^ ---------------- Counter --------------------+
+#+end_src
+
+*** Firmware
+
+- Written in C89, in MPLAB C18
+
+*** BOM
+
+- PIC18F4550 - µC - DIP40
+  - MIPS, up to 48Mhz (needed for USB)
+  - has an USB 2.0 interface
+  - ADC: 10 bit, in practice of 200Khz due ammount of instructions needed to use it
+  - 35 IO pins
+
+- 2x Op-Amp at the input
+  - Fist one, / attenuates voltage, and + a voltage to center it at 0
+  - Second one, * amplifies voltage to make good use of the ADC
+  - MAX477, added noise
+  - 471, wasn't strong enough
+- 1x 74HCT149 - 2bit to 4line Demultiplexer/Decoder
+  - decodes the 2 bit control signal from the µC, to 4 different possible pins
+- 1x 74HC240 - NOT gates
+  - inverts decoded contr ol signals for the active low Analog Switch
+- 1x 74HC4066 - Quad Analog Switch
+  - connected to the second OpAmp to control its amplification
+
+- 2x 8bit counters - 74F269 - 8 bit - 40Mhz
+  - for SRAM addressing
+  - controlled by µC
+
+- 2x TLC5540 - ADC - 8 bit resolution
+- 2x SRAM - Cypress CY7C-109B-25 - 128k (16k would have been the minium)
+  - one for each ADC
+  - 16 address lines
+  - to store 10k samples (needed to capture triggering context)
+
+- 2x 74F245 - tri-state buffers
+  - para seleccionar que memoria leer (8 bits at the time)
 
 ** FPGA
 

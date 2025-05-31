@@ -1,0 +1,3 @@
+- https://en.wikipedia.org/wiki/Dynamic_random-access_memory
+- 1966 by Dr. Robert Dennard
+- uses a capacitor and a transistor for each memory cell

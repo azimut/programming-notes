@@ -74,6 +74,7 @@ https://www.youtube.com/watch?v=1TpLYx1iZD4
 - 7400 series originally build on it
 - still used as "glue logic" interfacing between more densely integrated components
 - consumes more power than CMOS
+- faster gate logic than CMOS
 
 ** CMOS (67) - Complementary Metal Oxide Semiconductor
 

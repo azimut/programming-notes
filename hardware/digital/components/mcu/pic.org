@@ -24,3 +24,9 @@
   - https://www.youtube.com/@RickJimenezElectronics/videos
   - https://www.youtube.com/@ece4760/playlists
     - https://www.youtube.com/playlist?list=PLKcjQ_UFkrd43P4lgzCot1hgiUu8onfaj
+
+* hardware
+
+- usb programmer: http://web.archive.org/web/20120918133318/http://www.create.ucsb.edu:80/%7Edano/CUI/
+- debugger: https://www.olimex.com/Products/PIC/Programmers/PIC-ICD2/
+- programmer: picpgm https://web.archive.org/web/20070106223701/http://www.members.aon.at/electronics/pic/picpgm/index.html

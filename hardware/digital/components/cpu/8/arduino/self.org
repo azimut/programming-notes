@@ -61,6 +61,7 @@ I -----------|
   |---+--------+------|
   - D0: aka RX set as 0=input
   - D1: aka TX set as 1=output
+
 - 3 registers for each port
   |------+----+--------------------------------------|
   | DDR  | rw | configure direction 0=INPUT 1=OUTPUT |
@@ -85,6 +86,42 @@ I -----------|
   #+begin_src c
     PORTD = B10101000; // pins 7,5,3 to HIGH
   #+end_src
+
+* ADC
+
+- Type: SAR
+
+- analogRead()
+- A0-A5 6 pins (on the PU version)
+- 10-bit 0-1023
+- Control Registers
+  - ADMUX
+  - ADCSRA
+    - ADPS[012] bits change ADC clock frequency (see page 218)
+
+- Output registers: ADC[HL]
+  [[https://content.instructables.com/FA2/MS3S/GZQ40KO6/FA2MS3SGZQ40KO6.png]]
+  - if right adjusted (default) read L and then H for then 10-bit precision
+  - if left adjusted (see ADLAR, ADMUX) read just H for 8-bit precision
+
+- video [[https://www.youtube.com/watch?v=ettV5zorZfQ][ADC blocks and REGISTERS | Internal Reference]]
+- pdf [[https://ece-classes.usc.edu/ee459/library/documents/ADC.pdf][Using the Atmel ATmega328P ADC module]]
+
+- http://www.openmusiclabs.com/learning/digital/atmega-adc/
+  - DIDR - Data Input Disable Register
+  - Recommended max of 50kHz-200kHz
+  - Toggle off the DIDR for the pin you are usings (see page 220)
+    #+begin_src c
+      DIDR0 = 0x01; // ADC0
+      DIDR0 = 0x02; // ADC1
+    #+end_src
+    1) stop it for floating, it creates noise
+    2) speeds it up, DI leaves a capacitance that slows it down
+
+- http://www.openmusiclabs.com/learning/digital/atmega-adc/in-depth/
+  - ENOB = Effective Number of Bits
+  - SNR = Signal to Noise Ratio
+  - ENOB = (SNR-1.76dB) / 6.02dB https://www.analog.com/media/en/training-seminars/tutorials/mt-001.pdf
 
 * Models
 

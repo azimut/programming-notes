@@ -1,0 +1,10 @@
+- https://en.wikipedia.org/wiki/Parallel_ATA
+- 1986
+
+- uses a [[https://en.wikipedia.org/wiki/Ribbon_cable][ribbon cable]] (aka cable cinta)
+  - "From a digital point of view, ribbon cable was an ideal way to connect two devices. However, from an analog point of view, these cables are problematic."
+
+- 40, 44 or 80 conductor cables
+  - 80
+    - required for UDMA5/6
+    - new conductors were inverleaved GNDs, reducing capacitance coupling

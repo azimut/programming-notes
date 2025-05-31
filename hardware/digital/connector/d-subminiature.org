@@ -1,0 +1,13 @@
+- https://en.wikipedia.org/wiki/D-subminiature
+
+#+ATTR_ORG: :width 200
+[[https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/DSubminiatures.svg/330px-DSubminiatures.svg.png]]
+
+- DE-9 - aka [[https://en.wikipedia.org/wiki/Serial_port][serial port]]
+- DB-25 - aka [[https://en.wikipedia.org/wiki/Parallel_port][parallel port]]
+  - 1970
+- DA-15
+  - 2 rows
+- DE-15, HD-15, DB-15(HD) - aka [[https://en.wikipedia.org/wiki/VGA_connector][vga connector]]
+  - 1987
+  - 3 rows

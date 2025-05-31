@@ -1,3 +1,5 @@
+https://en.wikipedia.org/wiki/Analog-to-digital_converter
+
 #+CAPTION: Nyquist-Shannon Theorem
 #+begin_src eqn
 f_sample = 2 * f_signal
@@ -12,13 +14,17 @@ f_sample = 2 * f_signal
 #+CAPTION: 2-bit paralell ADC
 [[https://i.ytimg.com/vi/oo1yjB56ltU/sddefault.jpg]]
 
-** succesive approximation
+** SAR - Succesive approximation register
 
- - only 1 comparator
- - uses a DAC to provide the Vref
- - supplied by a ever changing supply signal (ME: seems like it does a kind of "binary search")
- - takes longer
- - SAR = Successive Approximation Register
+- uses a *DAC* to provide the Vref
+- only 1 *comparator*
+- works by comparing
+  - the input voltage providing
+  - with different voltages in a binary search fashion
+- takes longer
+- 8 to 18 bits (?
+- up to 10MSPS (?
+
  #+CAPTION: successive approximation ADC
  #+ATTR_ORG: :width 200
  [[https://upload.wikimedia.org/wikipedia/commons/6/61/SA_ADC_block_diagram.png]]
