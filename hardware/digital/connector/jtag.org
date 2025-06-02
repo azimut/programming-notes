@@ -1,3 +1,5 @@
+- https://www.xjtag.com/about-jtag/jtag-a-technical-overview/
+- https://www.xjtag.com/about-jtag/what-is-jtag/
 - https://wiki.dd-wrt.com/wiki/index.php/JTAG
 - https://openwrt.org/docs/techref/hardware/port.jtag
 - https://en.wikipedia.org/wiki/JTAG
@@ -24,22 +26,35 @@
     - daisy chain multiple ics
   - https://en.wikipedia.org/wiki/Boundary_scan_description_language
 
-* registers
+* components
 
-- identification: chip id
-- instruction
-- boundary scan
+[[https://www.xjtag.com/wp-content/uploads/schematic_diagram_jtag_enab.gif]]
+
+- TAP = Test Access Port controller
+  - handles state machine logic, through *TMS*
+  - implements core JTAG instructions
+  - handles clock
+- Registers
+  - Instruction register
+  - Data registers
+    - BYPASS: used to pass data between *TDO* and *TDI*
+    - ID: stores chip id
+    - Other (boundary scan?)
 
 * pins
+
 |------+----+-----------------------+----------------------|
 | TCK  | -> | Test Clock            |                      |
 | TDO  | <- | Test Data Out         | high impedance input |
 | TDI  | -> | Test Data In          | pullup               |
 | TMS  | -> | Test Mode Select      | pullup               |
-| TRST | -> | Test Reset (optional) | pullup/down          |
+| TRST | -> | Test Reset (OPTIONAL) | pullup/down          |
 |------+----+-----------------------+----------------------|
 - sometimes might have missing pull-up on TRST
 - sometimes might have missing resistors
+- don't forget GND
+- TMS used for control the state of TAP controller
+
 * pinouts
 
 - sometimes determined by the SoC
@@ -50,11 +65,21 @@
 
 * tools
 
-- https://github.com/balau/JTAGduino
+- arduino
+  - https://github.com/cyphunk/JTAGenum (also raspberry pi)
+  - https://github.com/balau/JTAGduino
+  - https://eeandcs.blogspot.com/2015/08/jtagxsvf-library-for-arduino.html
+    https://github.com/mrjimenez/JTAG
 - OpenOCD - Open On-Chip Debugger
   - https://openocd.org/
   - https://www.youtube.com/watch?v=_1u7IOnivnM
   - https://openwrt.org/docs/guide-user/hardware/debrick.ath79.using.jtag
+  - flash dump http://web.archive.org/web/20190406071748/https://www.gracefulsecurity.com/extracting-flash-memory-using-jtag/
+    #+begin_src sh
+      $ telnet 0 4444
+      > halt
+      > dump_image dump.bin HADDR HSIZE
+    #+end_src
   - opencd opens a gdb server port
     #+begin_src sh
       $ opencd -f ft232h.cfg -f raspi.cfg
@@ -77,6 +102,11 @@
   - tjtag [[https://github.com/oxplot/tjtag-pi][rpi]] [[https://github.com/acidice333/tjtag-pi][rpi3]] [[https://github.com/zoobab/tjtag-arduino][arduino]]
   - https://sourceforge.net/p/freetzlinux/code/HEAD/tree/trunk/wrtjp/
 
+* scans
+
+- IDCODE scan (fast): detects TDO, TCK, TMS
+- BYPASS scan (slow): detects TDI
+
 * SWD
 
 - https://en.wikipedia.org/wiki/JTAG#Similar_interface_standards
@@ -84,6 +114,7 @@
 - 2 pins: CLOCK, IO
 
 * videos
+
 - https://hackyourmom.com/en/osvita/english-chastyna-7-zlom-aparatnoyi-chastyny-systemy-uraznosti-portiv-uart-jtag-i-swd/
 - 13 [[https://www.youtube.com/watch?v=I27NX8uTJNY][Hard disks: More than just block devices]]
   - article https://spritesmods.com/?art=hddhack&page=1
@@ -91,3 +122,13 @@
     - different author
 - 11 [[https://www.youtube.com/watch?v=k3ac5iBcfnQ][DEFCON 17: An Open JTAG Debugger]]
 - 11 [[https://www.youtube.com/watch?v=TlWlLeC5BUs][EEVblog #499 - What is JTAG and Boundary Scan?]]
+- video https://www.youtube.com/watch?v=lV3DECTwTCQ
+
+* articles & videos
+
+- pdf [[https://optivstorage.blob.core.windows.net/web/file/55e86eae3f04450d9bafcbb3a94559ca/JTAG.Whitepaper.pdf][The JTAG Interface: An Attacker's Perspective]] by OPTIV
+- http://web.archive.org/web/20190404094435/https://www.gracefulsecurity.com/jtagulator-introduction/
+- article https://medium.com/@aliaksandr.kavalchuk/diving-into-jtag-protocol-part-1-overview-fbdc428d3a16
+- 19 article https://mcuoneclipse.com/2019/10/20/jtag-debugging-the-esp32-with-ft2232-and-openocd/
+- 20 article https://hackaday.com/2020/04/08/a-hackers-guide-to-jtag/
+- 22 article https://www.actuatedrobots.com/debugging-with-jtag/

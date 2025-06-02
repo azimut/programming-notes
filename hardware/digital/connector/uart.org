@@ -8,43 +8,39 @@
     - raw TTL (for short debugging links)
   - simple protocol
   - can be emulated by bit-banging GPIO pins in software
+    - https://en.wikipedia.org/wiki/Bit_banging
+    - https://blog.jgc.org/2012/09/the-joy-of-bit-banging.html
+      - [[https://news.ycombinator.com/item?id=4521140][HN]]
 
 - On Linux to access /dev/ttyUSB0 your used needs to be in *dialout* group
-- https://en.wikipedia.org/wiki/Bit_banging
-- https://blog.jgc.org/2012/09/the-joy-of-bit-banging.html
-  - [[https://news.ycombinator.com/item?id=4521140][HN]]
-
-* Chips
-
-- CH340 (not recommended? low clock accuraccy)
-- CP2102/9 by Sillicon Labs
-  - I own 3 (red) boards
-  - USB 2.0
-- PL-2303HX by Prolific
-  - 2006
-  - I own 1 board
-  - USB 1.1
-- FT232BL by FTDI
-  - i own 1 ic
-  - USB 1.1/2.0
 
 * How to find UART?
 
 - 20 video with example boards images [[https://www.youtube.com/watch?v=01mw0oTHwxg][Hacker's Guide to UART Root Shells]]
-- unpluggeed
-  - measure continuity/resistance
-  - against *GND* and *Vcc*, it will be 0(zero)
-- plugged
-  - measure voltage
-  - connect a probe to GND
-  - *TX* pin, on boot, will oscillate between 3.3v and 0v
-  - *RX* pin, should have a stable voltage, since is waiting for input
+
+- while unpluggeed, measure continuity/resistance
+  |-----+--------|
+  |     |  <c>   |
+  |     |   Ω   |
+  | GND |   0    |
+  | Vcc | ∞ or 0 |
+  | Tx  |  ~80k  |
+  | Rx  |  ~12k  |
+  |-----+--------|
+
+- when plugged, measure voltage at the first moments of the power up
+  |-----+----------+-----------+-----|
+  | Vcc | constant | 5v / 3.3v | no  |
+  | GND | constant | 0v        | GND |
+  | TX  | variable | 0v - 3.3v | RX  |
+  | RX  | constant | 0v / 3.3v | TX  |
+  |-----+----------+-----------+-----|
 
 * Connecting
 
 - try [[https://en.wikipedia.org/wiki/Serial_port#Speed][common baud rates]] : 115200, 9600, 57600, 38400, 19200, 921600 (mediatek?)
 
-** web serial
+** TODO web serial
 
 - https://developer.mozilla.org/en-US/docs/Web/API/Web_Serial_API
 - https://wicg.github.io/serial/
@@ -61,13 +57,6 @@
     - console=ttyMT1,921600n1
     - printk.disable_uart=0
 
-** when using and an adaptor
-
-- do NOT connect Vcc
-- connect TX,RX,GND
-  - RX on adapter to TX on the board
-  - TX on adapter to RX on the board
-
 * tools
 ** connecting
 
@@ -75,21 +64,28 @@
 - windows: putty, realterm
 - linux:
   #+begin_src sh
-    $ minicom                    # new
-    $ picom -b 9600 /dev/ttyUSBO # nice (works with default scroll)
-    $ cu -l /dev/ttyUSB0 -s 9600 # old
-    $ screen /dev/ttyUSB0 9600   # classic
+    $ minicom -b 9600 -o -D /dev/ttyUSB0 # new
+    $ picom -b 9600 /dev/ttyUSBO         # nice (works with default scroll)
+    $ cu -l /dev/ttyUSB0 -s 9600         # old
+    $ screen /dev/ttyUSB0 9600           # classic
   #+end_src
 
 ** enum
 
-- https://github.com/sickcodes/python3-baudrate
-- https://github.com/cyphunk/RS232enum
+- linux https://github.com/devttys0/baudrate
+- linux https://github.com/biw/Baudrate.py
+- linux https://github.com/sickcodes/python3-baudrate
+- arduino https://github.com/cyphunk/RS232enum
+- arduino https://github.com/mdsecresearch/UARTFuzz
+- jtagulator
+  - http://web.archive.org/web/20190401084010/https://www.gracefulsecurity.com/finding-serial-uart-interfaces/
+  - https://www.cyberark.com/resources/threat-research-blog/accessing-and-dumping-firmware-through-uart
 
 ** other
 
-- https://chris.ex-parrot.com/consolidate/
-- https://github.com/dun/conman
+- manager https://chris.ex-parrot.com/consolidate/
+- manager https://github.com/dun/conman
+- bruteforce login https://github.com/firefart/UARTBruteForcer
 - sniffer - jpnevulator [[https://jpnevulator.snarl.nl/][home]] [[https://github.com/snarlistic/jpnevulator][source]] [[https://jpnevulator.snarl.nl/src/current/manual.html][man]]
   #+begin_src sh
     sudo jpnevulator --ascii --timing-print --tty /dev/ttyUSB0 --read
@@ -117,3 +113,25 @@
   #+begin_src sh
     $ openssl enc -base64 -in BLOB
   #+end_src
+
+* Chips
+
+- DKU-5 Nokia Cable
+- CA-42 Nokia Cable
+  - http://web.archive.org/web/20091008123612/http://www.uchobby.com:80/index.php/2009/10/04/diy-usb-to-serial-cable-for-3
+  - 3 cable clone version https://dduino.blogspot.com/2012/12/diy-usb-to-ttl-with-nokia-ca-42.html
+    - don't forget to check that returns 3.3v
+  - CP2101 chip ?
+  - PL2303HX chip ?
+  - TUSB3410 chip ?
+- CH340 (not recommended? low clock accuraccy)
+- CP2102/9 by Sillicon Labs
+  - I own 3 (red) boards
+  - USB 2.0
+- PL-2303HX by Prolific
+  - 2006
+  - I own 1 board
+  - USB 1.1
+- FT232BL by FTDI
+  - i own 1 ic
+  - USB 1.1/2.0

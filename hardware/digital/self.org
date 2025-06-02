@@ -1,0 +1,3 @@
+#+CAPTION: digital systems family tree
+#+ATTR_ORG: :width 600
+[[./digital-family.jpg]]

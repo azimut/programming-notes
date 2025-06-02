@@ -1,11 +1,14 @@
 - source https://github.com/ReFirmLabs/binwalk/
+- signatures https://en.wikipedia.org/wiki/List_of_file_signatures
 
 * cli
 
 |-------+----------------------------------------|
 | -E    | (mat)plot entropy                      |
+| -A    | scan file for opcodes signatures       |
 | -e    | extract whatever possible              |
-| -t    | format logn lines for terminal         |
+| -M    | (matroyska) recursive extraction       |
+| -t    | format output for terminal (wrapping)  |
 | -W -i | diff only 2 files, only when different |
 |-------+----------------------------------------|
 

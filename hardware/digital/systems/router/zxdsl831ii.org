@@ -2,9 +2,19 @@
 - ZTE - ZXDSL 831 II
 - 2008
 - FCC ID: [[https://fccid.io/Q78-ZXDSL831II][Q78-ZXDSL831II]]
-- CPU:
+- CPU: close family https://openwrt.org/docs/techref/hardware/soc/soc.broadcom.bcm63xx
   - Broadcom BCM6332
-  - BMIPS3000
+  - BMIPS3000 - MIPS32 https://wikidevi.wi-cat.ru/Broadcom_BMIPS3300
   - 240Mhz
-- ROM: 2Mb
+  - ADSL+ capabilities
+- Flash: 2Mb
 - RAM: 8Mb
+- UART: yes
+  - 115200 8NI, XJ1
+  - Rx Tx GND Vcc
+  - admin/admin
+- JTAG: ?? candidate contacts
+
+* OS
+- Hardware not officially supported by anyone
+- a CPU kernel https://github.com/openwrt/bcm63xx-next

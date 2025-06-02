@@ -9,6 +9,7 @@
 - 1st & 2nd stage bootloader
 - cli interface
 - supports booting: linux, android, chromeos...
+- TIP: pressing _anykey_ at startup might trigger *stop autoboot* and return a u-boot shell
 
 * commands
 |-------------------+-----------------------------------+--------------------------------|
@@ -20,14 +21,23 @@
 |      saveenv      |                 -                 | makes the changes permanent    |
 | sunxi_card0_probe |                                   | detect sdcard                  |
 |       fatls       |              mmc 0:1              |                                |
-|       tftp        |             ADDR FILE             | writes tftp FILE in given ADDR |
-|        mmc        |               part                |                                |
+|       tftp        |          ADDR FILE SIZE           | writes tftp FILE in given ADDR |
+|     mmc list      |                 -                 | list available                 |
+|      mmc dev      |                 N                 | select mmc                     |
+|     mmc info      |                 -                 | info about selected mmc        |
+|     mmc part      |                 -                 | print partitions               |
 |      mmcinfo      |                                   |                                |
-|        md         |              ADDR N-4bytes        | memory display                 |
-|      bdinfo       |                                   | board info structure           |
+|        md         |           ADDR N-4bytes           | memory display                 |
+|       md.b        |             ADDR SIZE             | memody display                 |
+|    ext4ls mmc     |          NDEV:NPART PATH          | search in partition            |
+|      bdinfo       |                 -                 | board info structure           |
+|       imls        |                 -                 | image details                  |
+|      version      |                 -                 | u-boot version                 |
 |       nand        |              page N               | dumps N page in hex            |
 |     fatwrite      | mmc 0:1 45000000 boot.img 4000000 |                                |
 |     fastboot      |      flash boot patched.img       |                                |
+|     sf probe      |                 N                 | initialize flash               |
+|      sf read      |         ADDR FOFFSET SIZE         | flash -> ram                   |
 |-------------------+-----------------------------------+--------------------------------|
 * environment
 |-----------------+---------------------------------+-------------------|
@@ -68,6 +78,12 @@ nfsroot=192.169.1.1:/home/kmu/ws/nfsroot,nfsvers=3
 
 #+CAPTION: u-boot image header in 0-31 bits
 [[https://i.imgur.com/BHaEoL4.png]]
+
+* tool
+
+- automate shell cmds https://github.com/nmatt0/firmwaretools
+- dump https://github.com/gmbnomis/uboot-mdb-dump
+- hacking https://github.com/nccgroup/depthcharge
 
 * video
 

@@ -25,6 +25,7 @@
 
 - Arduino based NAND chip reader http://hwreblog.com/projects/arduino_nand_reader.html
 
+- tool: https://github.com/SySS-Research/nand-dump-tools
 - 21 Replace EEPROMs with FLASH Memory from Scratch
   - https://www.youtube.com/watch?v=2crXqNlBazg
   - SST39SF010A

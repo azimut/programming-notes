@@ -20,6 +20,7 @@
 
 * Videos
 
+- [[https://www.youtube.com/watch?v=vwKA1z8tg1g][EGA/VGA Graphics Deep Dive]]
 - TrackZero - DIY Video Card https://www.youtube.com/playlist?list=PLbDuNUQ4K7mz7vd0nv-ErrUkg4OeVEqEe
 - BenEater: https://eater.net/vga
   1) intro [[https://www.youtube.com/watch?v=l7rce6IQDWs][The world's worst video card?]]

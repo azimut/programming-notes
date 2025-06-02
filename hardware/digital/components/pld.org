@@ -8,6 +8,8 @@
     2) CPLDs(88?)
     3) FPGA(85?)
 
+- tool: programmable logic with an eeprom https://github.com/DusteDdk/eepromlogic
+
 * PAL  (78) - Programmable Array Logic
 
 https://en.wikipedia.org/wiki/Programmable_Array_Logic
@@ -39,41 +41,99 @@ https://en.wikipedia.org/wiki/Generic_Array_Logic
 
 - By "Lattice Semiconductors"
 
-[[https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Amiga_1000_-_memory_expansion_module_-_National_Semiconductor_GAL16V8-25LNC-7731.jpg/800px-Amiga_1000_-_memory_expansion_module_-_National_Semiconductor_GAL16V8-25LNC-7731.jpg]]
-
+- Book: Practical Design Using Programmable Logic, by Pellerin David
 - Could take the function of different type of PAL's
 - Erasable & Reprogrammable (electrically)
+  - x100 times
+  - with a commercial EEPROM programmer
+- Have a "security fuse", that disables reads (not writes)
+  - is [[https://www.edaboard.com/threads/protected-pal-gal-reading.220871/][impossible to remove through software]]
+- Can replace any 74xx chip (3 or more at the time)
+  - exceptions: open collector, open drain, schmitt trigger, non D-type flipflop or with clock, pre-set or clear
+
+** ics
+
+#+CAPTION: GAL16V8
+[[https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Amiga_1000_-_memory_expansion_module_-_National_Semiconductor_GAL16V8-25LNC-7731.jpg/800px-Amiga_1000_-_memory_expansion_module_-_National_Semiconductor_GAL16V8-25LNC-7731.jpg]]]]
+
 - https://en.wikipedia.org/wiki/GAL22V10
+- IC:
+  - PALCE16V8H
+  - GAL16V8, GAL20V8 (currently available?)
+  - ATF22V10/V8 (DIP pin compatible)
 
-- https://hackaday.com/tag/galasm/
-- tool: asm? https://github.com/daveho/GALasm
-- tool: asm? https://github.com/simon-frankau/galette
-- tool: https://github.com/ChrisEAlfred/galparse
-- tool: hardware programmer
-  - new https://github.com/ole00/afterburner
-  - old https://github.com/ole00/afterburner/tree/version_4_legacy
-- tool: programmer gal http://www.armory.com/~rstevew/Public/Pgmrs/GAL/schema.gif
-- tool: programmer gal http://elm-chan.org/works/pgal/report_e.html http://elm-chan.org/works/pgal/pgal_e.png
+** article
 
-- #756 Basics: PAL GAL Programmable Logic
-  https://www.youtube.com/watch?v=fo_WlA-kVRc
+https://github.com/peterzieba/5Vpld
+https://hackaday.com/2014/06/24/programmable-logic-i-plapal/
+https://hackaday.com/2014/06/25/programmable-logic-ii-cpl/
 
-- Chip Tips #3: Generic Array Logic
-  https://www.youtube.com/watch?v=G856wm332PQ
+** videos
+
+- [ ] 25 [[https://www.youtube.com/watch?v=kzqxsFFQQNo][How to use ATF22V10/GAL22V10 Programmable Logic Devices (PLDs)]]
+- [ ] GAL Hand dissasembly [[https://www.youtube.com/watch?v=h_d4npbKpdY][1]] [[https://www.youtube.com/watch?v=r2sXYgxVwVg][2]]
+  - from binary dump to JEDEC using IC's Logic Diagram
+- [X] 18 Me and My GAL [[https://www.youtube.com/watch?v=Q0LePBuaF8s][Part I]] [[https://www.youtube.com/watch?v=pMGAo6kArtU&t=60s][Part II]]
+  - GAL16V8D-15LP / wincupl / jed2eqn (to verify wincupl output)
+  - used for address decoding (?
+- [X] 23 [[https://www.youtube.com/watch?v=J3LxLnfzYy4][Introduction to Programmable Logic Devices: SPLDs, PAL, GAL and FPGA]]
+  - recap ends at 11:10
+  - PAL starts at 38:00
+- [ ] [[https://www.youtube.com/watch?v=8vezAmY8_ms][Programming GAL and NVRam chips]]
+- [ ] [[https://www.youtube.com/watch?v=iyaqr0eAXp0][Digital Electronics: Programming GAL device to implement shift register operation.]]
+- [ ] [[https://www.youtube.com/watch?v=TJbI-NMJaUY][FPGA #1 - An Overview of Programmable Logic Devices]]
+- [ ] [[https://www.youtube.com/watch?v=g1hvaS_0WGA][Homebrew Computer Part 5: Programming a GAL 22V10]]
+- [ ] [[https://www.youtube.com/watch?v=fCsP7ujMJV8][Make Your Own Microchips!]]
+- [ ] [[https://www.youtube.com/watch?v=79lCXMIhkUs][GAL Devices - Bioengineering U de A]]
+- IMSAI
+  - [[https://www.youtube.com/watch?v=qmgvJHY6ky4][#93 TTL CPU GAL22V10]]
+  - [[https://www.youtube.com/watch?v=8pXnCgQqb2I][#248 GAL 16V8 16V8D 16V8Z problems]]
+  - [[https://www.youtube.com/watch?v=fo_WlA-kVRc][#756 Basics: PAL GAL Programmable Logic]]
+
+- [[https://www.youtube.com/watch?v=G856wm332PQ][Chip Tips #3: Generic Array Logic]]
   - Needed for a "big" state machine.
   - PAL was an array of AND and OR gates.
     Followed by an array of invertors.
     Which could get most combinatory logic needed.
   - Uses GAL22V10
 
+** compilation
+
+-    JED = JEDEC
+-    EQN = Boolean Equations
+-   CUPL = Programming Language made by Atmel https://ece-classes.usc.edu/ee459/library/documents/CUPL_Reference.pdf
+- PALASM = Programming Language
+
+- source -> .jed -> PROGRAMMER -> GAL
+
+** tools
+
+- https://hackaday.com/tag/galasm/
+- OPALjr - jed2eqn - eqn2jed
+  - runs on DOSBOX
+- asm? https://github.com/daveho/GALasm
+- asm? https://github.com/simon-frankau/galette
+- https://github.com/ChrisEAlfred/galparse
+- hardware programmer
+  - new https://github.com/ole00/afterburner
+  - old https://github.com/ole00/afterburner/tree/version_4_legacy
+- programmer https://www.microchip.com/en-us/development-tool/wincupl
+- programmer http://www.armory.com/~rstevew/Public/Pgmrs/GAL/schema.gif
+- programmer http://www.armory.com/~rstevew/Public/Pgmrs/GAL/_ClikMe1st.htm
+- programmer http://elm-chan.org/works/pgal/report_e.html http://elm-chan.org/works/pgal/pgal_e.png
+
 * CPLD (88) - Complex Programmable Logic Device
-https://en.wikipedia.org/wiki/Complex_programmable_logic_device
+- https://en.wikipedia.org/wiki/Complex_programmable_logic_device
+- ic: Microchip ATF15xx
+- best? propagation delay
+- tool: reversing https://github.com/bcrist/re4k
 * FPGA (85) - Field Programmable Gate Array
 https://en.wikipedia.org/wiki/Field-programmable_gate_array
 - https://github.com/litex-hub/fpga_101
 - https://www.youtube.com/channel/UC4ls2cPrXHfEO_oTHZcCclA/videos
 - https://projectf.io/posts/racing-the-beam/
 - https://www.eevblog.com/forum/fpga/devices-containing-re-purposable-fpgas/
+- Brands: Altera, Xilinx
 ** projects
 
 - https://github.com/ufrisk/pcileech-fpga
@@ -82,10 +142,12 @@ https://en.wikipedia.org/wiki/Field-programmable_gate_array
   https://thunderclap.io/
 
 ** Languages
-- ABEL
 - VHDL
-- verilog
+- Verilog
   - 21 article https://dev.to/taw/100-languages-speedrun-episode-28-verilog-18jp
+- AHDL
+- System Verilog
+- ABEL
 ** Videos
 
 - TODO 24 [[https://www.youtube.com/watch?v=uXH3xof4BNg][FPGAs para password/hash cracking]] by Ignacio Agustin Randazzo
@@ -93,6 +155,7 @@ https://en.wikipedia.org/wiki/Field-programmable_gate_array
   - fpga's are made from a matrix of programmable CLB
 
 *** Playlist
+- Curso FPGA https://www.youtube.com/watch?v=GLfnmc4Vv5U&list=PLIyIZGa1sAZqeQJ6Y02b7O8HV0gK25zc2
 - [[https://www.youtube.com/playlist?list=PLEBQazB0HUyT1WmMONxRZn9NmQ_9CIKhb][Intro to FPGA]] by digikey
 - 17 https://www.youtube.com/playlist?list=PLKcjQ_UFkrd7UcOVMm39A6VdMbWWq-e_c
 - 20 DE1-SoC FPGA Lectures
@@ -126,3 +189,6 @@ https://en.wikipedia.org/wiki/Field-programmable_gate_array
 - fpga can use a crystal with a PLL (physic logic lock) for more speed
 - need a usbblaster or might be integrated
 - they are NOT CPLD
+** article
+
+- 13 [[https://www.embeddedrelated.com/showarticle/195.php][How FPGAs work, and why you'll buy one]]

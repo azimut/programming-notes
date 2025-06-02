@@ -13,10 +13,15 @@
 
 * packages / form factors
 
-[[https://en.wikipedia.org/wiki/Chip_carrier][PLCC]] - Plastic Lead Chip Carrier
-[[https://en.wikipedia.org/wiki/Ball_grid_array][BGA]]  - Ball Grid Array
-QFP  - Quad Flat Package
-QFN  - Quad Flat No-leads package
+|------+----------------------------+---------+------------|
+|      |                            |     <r> |    <c>     |
+| [[https://en.wikipedia.org/wiki/Chip_carrier][PLCC]] | Plastic Lead Chip Carrier  |         |   under    |
+| [[https://en.wikipedia.org/wiki/Ball_grid_array][BGA]]  | Ball Grid Array            |         |   under    |
+| QFP  | Quad Flat Package          |         | quad wings |
+| QFN  | Quad Flat No-leads package |         |   under    |
+| SOIC | Small Outline IC           |  1.27mm | side wings |
+| SOP  | "                          | <1.27mm | side wings |
+|------+----------------------------+---------+------------|
 
 * pins
 |-----------+------------------------------------|

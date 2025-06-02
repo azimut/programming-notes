@@ -9,8 +9,8 @@
 
 - wiki https://en.wikipedia.org/wiki/Flashrom_(utility)
 - home https://www.flashrom.org/
-- Pomona 5250 - SOIC clip
-- CH341A chip
+- hardware: Pomona 5250 - SOIC clip
+- hardware: CH341A chip
 
 #+CAPTION: dumping flash through SPI, setting custom speed
 #+begin_src sh

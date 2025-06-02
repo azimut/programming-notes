@@ -1,3 +1,8 @@
+- https://voidstarsec.com/blog/intro-to-embedded-part-1
+- https://github.com/f3nter/HardBreak/
+- https://github.com/koutto/hardware-hacking/
+- https://slava-moskvin.medium.com/extracting-firmware-every-method-explained-e94aa094d0dd
+
 - FCC
 - talks https://github.com/indetectables-net/embedded
 - https://techinfodepot.shoutwiki.com/wiki/Main_Page
@@ -8,6 +13,8 @@
 - tool: helpfun when extracting firmwares https://wiki.debian.org/FakeRoot
 - TIP: there is a "factory mode" on the init scripts of many devices (HHT)
 
+- channel
+  - https://www.youtube.com/@spradotube/videos
 - video course
   - [[https://www.youtube.com/playlist?list=PLEBQazB0HUyTpoJoZecRK6PpDG31Y7RPB][Introduction to Embedded in Linux]] by digikey
   - [[https://www.youtube.com/playlist?list=PLPW8O6W-1chwyTzI3BHwBLbGQoPFxPAPM][Modern Embedded Systems Programming Course]]

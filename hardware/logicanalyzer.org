@@ -1,5 +1,6 @@
 - https://sigrok.org/wiki/PulseView
 - https://www.zeroplus.com.tw/logic-analyzer_en/
 - https://www.saleae.com/
+- TIP: you would want to sample at 4x your target speed
 - tool: https://github.com/pschatzmann/logic-analyzer
   - pulseview arduino sketches for esp8266, esp32, pico

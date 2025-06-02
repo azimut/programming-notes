@@ -1,3 +1,4 @@
+- wiki https://web.archive.org/web/20071022135648/http://pclab.nectec.or.th/wiki/index.php/Hardware#AMD_Personal_Internet_Communicator
 - wiki https://en.wikipedia.org/wiki/Personal_Internet_Communicator
 - home https://web.archive.org/web/20080225043230/http://www.amd.com/us-en/ConnectivitySolutions/ProductInformation/0,,50_2330_12264_12262,00.html
 - PIC-1MM (aka "AMD PIC" aka "decTOP")

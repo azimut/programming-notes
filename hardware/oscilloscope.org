@@ -1,3 +1,4 @@
+- buying guide https://www.mouser.com/pdfdocs/Tektronix12_things_to_consider1.pdf
 * characteristics
 
 - Speed: in Hz

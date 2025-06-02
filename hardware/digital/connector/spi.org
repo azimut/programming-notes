@@ -8,6 +8,7 @@
   - controlled by the MCU
 - simpler han I2C
 - no spec
+- used by some serial EEPROMS (see flashrom)
 
 * pins
 

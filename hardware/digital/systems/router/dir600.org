@@ -1,4 +1,4 @@
-* B2
+#+TITLE: B2
 
 https://techinfodepot.shoutwiki.com/wiki/D-Link_DIR-600_rev_B2
 https://openwrt.org/toh/d-link/dir-300revb
@@ -13,11 +13,13 @@ https://dd-wrt.com/support/router-database/?model=DIR-600_B1%20/%20B2
   - 320Mhz
   - MIPS
 - RAM: 32Mb W9825G6EH-6
-- ROM: 4Mb S29GL032N90TFI040
+- Flash: 4Mb S29GL032N90TFI040
 - USB: *NO* (CPU supports it tho :()
 - x5 RJ45 100M RT3050
-- Serial: 57600, 3.3v
-- JTAG: no? (pins are there...)
+- UART: 57600, 3.3v, Tx GND Vcc x Rx
+- JTAG: no? (3 pogopins, supported by CPU)
+
+- article https://diy.viktak.com/2016/02/installing-openwrt-on-d-link-dir-600-router.html
 
 * gpio mod
 
