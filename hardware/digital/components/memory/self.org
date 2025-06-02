@@ -1,3 +1,6 @@
 - MCP https://en.wikipedia.org/wiki/Multi-chip_module
   - aka MCM
   - usually RAM(SDAM) + ROM (Flash)
+
+#+ATTR_ORG: :width 600
+[[./memory-types.png]]

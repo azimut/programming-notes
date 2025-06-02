@@ -1,0 +1,68 @@
+#+TITLE: FPGA (85) - Field Programmable Gate Array
+
+https://en.wikipedia.org/wiki/Field-programmable_gate_array
+
+- https://github.com/litex-hub/fpga_101
+- https://www.youtube.com/channel/UC4ls2cPrXHfEO_oTHZcCclA/videos
+- https://projectf.io/posts/racing-the-beam/
+- https://www.eevblog.com/forum/fpga/devices-containing-re-purposable-fpgas/
+- Brands: Altera, Xilinx
+
+* projects
+
+- https://github.com/ufrisk/pcileech-fpga
+- https://github.com/ufrisk/pcileech
+- https://github.com/thunderclap-io
+  https://thunderclap.io/
+
+* Languages
+- VHDL
+- Verilog
+  - 21 article https://dev.to/taw/100-languages-speedrun-episode-28-verilog-18jp
+- AHDL
+- System Verilog
+- ABEL
+* Videos
+
+- TODO 24 [[https://www.youtube.com/watch?v=uXH3xof4BNg][FPGAs para password/hash cracking]] by Ignacio Agustin Randazzo
+  - in many CPU's there is no division op
+  - fpga's are made from a matrix of programmable CLB
+
+*** Playlist
+- Curso FPGA https://www.youtube.com/watch?v=GLfnmc4Vv5U&list=PLIyIZGa1sAZqeQJ6Y02b7O8HV0gK25zc2
+- [[https://www.youtube.com/playlist?list=PLEBQazB0HUyT1WmMONxRZn9NmQ_9CIKhb][Intro to FPGA]] by digikey
+- 17 https://www.youtube.com/playlist?list=PLKcjQ_UFkrd7UcOVMm39A6VdMbWWq-e_c
+- 20 DE1-SoC FPGA Lectures
+  - https://www.youtube.com/playlist?list=PLDqMkB5cbBA4OW0fDTu1FY6aw4uBWOpBa
+  - https://people.ece.cornell.edu/land/courses/ece5760/
+- Building a CPU on an FPGA - Robert Baruch
+  https://www.youtube.com/playlist?list=PLEeZWGE3PwbZ44SUf1-vA-UuX9_J_pifB
+- FPGA-OBIJUAN
+  https://www.youtube.com/playlist?list=PLf-63rsbF9BsNeFj-j0THAPd3K_KoJDs3
+- Prof. Bruce Land lectures on FPGA
+  https://www.youtube.com/playlist?list=PLJ1LeUHJNHKhhKJQ-oFYcefHJ7e0TI8jn
+- FPGA Design - Intel FPGA
+  https://www.youtube.com/playlist?list=PL0pU5hg9yniZ2ka-XBXROXNR0pAEAEFCB
+- Digital Design VHDL - LBEbooks
+  https://www.youtube.com/playlist?list=PL7kkolCtIBKLukrBsEDwKRTE64JvaJDhM
+- Learn FPGA - Invent Box Tutorials
+  https://www.youtube.com/playlist?list=PL2935W76vRNGRtB09yXBytO6F3zSZFZGr
+- FPGAs 101 - Electronoobs
+  https://www.youtube.com/playlist?list=PLsR1AO4QH1AyT3b0pUERjFVShbzEelogi
+- ECE5760 DE2/115 lectures 2011 https://www.youtube.com/playlist?list=PL2BA78454E71FF0E5
+*** Channels
+- https://www.youtube.com/@ZeroToASICcourse/videos
+- "EEVeBlog"      https://www.youtube.com/user/EEVblog/videos
+- "Robert Baruch" https://www.youtube.com/channel/UCBcljXmuXPok9kT_VGA3adg
+- "Nandland"      https://www.youtube.com/c/Nandland/videos
+*** Video: Ben Heck's FPGA Dev Board Tutorial https://www.youtube.com/watch?v=0zrqYy369NQ
+- used for really low latency
+- a microcontroller is limited to the speed of his program loop
+- a microcontroller can use interrupts for better divide of speed
+- fpga real level logic > speed
+- fpga can use a crystal with a PLL (physic logic lock) for more speed
+- need a usbblaster or might be integrated
+- they are NOT CPLD
+* article
+
+- 13 [[https://www.embeddedrelated.com/showarticle/195.php][How FPGAs work, and why you'll buy one]]
