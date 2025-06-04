@@ -1,5 +1,3 @@
-- korg kaossilator mod https://kaossilator.wordpress.com/
-
 - Mid-60
 - Books https://sdiy.info/wiki/Synthesizer_books
 - Magazines
@@ -12,6 +10,7 @@
   - Gate     (0v or 10v, 0v or 5v)
   - Trigger  (0v or 10v) a sort of "instant gate"
   - Pitch CV
+    - 1v = C
     - between 0v and 5v, 1v per octave
       - same Voltage as clocks?
     - or? between -+5V

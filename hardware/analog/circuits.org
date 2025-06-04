@@ -1,6 +1,7 @@
 - PHDL (vhdl extension) https://sourceforge.net/p/phdl/wiki/Home/
 - SKiDL (python dsl) https://github.com/devbisme/skidl
 - pycircuit (python dsl) https://github.com/dvc94ch/pycircuit
+- circuitlab (online) https://www.circuitlab.com/
 - picsimlab https://github.com/lcgamboa/picsimlab
 - netlistsvg (json netlist to svg) https://github.com/nturley/netlistsvg
 - replicad https://github.com/monostable/replicad

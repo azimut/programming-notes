@@ -47,6 +47,7 @@
   - if power supply voltage > battery voltage
   #+ATTR_ORG: :width 200
   [[https://i.sstatic.net/yPLyU.png]]
+
 ** AC-DC Convertor
 
 - to convert AC to DC, letting through only the positive voltage

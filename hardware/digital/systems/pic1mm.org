@@ -21,6 +21,11 @@
 - NorthBridge: CS5535-UDC
   - USB 1.1
   - UART
+  - JTAG: yes?
+    - 3.3v
+    - CPU supports it
+    - 2x10
+
 - RAM: SODIMM DDR PC2700S 128Mb
   - upto 512Mb (according to wiki)
   - upto 256Mb per bank (according to datasheet)

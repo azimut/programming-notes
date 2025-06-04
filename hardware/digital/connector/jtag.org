@@ -63,9 +63,22 @@
   - on routers https://openwrt.org/docs/techref/hardware/port.jtag#headers
   - http://jtagtest.com/pinouts/
 
+** mips jtag (2x7)
+
+#+begin_src
+  nTRST  GND
+    TDI  GND
+    TDO  GND
+    TMS  GND
+    TCK  GND
+  nSRST  NC
+   DINT  VREF
+#+end_src
+
 * tools
 
 - arduino
+  - https://github.com/gremwell/go-jtagenum
   - https://github.com/cyphunk/JTAGenum (also raspberry pi)
   - https://github.com/balau/JTAGduino
   - https://eeandcs.blogspot.com/2015/08/jtagxsvf-library-for-arduino.html
@@ -129,6 +142,10 @@
 - pdf [[https://optivstorage.blob.core.windows.net/web/file/55e86eae3f04450d9bafcbb3a94559ca/JTAG.Whitepaper.pdf][The JTAG Interface: An Attacker's Perspective]] by OPTIV
 - http://web.archive.org/web/20190404094435/https://www.gracefulsecurity.com/jtagulator-introduction/
 - article https://medium.com/@aliaksandr.kavalchuk/diving-into-jtag-protocol-part-1-overview-fbdc428d3a16
+- 21 article
+  - https://riverloopsecurity.com/blog/2021/05/hw-101-jtag/
+  - https://riverloopsecurity.com/blog/2021/05/hw-101-jtag-part2/
+  - https://riverloopsecurity.com/blog/2021/07/hw-101-jtag-part3/
 - 19 article https://mcuoneclipse.com/2019/10/20/jtag-debugging-the-esp32-with-ft2232-and-openocd/
 - 20 article https://hackaday.com/2020/04/08/a-hackers-guide-to-jtag/
 - 22 article https://www.actuatedrobots.com/debugging-with-jtag/

@@ -10,3 +10,4 @@
 - https://riverloopsecurity.com/blog/2020/03/hw-101-emmc/
 - https://sergioprado.blog/rpmb-a-secret-place-inside-the-emmc/
 - https://blog.quarkslab.com/flash-dumping-part-i.html
+- https://riverloopsecurity.com/blog/2020/03/hw-101-emmc/

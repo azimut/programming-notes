@@ -1,0 +1,3 @@
+- https://en.wikipedia.org/wiki/DIN_connector
+- ~1950 by Deutsches Institut für Normung
+- DIN 41524: circular, used by midi

@@ -135,3 +135,6 @@
 - FT232BL by FTDI
   - i own 1 ic
   - USB 1.1/2.0
+
+* articles
+- https://riverloopsecurity.com/blog/2020/01/hw-101-uart/

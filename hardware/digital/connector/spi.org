@@ -44,3 +44,6 @@
   | 2 | ↓ | high |
   | 3 | ↑ | high |
   |---+---+------|
+
+* articles
+- https://riverloopsecurity.com/blog/2020/02/hw-101-spi/

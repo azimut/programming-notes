@@ -28,6 +28,9 @@
   - https://bootlin.com/doc/training/preempt-rt/
   - https://bootlin.com/training/networking/
 
+- fault injection
+  - https://riverloopsecurity.com/blog/2020/10/hw-101-glitching/
+
 * article
 
 ** 20 [[https://krinkinmu.github.io/2020/07/05/beaglebone-software-update.html][Updating kernel and bootloader on BeagleBone Black Wireless]]

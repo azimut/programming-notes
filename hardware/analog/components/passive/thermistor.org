@@ -1,0 +1,13 @@
+- https://en.wikipedia.org/wiki/Thermistor
+- a temperature variable resistor
+- Types
+  - PTC - Positive Temperature Coeficient
+    - +temp +resistance
+    - Used by:
+      - self-resetting overcurrent protectors
+      - self-regulating heating elements
+  - NTC - Negative Temperature Coeficient
+    - +temp -resistance
+    - Used by:
+      - inrush current limitor
+      - temperature sensors

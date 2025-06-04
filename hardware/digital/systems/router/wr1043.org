@@ -16,6 +16,8 @@
   - host, device, OTG
 - Connectivity:
   - JTAG: yes (no write permissions?)
+    - MIPS JTAG? (2x7)
+    - 3.3v
   - Serial: [[https://www.youtube.com/watch?v=IHNrnLnLakE][video]]
     - 3.3v
     - 115200/8/None/1/None

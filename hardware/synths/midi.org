@@ -1,0 +1,11 @@
+- https://en.wikipedia.org/wiki/MIDI
+- https://learn.sparkfun.com/tutorials/midi-tutorial/all
+- Musical Instrument Digital Interface
+- Also used on: stage lighting, and recording studio equipment
+- Serial protocol
+- message
+  - status byte
+    - 4 bit - note on/of
+    - 4 bit - channel
+  - note byte
+  - velocity byte

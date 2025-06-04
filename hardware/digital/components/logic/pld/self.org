@@ -70,6 +70,7 @@ https://hackaday.com/2014/06/25/programmable-logic-ii-cpl/
 
 ** videos
 
+- [ ] 20 [[https://www.youtube.com/watch?v=qoY64kw9qd8][Como leer PAL/GAL 16V8 protegidas]]
 - [ ] 25 [[https://www.youtube.com/watch?v=kzqxsFFQQNo][How to use ATF22V10/GAL22V10 Programmable Logic Devices (PLDs)]]
 - [ ] GAL Hand dissasembly [[https://www.youtube.com/watch?v=h_d4npbKpdY][1]] [[https://www.youtube.com/watch?v=r2sXYgxVwVg][2]]
   - from binary dump to JEDEC using IC's Logic Diagram

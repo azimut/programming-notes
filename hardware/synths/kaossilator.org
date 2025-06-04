@@ -1,0 +1,14 @@
+- Korg Kaossilator
+- Specs
+  - Resistive Pad (500Mhz)
+- mods https://forum.aemodular.com/thread/534/korg-kaossilator-hax
+  - https://kaossilator.wordpress.com/
+  - midi https://hackaday.com/2011/02/04/midi-input-for-the-kaossilator/
+    - only note on/off (NOT pitch selection)
+    - post http://web.archive.org/web/20110210031900/http://furrtek.free.fr:80/index.php?p=crea&a=kaossmidi
+      - [[http://web.archive.org/web/20161206013318/http://furrtek.free.fr/noclass/kaossmidi/schem_full.png][diagram]]
+    - source http://web.archive.org/web/20161206013416/http://furrtek.free.fr/noclass/kaossmidi/source1.c
+    - MIDI -> ATtiny2313 -> Touchpad
+  - gimmick https://www.instructables.com/Make-a-Korg-Kaossilator-Guitar/
+- song https://www.youtube.com/watch?v=u3_yXmIfmYg
+- dissasemble https://www.youtube.com/watch?v=wiZhB_BpINY
