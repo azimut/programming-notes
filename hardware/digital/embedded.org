@@ -1,3 +1,7 @@
+- MIT 6.172 Performance Engineering of Software Systems, Fall 2018 https://www.youtube.com/playlist?list=PLUl4u3cNGP63VIBQVWguXxZZi0566y7Wf
+- https://github.com/m3y54m/Embedded-Engineering-Roadmap
+- https://embeddedartistry.com/beginners/
+- https://embeddedartistry.com/recommended-reading/
 - https://voidstarsec.com/blog/intro-to-embedded-part-1
 - https://github.com/f3nter/HardBreak/
 - https://github.com/koutto/hardware-hacking/

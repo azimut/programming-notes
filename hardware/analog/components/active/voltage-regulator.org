@@ -14,13 +14,13 @@
 - they have dozens of transistors
 - they have 3 pins
 
-#+CAPTION: unregulated(top) and regulated(bottom) voltage
+#+CAPTION: oscilloscope, unregulated(top) and regulated(bottom) voltage
 #+ATTR_ORG: :width 300
 [[https://europe1.discourse-cdn.com/arduino/optimized/4X/9/b/7/9b71f04d0e8c22b4ff58be5a051a707088b7cdc8_2_669x500.jpeg]]
 
 * Circuit
 
-the datasheet will tell you what capacitors you need for the IN/OUT
+the datasheet will tell you what capacitors you need for the IN & OUT
 #+ATTR_ORG: :width 400
 [[https://www.build-electronic-circuits.com/wp-content/uploads/2023/06/full_rectifier-1.png]]
 
@@ -31,7 +31,7 @@ the datasheet will tell you what capacitors you need for the IN/OUT
 
 - TPS61070 - Efficient Synchronous Boost Converter
 - LM2596 - Step-Down Voltage Regulator
-- LM317 - Adjustable Voltage Regulator
+- LM317 - *Adjustable* Voltage Regulator
   - Can be setup to adjust voltage based on potentiometer
     - Vout = 1.25 * (1+(R2/R1)) + 50u * R2
   - Can be also setup to provide a constant current source (while changing voltage)
@@ -42,6 +42,16 @@ the datasheet will tell you what capacitors you need for the IN/OUT
 - https://en.wikipedia.org/wiki/78xx
 - https://www.inventable.eu/2023/05/17/reguladores-tension-78l/
 
+- Where "xx" indicate the _output_ voltage
 - 78xx - positive (linear) voltage regulators
+  |------+--------+--------|
+  |      |    <r> |    <r> |
+  |      | min in | output |
+  |------+--------+--------|
+  | 7824 |    30v |    24v |
+  | 7812 |    15v |    12v |
+  | 7808 |    10v |     8v |
+  | 7806 |     8v |     6v |
+  | 7805 |     7v |     5v |
+  |------+--------+--------|
 - 79xx - negative (linear) voltage regulators
-- where "xx" indicate the _output_ voltage

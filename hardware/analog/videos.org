@@ -1,12 +1,13 @@
 - Transistors: https://www.youtube.com/watch?v=X31B1pVow1o
+
 * channels
 
+- https://www.youtube.com/c/Electr%C3%B3nicaFP/videos
 - https://www.youtube.com/@GadgetReboot
 - IMSAI guy basics https://www.youtube.com/playlist?list=PLXDK0MeyK4Zj7aS1_kkNKaRwiWeBhNZb0
 - https://www.youtube.com/@EngineeringMindset/playlists
 - https://www.youtube.com/@EEVblog/playlists
 - https://www.youtube.com/@jeriellsworth/videos
-- https://www.youtube.com/playlist?list=PLkyBCj4JhHt9dIWsO7GaTU149BkIFbo5y
 - https://www.youtube.com/@greatscottlab/videos
 - https://www.youtube.com/@stemscience1/videos
 - https://www.youtube.com/@Vocademy-Electronics-Tech
@@ -16,7 +17,6 @@
 - https://www.youtube.com/@IMSAIGuy/videos
 - https://www.youtube.com/@HaseebElectronics/videos
 - https://www.youtube.com/c/ShawnHymel/videos
-- RSD Academy https://www.youtube.com/playlist?list=PLL_nf1OmixTT8ZPpWYcxVEjsp33y0C0o9
 - Jonathan Valvano
   Embedded Systems - Shape the World
   https://www.youtube.com/playlist?list=PL_RVM1q4YIETsC1_nFjgBF9X0jKebDucF

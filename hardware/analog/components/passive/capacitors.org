@@ -27,8 +27,8 @@
   - high frequency, acts like short circuit
   - low frequency, acts like open circuit
 - due above can function as
-  - a LPF, useful to clean high freq noise
-  - a HPF
+  - a LPF, useful to clean high freq noise, electrolitic cap
+  - a HPF, ceramic cap
   - a band filter, by using both LPF+HPF
 
 * Form Factors

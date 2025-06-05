@@ -17,6 +17,19 @@
 
 - process.argv - array of: path to node, path to script, and the rest of arguments
 
+* Variables
+
+- __dirname - only on commonjs
+  - path.join(__dirname, "module.js")
+
+- import.meta.url - only on module/es6, returns current file
+  - fileURLtoPath() - in node:path
+  - dirname() - in node:path
+
+- fs
+  - readFileSync
+
+
 * Standard Modules
 - https://www.w3schools.com/nodejs/ref_modules.asp
   Here is a list of the built-in modules of Node.js version 6.10.3:

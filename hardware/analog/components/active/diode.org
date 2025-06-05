@@ -109,12 +109,12 @@
   - 1N1100
   - [[https://en.wikipedia.org/wiki/1N4148_signal_diode][1N4148]] (glass red, switching 4ns, 200mA, 100v)
   - 1N5236B
-- Rectifier: epoxy, high electric current
+- Rectifier: epoxy, high electric current, +voltage drop
   - https://www.inventable.eu/2017/09/04/los-diodos-1n4000/
   - https://en.wikipedia.org/wiki/1N400x_rectifier_diode
   - 1N400x (1A, 30us)
   - 1N54xx (3A)
-- Schottky
+- Schottky, -voltage drop
   - [[https://en.wikipedia.org/wiki/List_of_1N58xx_Schottky_diodes][1N58xx]] (Vf=0.3v,10ns)
 - Zener
   - low breakdown voltage

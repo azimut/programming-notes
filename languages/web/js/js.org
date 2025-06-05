@@ -38,6 +38,30 @@ https://github.com/30-seconds/30-seconds-of-interviews
 - parseInt, parseFloat, isNaN
 - loops: while, do while, for
 * language
+** modules
+*** type: commonjs
+
+#+begin_src js
+  const fn = () => console.log("fn");
+  module.export = { fn };
+#+end_src
+
+#+begin_src js
+  const moda = require("./moda");
+  moda.fn();
+#+end_src
+
+*** type: module
+
+#+begin_src js
+  export const say = () => console.log("wha");
+#+end_src
+
+#+begin_src js
+  import { say } from './module.js';
+  say();
+#+end_src
+
 ** primitive
 |-----------+---+---|
 |           | C | F |
