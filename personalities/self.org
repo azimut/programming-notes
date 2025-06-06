@@ -1,2 +1,8 @@
 - programming languages with pictures of their authors
   https://oylenshpeegul.github.io/asopl/
+
+- Synths
+  - Paul White
+  - David Strange
+  - Paul Williams
+  - Ben Duncan

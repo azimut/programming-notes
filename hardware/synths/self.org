@@ -6,23 +6,7 @@
 
 - https://southplug.com/los-sintetizadores-modulares-en-la-contemporaneidad-una-mirada-desde-latinoamerica/
 
-- Types of =Control= voltage signals (-12v,12v)
-  - Gate     (0v or 10v, 0v or 5v)
-  - Trigger  (0v or 10v) a sort of "instant gate"
-  - Pitch CV
-    - 1v = C
-    - between 0v and 5v, 1v per octave
-      - same Voltage as clocks?
-    - or? between -+5V
-  - Oscillators, LFO, ADSR, Offset, invertor (-12v,12v)
-
 - Let your system warm up to make sure voltages are stable before using it.
-
-- Names
-  - Paul White: articles circuits
-  - David Strange: articles circuits
-  - Paul Williams: articles circuits
-  - Ben Duncan: articles circuits
 
 * reddit links
 - http://www.nicolascollins.com/handmade.htm

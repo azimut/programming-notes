@@ -1,0 +1,10 @@
+- https://en.wikipedia.org/wiki/CV/gate
+- Types of =Control= voltage signals (-12v,12v)
+  - Gate     (0v or 10v, 0v or 5v)
+  - Trigger  (0v or 10v) a sort of "instant gate"
+  - Pitch CV
+    - 1v = C
+    - between 0v and 5v, 1v per octave
+      - same Voltage as clocks?
+    - or? between -+5V
+  - Oscillators, LFO, ADSR, Offset, invertor (-12v,12v)
