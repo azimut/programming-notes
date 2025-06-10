@@ -1,0 +1,83 @@
+#+TITLE: Computer Numerical Control
+
+- https://en.wikipedia.org/wiki/Computer_numerical_control
+- Parts:
+  - Bed
+  - Cutting Head
+- Types:
+  - mills (metal)
+  - router (wood)
+  - 3d printer
+
+* g-code
+
+- https://en.wikipedia.org/wiki/G-code
+- https://docs.duet3d.com/en/User_manual/Reference/Gcodes
+- https://machmotion.com/blog/knowledge-g-code/
+- https://www.youtube.com/@GCodeTutor/videos
+- https://www.youtube.com/playlist?list=PLxzIM06jyJCaUjp2pZsCcOyxaAIuLzqL-
+- Geometric Code (aka RS-274)
+- 1958, 1963 (released)
+- usual sections
+  - comments: header with general information (?
+  - start g-code
+  - printing g-code
+  - end g-code
+  - comments: slicer settings used
+    - can be imported with the same slicer
+
+** language
+
+- reference https://marlinfw.org/meta/gcode/
+- originally no loops, nor control structures
+- ; for comments or "()"
+
+#+begin_src
+[CMD_TYPE][CMD_NUMBER] [PARAM_NAME] [PARAM_VALUE]
+#+end_src
+
+*** G - Preparatory Commands - aka movement related tasks
+|-----+----------------------+-------------+-------------------------------------------|
+|     |         <c>          |     <c>     |                    <c>                    |
+| G0  | Linear (Travel) Move |  X Y Z E F  | Optional XYZF, Extrusion, Feed Rate/Speed |
+| G1  | Linear (Print) Move  |      "      |                     "                     |
+| G21 |   Millimiters Mode   |      -      |                     -                     |
+| G90 |  Absolute Pos Mode   |      -      |                                           |
+| G91 |  Relative Pos Mode   |      -      |                                           |
+| G28 | Homing axis routine  | [X] [Y] [Z] |     moves to endstops, with known pos     |
+| G29 |     Bed Leveling     |             |                                           |
+| G92 |   Set Current pos    |  X Y Z  E   |    "X0" will make current X, the zero     |
+|-----+----------------------+-------------+-------------------------------------------|
+*** M - Miscellaneus Commands - change settings, perform actions
+|------+---------+-----------------------------------|
+|      |   <c>   |                                   |
+| M82  |    -    | extruder abs pos mode             |
+| M83  |    -    | extruder rel pos mode             |
+| M84  | [X Y Z] | disable steppers                  |
+| M106 |   [S]   | set [full] fan speed              |
+| M107 |    -    | turn fan off                      |
+| M104 |    S    | set noozle temperature & continue |
+| M109 |    S    | set noozle temperature & pause    |
+| M140 |    S    | set bed temperature & continue    |
+| M190 |    S    | set bed temperature & pause       |
+|------+---------+-----------------------------------|
+* software
+
+- .brd - Board Design Rule Document
+  - https://www.pcbdirectory.com/community/what-is-a-brd-file
+  - format that can be used to *mill* and *drill* holes in a pcb
+- firmware
+  - cnc grbl Arduino https://github.com/grbl/grbl
+  - cnc Smoothieware [[https://github.com/Smoothieware/Smoothieware][source]] [[http://smoothieware.org/][home]]
+  - FluidNC ESP32 [[http://wiki.fluidnc.com/][home]] [[https://github.com/bdring/FluidNC][source]]
+  - https://github.com/synthetos/TinyG
+  - https://github.com/synthetos/g2
+
+- controller
+  - pcb http://flatcam.org/
+  - https://en.wikipedia.org/wiki/LinuxCNC
+  - https://winder.github.io/ugs_website/
+  - https://grbl-controller.software.informer.com/
+  - https://benbox.updatestar.com/en
+  - https://lasergrbl.com/ https://github.com/arkypita/LaserGRBL
+    - windows

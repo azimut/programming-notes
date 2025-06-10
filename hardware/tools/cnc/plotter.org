@@ -1,0 +1,5 @@
+- project https://github.com/RickMcConney/PenPlotter
+- project https://github.com/bdring/midTbot_esp32
+- axisdraw software https://github.com/alexrudd2/saxi
+- https://www.axidraw.com/
+- Processing https://www.youtube.com/watch?v=DidoTQgK6_s
