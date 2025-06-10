@@ -1,0 +1,28 @@
+#+TITLE: OTA = Operational Transductance Amplifiers
+
+- https://en.wikipedia.org/wiki/Operational_transconductance_amplifier
+- https://en.wikipedia.org/wiki/Voltage-controlled_resistor
+
+- 1969
+- outputs is current, input is voltage
+  - _changes in voltage, end up in changes in current_
+- has an *amplifier bias input* pin, which takes current
+- Transconductance = iOut / vIn
+- Ideal:
+  - infinite Zin (input impedance)
+  - infinite Zout (output impedance)
+- usually not operated in closed loop form (don't have wacky gains)
+- inputs diff have to be close to zero
+- apply current to the end to set the transconductance
+- Dbs per Octave
+  - 1 OTA/stage  = 5db
+  - 2 OTA/stages = 12db
+  - 4 OTA/stages = 24db
+
+* ics
+
+- CA3080 (RCA) (1 OTA)
+- LM13600N/LM13700N (2 OTA/2Buffer)
+- CEM3320 (4 OTA/4Buffer)
+- NE5517
+- JRC13[67]00

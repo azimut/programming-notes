@@ -31,10 +31,16 @@
 
 * MOSFET (Metal-Oxide-Semiconductor FET)
 
+#+CAPTION: a metal gate layer above a insulating oxide layer, controls flow of an electric field
+#+ATTR_ORG: :width 200
+[[https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Lateral_mosfet.svg/800px-Lateral_mosfet.svg.png]]
+
 - https://en.wikipedia.org/wiki/MOSFET
 - threshold/gate voltage:
   - generics 2-4v
   - logic-level ones <2v
+  - max of ~15v
+
 - types
   - n-channel
     - more common
@@ -44,7 +50,3 @@
       closing the circuit
   - p-channel
     - inverse behaviour
-
-#+CAPTION: a metal gate layer above a insulating oxide layer, controls flow of an electric field
-#+ATTR_ORG: :width 200
-[[https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Lateral_mosfet.svg/800px-Lateral_mosfet.svg.png]]

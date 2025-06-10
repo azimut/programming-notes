@@ -6,6 +6,7 @@
 - 11 Advanced C Coding For Fun! by Rusty Russell https://www.youtube.com/watch?v=BEQ3sRakIs0
 - 08 Writing application fault handlers by Gilad Ben-Yossef https://bootlin.com/pub/video/2008/ols/ols2008-gilad-ben-yossef-fault-handlers.ogg
 - 90 [[https://archive.org/details/learning-c-programming-viagrafix-1990][Learning C Programming (Viagrafix, 1990)]]
+- Tips for C Programming https://www.youtube.com/watch?v=9UIIMBqq1D4
 - Tsoding
   - Genetic Programming https://www.youtube.com/playlist?list=PLpM-Dvs8t0VZhPhStYD0aS30Y1awAv-DO
   - Lisp in C https://www.youtube.com/playlist?list=PLpM-Dvs8t0VYbTFO5tBwxG4Q20BJuqXD_

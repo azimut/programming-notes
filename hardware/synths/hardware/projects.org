@@ -1,3 +1,4 @@
+- Projects by "Gadget Reboot" https://www.youtube.com/playlist?list=PLDnEejiR3mBx6eKRuZLWoyBhbLhnrtvyz
 - Builders https://sdiy.info/wiki/List_of_synth_DIY_repositories
 - DIY Modules https://sdiy.info/wiki/List_of_synth_DIY_repositories
 - DIY Modules https://open4umodular.github.io/synthpanel/
@@ -12,44 +13,37 @@
 - project: vco+vcf https://ccrma.stanford.edu/~nando/el_dinosaurio/
 - project: arduino https://note.com/solder_state/
 
-- Analog Equipment Design http://www.muzines.co.uk/articles/analogue-equipment-design/8426
-
 - Chip Parade http://www.muzines.co.uk/articles/chip-parade/3143
   - 1
     - A LPF/HPF can be done with just a _capacitor_ and a _resistor_
       - _capacitor_ being a difficult path for low frequencies
       - it has a fixed cutoff
       - or controlled by a _potentiometer_ instead of a _resistor_
-    - However a voltage/current controlled one would be preffered
-      - OTA = Operational Transductance Amplifiers
-      - https://en.wikipedia.org/wiki/Operational_transconductance_amplifier
-      - https://en.wikipedia.org/wiki/Voltage-controlled_resistor
+    - However a voltage/current controlled one would be preffered (aka an OTA)
 
 - Soldering On http://www.muzines.co.uk/articles/soldering-on/3135
 - Starting point http://www.muzines.co.uk/articles/starting-point/2563
 
 - http://www.muzines.co.uk/articles/test-tone-oscillator/11578
-- Moog https://moogfoundation.org/bob-moog-schematics-release-1-for-our-8th-anniversary/
 
 - Mixer
   - Mixer+Eq http://www.muzines.co.uk/articles/the-synthmix/7964
-  - Mixer http://www.muzines.co.uk/articles/destiny-modular-mixer/2785
+  - Mixer
+    - http://www.muzines.co.uk/articles/destiny-modular-mixer/2785
+    - http://www.muzines.co.uk/articles/destiny-modular-mixer/2811
+    - http://www.muzines.co.uk/articles/destiny-modular-mixer/2834
   - 4 Channel Stero Mix http://www.muzines.co.uk/articles/4-channel-stereo-mixer/3245
 - LFO
-  - http://www.muzines.co.uk/articles/multi-waveform-lfo/7909
+  - (OpAmp) http://www.muzines.co.uk/articles/multi-waveform-lfo/7909
 - Osc
   - https://musicfromouterspace.com/index.php?CATPARTNO=&PROJARG=ELECTRONICS%2Fbookstore.html&MAINTAB=SYNTHDIY&SONGID=NONE&VPW=1588&VPH=622
-  - Sine VCO http://www.muzines.co.uk/articles/sine-vco/3335
+  - Sine VCO (ICL8038) http://www.muzines.co.uk/articles/sine-vco/3335
 - Noise
-  - http://www.muzines.co.uk/articles/dynamic-noise-filter/1260
-  - Noise Gate http://www.muzines.co.uk/articles/noise-gate/3556
-  - Keyed Noise Gate http://www.muzines.co.uk/articles/keyed-noise-gate/3206
-  - Noise Reduction Unit http://www.muzines.co.uk/articles/noise-reduction-unit/2622
-- Clock
-  - http://www.muzines.co.uk/articles/tap-tempo/6091
-  - http://www.muzines.co.uk/articles/the-time-machine/1881
+  - Dynamic Noise Filter (OTA) http://www.muzines.co.uk/articles/dynamic-noise-filter/1260
+  - Noise Gate (NE571) http://www.muzines.co.uk/articles/noise-gate/3556
+  - Noise Reduction Unit (NE571) http://www.muzines.co.uk/articles/noise-reduction-unit/2622
 - Filter
-  - http://www.muzines.co.uk/articles/the-shaper/5948
+  - (OTA) http://www.muzines.co.uk/articles/the-shaper/5948
 - Effects
   - http://www.muzines.co.uk/articles/modular-effects-rack-project/4210
   - http://www.muzines.co.uk/articles/the-transpozer/4455
@@ -99,8 +93,12 @@
 - ZX81 Sequencer http://www.muzines.co.uk/articles/zx81-sequencer/3220
 - ADSR Envelope Generator http://www.muzines.co.uk/articles/adsr-envelope-generator/3251
 - Phaser http://www.muzines.co.uk/articles/phaser-module/3263
-- MIDI http://www.muzines.co.uk/articles/short-circuit/1885
-- MIDI: Sequencer http://www.muzines.co.uk/articles/midi-sequencer-project/3845
+- MIDI Index (Logic + UART + 555) http://www.muzines.co.uk/articles/short-circuit/1885
+  - Untested
+  - Omni only (receive only Channel 1) synths reception of Poly mode
+- MIDI: Sequencer (ACIA + Logic) http://www.muzines.co.uk/articles/midi-sequencer-project/3845
+  - adaptor for Parallel port to MIDI I/O
+  - for 48k Spectrum
 - MIDI: The Codebreaker http://www.muzines.co.uk/articles/the-codebreaker/3887
 - Sequencer http://www.muzines.co.uk/articles/step-by-step/3412
 - Dual Tracker http://www.muzines.co.uk/articles/effects-module-2-dual-tracker/3346
@@ -124,25 +122,34 @@
   - http://www.muzines.co.uk/images_mag/scans/emm/emm_81_05/l/emm_81_05-42.jpg
     http://www.muzines.co.uk/images_mag/scans/emm/emm_81_05/l/emm_81_05-43.jpg
 
-** Special
+* Analog
+
+- Moog https://moogfoundation.org/bob-moog-schematics-release-1-for-our-8th-anniversary/
+- Analog Equipment Design http://www.muzines.co.uk/articles/analogue-equipment-design/8426
+
+* Special
 
 - ICs for electro music
   - http://www.muzines.co.uk/articles/ics-for-electro-music/2561
   - http://www.muzines.co.uk/articles/ics-for-electro-music/2596
 
-** Logic
+* CMOS Logic
 - The Matinee Organ
   - http://www.muzines.co.uk/articles/the-matinee-organ/2560
   - http://www.muzines.co.uk/articles/the-matinee-organ/2601
   - http://www.muzines.co.uk/articles/the-matinee-organ/2625
   - http://www.muzines.co.uk/articles/the-matinee-organ/2653
   - http://www.muzines.co.uk/articles/the-matinee-organ/2710
+- Noise - Keyed Noise Gate http://www.muzines.co.uk/articles/keyed-noise-gate/3206
 - Spectum Syntesizer
   - http://www.muzines.co.uk/articles/the-spectrum-synthesiser/2562
   - http://www.muzines.co.uk/articles/the-spectrum-synthesiser/2595
   - http://www.muzines.co.uk/articles/the-spectrum-synthesiser/2624
 - LFO https://www.elby-designs.com/webtek/cgs/cgs03/cgs03_psycho_lfo.html
 - CMOS Synth https://web.archive.org/web/20150206051357/http://beavisaudio.com/Projects/CMOS_Synthesizers/
+- Clock
+  - Logic http://www.muzines.co.uk/articles/tap-tempo/6091
+  - Logic 555 http://www.muzines.co.uk/articles/the-time-machine/1881
 *** CMOS Synth - Logic Noise - Hackaday
 
 - https://hackaday.com/2015/02/04/logic-noise-sweet-sweet-oscillator-sounds/
@@ -159,3 +166,56 @@
 - https://hackaday.com/2015/08/07/logic-noise-4046-voltage-controlled-oscillator-part-one/
 - https://hackaday.com/2015/09/11/logic-noise-playing-in-tune-with-an-exponential-vco/
 - https://hackaday.com/2015/11/05/logic-noise-digital-to-analog-with-an-r-2r-dac/
+
+* IMSAI Guy - VCA(OTA) - OSC(OPAMP)
+
+https://www.youtube.com/playlist?list=PLrPxXQRRbyP2NnIWBZUzg5e1SDTF_J4W9
+1) #1197
+   - Output phase (opamp + potentiometer)
+   - White Noise generator (zener diode)
+2) #1198 - OSC Square & Triangle
+   - a resistor between each opamp (at the integrator input) it will change the frequency/pitch
+   - 2 opamp
+     - 1 working as an integrator (triangle)
+     - 1 working as a comparator with GND (square)
+3) #1199 - Mixer
+   - 4 opamps
+     - 3 buffer inputs
+     - 1 summation
+4) #1200
+5) #1201
+6) #1202 - Moog -> MiniMoog
+   - VCA - ADSR
+   #+CAPTION: MiniMoog block diagram
+   [[https://media.sweetwater.com/m/insync/2020/04/Recreate-Minimoog-Diagram.jpg]]
+7) #1203 - CA3080 - OTA
+   - original moog used discret logic
+   - micromoog used CA3080
+
+* Moritz Klein
+** VCO
+
+- Creating a Sawtooth OSC from:
+  - Schmitt trigger (4016)
+  - Diode(signal), capacitor(2.2nF), resistor(100k)
+
+- To "listen" to it we would need to build a OpAmp buffer
+
+** Drum
+- Old schools drum machines were complex machines consisting of:
+  - VCO + VCF + VCA + ENV + FILTER
+  - eg: Roland 606
+
+- Basic _Functional_ Blocks:
+  - OSC: continuous
+  - Volume Modulator: decay of volume, controlled by a input "gate" signal
+  - Frequency Modulator: pitch/volume control of OSC
+
+- Bridge-T Oscillator: https://en.wikipedia.org/wiki/Wien_bridge_oscillator
+  - opamp + 2 resistor + 2 capacitors
+  - a sinewave oscillator
+  - need to be kickstarted by a pulse
+    - triggered when voltage changes
+  - Roland 606 parts: 1M + 51k + 15nF = 15Hz
+
+- Gate-to-Trigger Converter: to avoid retrigger of kickstart on single pulses

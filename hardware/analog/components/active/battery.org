@@ -6,23 +6,24 @@
 - different models have [[http://www.learningaboutelectronics.com/Articles/Battery-internal-resistance][different internal resistance]] with same voltage
   - the bigger, the less iR and can give more current
   |-----------+------+-------------+---------+----------|
-  |           |    V |             |     mAh |        Ω |
+  |           | <c>  |             |         |          |
+  |           |  V   |             |     mAh |       Ω |
   |-----------+------+-------------+---------+----------|
-  | button    |    3 | lithium     |     200 |          |
-  | PP3       |    9 | zinc carbon |         |       35 |
-  | PP3       |    9 | lithium     |    1200 | 16 to 18 |
-  | PP3       |    9 | Alkaline    |     500 |   1 to 2 |
-  | AAA       |  1.5 | Alkaline    |     800 |          |
+  | button    |  3   | lithium     |     200 |          |
+  | PP3       |  9   | zinc carbon |         |       35 |
+  | PP3       |  9   | lithium     |    1200 | 16 to 18 |
+  | PP3       |  9   | Alkaline    |     500 |   1 to 2 |
+  | AAA       | 1.5  | Alkaline    |     800 |          |
   | AAA       | 1.25 | NiMh        |     750 |          |
-  | AA        |  1.5 | Alkaline    |    2000 |     0.15 |
+  | AA        | 1.5  | Alkaline    |    2000 |     0.15 |
   | AA        | 1.25 | NiMH        |    2000 |     0.02 |
-  | C         |  1.5 | Alkaline    |    6000 |          |
-  | D         |  1.5 | Alkaline    |   15000 |      0.1 |
+  | C         | 1.5  | Alkaline    |    6000 |          |
+  | D         | 1.5  | Alkaline    |   15000 |      0.1 |
   | D         |      | NiCad       |         |    0.009 |
   | D         |      | SLA         |         |    0.006 |
-  | flat cell |  3.7 | LiPo        | 50-8000 |          |
-  | SLA       |    6 |             |     600 |          |
-  | SLA       |   12 |             |    8000 |          |
+  | flat cell | 3.7  | LiPo        | 50-8000 |          |
+  | SLA       |  6   |             |     600 |          |
+  | SLA       |  12  |             |    8000 |          |
   |-----------+------+-------------+---------+----------|
 
 - charging
@@ -39,3 +40,11 @@
     [[https://slader-solution-uploads.s3.amazonaws.com/7ac459e3-99b6-430b-aa6a-d67b64279485-1672107598554093.png]]
 
 - tip: double check if cable colors match polarity
+
+* bipolar 9v+9v
+
+#+CAPTION: circuit of two 9v batteries in series
+[[https://i.sstatic.net/1KokB.gif]]
+
+- 2 in series
+- add 2x capacitors (220uF) to smooth out

@@ -1,0 +1,36 @@
+- [[https://en.wikipedia.org/wiki/Programmable_logic_controller][Programmable Logic Controller]]
+- 1969
+- easier to program (?
+- simpler to wire
+- live debug through IDE (?
+- hold many certifications
+- slow (fast tasks period is 10ms)
+- standarized io
+  - input
+    - digital: 0-24v
+    - analog: 0-10v
+  - output
+    - relay outputs (250v AC, 10Amp)
+
+* languages
+
+- IEC-6131-3
+  - LD  Ladder
+  - SFC Sequential Function Chart
+  - FBD Function Block Diagram
+    - graphical programming language
+  - ST  Structured Text
+  - IL  Instruction List
+
+* ide
+
+- free: arduino https://www.arduino.cc/pro/software-plc-ide/
+
+* ics
+
+- Arduino Opta https://www.arduino.cc/pro/hardware-arduino-opta/
+  - $800k (Jun/25) 200€
+  - connectivity: wifi, rs485, ethernet
+
+* videos
+- 19 [[https://www.youtube.com/watch?v=EMkWRlbpJsk]["What is a PLC and how do I talk Python to it?" - Jonas Neubert (North Bay Python 2019)]]

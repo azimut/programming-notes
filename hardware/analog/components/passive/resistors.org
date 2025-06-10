@@ -45,6 +45,12 @@
   - pull down resistors (between a IC's pin and gnd)
   - termination resistors of a data bus
 
+** Varistor
+
+- https://en.wikipedia.org/wiki/Varistor
+- protects from voltage surges
+- blue "capacitor-like" (aka MOV = metal oxide varistor)
+
 ** Potentiometer
 
 [[https://www.digikey.com/-/media/Images/Article%20Library/TechZone%20Articles/2021/May/The%20Fundamentals%20of%20Digital%20Potentiometers%20and%20How%20to%20Use%20Them/article-2021may-the-fundamentals-of-digital-fig1.jpg]]

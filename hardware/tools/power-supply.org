@@ -1,0 +1,1 @@
+- Can measure power consumption

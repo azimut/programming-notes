@@ -1,32 +1,44 @@
+#+TITLE: Diode
+
+#+CAPTION: diode's symbol, Anode(+) -> Cathode(-)
 #+ATTR_ORG: :width 150
 [[https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Diode_symbol.svg/320px-Diode_symbol.svg.png]]
 
 - https://en.wikipedia.org/wiki/Diode
 
 - one-way valves for electricity
+- polarized
 - from Anode to Cathode (aka forward direction/biased)
-  1) one carries current by electrons
+  1) one carries *current* by electrons
   2) another one through holes, where electrons are missing
 
 - Specs
-  - Forward Voltage: =Vf=
   - Max Switching Speed: in ns (eg: 4ns ~100Khz)
-  - Breakdown: ~-50v
+  - Breakdown: ~-50v =Vbr=
+  - Forward Voltage: =Vf=
+    - ~0.7v on Sillicon
+    - ~0.3v on Germanium
+    - ~2v on LEDs
 
 - ideal diodes will
-  - acts as an _opencircuit_ any and all current in reverse
-  - acts as a _shortcircuit_ (no resistance) when current is forward
-    - irl has a Vf (forward voltage drop) ~13% ~0.7v
+  - acts as an _opencircuit_ any and all *current* in reverse
+  - acts as a _shortcircuit_ (no resistance) when *current* is forward
+    - irl has a Vf (forward voltage drop) ~13%
     - aka don't conduct below a certain threshold input *voltage* (~0.7v)
     - Power (in watts) = =Vf= (in Volts) * I (in amps)
     - as such, is not reliable to put diodes in parallel (1 does all the work)
 
-- operating regions of a diode
-  1) Forward: voltage is positive, greater than Vf, current run through
-  2) Reverse: =Vbr= > voltage > =Vf=
-  3) Breakdown: voltage is negative
-  #+ATTR_ORG: :width 300
-  [[https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Diode_current_wiki.png/628px-Diode_current_wiki.png]]
+* Operating regions
+
+1) Forward (bias):
+   - voltage is positive, greater than Vf, current run through
+2) Reverse (bias): =Vbr= > voltage > =Vf=
+   - diode is off, current mostly blocked
+3) Breakdown: voltage is negative
+
+#+CAPTION: real diode's voltage/current relationship
+#+ATTR_ORG: :width 300
+[[https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Diode_current_wiki.png/628px-Diode_current_wiki.png]]
 
 * Diode IV Equation (for positive voltage)
 
@@ -75,6 +87,8 @@
 
 ** [[https://en.wikipedia.org/wiki/Snubber][snubber]] / [[https://en.wikipedia.org/wiki/Flyback_diode][flyback]] / commutating / freewheeling / supressor / clamp / catch
 
+- aka reverse bias diode
+- aka antiparallel diode
 - aka to suppress transient voltages
 - aka reverse voltage protection
 - to eliminate flyback (aka sudden voltage spikes) of an inductor/motor/solenoid (eg: when switching off)
@@ -103,43 +117,104 @@
 
 * Types
 
-- Small Signal: for low electrical current
-  - https://www.inventable.eu/2018/03/21/diodo-1n4148/
-  - 1N740
-  - 1N1100
-  - [[https://en.wikipedia.org/wiki/1N4148_signal_diode][1N4148]] (glass red, switching 4ns, 200mA, 100v)
-  - 1N5236B
-- Rectifier: epoxy, high electric current, +voltage drop
-  - https://www.inventable.eu/2017/09/04/los-diodos-1n4000/
-  - https://en.wikipedia.org/wiki/1N400x_rectifier_diode
-  - 1N400x (1A, 30us)
-  - 1N54xx (3A)
-- Schottky, -voltage drop
-  - [[https://en.wikipedia.org/wiki/List_of_1N58xx_Schottky_diodes][1N58xx]] (Vf=0.3v,10ns)
-- Zener
-  - low breakdown voltage
-  - in reverse due "zener breakdown"
-  - maintains constant voltage
-  [[https://www.digikey.be/-/media/MakerIO/Images/blogs/zener-diode-basic-operation-fig5.JPG]]
+** Power diodes / Rectifiers
 
-- PhotoVoltaic Cell
+- epoxy
+- the common ones
+- large PN junction
+  - high forward current (~100KA)
+  - high revere blocking voltage (~1KV)
+  - not suitable for high frequency (+1MHz)
+
+- https://www.inventable.eu/2017/09/04/los-diodos-1n4000/
+- https://en.wikipedia.org/wiki/1N400x_rectifier_diode
+- 1N400x (1A, 30us)
+- 1N54xx (3A)
+
+** Small Signal
+
+- characteristics
+  - lower max current
+  - lower max voltages (poor power dissipation)
+  - for high frequency applications
+
+- form factor
+  - crystal
+  - black band on the Cathode(-)
+
+- [[https://en.wikipedia.org/wiki/1N4148_signal_diode][1N4148]] (glass red, switching 4ns, 200mA, 100v)
+  - https://www.inventable.eu/2018/03/21/diodo-1n4148/
+- 1N740
+- 1N1100
+- 1N5236B
+
+** Schottky
+
+- epoxy
+- lower voltage drop (Vf) than normal diodes
+- low power
+- fast switching speed (PWM +1Khz)
+- uses: rectification, signal conditioning & TTL-CMOS switching
+- [[https://en.wikipedia.org/wiki/List_of_1N58xx_Schottky_diodes][1N58xx]] (Vf=0.3v,10ns)
+
+** Avalanche
+
+- https://en.wikipedia.org/wiki/Avalanche_diode
+- designed to avalanche/breakdown at a specific rev voltage https://en.wikipedia.org/wiki/Avalanche_breakdown
+- optimized for it, smaller voltage drops on it
+
+** Zener
+
+- https://en.wikipedia.org/wiki/Zener_diode
+- https://en.wikipedia.org/wiki/Zener_effect
+- https://en.wikipedia.org/wiki/Quantum_tunnelling
+- https://en.wikipedia.org/wiki/Noise_generator#Zener_diode
+- glass
+- low breakdown voltage
+- in reverse due "zener breakdown" =Vz=
+- _maintains constant voltage_ beyond breakdown
+- usage: on voltage regulators
+[[https://www.digikey.be/-/media/MakerIO/Images/blogs/zener-diode-basic-operation-fig5.JPG]]
+
+** TSV - Transient Voltage Supression
+
+- https://en.wikipedia.org/wiki/Transient-voltage-suppression_diode
+- form factors
+  - in 6 pin package with 4 diodes inside
+- aka transil, transorb, thyrector, aka [[https://en.wikipedia.org/wiki/Trisil][trisil]]
+- protects electronics from voltage spikes
+
+** PhotoVoltaic Cell
+
   - have a thin N-type layer
   - takes light in and produces electricity
 
-- LED
-  - have a thin P-type layer
-  - light is created at the junction
-  - tip: find led resistor
-    - supply voltage = Vs
-    - led forward voltage = Vf (in datasheet)
-    - led forward current = If (in datasheet)
-    - R = (Vs-Vf) / If (R is in omhms)
-    - common Vf values by led color
-      |-----+--------------|
-      |  Vf | color        |
-      |-----+--------------|
-      | 1.6 | red          |
-      | 2.5 | yellow/green |
-      |   3 | blue/white   |
-      |-----+--------------|
-  - ~20mA needed
+** LED - Light Emitting Diode
+
+- have a thin P-type layer
+- light is created at the junction
+- Anode(+): longer leg
+- Cathode(-): flat face on the body
+- tip: find led resistor
+  - supply voltage = Vs
+  - led forward voltage = Vf (in datasheet)
+  - led forward current = If (in datasheet)
+  - R = (Vs-Vf) / If (R is in omhms)
+  - common Vf values by led color
+    |-----+--------------|
+    |  Vf | color        |
+    |-----+--------------|
+    | 1.6 | red          |
+    | 2.5 | yellow/green |
+    |   3 | blue/white   |
+    |-----+--------------|
+- ~20mA needed
+
+** High-Power LED
+
+  - for illumination
+    - replaced arrays of normal LEDs
+  - on a heatsink
+  - +1W
+  - constant current
+  - you need a MOSFET and a Voltage Regulator to drive them with GPIO

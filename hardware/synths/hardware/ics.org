@@ -1,15 +1,9 @@
 - https://www.sequencer.de/synth/index.php/Chips_in_Synthesizers
 - http://www.synthechnics.com/contents/pt/d6_Integrated_Circuits.html
 
+- Compressor
+  - NE571 - Compandor
 - OTA = Operational Transductance Amplifiers
-  - https://en.wikipedia.org/wiki/Operational_transconductance_amplifier
-  - LM13600N/LM13700N (2 OTA/2Buffer)
-  - CA3080 (RCA) (1 OTA)
-  - CEM3320 (4 OTA/4Buffer)
-  - Dbs per Octave
-    - 1 OTA/stage  = 5db
-    - 2 OTA/stages = 12db
-    - 4 OTA/stages = 24db
 - BBD https://en.wikipedia.org/wiki/Bucket-brigade_device
   - http://www.synthechnics.com/contents/pt/d45_BBDs.html
   - TDA1022 (1976) - bucket bridge delay line for analogue signals

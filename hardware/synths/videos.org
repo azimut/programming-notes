@@ -39,27 +39,18 @@
   - Building A Whole Analog Synthesizer voice From Start To Finish On Breadboard https://www.youtube.com/watch?v=GsTGu2V7tcU
 
 - NOVARS: matinee with sam weaver https://vimeo.com/111806587
-
 - NOVARS: Hordijk Masterclass at sines and squares
   - https://vimeo.com/111131227
   - https://vimeo.com/111250081
 
-* Lantertronics
+* Lantertronics - Aaron Lanterman
 
 - Superposition with Dependent Sources https://www.youtube.com/playlist?list=PLOunECWxELQQZROtya37L3EkisfVlgqy7
-- ECE Design Fundamentals https://www.youtube.com/playlist?list=PLOunECWxELQTn3DQYYB4qaEC9KRK5mHNK
-
-- Guitar Amplification & Effects
-  https://www.youtube.com/playlist?list=PLOunECWxELQS7JV_KeeTJJpgGjOftoaAH
-
-- ECE3400 Analog Electronics - Lantertronics - Aaron Lanterman
-  https://www.youtube.com/playlist?list=PLOunECWxELQSbOv3ekzuwC4K8ygV-Jkiy
-
-- ECE3084 Signals and Systems - Lantertronics - Aaron Lanterman
-  https://www.youtube.com/playlist?list=PLOunECWxELQRYwsuj4BL4Hu1nvj9dxRQ6
-
-- ECE4450 Analog Circuits for Music Synthesis - Lantertronics - Aaron Lanterman
-  https://www.youtube.com/playlist?list=PLOunECWxELQS5bMdWo9VhmZtsCjhjYNcV
+- [[https://www.youtube.com/playlist?list=PLOunECWxELQTn3DQYYB4qaEC9KRK5mHNK][ECE Design Fundamentals]]
+- [[https://www.youtube.com/playlist?list=PLOunECWxELQS7JV_KeeTJJpgGjOftoaAH][Guitar Amplification & Effects]]
+- [[https://www.youtube.com/playlist?list=PLOunECWxELQRYwsuj4BL4Hu1nvj9dxRQ6][ECE3084 Signals and Systems]]
+- [[https://www.youtube.com/playlist?list=PLOunECWxELQSbOv3ekzuwC4K8ygV-Jkiy][ECE3400 Analog Electronics]]
+- [[https://www.youtube.com/playlist?list=PLOunECWxELQS5bMdWo9VhmZtsCjhjYNcV][ECE4450 Analog Circuits for Music Synthesis]]
 
 * TODO Course: Syntorial
 - This is for subtractive synths (most are)

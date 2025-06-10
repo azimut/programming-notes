@@ -9,7 +9,7 @@
 [[https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Op-amp_symbol.svg/375px-Op-amp_symbol.svg.png]]
 
 - wiki https://en.wikipedia.org/wiki/Operational_amplifier
-- https://mysite.du.edu/~etuttle/electron/elect3.htm
+- https://web.archive.org/web/20250330032456/https://mysite.du.edu/~etuttle/electron/elect3.htm
 - http://www.muzines.co.uk/articles/adventures-with-op-amps/12923
 - Op Amp Issues: Why are There so Many Types of Op Amps?
   https://www.analog.com/en/resources/analog-dialogue/articles/opamp-issues-why-so-many-opamps.html
@@ -34,6 +34,24 @@
      - they will detect voltage without interfering
   2) tries to keep the inputs the same ~voltage~ (only for closed loop)
      it does it with the output feedback
+
+- TIP: connection of unused https://www.ti.com/lit/ab/sboa204a/sboa204a.pdf
+
+- non-idealities
+  1) strange minimum power voltages
+  2) output voltage swings:
+     - not being able to reach the power rails (rail-to-rail)
+     - changing output on different loads
+  3) input offset voltages (Vos)
+     - you get additional voltage added to the inputs
+     - which they will get ampliefied
+  4) input offset current / bias current
+  5) slew rate - V/sec
+     - how fast it can handle changing voltages without introducing distortions
+  6) Gain *Bandwidth* Product: Hz
+     - limits the frequency response
+     - the higher the frequency the more gain it losses
+     - gain * bandwidth < GBP
 
 * ICs
 ** spec(ifications)
@@ -95,33 +113,32 @@
    - canNOT return negative voltages (chops it off)
 
 ** examples
-|----------+-----+---+----+-----+---------+----------------------------------------|
-|          | DIP | n | pw | Vcc | GBP Mhz |                                        |
-|----------+-----+---+----+-----+---------+----------------------------------------|
-| LM324    |  14 | 4 | s  |  32 |       1 |                                        |
-| LM358    |   8 | 2 | s  |  32 |     1.2 | high ESD protection                    |
-| CA3140   |   8 | 1 | d  |  18 |     4.5 | MOS+Bip ++Iimp ++Oi                    |
-| CA3240   |   8 | 2 | d  |  18 |     4.5 | MOS+Bip ++Iimp ++Oi                    |
-| MCP6002  |   8 | 2 | s  |   6 |       1 | rail-to-rail output                    |
-| MCP6022  |   8 | 2 | s  |   6 |      10 | rail-to-rail output                    |
-| NE5532   |   8 | 2 | d  |  15 |      10 | BJT, low noise, hifi audio             |
-| NE5534   |     | 1 |    |     |         | BJT, lower distortion than 32          |
-| TL072    |   8 | 2 | d  |  20 |    5.25 | FET, low THD 0.0003                    |
-| TL074    |     |   |    |     |         | see TL084/2/1                          |
-| LM741    |   8 | 1 | d  |  18 |         | preamp?                                |
-| LM1458   |   8 | 2 | d  |  18 |         |                                        |
-| LM339    |  14 | 4 | sd |  18 |         | comparator                             |
-| LM386    |   8 | 1 | s  |  15 |         | audio/power? amplifier (high output W) |
-|----------+-----+---+----+-----+---------+----------------------------------------|
-| CA3080   |     |   |    |     |         | OTA                                    |
-| LM13700  |     |   |    |     |         | OTA                                    |
-| JRC13700 |     |   |    |     |         | OTA                                    |
-| JRC13600 |     |   |    |     |         | OTA                                    |
-|----------+-----+---+----+-----+---------+----------------------------------------|
-| LM359    |     |   |    |     |         | Norton (aka current difference)        |
-| LM2900   |     |   |    |     |         | Norton                                 |
-| LM3900   |     |   |    |     |         | Norton                                 |
-|----------+-----+---+----+-----+---------+----------------------------------------|
+|---------+-----+---+----+-----+---------+----------------------------------------|
+|         | DIP | n | pw | Vcc | GBP Mhz |                                        |
+|---------+-----+---+----+-----+---------+----------------------------------------|
+| LM324   |  14 | 4 | s  |  32 |       1 | low current (~30mA)                    |
+| LM358   |   8 | 2 | s  |  32 |     1.2 | high ESD protection                    |
+| CA3140  |   8 | 1 | d  |  18 |     4.5 | MOS+Bip ++Iimp ++Oi                    |
+| CA3240  |   8 | 2 | d  |  18 |     4.5 | MOS+Bip ++Iimp ++Oi                    |
+| MCP6001 |   6 | 1 |    |   6 |         | rail-to-rail                           |
+| MCP6002 |   8 | 2 | s  |   6 |       1 | rail-to-rail output                    |
+| MCP6022 |   8 | 2 | s  |   6 |      10 | rail-to-rail output                    |
+| NE5532  |   8 | 2 | d  |  15 |      10 | BJT, low noise, hifi audio             |
+| NE5534  |     | 1 |    |     |         | BJT, lower distortion than 32          |
+| TL072   |   8 | 2 | d  |  20 |    5.25 | FET, low THD 0.0003                    |
+| TL074   |     |   |    |     |         | see TL084/2/1                          |
+| LM741   |   8 | 1 | d  |  18 |         | preamp? (old, do not use?)             |
+| LM1458  |   8 | 2 | d  |  18 |         |                                        |
+| LM339   |  14 | 4 | sd |  18 |         | comparator                             |
+| LM386   |   8 | 1 | s  |  15 |         | audio/power? amplifier (high output W) |
+| TLC081  |   8 | 1 |    |     |         | low input offset voltage               |
+|---------+-----+---+----+-----+---------+----------------------------------------|
+| LM1875  |     |   |    |     |         | high current                           |
+| LM4562  |   8 | 2 |    |     |         |                                        |
+| LM359   |     |   |    |     |         | Norton (aka current difference)        |
+| LM2900  |     |   |    |     |         | Norton                                 |
+| LM3900  |     |   |    |     |         | Norton                                 |
+|---------+-----+---+----+-----+---------+----------------------------------------|
 * use cases
 
 see https://www.electronics-tutorials.ws/opamp/opamp_1.html
@@ -224,6 +241,8 @@ see https://www.electronics-tutorials.ws/opamp/opamp_1.html
   = Rf/Ri + 1
 - Rf feedback resistor
 - Ri   ground resistor
+
+#+CAPTION: circuit and output waveform
 #+ATTR_ORG: :width 200
 [[https://upload.wikimedia.org/wikipedia/commons/4/44/Op-Amp_Non-Inverting_Amplifier.svg]] [[https://pfnicholls.com/Electronics_Resources/Images/NonInvAmpAC.png]]
 
@@ -258,9 +277,3 @@ see https://www.electronics-tutorials.ws/opamp/opamp_1.html
 * Articles
 - [[http://seti.harvard.edu/unusual_stuff/misc/lorenz.htm][Build a Lorenz Attractor]]
 - [[https://remcycles.net/blog/SIR_model.html][An Analog Computer Circuit for the SIR Model]]
-* OTA (69)
-
-- Ideal infinite Zin (input impedance) and Zout (output impedance)
-- usually not operated in closed loop form (don't have wacky gains)
-- inputs diff have to be close to zero
-- apply current to the end to set the transconductance

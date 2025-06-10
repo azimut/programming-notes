@@ -1,0 +1,5 @@
+- https://en.wikipedia.org/wiki/Brushless_DC_electric_motor
+- BLDC
+- synchronous
+- DC
+- intended for continuos rotation

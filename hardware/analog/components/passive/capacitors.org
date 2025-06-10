@@ -3,6 +3,9 @@
 [[https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Types_of_capacitor.svg/345px-Types_of_capacitor.svg.png]]
 
 - https://en.wikipedia.org/wiki/Capacitor
+- https://en.wikipedia.org/wiki/Capacitive_coupling
+  - transfer of energy by an electric field
+  - aka by placing a capacitor in between points
 - https://www.inventable.eu/2012/09/15/como-se-leen-los-valores-de-los-capacitores/
 
 - *stores* electricity in a ~electrostatic field~
@@ -22,8 +25,10 @@
 [[https://i.sstatic.net/Exhhp.gif]]
 
 - doesn't let the DC through, lets variations through
-- acts as a sort-of frequency-dependent resistor (1/freq)
-  - aka capacitance reactance
+- acts as a sort-of frequency-dependent _resistor_ (1/freq)
+  - when discharged it offers no resistance
+  - when chaged it offers infinite resistance
+  - aka *capacitance reactance*
   - high frequency, acts like short circuit
   - low frequency, acts like open circuit
 - due above can function as
