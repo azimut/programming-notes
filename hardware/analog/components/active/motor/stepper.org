@@ -1,3 +1,4 @@
+- https://learn.adafruit.com/all-about-stepper-motors/what-is-a-stepper-motor
 - https://en.wikipedia.org/wiki/Stepper_motor
   - brushless DC electric motor
   - given a step position
@@ -12,3 +13,16 @@
 - Drivers:
   - L/R (aka constant voltage)
   - Chopper
+
+* hardware
+
+- [[https://joy-it.net/en/products/NEMA14-01][NEMA14]]
+  - 200 steps
+  - 0.1 Nm holding torque
+  - 8v
+  - phase?: 2 / 20Ω / 20mH
+- [[https://joy-it.net/en/products/NEMA17-01][NEMA17]]
+  - 200 steps
+  - 43.1 Ncm holding torque
+  - 2.8v
+  - phase?: 2

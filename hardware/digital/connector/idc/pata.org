@@ -1,3 +1,4 @@
+- https://en.wikipedia.org/wiki/Parallel_port
 - https://en.wikipedia.org/wiki/Parallel_ATA
 - 1986
 

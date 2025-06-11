@@ -1,11 +1,18 @@
 - https://github.com/ad-si/awesome-3d-printing
 
+* filament
+- pla
+- petg
+- asa (abs)
 * hardware
-
 ** prusa i3 rework
 
 - https://reprap.org/wiki/Prusa_i3_Variants
 - https://reprap.org/wiki/Prusa_i3_Rework_Introduction
+- https://reprap.org/wiki/Prusa_i3_Rework_Firmware
+- https://github.com/Zootec3D/i3-HQ/
+  - empty repo
+  - Modification for Prusa i3 Reworks originally developed by Josef Prusa and EMotion-Tech modified by Zootec3D.
 
 *** slic3r
 
@@ -41,8 +48,8 @@
   - 3d https://github.com/prusa3d/Prusa-Firmware
 
 - controller
-  - 3d https://octoprint.org/
   - 3d https://github.com/kliment/Printrun
+  - 3d https://octoprint.org/
   - 3d https://www.repetier.com/
 
 * ideas

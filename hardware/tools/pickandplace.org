@@ -1,0 +1,8 @@
+- https://en.wikipedia.org/wiki/Pick-and-place_machine
+* software
+- https://github.com/openpnp/openpnp/wiki/LitePlacer
+* hardware
+- https://www.opulo.io/products/lumenpnp
+  - controller https://blog.thea.codes/starfish-a-control-board-with-the-rp2040/
+- https://liteplacer.com/
+  - smd

@@ -13,7 +13,7 @@
 
 - https://en.wikipedia.org/wiki/G-code
 - https://docs.duet3d.com/en/User_manual/Reference/Gcodes
-- https://machmotion.com/blog/knowledge-g-code/
+- pdf https://machmotion.com/blog/knowledge-g-code/
 - https://www.youtube.com/@GCodeTutor/videos
 - https://www.youtube.com/playlist?list=PLxzIM06jyJCaUjp2pZsCcOyxaAIuLzqL-
 - Geometric Code (aka RS-274)
@@ -37,35 +37,51 @@
 #+end_src
 
 *** G - Preparatory Commands - aka movement related tasks
-|-----+----------------------+-------------+-------------------------------------------|
-|     |         <c>          |     <c>     |                    <c>                    |
-| G0  | Linear (Travel) Move |  X Y Z E F  | Optional XYZF, Extrusion, Feed Rate/Speed |
-| G1  | Linear (Print) Move  |      "      |                     "                     |
-| G21 |   Millimiters Mode   |      -      |                     -                     |
-| G90 |  Absolute Pos Mode   |      -      |                                           |
-| G91 |  Relative Pos Mode   |      -      |                                           |
-| G28 | Homing axis routine  | [X] [Y] [Z] |     moves to endstops, with known pos     |
-| G29 |     Bed Leveling     |             |                                           |
-| G92 |   Set Current pos    |  X Y Z  E   |    "X0" will make current X, the zero     |
-|-----+----------------------+-------------+-------------------------------------------|
+|-----+------------------------+-------------------+-------------------------------------------|
+|     |          <c>           |        <c>        |                    <c>                    |
+| G0  |  Linear (Travel) Move  |     X Y Z E F     | Optional XYZF, Extrusion, Feed Rate/Speed |
+| G1  |  Linear (Print) Move   |         "         |                     "                     |
+| G2  |  Arc Move (clockwise)  | X Y Z I J K R E F |       R=radius I=relX J=relY K=relZ       |
+| G3  | Arc Move (a-clockwise) |                   |                                           |
+| G21 |    Millimiters Mode    |         -         |                     -                     |
+| G90 |   Absolute Pos Mode    |         -         |                                           |
+| G91 |   Relative Pos Mode    |         -         |                                           |
+| G92 |    Set Current pos     |     X Y Z  E      |    "X0" will make current X, the zero     |
+|-----+------------------------+-------------------+-------------------------------------------|
+| G28 |  Homing axis routine   |    [X] [Y] [Z]    |     moves to endstops, with known pos     |
+| G29 |      Bed Leveling      |                   |                                           |
+|-----+------------------------+-------------------+-------------------------------------------|
 *** M - Miscellaneus Commands - change settings, perform actions
-|------+---------+-----------------------------------|
-|      |   <c>   |                                   |
-| M82  |    -    | extruder abs pos mode             |
-| M83  |    -    | extruder rel pos mode             |
-| M84  | [X Y Z] | disable steppers                  |
-| M106 |   [S]   | set [full] fan speed              |
-| M107 |    -    | turn fan off                      |
-| M104 |    S    | set noozle temperature & continue |
-| M109 |    S    | set noozle temperature & pause    |
-| M140 |    S    | set bed temperature & continue    |
-| M190 |    S    | set bed temperature & pause       |
-|------+---------+-----------------------------------|
+|-----+---------+-----------------------------------|
+|     |   <c>   |                                   |
+|   M |         |                                   |
+|-----+---------+-----------------------------------|
+|  82 |    -    | extruder abs pos mode             |
+|  83 |    -    | extruder rel pos mode             |
+|  84 | [X Y Z] | disable steppers                  |
+| 106 |   [S]   | set [full] fan speed              |
+| 107 |    -    | turn fan off                      |
+| 104 |    S    | set noozle temperature & continue |
+| 109 |    S    | set noozle temperature & pause    |
+| 140 |    S    | set bed temperature & continue    |
+| 190 |    S    | set bed temperature & pause       |
+|-----+---------+-----------------------------------|
+|  00 |    -    | halt                              |
+|  01 |    -    | halt if possible                  |
+|  02 |    -    | end currently running program     |
+|  03 |    -    | start spindle clockwise           |
+|  04 |    -    | start spindle anti-clockwise      |
+|  05 |    -    | stop spindle                      |
+|  06 |    -    | load tool (?                      |
+|  17 |    -    | enable motors                     |
+|  18 |    -    | disable motors                    |
+|-----+---------+-----------------------------------|
 * software
 
 - .brd - Board Design Rule Document
   - https://www.pcbdirectory.com/community/what-is-a-brd-file
   - format that can be used to *mill* and *drill* holes in a pcb
+
 - firmware
   - cnc grbl Arduino https://github.com/grbl/grbl
   - cnc Smoothieware [[https://github.com/Smoothieware/Smoothieware][source]] [[http://smoothieware.org/][home]]
@@ -75,6 +91,7 @@
 
 - controller
   - pcb http://flatcam.org/
+  - pcb https://www.galaad.net/coppercam-eng.html
   - https://en.wikipedia.org/wiki/LinuxCNC
   - https://winder.github.io/ugs_website/
   - https://grbl-controller.software.informer.com/

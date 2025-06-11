@@ -1,0 +1,3 @@
+- https://en.wikipedia.org/wiki/IDC_(electrical_connector)
+  - Insulation-Displacement Contact
+  - aka Insulation-Piercing Contact (IPC)

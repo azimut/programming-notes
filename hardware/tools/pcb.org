@@ -1,0 +1,17 @@
+- https://en.wikipedia.org/wiki/Solder_mask
+- https://en.wikipedia.org/wiki/Phenolic_paper
+  - type: [[https://en.wikipedia.org/wiki/FR-4][FR-4]]
+* design
+- https://www.particle.io/blog/prototype-to-production-building-your-first-pcb-prototype-part-1/
+- https://hackaday.com/2019/06/26/whats-the-deal-with-square-traces-on-pcbs/
+- art https://blog.wokwi.com/a-practical-guide-to-designing-pcb-art/
+* build
+- cnc
+  - https://fabacademy.org/2019/labs/puebla/students/rafael-aguirre/week05.html
+- marker
+  - 3d
+    - https://www.stavros.io/posts/make-pcbs-at-home/
+    - https://gitlab.com/stavros/pcb-plotting
+    - software https://github.com/pcb2gcode/pcb2gcode
+- laser printer
+  - https://web.archive.org/web/20070922233424/http://www.riccibitti.com:80/pcb/pcb.htm

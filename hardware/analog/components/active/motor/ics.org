@@ -1,0 +1,27 @@
+- L297 - "Stepper Motor Controller"
+- L298 - "Dual Full-Bridge Driver"
+- DRV8834 "Dual-Bridge Stepper or DC Motor Driver" https://www.pololu.com/product/21341
+  - low voltage 2.2v-10v
+- A4988 - DMOS Microstepper driver w/translator overcurrent protection
+  - Arduino kit 4x, 12-36v, 2A per IC https://joy-it.net/en/products/Ard-CNC-Kit1
+- SN754410 - Quadruple Half-H Driver
+- L293D - Quadruple Half-H Driver
+- SMA7023M* - "2-Phase Stepper Motor Unipolar Driver"
+- LB1845* (x2) "PWM Current Controlling Stepping Motor Driver"
+  - 10v-44v (Vbb) Motor Supply
+  - 5v (Vcc) Logic Supply
+  - DIP28
+  - https://electronicafb.blogspot.com/2014/06/construyendo-mi-fresadora-cnc-interfaz.html
+  - https://web.archive.org/web/20080203093250/http://www.esteca55.com.ar/proye-16f84a-LB1845.html
+    - printer motors EM-257, EM-258
+    - [[https://web.archive.org/web/20080201101723/http://www.esteca55.com.ar/Proye-const-01.html][Construcción Paso a Paso: Mini Router CNC]]
+    - [[https://web.archive.org/web/20181128201045/http://esteca55.com.ar/Proye-CNC2-01.html][Router CNC Profesional]]
+    - [[https://web.archive.org/web/20080114110931/http://www.esteca55.com.ar/proye-dvb20a.html][Driver Bipolar 2 A]]
+    - [[https://web.archive.org/web/20080131155616/http://www.esteca55.com.ar/proye-interfazcnc12.html][Interfaz CNC v 1.2]]
+  - https://github.com/MicrochipTech/avrfreaks-projects/tree/main/projects/3-axis-bipolar-stepper-motor
+    - AVR AT90S851P
+    - has a pdf with circuit
+    - 3 axis 3 ics
+  - https://dercuano.github.io/notes/ghettobotics.html
+    - IC is a pwm h-bridge
+    - printers have two 20W stepper motors
