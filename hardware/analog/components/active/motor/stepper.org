@@ -4,17 +4,26 @@
   - given a step position
   - don't need a position sensor for feedback
 
-- Phases
-  - Two phase
-    - unipolar
-    - bipolar
-  - High-phase count
+- Wirings types: 4,5,6 cables
+  - 4 for each side of winding
+  - 5/6 for common
+
+- Driving types: unipolar, bipolar
+  - unipolar needs at least 5 cables
 
 - Drivers:
   - L/R (aka constant voltage)
   - Chopper
 
+- Microstepping:
+  - affects max velocity
+
 * hardware
+
+- NEMA - National Electrical Manufacturers Association
+  - a standard for having same..., on different brands:
+    - shape: front step size, N/10 in inches
+    - specs
 
 - [[https://joy-it.net/en/products/NEMA14-01][NEMA14]]
   - 200 steps
@@ -26,3 +35,7 @@
   - 43.1 Ncm holding torque
   - 2.8v
   - phase?: 2
+
+* videos
+
+- [[https://www.youtube.com/watch?v=Z_6wpdbHNtY][Diving into DIY Motion Control; Explaining Stepper Motors, Drivers, Controllers and Rigs]]

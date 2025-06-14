@@ -1,27 +1,73 @@
+#+TITLE: Driver ICs
+
+- Phase Sequence https://electrical-engineering-portal.com/proper-phase-sequence-cw-ccw-electric-motors-generators
+- Needed due:
+  - different *voltage* needs, usually >5v
+  - higher *current* needs (>1A) where uC usually are meant to drive ~20mA
+- Alternatives:
+  - transistors, for unipolar
+    - tip122 for each driving line
+  - h-bridge, for bipolar driver
+    - example arduino https://www.instructables.com/H-Bridge-Motor-Driver-for-Arduino-Using-Transistor/
+
+- DM542T
+  - up to 128 microsteps
 - L297 - "Stepper Motor Controller"
 - L298 - "Dual Full-Bridge Driver"
+- L6203
+- TMC2208
+  - "white" board
 - DRV8834 "Dual-Bridge Stepper or DC Motor Driver" https://www.pololu.com/product/21341
   - low voltage 2.2v-10v
+  - "purple" board
 - A4988 - DMOS Microstepper driver w/translator overcurrent protection
+  - "red" board
   - Arduino kit 4x, 12-36v, 2A per IC https://joy-it.net/en/products/Ard-CNC-Kit1
+  - configurable to work on 1/2/4/8/16 step modes (through MS1/MS2/MS3 pins)
+  - NO phase sequence tables
 - SN754410 - Quadruple Half-H Driver
 - L293D - Quadruple Half-H Driver
 - SMA7023M* - "2-Phase Stepper Motor Unipolar Driver"
-- LB1845* (x2) "PWM Current Controlling Stepping Motor Driver"
-  - 10v-44v (Vbb) Motor Supply
-  - 5v (Vcc) Logic Supply
-  - DIP28
-  - https://electronicafb.blogspot.com/2014/06/construyendo-mi-fresadora-cnc-interfaz.html
-  - https://web.archive.org/web/20080203093250/http://www.esteca55.com.ar/proye-16f84a-LB1845.html
-    - printer motors EM-257, EM-258
-    - [[https://web.archive.org/web/20080201101723/http://www.esteca55.com.ar/Proye-const-01.html][Construcción Paso a Paso: Mini Router CNC]]
-    - [[https://web.archive.org/web/20181128201045/http://esteca55.com.ar/Proye-CNC2-01.html][Router CNC Profesional]]
-    - [[https://web.archive.org/web/20080114110931/http://www.esteca55.com.ar/proye-dvb20a.html][Driver Bipolar 2 A]]
-    - [[https://web.archive.org/web/20080131155616/http://www.esteca55.com.ar/proye-interfazcnc12.html][Interfaz CNC v 1.2]]
-  - https://github.com/MicrochipTech/avrfreaks-projects/tree/main/projects/3-axis-bipolar-stepper-motor
-    - AVR AT90S851P
-    - has a pdf with circuit
-    - 3 axis 3 ics
-  - https://dercuano.github.io/notes/ghettobotics.html
-    - IC is a pwm h-bridge
-    - printers have two 20W stepper motors
+  - 10v-44v - Control Supply Voltage - Vs
+  - https://www.electro-tech-online.com/threads/regarding-stepper-motors-and-printer-pcb.135821/
+
+* LB1845* (x2) "PWM Current Controlling Stepping Motor Driver"
+
+- 10v-44v (Vbb) Motor Supply
+- 5v (Vcc) Logic Supply
+- DIP28
+- Stepping: done through a "phase sequence table"
+  - 8 steps are predefined
+  - they should be followed in order
+  - order (up/down) dictates the spin orientation
+  - cycling through when it ends
+  - each step corresponds to an state for each of the 6 inputs for the 2 phases
+
+#+CAPTION: 1ic == 1motor
+|-----+-------+---------|
+| I11 | OUT1A | Phase 1 |
+| I01 | OUT1B | Phase 1 |
+| PH1 |       |         |
+|-----+-------+---------|
+| I12 | OUT2A | Phase 2 |
+| I02 | OUT2B | Phase 2 |
+| PH2 |       |         |
+|-----+-------+---------|
+
+** Articles
+
+- https://electronicafb.blogspot.com/2014/06/construyendo-mi-fresadora-cnc-interfaz.html
+- https://web.archive.org/web/20080203093250/http://www.esteca55.com.ar/proye-16f84a-LB1845.html
+  - printer motors: EM-257, EM-258
+  - µC: PIC16f84a
+  - [[https://web.archive.org/web/20080201101723/http://www.esteca55.com.ar/Proye-const-01.html][Construcción Paso a Paso: Mini Router CNC]]
+  - [[https://web.archive.org/web/20181128201045/http://esteca55.com.ar/Proye-CNC2-01.html][Router CNC Profesional]]
+  - [[https://web.archive.org/web/20080114110931/http://www.esteca55.com.ar/proye-dvb20a.html][Driver Bipolar 2 A]]
+  - [[https://web.archive.org/web/20080131155616/http://www.esteca55.com.ar/proye-interfazcnc12.html][Interfaz CNC v 1.2]]
+- https://github.com/MicrochipTech/avrfreaks-projects/tree/main/projects/3-axis-bipolar-stepper-motor
+  - AVR AT90S851P
+  - has a pdf with circuit
+  - 3 axis 3 ics
+- https://dercuano.github.io/notes/ghettobotics.html
+  - IC is a pwm h-bridge
+  - printers have two 20W stepper motors

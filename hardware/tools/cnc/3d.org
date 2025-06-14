@@ -1,5 +1,11 @@
 - https://github.com/ad-si/awesome-3d-printing
 
+* techniques
+
+- https://www.youtube.com/@HowToMechatronics/videos
+- gears
+  - [[https://www.youtube.com/playlist?list=PL4njCTv7IRbwYunc2ftxPak6au8Xh2mMA][Ultimate Makers Guide To Using Gears in your Projects]]
+
 * filament
 - pla
 - petg
@@ -52,7 +58,7 @@
   - 3d https://octoprint.org/
   - 3d https://www.repetier.com/
 
-* ideas
+* todo ideas
 
 - PCBite (helping hands for circuits)
   [[https://github.com/f3nter/HardBreak/raw/main/.gitbook/assets/IMG_0561.jpeg]]
@@ -64,3 +70,4 @@
   - cons: might break
 - Protoboard + aduino bottom
   - with screws
+- drawing dummy

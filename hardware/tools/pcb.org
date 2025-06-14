@@ -6,6 +6,9 @@
 - https://hackaday.com/2019/06/26/whats-the-deal-with-square-traces-on-pcbs/
 - art https://blog.wokwi.com/a-practical-guide-to-designing-pcb-art/
 * build
+- etchant
+  - ferric chloride
+  - homebrew etchant
 - cnc
   - https://fabacademy.org/2019/labs/puebla/students/rafael-aguirre/week05.html
 - marker
@@ -13,5 +16,5 @@
     - https://www.stavros.io/posts/make-pcbs-at-home/
     - https://gitlab.com/stavros/pcb-plotting
     - software https://github.com/pcb2gcode/pcb2gcode
-- laser printer
+- laser printer / toner transfer?
   - https://web.archive.org/web/20070922233424/http://www.riccibitti.com:80/pcb/pcb.htm

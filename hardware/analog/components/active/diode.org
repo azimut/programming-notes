@@ -1,8 +1,8 @@
 #+TITLE: Diode
 
-#+CAPTION: diode's symbol, Anode(+) -> Cathode(-)
-#+ATTR_ORG: :width 150
-[[https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Diode_symbol.svg/320px-Diode_symbol.svg.png]]
+#+CAPTION: diode's symbols, Anode(+) -> Cathode(-)
+#+ATTR_ORG: :width 400
+[[https://cdn1.byjus.com/wp-content/uploads/2023/02/Diodes-2.png]]
 
 - https://en.wikipedia.org/wiki/Diode
 
@@ -117,7 +117,7 @@
 
 * Types
 
-** Power diodes / Rectifiers
+** Power/Junction/Rectifier
 
 - epoxy
 - the common ones

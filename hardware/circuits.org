@@ -1,3 +1,16 @@
+- Types
+  - THT https://en.wikipedia.org/wiki/Through-hole_technology
+  - SMT https://en.wikipedia.org/wiki/Surface-mount_technology
+  - FreeForm https://en.wikipedia.org/wiki/Point-to-point_construction
+    - aka dead-bug, air wire, point to point soldered circuit
+    - brass bars
+    - https://hackaday.com/tag/circuit-sculpture/
+    - video howto https://www.youtube.com/watch?v=UV9_SqKqZQ8
+    - artist: Peter Vogel
+    - artist: Eirik Brandalf [[https://eirikbrandal.com/][home]] [[https://www.youtube.com/@EirikBrandalf][youtube]]
+    - artist: Mohit Bhoite [[https://www.youtube.com/user/mohitbhoite][youtube]]
+      - [[https://www.youtube.com/watch?v=LqVFxNFGNbc][Building Free-Formed Circuit Sculptures]]
+
 - PHDL (vhdl extension) https://sourceforge.net/p/phdl/wiki/Home/
 - SKiDL (python dsl) https://github.com/devbisme/skidl
 - pycircuit (python dsl) https://github.com/dvc94ch/pycircuit

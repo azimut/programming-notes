@@ -11,6 +11,9 @@
   - chipwhisper https://www.newae.com/chipwhisperer
   - chipshouter https://www.newae.com/chipshouter
     - EMFI
+  - 24 rpi zero https://hackaday.com/2024/10/30/use-picoglitcher-for-voltage-glitching-attacks/
+  - 25 esp8266 https://hackaday.com/2025/01/15/using-the-esp8266-for-low-cost-fault-injection/
+    - https://github.com/PythonHacker24/fault-injector
 
 - logic analyzer
   - https://www.saleae.com/

@@ -33,3 +33,7 @@ https://en.wikipedia.org/wiki/List_of_LM-series_integrated_circuits
 - https://es.wikipedia.org/wiki/LM3915
 - https://es.wikipedia.org/wiki/LM3914
 - https://es.wikipedia.org/wiki/LM3916
+- https://www.youtube.com/watch?v=L5AoaqwUZK0
+  - freestyle
+  - leds
+  - https://www.bhoite.com/sculptures/lm3915-vu-meter/

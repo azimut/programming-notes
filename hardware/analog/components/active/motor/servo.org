@@ -1,3 +1,4 @@
+- https://en.wikipedia.org/wiki/Servomotor
 - uses PWM to control speed and direction
 - tip: those that have a potentiometer inside
   - can return it's position on a cable

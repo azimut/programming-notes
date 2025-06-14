@@ -78,9 +78,7 @@
 |-----+---------+-----------------------------------|
 * software
 
-- .brd - Board Design Rule Document
-  - https://www.pcbdirectory.com/community/what-is-a-brd-file
-  - format that can be used to *mill* and *drill* holes in a pcb
+- $ https://www.vectric.com/products/cut2d/
 
 - firmware
   - cnc grbl Arduino https://github.com/grbl/grbl
@@ -95,6 +93,25 @@
   - https://en.wikipedia.org/wiki/LinuxCNC
   - https://winder.github.io/ugs_website/
   - https://grbl-controller.software.informer.com/
+  - https://github.com/vlachoudis/bCNC
+    - of: grbl
+  - cnsjs [[https://github.com/cncjs/cncjs][source]] [[https://cnc.js.org/][home]]
+    - of: grbl, marlin, smoothieware, tinyg
   - https://benbox.updatestar.com/en
   - https://lasergrbl.com/ https://github.com/arkypita/LaserGRBL
     - windows
+  - freeware https://wegstr.com/software/controlling-software
+
+* file formats
+
+- .brd - Board Design Rule Document
+  - https://www.pcbdirectory.com/community/what-is-a-brd-file
+  - format that can be used to *mill* and *drill* holes in a pcb
+
+- https://en.wikipedia.org/wiki/HP-GL
+- .dxf https://en.wikipedia.org/wiki/AutoCAD_DXF
+* other
+- stop motion / camera control
+  - software https://www.dragonframe.com/
+- laser engraver?
+- foam cutting?
