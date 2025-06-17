@@ -1,24 +1,37 @@
 - https://learn.adafruit.com/all-about-stepper-motors/what-is-a-stepper-motor
 - https://en.wikipedia.org/wiki/Stepper_motor
-  - brushless DC electric motor
-  - given a step position
-  - don't need a position sensor for feedback
+- brushless DC electric motor
+- given a step position
+- don't need a position sensor for feedback
 
-- Wirings types: 4,5,6 cables
-  - 4 for each side of winding
-  - 5/6 for common
+- Driving types:
+  - bipolar (4 cables)
+    - +torque
+    - -maxspeed
+    - voltage polarity reversal
+  - unipolar (5,6 cables)
+    - -torque
+    - +maxspeed
+    - no voltage polarity reversal
+    - needs at least 5 cables
+    - 1 extra for a tap to the center of a pair of coils
 
-- Driving types: unipolar, bipolar
-  - unipolar needs at least 5 cables
+- Shafts: round, D, geared, lead-screw
 
 - Drivers:
   - L/R (aka constant voltage)
   - Chopper
 
+- Inductance:
+  - in millihenries
+  - higher means less maxspeed
+
 - Microstepping:
   - affects max velocity
 
 * hardware
+
+- 28YBJ-48 - Unipolar 5v, 32 steps, 248 steps with (64) gear reduction
 
 - NEMA - National Electrical Manufacturers Association
   - a standard for having same..., on different brands:

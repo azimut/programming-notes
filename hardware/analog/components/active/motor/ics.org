@@ -10,6 +10,8 @@
   - h-bridge, for bipolar driver
     - example arduino https://www.instructables.com/H-Bridge-Motor-Driver-for-Arduino-Using-Transistor/
 
+- ULN2003 - "High voltage and high current darlington transistor array"
+  - Can work for unipolar stepper motors
 - DM542T
   - up to 128 microsteps
 - L297 - "Stepper Motor Controller"
@@ -26,6 +28,7 @@
   - configurable to work on 1/2/4/8/16 step modes (through MS1/MS2/MS3 pins)
   - NO phase sequence tables
 - SN754410 - Quadruple Half-H Driver
+- L298N
 - L293D - Quadruple Half-H Driver
 - SMA7023M* - "2-Phase Stepper Motor Unipolar Driver"
   - 10v-44v - Control Supply Voltage - Vs

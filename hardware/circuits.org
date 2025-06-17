@@ -3,12 +3,17 @@
   - SMT https://en.wikipedia.org/wiki/Surface-mount_technology
   - FreeForm https://en.wikipedia.org/wiki/Point-to-point_construction
     - aka dead-bug, air wire, point to point soldered circuit
-    - brass bars
+    - bars: 0.8mm or 0.5mm, 18AWG or 20AWG
+      - YES: brass, copper, music wire, templated steel, brazing rods, silver coated steel
+      - NO: stainless steel, alluminum
     - https://hackaday.com/tag/circuit-sculpture/
     - video howto https://www.youtube.com/watch?v=UV9_SqKqZQ8
+    - project: clock+temperature (mcu+clock) https://www.youtube.com/watch?v=hNpcRpxVWbk
+    - [[https://www.youtube.com/watch?v=gEs6vb6mWzY][Wire Modeling and Soldering Basics for Designers Architects hobbyists & crafters]]
     - artist: Peter Vogel
     - artist: Eirik Brandalf [[https://eirikbrandal.com/][home]] [[https://www.youtube.com/@EirikBrandalf][youtube]]
     - artist: Mohit Bhoite [[https://www.youtube.com/user/mohitbhoite][youtube]]
+      - [[https://www.youtube.com/watch?v=p5GvcxMcR74][Circuit Sculptures Workshop]] by Jiří Praus, Kelly Heaton & Mohit Bhoite
       - [[https://www.youtube.com/watch?v=LqVFxNFGNbc][Building Free-Formed Circuit Sculptures]]
 
 - PHDL (vhdl extension) https://sourceforge.net/p/phdl/wiki/Home/
@@ -79,6 +84,7 @@
 
 - gEDA
 - fritzing
+- https://www.freepcb.com/
 
 ** KiCad
 

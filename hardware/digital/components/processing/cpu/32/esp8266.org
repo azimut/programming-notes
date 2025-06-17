@@ -1,5 +1,6 @@
 - forum https://www.esp8266.com/index.php
 - wiki https://github.com/esp8266/esp8266-wiki/wiki
+- tuto https://web.archive.org/web/20161025042934/https://espressif.com/en/support/explore/get-started/esp8266/getting-started-guide
 - https://en.wikipedia.org/wiki/ESP8266
   - 2014
   - CPU:
@@ -13,13 +14,18 @@
   - 3.3v
 
 * Models
+
 - Adafruit Huzzah Feather
 - Adafruit Huzzah Breakout
 - NodeMCU
   - based on the ESP8266-12E
   - includes 4 Mbytes of Flash
+
 ** ESP-01
 
+- 5 more gpio pins not connected
+
+#+DESCRIPTION: CH_PD == EN
 #+CAPTION: pinout, from above-bottom
 #+begin_src
 GND GPIO2 GPIO0 RXD

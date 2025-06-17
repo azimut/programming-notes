@@ -90,6 +90,8 @@
 - controller
   - pcb http://flatcam.org/
   - pcb https://www.galaad.net/coppercam-eng.html
+  - pcb https://www.easylogix.de/products_detail.php?prog_id=1
+    - windows
   - https://en.wikipedia.org/wiki/LinuxCNC
   - https://winder.github.io/ugs_website/
   - https://grbl-controller.software.informer.com/

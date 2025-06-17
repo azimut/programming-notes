@@ -1,13 +1,31 @@
 - https://en.wikipedia.org/wiki/Seven-segment_display
-  - 1903 (1970 Leds)
-  - Multiple digit ones need to use multiplexing
-    by alternating power between each digit.
+- 1903 (1970 Leds)
+- You need an extra resistor for each pin.
+- Types
+  - common cathode (more common)
+  - common anode
+
+*  1 digit
 
 #+CAPTION: in DIP-10 form + segment names
 #+ATTR_ORG: :width 150
 [[https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Seven_segment_01_Pengo.jpg/485px-Seven_segment_01_Pengo.jpg]] [[https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/7_Segment_Display_with_Labeled_Segments.svg/225px-7_Segment_Display_with_Labeled_Segments.svg.png]]
 
-- multiple digit:
-  - 7 pins for each segment
-  - 1 pin for each digit, connecting all the cathodes of each segment of a digit
-  - you select the digit, draw, clear, move to next digit
+- 10 pins
+- common 1 digit pinout
+  #+CAPTION: DP=decimalpoint  COM=common
+  #+begin_src
+  G F COM A B
+
+  E D COM C DP
+  #+end_src
+
+* >1 digit
+
+- Multiplexed (aka alternating power between each digit)
+  - 7 pins for the segments
+  - 1 extra pin *for each* digit, to select them
+
+* matrix
+
+- https://www.circuitspecialists.com/blog/build-8x8-led-matrix/

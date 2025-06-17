@@ -3,3 +3,5 @@
 - synchronous
 - DC
 - intended for continuos rotation
+- 3/4 wires
+- have to be driven by a ESC (Electronic Speed Controller)
