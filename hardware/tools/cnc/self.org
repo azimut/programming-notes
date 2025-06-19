@@ -112,7 +112,11 @@
 
 - https://en.wikipedia.org/wiki/HP-GL
 - .dxf https://en.wikipedia.org/wiki/AutoCAD_DXF
+
 * other
+- guitarbot
+  - https://en.wikipedia.org/wiki/GuitarBot
+  - https://web.archive.org/web/20050710002934/http://www.lemurbots.org/guitarbot.html
 - stop motion / camera control
   - software https://www.dragonframe.com/
 - laser engraver?

@@ -3,6 +3,7 @@
 * techniques
 
 - https://www.youtube.com/@HowToMechatronics/videos
+- 3D Printing by Robert Murray-Smith https://www.youtube.com/playlist?list=PLbQqm4rNo624CtXAj-TT5TovZ57wQpnNs
 - gears
   - [[https://www.youtube.com/playlist?list=PL4njCTv7IRbwYunc2ftxPak6au8Xh2mMA][Ultimate Makers Guide To Using Gears in your Projects]]
 

@@ -1,0 +1,7 @@
+- https://github.com/janesmae/awesome-drones
+* hardware
+- brushless motor
+- esp32 https://github.com/espressif/esp-drone
+* software
+- ardupilot
+  - Mission Planner

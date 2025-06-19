@@ -26,6 +26,7 @@
   - have 2 stable states
   - can store state information
 
+- https://leap.tardate.com/notebook/logic_families/
 - Playlist
   - Electronica FP - Electronica Digital https://www.youtube.com/playlist?list=PLuzS0jdNRVvpQmCxFV4S2eqfji90BnDub
   - Sebastian Lague - How Computers Work https://www.youtube.com/playlist?list=PLFt_AvWsXl0dPhqVsKt1Ni_46ARyiCGSq

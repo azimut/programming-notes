@@ -1,3 +1,10 @@
 - https://en.wikipedia.org/wiki/DC_motor
 - https://en.wikipedia.org/wiki/Brushed_DC_electric_motor
 - 1827
+- Parts
+  - Independent
+    - Stators: m permanent magnets with opposing polarity
+  - Connected
+    - Rotor: n coils
+    - Commutator: divided in n coils parts to drive the polarity
+    - Brushes: touch the commutator

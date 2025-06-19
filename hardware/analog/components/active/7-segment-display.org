@@ -25,6 +25,7 @@
 - Multiplexed (aka alternating power between each digit)
   - 7 pins for the segments
   - 1 extra pin *for each* digit, to select them
+    - aka scan lines
 
 * matrix
 

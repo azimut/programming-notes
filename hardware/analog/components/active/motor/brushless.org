@@ -3,5 +3,24 @@
 - synchronous
 - DC
 - intended for continuos rotation
-- 3/4 wires
-- have to be driven by a ESC (Electronic Speed Controller)
+- 3/4 output wires, 1 for each phase
+- 3/4 coils & phases, tied together in a "neutral point"
+  - coils generate heat
+  - wirings: DLKR winding
+- has to be driven by an =ESC= (Electronic Speed Controller)
+  - since there is no a _commutator_ to control when to change polarities
+  - speed is controlled by an input PWM at 50Hz
+  - uses 2 MOSFETs per phase
+  - need to know the orientation of the motor
+    - by a Hall Effect Sensor
+    - or by Back EMF measured on the not active phase at that moment
+- KV Rating: RPM * Volts
+- no brushes, no wearing, more rpms
+- types by rotation:
+  - inrunnner: +speed
+  - outrunner: +torque
+- Parts
+  - Stator:
+    - 12 "theeth" made of laminated metal to reduce "eddy currents"
+    - 12 coils of enamelled wire, group in 3 sets
+- 22 [[https://www.youtube.com/watch?v=yiD5nCfmbV0][Brushless Motor - How they work BLDC ESC PWM]] by Engineering Mindset

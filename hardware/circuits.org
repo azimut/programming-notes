@@ -111,6 +111,12 @@
 - Blender
 * Circuits
 
+- link list https://leap.tardate.com/notebook/
+- https://leap.tardate.com/
+- 555 https://www.555-timer-circuits.com/
+- 555 https://web.archive.org/web/20190222124442/http://www.circuitous.ca/LM555.html
+- http://www.cappels.org/dproj/Home.htm
+- videos [[https://www.youtube.com/playlist?list=PL4ZSD4omd_Aw-ozOphzFCkhWMtBdyEIrP][Circuit Tutorials]] by w2aew
 - AC/DC components can describe an ~electrical signal~
   - DC component - what doesn change, aka offset
   - AC component - what changes around offset, aka oscillation
@@ -249,3 +255,8 @@
 
 - https://www.reddit.com/r/emacs/comments/q2eu14/spice_simulation_in_gnu_emacs/
 - 16 [[https://tiagoweber.github.io/blog/entry1.html][Simulating Circuits with Emacs, Org-mode, Babel and Ngspice]]
+
+* Wind
+
+- https://www.youtube.com/@ThinkingandTinkering
+- https://www.omnicalculator.com/ecology/wind-turbine
