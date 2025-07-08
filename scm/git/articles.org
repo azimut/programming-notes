@@ -1,3 +1,5 @@
+- https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
+- https://www.atlassian.com/continuous-delivery/continuous-integration/trunk-based-development
 - https://theory.stanford.edu/~blynn/gitmagic/
 
 - tutorial

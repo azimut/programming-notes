@@ -31,14 +31,14 @@ https://en.wikipedia.org/wiki/NEC_%CE%BCCOM_series#%CE%BCCOM-87,_%CE%BCCOM-87AD
 
 - tool: mame https://github.com/mamedev/mame/blob/c0423c1bab37932244db67c3ad801a763de683c0/src/devices/cpu/upd7810/upd7810.cpp#L11
 - tool: verilog https://github.com/ika-musume/IKA87AD
-- tool: assembler - asl http://john.ccac.rwth-aachen.de:8000/as/as_EN.html
+- tool: assembler - as http://john.ccac.rwth-aachen.de:8000/as/
+- tool: assembler: NEC's "RA87 tools" - LOST
+- tool: disassembler for 7801 http://takeda-toshiya.my.coocan.jp/scv/index.html
 
 - 14 article https://www.cpushack.com/2014/07/10/cpu-of-the-day-nec-78c11-sample-and-the-78k-family/
   - delicate, designed to be soldered and never removed
   - Z80 -> NEC 780 -> NEC 7801 -> NEC 781x
-  - 16bit ALU
-- used on
-  - commodore: MPS 1230 - printer
+  - 16bit   - commodore: MPS 1230 - printer
     - https://www.c64-wiki.com/wiki/MPS_1230
     - https://github.com/mamedev/mame/blob/c0423c1bab37932244db67c3ad801a763de683c0/src/mame/commodore/mps1230.cpp#L54
   - epson: lx800 / lx810l

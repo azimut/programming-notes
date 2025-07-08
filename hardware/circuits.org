@@ -10,11 +10,14 @@
     - video howto https://www.youtube.com/watch?v=UV9_SqKqZQ8
     - project: clock+temperature (mcu+clock) https://www.youtube.com/watch?v=hNpcRpxVWbk
     - [[https://www.youtube.com/watch?v=gEs6vb6mWzY][Wire Modeling and Soldering Basics for Designers Architects hobbyists & crafters]]
-    - artist: Peter Vogel
-    - artist: Eirik Brandalf [[https://eirikbrandal.com/][home]] [[https://www.youtube.com/@EirikBrandalf][youtube]]
-    - artist: Mohit Bhoite [[https://www.youtube.com/user/mohitbhoite][youtube]]
-      - [[https://www.youtube.com/watch?v=p5GvcxMcR74][Circuit Sculptures Workshop]] by Jiří Praus, Kelly Heaton & Mohit Bhoite
-      - [[https://www.youtube.com/watch?v=LqVFxNFGNbc][Building Free-Formed Circuit Sculptures]]
+    - artists
+      - Walter Giers
+      - Peter Vogel
+      - Tauno Erik [[https://taunoerik.wordpress.com/project-type/sculptures/][home]]
+      - Eirik Brandalf [[https://eirikbrandal.com/][home]] [[https://www.youtube.com/@EirikBrandalf][youtube]]
+      - Mohit Bhoite [[https://www.youtube.com/user/mohitbhoite][youtube]]
+        - [[https://www.youtube.com/watch?v=p5GvcxMcR74][Circuit Sculptures Workshop]] by Jiří Praus, Kelly Heaton & Mohit Bhoite
+        - [[https://www.youtube.com/watch?v=LqVFxNFGNbc][Building Free-Formed Circuit Sculptures]]
 
 - PHDL (vhdl extension) https://sourceforge.net/p/phdl/wiki/Home/
 - SKiDL (python dsl) https://github.com/devbisme/skidl

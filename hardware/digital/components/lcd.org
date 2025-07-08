@@ -1,4 +1,11 @@
+- https://en.wikipedia.org/wiki/History_of_display_technology
+- https://en.wikipedia.org/wiki/Liquid-crystal_display
+- https://en.wikipedia.org/wiki/Twisted_nematic_field_effect
+- https://en.wikipedia.org/wiki/STN_display
 - nokia 1208b https://electronicafb.blogspot.com/2015/06/libreria-para-lcd-nokia-1208b-en-ccs.html
+- b&w
+  - [[http://www.technoblogy.com/show?19K8][Low-Power LCD Clock]]
+  - https://hackaday.com/2022/05/12/monochrome-lcd-video-hacks-galore/
 
 * pinout protocols
 

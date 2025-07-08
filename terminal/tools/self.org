@@ -48,12 +48,15 @@
 - tool: svg into png https://manpages.ubuntu.com/manpages/trusty/man1/rsvg-convert.1.html
 - tool: w3m-img - display image on shell
   - used by fff
+- tool: web
+  - httpie
+  - curlie https://github.com/rs/curlie/
 - tool: notify
   - https://github.com/joh/when-changed (python)
-  - https://github.com/eradman/entr
-  - https://emcrisostomo.github.io/fswatch/
   - https://inotify.aiken.cz/?section=incron&page=about&lang=en
-  - https://github.com/inotify-tools/inotify-tools
+  - entr    - [[https://github.com/eradman/entr][source]] (C)
+  - fswatch - [[https://github.com/emcrisostomo/fswatch][source]] [[https://emcrisostomo.github.io/fswatch/][home]] (C++)
+  - inotify-tools - [[https://github.com/inotify-tools/inotify-tools][source]] (C++)
     - https://superuser.com/questions/181517/how-to-execute-a-command-whenever-a-file-changes
       #+begin_src sh
         inotifywait -q -m -e close_write myfile.py |

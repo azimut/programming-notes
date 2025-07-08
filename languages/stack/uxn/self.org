@@ -44,6 +44,7 @@
 - https://github.com/hundredrabbits/awesome-uxn
 - https://llllllll.co/t/uxn-virtual-computer/46103/435?page=20
 - https://applied-langua.ge/posts/i-dont-want-to-go-to-chel-c.html
+- 25 https://krzysckh.org/b/Homegrown-closures-for-uxn.html
 - 22 https://limited.systems/articles/uxntal-quoting/
 - tool
   - editor: emacs syntax https://github.com/xaderfos/uxntal-mode

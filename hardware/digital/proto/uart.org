@@ -83,6 +83,7 @@
 
 ** other
 
+- plotter https://github.com/taunoe/tauno-serial-plotter
 - manager https://chris.ex-parrot.com/consolidate/
 - manager https://github.com/dun/conman
 - bruteforce login https://github.com/firefart/UARTBruteForcer

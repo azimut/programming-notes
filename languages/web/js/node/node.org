@@ -17,6 +17,13 @@
 
 - process.argv - array of: path to node, path to script, and the rest of arguments
 
+* imports
+
+#+begin_src js
+  import defaultFn from 'someModule';
+  import * as m from 'someModule';
+#+end_src
+
 * Variables
 
 - __dirname - only on commonjs
@@ -28,7 +35,6 @@
 
 - fs
   - readFileSync
-
 
 * Standard Modules
 - https://www.w3schools.com/nodejs/ref_modules.asp
