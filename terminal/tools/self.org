@@ -2,23 +2,11 @@
 
 - todo
   - https://github.com/decalage2/oletools
-  - networking
-    - https://suricata.io/
-    - http://netsniff-ng.org/
-    - https://github.com/FoxIO-LLC/ja4
-    - https://tcpreplay.appneta.com/
-      https://tcpreplay.appneta.com/wiki/tcprewrite
-    - https://www.kali.org/tools/tcpick/
 
 - terminal emulators
   - kitty
     - https://sw.kovidgoyal.net/kitty/
     - glxgears https://github.com/michaeljclark/glkitty
-
-- rsync
-  - video: The command-line GNU rsync // Mirroring Your Data  https://www.youtube.com/watch?v=xA7hee-65MI
-  - video: A Script to backup your data - Starring Bash maps, rsync, declare, for in https://www.youtube.com/watch?v=4MMEDgLex_A
-  - video: Michael Stapelberg: Why I wrote my own rsync https://www.youtube.com/watch?v=wpwObdgemoE
 
 - editor
   - shfmt
@@ -26,6 +14,7 @@
     (fork?) https://github.com/patrickvane/shfmt
 
 - list of tools https://wiki.archlinux.org/title/List_of_applications/Utilities
+- https://github.com/trimstray/the-book-of-secret-knowledge/
 
 - tool: regex dot plot
   - https://github.com/katef/libfsm/
@@ -44,18 +33,16 @@
 - tool: language+shell https://github.com/refaktor/rye
 - tool: language http://www.rseventeen.com/ https://github.com/matthewnourse/r17
 - tool: https://github.com/jlevy/the-art-of-command-line/blob/master/README.md
-- https://github.com/trimstray/the-book-of-secret-knowledge/
 - tool: svg into png https://manpages.ubuntu.com/manpages/trusty/man1/rsvg-convert.1.html
-- tool: w3m-img - display image on shell
-  - used by fff
-- tool: web
-  - httpie
-  - curlie https://github.com/rs/curlie/
 - tool: notify
   - https://github.com/joh/when-changed (python)
   - https://inotify.aiken.cz/?section=incron&page=about&lang=en
-  - entr    - [[https://github.com/eradman/entr][source]] (C)
-  - fswatch - [[https://github.com/emcrisostomo/fswatch][source]] [[https://emcrisostomo.github.io/fswatch/][home]] (C++)
+  - sane          - [[https://github.com/amasad/sane][source]] (Node.js) - in apt
+  - chokidar-cli  - [[https://github.com/open-cli-tools/chokidar-cli][source]] (Node.js)
+  - watchexec     - [[https://github.com/watchexec/watchexec][source]] (Rust)
+  - entr          - [[https://github.com/eradman/entr][source]] (C) - in apt
+  - fswatch       - [[https://github.com/emcrisostomo/fswatch][source]] [[https://emcrisostomo.github.io/fswatch/][home]] (C++)
+  - watchman      - [[https://github.com/facebook/watchman][source]] (C++)
   - inotify-tools - [[https://github.com/inotify-tools/inotify-tools][source]] (C++)
     - https://superuser.com/questions/181517/how-to-execute-a-command-whenever-a-file-changes
       #+begin_src sh

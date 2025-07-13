@@ -22,6 +22,7 @@
 - Go
   - Docker+dlv
     https://golangforall.com/en/post/go-docker-delve-remote-debug.html
+- Node.js https://code.visualstudio.com/docs/nodejs/nodejs-debugging
 - Erlang
   (require 'dap-erlang)
   https://erlang-ls.github.io/articles/tutorial-debugger/
@@ -32,7 +33,70 @@
   - troubleshooting for lldb https://github.com/emacs-lsp/dap-mode/issues/6
   - dap-mode https://github.com/emacs-lsp/dap-mode/
   - cpp https://emacs-lsp.github.io/lsp-mode/tutorials/CPP-guide/
-- DAPE
-  - alternative to dap-mode
-  - works with eglot
-  - https://silosneeded.com/en/2024/04/configuring-dape
+
+* Servers
+** dlv - delve - Golang
+
+- https://github.com/go-delve/delve/
+- dlv modes
+  - dap:
+    - starts a headless tcp server communicating in DAP protocol
+    - a client (IDE) connects and requests a binary to be launched/attached
+
+* DAPE
+
+- https://github.com/svaante/dape
+- emacs
+- alternative to dap-mode
+- works with eglot
+- no VSCode's launch.json support
+- https://blog.dornea.nu/2024/11/28/mastering-golang-debugging-in-emacs/
+- https://silosneeded.com/en/2024/04/configuring-dape
+
+- Example node.js https://github.com/Artawower/org-mode-ast/blob/4a3997e5204cc70863e1b5e010f66f99331639e8/.dir-locals.el#L27
+** Example Golang - binary config
+https://github.com/chmouel/tekton-armadas
+#+begin_src lisp
+  ((nil . ((eval . (add-to-list
+                    'dape-configs
+                    `(orchestrator-watcher modes (go-mode go-ts-mode) ensure dape-ensure-command fn dape-config-autoport
+                                           command "dlv"
+                                           command-args ("dap" "--listen" "127.0.0.1::autoport" "--log=true")
+                                           command-cwd dape-cwd-fn
+                                           port :autoport
+                                           :type "debug"
+                                           :request "launch"
+                                           :args ["--disable-ha"]
+                                           :program "./cmd/orchestrator-reconciler/"))))))
+#+end_src
+
+** Example Golang - daemon config
+https://github.com/inngest/inngest
+#+begin_src makefile
+  .PHONY: debug
+  debug:
+          TEST_MODE=true \
+          LOG_LEVEL=trace dlv debug ./cmd/main.go \
+                              --headless \
+                              --listen=127.0.0.1:40000 \
+                              --continue --accept-multiclient --log \
+                              -- \
+                              dev --tick=50 --no-poll --no-discovery -v $(PARAMS)
+#+end_src
+
+#+CAPTION: .dir-locals
+#+begin_src lisp
+  ((go-mode . ((dape-configs .
+                             ((go-debug
+                               modes (go-mode go-ts-mode)
+                               command "dlv"
+                               ;; command-args ("dap" "--listen" "127.0.0.1:55878" "--log")
+                               command-cwd default-directory
+                               host "127.0.0.1"
+                               port 40000
+                               :type "go"
+                               :mode "remote"
+                               :request "attach"
+                               :showLog "true")
+                              )))))
+#+end_src

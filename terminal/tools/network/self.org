@@ -1,0 +1,23 @@
+- https://suricata.io/
+- http://netsniff-ng.org/
+- https://github.com/FoxIO-LLC/ja4
+- https://tcpreplay.appneta.com/
+  https://tcpreplay.appneta.com/wiki/tcprewrite
+- https://www.kali.org/tools/tcpick/
+
+- wait for port
+  - Go https://github.com/bitnami/wait-for-port
+  - sh https://github.com/vishnubob/wait-for-it
+
+- rsync
+  - video: The command-line GNU rsync // Mirroring Your Data  https://www.youtube.com/watch?v=xA7hee-65MI
+  - video: A Script to backup your data - Starring Bash maps, rsync, declare, for in https://www.youtube.com/watch?v=4MMEDgLex_A
+  - video: Michael Stapelberg: Why I wrote my own rsync https://www.youtube.com/watch?v=wpwObdgemoE
+
+- tool: web
+  - httpie
+  - curlie https://github.com/rs/curlie/
+    - httpie like, made with libcurl
+
+- tool: w3m-img - display image on shell
+  - used by fff

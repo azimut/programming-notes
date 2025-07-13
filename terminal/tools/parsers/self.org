@@ -1,5 +1,9 @@
+- tool: fake data generator https://github.com/multiprocessio/fakegen
+- tool: yaml/json/xml/csv/toml https://github.com/TomWright/dasel
 - tool: yaml/json/xml/csv/toml https://github.com/mikefarah/yq
 - tool: json to grep-able format https://github.com/tomnomnom/gron
+- tool: json (sql) https://github.com/SnellerInc/sneller
+- tool: json/csv/parquet (sql) https://github.com/cube2222/octosql
 
 ** html
 - https://github.com/mgdm/htmlq

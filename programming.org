@@ -1,3 +1,6 @@
+- *parameter* in definition
+- *argument* in invocation
+
 - Combinators: are =high-order= functions like *map*
   - they can replace logic operators, even variables
   - Books:

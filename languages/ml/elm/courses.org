@@ -1,3 +1,4 @@
+- by Ryan Haskell https://www.youtube.com/playlist?list=PLuGpJqnV9DXq_ItwwUoJOGk_uCr72Yvzb
 * DONE 16 | Elm Beyond the Basics
 code https://github.com/knowthen/elm-beyond-basics
 uses (20) library not supported by 0.19 https://package.elm-lang.org/packages/rluiten/elm-date-extra/latest
