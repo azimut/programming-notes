@@ -247,9 +247,24 @@ help: # https://lobste.rs/s/7svvkz/using_bsd_make#c_mar0yk
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m\033[0m\n"} /^[a-zA-Z0-9_-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
   #+end_src
 
+- run N targets concurrently with *--jobs=N*
+  #+begin_src makefile
+.PHONY: dev dev/dep1 dev/dep2
+dev:; $(MAKE) -j2  dev/dep1 dev/dep2
+dev/dep1: sleep 10
+dev/dep2: sleep 60
+  #+end_src
+
+- dynamically set a variable at runtime (aka inside a target)
+  #+begin_src makefile
+task1:
+	$(eval ROBOTS = $(shell curl example.com/robots.txt))
+	@echo $(ROBOTS)
+  #+end_src
+
 - set bash pipefail, use either of these
   #+begin_src makefile
-SHELL = /bin/bash -o pipefail
+ SHELL      = /bin/bash -o pipefail
 .SHELLFLAGS = -eu -o pipefail -c
   #+end_src
 

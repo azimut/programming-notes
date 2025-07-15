@@ -12,8 +12,10 @@
 - https://lokathor.gitbooks.io/using-haskell/content/
 - https://lotz84.github.io/haskellbyexample/
 - https://leanpub.com/simple-haskell-book/read - build a CI
-  official source https://github.com/alpacaaa/quad-ci
-  unofficial source https://github.com/jturner/quad-ci
+  - official source https://github.com/alpacaaa/quad-ci
+  - unofficial source https://github.com/jturner/quad-ci
+  - video leanpub https://www.youtube.com/watch?v=LlQ8-ajfcTY
+  - video simple https://www.youtube.com/watch?v=4Wpuo68ZUMg
 - https://leanpub.com/production-haskell/read
 - https://leanpub.com/haskell-cookbook/read
 - https://leanpub.com/haskell-stdlibs

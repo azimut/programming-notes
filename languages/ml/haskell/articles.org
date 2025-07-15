@@ -1,3 +1,4 @@
+- https://marcosampellegrini.com/thoughts-on-haskell-2020
 - https://speakerdeck.com/ajnsit/supercharged-imperative-programming-with-haskell-and-fp
 - https://entropicthoughts.com/haskell-procedural-programming
 - https://learnxinyminutes.com/haskell/

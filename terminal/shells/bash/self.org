@@ -414,10 +414,15 @@ done | sort -R | xargs -ILETTER echo -n LETTER
 #+end_src
 
 * Gotchas
-- for i in *.baz
-  - if no .baz in dir it will run on *.baz
-  - zsh: errors
-  - fish: does nothing
-- some language constructs spawn *subshells* (eg: pipelining)
-- piped commands run/start all at the same time
-  - if one fails the rest will ran regardless if "pipefail" is set
+
+1) for i in *.baz
+   - if no .baz in dir it will run on the literal "*.baz"
+   - zsh: errors
+   - fish: does nothing
+2) some language constructs spawn *subshells* (eg: pipelining)
+3) | pipe
+   - all piped commands run/start at the same time
+   - if one fails the rest will ran regardless if "pipefail" is set
+4) set -e
+   - aka errexit
+   - does NOT have any effect inside functions (?

@@ -1,3 +1,4 @@
+- Graham Book notes https://courses.cs.northwestern.edu/325/readings/graham/graham-notes.html
 - https://github.com/mark-watson/loving-common-lisp
 - https://leanpub.com/lovinglisp/read
 - https://leanpub.com/readevalprintlove001/read

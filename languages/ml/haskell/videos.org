@@ -1,3 +1,5 @@
+- 19 Stick to Simple Haskell https://www.youtube.com/watch?v=zHSD7qC_4iI
+- 22 "HTML over the wire" meets functional https://www.youtube.com/watch?v=ZoTpOQr2vuk
 - Livestreams Learning Haskell https://www.youtube.com/@JohnCinnamond/streams
 - Haskell Adventures - A Calculator
   https://www.youtube.com/playlist?list=PL_xuff3BkASMOzBr0hKVKLuSnU4UIinKx
