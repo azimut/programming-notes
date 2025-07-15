@@ -274,6 +274,7 @@ task1:
 - ~=~ assignment is perpetually evaluated
 - ~$~ needs to be always escaped with ~$$~ to be sent to commands as such
 - ~\t~ for indentation, NOT spaces
+- will keep an incomplete artifactory on target failure, unless ~.DELETE_ON_ERROR:~
 
 * tools
 |------------+-------------------------------------------|
