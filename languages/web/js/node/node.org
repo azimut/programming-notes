@@ -15,7 +15,8 @@
 
 - https://github.com/sindresorhus/awesome-nodejs
 
-- process.argv - array of: path to node, path to script, and the rest of arguments
+- NODE_ENV: production, development, test
+  - cross-env: needed for Windows https://www.npmjs.com/package/cross-env
 
 * imports
 
@@ -33,10 +34,10 @@
   - fileURLtoPath() - in node:path
   - dirname() - in node:path
 
+* Standard Modules
 - fs
   - readFileSync
-
-* Standard Modules
+- process.argv - array of: path to node, path to script, and the rest of arguments
 - https://www.w3schools.com/nodejs/ref_modules.asp
   Here is a list of the built-in modules of Node.js version 6.10.3:
 - https://www.w3schools.com/nodejs/ref_fs.asp

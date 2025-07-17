@@ -24,3 +24,56 @@
 | *blessed    | ncurses              | https://github.com/chjj/blessed    | 11 |
 |-------------+----------------------+------------------------------------+----|
 *ABANDONED
+* Testing
+
+- testing frameworks
+  - mocha - [[https://mochajs.org/][home]]  [[https://github.com/mochajs/mocha][source]]
+  - jest  - [[https://jestjs.io/][home]]  [[https://github.com/jestjs/jest][source]]
+
+- assertion libraries
+  - should.js
+  - expect.js
+  - chai  [[https://www.chaijs.com/][home]]  [[https://github.com/chaijs/chai][source]]
+  - better-assert
+  - unexpected
+
+- http test libraries/assertions
+  - chai-http [[https://www.npmjs.com/package/chai-http][npm]]
+  - supertest [[https://github.com/forwardemail/supertest][source]] [[https://www.npmjs.com/package/supertest][npm]]
+
+- to test express, export both
+  - the app
+  - and the server (what app.listen() returns)
+
+** mocha / describe,it,assert
+
+- test/
+- --exit
+- .mocharc.json
+
+#+begin_src js
+  before((done) => {});
+  after((done) => {});
+  describe('Array', () => {
+    describe('#indexOf()', () => {
+      it('should return -1 the values is not present', () => {
+        assert.equal([1,2,3].indexOf(4),-1);
+      });
+    });
+  });
+#+end_src
+
+** jest / test,expect
+
+- --verbose
+- --silent do not return console.log() in terminal
+- --detectOpenHandles
+- --watch
+
+#+begin_src js
+  beforeEach(() => {});
+  afterAll(()=>{});
+  test('adds 1 +2 to equal 3', () => {
+    expect(sum(1,2)).toBe(3);
+  });
+#+end_src

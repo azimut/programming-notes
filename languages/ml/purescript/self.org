@@ -77,3 +77,17 @@ isEmpty _ = false
   - Data.List ((:), List(..), reverse, filter, concat, concatMap)
   - Data.Maybe (Maybe(..))
   - Partial.Unsafe (unsafePartial)
+
+* tools
+
+- spago: package manager / build https://github.com/purescript/spago
+- pursuit: documentation + hoogle https://pursuit.purescript.org/
+- editor: linter
+  - https://github.com/natefaubion/purescript-tidy
+- editor: ide integration
+  - https://github.com/purescript/documentation/blob/master/ecosystem/Editor-and-tool-support.md
+  - lsp https://github.com/nwolverson/purescript-language-server
+
+* codebases
+- react https://github.com/jonasbuntinx/purescript-react-realworld
+- halogen https://github.com/thomashoneyman/purescript-halogen-realworld
