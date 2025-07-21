@@ -13,6 +13,8 @@
 - icons
   - https://fontawesome.com/
   - https://www.flaticon.com/
+  - https://github.com/devicons/devicon
+  - https://commons.wikimedia.org/wiki/File:Lisp_logo.svg
 - images
   - https://unsplash.com/
   - https://undraw.co/illustrations

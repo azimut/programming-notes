@@ -170,48 +170,50 @@
 |          order |   <int>    | moves to position                   |
 |----------------+------------+-------------------------------------|
 ** Grid
-- CSS Grid https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/CSS_Grid_Layout_and_Accessibility
-- CSS Grid examples and patterns https://gridbyexample.com/
-- grid
-  - two dimensions
-  - parts
-    [[https://static.platzi.com/media/user_upload/1-dd5c265b-bf7b-494a-b939-04d7866194a7.jpg]]
-    - track (aka col/row)
-    - cell
-    - line
-    - area
-  - props
-    - item
-      - grid-column
-        - 2 / 4 (start / end)
-        - 2 / span 2 (start / span LEN)
-      - grid-column-end
-      - grid-column-start (changes start cell nr)
-        - 1
-    - container
-      - align-content (alto, when there is extra size in container)
-      - justify-content (ancho, when there is extra size in container)
-        - space-between
-        - space-around
-        - space-evenly
-        - end
-        - start
-      - column-gap
-      - row-gap
-      - gap
-      - display: grid/inline-grid
-      - grid-template-areas
-        - "header header" "main aside" "footer footer"
-        - needs you to define grid-area on container items
-      - grid-auto-flow: row (default)
-      - grid-template-=columns=
-        - 100px 50% 2em
-        - 100px auto 2em
-        - 100px 50px
-        - 1fr 2fr 0.5fr (fractions)
-        - repeat(3, 1fr)
-      - grid-template-=rows=
-        - 100px auto 50px
+
+- https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/CSS_Grid_Layout_and_Accessibility
+- https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Box_alignment_in_grid_layout
+- examples and patterns https://gridbyexample.com/
+- two dimensions
+- parts
+  [[https://static.platzi.com/media/user_upload/1-dd5c265b-bf7b-494a-b939-04d7866194a7.jpg]]
+  - track (aka col/row)
+  - cell
+  - line
+  - area
+
+*** props: container
+
+- display: grid/inline-grid
+- align-content (alto, when there is extra size in container)
+- justify-content (ancho, when there is extra size in container)
+  - space-between
+  - space-around
+  - space-evenly
+  - end
+  - start
+- gap / row-gap / column-gap
+- grid-template-areas
+  - "header header" "main aside" "footer footer"
+  - needs you to define grid-area on container items
+- grid-auto-flow: row (default)
+- grid-template-=columns=
+  - 100px 50% 2em
+  - 100px auto 2em
+  - 100px 50px
+  - 1fr 2fr 0.5fr (fractions)
+  - repeat(3, 1fr)
+- grid-template-=rows=
+  - 100px auto 50px
+
+*** props: item
+
+- grid-column
+  - 2 / 4 (start / end)
+  - 2 / span 2 (start / span LEN)
+- grid-column-end
+- grid-column-start (changes start cell nr)
+  - 1
 
 * snippets
 ** override tag browser defaults

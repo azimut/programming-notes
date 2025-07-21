@@ -77,3 +77,8 @@
     expect(sum(1,2)).toBe(3);
   });
 #+end_src
+* Documentation
+
+- [[https://github.com/Surnet/swagger-jsdoc][swagger-jsdoc]]
+- [[https://www.npmjs.com/package/swagger-ui-express][swagger-ui-express]]
+  - reads a swagger.json and

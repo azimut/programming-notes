@@ -1,6 +1,9 @@
 - *parameter* in definition
 - *argument* in invocation
 
+- Associative Array https://en.wikipedia.org/wiki/Associative_array
+  - aka: maps, dictionaries, hash, kv store, symbol table
+
 - Combinators: are =high-order= functions like *map*
   - they can replace logic operators, even variables
   - Books:

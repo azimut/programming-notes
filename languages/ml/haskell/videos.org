@@ -22,6 +22,46 @@
 - Gopher
   - Writing a Gopher Server Using Haskell https://www.youtube.com/watch?v=MpYRVbxTxj0
   - Generating a Gopher Directory Using Haskell https://www.youtube.com/watch?v=nS3-9KMB_Sg
+* 20 Effects for Less - Alexis King
+
+- TODO: 24:00
+- https://www.youtube.com/watch?v=0jI-AlWEwYI
+- Told experience at the time where there were no many effect system frameworks in Haskell
+- Monad Transformers -> Effect system
+- ME: Do effect systems have a performance cost?
+
+- Monad Transformers: fused-effects, mtl
+  - performant (compiler can optimize it's code (inlining, etc..))
+  - requires boilerplate
+
+- Free-like Monads: polysemy, freer-simple
+  - flexible, simpler to use
+  - limited performance (compiler optimizer can't do much)
+
+** 1st Benchmark of frameworks
+
+#+CAPTION: mtl version
+#+begin_src haskell
+   countDown :: Int -> (Int, Int)
+   countDown initial = runState program initial
+
+   program :: MonadState In m => m Int
+   program = do n <- get
+                  if n <= 0
+                  then return n
+                  else put (n - 1) >> program
+#+end_src
+
+#+CAPTION: baseline version (ordinary recursive loop)
+#+begin_src haskell
+  countDown :: Int -> (Int, Int)
+  countDown = program
+
+  program :: Int -> (Int, Int)
+  program n = if n <= 0 then (n,n)
+              else program (n - 1)
+#+end_src
+
 * Backend Web Programming in Haskell - Tsoding
 https://www.twitch.tv/videos/743607386
 https://github.com/tsoding/tsoken/blob/master/src/Main.hs
