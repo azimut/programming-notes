@@ -43,6 +43,7 @@
 * language
 
 #+begin_src sed
+  #!/usr/bin/env -S sed INPUTFILE -i -f
   #!/bin/sed -f
   s/Hello/Hell/g
 #+end_src
@@ -137,7 +138,8 @@
 |   w FILE   |    write    | *pattern space* to given file                                       |
 |   W FILE   |    write    | *pattern space* to given file, but only the 1st line (GNU)          |
 |------------+-------------+---------------------------------------------------------------------|
-|  b LABEL   |   branch    | jump to given tag, to the end of script if none given               |
+|     b      |    bail     | jump to the end of the script                                       |
+|  b LABEL   |   branch    | jump to given tag                                                   |
 |  t LABEL   | test branch | jump to given tag, IF previous substitution succeded                |
 |  T LABEL   | test branch | jump to given tag, IF previous substitution failed                  |
 |------------+-------------+---------------------------------------------------------------------|

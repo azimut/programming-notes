@@ -54,6 +54,11 @@
   }
 #+end_src
 
+** Methods
+
+- Receiver Types: Value, Pointer
+- Mixing receiver types, on the same object type is frowned upon.
+
 ** Imports
 |-----------------+-----------------------------|
 |       <c>       |                             |
@@ -462,3 +467,10 @@ https://pkg.go.dev/golang.org/x
    https://github.com/goquiz/goquiz.github.io
 * Tools
 | errcheck | 23 | 2 | linter for checking for unchecked errors | https://github.com/kisielk/errcheck |
+* Snippets
+
+- to have multiple "package main" .go files in the same dir, add this to the top
+  #+begin_src go
+    //go:build ignore
+    package main
+  #+end_src

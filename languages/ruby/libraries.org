@@ -1,3 +1,9 @@
 - libraries https://rubygems.org/
 - libraries https://github.com/markets/awesome-ruby
 - docs 3rd party libs https://rubydoc.info/
+- Html generation
+  - parkaby https://github.com/judofyr/parkaby
+  - markaby
+    - ISSUE: doesn't support "align" as a <table> attribute
+    - https://markaby.github.io/
+    - https://github.com/markaby/markaby.github.com

@@ -3,6 +3,7 @@
   - Author: James Gosling, Mike Sheridan, Patrick Naughton
   - Intented for WORA (write once, run anywhere)
 
+- https://dev.java/
 - https://www.baeldung.com/
 - https://developer.okta.com/blog/2022/04/08/state-of-ffi-java
 - Library https://developer.okta.com/blog/2022/08/26/state-of-java-project-loom
@@ -30,6 +31,7 @@
 
 - JCL - Java Class/Core Libraries
 - https://docs.oracle.com/en/java/javase/19/core/java-core-libraries1.html
+- https://docs.oracle.com/en/java/javase/23/docs/api/index.html
 - https://en.wikipedia.org/wiki/Java_Class_Library
 
 * Types

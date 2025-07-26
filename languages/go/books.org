@@ -1797,33 +1797,53 @@ source https://github.com/teivah/100-go-mistakes
     uuid := strings.Clone(log[:36])
   #+end_src
 ** 06 Functions and Methods
-*** Not knowing which *type of receiver* to use
-- With a pointer receiver.
-  Go passes the address of an object to the method.
-  Intrinsically, it remains a copy, but we only copy a pointer, not the object itself.
-  Passing by reference doesn't exist in Go
-- Mixing reeiver tyeps should be avoided in general but is not forbidden in 100% of cases.
-*** Never using *named result parameters*
-- Rule: we shouldn't mix naked returns and returns with arguments.
-- When to use them
-  1) on an interface signature, to make it more clear to readers
-     #+begin_src go
-       type locator interface {
-           getCoordinates(address string) (lat, lng float32, err error)
-       }
-     #+end_src
-     - Although we could also create an adhoc struct with meaninful field names
-  2) on regular methods/functions to aid code readers
-     #+begin_src go
-       func (l loc) getCoordinates(address string) {}
-     #+end_src
-- When NOT to use it
-  - when it isn't helpful to readers
-    #+begin_src go
-      func StoreCustomer(customer Customer) (err error) {}
-    #+end_src
-  - when it's handy have the results already initialized
-*** Unintended side effects with *named result parameters*
+*** DONE #42 Not knowing which *type of receiver* to use
+- =Passing by reference doesn't exist in Go=.
+- Mixing receiver types should be avoided in general, but is not forbidden in 100% of cases.
+- Method Receiver Types:
+  - Value
+    - cannot be used with: map, function, or channel
+    - use if
+      - enforce immutability
+  - Pointer
+    - Go passes the address of an object to the method.
+    - Intrinsically, it remains a copy, but we only copy a pointer, not the object itself.
+    - Use if
+      - you need to mutate the receiver, including a slice.
+      - it contains a field that cannot be copied
+      - object is too big
+*** DONE #43 Never using *named result parameters*
+
+- Naked returns
+  - usage should be consistent in the scope, dont mix them with returns with arguments.
+  - only for short functions
+
+**** When to use it
+
+1) on an interface signature, to make it more clear to readers.
+   #+begin_src go
+     type locator interface {
+         getCoordinates(address string) (lat, lng float32, err error)
+     }
+   #+end_src
+   - Although we could also create an adhoc struct with meaninful field names
+
+2) on regular methods/functions when aids code readers (we could have chosen instead to return a struct an an error)
+   #+begin_src go
+     func (l loc) getCoordinates(address string) (lat, long float32, err erorr) {
+     }
+   #+end_src
+
+**** When NOT to use it
+
+- when it's convenient to have the results already initialized
+- when it is NOT helpful to readers
+  #+begin_src go
+    func StoreCustomer(customer Customer) (err error) {}
+  #+end_src
+
+*** #44 Unintended side effects with *named result parameters*
+
 - We might use the default value of the NRP incorrectly
   #+begin_src go
     func (l loc) getCoordinates(ctx context.Context, address string) (lat, lng float32, err error) {
@@ -1837,6 +1857,7 @@ source https://github.com/teivah/100-go-mistakes
         // ...get and return coordinate
     }
   #+end_src
+
 *** Returning a *nil receiver*
 - In Go, *nil* can be a valid _pointer receiver_,
   because in Go methods are just syntactic sugar for functions accepting the receiver as another function parameters

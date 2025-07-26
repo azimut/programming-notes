@@ -1,11 +1,25 @@
+- 2h CS50 https://www.youtube.com/watch?v=cwtpLIWylAw
+- 4h C Programming and Memory Management https://www.youtube.com/watch?v=rJrd2QMVbGM
+  - by BootDev
+- 18h Learn C Programming and OOP with Dr. Chuck https://www.youtube.com/watch?v=PaPN51Mm5qQ
+  - by freeCode Camp
+- [[https://www.youtube.com/playlist?list=PLnpfWqvEvRCchcCM-373x2630drhtdWEw][C Programming]] by Barry Brown
+- COS 217 @Princeton
+  - 20 Lecture https://www.youtube.com/playlist?list=PLwXw5yrGdQS55Q2ZODSqDNjm7Zhk4wFE3
+  - 21 Lecture https://www.youtube.com/playlist?list=PLwXw5yrGdQS7zpF7M7yKQPJu7s7fFpnF3
+  - 21 Q&A https://www.youtube.com/playlist?list=PLwXw5yrGdQS4HKVilgAm4mepG-7ZBS-2T
+- Defensive Programming and Debugging
+  - https://www.futurelearn.com/courses/defensive-programming-and-debugging
+  - https://gjbex.github.io/Defensive_programming_and_debugging/
+  - https://github.com/gjbex/DPD
+
 * FrontEnd Masters - C Fundamentals
-
-TODO: 01:09:00
-
-** 1
 
 - Richard Feldman
 - [[https://github.com/rtfeldman/c-workshop-v1][source]] [[https://docs.google.com/presentation/d/1CGtDVSazrJHI52OnwwJXgogQEHs63lrasfQWJvmcYM0/edit?usp=sharing][slides]]
+
+** Part 1/1
+
 - no windows version of the course
   - course uses unix/posix apis
 - "print()" comes from the "teletype" era
@@ -18,6 +32,7 @@ TODO: 01:09:00
 - in OSX, syscall numbers may change between os versions
   - forcing you to use the stdlib
   - unlike in Linux
+- =no stacktraces by default=
 
 *** Example: Hello World
 
@@ -37,4 +52,57 @@ TODO: 01:09:00
           mov esi, OFFSET FLAT:.LC0
           mov edi, 1
           jmp write ; OS provided
+#+end_src
+
+*** Example: write() with missmatched length and string length
+
+#+CAPTION: if greater, it prints whatever is in the programs memory.
+#+begin_src C :results value drawer both
+  #include <unistd.h>
+  int main() {
+    write(1, "Hello, World!", 14);
+    return 0;
+  }
+#+end_src
+
+#+RESULTS:
+:results:
+Hello, World!^@
+:end:
+
+*** Example: giving wrong arguments to printf() format
+
+Will throw a segmentation fault. For trying to read memory outside the program.
+
+#+begin_src C :results drawer both
+  #include <stdio.h>
+  int main() {
+    int a = 42;
+    int b = 21;
+    /* printf("a = %d\nb = %5\n", a, b); */ // <-- Segmentation Fault
+    printf("a = %d\nb = %d\n", a, b);
+    return 0;
+  }
+#+end_src
+
+#+RESULTS:
+:results:
+a = 42
+b = 21
+:end:
+
+
+** Part 2/1 - Building HTTP Responses
+
+- Numbers in memory
+- Byte arrays
+- Null-terminated strings
+- Getting a string's length
+- ASCII always has the first bit set to zero(0)
+  - so in reality it used 7 bits, of the 8 of *char*
+- UTF-8 is backwards compatible with ASCII
+  - uses the extra 8 bit to flag it is UTF-8
+
+#+begin_src C
+
 #+end_src

@@ -126,3 +126,20 @@ https://book.babashka.org/
    [:head [:title (format "Newspod %s" (now))]]
    [:body [:table]])
 #+end_src
+
+* Issues
+
+- PRO: html generation
+- Flaky (untested) libraries
+- Precompiled binary (or pods?) can have issues on my old PC. (see also https://github.com/babashka/pod-registry/issues/53 )
+  - With this
+    #+begin_src clojure
+      (require '[babashka.pods :as pods])
+      (pods/load-pod 'com.github.jackdbd/jsoup "0.4.0")
+    #+end_src
+  - Returns
+    #+begin_src
+    Please rebuild the executable with an appropriate setting of the -march option.
+    The current machine does not support all of the following CPU features that are required by the image:
+       [CX8, CMOV, FXSR, MMX, SSE, SSE2, SSE3, SSSE3, SSE4_1, SSE4_2, POPCNT, LZCNT, AVX, AVX2, BMI1, BMI2, FMA].
+    #+end_src

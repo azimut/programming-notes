@@ -896,17 +896,27 @@ Script ran, to generate valid markdown from site's json. Then converted with  pa
 #+RESULTS: split into words
 | foo | bar | foo |
 
-#+NAME: inline gem dependencies on single ruby script file
+** bundler/inline
+
+- inline gem dependencies on single ruby script file
+- only intended for system gems (no vendor/local installs) https://github.com/rubygems/bundler/issues/5063#issuecomment-274400640
+- but can be worked around by setting GEM_HOME https://github.com/rubygems/bundler/pull/7154
+  #+begin_src sh
+    GEM_HOME=vendor/bundle ruby3.0 foo.rb
+  #+end_src
+- or as the first line of the script
+  #+begin_src ruby
+    Gem.paths = {'GEM_HOME' => Dir.pwd + '/.gemnew'}
+  #+end_src
+
 #+begin_src ruby
 require 'bundler/inline'
-
 gemfile do
   source 'https://rubygems.org'
   gem 'json', require: false
   gem 'nap', require: 'rest'
   gem 'cocoapods', '~> 0.34.1'
 end
-
 puts 'Gems installed and loaded!' # VVV script work using the libs
 puts "The nap gem is at version #{REST::VERSION}"
 #+end_src

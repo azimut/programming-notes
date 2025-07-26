@@ -206,7 +206,8 @@ https://wiki.tcl-lang.org/page/Tcl+Commands
   }
 #+end_src
 
-** standard library (tcllib)
+* standard library
+** tcllib
 - https://www.tcl.tk/man/tcl8.6/TclCmd/contents.htm
 - https://www.tcl.tk/software/tcllib/
 - https://core.tcl-lang.org/tcllib/doc/trunk/embedded/md/toc.md
@@ -265,6 +266,25 @@ https://wiki.tcl-lang.org/page/Tcl+Commands
 | ftpd  | FTP server                                     |
 | smtpd | SMTP server implementation                     |
 |-------+------------------------------------------------|
+** official extensions
+- https://wiki.tcl-lang.org/page/Official+library+of+extensions
+|--------------+-------------------------------------+-----|
+| dde          | win32 specific                      |     |
+| [[https://wiki.tcl-lang.org/page/encoding][encoding]]     | string conversion                   |     |
+| [[https://wiki.tcl-lang.org/page/http][http]]         | client side HTTP/1.1 implementation |     |
+| [[https://wiki.tcl-lang.org/page/itcl][itcl]]         | OO system                           | 8.5 |
+| [[https://wiki.tcl-lang.org/page/msgcat][msgcat]]       | localization??                      |     |
+| opt/optparse |                                     |     |
+| platform     |                                     |     |
+| registry     | win32 specific                      |     |
+| applescript  | macos specific                      |     |
+| resource     | macos specific                      |     |
+| stubs        |                                     |     |
+| tcloo        |                                     | 8.5 |
+| tcltest      |                                     |     |
+| tdbc         |                                     | 8.6 |
+| Thread       |                                     |     |
+|--------------+-------------------------------------+-----|
 * libraries
 
 - web - uses noVNC to run x11 on browser https://wiki.tcl-lang.org/page/CloudTk

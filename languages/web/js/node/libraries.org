@@ -77,8 +77,21 @@
     expect(sum(1,2)).toBe(3);
   });
 #+end_src
-* Documentation
+* API Documentation
 
-- [[https://github.com/Surnet/swagger-jsdoc][swagger-jsdoc]]
-- [[https://www.npmjs.com/package/swagger-ui-express][swagger-ui-express]]
-  - reads a swagger.json and
+- [[https://github.com/Surnet/swagger-jsdoc][swagger-jsdoc]] (1.7k)
+  - from jsdoc comments to swagger.json
+  - needs explicit comments detailing each express endpoint requirements
+- [[https://github.com/swagger-autogen/swagger-autogen/][swagger-autogen]] (496)
+  - autogenerates a swagger.json from a Javascript express API
+  - needs some additional hints/comments for types and descriptions
+- [[https://www.npmjs.com/package/swagger-ui-express][swagger-ui-express]] (1.5k)
+  - reads a swagger.json and serves a view/html where you can see and test each *API* endpoint
+
+- Generate Validators from OpenAPI
+  - https://github.com/wesleytodd/express-openapi (138)
+  - https://github.com/cdimascio/express-openapi-validator (970)
+
+- From Typescript
+  - https://github.com/ts-spec/tspec (150)
+  - https://github.com/lukeautry/tsoa (3.8k)
