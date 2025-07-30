@@ -227,6 +227,7 @@
 |    game     | [[https://github.com/chebykinn/sedmario][mario]] [[https://github.com/uuner/sedtris][tetris]] [[https://github.com/moldabekov/chess-sed][chess]] [[https://github.com/izabera/cube.sed/][rubik]]                                            |
 | interpreter | [[https://github.com/GillesArcas/PythonSed][python]] [[https://github.com/mb64/sel][lisp]]                                                         |
 |   scripts   | https://sed.sourceforge.io/#scripts                                 |
+|             | https://github.com/exercism/sed/                                                                    |
 |             | https://sed.sourceforge.io/grabbag/scripts/                         |
 |             | https://rosettacode.org/wiki/Category:Sed                           |
 |             | https://literateprograms.org/category_programming_language_sed.html |

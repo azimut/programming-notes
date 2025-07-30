@@ -1,3 +1,6 @@
+- https://en.wikipedia.org/wiki/Turing_tarpit
+  - PL that allows for flexibility in function but is difficult to learn and use because it offers little or no support for common tasks.
+
 - *parameter* in definition
 - *argument* in invocation
 

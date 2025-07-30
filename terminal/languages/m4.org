@@ -7,22 +7,52 @@
   - Authors: Brian Kernighan, Dennis Ritchie
   - 1977
   - general purpose macro pre-processor
+  - part of POSIX standard
   - used by sendmail
-  - mostly used by *autoconf* (part of autotools)
+  - today mostly used by *autoconf* (part of autotools)
     - in configure.ac
     - Author: David Makenzie
     - 1991
 
-- codebases
-  - css preprocessor https://github.com/djanowski/hasp
-  - BASIC to C http://www.basic-converter.org/m4basic/
-  - z80 forth https://github.com/DW0RKiN/M4_FORTH
-  - https://github.com/nevali/m4
+* cli
+
+#+begin_src
+  m4 [OPTION] [FILE]
+#+end_src
+
+- *rlwrap* compatible
 
 * language
 
-- 24 commands
 - turing complete
+- no loops, only recursion
+- we use different quoting for each side to _allow nesting_
+  - without needing extra escaping
+
+** commands (24)
+#+begin_src m4
+  define(`NAME', 0)
+  define(`upcase', `translit(`$*', `a-z', `A-Z')')
+  define(`PlaylistItem',` upcase($1) ')
+  PlaylistItem(`foo.hml')
+  define(`_capitalize`,
+         `regexp(`$1', `^\(\w\)\(\w*\)',
+         `upcase(`\1')`'downcase(`\2')')',
+                 `toSpace')
+  dnl - disables rest of the line
+  include(`foo.m4')
+  dumpdef(`NAME')dnl shows the definition of given macro
+  dumpdef(`NAME',`upcase')
+  changequote()
+  divert()
+  undivert()
+  ifdef()
+  ifelse()
+  eval()
+  syscmd()
+  esyscmd()
+  NAME
+#+end_src
 
 * articles
 
@@ -40,6 +70,7 @@
 - 22 https://dev.to/taw/100-languages-speedrun-episode-45-m4-pgg
 - 20 https://chrisman.github.io/9.html
 - 19 http://web.archive.org/web/20190910195316/https://www.linuxtoday.com/blog/macro-magic-m4-complete-guide.html
+- 19 https://www.linuxtoday.com/blog/macro-m4-guide/
 - 15 [[https://modelingwithdata.org/arch/00000188.htm][m4 without the misery]]
 - 09 https://gopherproxy.meulie.net/box.matto.nl/0/m4.txt
 - 08 https://mbreen.com/m4.html
@@ -54,10 +85,70 @@
 - 13 [[https://www.youtube.com/watch?v=ULZxHSPWn98][Bart Massey: The M4 Macro Processor]]
 - 19 [[https://www.youtube.com/watch?v=-1w-vx6y4GU][Using Makefile and m4 macro preprocessor to bundle Javascript]]
   - pdf https://conference.libreoffice.org/assets/Conference/Almeria/HenryUsing-makefile-m4-to-bundle-javascript.pdf
-- 20 [[https://www.youtube.com/watch?v=yrurIUEGo1c][m4 - add macro power to boost any programming language]]
-- 22 [[https://www.youtube.com/watch?v=euh0gaT3tA0][Using macros with the Suite8080 assembler]]
-- 22 [[https://www.youtube.com/watch?v=Jhte76l2mP4][Can GNU m4 replace my need for react based framework]]
-- 23 [[https://www.youtube.com/watch?v=h164R46NWBMH][Hacking GNU Utilities - m4]] by tsoding
+
+** TODO 20 [[https://www.youtube.com/watch?v=yrurIUEGo1c][m4 - add macro power to boost any programming language]]
+
+- Originally used a lot in ASM
+- When to use?
+  - Language that don't have macros
+  - When functions are slow (eg: unrolling loops)
+  - Repetitive code (eg: languages that don't have functions)
+  - Painful language (eg: make a DSL)
+- Usage at ATO (Australian Taxation Office)
+  - ALIFE (1991)
+  - Dynamic SQL
+  - Testing code
+- Pay attention to:
+  - recursive expansion
+  - quotes
+  - no debugging (except for "dumpdef")
+
+** 22 [[https://www.youtube.com/watch?v=euh0gaT3tA0][Using macros with the Suite8080 assembler]]
+
+- source https://github.com/pamoroso/suite8080/tree/master/asm
+
+#+begin_src sh
+  $ cat ldabc.m4 | m4 | asm80 - -o ldabc.com
+#+end_src
+
+#+CAPTION: ldabcmac.m4
+#+begin_src m4
+  define(`ldabc',`
+              lhld $1
+              mpv  a, m
+              lhld $2
+              mov  b, m
+              lhld $3
+              mpv  c, m
+  ')
+#+end_src
+
+#+CAPTION: ldabc.m4
+#+begin_src asm
+          include(`ldabcmac.m4')
+          ldabc(data1, data2, data3)
+  data1: db1
+  data2: db 2
+  data3: db 3
+#+end_src
+
+** 22 [[https://www.youtube.com/watch?v=Jhte76l2mP4][Can GNU m4 replace my need for react based framework]]
+
+- macros to create html components
+- inlines m4 macros inside regular html document
+
+** TODO 23 [[https://www.youtube.com/watch?v=h164R46NWBMH][Hacking GNU Utilities - m4]] by tsoding
+
+- objective: use raylib from m4
+  - by hacking source m4 code
+  - adding new commands
+
+* codebases
+
+- css preprocessor https://github.com/djanowski/hasp
+- BASIC to C http://www.basic-converter.org/m4basic/
+- z80 forth https://github.com/DW0RKiN/M4_FORTH
+- https://github.com/nevali/m4
 
 * trivia
 ** the "xz backdoor"
