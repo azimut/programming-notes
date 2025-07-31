@@ -90,6 +90,8 @@
 - https://www.youtube.com/playlist?list=PLTmR6HsT7005r9J50_HCOGkyGc8dDYu7J
 
 * tools
+
+- bundler? aka "pip freeze" https://github.com/perl-carton/carton
 - deploy
   - par/pp
     - https://metacpan.org/pod/PAR

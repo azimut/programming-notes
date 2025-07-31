@@ -1,0 +1,26 @@
+- wiki https://en.wikipedia.org/wiki/Canvas_element
+  - 2004
+  - introduced in HTML5
+  - allows dynamic scriptable rendering of 2d shapes and bitmaps images
+  - supports WebGL
+
+- https://www.w3schools.com/html/html5_canvas.asp
+- https://www.w3schools.com/graphics/canvas_intro.asp
+- https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
+- https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/canvas
+
+* Snippets
+** Simple 2D - red rectangle
+
+#+begin_src html
+  <canvas id="example" width="200" height="200">
+    Displayed if no Canvas support...
+  </canvas>
+#+end_src
+
+#+begin_src js
+  const example = document.getElementById('example');
+  const context = example.getContext('2d');
+  context.fillStyle = 'red';
+  context.fillRect(30,30,50,50);
+#+end_src

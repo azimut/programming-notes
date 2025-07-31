@@ -2,6 +2,7 @@
 - docs https://www.gnu.org/software/m4/manual/m4.html
 - manual 77 https://wolfram.schneider.org/bsd/7thEdManVol2/m4/m4.pdf
 - manual 21 https://www.gnu.org/software/m4/manual/m4.pdf
+- history https://www.gnu.org/software/m4/manual/html_node/History.html
 
 - wiki https://en.wikipedia.org/wiki/M4_(computer_language)
   - Authors: Brian Kernighan, Dennis Ritchie
@@ -29,6 +30,12 @@
 - we use different quoting for each side to _allow nesting_
   - without needing extra escaping
 
+** variables
+|----+---------------------|
+| $1 | first argument      |
+| $# | number of arguments |
+| $@ | all the arguments   |
+|----+---------------------|
 ** commands (24)
 #+begin_src m4
   define(`NAME', 0)
@@ -46,6 +53,9 @@
   changequote()
   divert()
   undivert()
+  dnl shift(@) removes an argument and splice it back
+  dnl defines different behaviour depending on how many arguments is called
+  define(`reverse', `ifelse(`$#',`0', ,`$#',`1',``$1'', `reverse(shift($@)), `$1'')')
   ifdef()
   ifelse()
   eval()
@@ -73,7 +83,8 @@
 - 19 https://www.linuxtoday.com/blog/macro-m4-guide/
 - 15 [[https://modelingwithdata.org/arch/00000188.htm][m4 without the misery]]
 - 09 https://gopherproxy.meulie.net/box.matto.nl/0/m4.txt
-- 08 https://mbreen.com/m4.html
+- 08 [[https://mbreen.com/m4.html][Notes on the M4 Macro Language]]
+- 05 Macro Magic: m4 [[http://www.jpeek.com/articles/linuxmag/2005-02/][Part 1]] [[http://www.jpeek.com/articles/linuxmag/2005-03/][Part 2]]
 - 99 http://www.linuxfocus.org/English/September1999/article111.html
 - 94 [[https://www.cs.stir.ac.uk/~kjt/research/pdf/expl-m4.pdf][Exploiting the m4 language]]
 - 94 https://www.nesssoftware.com/home/mwc/doc/coherent/manual/pdf/m4.pdf
@@ -139,9 +150,18 @@
 
 ** TODO 23 [[https://www.youtube.com/watch?v=h164R46NWBMH][Hacking GNU Utilities - m4]] by tsoding
 
-- objective: use raylib from m4
+- TODO: 01:45:00
+- m4 source code is 9k lines of C
+- _Objective_: use raylib from m4
   - by hacking source m4 code
   - adding new commands
+
+- 0:44:09 finished mvp hello world example
+- 1:18:07 finished raylib hello world example
+  - using ./configure
+  - CFLAGS
+  - LDFLAGS
+  - LIBS
 
 * codebases
 
