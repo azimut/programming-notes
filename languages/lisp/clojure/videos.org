@@ -48,20 +48,101 @@ https://www.youtube.com/watch?v=cPNkH-7PRTk
   - Limits generability
   - Limits extensibility
   - Generic functions are the abstraction in CL, but weren't used a lot in the STDLIB
-* TODO 13 | Rich Hickey | clojure.async
-- Problems
-  1) Function chains make poor machines
+* 13 | Rich Hickey | clojure.async
+
+- Problems to solve
+  1) Function chains (are units of logics that) make poor machines.
+     - Objects are little machines not very good to making logic
   2) Real-world concurrency is exposed via api's
+
 - Premise
-  - "Good programs should be made of processes and queues"
-  - There comes a time in all good programs
-    when components or subsystems must stop communicating
-    directly with one another.
+  - "Good programs should be made of *processes* and *queues*."
+  - There comes a time in all good programs when components or subsystems MUST STOP COMMUNICATING DIRECTLY with one another.
+
 - Why?
-  - Java Util Concurrent Queue
-    - The only way to coordinate is via thread control, aka blocking
+  - java.util.concurrent.queue
+    - The only way to coordinate is via thread control, _aka blocking_
     - A problem is the thread overhead of the stack size
   - Javascript
     - No threads (and no queues) in JS
   - Observables/Rx only mitigate certain cases
-- 11:00 TODO
+
+- Currently solved with *Events/Callbacks*
+  - callback handlers
+  - async apis
+  - rpc
+  - Problem: fragmented logic (callback hell)
+
+** Copying C# Async
+
+#+begin_src clojure
+  (let [fut (future ...)]
+    (do-something...)
+    (let [result (deref fut)] ; blocks
+      (do-something result))
+#+end_src
+
+#+begin_src clojure
+  (let [fut (future ...)]
+    (do-something....)
+    (on-complete ; callback handler
+     fut
+     (fn [result] (do-something result))))
+#+end_src
+
+#+CAPTION: converts the code into state machine with a callback
+#+begin_src clojure
+  (async ; special construct
+   (let [fut (future ...)]
+     (do-something...)
+     (let [result (await fut)] ; relinquishes thread
+       (do-something result)))
+#+end_src
+
+** History: CSP
+
+- Communicating Sequential Process
+- Hoare 1978
+- First class channels
+  - only way to interact between processes
+  - no shared stated
+  - blocking semantics by default
+- Current (2013) implementations were tied to real threads
+
+** core.async
+
+- a library
+- coordinating between processes between channels
+  - process = independent threads of activity (not necesarilly real threads)
+
+- (thread body..) - real thread, real blocking
+- (go body...) - IOC thread, state-machine, 'parking'
+
+** Channel
+
+- a queue-like
+- multi-write, multi-reader
+- blocking
+- unbuffered, fixed buffers, sliding, dropping
+- goal: do not put logic in handlers
+  - keep logic together
+
+#+begin_src clojure
+  (timeout ms)  ; autoclosing channel
+  (chan)        ; unbuffered
+  (chan n)      ; buffered n
+  (chan buffer)
+  (>! ch val)   ; put/parking
+  (>!! ch val)  ; put/parking blocking (not in JS)
+  (<!  ch)      ; take
+  (<!! ch)      ; take blocking
+  (close ch)
+  (alts! ops)   ; "choice", wait on multiple things
+  (alt!         ; alts! + cond
+    [c t]       ([val ch] (foo ch val))
+    x           ([v] v)
+    [[out val]] :wrote
+    :default    42)
+  (put! ch val) ; async - need NOT to be in (go)
+  (take! ch cb) ; async - need NOT to be in (go)
+#+end_src

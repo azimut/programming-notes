@@ -1,19 +1,30 @@
+#+TITLE: m4
+#+DATE: <2025-01-04 sáb>
+#+KEYWORDS: m4, programming, cheatsheet, quick reference
+
 - home https://www.gnu.org/software/autoconf/
 - docs https://www.gnu.org/software/m4/manual/m4.html
 - manual 77 https://wolfram.schneider.org/bsd/7thEdManVol2/m4/m4.pdf
 - manual 21 https://www.gnu.org/software/m4/manual/m4.pdf
 - history https://www.gnu.org/software/m4/manual/html_node/History.html
 
+- .m4 (where macros are defined)
+- .mc (where macro expansion happens)
 - wiki https://en.wikipedia.org/wiki/M4_(computer_language)
   - Authors: Brian Kernighan, Dennis Ritchie
   - 1977
+  - based on M3(1972), and GPM (1965)
   - general purpose macro pre-processor
   - part of POSIX standard
-  - used by sendmail
+  - used by sendmail (.mc -> .cf)
+  - see man&info page
   - today mostly used by *autoconf* (part of autotools)
     - in configure.ac
     - Author: David Makenzie
     - 1991
+  - based context-free grammar, automata, stacks, and output queues
+    - aka the rules for rewritting
+    - have terminal symbols & non-terminal symbols (m4 macros)
 
 * cli
 
@@ -27,41 +38,62 @@
 
 - turing complete
 - no loops, only recursion
+- `' makes non-terminal symbols terminal ones
+  - removed on each macro pass
+- macro names
+  - recognized if appear surrounded by non-alphanumeric
+  - are alphanumeric, including "_"
 - we use different quoting for each side to _allow nesting_
   - without needing extra escaping
 
 ** variables
-|----+---------------------|
-| $1 | first argument      |
-| $# | number of arguments |
-| $@ | all the arguments   |
-|----+---------------------|
+|-----------+------------------------------------|
+|    <c>    |                                    |
+|    $0     | macro name                         |
+|    $1     | first argument                     |
+|    $#     | number of arguments                |
+|    $@     | all the arguments                  |
+|    $*     | all the arguments, expands space   |
+| shift($@) | all the argument, except the first |
+|-----------+------------------------------------|
 ** commands (24)
+
+- leading blanks that occur during argument collection are discarded
+
 #+begin_src m4
   define(`NAME', 0)
-  define(`upcase', `translit(`$*', `a-z', `A-Z')')
-  define(`PlaylistItem',` upcase($1) ')
-  PlaylistItem(`foo.hml')
-  define(`_capitalize`,
-         `regexp(`$1', `^\(\w\)\(\w*\)',
-         `upcase(`\1')`'downcase(`\2')')',
-                 `toSpace')
+  undefine(`NAME')
   dnl - disables rest of the line
   include(`foo.m4')
   dumpdef(`NAME')dnl shows the definition of given macro
   dumpdef(`NAME',`upcase')
-  changequote()
-  divert()
-  undivert()
-  dnl shift(@) removes an argument and splice it back
-  dnl defines different behaviour depending on how many arguments is called
-  define(`reverse', `ifelse(`$#',`0', ,`$#',`1',``$1'', `reverse(shift($@)), `$1'')')
+  changequote([,])dnl changes `' to []
+  changequote dnl restores `'
+  divert(N)dnl  switches Output Queues
+  divert(-1)dnl -1 = used to throw away defines()
+  define(g,19)dnl discarded
+  undivert(0)dnl 0 = for stdout
+  divert`'dnl same as divert(0)
   ifdef()
   ifelse()
-  eval()
-  syscmd()
-  esyscmd()
-  NAME
+  eval(1 + 1)
+  syscmd(find . -type f)dnl runs without capturing
+  esyscmd(hostname | tr -d '\n')dnl captures output
+  debugmode(`V')
+#+end_src
+
+*** String Manipulation
+
+#+begin_src m4
+  substr(abcdef,2)dnl         returns "bcdef"
+  substr(abcdef,3,3)dnl       returns "def"
+  len(abdcde)dnl              returns 6
+  index(abcdef,c)dnl          returns 2
+  index(abcdef,z)dnl          returns -1
+  translit(leet,aeio,4310)dnl returns "l33t"
+  translit(leet,aeio)dnl      returns "lt"
+  regexp(abc88def,`[0-9]')dnl returns 3
+  regexp(ab77,`[0-9]',`?')dnl
 #+end_src
 
 * articles
@@ -74,6 +106,7 @@
   - https://news.ycombinator.com/item?id=27994092
   - https://news.ycombinator.com/item?id=34159699
 
+- 21 https://www.root.cz/texty/generating-code-in-m4-introduction/
 - ?? [[https://www2.gvsu.edu/miljours/m4critique.html][Critique of the M4 Macro Language]]
 - 24 https://mastodon.social/@seindal/112205415790637632
 - 22 https://emiruz.com/post/2022-12-28-composable-sql/
@@ -169,6 +202,21 @@
 - BASIC to C http://www.basic-converter.org/m4basic/
 - z80 forth https://github.com/DW0RKiN/M4_FORTH
 - https://github.com/nevali/m4
+
+* snippets
+
+#+begin_src m4
+  dnl shift(@) removes an argument and splice it back
+  dnl defines different behaviour depending on how many arguments is called
+  define(`reverse', `ifelse(`$#',`0', ,`$#',`1',``$1'', `reverse(shift($@)), `$1'')')
+  define(`upcase', `translit(`$*', `a-z', `A-Z')')
+  define(`_capitalize`,
+         `regexp(`$1', `^\(\w\)\(\w*\)',
+                 `upcase(`\1')`'downcase(`\2')')',
+                 `toSpace')
+  define(`PlaylistItem',` upcase($1) ')
+  PlaylistItem(`foo.hml')
+#+end_src
 
 * trivia
 ** the "xz backdoor"

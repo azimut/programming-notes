@@ -2,3 +2,111 @@
 - clojure (no js?)  https://github.com/seancorfield/deps-new
 - nrepl, inserted with cider-jack-in, but needed on projects if "lein run"
   https://docs.cider.mx/cider/0.26/basics/middleware_setup.html
+
+* clj cli
+
+- Starts a REPL & installs "deps.edn".
+  - in dirs: ~/.m2, ~/.gitlibs
+- By default looks for source file in src/
+- Execute "run" function defined at *src/hello.clj*
+  #+begin_src sh
+    $ clj -X hello/run
+    $ clj -A:somealias # uses alias
+    $ clj -X:somealias # runs alias
+    $ clj -Sdeps '{:deps {org.clojure/core.async {:mvn/version "1.5.648"}}}'
+  #+end_src
+
+** -X:deps (>= 1.11)
+
+- https://clojure.org/guides/deps_and_cli
+- https://clojure.org/reference/clojure_cli
+- https://clojure.org/reference/deps_edn
+
+|--------------+----------+--------------------------|
+|     <c>      |          |                          |
+| clj -X:deps  |          |                          |
+|--------------+----------+--------------------------|
+|     list     |          | list deps                |
+|     tree     |          | list deps in a tree      |
+| find-version | :lib ?/? | list versions of package |
+|--------------+----------+--------------------------|
+
+*** Example: -X:deps find-versions :lib ?/?
+
+#+begin_src sh
+  $ clj -X:deps find-versions :lib clojure.java-time/clojure.java-time
+  Downloading: clojure/java-time/clojure.java-time/maven-metadata.xml from clojars
+  {:mvn/version "1.0.0"}
+  {:mvn/version "1.1.0"}
+  {:mvn/version "1.2.0"}
+  {:mvn/version "1.3.0"}
+  {:mvn/version "1.4.0"}
+  {:mvn/version "1.4.1"}
+  {:mvn/version "1.4.2"}
+  {:mvn/version "1.4.3"}
+#+end_src
+
+
+* Example
+
+#+CAPTION: Example structure
+#+begin_src sh
+  hello-world
+  ├── deps.edn
+  └── src
+      └── hello.clj
+#+end_src
+
+
+#+begin_src sh
+  $ clj -X hello/run
+  $ clj -A:test -Spath # compute CLASSPATH, with alias :test
+  $ clj -A:bench       # uses :bench to modify dependency resolution
+  $ clj -X:test        # runs :test, aka the test-runner defined there
+  $ clj -X:repl-server # runs server by alias
+  $ clj -X:repl-server :port 51234
+#+end_src
+
+** deps.edn
+
+#+begin_src clojure
+  {:deps
+   {clojure.java-time/clojure.java-time
+    {:mvn/version "1.1.0"}}
+
+   :aliases
+   {:test
+    {:extra-paths ["test"] ; Adds test/ to (make-classpath)
+           ;; Setups a test runner for alias (cognitect)
+           :extra-deps {io.github.cognitect-labs/text-runner {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
+           :main-opts ["-m" "cognitect.test-runner"]
+           :exec-fn cognitect.test-runner.api/test}
+
+    :bench
+    {:extra-deps
+            {criterium/criterium {:mvn/version "0.4.4"}}}
+
+    :repl-server
+    {:exec-fn clojure.core.server/start-server
+     :exec-args {:name "repl-server"
+                 :port 5555
+                 :accept clojure.core.server/repl
+                 :server-daemon false}}}}
+#+end_src
+
+** src/hello.clj
+
+#+begin_src clojure
+  (ns hello
+    (:require [java-time.api :as t]))
+
+  (defn time-str
+    "Returns a string representation of a datetime in the local time zone."
+    [instant]
+    (t/format
+     (t/with-zone (t/formatter "hh:mm a") (t/zone-id))
+     instant))
+
+  (defn run [opts]
+    (println "The time is" (time-str (t/instant))))
+#+end_src

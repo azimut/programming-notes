@@ -41,19 +41,19 @@ EDN (extensible data notation): https://clojure.github.io/clojure/clojure.edn-ap
 
 ** require/import
 https://clojurescript.org/news/2021-04-06-release#_library_property_namespaces
-|--------------+-----------------------------------------+---------------------------------------------------|
-|     <c>      |                   <c>                   |                                                   |
-|              |         (ns (:require <HERE> ))         |                                                   |
-|--------------+-----------------------------------------+---------------------------------------------------|
-|     :as      |        [clojure.string :as str]         |                                                   |
-|    :refer    |     [clojure.string :refer [split]]     |                                                   |
-| :refer + :as | [clojure.string :refer [split] :as str] | both at the same time                             |
-|--------------+-----------------------------------------+---------------------------------------------------|
-|     :as      |              ["fs" :as fs]              | node.js, make ns available                        |
-|    :refer    |      ["fs" :refer [writeFileSync]       | node.js, make fn available into current namespace |
-|   :rename    |      :rename {writeFileSync wfs}]       | with a different name "wfs"                       |
-|     :as      |    ["node-fetch$default" :as fetch]     | new(01) cljs syntax to access ~default~ exports   |
-|--------------+-----------------------------------------+---------------------------------------------------|
+|------------------+---------------------------------------------+---------------------------------------------------|
+|       <c>        |                     <c>                     |                                                   |
+|                  |           (ns (:require <HERE> ))           |                                                   |
+|------------------+---------------------------------------------+---------------------------------------------------|
+|       :as        |         [clojure.string ~:as~ str]          |                                                   |
+|      :refer      |      [clojure.string ~:refer~ [split]]      |                                                   |
+|   :refer + :as   | [clojure.string ~:refer~ [split] ~:as~ str] | both at the same time                             |
+|------------------+---------------------------------------------+---------------------------------------------------|
+|       :as        |               ["fs" ~:as~ fs]               | node.js, make ns available                        |
+| :refer + :rename |       ["fs" ~:refer~ [writeFileSync]        | node.js, make fn available into current namespace |
+|                  |       ~:rename~ {writeFileSync wfs}]        | with a different name "wfs"                       |
+|       :as        |     ["node-fetch$default" ~:as~ fetch]      | new(01) cljs syntax to access ~default~ exports   |
+|------------------+---------------------------------------------+---------------------------------------------------|
 
 ** Control Flow
 
@@ -210,11 +210,15 @@ https://clojurescript.org/news/2021-04-06-release#_library_property_namespaces
 |          |                      |            | (compare-and-set!)  |             |             |                                                  |
 |----------+----------------------+------------+---------------------+-------------+-------------+--------------------------------------------------|
 
+- agents
+  - async, independent
+- refs
+  - synchronous, coordinated
 - sets
   - union/difference/intersection
   - select/index/rename/join
 - atoms
-  - shared, synchronous, independent state
+  - shared, synchronous, independent state (uncoordinated)
   - they are a reference
   - swap!, internally uses compare-and-set!
   - set-validator! get-validator
@@ -289,6 +293,7 @@ https://clojure.org/reference/atoms
 #+end_src
 
 ** open a file
+
 #+begin_src clojure
   (with-open [f (clojure.java.io/writer "/tmp/new")]
     (.write f "some text"))

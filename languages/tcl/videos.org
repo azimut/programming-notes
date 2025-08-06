@@ -1,3 +1,4 @@
+- 25 The Most MISUNDERSTOOD Programming Language https://www.youtube.com/watch?v=PYh6D1NhatY
 - 22 Coding Live: Advent of Code with iRules https://www.youtube.com/watch?v=Rnw7lUU8KpY
 - Learning TCL https://www.youtube.com/watch?v=jf0PynxBSOg
   LIVE Programming a Web Crawler w/ Tcl – Programming Polyglot #001

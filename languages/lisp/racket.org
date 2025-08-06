@@ -1,7 +1,10 @@
 https://www.greghendershott.com/fear-of-macros/
 https://www.youtube.com/c/JoeGibbsPolitz/videos
 https://github.com/racket/racket/wiki/Frequently-Asked-Questions
-https://beautifulracket.com/
+- https://x.com/racketlang/
+- book https://jessealama.gumroad.com/l/serverracket
+- guide https://docs.racket-lang.org/guide/index.html
+- guide https://beautifulracket.com/
 - Course: OCAML to Racket
   CMSC 430: Design and Implementation of Programming Languages
   https://www.cs.umd.edu/class/fall2021/cmsc430/OCaml_to_Racket.html

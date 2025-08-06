@@ -26,6 +26,7 @@
 
 #+begin_src shell
   $ awk '{ print $1 }' file.csv
+  $ awk '{ print $1 }' < file.csv
   $ awk -f script.awk file.csv
 #+end_src
 
@@ -59,6 +60,21 @@
     - ~--csv~ flag, supports fields surrounded by double quotes
     - ~\u~ escape sequence
 
+** Patterns
+
+Can be:
+|------------------+-----------------|
+|       <c>        |                 |
+|     /regex/      | string matching |
+|   /from/,/to/    | inclusive range |
+| NR == 1, NR == 8 | inclusive range |
+|   $5 == "root"   | expression      |
+| $2 ~ /^(ja¦ko)/  | expression      |
+|     $1 > 25      |                 |
+|      BEGIN       |                 |
+|       END        |                 |
+|------------------+-----------------|
+
 ** style
 
 - guide https://github.com/soimort/translate-shell/wiki/AWK-Style-Guide
@@ -77,6 +93,7 @@
 - untyped, unassigned
 - strnum
 - regexp (?
+- falsy: "", 0, undefined variables
 
 *** string
 
@@ -440,6 +457,8 @@ use "|&" to send and receive
     map[x","y] = 1 # GOOD!
   #+end_src
 
+- single quotes on shell: use \47
+
 * codebases
 
 #+CAPTION: Alfred Aho in a 80's film about UNIX
@@ -573,7 +592,7 @@ use "|&" to send and receive
 #+ATTR_HTML: :width 480
 [[./bwk.png]]
 
-https://www.gnu.org/software/gawk/manual/html_node/Other-Versions.html
+[[http://awk.freeshell.org/AwkFeatureComparison.html][Comparisons]] [[https://www.gnu.org/software/gawk/manual/html_node/Other-Versions.html][Others]]
 
 |--------+-------------------------------------------------------------------------------|
 |    <r> |                                                                               |
@@ -608,6 +627,8 @@ $ readelf -d /usr/bin/mawk | grep Shared # 155K
 
 * tools
 
+- binary libraries https://gawkextlib.sourceforge.net/
+  - pgsql, redis
 - editor tools
   - https://github.com/Beaglefoot/awk-language-server
   - https://emacs-lsp.github.io/lsp-mode/page/lsp-awk/

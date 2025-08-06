@@ -9,6 +9,7 @@
 - 22 | Debra McCusker  | Walking Through Several AWK Scripts https://www.youtube.com/watch?v=cPlBT2c3TuQ
 - 23 | Benjamin Porter | Awk: Hack the planet['s text]! (Presentation) https://www.youtube.com/watch?v=E5aQxIdjT0M
 - 24 | William Smith   | Awk, sed, grep: Together, we can change anything! https://www.youtube.com/watch?v=axmDzoUov_8
+- 25 | This data processing language is HIDING in plain sight! https://www.youtube.com/watch?v=Dr0zFRswrwk
 * 15 | Computerphile   | UNIX Special: Profs Kernighan & Brailsford
   https://www.youtube.com/watch?v=vT_J6xc-Az0
 

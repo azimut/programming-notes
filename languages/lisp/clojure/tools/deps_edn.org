@@ -1,13 +1,34 @@
-|----------+-------------------------------------------------------+---|
-| :paths   | ["src"]                                               |   |
-| :deps    | [foo/bar {:mvn/version 1.1.1}]                        |   |
-| :aliases | {:dev {:extra-paths []}                               |   |
-|          | ______{:extra-deps {bar/foo {:mvn/version 2.1.1}}}    |   |
-|          | ______{:jvm-opts ["-XX:-OmitStackTraceInFastThrow"]}} |   |
-|----------+-------------------------------------------------------+---|
+https://clojure.org/reference/deps_edn
 
-- .dir-locals.el
-  #+begin_src elisp
-    ((nil
-      (cider-clojure-cli-global-options . "-A:dev")))
-  #+end_src
+|----------+-----------------------------------------------------|
+| :paths   | ["src"]                                             |
+| :deps    | {foo/bar {:mvn/version 1.1.1}}                      |
+| :aliases | {:dev {:extra-paths []                              |
+|          | _______:extra-deps {bar/foo {:mvn/version 2.1.1}}   |
+|          | _______:jvm-opts ["-XX:-OmitStackTraceInFastThrow"] |
+|          | _______:exec-fn  cognitect.test-runner.api/test     |
+|          | _______:main.opts ["-m", "cognitect.test-runner"]}  |
+|----------+-----------------------------------------------------|
+
+* .dir-locals.el
+
+#+begin_src elisp
+  ((nil
+    (cider-clojure-cli-global-options . "-A:dev")))
+#+end_src
+
+* Example: deps.edn
+
+#+begin_src clojure
+  {:deps
+   { clojure.java-time/clojure.java-time {:mvn/version "1.1.0"}      ; maven
+     time-lib/time-lib                   {:local-root "../time-lib"} ; local
+     io.github.yourname/time-lib         {:git/tag "v0.0.1"          ; git (needs tag+sha)
+                                          :git/sha "4c4a34d"} }}
+#+end_src
+
+#+CAPTION: Get git/sha
+#+begin_src sh
+  $ git rev-parse --short v0.0.1^{commit}
+  $ git ls-remote https://github.com/yourname/time-lib.git v0.0.1
+#+end_src
