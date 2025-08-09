@@ -33,6 +33,7 @@
 #+end_src
 
 - *rlwrap* compatible
+- -dV - set debug mode to V for full debugging
 
 * language
 
@@ -47,6 +48,7 @@
   - without needing extra escaping
 
 ** variables
+
 |-----------+------------------------------------|
 |    <c>    |                                    |
 |    $0     | macro name                         |
@@ -56,44 +58,95 @@
 |    $*     | all the arguments, expands space   |
 | shift($@) | all the argument, except the first |
 |-----------+------------------------------------|
-** commands (24)
+
+** build-in macros (24)
 
 - leading blanks that occur during argument collection are discarded
+- argument references ($1) expand immediately regarless of quoting
+  - can be preventing by breaking it ($`'1)
+- for each macro definition, m4 creates a stack of definitions
 
 #+begin_src m4
-  define(`NAME', 0)
+  pushdef(`NAME', 20)
+  popdef(`NAME')
+  define(`NAME', 0) # = popdef + pushdef
   undefine(`NAME')
   dnl - disables rest of the line
   include(`foo.m4')
-  dumpdef(`NAME')dnl shows the definition of given macro
-  dumpdef(`NAME',`upcase')
   changequote([,])dnl changes `' to []
   changequote dnl restores `'
-  divert(N)dnl  switches Output Queues
-  divert(-1)dnl -1 = used to throw away defines()
-  define(g,19)dnl discarded
-  undivert(0)dnl 0 = for stdout
-  divert`'dnl same as divert(0)
-  ifdef()
-  ifelse()
-  eval(1 + 1)
-  syscmd(find . -type f)dnl runs without capturing
-  esyscmd(hostname | tr -d '\n')dnl captures output
-  debugmode(`V')
+#+end_src
+
+*** Output Queues
+
+#+begin_src m4
+  divert(N)    #  switches the Output Queue, N ∈ [0,...]
+  divert(-1)   # -1 (invalid queue), used to throw away output
+  define(g,19) # discarded
+  divert`'     # same as divert(0)
+  undivert(1)  # pushes output queue 1 to output
+#+end_src
+
+*** Conditional
+
+#+begin_src m4
+  ifdef(`foo', b)      # b if foo is defined
+  ifdef(`foo', b, c)   # b if foo is defined, c if not
+
+  ifelse(a,b,c,d)      # compares a,b ... returns c if match, else d if not
+  ifelse(a,b,c,d,e,f,g)# compares a,b ... returns c if match, else compares d,e
+  ifelse(a,b,c,        # same as above
+        ifelse(d,e,f,g))
 #+end_src
 
 *** String Manipulation
 
 #+begin_src m4
-  substr(abcdef,2)dnl         returns "bcdef"
-  substr(abcdef,3,3)dnl       returns "def"
-  len(abdcde)dnl              returns 6
-  index(abcdef,c)dnl          returns 2
-  index(abcdef,z)dnl          returns -1
-  translit(leet,aeio,4310)dnl returns "l33t"
-  translit(leet,aeio)dnl      returns "lt"
-  regexp(abc88def,`[0-9]')dnl returns 3
-  regexp(ab77,`[0-9]',`?')dnl
+  len(abdcde)              # returns 6
+  substr(abcdef,2)         # returns "bcdef"
+  substr(abcdef,3,3)       # returns "def"
+  index(abcdef,c)          # returns 2
+  index(abcdef,z)          # returns -1
+  translit(leet,aeio,4310) # returns "l33t"
+  translit(leet,aeio)      # returns "lt"
+  regexp(abc88def,`[0-9]') # returns 3
+  regexp(ab77,`[0-9]',`?')
+  patsubst()               # find and replace
+#+end_src
+
+*** Integer Arithmetic
+
++ - ** / * %
+<< >> ~ & ^ | (bitwise operators)
+== != && ||
+
+#+begin_src m4
+  eval(1 + 1) #  2
+  eval(-8>>1) # -4
+  eval(~0)    # -1
+  eval(6&5)   #  4
+  eval(3^2)   #  1
+  eval(1|2)   #  3
+#+end_src
+
+*** OS interaction
+
+#+begin_src m4
+  syscmd(find . -type f)         # runs without capturing/interpriting
+  esyscmd(hostname | tr -d '\n') # captures/interprets output
+  sysval                         # last command exit status
+  maketemp
+  makestemp
+#+end_src
+
+*** Debugging
+
+#+begin_src m4
+  dumpdef(`NAME')          # shows the definition of given macro
+  dumpdef(`NAME',`upcase')
+  debugmode(`V')           # V = full debug
+  defn(`NAME')             # shows macro definition
+  errprint(`msg')          # to stderr
 #+end_src
 
 * articles
@@ -115,6 +168,7 @@
 - 19 http://web.archive.org/web/20190910195316/https://www.linuxtoday.com/blog/macro-magic-m4-complete-guide.html
 - 19 https://www.linuxtoday.com/blog/macro-m4-guide/
 - 15 [[https://modelingwithdata.org/arch/00000188.htm][m4 without the misery]]
+- 12 [[https://queue.acm.org/detail.cfm?id=2349257][A Generation Lost in the Bazaar]]
 - 09 https://gopherproxy.meulie.net/box.matto.nl/0/m4.txt
 - 08 [[https://mbreen.com/m4.html][Notes on the M4 Macro Language]]
 - 05 Macro Magic: m4 [[http://www.jpeek.com/articles/linuxmag/2005-02/][Part 1]] [[http://www.jpeek.com/articles/linuxmag/2005-03/][Part 2]]
@@ -217,6 +271,32 @@
   define(`PlaylistItem',` upcase($1) ')
   PlaylistItem(`foo.hml')
 #+end_src
+
+- for loop (from mbreen.com)
+  #+begin_src m4
+    define(`for',
+        `ifelse($#,0,
+            ``$0'',
+            `ifelse(eval($2<=$3),1,
+                `pushdef(`$1',$2)$4`'popdef(`$1')$0(`$1',incr($2),$3,`$4')')')')
+    for(`x',1,5,`x,') # 1,2,3,4,5...
+  #+end_src
+
+- for each loop (from mbreen.com)
+  #+begin_src m4
+    define(`foreach',
+        `ifelse(eval($#>2),1,
+               `pushdef(`$1',`$3')$2`'popdef(`$1')dnl
+               `'ifelse(eval($#>3),1,`$0(`$1,`$2',shift(shift(shift($@))))')')')
+    foreach(`X',`Open the X.',`door',`window') # Open the door. Open the window.
+  #+end_src
+
+- while loop (from mbreen.com)
+  #+begin_src m4
+    define(`while',
+           `ifelse($#,0,``$0'',
+                  eval($1+0), 1, `$2`'$0($@)')')
+  #+end_src
 
 * trivia
 ** the "xz backdoor"

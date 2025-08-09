@@ -56,16 +56,16 @@
 #+ATTR_ORG: :width 200
 [[https://i.sstatic.net/zSiJD.jpg]]
 
-- Sawtooth:
-  - frequency determined by duration of second phase
-- Ramp = Sawtooth mirrored
-- Rectangle/Pulse = Square with non 50% duty cycle
+- In tonal sounds, the harmonics have a fixed integer relationship to the fundamental
 - Sine
   - has 1 harmonic, the fundamental
   - makes it good for frequency/amplitude modulation
   - difficult to produce by analog synths
     - ?you can get one by applying a LFO to a square wave?
-- In tonal sounds, the harmonics have a fixed integer relationship to the fundamental
+- Sawtooth:
+  - frequency determined by duration of second phase
+- Ramp = Sawtooth mirrored
+- Rectangle/Pulse = Square with non 50% duty cycle
 - Formant = a group of harmonics that are boosted by resonance
 - Digital Wavetable
   - stored in memory are the shapes of many different types of waves

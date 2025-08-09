@@ -22,6 +22,25 @@
     - the WASM (WebAssembly) bytecode VM, is a stack machine
     - Ethereum EVM
 
+- music dsp
+  - +100 opcodes https://paulbatchelor.github.io/res/soundpipe/docs/
+  - HN https://news.ycombinator.com/item?id=21507383
+  - home https://paulbatchelor.github.io/proj/sporth.html
+  - source https://github.com/PaulBatchelor/Sporth
+  - paper https://iclc.toplap.org/2017/cameraReady/sporth.pdf
+  - live https://audiomasher.org/learn/recipes_machines_at_work
+  - [X] video https://www.youtube.com/watch?v=GFbhK2d1ImM
+  - video? https://www.youtube.com/watch?v=jR4tbU63j-E
+  - songs
+    - source https://paulbatchelor.github.io/sporthlings/011/
+    - video https://www.youtube.com/playlist?list=PLgEE92LPHEljTLN9gFZr21ETOBxQueoTQ
+  - tuto https://audiomasher.org/learn/about_cookbook
+  - tuto https://paulbatchelor.github.io/proj/cook/
+  - article https://paulbatchelor.github.io/proj/cook/recipes/bones/
+  - article arduino https://pbat.ch/blog/posts/2016-10-07-sporth_arduino.html
+  - tool: for pd https://paulbatchelor.github.io/blog/posts/2017-07-01-pdsporth.html
+  - tool: for chuck https://ccrma.stanford.edu/~pbatch/220a/fp.html
+
 - list of programming languages https://concatenative.org/wiki/view/Front%20Page
   - postscript (82)
   - cpython    (91)

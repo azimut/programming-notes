@@ -43,34 +43,64 @@
 
 * language
 
+- list start at zero
+- supports float with *math* module
+- no booleans, per se
+- ME: a bit like TCL and ruby
 - control flow
   - for in/end
 
 #+begin_src fish
-  string replace -a "i" "I" "Wikipedia" # WIkIpedIa
-  set foo bar       # assignment, there is no =, works for array/scoping
   echo $foo         # variable
+  for i in *.jpg; convert $i (basename $i .jpg).png; end
+  for i in *.jpg
+      convert $i (basename $i .jpg).png
+  end
+  while read line
+      set arr (echo $line|tr : \n)
+      echo $arr[5]
+  end
+  function foo --argument-names foo bar baz
+      echo $argv # still has foo
+      echo $foo
+  end
+#+end_src
+
+** commands
+- count $argv
+- math
+- argparse
+  - -n --name
+  - -N --min-args
+  - -X --max-args
+*** string
+
+#+begin_src fish
+  string replace -a "i" "I" "Wikipedia" # WIkIpedIa
+#+end_src
+
+*** set
+
+#+begin_src fish
+  set --function a $argv[1] # set in function scope
+  set foo bar       # assignment, there is no =, works for array/scoping
   set wd  (pwd)     # command substitution, there is no ``
   set wd $(pwd)     # command substitution
   set A 3 4 29      # array, of 3 values
   set B $A[1 2]     # array slicing, first 2 elems
   set C $A[(seq 3)] # array slicing with command substitution
   set --erase A[$B] # array erasure of 3rd and 5th elems
-
-  for i in *.jpg; convert $i (basename $i .jpg).png; end
-  for i in *.jpg
-      convert $i (basename $i .jpg).png
-  end
-
-  while read line
-      set arr (echo $line|tr : \n)
-      echo $arr[5]
-  end
 #+end_src
+
+* snippets
+
+- [[https://github.com/EnclaveConsulting/Fish-Shell-argparse-Examples/][argparse examples]]
+
 * tools
 
 - tools https://github.com/pirate/fish-utils/blob/master/README.md
 - bash to fish translation https://github.com/fish-shell/fish-shell/wiki/Shell-Translation-Dictionary
 - plugin manager https://github.com/jorgebucaran/fisher
 - +plugin manager https://github.com/oh-my-fish/oh-my-fish+ abandoned
-
+- fish-lsp
+  - error codes https://github.com/ndonfris/fish-lsp/wiki/Diagnostic-Error-Codes
