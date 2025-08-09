@@ -1,17 +1,21 @@
 #+TITLE: Tcl
 
-- https://en.wikipedia.org/wiki/Tcl
-  - 1988, at Berkeley Univeristy
-  - John Ousterhout (34)
-  - Scripting Language, embeded in C
-  - Changelog
-    - 1999 8.1 full utf-8 support
-    - 2012 8.6 TclOO
-    - 2024 9.0 64-bit
-
+- docs https://www.magicsplat.com/tcl-docs/docindex.html
+- wiki https://wiki.tcl-lang.org/
+- wiki https://en.wikipedia.org/wiki/Tcl
+- wiki https://en.wikibooks.org/wiki/Tcl_Programming
 - tclsh https://www.tcl-lang.org/man/tcl/UserCmd/tclsh.htm
   - addon https://github.com/suewonjp/tclsh-wrapper
-- tool: implementation for J2ME supported phones https://www.hecl.org/
+
+- Tool Command Language
+- 1988, at Berkeley Univeristy
+- John Ousterhout (34)
+- Homoiconic, code and data have the same representation.
+- Scripting Language, embeded in C
+- Changelog
+  - 1999 8.1 full utf-8 support
+  - 2012 8.6 TclOO
+  - 2024 9.0 64-bit
 
 * used in
 
@@ -296,12 +300,10 @@ https://wiki.tcl-lang.org/page/Tcl+Commands
 | tdbc         |                                     | 8.6 |
 | Thread       |                                     |     |
 |--------------+-------------------------------------+-----|
-* libraries
-
-- web - uses noVNC to run x11 on browser https://wiki.tcl-lang.org/page/CloudTk
-
 * codebases
 
+- testing framework (selenium) https://caiusproject.com/index.html
+- satelite tracker https://sourceforge.net/projects/savi/
 - https://wiki.tcl-lang.org/page/Showcase
 - https://www.androwish.org/index.html/home
   https://www.androwish.org/index.html/wiki?name=undroidwish
@@ -335,30 +337,55 @@ https://wiki.tcl-lang.org/page/Tcl+Commands
     set a 10
     repeat 5 {incr a};# will return 15
   #+end_src
-- Example: concurrent tcp server - select(2) based (from "Tcl the misunderstood")
-  #+begin_src tcl
-    socket -server handler 9999
-    proc handler {fd clientaddr clientport} {
-        set t [clock format [clock seconds]]
-        puts $fd "Hello $clientaddr:$clientport, current date is $t"
-        close $fd
-    }
-    vwait forever
-  #+end_src
-- Example: memoize the rest of a function (from "Tcl the misunderstood")
-  #+begin_src tcl
-    proc memoize {} {
-        set cmd [info level -1]
-        if {[info level] > 2 && [lindex [info level -2] 0] eq "memoize"} {
-            return
-        }
-        if {![info exists ::Memo($cmd)]} {
-            set ::Memo($cmd) [eval $cmd]
-        }
-        return -code return $::Memo($cmd)
-    }
-    proc myMemoizedProcedure { ... } {
-        memoize
-        ...
-    }
-  #+end_src
+** Memoize the rest of a function (from "Tcl the misunderstood")
+#+begin_src tcl
+  proc memoize {} {
+      set cmd [info level -1]
+      if {[info level] > 2 && [lindex [info level -2] 0] eq "memoize"} {
+          return
+      }
+      if {![info exists ::Memo($cmd)]} {
+          set ::Memo($cmd) [eval $cmd]
+      }
+      return -code return $::Memo($cmd)
+  }
+  proc myMemoizedProcedure { ... } {
+      memoize
+      ...
+  }
+#+end_src
+** Self redefine
+#+begin_src tcl
+  proc yolo {} {
+      puts "Hello"
+      rename [lindex [info level 0] 0] {}
+  }
+#+end_src
+** TCP server - select(2) based (from "Tcl the misunderstood")
+#+begin_src tcl
+  socket -server handler 9999
+  proc handler {fd clientaddr clientport} {
+      set t [clock format [clock seconds]]
+      puts $fd "Hello $clientaddr:$clientport, current date is $t"
+      close $fd
+  }
+  vwait forever
+#+end_src
+** TCP server
+#+begin_src tcl
+  proc accept_connection {sock addr port} {
+      puts "Accepted connection from $addr:$port"
+      chan configure $sock -blocking 0 -buffering line
+      chan event     $sock readable [list handle_data $sock]
+  }
+  proc handle_data {sock} {
+      if {[gets $sock line] >= 0} {
+          set current_time [clock format [clock seconds] -format "%Y-%m-%d %H:%M:%S"]
+          puts $sock "$current_time $line"
+      } elseif {[eof $sock]} {
+          close $sock
+      }
+  }
+  socket -server accept_connection 12345
+  vwait forever
+#+end_src

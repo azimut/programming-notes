@@ -1,4 +1,7 @@
+- tool: implementation for J2ME supported phones https://www.hecl.org/
 * editors
+- linter https://nagelfar.sourceforge.net/
+- jupyter kernel https://github.com/mpcjanssen/tcljupyter
 - yasnippets https://github.com/yangwen0228/unimacs/tree/bbeb3195000d8c1fd8ba436b47aa65d868769206/utils/snippets/tcl-mode
 * android
 - https://www.androwish.org/home/home

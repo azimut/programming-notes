@@ -74,3 +74,7 @@ https://www.youtube.com/watch?v=3YwFHPFL20c
   00:56:40-01:10:08 - START SLIDES  - FULLSCREEN
   ??????
   01:16:14 - START PART 3
+* 25 | Vivus Ignis     | The Most MISUNDERSTOOD Programming Language
+
+- https://www.youtube.com/watch?v=PYh6D1NhatY
+- source https://github.com/vivus-ignis/the-art-of-the-terminal/tree/master/most-misunderstood-proglang
