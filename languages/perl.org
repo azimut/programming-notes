@@ -26,6 +26,7 @@
   - https://exercism.org/tracks/perl5
 - community:
   - foro español http://perlenespanol.com/foro/
+- a requirement for autoconf
 
 * language
 

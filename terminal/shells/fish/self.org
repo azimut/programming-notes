@@ -43,15 +43,32 @@
 
 * language
 
-- list start at zero
-- supports float with *math* module
-- no booleans, per se
 - ME: a bit like TCL and ruby
-- control flow
-  - for in/end
+- ME: fills that small gap, of:
+  - Personal use
+  - Well defined (small) scope
+  - Do NOT rely on control flow
+  - 99% external commands
+  - BUT i would like
+    - a couple of knobs
+    - OR some floating point math
 
 #+begin_src fish
   echo $foo         # variable
+  function foo --argument-names foo bar baz
+      echo $argv # still has foo
+      echo $foo
+  end
+#+end_src
+
+** control flow
+
+- if, else if, else https://fishshell.com/docs/current/cmds/if.html
+- switch https://fishshell.com/docs/current/cmds/switch.html
+
+** loops
+
+#+begin_src fish
   for i in *.jpg; convert $i (basename $i .jpg).png; end
   for i in *.jpg
       convert $i (basename $i .jpg).png
@@ -60,11 +77,13 @@
       set arr (echo $line|tr : \n)
       echo $arr[5]
   end
-  function foo --argument-names foo bar baz
-      echo $argv # still has foo
-      echo $foo
-  end
 #+end_src
+
+** types
+
+- list start at zero
+- supports float with *math* module
+- no booleans, per se
 
 ** commands
 - count $argv

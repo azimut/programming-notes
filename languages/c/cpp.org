@@ -4,3 +4,4 @@
     - file inclusion
     - macro expansion
     - conditional compilation
+- 23 article https://hackaday.com/2023/03/16/the-x-macro-a-historic-preprocessor-hack/

@@ -20,21 +20,27 @@
 
 ** Part 1/1
 
-- no windows version of the course
-  - course uses unix/posix apis
-- "print()" comes from the "teletype" era
+- course uses Unix/POSIX/MacOS APIs
+  - no Windows version of the course
+  - in OSX, syscall numbers may change between os versions
+    - forcing you to use the stdlib
+    - unlike in Linux
 - PDP-11 (Unix/C ran on it)
   - CPU 125kHz
   - 256Kb of memory
-- "C is the most universal language"
-  - has interop with many/all
-- in asm ~scope~ is not a thing
-- in OSX, syscall numbers may change between os versions
-  - forcing you to use the stdlib
-  - unlike in Linux
-- =no stacktraces by default=
+- in hardware/asm, ~scope~ is not a thing
+- C
+  - "portable assembly"
+  - "the most universal language"
+    - has interop with many/all
+  - zero-overhead programming (eg: no gc)
+    - +performance
+  - almost zero-safety programming
+  - has no stacktraces by default
+  - ~print()~ comes from the tty/teletype era
+  - "linking" removes unsused code by checking if anything jumps to it
 
-*** Example: Hello World
+*** Example: Hello World C / ASM
 
 #+begin_src c
   #include <unistd.h>
@@ -48,10 +54,10 @@
   .LC0: ; local constant 0
           .string "Hello, World!"
   main:
-          mov edx, 13
+          mov edx, 13 ; length of string to write
           mov esi, OFFSET FLAT:.LC0
-          mov edi, 1
-          jmp write ; OS provided
+          mov edi, 1  ; write to stdout
+          jmp write   ; OS provided
 #+end_src
 
 *** Example: write() with missmatched length and string length
@@ -72,11 +78,14 @@ Hello, World!^@
 
 *** Example: giving wrong arguments to printf() format
 
-Will throw a segmentation fault. For trying to read memory outside the program.
+- printf(): A wrapper around write()
+- Calculates the length of the string
+- Throws a segmentation fault.
+  - When trying to read memory outside the program.
 
 #+begin_src C :results drawer both
   #include <stdio.h>
-  int main() {
+  int main() { // program entry point
     int a = 42;
     int b = 21;
     /* printf("a = %d\nb = %5\n", a, b); */ // <-- Segmentation Fault
@@ -94,15 +103,39 @@ b = 21
 
 ** Part 2/1 - Building HTTP Responses
 
-- Numbers in memory
-- Byte arrays
-- Null-terminated strings
-- Getting a string's length
-- ASCII always has the first bit set to zero(0)
-  - so in reality it used 7 bits, of the 8 of *char*
-- UTF-8 is backwards compatible with ASCII
-  - uses the extra 8 bit to flag it is UTF-8
+Part1.mp4 01:27:00
+
+*** Numbers in memory
+
+- =We decide how to interpret memory=
+
+- ASCII: American Standard ...
+  - _always_ has the first bit set to zero(0)
+  - so in reality it uses 7 bits, of the 8 of *char*
+- UTF-8:
+  - is backwards compatible with ASCII
+  - uses the extra 8 bit to flag it as UTF-8
 
 #+begin_src C
+  write(int32, *char, int64)
+#+end_src
 
+*** Byte arrays
+
+- referenced by the _memory address_ of the first element
+  - aka pointer
+
+*** Null-terminated strings
+
+- aka the byte 0
+- what strings use to know the end of a string
+
+*** Getting a string's length
+
+#+begin_src c
+  #include <unistd.h> // write
+  #include <string.h> // strlen
+  char *header = "HTTP/1.1 200 OK"; // char header[]
+  write(1, header, strlen(header)); // walks the array each time
+  printf("Header: %zud\n", header); // %zud to print the address
 #+end_src

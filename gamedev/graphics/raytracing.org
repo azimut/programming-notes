@@ -1,3 +1,8 @@
+- https://www.scratchapixel.com/
+
+- C++ https://fabiensanglard.net/rayTracing_back_of_business_card/
+  - c++ -O3 -o card card.cpp
+
 - 17 Video: Handmade Ray
   https://www.youtube.com/watch?v=pq7dV4sR7lg simple raycaster
   https://www.youtube.com/watch?v=ZAeU3Z0PmcU multithreading
