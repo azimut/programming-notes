@@ -18,7 +18,7 @@
 - Richard Feldman
 - [[https://github.com/rtfeldman/c-workshop-v1][source]] [[https://docs.google.com/presentation/d/1CGtDVSazrJHI52OnwwJXgogQEHs63lrasfQWJvmcYM0/edit?usp=sharing][slides]]
 
-** Part 1/1
+** Part 1
 
 - course uses Unix/POSIX/MacOS APIs
   - no Windows version of the course
@@ -79,6 +79,7 @@ Hello, World!^@
 *** Example: giving wrong arguments to printf() format
 
 - printf(): A wrapper around write()
+  - when given 0 to %s prints "null"
 - Calculates the length of the string
 - Throws a segmentation fault.
   - When trying to read memory outside the program.
@@ -100,8 +101,7 @@ a = 42
 b = 21
 :end:
 
-
-** Part 2/1 - Building HTTP Responses
+** Part 2 - Building HTTP Responses
 
 Part1.mp4 01:27:00
 
@@ -139,3 +139,54 @@ Part1.mp4 01:27:00
   write(1, header, strlen(header)); // walks the array each time
   printf("Header: %zud\n", header); // %zud to print the address
 #+end_src
+
+** Part 3 - Parsing HTTP Requests
+
+#+begin_src c
+  char req[] = ""; // on the stack
+  char *req = ""; // on read only memory
+#+end_src
+
+#+begin_src c
+  // char *req = "GET /blog HTTP/1.1"
+  // to_path(req) // blog/index.html
+  char *to_path(char *req) {
+    char *end;
+    char *start = req;
+    while(start[0] != ' ') {
+      if (start[0] == '\0') { // == 0 / !start[0]
+        return NULL; // return 0;
+      }
+      start = start + 1; // start += 1; start++;
+    }
+    start++; // skip over the space
+    for (end = start; end[0] != ' '; end++) {
+      if(!end[0]) return NULL;
+    }
+    if(end[-1] == '/') {
+      end--;
+    } else {
+      end[0] = '/';
+    }
+    memcpy(end + 1, "index.html", 11);
+    printf("Start: %s", start);
+  }
+#+end_src
+
+** Part 4 - File I/O
+
+#+begin_src c
+  // Opening a file
+  char *path = "example.txt";
+  int fd = open(path, O_RDONLY);
+  if (fd = -1) { /* handle error */}
+  close(fd);
+
+  // Reading Its contents
+  char buffer[100];
+  ssize_t length = read(fd, buffer, 100);
+  if (length == -1) { /* handle error */ }
+  // Getting its size
+#+end_src
+
+*** Stack vs Heap

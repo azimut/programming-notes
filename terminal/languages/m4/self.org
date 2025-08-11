@@ -11,9 +11,9 @@
 |   wiki    | https://en.wikipedia.org/wiki/M4_(computer_language)          |
 |-----------+---------------------------------------------------------------|
 
-- Authors: Brian Kernighan, Dennis Ritchie
 - 1977
-- based on M3(1972), and GPM (1965)
+- Authors: Brian Kernighan(35), Dennis Ritchie(36)
+- based on m3(1972), and GPM (1965)
 - .m4 (where macros are defined)
 - .mc (where macro expansion happens)
 - a requirement for autoconf
