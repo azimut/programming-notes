@@ -332,22 +332,3 @@ define tree %
 #+ATTR_HTML: :width 500
 #+ATTR_ORG: :width 500
 [[./pic-dpic.png]]
-* articles
-
-- [ ] ?? [[http://www.kohala.com/start/troff/pic2html.html][Turning pic into HTML]]
-- [ ] 86 [[https://www.cs.toronto.edu/~chechik/courses18/csc2125/paper13.pdf][Little Languages]] by Jon Bentley
-- [ ] 87 [[https://www.oreilly.com/library/view/unix-text-processing/9780810462915/Chapter10.html#ch10][Drawing Pictures]] by Dale Dougherty
-- [X] 17 [[https://thelimberlambda.com/2017/08/03/drawing-with-pic/][Drawing with Pic]]
-- [X] 19 [[http://www.micronarrativ.org/2019/2019-compile_pictures_with_gnu_pic.html][Compile pictures with gnu pic]]
-  - use-case: document something for posterity, cleaner than a handrawn sketch
-- [X] 22 [[https://janert.me/guides/praise-of-pic/][In Praise of Pic (and pikchr)]]
-  - originally posted in [[http://web.archive.org/web/20091004130903/http://onlamp.com:80/pub/a/onlamp/2007/06/21/in-praise-of-pic.html?page=1][2007]]
-- [ ] 22 [[https://zellyn.com/2022/01/gopikchr-a-yakshave/][gopikchr: a yakshave]]
-- [ ] 22 [[https://remcycles.net/blog/crc_diagrams.html][Generating CRC Diagrams with Pikchr and Bash]]
-- [ ] 23 [[https://remcycles.net/blog/pikchr_plots.html][Phasor Diagrams and Z-Plane Plots with Pikchr]]
-
-* videos
-
-- [X] 20 [[https://www.youtube.com/watch?v=xMijdTWSUEE][Christmas Cards The Unix Way - with pic and troff]] by Gavin Freeborn
-- [X] 20 [[https://www.youtube.com/watch?v=oG2A_1vC6aM][drawing pictures with pic and troff]] by Gavin Freeborn
-- [X] 22 [[https://www.youtube.com/watch?v=RDpuOFkpiXM][Pictures on the Terminal with pic!]] by Bryce Vandegrift

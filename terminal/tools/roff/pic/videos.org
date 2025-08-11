@@ -1,0 +1,3 @@
+- [X] 20 [[https://www.youtube.com/watch?v=xMijdTWSUEE][Christmas Cards The Unix Way - with pic and troff]] by Gavin Freeborn
+- [X] 20 [[https://www.youtube.com/watch?v=oG2A_1vC6aM][drawing pictures with pic and troff]] by Gavin Freeborn
+- [X] 22 [[https://www.youtube.com/watch?v=RDpuOFkpiXM][Pictures on the Terminal with pic!]] by Bryce Vandegrift
