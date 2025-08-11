@@ -1,0 +1,26 @@
+- "I view it in the same light as Microsoft Excel: good at what it does, but too powerful for its own good. If your not careful, it will grow until you wish you had been using a proper programming language from the begging."
+
+- TODO
+  - https://news.ycombinator.com/item?id=17781062
+  - https://news.ycombinator.com/item?id=22757645
+  - https://news.ycombinator.com/item?id=27994092
+  - https://news.ycombinator.com/item?id=34159699
+
+- 21 https://www.root.cz/texty/generating-code-in-m4-introduction/
+- ?? [[https://www2.gvsu.edu/miljours/m4critique.html][Critique of the M4 Macro Language]]
+- 24 https://mastodon.social/@seindal/112205415790637632
+- 22 https://emiruz.com/post/2022-12-28-composable-sql/
+- 22 https://dev.to/taw/100-languages-speedrun-episode-45-m4-pgg
+- 20 https://chrisman.github.io/9.html
+- 19 http://web.archive.org/web/20190910195316/https://www.linuxtoday.com/blog/macro-magic-m4-complete-guide.html
+- 19 https://www.linuxtoday.com/blog/macro-m4-guide/
+- 15 [[https://modelingwithdata.org/arch/00000188.htm][m4 without the misery]]
+- 12 [[https://queue.acm.org/detail.cfm?id=2349257][A Generation Lost in the Bazaar]]
+- 09 https://gopherproxy.meulie.net/box.matto.nl/0/m4.txt
+- 08 [[https://mbreen.com/m4.html][Notes on the M4 Macro Language]]
+- 05 Macro Magic: m4 [[http://www.jpeek.com/articles/linuxmag/2005-02/][Part 1]] [[http://www.jpeek.com/articles/linuxmag/2005-03/][Part 2]]
+- 99 http://www.linuxfocus.org/English/September1999/article111.html
+- 94 [[https://www.cs.stir.ac.uk/~kjt/research/pdf/expl-m4.pdf][Exploiting the m4 language]]
+- 94 https://www.nesssoftware.com/home/mwc/doc/coherent/manual/pdf/m4.pdf
+  - from "COHERENT manual"
+- 89 https://web.mit.edu/gnu/doc/html/m4_1.html

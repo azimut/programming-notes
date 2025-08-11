@@ -1,0 +1,70 @@
+- 12 [[https://www.youtube.com/watch?v=kkwyuDX6nT8][Computer Science 2208 - Programming Style and Macros]]
+- 13 [[https://www.youtube.com/watch?v=ULZxHSPWn98][Bart Massey: The M4 Macro Processor]]
+- 19 [[https://www.youtube.com/watch?v=-1w-vx6y4GU][Using Makefile and m4 macro preprocessor to bundle Javascript]]
+  - pdf https://conference.libreoffice.org/assets/Conference/Almeria/HenryUsing-makefile-m4-to-bundle-javascript.pdf
+
+** TODO 20 [[https://www.youtube.com/watch?v=yrurIUEGo1c][m4 - add macro power to boost any programming language]]
+
+- Originally used a lot in ASM
+- When to use?
+  - Language that don't have macros
+  - When functions are slow (eg: unrolling loops)
+  - Repetitive code (eg: languages that don't have functions)
+  - Painful language (eg: make a DSL)
+- Usage at ATO (Australian Taxation Office)
+  - ALIFE (1991)
+  - Dynamic SQL
+  - Testing code
+- Pay attention to:
+  - recursive expansion
+  - quotes
+  - no debugging (except for "dumpdef")
+
+** 22 [[https://www.youtube.com/watch?v=euh0gaT3tA0][Using macros with the Suite8080 assembler]]
+
+- source https://github.com/pamoroso/suite8080/tree/master/asm
+
+#+begin_src sh
+  $ cat ldabc.m4 | m4 | asm80 - -o ldabc.com
+#+end_src
+
+#+CAPTION: ldabcmac.m4
+#+begin_src m4
+  define(`ldabc',`
+              lhld $1
+              mpv  a, m
+              lhld $2
+              mov  b, m
+              lhld $3
+              mpv  c, m
+  ')
+#+end_src
+
+#+CAPTION: ldabc.m4
+#+begin_src asm
+          include(`ldabcmac.m4')
+          ldabc(data1, data2, data3)
+  data1: db1
+  data2: db 2
+  data3: db 3
+#+end_src
+
+** 22 [[https://www.youtube.com/watch?v=Jhte76l2mP4][Can GNU m4 replace my need for react based framework]]
+
+- macros to create html components
+- inlines m4 macros inside regular html document
+
+** TODO 23 [[https://www.youtube.com/watch?v=h164R46NWBMH][Hacking GNU Utilities - m4]] by tsoding
+
+- TODO: 01:45:00
+- m4 source code is 9k lines of C
+- _Objective_: use raylib from m4
+  - by hacking source m4 code
+  - adding new commands
+
+- 0:44:09 finished mvp hello world example
+- 1:18:07 finished raylib hello world example
+  - using ./configure
+  - CFLAGS
+  - LDFLAGS
+  - LIBS

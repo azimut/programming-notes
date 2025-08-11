@@ -2,7 +2,7 @@
 #+DATE: <2025-01-04 sáb>
 #+KEYWORDS: m4, programming, cheatsheet, quick reference
 
-- home https://www.gnu.org/software/autoconf/
+- home https://www.gnu.org/software/m4/m4.html
 - docs https://www.gnu.org/software/m4/manual/m4.html
 - manual 77 https://wolfram.schneider.org/bsd/7thEdManVol2/m4/m4.pdf
 - manual 21 https://www.gnu.org/software/m4/manual/m4.pdf
@@ -10,6 +10,7 @@
 
 - .m4 (where macros are defined)
 - .mc (where macro expansion happens)
+- a requirement for autoconf
 - wiki https://en.wikipedia.org/wiki/M4_(computer_language)
   - Authors: Brian Kernighan, Dennis Ritchie
   - 1977
@@ -28,16 +29,18 @@
 
 * cli
 
-#+begin_src
-  m4 [OPTION] [FILE]
-#+end_src
+#+ATTR_ORG: :width 500
+#+CAPTION: m4 cli arguments
+[[./m4cli.jpg]]
 
 - *rlwrap* compatible
+- cli is a "filter", aka takes data and instructions (stdin) and outputs transformed data (stdout)
 - -dV - set debug mode to V for full debugging
 
 * language
 
 - turing complete
+- no floating point support
 - no loops, only recursion
 - `' makes non-terminal symbols terminal ones
   - removed on each macro pass
@@ -52,30 +55,51 @@
 |-----------+------------------------------------|
 |    <c>    |                                    |
 |    $0     | macro name                         |
-|    $1     | first argument                     |
+|    $1     | first argument or empty string     |
 |    $#     | number of arguments                |
-|    $@     | all the arguments                  |
-|    $*     | all the arguments, expands space   |
+|    $@     | all the arguments, unexpanded      |
+|    $*     | all the arguments, expanded        |
 | shift($@) | all the argument, except the first |
 |-----------+------------------------------------|
 
-** build-in macros (24)
+** commands/macros
 
-- leading blanks that occur during argument collection are discarded
-- argument references ($1) expand immediately regarless of quoting
-  - can be preventing by breaking it ($`'1)
-- for each macro definition, m4 creates a stack of definitions
+- built-in commands = 24
+  - are themselves macros
+
+- all global, no concept of scope
+  - but there is a stack of definitions
+
+- can function:
+  - as global variables when expanded without arguments
+  - as functions when arguments are provides
+
+#+begin_src m4
+  dnl - deletes to new line
+  include(`foo.m4')  # expands to content of foo.m4
+  sinclude(`foo.m4') # expands to content of foo.m4, silently fail on non exist
+  changequote([,])   # changes `' to []
+  changequote        # restores `'
+#+end_src
+
+*** Defining a new one
 
 #+begin_src m4
   pushdef(`NAME', 20)
   popdef(`NAME')
   define(`NAME', 0) # = popdef + pushdef
   undefine(`NAME')
-  dnl - disables rest of the line
-  include(`foo.m4')
-  changequote([,])dnl changes `' to []
-  changequote dnl restores `'
 #+end_src
+
+- For each macro definition, m4 creates a stack of definitions
+- name
+  - begin with a letter, followed by letter, digit and underscore
+  - case significant
+- value
+  - always treated as text even if it is numeric
+  - leading blanks that occur during argument collection are discarded
+  - argument references ($1) expand immediately regarless of quoting
+    - can be preventing by breaking it ($`'1)
 
 *** Output Queues
 
@@ -85,6 +109,7 @@
   define(g,19) # discarded
   divert`'     # same as divert(0)
   undivert(1)  # pushes output queue 1 to output
+  divnum       # expands to currently active diversion
 #+end_src
 
 *** Conditional
@@ -93,9 +118,11 @@
   ifdef(`foo', b)      # b if foo is defined
   ifdef(`foo', b, c)   # b if foo is defined, c if not
 
+                       # "switch", 3N+1 arguments
+  ifelse(comment)      # discarded argument
   ifelse(a,b,c,d)      # compares a,b ... returns c if match, else d if not
   ifelse(a,b,c,d,e,f,g)# compares a,b ... returns c if match, else compares d,e
-  ifelse(a,b,c,        # same as above
+  ifelse(a,b,c,        # same as above, more explicit
         ifelse(d,e,f,g))
 #+end_src
 
@@ -112,13 +139,17 @@
   regexp(abc88def,`[0-9]') # returns 3
   regexp(ab77,`[0-9]',`?')
   patsubst()               # find and replace
+  format(`%05d', `$#')
 #+end_src
 
 *** Integer Arithmetic
 
-+ - ** / * %
-<< >> ~ & ^ | (bitwise operators)
-== != && ||
+#+CAPTION: eval operators
+#+begin_src sh
+  + - ** / * %
+  << >> ~ & ^ | # bitwise operators
+  > >= == != < <= && || !
+#+end_src
 
 #+begin_src m4
   eval(1 + 1) #  2
@@ -127,6 +158,10 @@
   eval(6&5)   #  4
   eval(3^2)   #  1
   eval(1|2)   #  3
+  incr(100)   # 101
+  incr(`i')   # i + 1
+  decr(100)   #  99
+  decr(`i')   # i - 1
 #+end_src
 
 *** OS interaction
@@ -149,107 +184,6 @@
   errprint(`msg')          # to stderr
 #+end_src
 
-* articles
-
-- "I view it in the same light as Microsoft Excel: good at what it does, but too powerful for its own good. If your not careful, it will grow until you wish you had been using a proper programming language from the begging."
-
-- TODO
-  - https://news.ycombinator.com/item?id=17781062
-  - https://news.ycombinator.com/item?id=22757645
-  - https://news.ycombinator.com/item?id=27994092
-  - https://news.ycombinator.com/item?id=34159699
-
-- 21 https://www.root.cz/texty/generating-code-in-m4-introduction/
-- ?? [[https://www2.gvsu.edu/miljours/m4critique.html][Critique of the M4 Macro Language]]
-- 24 https://mastodon.social/@seindal/112205415790637632
-- 22 https://emiruz.com/post/2022-12-28-composable-sql/
-- 22 https://dev.to/taw/100-languages-speedrun-episode-45-m4-pgg
-- 20 https://chrisman.github.io/9.html
-- 19 http://web.archive.org/web/20190910195316/https://www.linuxtoday.com/blog/macro-magic-m4-complete-guide.html
-- 19 https://www.linuxtoday.com/blog/macro-m4-guide/
-- 15 [[https://modelingwithdata.org/arch/00000188.htm][m4 without the misery]]
-- 12 [[https://queue.acm.org/detail.cfm?id=2349257][A Generation Lost in the Bazaar]]
-- 09 https://gopherproxy.meulie.net/box.matto.nl/0/m4.txt
-- 08 [[https://mbreen.com/m4.html][Notes on the M4 Macro Language]]
-- 05 Macro Magic: m4 [[http://www.jpeek.com/articles/linuxmag/2005-02/][Part 1]] [[http://www.jpeek.com/articles/linuxmag/2005-03/][Part 2]]
-- 99 http://www.linuxfocus.org/English/September1999/article111.html
-- 94 [[https://www.cs.stir.ac.uk/~kjt/research/pdf/expl-m4.pdf][Exploiting the m4 language]]
-- 94 https://www.nesssoftware.com/home/mwc/doc/coherent/manual/pdf/m4.pdf
-  - from "COHERENT manual"
-- 89 https://web.mit.edu/gnu/doc/html/m4_1.html
-
-* videos
-
-- 13 [[https://www.youtube.com/watch?v=ULZxHSPWn98][Bart Massey: The M4 Macro Processor]]
-- 19 [[https://www.youtube.com/watch?v=-1w-vx6y4GU][Using Makefile and m4 macro preprocessor to bundle Javascript]]
-  - pdf https://conference.libreoffice.org/assets/Conference/Almeria/HenryUsing-makefile-m4-to-bundle-javascript.pdf
-
-** TODO 20 [[https://www.youtube.com/watch?v=yrurIUEGo1c][m4 - add macro power to boost any programming language]]
-
-- Originally used a lot in ASM
-- When to use?
-  - Language that don't have macros
-  - When functions are slow (eg: unrolling loops)
-  - Repetitive code (eg: languages that don't have functions)
-  - Painful language (eg: make a DSL)
-- Usage at ATO (Australian Taxation Office)
-  - ALIFE (1991)
-  - Dynamic SQL
-  - Testing code
-- Pay attention to:
-  - recursive expansion
-  - quotes
-  - no debugging (except for "dumpdef")
-
-** 22 [[https://www.youtube.com/watch?v=euh0gaT3tA0][Using macros with the Suite8080 assembler]]
-
-- source https://github.com/pamoroso/suite8080/tree/master/asm
-
-#+begin_src sh
-  $ cat ldabc.m4 | m4 | asm80 - -o ldabc.com
-#+end_src
-
-#+CAPTION: ldabcmac.m4
-#+begin_src m4
-  define(`ldabc',`
-              lhld $1
-              mpv  a, m
-              lhld $2
-              mov  b, m
-              lhld $3
-              mpv  c, m
-  ')
-#+end_src
-
-#+CAPTION: ldabc.m4
-#+begin_src asm
-          include(`ldabcmac.m4')
-          ldabc(data1, data2, data3)
-  data1: db1
-  data2: db 2
-  data3: db 3
-#+end_src
-
-** 22 [[https://www.youtube.com/watch?v=Jhte76l2mP4][Can GNU m4 replace my need for react based framework]]
-
-- macros to create html components
-- inlines m4 macros inside regular html document
-
-** TODO 23 [[https://www.youtube.com/watch?v=h164R46NWBMH][Hacking GNU Utilities - m4]] by tsoding
-
-- TODO: 01:45:00
-- m4 source code is 9k lines of C
-- _Objective_: use raylib from m4
-  - by hacking source m4 code
-  - adding new commands
-
-- 0:44:09 finished mvp hello world example
-- 1:18:07 finished raylib hello world example
-  - using ./configure
-  - CFLAGS
-  - LDFLAGS
-  - LIBS
-
 * codebases
 
 - css preprocessor https://github.com/djanowski/hasp
@@ -271,6 +205,13 @@
   define(`PlaylistItem',` upcase($1) ')
   PlaylistItem(`foo.hml')
 #+end_src
+
+- self-modifyng macro
+  #+begin_src m4
+    define(`ACCEPT',`define(`ACCEPT',`Already accepted')Accepted')
+    ACCEPT # -> Accepted
+    ACCEPT # -> Already accepted
+  #+end_src
 
 - for loop (from mbreen.com)
   #+begin_src m4
