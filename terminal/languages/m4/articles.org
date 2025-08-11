@@ -19,6 +19,7 @@
 - 09 https://gopherproxy.meulie.net/box.matto.nl/0/m4.txt
 - 08 [[https://mbreen.com/m4.html][Notes on the M4 Macro Language]]
 - 05 Macro Magic: m4 [[http://www.jpeek.com/articles/linuxmag/2005-02/][Part 1]] [[http://www.jpeek.com/articles/linuxmag/2005-03/][Part 2]]
+- 02 [[https://www.linuxjournal.com/article/5594][The m4 Macro Package]]
 - 99 http://www.linuxfocus.org/English/September1999/article111.html
 - 94 [[https://www.cs.stir.ac.uk/~kjt/research/pdf/expl-m4.pdf][Exploiting the m4 language]]
 - 94 https://www.nesssoftware.com/home/mwc/doc/coherent/manual/pdf/m4.pdf

@@ -2,30 +2,33 @@
 #+DATE: <2025-01-04 sáb>
 #+KEYWORDS: m4, programming, cheatsheet, quick reference
 
-- home https://www.gnu.org/software/m4/m4.html
-- docs https://www.gnu.org/software/m4/manual/m4.html
-- manual 77 https://wolfram.schneider.org/bsd/7thEdManVol2/m4/m4.pdf
-- manual 21 https://www.gnu.org/software/m4/manual/m4.pdf
-- history https://www.gnu.org/software/m4/manual/html_node/History.html
+|-----------+---------------------------------------------------------------|
+|    <c>    |                                                               |
+|   home    | https://www.gnu.org/software/m4/m4.html                       |
+|   docs    | [[https://www.gnu.org/software/m4/manual/m4.html][html]] [[https://www.gnu.org/software/m4/manual/m4.pdf][pdf]]                                                      |
+| manual 77 | https://wolfram.schneider.org/bsd/7thEdManVol2/m4/m4.pdf      |
+|  history  | https://www.gnu.org/software/m4/manual/html_node/History.html |
+|   wiki    | https://en.wikipedia.org/wiki/M4_(computer_language)          |
+|-----------+---------------------------------------------------------------|
 
+- Authors: Brian Kernighan, Dennis Ritchie
+- 1977
+- based on M3(1972), and GPM (1965)
 - .m4 (where macros are defined)
 - .mc (where macro expansion happens)
 - a requirement for autoconf
-- wiki https://en.wikipedia.org/wiki/M4_(computer_language)
-  - Authors: Brian Kernighan, Dennis Ritchie
-  - 1977
-  - based on M3(1972), and GPM (1965)
-  - general purpose macro pre-processor
-  - part of POSIX standard
-  - used by sendmail (.mc -> .cf)
-  - see man&info page
-  - today mostly used by *autoconf* (part of autotools)
+- general purpose macro pre-processor
+- part of POSIX standard
+- see man&info page
+- used by:
+  - sendmail (.mc -> .cf)
+  - autoconf (part of autotools)
     - in configure.ac
     - Author: David Makenzie
     - 1991
-  - based context-free grammar, automata, stacks, and output queues
-    - aka the rules for rewritting
-    - have terminal symbols & non-terminal symbols (m4 macros)
+- based context-free grammar, automata, stacks, and output queues
+  - aka the rules for rewritting
+  - have terminal symbols & non-terminal symbols (m4 macros)
 
 * cli
 
@@ -158,6 +161,7 @@
   eval(6&5)   #  4
   eval(3^2)   #  1
   eval(1|2)   #  3
+
   incr(100)   # 101
   incr(`i')   # i + 1
   decr(100)   #  99
