@@ -173,7 +173,7 @@ Part1.mp4 01:27:00
   }
 #+end_src
 
-** Part 4 - File I/O
+** TODO Part 4 - File I/O
 
 #+begin_src c
   // Opening a file
@@ -186,7 +186,10 @@ Part1.mp4 01:27:00
   char buffer[100];
   ssize_t length = read(fd, buffer, 100);
   if (length == -1) { /* handle error */ }
+
   // Getting its size
 #+end_src
+
+00:25:00
 
 *** Stack vs Heap

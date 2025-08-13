@@ -1,3 +1,11 @@
+- Parallelism
+  - about _doing_ the same thing multiple times at once
+- Concurrency
+  - is about _dealing_ with lots of things at once
+  - enables parallelism
+  - is about changes in _structure_
+    - split roles, add queues
+
 - Turing Complete
   - Requirements:
     - able to manipulate an arbitrary amount of storage

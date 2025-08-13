@@ -1,0 +1,2 @@
+- [X] 24 video [[https://www.youtube.com/watch?v=7R204VUlzGc][Introduction to Roc Programming Language]] by Richard Feldman
+- [ ] 24 video [[https://www.youtube.com/watch?v=42TUAKhzlRI][The Functional Purity Inference Plan]] by Richard Feldman

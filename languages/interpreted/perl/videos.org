@@ -1,0 +1,17 @@
+- 14 [[https://www.youtube.com/watch?v=noQcWra6sbU][Netanel Rubin: The Perl Jam: Exploiting a 20 Year-old Vulnerability]]
+- 15 [[https://www.youtube.com/watch?v=RPvORV2Amic][Netanel Rubin: The Perl Jam 2]]
+- 15 [[https://www.youtube.com/watch?v=FHKi1oAY-zE][Stop bash-ing, you've got Perl]]
+- 15 [[https://www.youtube.com/watch?v=gbZAABq4uZk][The Magic of Perl One-liners (An Introduction) [Webinar]​]]
+
+- https://www.oreilly.com/library/view/modern-perl-best/9781491910719/
+- TODO 7:00 https://www.youtube.com/watch?v=EbH9jLi6v2g&list=PL8qgaJWZ7bGJPlIvAFbq8fKrFogUEJ3AJ&index=12
+- channels
+  - https://www.youtube.com/@YAPCNA
+  - https://www.youtube.com/@TorontoPerlMongers/streams
+- Day 2: Pirum Theatre: Mark Fowler - The Perl Advent Calendar 2017 Redux https://www.youtube.com/watch?v=vSAzNMJM9-o
+- Perl in 100 Seconds https://www.youtube.com/watch?v=74_7LrRe5DI&pp=ygUEcGVybA%3D%3D
+- Perl tutorial - Erik Banas https://www.youtube.com/watch?v=74_7LrRe5DI
+- Good Reasons to use Perl in 2021 - rwxrob https://www.youtube.com/watch?v=AGoLnnOFBoc
+- Perl Programming Course for Beginners  - FreeCodeCamp https://www.youtube.com/watch?v=_DFa26ep-h4
+- https://www.youtube.com/playlist?list=PLTmR6HsT7005r9J50_HCOGkyGc8dDYu7J
+

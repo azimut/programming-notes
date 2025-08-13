@@ -1,0 +1,3 @@
+- https://lobste.rs/t/perl
+- 25 https://www.perl.com/article/creating-midi-music-with-perl/
+- 96 https://www.foo.be/docs/tpj/issues/vol1_2/tpj0102-0001.html

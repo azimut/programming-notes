@@ -10,7 +10,36 @@
 | source   | https://github.com/roc-lang/roc                                      |
 |----------+----------------------------------------------------------------------|
 
+- json.Json
+
+* Language
+
 - stdlib https://www.roc-lang.org/builtins
-- platforms
-  - https://github.com/roc-lang/basic-cli
-  - https://github.com/roc-lang/basic-webserver
+  - cli.Stdout.line
+  - https://www.roc-lang.org/builtins/Num/
+    - Num.to_str
+  - https://www.roc-lang.org/builtins/Str
+    - Str.concat
+
+- String interpolation, can run any code inside
+  "foo ${greeting}"
+
+- Comment: #
+- Control Flow:
+  - if/then/else
+  - if/then/else if/then/else
+
+#+begin_src
+  add = |x,y|
+    x +y
+#+end_src
+
+** platforms
+
+- https://github.com/roc-lang/basic-webserver
+  - ws.Task
+- https://github.com/roc-lang/basic-cli
+  - cli.Http
+  - cli.Stdout
+  - cli.Stdin
+  - cli.Task

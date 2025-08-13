@@ -1,3 +1,41 @@
+* Learn
+- https://www.akitasoftware.com/blog-posts/taming-gos-memory-usage-or-how-we-avoided-rewriting-our-client-in-rust
+- https://blog.twitch.tv/en/2019/04/10/go-memory-ballast-how-i-learnt-to-stop-worrying-and-love-the-heap-26c2462549a2/
+- https://github.com/tmrts/go-patterns
+- https://github.com/dgryski/go-perfbook
+- http://blog.golang.org/go-slices-usage-and-internals
+- http://blog.golang.org/error-handling-and-go
+- https://jordanorelli.com/post/32665860244/how-to-use-interfaces-in-go
+- https://talks.golang.org/2013/bestpractices.slide  Francesc Campoy Flores
+- flags http://blog.ralch.com/tutorial/golang-custom-flags/
+- SOCKS5 https://play.golang.org/p/l0iLtkD1DV (it also support HTTP_PROXY)
+- a set of vulnerable Golang programs https://github.com/trailofbits/not-going-anywhere
+- Source analysis of sync.Mutex in golang https://programmer.group/source-analysis-of-sync.mutex-in-golang.html
+- sync.RWMutex https://medium.com/golangspec/sync-rwmutex-ca6c6c3208a0
+- Layout https://github.com/golang-standards/project-layout/
+- Roamap https://github.com/Alikhll/golang-developer-roadmap
+- Meme: https://github.com/SuperPaintman/the-evolution-of-a-go-programmer
+- Links https://github.com/ardanlabs/gotraining/
+- Links https://github.com/guardrailsio/awesome-golang-security
+- Links https://github.com/smallnest/go-best-practices
+- Links https://github.com/enocom/gopher-reading-list
+- Links/Tools https://github.com/re4lity/Hacking-With-Golang
+- Books: https://github.com/dariubs/GoBooks
+- Exercises https://github.com/inancgumus/learngo/
+- Tutorial https://github.com/parsiya/Hacking-with-Go
+- Tutorial https://github.com/geektutu/7days-golang
+- Tutorial Basics https://learnxinyminutes.com/docs/go/
+- Tutorial Basics https://blog.golang.org/maps
+- Tutorial Basics https://github.com/GoesToEleven/GolangTraining
+- Tutorial Web https://github.com/astaxie/build-web-application-with-golang/
+- Tutorial https://github.com/hoanhan101/ultimate-go https://github.com/ardanlabs/gotraining-studyguide
+- Style https://github.com/dgryski/awesome-go-style lists of good practices
+- Style https://github.com/uber-go/guide/
+- Style https://google.github.io/styleguide/go/ https://news.ycombinator.com/item?id=33652343
+** Interview questions
+   https://github.com/shomali11/go-interview
+   https://github.com/hoanhan101/algo
+   https://github.com/goquiz/goquiz.github.io
 * TODO Tutorial: Learn go with tests
   https://github.com/quii/learn-go-with-tests
 ** Hello world

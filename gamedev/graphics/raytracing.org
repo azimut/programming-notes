@@ -1,6 +1,14 @@
+- playlist [[https://www.youtube.com/playlist?list=PLlrATfBNZ98edc5GshdBtREv5asFW3yXl][Ray Tracing]] by The Cherno
+- The Timeless https://www.youtube.com/watch?v=T-9R0zAwL7s
+- video Coding Adventure! by Sebastian Lague
+  - [[https://www.youtube.com/watch?v=Qz0KTGYJtUk][Ray Tracing]]
+  - [[https://www.youtube.com/watch?v=C1H4zIiCOaI][More Ray Tracing!]]
+- video [[https://www.youtube.com/watch?v=ezXGTRSx1g8][How Ray Tracing Works]] by computerphile
+- https://github.com/dannyfritz/awesome-ray-tracing
 - https://www.scratchapixel.com/
 
-- C++ https://fabiensanglard.net/rayTracing_back_of_business_card/
+- article: clojure https://www.abhirag.com/ray_tracer/
+- article: C++ https://fabiensanglard.net/rayTracing_back_of_business_card/
   - c++ -O3 -o card card.cpp
 
 - 17 Video: Handmade Ray
@@ -183,3 +191,223 @@ https://www.youtube.com/watch?v=NIAUFnNZGhE
     return plane;
   }
 #+end_src
+* Book: The Ray Tracer Challenge
+
+- Bonus Chapters http://www.raytracerchallenge.com/#bonus
+- External Links:
+  - https://betterexplained.com/articles/vector-calculus-understanding-the-dot-product/
+
+** 1 Tuples
+
+*** Types
+
+- Point: (x,y,z,1)
+- Vector: (x,y,z,0)
+
+*** Operations
+
+**** Equality
+  - by an epsilon of difference
+**** Addition
+  - translating a _point_ by a _vector_
+  - add 2 _vectors_
+  - +adding 2 points+ INVALID
+**** Subtraction
+  - find _vector_ between 2 _points_
+  - move a _point_ backward by a _vector_
+  - the change in direction between 2 _vector_
+  - +a point from a vector+
+**** Negation
+  - to know the "opposite" of some _vector_
+**** Scalar Multiplication
+**** Scalar Division
+**** Magnitud/Length
+  - aka sqrt(x²+y²+z²)
+  - the magnitude of the distance of a vector
+**** Normalization
+  - vector to unit vector
+  - divide each component by its magnitude
+**** Dot Product (aka scalar/inner product)
+  - takes 2 vectors, returns a scalar
+  - the sum of the products of each component/vector
+  - the smaller it is, the larger the angle between
+**** Cross Product
+  - takes 2 vectors, returns a vector
+    - perpendicular to both inputs
+  - use v3 only
+  - order of operation matters
+  - cross(a,b)
+    a.y*b.z - a.z*b.y,
+    a.z*b.x - a.x*b.z,
+    a.x*b.y - a.y*b.x
+
+*** Exercise
+
+- Datastructures:
+  - Projectile: has position(point) and velocity(vector)
+  - Environment: has gravity(vector) and wind(vector)
+
+- advances projectile 1 time unit/tick
+#+begin_src
+  f tick(env  environment,
+         proj projectile) -> projectile
+    proj.pos = proj.pos + proj.vel
+    proj.vel = proj.vel + env.gravity + env.wind
+#+end_src
+
+** 2 Color
+
+*** Color
+
+- 3 components: red, green, blue
+- values 0-1, but accepts higher values
+
+- Operations, due transparency or reflection
+  - adding
+  - subtracting
+  - multiplication:
+    - to blend 2 colors (aka hadamard/schur product)
+  - scalar multiplication
+
+*** Canvas
+
+- a rectangular grid of rgb pixels
+- configurable size
+- initialized to black (0,0,0)
+- No draw elements outside canvas
+
+- operation
+  #+begin_src
+   red <- color(1,0,0)
+   write_pixel(canvas, 2, 3, red) -> void
+   canvas_to_ppm(canvas) -> string
+  #+end_src
+
+- saving
+  - File format: PPM (Portable Pixmap)
+    - P3 for plain(text)
+    - max color component value should be clamped
+    - no line should be >70 chars
+    - ends with a newline
+    - Example: 80x40, 255 maximum color value
+    #+begin_src ppm
+      P3
+      80 40
+      255
+    #+end_src
+
+** 3 Matrix
+
+- RxC - Rows x Columns
+- we would mainly use 4x4 matrices
+  - later also create 2x2 and 3x3
+- refer to it by a [R,C] index
+
+- operations
+  - create
+  - equality
+
+*** operation: multiplying
+
+- multiplying by matrix (only 4x4)
+  - results in a matrix
+  - for: scaling, rotation, translation
+  - in a specific way
+    - AxB
+    - C[row,col]
+    - row of A * column of B
+      - left to right
+      - up to down
+      - where * is the =dot product=
+      - aka sum of products of each
+
+- multiplying by tuple
+  - results in a tuple
+  - same as by matrix
+
+*** identity matrix
+
+- all zeros, except along the diagonal \ which are set to 1(ones)
+- used as the default transformation matrix
+- is the identity value for matrix multiplication
+  - same as 1 is for multiplication
+
+*** operation: transposing
+
+- turns first row, into first column...
+- =transpose(id) == id=
+
+*** operation: inverting
+
+- not every matrix is invertible
+  - impossible if: determinant(A) = 0
+
+- allows you to revert a multiplication
+  #+begin_src
+  if A*B=C => C*1/B=A
+  #+end_src
+
+**** submatrix(mat,row,col)
+ - result of removing 1 column and 1 row of a matrix
+**** Determinant
+    - a number derived from a matrix
+    - for 2x2 is the difference of the product of diagonals
+      = a*d - b*c
+    - for NxN
+      - pick any row column
+      - multiply each by its _cofactor_
+      - sum them all
+**** Minor
+    - a number
+    - for 3x3 matrices
+    - aka determinant of the submatrix
+      - determinant(submatrix(A,1,0))
+**** Cofactor
+    - a number
+    - the minor, with maybe their sign changed
+    - sign changes if row+column is odd number
+    - cofactor(A,0,0) = 56
+**** Cofactor Expansion
+
+- Long way
+  1) Construct a matrix of cofactors of INPUT
+  2) Transpose it
+  3) Divide 2) it by the determinant of INPUT
+
+- Short
+  1) iterate over each cell
+  2) divide the cofactor by the determinant of INPUT
+
+** 4 Matrix Transformations
+
+- allow us to display shapes, without describing each radius and location
+
+*** Translation
+
+- movement by addition
+- translation(x,y,z)
+  - a 4x4 identity matrix
+  - with (x,y,z) in the rightmost column
+- inverse of it, reverses the movement
+- should affect Points(w=1), not Vectors(w=0)
+
+*** Scaling
+
+- movement by multiplication
+- scaling(x,y,z)
+  - a 4x4 identity matrix
+  - replacing diagonal with (x,y,z)
+- affects Points(w=1) AND Vectors(w=0)
+  - to vectors, it changes it's length (grow or shrink if inverse)
+- >1 bigger
+- <1 smaller
+- =reflection=
+  - is scaling by a negative value
+  - moves it to the other side of an axis
+
+*** Rotation
+
+- multiplying tuple by rot matrix
+- rotates around an axis
+  - not an arbitrary line (for this book)
+- depend on sine and cosine
