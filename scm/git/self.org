@@ -13,7 +13,6 @@
     $ git rebase -r --root --exec "git commit --amend --no-edit --reset-author"
     $ git push --force --all
 
-
 * vc
 
 - ~vc-annotate~ shows the blame besides the line

@@ -7,7 +7,9 @@
 - https://github.com/dannyfritz/awesome-ray-tracing
 - https://www.scratchapixel.com/
 
+- article: ps https://seriot.ch/projects/postscript_tiny_ray_tracer.html
 - article: clojure https://www.abhirag.com/ray_tracer/
+- article: C https://fabiensanglard.net/postcard_pathtracer/
 - article: C++ https://fabiensanglard.net/rayTracing_back_of_business_card/
   - c++ -O3 -o card card.cpp
 
@@ -194,6 +196,13 @@ https://www.youtube.com/watch?v=NIAUFnNZGhE
 * Book: The Ray Tracer Challenge
 
 - Bonus Chapters http://www.raytracerchallenge.com/#bonus
+- Errata https://pragprog.com/cms/errata/jbtracer-errata/
+  - Cofactor 4x4
+    - https://forum.devtalk.com/t/the-ray-tracer-challenge-page-37-4x4-cofactor/41433/2
+    - https://forum.raytracerchallenge.com/thread/88/cofactor-4x4-matrix
+- Forums
+  - https://forum.raytracerchallenge.com/
+  - https://devtalk.com/books/the-ray-tracer-challenge
 - External Links:
   - https://betterexplained.com/articles/vector-calculus-understanding-the-dot-product/
 
@@ -347,26 +356,34 @@ https://www.youtube.com/watch?v=NIAUFnNZGhE
   if A*B=C => C*1/B=A
   #+end_src
 
+- cofactor = (±1 * (minor = determinant(submat(M))))
+
 **** submatrix(mat,row,col)
- - result of removing 1 column and 1 row of a matrix
+- result of removing 1 column and 1 row of a matrix
 **** Determinant
-    - a number derived from a matrix
-    - for 2x2 is the difference of the product of diagonals
-      = a*d - b*c
-    - for NxN
-      - pick any row column
-      - multiply each by its _cofactor_
-      - sum them all
+
+- a number derived from a matrix
+- for 2x2 is the difference of the product of diagonals
+  = a*d - b*c
+- for NxN
+  - pick any row column
+  - multiply each by its _cofactor_
+  - sum them all
+
 **** Minor
-    - a number
-    - for 3x3 matrices
-    - aka determinant of the submatrix
-      - determinant(submatrix(A,1,0))
+
+- a number
+- for 3x3 matrices
+- aka determinant of the submatrix
+  - determinant(submatrix(A,1,0))
+
 **** Cofactor
-    - a number
-    - the minor, with maybe their sign changed
-    - sign changes if row+column is odd number
-    - cofactor(A,0,0) = 56
+
+- a number
+- the minor, with maybe their sign changed
+- sign changes if row+column is odd number
+- cofactor(A,0,0) = 56
+
 **** Cofactor Expansion
 
 - Long way
@@ -381,13 +398,17 @@ https://www.youtube.com/watch?v=NIAUFnNZGhE
 ** 4 Matrix Transformations
 
 - allow us to display shapes, without describing each radius and location
+- matrix multiplication is associative, _NOT commutative_
+  - concatenate tranformations in the reverse order, that you want them applied
+  - or you put the *identity matrix* as the first matrix in the multiplication
+    - effectively inverting the chain order, back to "normal"
 
 *** Translation
 
 - movement by addition
 - translation(x,y,z)
   - a 4x4 identity matrix
-  - with (x,y,z) in the rightmost column
+  - with (x,y,z) in the rightmost column ↓
 - inverse of it, reverses the movement
 - should affect Points(w=1), not Vectors(w=0)
 
@@ -396,7 +417,7 @@ https://www.youtube.com/watch?v=NIAUFnNZGhE
 - movement by multiplication
 - scaling(x,y,z)
   - a 4x4 identity matrix
-  - replacing diagonal with (x,y,z)
+  - replacing \ diagonal with (x,y,z,1)
 - affects Points(w=1) AND Vectors(w=0)
   - to vectors, it changes it's length (grow or shrink if inverse)
 - >1 bigger
@@ -407,7 +428,64 @@ https://www.youtube.com/watch?v=NIAUFnNZGhE
 
 *** Rotation
 
+- radians(deg)
+  - = deg/180 * 𝛑
+  - 360° = 2𝛑 radians
+
 - multiplying tuple by rot matrix
-- rotates around an axis
-  - not an arbitrary line (for this book)
-- depend on sine and cosine
+  - different 4x4 matrixes for each axis rotation
+  - clockwise, while looking towards axis negative end
+    - left hand rule
+  - rotation_x(rad)
+    #+begin_src
+      1   0     0   0
+      0  cosr -sinr 0
+      0  sinr  cosr 0
+      0   0     0   1
+    #+end_src
+  - rotation_y(rad)
+    #+begin_src
+      cosr  0  sinr  0
+       0    1   0    0
+     -sinr  0  cosr  0
+       0    0   0    1
+    #+end_src
+  - rotation_z(rad)
+    #+begin_src
+      cosr  -sinr  0  0
+      sinr   cosr  0  0
+        0     0    1  0
+        0     0    0  1
+    #+end_src
+nn
+*** Shearing
+
+- or skew
+- makes straight lines slanted
+- changes tuple components in _proportion_ to the other components
+- shearing(xy,xz,yx,yz,zx,zy) - 6 parameters
+  #+begin_src
+    1   xy  xz  0
+    yz  1   yz  0
+    zx  zy  1   0
+    0   0   0   1
+  #+end_src
+*** Exercise: clock face
+
+- using rotation matrix
+- centerd at point(0,0,0) center
+** 5 Ray-Sphere Intersections
+
+- raycasting:
+  - creating a ray/line
+  - finding the intersection of it with the objects on the scene
+
+- ray(origin Point, direction Vector) -> Ray
+- position(Ray, t) -> Point
+  - a point given a distance t along a ray
+- sphere()
+  - each invokation should return uniquely identified spheres (maybe by id)
+  - assumming
+    - unit spheres (radii = 1)
+    - centered at origin
+- intesect(Sphere,Ray)

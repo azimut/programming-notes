@@ -28,6 +28,22 @@
 - void
 - union
 
+https://en.wikipedia.org/wiki/C_data_types
+|----------------+------+--------+-------+----------+-----------+-----|
+|            <r> | <c>  |        |       |          |       <r> |     |
+|                | bits |        |    to |          |           |     |
+|----------------+------+--------+-------+----------+-----------+-----|
+|           bool |  1   |      0 |     1 | false    |      true |     |
+|           char |  8   |   -128 |   127 | CHAR_MIN |  CHAR_MAX | %c  |
+|  unsigned char |  8   |      0 |   255 | -        | UCHAR_MAX | %c  |
+|          short |  16  | -32768 | 32767 | SHRT_MIN |  SHRT_MAX | %hi |
+| unsigned short |  16  |      0 | 65535 | -        | USHRT_MAX | %hu |
+|            int |  16  |        |       | INT_MIN  |   INT_MAX | %d  |
+|   unsigned int |      |        |       | -        |  UINT_MAX | %u  |
+|           long |      |        |       | LONG_MIN |  LONG_MAX | %li |
+|  unsigned long |      |        |       | -        | ULONG_MAX | %lu |
+|----------------+------+--------+-------+----------+-----------+-----|
+
 *** type qualifiers
 - const https://softwareengineering.stackexchange.com/questions/204500/when-and-for-what-purposes-should-the-const-keyword-be-used-in-c-for-variables
 |-----------------------+------------------------------------------------------------------------|
@@ -71,11 +87,17 @@
 *** struct
 
 #+begin_src c
+  typedef struct Mat4 {
+    float m[4][4];
+  } Mat4;
   typedef struct { // typedef struct myStruct ?????
     unsigned char c1;
     unsigned char c2;
   } myStruct;
-  myStruct _m1 = {0};
+  myStruct _m1 = {0}; // initialize all fields with zero
+  return (myStruct){1,1};
+  return myStruct{1,1};
+  return myStruct{.c1 = 1, .c2 = 2};
 #+end_src
 
 *** enum
