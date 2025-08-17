@@ -251,6 +251,12 @@ https://en.wikipedia.org/wiki/C_data_types
 | [[https://en.wikibooks.org/wiki/C_Programming/string.h][string.h]] |    size_t    | String handling                                                 |
 |          |    memcpy    |                                                                 |
 |----------+--------------+-----------------------------------------------------------------|
+
+- stdarg.h
+  - va_start(va_list, LAST_KNOWN_NAMED) - initializes va_list
+  - va_arg(va_list, TYPE)
+  - va_end(va_list)
+
 ** ANSI/ISO C95
 |----------+---+------------------------------------------------------------------|
 |      <r> |   |                                                                  |

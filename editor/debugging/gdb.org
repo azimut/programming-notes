@@ -23,19 +23,75 @@
   gdb> info proc mappings
 #+end_src
 
+* gdb
+|--------+------+------------------|
+| --args | ARGS |                  |
+| -q     | _    | quiet, no banner |
+|--------+------+------------------|
 * Commands
-|-----------------+---------+---------------------------------|
-|       <c>       |   <c>   |                                 |
-|    set args     |  1 2 3  |                                 |
-| run < input.txt |         |                                 |
-|     (n)ext      |   [N]   | step out, next source code line |
-|     (n)exti     |   [N]   | step out, next asm instruction  |
-|     (s)tep      |         | step into                       |
-|     (p)rint     |         |                                 |
-| info registers  |         |                                 |
-|       x/i       |   $pc   |                                 |
-|      file       | EXEPATH | opens EXE as current program    |
-|-----------------+---------+---------------------------------|
+|---------------+-------------+------------------------------|
+|      <c>      |     <c>     |                              |
+|    (p)rint    |    expr     |                              |
+|   (what)is    |   VARNAME   | gives the type of variable   |
+|     ptype     |   VARNAME   |                              |
+|     where     |      _      | ask where we are             |
+|    attach     |     PID     |                              |
+|    dettach    |      _      |                              |
+|     (r)un     |      _      | runs or restarts program run |
+|     (r)un     |   [ARGS]    |                              |
+|     (r)un     | < input.txt |                              |
+|      set      |   $1 = 4    | sets a gdb variable          |
+|      set      | args 1 2 3  | sets "run" arguments         |
+|      set      |  var x=15   | sets a program variable      |
+|    (i)nfo     |  registers  |                              |
+|      x/i      |     $pc     |                              |
+|     file      |   EXEPATH   | opens EXE as current program |
+| (b)ack(t)race |             |                              |
+|      up       |             |                              |
+|     down      |             |                              |
+|---------------+-------------+------------------------------|
+** breakpoint control
+|----------------------+---------------+-----------------------------------------------------|
+| <l>                  |      <c>      |                                                     |
+|----------------------+---------------+-----------------------------------------------------|
+| (i)nfo               |  breakpoints  |                                                     |
+| break                | WHERE if COND | conditionaly break                                  |
+| break                |    FN_NAME    |                                                     |
+| break                |  [FILE:]LINE  | breaks on line number or fn name                    |
+| finish               |       _       | breaks at the end of current function               |
+| (w)atch              |    VARNAME    | breaks  on changes on VARNAME, and prints its value |
+| unwatch              |    WATCHID    | stop printing changes                               |
+| delete               |       _       | deletes all breakpoints                             |
+| delete               |     BRKID     | deletes breakpoint with given id                    |
+|----------------------+---------------+-----------------------------------------------------|
+| continue             |       _       |                                                     |
+| (n)ext               |      [N]      | step out/over, next source code line                |
+| (n)exti              |      [N]      | step out/over, next asm instruction                 |
+| (s)tep               |       _       | step into                                           |
+|----------------------+---------------+-----------------------------------------------------|
+| target               |  record-full  | records for future time-travel debugging            |
+| (r)everse-(n)ext     |       _       | reverses "next" action                              |
+| (r)everse-(s)tep     |       _       | reverses "step" action                              |
+| (r)everse-(c)ontinue |       _       | reverses "continue" action                          |
+|----------------------+---------------+-----------------------------------------------------|
+
+** print expr
+
+- can include a variable name
+- can reference previous results with "$N"
+
+** e(x)amine
+
+- for when print is not a good choice
+- output regions of memory in various formats
+- x/FMT ADDR
+  - FMT:
+    - a COUNT of how much to dump
+    - a single char FORMAT:
+      - =x,d,c,i,s= for hexa, decimal, character, instructions, and strings
+    - a SIZE of each element:
+      - =b,h,w,g= for 1,2,4,8 byte-blocks
+
 * Emacs
 
 - gdb
