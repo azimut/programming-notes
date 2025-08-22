@@ -2,6 +2,8 @@
 #+DATE: <2025-01-04 sáb>
 #+KEYWORDS: m4, programming, cheatsheet, quick reference
 
+[[./m4rene.jpg]]
+
 |-----------+---------------------------------------------------------------|
 |    <c>    |                                                               |
 |   home    | https://www.gnu.org/software/m4/m4.html                       |
@@ -10,8 +12,6 @@
 |  history  | https://www.gnu.org/software/m4/manual/html_node/History.html |
 |   wiki    | https://en.wikipedia.org/wiki/M4_(computer_language)          |
 |-----------+---------------------------------------------------------------|
-
-[[./m4rene.jpg]]
 
 - 1977
 - Authors: Brian Kernighan(35), Dennis Ritchie(36)
