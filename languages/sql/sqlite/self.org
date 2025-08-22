@@ -122,6 +122,9 @@
     - replace
   - INSERT OR IGNORE           - UNIQUE
   - INSERT ON CONFLICT IGNORE  - UNIQUE+NULL
+- LIMIT row_count
+- LIMIT row_count OFFSET offset
+- LIMIT offset, row_count
 
 ** Stdlib Functions
 *** Core

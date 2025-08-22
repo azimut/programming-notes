@@ -18,7 +18,7 @@
 - 17 [[https://zwischenzugs.com/2017/08/07/a-non-cloud-serverless-application-pattern-using-git-and-docker/][A Non-Cloud Serverless Application Pattern Using Git and Docker]]
 - +18 [[https://text.causal.agency/001-make.txt][Using Make – writing less Makefile]]+
 - 18 [[https://n64squid.com/homebrew/n64-sdk/compiling-roms/makefile/][Writing a Makefile for the N64]]
-- 18 [[https://clarkgrubb.com/makefile-style-guide][Makfile style guide]]
+- 18 [[https://clarkgrubb.com/makefile-style-guide][Makefile style guide]]
 - 18 [[https://danyspin97.org/blog/makefiles-best-practices/][Makefiles, Best Practices]]
 - 18 [[https://www.olioapps.com/blog/the-lost-art-of-the-makefile][The Lost Art of the Makefile]]
 - +19 [[https://tech.davis-hansson.com/p/make/][Your Makefiles are wrong]]+

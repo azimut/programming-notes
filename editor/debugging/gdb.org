@@ -1,7 +1,21 @@
-- /proc/PID/maps: has the section memory address ranges
-- inferior: the program being debugged
+#+TITLE: gdb
 
 - https://stackoverflow.com/questions/2611624/low-level-qemu-based-debugging/2615816#2615816
+- /proc/PID/maps: has the section memory address ranges
+- inferior: the program being debugged
+- manual https://sourceware.org/gdb/current/onlinedocs/gdb.html/index.html#SEC_Contents
+- wiki https://en.wikipedia.org/wiki/GNU_Debugger
+- tuto http://www.unknownroad.com/rtfm/gdbtut/gdbtoc.html
+- tuto https://www.gdb-tutorial.net/
+- tuto https://beej.us/guide/bggdb/
+- 1986
+- Supported Languages:
+  - C, C++, D, Objective-C, OpenCL C
+  - Ada, Assembly, Fortran, Pascal
+  - Haskell, Go, Rust
+
+#+ATTR_ORG: :width 200
+[[https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/GDB_Archer_Fish_by_Andreas_Arnez.svg/320px-GDB_Archer_Fish_by_Andreas_Arnez.svg.png]]
 
 * gdbserver
 
@@ -24,63 +38,90 @@
 #+end_src
 
 * gdb
-|--------+------+------------------|
-| --args | ARGS |                  |
-| -q     | _    | quiet, no banner |
-|--------+------+------------------|
-* Commands
-|---------------+-------------+------------------------------|
-|      <c>      |     <c>     |                              |
-|    (p)rint    |    expr     |                              |
-|   (what)is    |   VARNAME   | gives the type of variable   |
-|     ptype     |   VARNAME   |                              |
-|     where     |      _      | ask where we are             |
-|    attach     |     PID     |                              |
-|    dettach    |      _      |                              |
-|     (r)un     |      _      | runs or restarts program run |
-|     (r)un     |   [ARGS]    |                              |
-|     (r)un     | < input.txt |                              |
-|      set      |   $1 = 4    | sets a gdb variable          |
-|      set      | args 1 2 3  | sets "run" arguments         |
-|      set      |  var x=15   | sets a program variable      |
-|    (i)nfo     |  registers  |                              |
-|      x/i      |     $pc     |                              |
-|     file      |   EXEPATH   | opens EXE as current program |
-| (b)ack(t)race |             |                              |
-|      up       |             |                              |
-|     down      |             |                              |
-|---------------+-------------+------------------------------|
-** breakpoint control
-|----------------------+---------------+-----------------------------------------------------|
-| <l>                  |      <c>      |                                                     |
-|----------------------+---------------+-----------------------------------------------------|
-| (i)nfo               |  breakpoints  |                                                     |
-| break                | WHERE if COND | conditionaly break                                  |
-| break                |    FN_NAME    |                                                     |
-| break                |  [FILE:]LINE  | breaks on line number or fn name                    |
-| finish               |       _       | breaks at the end of current function               |
-| (w)atch              |    VARNAME    | breaks  on changes on VARNAME, and prints its value |
-| unwatch              |    WATCHID    | stop printing changes                               |
-| delete               |       _       | deletes all breakpoints                             |
-| delete               |     BRKID     | deletes breakpoint with given id                    |
-|----------------------+---------------+-----------------------------------------------------|
-| continue             |       _       |                                                     |
-| (n)ext               |      [N]      | step out/over, next source code line                |
-| (n)exti              |      [N]      | step out/over, next asm instruction                 |
-| (s)tep               |       _       | step into                                           |
-|----------------------+---------------+-----------------------------------------------------|
-| target               |  record-full  | records for future time-travel debugging            |
-| (r)everse-(n)ext     |       _       | reverses "next" action                              |
-| (r)everse-(s)tep     |       _       | reverses "step" action                              |
-| (r)everse-(c)ontinue |       _       | reverses "continue" action                          |
-|----------------------+---------------+-----------------------------------------------------|
+|--------+------+--------------------|
+| --args | ARGS |                    |
+| -q     | _    | quiet, no banner   |
+| -s     | PATH | debug symbols file |
+|--------+------+--------------------|
+** Core dump
 
-** print expr
+- Tell systemd to save it:
+  $ coredumpctl -o FILE dump EXE
+
+- Load it into gdb
+  gdb> target core FILE
+
+- Generate coredump from gdb
+  gdb> gcore FILE
+
+** Commands
+|---------------+----------------+-------------------------------|
+|      <c>      |      <c>       |                               |
+|    (p)rint    |      expr      |                               |
+|   (what)is    |    VARNAME     | gives the type of variable    |
+|     ptype     |    VARNAME     |                               |
+|     where     |       _        | ask where we are              |
+|    attach     |      PID       |                               |
+|    dettach    |       _        |                               |
+|     (r)un     |       _        | runs or restarts program run  |
+|     (r)un     |     [ARGS]     |                               |
+|     (r)un     |  < input.txt   |                               |
+|      set      |     $1 = 4     | sets a gdb variable           |
+|      set      |   args 1 2 3   | sets "run" arguments          |
+|      set      |    var x=15    | sets a program variable       |
+|      set      | pagination off |                               |
+|    (i)nfo     |   registers    |                               |
+|      x/i      |      $pc       |                               |
+|     file      |    EXEPATH     | opens EXE as current program  |
+| (b)ack(t)race |                |                               |
+|      up       |                |                               |
+|     down      |                |                               |
+|     info      |    threads     |                               |
+|  symbol-file  |      PATH      | gives file with debug symbols |
+|---------------+----------------+-------------------------------|
+- objdump --only-keep-debug BIN BIN.dbg
+- objdump --strip-debug BIN
+*** breakpoint control
+|----------+------------------+-----------------------------------------------------|
+|   <c>    |       <c>        |                                                     |
+|----------+------------------+-----------------------------------------------------|
+|  (i)nfo  |   breakpoints    |                                                     |
+|  break   |  WHERE if COND   | conditional break                                   |
+|  break   |     FN_NAME      |                                                     |
+|  break   |   [FILE:]LINE    | breaks on line number or fn name                    |
+|  finish  |        _         | breaks at the end of current function               |
+| (w)atch  |     VARNAME      | breaks  on changes on VARNAME, and prints its value |
+| unwatch  |     WATCHID      | stop printing changes                               |
+|  delete  |        _         | deletes all breakpoints                             |
+|  delete  |      BRKID       | deletes breakpoint with given id                    |
+|  enable  |  breakpoints ID  |                                                     |
+| disable  |  breakpoints ID  |                                                     |
+|   save   | breakpoints FILE | dumps breakpoints script to FILE                    |
+|  source  |       FILE       | load script from file                               |
+|----------+------------------+-----------------------------------------------------|
+| continue |        _         |                                                     |
+|  (n)ext  |       [N]        | step out/over, next source code line                |
+| (n)exti  |       [N]        | step out/over, next asm instruction                 |
+|  (s)tep  |        _         | step into                                           |
+|----------+------------------+-----------------------------------------------------|
+*** checkpoints
+|----------------------+---------------+------------------------------------------|
+|         <c>          |      <c>      |                                          |
+|      checkpoint      |       _       | creates a checkpoint                     |
+|         info         |  checkpoints  | lists all checkpoints                    |
+|        delete        | checkpoint ID | deletes given checkpoint ID              |
+|       restart        |      ID       | restart program from checkpoint ID       |
+|        target        |  record-full  | records for future time-travel debugging |
+|   (r)everse-(n)ext   |       _       | reverses "next" action                   |
+|   (r)everse-(s)tep   |       _       | reverses "step" action                   |
+| (r)everse-(c)ontinue |       _       | reverses "continue" action               |
+|----------------------+---------------+------------------------------------------|
+*** print expr
 
 - can include a variable name
 - can reference previous results with "$N"
 
-** e(x)amine
+*** e(x)amine
 
 - for when print is not a good choice
 - output regions of memory in various formats

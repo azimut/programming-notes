@@ -205,6 +205,16 @@ https://www.youtube.com/watch?v=NIAUFnNZGhE
   - https://devtalk.com/books/the-ray-tracer-challenge
 - External Links:
   - https://betterexplained.com/articles/vector-calculus-understanding-the-dot-product/
+- Third party sources
+  - C https://github.com/LiquidityC/ray_tracer_challenge/
+    - complete 16 chapters
+    - uses CMake
+      - has some "-fsanitize=address -g", "tracer ... m asan"
+      - uses Unity for testing
+    - calloc()
+    - realloc()
+    - usage of _init() for structs
+    - unions for vec3
 
 ** 1 Tuples
 

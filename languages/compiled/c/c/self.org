@@ -46,13 +46,13 @@ https://en.wikipedia.org/wiki/C_data_types
 
 *** type qualifiers
 - const https://softwareengineering.stackexchange.com/questions/204500/when-and-for-what-purposes-should-the-const-keyword-be-used-in-c-for-variables
-|-----------------------+------------------------------------------------------------------------|
-|                   <r> |                                                                        |
-|                 const | unmodifiable memory                                                    |
-|       static volatile | mmap Input/Output                                                      |
-| static const volative | mmap Input                                                             |
-|              restrict | optimization on pointers, when they are the unique point to the object |
-|-----------------------+------------------------------------------------------------------------|
+|-----------------------+-------------------------------------------------------------------------|
+|                   <r> |                                                                         |
+|                 const | unmodifiable memory                                                     |
+|              [[https://en.wikipedia.org/wiki/Restrict][restrict]] | optimization on pointers, hints they are THE UNIQUE point to the object |
+|       static volatile | mmap Input/Output                                                       |
+| static const volative | mmap Input                                                              |
+|-----------------------+-------------------------------------------------------------------------|
 *** numerical / arithmetic
 
 - literal defaults to 32bit int
@@ -592,9 +592,19 @@ https://0x00sec.org/t/remote-shells-part-i/269/1
 - https://github.com/gerasdf/InsecureProgramming/
 - https://github.com/hardik05/Damn_Vulnerable_C_Program
 ** Sanitizers
-- asan, ubsan, valgrind, fuzzers, libcheck, pvs
+|-------+----------------------------+-------------|
+|   <r> |                            |             |
+|       |                            | -fsanitize= |
+|-------+----------------------------+-------------|
+| UBSan | undefined behavior         | undefined   |
+|  ASan | addressing of memory       | address     |
+|  MSan | uninitialized memory usage | memory      |
+|  TSan | thread concurrency bugs    | thread      |
+|-------+----------------------------+-------------|
+- valgrind, fuzzers, libcheck, pvs
 - https://tek256.com/posts/code-hardening/
 - Static http://splint.org/
+- video fuzzers 15 [[https://www.youtube.com/watch?v=qTkYDA0En6U][Beyond Sanitizers...]] by Kostya Serebryany
 - https://www.youtube.com/watch?v=Q2C2lP8_tNE
 - https://github.com/google/sanitizers/wiki/AddressSanitizer
 - https://valgrind.org/docs/manual/quick-start.html
