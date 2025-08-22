@@ -1,3 +1,4 @@
+- article: https://karpathy.github.io/2019/04/25/recipe/
 - course: pragmatic data science https://www.youtube.com/playlist?list=PLjxbCynJ0Gd8k75-zdMcqcEbH90jfk9eg
 - article: llm agent https://tadeodonegana.com/posts/building-agents-my-notes/
 - DataSets

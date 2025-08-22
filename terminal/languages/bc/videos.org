@@ -1,0 +1,5 @@
+- [[https://www.youtube.com/watch?v=_UwhS0IvwQk][bc - geeksforgeeks]]
+- [[https://www.youtube.com/watch?v=JkyodHenTuc][Command Line Calculator - gotbletu]]
+- [[https://www.youtube.com/watch?v=JascI_29sks][Bc: Deep Dive Into The POSIX Calculator Language | Broodie Robertson]]
+- [[https://vimeo.com/101977655][Linux in the Shell Ep 25 - bc]]
+- 23 [[https://www.youtube.com/watch?v=HcRMo0wGq44][video Is Python a souped up Basic Calculator?]]

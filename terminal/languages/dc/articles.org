@@ -1,0 +1,9 @@
+- 24 [[https://bash-hackers.gabe565.com/howto/calculate-dc/][Calculating with dc - The Bash Hackers Wiki]]
+- 22 [[https://blogs.perl.org/users/laurent_r/2022/07/perl-weekly-challenge-173-sylvesters-sequence-in-dc.html][Perl Weekly Challenge 173: Sylvester's Sequence in dc]]
+- 21 [[https://psychocod3r.wordpress.com/2021/05/08/obfuscated-unix-scripting-with-dc/][Obfuscated Unix Scripting with dc]]
+- 21 https://www.computerhope.com/unix/udc.htm
+- 20 [[http://web.archive.org/web/20200607102626/https://ben165.github.io/unix_dc/index.html][A deeper introduction in Unix dc]]
+- 18 [[https://eklitzke.org/summing-integer-ranges-with-dc][Summing Integer Ranges With dc]]
+- 97 [[https://wolfram.schneider.org/bsd/7thEdManVol2/dc/dc.pdf]]
+- ?? [[https://cs.unh.edu/~charpov/dc.html][Fun with dc]]
+- ?? [[https://wiki.c2.com/?DeeCee][Dee Cee]]

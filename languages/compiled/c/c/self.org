@@ -26,22 +26,34 @@
 ** types
 
 - void
+  - as a pointer type
+    #+begin_src c
+      int a = 3;
+      void *p = &a;             // a pointer to void (aka any type)
+      printf("%d\n", *(int*)p); // before dereference it we need to cast it to a int* pointer
+    #+end_src
+
 - union
+- pointer: %p
+  - an address in memory
+  - an unsigned integer
 
 https://en.wikipedia.org/wiki/C_data_types
 |----------------+------+--------+-------+----------+-----------+-----|
-|            <r> | <c>  |        |       |          |       <r> |     |
+|            <r> | <c>  |        |       |      <r> |       <r> |     |
 |                | bits |        |    to |          |           |     |
 |----------------+------+--------+-------+----------+-----------+-----|
-|           bool |  1   |      0 |     1 | false    |      true |     |
+|           bool |  1   |      0 |     1 |    false |      true |     |
 |           char |  8   |   -128 |   127 | CHAR_MIN |  CHAR_MAX | %c  |
-|  unsigned char |  8   |      0 |   255 | -        | UCHAR_MAX | %c  |
+|  unsigned char |  8   |      0 |   255 |        - | UCHAR_MAX | %c  |
 |          short |  16  | -32768 | 32767 | SHRT_MIN |  SHRT_MAX | %hi |
-| unsigned short |  16  |      0 | 65535 | -        | USHRT_MAX | %hu |
-|            int |  16  |        |       | INT_MIN  |   INT_MAX | %d  |
-|   unsigned int |      |        |       | -        |  UINT_MAX | %u  |
-|           long |      |        |       | LONG_MIN |  LONG_MAX | %li |
-|  unsigned long |      |        |       | -        | ULONG_MAX | %lu |
+| unsigned short |  16  |      0 | 65535 |        - | USHRT_MAX | %hu |
+|            int |  16  | -32768 | 32767 |  INT_MIN |   INT_MAX | %d  |
+|   unsigned int |  16  |        |       |        - |  UINT_MAX | %u  |
+|           long |  32  |   -2bn |  +2bn | LONG_MIN |  LONG_MAX | %li |
+|  unsigned long |  32  |      0 |  +4bn |        - | ULONG_MAX | %lu |
+|      long long |  64  |        |       |          |           |     |
+|         size_t |      |        |       |          |           | %zu |
 |----------------+------+--------+-------+----------+-----------+-----|
 
 *** type qualifiers
@@ -62,11 +74,30 @@ https://en.wikipedia.org/wiki/C_data_types
   - *int* word can be ommited on declaration
   - <limits.h> has the maximun and minumun of each type
   - <inttypes.h> or <stdinit.h> to define uint32_t or uintmax_t
+- ON -std=c2x, can use ('), to separate long numbers: 1'000'000
 
 *** boolean
 
 - defined in ~<stdbool.h>~
 - _Bool (or just bool) introduced on C99, stores 0 or 1
+- bit flags: for when you have multiple boolean flags to pass to a function
+  #+begin_src c
+    typedef unsigned int t_flag;
+    typedef enum {
+      FLAG_A = (1 << 0),
+      FLAG_B = (2 << 0),
+      FLAG_C = (3 << 0)
+    } t_flag;
+    int f(int x, t_flag flags) {
+      if (flags & FLAG_A) x += x;
+      if (flags & FLAG_B) x += x;
+      if (flags & FLAG_C) x += x;
+      return x;
+    }
+    f(1234, 0);
+    f(1234, FLAG_A);
+    f(1234, FLAG_B | FLAG_C);
+  #+end_src
 
 *** char
 
@@ -131,7 +162,33 @@ https://en.wikipedia.org/wiki/C_data_types
 - arrays in structs can be initialized... TODO?
 
 ** functions
+
 - C is a ~call-by-value~ (aka ~pass-by-value~) language
+- Are just pointers (addresses of memory) with executable code.
+- Type signatures
+  #+begin_src c
+    // int (*) (int,int)
+    int foo(int a, int b) { return a + b; }
+    void main(void) {
+      int (f*) (int,int) = foo;
+      printf("%d\n", f(3,4));
+    }
+  #+end_src
+- "High order"
+  #+begin_src c
+    bool p(int x) { return x % 2 == 0; }
+    void print_if(int xs[10], bool (*predicate)(int)) {
+      for (size_t i = 0; i < 10; i++) {
+        if (predicate(xs[i])) {
+          printf("%d\n", xs[i]);
+        }
+      }
+    }
+    void main(void) {
+      print_if(xs, p);
+    }
+  #+end_src
+
 ** variables
 *** scopes of identifiers
 |-----------+----------------------------------------------------|
@@ -256,6 +313,15 @@ https://en.wikipedia.org/wiki/C_data_types
   - va_start(va_list, LAST_KNOWN_NAMED) - initializes va_list
   - va_arg(va_list, TYPE)
   - va_end(va_list)
+
+- Example: using qsort
+  #+begin_src c
+    int compar(const void *x1, const void *x2) {
+      return (*(int*)x2) - (*(int*)x1);
+    }
+    int xs[] = {1,2,3,4,5,6,7,8,9,10};
+    qsort(xs, 10, sizeof(int), compar);
+  #+end_src
 
 ** ANSI/ISO C95
 |----------+---+------------------------------------------------------------------|

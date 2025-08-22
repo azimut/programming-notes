@@ -1,3 +1,4 @@
+- Advanced C https://www.youtube.com/playlist?list=PL71Y0EmrppR0KyZvQWj63040UEzKQU7n8
 - 2h CS50 https://www.youtube.com/watch?v=cwtpLIWylAw
 - 4h C Programming and Memory Management https://www.youtube.com/watch?v=rJrd2QMVbGM
   - by BootDev
