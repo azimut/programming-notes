@@ -11,6 +11,8 @@
 |   wiki    | https://en.wikipedia.org/wiki/M4_(computer_language)          |
 |-----------+---------------------------------------------------------------|
 
+[[./m4rene.jpg]]
+
 - 1977
 - Authors: Brian Kernighan(35), Dennis Ritchie(36)
 - based on m3(1972), and GPM (1965)
