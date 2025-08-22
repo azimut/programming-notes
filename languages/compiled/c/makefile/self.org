@@ -273,10 +273,11 @@ task1:
 * gotchas
 
 - [[https://stackoverflow.com/questions/9838384/can-gnu-make-handle-filenames-with-spaces][no support for filenames with spaces]]
-- ~=~ assignment is perpetually evaluated
+- ~=~ assignment is perpetually evaluated (aka a macro definition)
 - ~$~ needs to be always escaped with ~$$~ to be sent to commands as such
 - ~\t~ for indentation, NOT spaces
-- will keep an incomplete artifactory on target failure, unless ~.DELETE_ON_ERROR:~
+- Will *keep* an incomplete target on failure, unless ~.DELETE_ON_ERROR:~
+- What is an ~intermediate~ target? And how to stop them from being deleted?
 
 * tools
 |------------+-------------------------------------------|
