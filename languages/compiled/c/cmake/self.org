@@ -1,9 +1,12 @@
-CommitDate: Tue Dec 21 05:02:30 2021 -0300
+#+TITLE: CMake
+#+DATE: <2021-12-21 mar>
 
 - home https://cmake.org/
 - docs https://cmake.org/documentation/
 - faq https://gitlab.kitware.com/cmake/community/-/wikis/faq
 - source C/C++ https://gitlab.kitware.com/cmake/cmake
+- tutorial https://cmake.org/cmake/help/latest/guide/tutorial/index.html
+- wiki https://wiki.osdev.org/CMake_Build_System
 - wiki https://en.wikipedia.org/wiki/CMake
   - 2000
   - Authors:
@@ -13,22 +16,20 @@ CommitDate: Tue Dec 21 05:02:30 2021 -0300
     - Ken Martin
     - Alex Neundorf
 
-- wiki https://wiki.osdev.org/CMake_Build_System
-- https://cmake.org/cmake/help/latest/guide/tutorial/index.html
 - created defaults: help, install, --graphviz
-- directives?
-  - project
-  - add_library
-  - target_include_directories
-  - add_executable
-  - target_link_libraries
-
 - https://github.com/onqtam/awesome-cmake
 
 * cli
 
 https://cmake.org/cmake/help/latest/manual/cmake.1.html
 
+* language
+- directives?
+  - project
+  - add_library
+  - target_include_directories
+  - add_executable
+  - target_link_libraries
 * examples
 
 - https://github.com/toeb/moderncmake

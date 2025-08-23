@@ -9,6 +9,7 @@
 - tuto https://www.gdb-tutorial.net/
 - tuto https://beej.us/guide/bggdb/
 - 1986
+- has *info* pages
 - Supported Languages:
   - C, C++, D, Objective-C, OpenCL C
   - Ada, Assembly, Fortran, Pascal
@@ -42,6 +43,7 @@
 | --args | ARGS |                    |
 | -q     | _    | quiet, no banner   |
 | -s     | PATH | debug symbols file |
+| --tui  | _    |                    |
 |--------+------+--------------------|
 ** Core dump
 
@@ -78,7 +80,10 @@
 |     down      |                |                               |
 |     info      |    threads     |                               |
 |  symbol-file  |      PATH      | gives file with debug symbols |
+|    layout     |      src       | TUI mode                      |
 |---------------+----------------+-------------------------------|
+- C-x-a - toggles between TUI mode and CLI mode
+- C-x-2 - shows asm
 - objdump --only-keep-debug BIN BIN.dbg
 - objdump --strip-debug BIN
 *** breakpoint control
