@@ -19,6 +19,11 @@
   |   strip | remove symbols                  |
   |---------+---------------------------------|
 
+- objdump
+  - dump .rodata section
+    #+begin_src sh
+      $ objdump -s -j .rodata a.out
+    #+end_src
 - use -n to change *strings* min width of ascii chars for printing, default is 4
 
 - as ld example makefile

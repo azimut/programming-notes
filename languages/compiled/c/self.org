@@ -1,9 +1,9 @@
-- https://en.wikipedia.org/wiki/C_(programming_language)
-  - 1972
-  - for the PDP-11
-  - by Dennis Ritchie (31)
-  - Influenced by ~Algol~ and ~B~ (of Ken Thompson)
-  - Loosely typed language
+- wiki https://en.wikipedia.org/wiki/C_(programming_language)
+- 1972
+- for the PDP-11
+- by Dennis Ritchie (31)
+- Influenced by ~Algol~ and ~B~ (of Ken Thompson)
+- Loosely typed language
 
 * Language
 
@@ -23,40 +23,8 @@
   3) Undefined
   4) Locale-Specific
 
-** types
+** type qualifiers
 
-- void
-  - as a pointer type
-    #+begin_src c
-      int a = 3;
-      void *p = &a;             // a pointer to void (aka any type)
-      printf("%d\n", *(int*)p); // before dereference it we need to cast it to a int* pointer
-    #+end_src
-
-- union
-- pointer: %p
-  - an address in memory
-  - an unsigned integer
-
-https://en.wikipedia.org/wiki/C_data_types
-|----------------+------+--------+-------+----------+-----------+-----|
-|            <r> | <c>  |        |       |      <r> |       <r> |     |
-|                | bits |        |    to |          |           |     |
-|----------------+------+--------+-------+----------+-----------+-----|
-|           bool |  1   |      0 |     1 |    false |      true |     |
-|           char |  8   |   -128 |   127 | CHAR_MIN |  CHAR_MAX | %c  |
-|  unsigned char |  8   |      0 |   255 |        - | UCHAR_MAX | %c  |
-|          short |  16  | -32768 | 32767 | SHRT_MIN |  SHRT_MAX | %hi |
-| unsigned short |  16  |      0 | 65535 |        - | USHRT_MAX | %hu |
-|            int |  16  | -32768 | 32767 |  INT_MIN |   INT_MAX | %d  |
-|   unsigned int |  16  |        |       |        - |  UINT_MAX | %u  |
-|           long |  32  |   -2bn |  +2bn | LONG_MIN |  LONG_MAX | %li |
-|  unsigned long |  32  |      0 |  +4bn |        - | ULONG_MAX | %lu |
-|      long long |  64  |        |       |          |           |     |
-|         size_t |      |        |       |          |           | %zu |
-|----------------+------+--------+-------+----------+-----------+-----|
-
-*** type qualifiers
 - const https://softwareengineering.stackexchange.com/questions/204500/when-and-for-what-purposes-should-the-const-keyword-be-used-in-c-for-variables
 |-----------------------+-------------------------------------------------------------------------|
 |                   <r> |                                                                         |
@@ -65,8 +33,80 @@ https://en.wikipedia.org/wiki/C_data_types
 |       static volatile | mmap Input/Output                                                       |
 | static const volative | mmap Input                                                              |
 |-----------------------+-------------------------------------------------------------------------|
+
+** types
+
+https://en.wikipedia.org/wiki/C_data_types
+|----------------+------+--------+-------+----------+-----------+----------|
+|            <r> | <c>  |        |       |      <r> |       <r> |   <c>    |
+|                | bits |        |    to |          |           |          |
+|----------------+------+--------+-------+----------+-----------+----------|
+|           bool |  1   |      0 |     1 |    false |      true |          |
+|           char |  8   |   -128 |   127 | CHAR_MIN |  CHAR_MAX | %c  %hhd |
+|  unsigned char |  8   |      0 |   255 |        - | UCHAR_MAX |    %c    |
+|          short |  16  | -32768 | 32767 | SHRT_MIN |  SHRT_MAX |   %hi    |
+| unsigned short |  16  |      0 | 65535 |        - | USHRT_MAX |   %hu    |
+|            int |  16  | -32768 | 32767 |  INT_MIN |   INT_MAX |    %d    |
+|   unsigned int |  16  |        |       |        - |  UINT_MAX |    %u    |
+|           long |  32  |   -2bn |  +2bn | LONG_MIN |  LONG_MAX |   %li    |
+|  unsigned long |  32  |      0 |  +4bn |        - | ULONG_MAX |   %lu    |
+|      long long |  64  |        |       |          |           |   %ll    |
+|         size_t |      |        |       |          |           |   %zu    |
+|          float |  32  |        |       |  FLT_MIN |   FLT_MAX | %f %e %g |
+|         double |  64  |        |       |  DBL_MIN |   DBL_MAX |          |
+|    long double | 128  |        |       | LDBL_MIN |  LDBL_MAX |          |
+|    [u]int<N>_t |  N   |        |       |          |           |          |
+|              * |  32  |        |       |          |           |    %p    |
+|          char* |      |        |       |          |           |    %s    |
+|----------------+------+--------+-------+----------+-----------+----------|
+
+*** void
+
+As a pointer type
+#+begin_src c
+  int a = 3;
+  void *p = &a;             // a pointer to void (aka any type)
+  printf("%d\n", *(int*)p); // before dereference it we need to cast it to a int* pointer
+#+end_src
+
+*** pointer %p
+
+- an address in memory
+- an unsigned integer
+- *p to dereference, aka access what the pointers is pointing to
+- &x to get the address of a variable
+- (int*) to typecast the pointer to "pointer to int"
+
+*** (tagged) union
+
+#+begin_src c
+  enum tag {
+    TAG_BOOL,
+    TAG_INT,
+    TAG_FLOAT,
+  };
+  struct dyn {
+    enum tag tag;
+    union {
+      bool b;
+      int i;
+      float f;
+    } value;
+  };
+
+  struct dyn d;
+  d.tag = TAG_INT;
+  t.i = 42;
+  switch (d.tag) {
+   case TAG_BOOL:  printf("bool: %d\n" , d.value.b); break; // or d.b if unio had no name
+   case TAG_INT:   printf("int: %d\n"  , d.value.i); break; // or d.i if unio had no name
+   case TAG_FLOAT: printf("float: %f\n", d.value.f); break; // or d.f if unio had no name
+  };
+#+end_src
+
 *** numerical / arithmetic
 
+- 10 0xfa (%x) 0755 (%o) 0b1010 (%b)
 - literal defaults to 32bit int
 - Floating-point: float, double, long double
 - Numerical:
@@ -75,6 +115,11 @@ https://en.wikipedia.org/wiki/C_data_types
   - <limits.h> has the maximun and minumun of each type
   - <inttypes.h> or <stdinit.h> to define uint32_t or uintmax_t
 - ON -std=c2x, can use ('), to separate long numbers: 1'000'000
+- sizeof
+  #+begin_src c
+    int a = 1;
+    sizeof a;  // for variables doesn't need parens
+  #+end_src
 
 *** boolean
 
@@ -105,9 +150,19 @@ https://en.wikipedia.org/wiki/C_data_types
 - all have the same alignment, size range, representation, and behavior
 - satisfies a minimum et of characters aka ~basic execution character set~
 - ~wchar_t~ is a chart type that takes more space (16 32 bits) to represent more chars
+- printf: %hhd to intepret it as a decimal
+
+**** strings (char*, char[])
+
+- <string.h>
+- there is no type for strings in C
+- we use:
+  - char*  - string literals  - read only
+  - char[] - character arrays - mutable
 
 #+begin_src c
   char* foo = "hello" "world"; // "helloworld"
+  char bar[]= "hello world";
   #define STR2(x)
   #define STR(x) STR2(x)
   #define WIDTH 300
@@ -125,7 +180,12 @@ https://en.wikipedia.org/wiki/C_data_types
     unsigned char c1;
     unsigned char c2;
   } myStruct;
-  myStruct _m1 = {0}; // initialize all fields with zero
+  struct foo {      // BITFIELDS
+    int first4 : 4; // tells the number of BITS it will take in memory
+    int next4  : 4; // total real size would be _no less_ than the size of the type given
+    int alone  : 1; // can be used later with eg: read()
+  };
+  myStruct _m1 = {0}; // initialize all fields with zero aka "Empty Initialization"
   return (myStruct){1,1};
   return myStruct{1,1};
   return myStruct{.c1 = 1, .c2 = 2};
@@ -145,6 +205,17 @@ https://en.wikipedia.org/wiki/C_data_types
 *** arrays
 
 - globals and static are _automatically_ initialized to zero
+- sizeof(array)
+  #+begin_src c
+    int xs[] = {1,2,3,4};
+    sizeof xs; // give total size of array = 4*4 = 16;
+  #+end_src
+- array length
+  #+begin_src c
+    #define ARRAY_LEN(a) (sizeof a / sizeof(a[0]))
+    sizeof xs;    // = 16 = 4*4 give total size of array
+    ARRAY_LEN(xs) // = 4  = array length
+  #+end_src
 - arrays as local, either
   #+begin_src c
     int coll2[1024] = {0};
@@ -161,8 +232,59 @@ https://en.wikipedia.org/wiki/C_data_types
   #+end_src
 - arrays in structs can be initialized... TODO?
 
+**** lookup table (array+?)
+
+- array + enum
+  #+begin_src c
+    enum foo {
+      foo_2 = 0,
+      foo_3,
+      foo_4,
+    };
+    static int squares[] = {4,9,16}; // OR
+    static int squares[] = {         // using "Designated Initializers"
+      [foo_2] = 4,
+      [foo_3] = 9,
+      [foo_4] = 16
+    };
+    squares[foo_3];
+  #+end_src
+
+- array + char, makes a sparse array (non-used space is still alocated!!!)
+  #+begin_src c
+    static char case_convert[] = {
+      ['a'] = 'A',
+      ['b'] = 'B',
+      ['c'] = 'C',
+    };
+  #+end_src
+
+** variables
+- can have a "$" on its name
+*** scopes of identifiers
+|-----------+----------------------------------------------------|
+|       <r> |                                                    |
+|           | declared...                                        |
+|-----------+----------------------------------------------------|
+|      file | outside a block or param list                      |
+|     block | inside a block or param list                       |
+| prototype | on function prototype params                       |
+|  function | on function definition, between {}, only labels(?) |
+|-----------+----------------------------------------------------|
+*** storage class/durations (aka lifetime of objects)
+|-----------+---------+-----------------------------------------------------------------------|
+|       <r> |         |                                                                       |
+|           | life    | default when declared on                                              |
+|-----------+---------+-----------------------------------------------------------------------|
+| automatic | block   | block scope or function parameter                                     |
+|    static | program | file scope, must be initialized with a constant value, NOT a variable |
+|    thread |         |                                                                       |
+| allocated |         | (dynamic allocated)                                                   |
+|-----------+---------+-----------------------------------------------------------------------|
 ** functions
 
+- list the param types or use *void* when no args
+- a function with a param type list is known as a *function prototype*
 - C is a ~call-by-value~ (aka ~pass-by-value~) language
 - Are just pointers (addresses of memory) with executable code.
 - Type signatures
@@ -189,30 +311,6 @@ https://en.wikipedia.org/wiki/C_data_types
     }
   #+end_src
 
-** variables
-*** scopes of identifiers
-|-----------+----------------------------------------------------|
-|       <r> |                                                    |
-|           | declared...                                        |
-|-----------+----------------------------------------------------|
-|      file | outside a block or param list                      |
-|     block | inside a block or param list                       |
-| prototype | on function prototype params                       |
-|  function | on function definition, between {}, only labels(?) |
-|-----------+----------------------------------------------------|
-*** storage class/durations (aka lifetime of objects)
-|-----------+---------+-----------------------------------------------------------------------|
-|       <r> |         |                                                                       |
-|           | life    | default when declared on                                              |
-|-----------+---------+-----------------------------------------------------------------------|
-| automatic | block   | block scope or function parameter                                     |
-|    static | program | file scope, must be initialized with a constant value, NOT a variable |
-|    thread |         |                                                                       |
-| allocated |         | (dynamic allocated)                                                   |
-|-----------+---------+-----------------------------------------------------------------------|
-** functions
-- list the param types or use *void* when no args
-- a function with a param type list is known as a *function prototype*
 ** control flow
 - conditionally run *statements* based on a controlling *expression*
 - if/else if/else
@@ -240,6 +338,14 @@ https://en.wikipedia.org/wiki/C_data_types
   - also implemented by clang
 - K&R C - 1978 - from the book with Brian Kernighan
 
+- banned stdlib functions
+  - https://wiki.openstack.org/wiki/StarlingX/Security/Banned_C_Functions
+  - in git https://github.com/git/git/blob/master/banned.h
+    - reasons https://github.com/git/git/commits/master/banned.h
+    - strcopy, strncopy, strcat, strncat, strtok, strtok_r
+    - sprintf, vsprintf
+    - gmtime, localtime, ctime, ctime_r, asctime, asctime_r
+
 ** ANSI/ISO C89/C90
 - https://en.wikipedia.org/wiki/C_data_types
 - https://en.wikipedia.org/wiki/C_character_classification
@@ -253,61 +359,71 @@ https://en.wikipedia.org/wiki/C_data_types
 - https://en.wikipedia.org/wiki/C_signal_handling
 - https://en.wikipedia.org/wiki/C_alternative_tokens
 - assert(0 && "TODO: description");
-|----------+--------------+-----------------------------------------------------------------|
-|      <r> |     <c>      |                                                                 |
-|   HEADER |      fn      |                                                                 |
-|----------+--------------+-----------------------------------------------------------------|
-| assert.h |    assert    | Conditionally compiled macro that compares its argument to zero |
-|  ctype.h |              | Functions to determine the type contained in ~character~ data   |
-|  errno.h |              | Macros reporting error conditions                               |
-|  float.h |              | Limits of floating-point types                                  |
-|   time.h |              | Time/date utilities                                             |
-| limits.h |              | Ranges of integer types                                         |
-| locale.h |              | Localization utilities                                          |
-|   [[https://en.wikibooks.org/wiki/C_Programming/math.h][math.h]] |     fabs     | Common mathematics functions                                    |
-|  paths.h |              | constants with string paths of common LINUX files               |
-| setjmp.h |              | Nonlocal jumps                                                  |
-| signal.h |              | Signal handling                                                 |
-| stdarg.h |              | Allows variable arguments functions                             |
-|----------+--------------+-----------------------------------------------------------------|
-| stddef.h |     NULL     | Common macro definitions                                        |
-|          |    size_t    |                                                                 |
-|----------+--------------+-----------------------------------------------------------------|
-|  [[https://en.wikibooks.org/wiki/C_Programming/stdio.h][stdio.h]] |              | Input/output. Most return EOF (-1) on error.                    |
-|          |    fopen     | open a stream                                                   |
-|          |    fclose    | close a stream                                                  |
-|          |    fread     | reads from stream, elements not bytes                           |
-|          |    fgetc     | reads int character from stream                                 |
-|          |    fwrite    | writes into stream                                              |
-|          |   fprintf    | writes into stream                                              |
-|          |    printf    | returns the nr of chars printed, or negative number on error    |
-|          |   getchar    |                                                                 |
-|          |    scanf     |                                                                 |
-|          |     puts     |                                                                 |
-|          |    remove    | erases a file                                                   |
-|          |    rename    | renames a file                                                  |
-|          |   tmpfile    | pointer to tmp file                                             |
-|----------+--------------+-----------------------------------------------------------------|
-| [[https://en.wikibooks.org/wiki/C_Programming/stdlib.h][stdlib.h]] |              | General utilities                                               |
-|          |    size_t    |                                                                 |
-|          |    malloc    |                                                                 |
-|          |    getenv    |                                                                 |
-|          |    system    |                                                                 |
-|          |     exit     |                                                                 |
-|          |   bsearch    |                                                                 |
-|          |    qsort     |                                                                 |
-|          |     abs      |                                                                 |
-|          |     div      |                                                                 |
-|          |    random    |                                                                 |
-|          |     ato?     |                                                                 |
-|          |    strto?    |                                                                 |
-|          |    abort     | cause abnomal process termination                               |
-|          | EXIT_SUCCESS |                                                                 |
-|          | EXIT_FAILURE |                                                                 |
-|----------+--------------+-----------------------------------------------------------------|
-| [[https://en.wikibooks.org/wiki/C_Programming/string.h][string.h]] |    size_t    | String handling                                                 |
-|          |    memcpy    |                                                                 |
-|----------+--------------+-----------------------------------------------------------------|
+|----------+--------------+----------------------------------------------------------------------|
+|      <r> |     <c>      |                                                                      |
+|   HEADER |      fn      |                                                                      |
+|----------+--------------+----------------------------------------------------------------------|
+| assert.h |    assert    | Conditionally compiled macro that compares its argument to zero      |
+|  ctype.h |              | Functions to determine the type contained in ~character~ data        |
+|  errno.h |    errno     | Macros reporting error conditions                                    |
+|  float.h |              | Limits of floating-point types                                       |
+|   time.h |              | Time/date utilities                                                  |
+| limits.h |              | Ranges of integer types                                              |
+| locale.h |              | Localization utilities                                               |
+|   [[https://en.wikibooks.org/wiki/C_Programming/math.h][math.h]] |     fabs     | Common mathematics functions                                         |
+|  paths.h |              | constants with string paths of common LINUX files                    |
+| setjmp.h |              | Nonlocal jumps                                                       |
+| signal.h |              | Signal handling                                                      |
+| stdarg.h |   va_start   | Allows variable arguments functions                                  |
+|          |    va_arg    |                                                                      |
+|          |    va_end    |                                                                      |
+|----------+--------------+----------------------------------------------------------------------|
+| stddef.h |     NULL     | Common macro definitions                                             |
+|          |    size_t    |                                                                      |
+|----------+--------------+----------------------------------------------------------------------|
+|  [[https://en.wikibooks.org/wiki/C_Programming/stdio.h][stdio.h]] |              | Input/output. Most return EOF (-1) on error.                         |
+|          |    fopen     | open a stream                                                        |
+|          |    fclose    | close a stream                                                       |
+|          |    fread     | reads from stream, elements not bytes                                |
+|          |    fgetc     | reads int character from stream                                      |
+|          |    fwrite    | writes into stream                                                   |
+|          |   fprintf    | writes into stream                                                   |
+|          |   sprintf    | to string, does NOT check size of string                             |
+|          |   snprintf   | to string                                                            |
+|          |    printf    | returns the nr of chars printed, or negative number on error         |
+|          |   getchar    |                                                                      |
+|          |   getline    | mallocs line to given buffer, realloc if needed                      |
+|          |    scanf     |                                                                      |
+|          |     puts     |                                                                      |
+|          |    remove    | erases a file                                                        |
+|          |    rename    | renames a file                                                       |
+|          |   tmpfile    | pointer to tmp file                                                  |
+|          |    perror    | prints human readable *errno*                                        |
+|----------+--------------+----------------------------------------------------------------------|
+| [[https://en.wikibooks.org/wiki/C_Programming/stdlib.h][stdlib.h]] |              | General utilities                                                    |
+|          |    size_t    |                                                                      |
+|          |    malloc    |                                                                      |
+|          |    getenv    |                                                                      |
+|          |    system    |                                                                      |
+|          |     exit     |                                                                      |
+|          |   bsearch    |                                                                      |
+|          |    qsort     |                                                                      |
+|          |     abs      |                                                                      |
+|          |     div      |                                                                      |
+|          |    random    |                                                                      |
+|          |     ato?     |                                                                      |
+|          |    strto?    |                                                                      |
+|          |    abort     | cause abnomal process termination                                    |
+|          | EXIT_SUCCESS |                                                                      |
+|          | EXIT_FAILURE |                                                                      |
+|----------+--------------+----------------------------------------------------------------------|
+| [[https://en.wikibooks.org/wiki/C_Programming/string.h][string.h]] |    size_t    | String handling                                                      |
+|          |    memcpy    |                                                                      |
+|          |    strdup    |                                                                      |
+|          |    strtok    | split string by delimiter, modifies src string                       |
+|          |    strsep    | split string by delimiter, modifies src string, handles empty fields |
+|          |   strerror   | returns a string of *errno*                                          |
+|----------+--------------+----------------------------------------------------------------------|
 
 - stdarg.h
   - va_start(va_list, LAST_KNOWN_NAMED) - initializes va_list
@@ -341,14 +457,15 @@ https://en.wikipedia.org/wiki/C_data_types
     (int [m]){8,6,3,1,2,3,4,5,6}
     (int []){8,6,3,1,2,3,4,5,6}
   #+end_src
-- ~designated initializers~, nice for unions or structs (to avoid confusion) or arrays
+- ~designated initializers~, nice for unions or structs (to avoid confusion) or arrays (zero out not given fields)
   #+begin_src c
     glop g1 = { .i = 10}
     glop g2 = { .d = 12.3 }
+    glap g4 = { .customer.id = 20 }
     int x[10] = { 0, 0, 0, 8, 0, 0, 0,  2}
     int x[10] = { [3] = 8, [7] = 2 }
   #+end_src
-- ~variable length arrays~ VLAs, declaring and as parameters
+- ~variable length arrays~ VLAs, declaring them and as parameters (stack allocated!!!)
   #+begin_src c
     void f(size_t m, size_t n) {
       int x[m][n];
@@ -406,38 +523,42 @@ https://en.wikipedia.org/wiki/C23_(C_standard_revision)
 - sys/wait.h
   - waits for state changes in a child of the calling process
   - returns the pid of the process that changed state
-|----------------+--------------------------------------------------|
-|      <c>       |                                                  |
-|     aio.h      | Asynchronous input and output.                   |
-|    fmtmsg.h    | Message display structures.                      |
-|    iconv.h     | Codeset conversion facility.                     |
-|   langinfo.h   | Language information constants.                  |
-|    libgen.h    | Definitions for pattern matching functions.      |
-|   monetary.h   | Monetary types.                                  |
-|    mqueue.h    | Message queues (REALTIME).                       |
-|     ndbm.h     | Definitions for ndbm database operations.        |
-|    netdb.h     | Definitions for network database operations.     |
-|   nl_types.h   | Data types.                                      |
-|     poll.h     | Definitions for the poll() function.             |
-|    regex.h     | Regular expression matching types.               |
-|    sched.h     | Execution scheduling.                            |
-|   strings.h    | String operations.                               |
-|   stropts.h    | STREAMS interface (STREAMS).                     |
-|   sys/mman.h   | POSIX memory management declarations.            |
-| sys/resource.h | Definitions for XSI resource operations.         |
-|  sys/select.h  | Select types.                                    |
-|   sys/shm.h    | XSI shared memory facility.                      |
-| sys/statvfs.h  | VFS File System information structure.           |
-|   sys/time.h   | Time and date functions and structures.          |
-|  sys/types.h   | Various data types used elsewhere.               |
-|   sys/uio.h    | Definitions for vector I/O operations.           |
-| sys/utsname.h  | uname and related structures.                    |
-|    syslog.h    | Definitions for system error logging.            |
-|   termios.h    | Allows terminal I/O interfaces.                  |
-|    trace.h     | Tracing.                                         |
-|    unistd.h    | Various essential POSIX functions and constants. |
-|   wordexp.h    | Word-expansion types.                            |
-|----------------+--------------------------------------------------|
+|------------+----------+--------------------------------------------------|
+|    <c>     |          |                                                  |
+|   aio.h    |          | Asynchronous input and output.                   |
+|  fmtmsg.h  |          | Message display structures.                      |
+|  iconv.h   |          | Codeset conversion facility.                     |
+| langinfo.h |          | Language information constants.                  |
+|  libgen.h  |          | Definitions for pattern matching functions.      |
+| monetary.h |          | Monetary types.                                  |
+|  netdb.h   |          | Definitions for network database operations.     |
+| nl_types.h |          | Data types.                                      |
+|   poll.h   |          | Definitions for the poll() function.             |
+|  regex.h   | regcomp  | Regular expression matching types.               |
+|            | regexec  |                                                  |
+|            | regerror |                                                  |
+|            | regfree  |                                                  |
+|  sched.h   |          | Execution scheduling.                            |
+| strings.h  |          | String operations.                               |
+| stropts.h  |          | STREAMS interface (STREAMS).                     |
+|  syslog.h  |          | Definitions for system error logging.            |
+| termios.h  |          | Allows terminal I/O interfaces.                  |
+|  trace.h   |          | Tracing.                                         |
+|  unistd.h  |          | Various essential POSIX functions and constants. |
+| wordexp.h  |          | Word-expansion types.                            |
+|------------+----------+--------------------------------------------------|
+*** sys/
+|----------------+---+------------------------------------------|
+| sys/mman.h     |   | POSIX memory management declarations.    |
+| sys/resource.h |   | Definitions for XSI resource operations. |
+| sys/select.h   |   | Select types.                            |
+| sys/shm.h      |   | XSI shared memory facility.              |
+| sys/statvfs.h  |   | VFS File System information structure.   |
+| sys/time.h     |   | Time and date functions and structures.  |
+| sys/types.h    |   | Various data types used elsewhere.       |
+| sys/uio.h      |   | Definitions for vector I/O operations.   |
+| sys/utsname.h  |   | uname and related structures.            |
+|----------------+---+------------------------------------------|
 *** account
 |---------+-----------------------------------------------|
 | grp.h   | User group information and control.           |
@@ -445,15 +566,17 @@ https://en.wikipedia.org/wiki/C23_(C_standard_revision)
 | utmpx.h | User accounting database definitions.         |
 |---------+-----------------------------------------------|
 *** datastructure
-|-------------+-----------------------|
-| search.h    | Search tables.        |
-| semaphore.h | Semaphores.           |
-| sys/sem.h   | POSIX semaphores.     |
-| sys/msg.h   | POSIX message queues. |
-|-------------+-----------------------|
+|-------------+----------------------------|
+| mqueue.h    | Message queues (REALTIME). |
+| search.h    | Search tables.             |
+| semaphore.h | Semaphores.                |
+| sys/sem.h   | POSIX semaphores.          |
+| sys/msg.h   | POSIX message queues.      |
+|-------------+----------------------------|
 *** file format
 |--------+--------------------------------------------|
 | cpio.h | Magic numbers for the cpio archive format. |
+| ndbm.h | Definitions for ndbm database operations.  |
 | tar.h  | Magic numbers for the tar archive format.  |
 |--------+--------------------------------------------|
 *** filesystem
@@ -510,7 +633,54 @@ https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference/unistd.h
 - MSVCRT.DLL -> UCRTBASE.DLL (C99-ish) https://en.wikipedia.org/wiki/Microsoft_Windows_library_files#Runtime_libraries
 - sockets https://en.wikipedia.org/wiki/Winsock
 ** Linux
+- alloca.h: allocs memory in stack
 - execinfo.h: backtrace https://man7.org/linux/man-pages/man3/backtrace.3.html
+** printf
+|-----+-----------------------------------------|
+| <r> |                                         |
+|     | a space, leaves a space for sign symbol |
+|   + | always prints sign symbol               |
+|   * | takes width as an argument              |
+|  .* | takes decimal precision from argument   |
+|   N | aligns right                            |
+|  -N | aligns left                             |
+|  .N | decimal precision                       |
+|-----+-----------------------------------------|
+* Gotchas
+- ME: (like bash) small differences can make a lot
+* Snippets
+
+** read file line by line
+#+begin_src c
+  FILE *file = fopen("foo", "r");
+  char *line = NULL;
+  size_t line_buffer_len = 0;
+  size_t read_size = 0;
+  while ((read_size = getline(&line, &line_buffer_len, file)) != -1)
+    {
+      line[read_size-1] = '\0';
+      printf("line='%s'\n", line);
+    }
+  free(line);
+  assert(feof(file));
+  fclose(file);
+#+end_src
+
+** regex.h
+
+#+begin_src c
+  regex_t preg;
+  assert(!recomp(&preg, "ab*", REG_EXTENDED|REG_ICASE));
+
+  int result = regexec(&preg, "abb", 0, NULL, 0);
+  if (result == 0)
+    puts("match");
+  else if (result == REG_NOMATCH)
+    puts("no match");
+
+  regfree(&preg);
+#+end_src
+
 ** sockets
 *** basic
 
@@ -525,197 +695,3 @@ https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference/unistd.h
   bind(s, opts)
   listen(s, BACKLOG)
   accept(s) // wait
-
-*** 0x00sec - Remote Shells
-****   I Use Cases
-https://0x00sec.org/t/remote-shells-part-i/269/1
-
-- Remote Access:
-  In the cases when is NOT possible to deploy a service like "ssh" or "telnet"
-  you can easily write your own remote shell program.
-
-- Types of Remote Shells
-  - Direct: act like servers
-  - Reverse: the application "calls back home" to a specifict server/port
-
-**** client
-
-#+begin_src c
-  #include <stdio.h>
-  #include <stdlib.h>
-  #include <unistd.h>
-  #include <sys/socket.h>
-  #include <arpa/inet.h>
-
-  int client_init(char *ip, int port) {
-    int s;
-    if ((s = socket(AF_INET; SOCK_STREAM, 0) < 0) {
-        perror("socket:");
-        exit(EXIT_FAILURE);
-    }
-
-    struct sockaddr_in serv;
-    serv.sin_family = AF_INET;
-    serv.sin_port = htons(port);
-    serv.sin_addr.s_s_addr = inet_addr(ip);
-    if (connect(s, (struct sockaddr *)&serv, sizeof(serv)) < 0) {
-      perror("connect:");
-      exit(EXIT_FAILURE);
-    }
-
-    return s;
-  }
-#+end_src
-
-**** server
-
-#+begin_src c
-  inet server_init(int port) {
-    int s;
-    if ((s = socket(AF_INET, SOCK_STREAM, 0) < 0)) {
-      perror("socket:");
-      exit(EXIT_FAILURE);
-    }
-
-    struct sockaddr_in serv;
-    serv.sin_family = AF_INET;
-    serv.sin_port = htons(port);
-    serv.sin_addr.s_addr = htonl(INADDR_ANY);
-    if ((bind(s, (struct sockaddr *)&serv, sizeof(struct sockaddr_in))) < 0) {
-      perror("bind:");
-      exit(EXIT_FAILURE);
-    }
-    if ((listen(s, 10)) < 0) {
-      perror("listen:");
-      exit(EXIT_FAILURE);
-    }
-
-    socklen_t clen = sizeof(struct sockaddr_in);
-    struct sockaddr_in client;
-    int s1;
-    if ((s1 = accept(s, (struct sockaddr *) &client, &clen)) < 0) {
-      perror("accept:");
-      exit(EXIT_FAILURE);
-    }
-    return s1;
-  }
-#+end_src
-
-**** start_shell
-
-#+begin_src c
-  int start_shell(int s) {
-    dup2(s, 0);
-    dup2(s, 1);
-    dup2(s, 2);
-    char *name[3];
-    name[0] = "/bin/sh";
-    name[1] = "-i";
-    name[2] = NULL;
-    execve(name[0], name);
-    exit(1);
-    return 0;
-  }
-#+end_src
-
-****  II Crypt your link
-- https://0x00sec.org/t/remote-shells-part-ii-crypt-your-link/306
-- https://en.wikipedia.org/wiki/Loop_unrolling
-
-- SocketPair
-  - Used to transfer data
-  - Are a pair of sockets that are immediatly connected
-    Something like runing a client and a server in 1 call
-  - Kind of like a bidirectional PIPE
-  - Convenient IPC
-
-- secure_shell()
-  | Parent       | Child              |
-  |--------------+--------------------|
-  | socketpair() |                    |
-  | fork()       | fork()             |
-  | close(sp[0]) | close(sp[1])       |
-  | async_read() | start_shell(sp[0]) |
-
-- async_read()
-  select()
-  memset()
-  read()
-  memfrob()
-
-- We use stdin socket as the input socket for async_read() on main()
-
-**** III Shell Access your Phone
-- setsockopt() - SO_REUSEADDR
-
-* (in)security
-- banned stdlib functions in git source https://github.com/git/git/blob/master/banned.h
-- Passing user supplied data to ~printf~ first/format argument, can result in a security vulnerability
-- A Guide to Undefined Behavior in C and C++, Part 1
-  https://blog.regehr.org/archives/213
-- https://github.com/microsoft/checkedc
-- https://fastcompression.blogspot.com/2019/01/writing-safer-c-code.html
-- https://github.com/gerasdf/InsecureProgramming/
-- https://github.com/hardik05/Damn_Vulnerable_C_Program
-** Sanitizers
-|-------+----------------------------+-------------|
-|   <r> |                            |             |
-|       |                            | -fsanitize= |
-|-------+----------------------------+-------------|
-| UBSan | undefined behavior         | undefined   |
-|  ASan | addressing of memory       | address     |
-|  MSan | uninitialized memory usage | memory      |
-|  TSan | thread concurrency bugs    | thread      |
-|-------+----------------------------+-------------|
-- valgrind, fuzzers, libcheck, pvs
-- https://tek256.com/posts/code-hardening/
-- Static http://splint.org/
-- video fuzzers 15 [[https://www.youtube.com/watch?v=qTkYDA0En6U][Beyond Sanitizers...]] by Kostya Serebryany
-- https://www.youtube.com/watch?v=Q2C2lP8_tNE
-- https://github.com/google/sanitizers/wiki/AddressSanitizer
-- https://valgrind.org/docs/manual/quick-start.html
-- https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html
-* Tools
-- cscout [[https://github.com/dspinellis/cscout][source]] [[https://www.spinellis.gr/cscout/][home]]
-- clang-format
-  - https://emacs.stackexchange.com/questions/55635/how-can-i-set-up-clang-format-in-emacs
-    clang-format -style=llvm -dump-config > .clang-format
-** Editors
-- emacs
-  - http://blog.lujun9972.win/emacs-document/blog/2018/03/22/emacs-as-a-c++-ide/index.html
-  - https://vxlabs.com/2016/04/11/step-by-step-guide-to-c-navigation-and-completion-with-emacs-and-the-clang-based-rtags/
-- clangd
-  - autoformat configuration options https://bcain-llvm.readthedocs.io/projects/clang/en/latest/ClangFormatStyleOptions/
-  - vim https://github.com/rhysd/vim-clang-format
-- Visual Studio https://visualstudio.microsoft.com/
-- Eclipse CDT https://projects.eclipse.org/projects/tools.cdt
-- CLion https://www.jetbrains.com/clion/
-  - Paid
-- Code::Blocks https://www.codeblocks.org/
-  - 2020 last version
-** Compilers
-- gcc https://gcc.gnu.org/
-- clang https://clang.llvm.org/
-- tcc
-  - http://www.tendra.org/tdfc2-config/#S11.2
-  - https://github.com/tendra/tendra/wiki/About
-* Benchmarks
-- Benchmark: https://www.wilfred.me.uk/blog/2014/10/20/the-fastest-bigint-in-the-west/
-- Benchmark: FFI https://github.com/dyu/ffi-overhead
-  - Golang is 40x slower than C
-  - Haskell,Ocaml(opt),Rust are on par with C
-  - Ocaml(C) is 4x slower
-  - LuaJit is faster than C, https://github.com/dyu/ffi-overhead/issues/2#issuecomment-405834411
-    "Using JITing to skip PLT inderection"
-    "Same on C would be -fno-plt"
-* Gotchas
-- ME: (like bash) small differences can make a lot
-* GCC
-|--------------------------+---------------------------|
-| -pedantic                | notify portability issues |
-| -std=                    | c89,c90,c99...            |
-| -ansi                    | -std=c90                  |
-| -Wmisleading-indentation | when not using braces     |
-| -Wimplicit-fallthrough   |                           |
-| -Wswitch-enum            |                           |
-|--------------------------+---------------------------|

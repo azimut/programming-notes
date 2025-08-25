@@ -1,3 +1,4 @@
+- Linux Programming with C by Nir Lichtman https://www.youtube.com/playlist?list=PL0tgH22U2S3Giz-yIxVQTEKIZpMBP0tMf
 - talks https://nullprogram.com/blog/2018/11/21/
 - Channel. https://www.youtube.com/@antirez/videos
 - Channel: https://www.youtube.com/@Mr4thProgramming/videos
@@ -392,3 +393,52 @@ https://www.youtube.com/watch?v=bpCJf67e1lI
   #+end_src
 - strtod() - string to double
   strtof() - string to float
+* TODO 23 | Programming in Modern C                | Dawid Zalewski
+
+- 31:00
+- https://www.youtube.com/watch?v=lLv1s7rKeCM
+- most things default to *int*
+- struct definitions can be on the return type of a function directly
+- typeof()
+- *auto* for storage duration specification and (in C23) for type inference
+- 23 -std=C2X
+  - constexpr
+  - bool (without include)
+  - nullptr
+
+- initialization
+  - { } for struct, array, for floats(?
+  - {0} Empty Initialization, zero outs (on C23 you don't need the 0)
+  - { .foo = 0 } Designated Initializers
+    - =zero outs fields not explicitly initialized=
+    - can be mixed with positional ones (ME: ugh!)
+    - can be nested, even with multiple dots (!)
+  - { [1] = 0 } Designated Initializers for subscripts
+    - rest zero'd
+
+- pointers, arrays, functions
+- zeroing, assigning
+- fragile resource managment
+- macro magic
+
+** Example
+
+#+begin_src c
+  struct Rect{ struct {long n;}; } will_it_run(bool yes_or_no) {
+    typeof(yes_or_no) should_segfault = { !yes_or_no };
+    constexpr int SZ = {6};
+    double array[SZ] = {
+      [4] = 2.3, 3.2,
+      [0] = 3.1, 4.2
+    };
+    auto num = puts((void*)(array));
+    auto ptr = &(struct Rect){ .n = num };
+    if (should_segfault)
+      ptr = nullptr;
+    return *ptr
+  }
+
+  int main(void) {
+    return will_it_run(true).n;
+  }
+#+end_src

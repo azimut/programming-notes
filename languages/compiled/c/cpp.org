@@ -4,4 +4,45 @@
     - file inclusion
     - macro expansion
     - conditional compilation
+#+begin_src
+ preprocessor -> compiler -> linker
+     cpp      ->   gcc    ->  ld
+#+end_src
+
+
+- macro arguments
+  - use # before the argname to refer to the variable name as a string
+  - use ## to dinamically generate a new varname
+  - get automatically converted to strings
+
+- no overlap with C
 - 23 article https://hackaday.com/2023/03/16/the-x-macro-a-historic-preprocessor-hack/
+
+* Directives
+
+#+begin_src c
+  #include
+  #define FOO 2
+  #define BAR(x,y) ((x) + (y))
+  #define PRINTF_LOOP(iterations, ...) do {  \
+    for (int i = 0; i < (iterations); i++) { \
+      printf(__VA_ARGS__); \
+    }
+  #define GENERIC_ADD_FUNC(type)      \
+    type add_##type(type x, type y) { \
+      return x + y;                   \
+    }
+  GENERIC_ADD_FUNC(float)
+#+end_src
+
+* Snippets
+
+- add a new scope, if we have local variables on the macro. Use a DO-WHILE(0) to support inside an IF
+  #+begin_src c
+    #define SUM_RANGE(start, end) {         \
+      int sum = 0;                          \
+      for (int x = (start); x < (end); x++) \
+        sum += x;                           \
+      printf("sum: %d\n", sum);             \
+    };
+  #+end_src

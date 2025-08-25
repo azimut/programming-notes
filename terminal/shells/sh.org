@@ -80,3 +80,7 @@
 | take-last | tail -n 5 | last 5        |
 | drop-last | head -n-5 | skips last 5  |
 |-----------+-----------+---------------|
+
+* gotchas
+
+- line buffering happens by default (see stdbuf -oL)

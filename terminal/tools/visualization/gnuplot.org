@@ -31,39 +31,44 @@
 ** commands
 |-------+------------------------------------|
 |   <r> |                                    |
-| unset | OPT                                |
-|   set | OPT [VAL]                          |
+| unset | OPTION                             |
+|   set | OPTION [VALUE]                     |
 |  with | (l)ines[*], dots[.], lines(points) |
 |-------+------------------------------------|
-** options
-|--------------------+-------------------+----------------------------------|
-|        <c>         |        <c>        |                                  |
-|                    |     argument      | description                      |
-|--------------------+-------------------+----------------------------------|
-|      samples       |         N         | ????                             |
-|       border       |        [N]        | axis lines                       |
-|     [x¦y]tics      | [nomirror¦rotate] | axis numbers                     |
-|        grid        |         -         | axis grid                        |
-|        key         |  [LR] [[no]box]   | the box with key labels          |
-|--------------------+-------------------+----------------------------------|
-|       xdata        |       time        | tells x axis is a date/time      |
-|      encoding      |       utf8        |                                  |
-|      timefmt       |        FMT        | input format string              |
-| datafile separator |         S         | input separator (default: space) |
-|--------------------+-------------------+----------------------------------|
-|       title        |         S         | the                              |
-|       format       |     [x¦y] FMT     | tic format string                |
-|      logscale      |     [x¦y] [N]     | with step N                      |
-|     [x¦y]label     |         S         | axis label                       |
-|     [x¦y]range     |       [N:N]       | axis range                       |
-|     autoscale      |    [[x¦y]fix]     | prevents autoextend of scale     |
-|       output       |         S         | saves into filepath at S         |
-|--------------------+-------------------+----------------------------------|
-|       pause        |         N         | seconds to pause                 |
-|      +reread+      |         -         | REMOVED in 6.0 +reread input+    |
-|--------------------+-------------------+----------------------------------|
+** options (setteable)
+|------------+-------------------+----------------------------------|
+|    <c>     |        <c>        |                                  |
+|            |     argument      | description                      |
+|------------+-------------------+----------------------------------|
+|   border   |        [N]        | axis lines                       |
+| [x¦y]tics  | [nomirror¦rotate] | axis numbers                     |
+| [x¦y]label |         S         | axis label                       |
+| [x¦y]range |       [N:N]       | axis range                       |
+|    grid    |         -         | axis grid                        |
+|    key     |  [LR] [[no]box]   | the box with key labels          |
+|------------+-------------------+----------------------------------|
+|  samples   |         N         | ????                             |
+|   xdata    |       time        | tells x axis is a date/time      |
+|  encoding  |       utf8        |                                  |
+|  timefmt   |        FMT        | input format string              |
+|  datafile  |    separator S    | input separator (default: space) |
+|------------+-------------------+----------------------------------|
+|   title    |         S         | the                              |
+|   format   |     [x¦y] FMT     | tic format string                |
+|  logscale  |     [x¦y] [N]     | with step N                      |
+| autoscale  |    [[x¦y]fix]     | prevents autoextend of scale     |
+|   output   |         S         | saves into filepath at S         |
+|   style    | fill transparent  |                                  |
+|            |      solid F      |                                  |
+|            |     noborder      |                                  |
+|            |    data lines     |                                  |
+|------------+-------------------+----------------------------------|
+|   pause    |         N         | seconds to pause                 |
+|  +reread+  |         -         | REMOVED in 6.0 +reread input+    |
+|------------+-------------------+----------------------------------|
 ** plot
 - plot
+  - /dev/stdin
   - using N:N+1:N+n
   - smooth [bezier¦mcsplines]
 - imagesc - matrix/heatmap - 2d contour
@@ -103,4 +108,6 @@
 - 20 Voxel plotting with gnuplot 5.4 https://lwn.net/Articles/828761/
 - 24 Gnuplot 6 comes with pie https://lwn.net/Articles/961003/
 * videos
+- 24 gnuplot bootcamp https://www.youtube.com/watch?v=vu_LBbqI-oQ
+  - 4:47 end overview
 - https://www.youtube.com/playlist?list=PLaYBfUc8SG7W4cTZprVWjbtwrottWuk8c
