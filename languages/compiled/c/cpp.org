@@ -1,38 +1,57 @@
 - https://en.wikipedia.org/wiki/C_preprocessor
-  - 1973
-  - provides
-    - file inclusion
-    - macro expansion
-    - conditional compilation
+- 1973
+- No overlap with C
+- Features:
+  - file inclusion
+  - macro expansion
+  - conditional compilation
+
 #+begin_src
  preprocessor -> compiler -> linker
      cpp      ->   gcc    ->  ld
 #+end_src
 
-
-- macro arguments
+- Arguments
   - use # before the argname to refer to the variable name as a string
   - use ## to dinamically generate a new varname
   - get automatically converted to strings
 
-- no overlap with C
 - 23 article https://hackaday.com/2023/03/16/the-x-macro-a-historic-preprocessor-hack/
 
 * Directives
 
+|---------+----------+----------+----------|
+| #if     | #elif    | #else    | #endif   |
+| #ifdef  | #ifndef  | #elifdef | #elfndef |
+| #define | #undef   | #include | #embed   |
+| #line   | #error   | #warning | #pragma  |
+| defined | __FILE__ | __LINE__ |          |
+|---------+----------+----------+----------|
+
 #+begin_src c
-  #include
+  #include <stdio.h>
   #define FOO 2
   #define BAR(x,y) ((x) + (y))
+  // Variadic Arguments
   #define PRINTF_LOOP(iterations, ...) do {  \
     for (int i = 0; i < (iterations); i++) { \
       printf(__VA_ARGS__); \
     }
+  // Defining functions per type
   #define GENERIC_ADD_FUNC(type)      \
     type add_##type(type x, type y) { \
       return x + y;                   \
     }
   GENERIC_ADD_FUNC(float)
+#+end_src
+
+** C23 #embed - GCC 15
+
+https://developers.redhat.com/articles/2025/01/30/how-implement-c23-embed-gcc-15#
+#+begin_src c
+  const unsigned char icon_data[] = {
+    #embed "art.png"
+  };
 #+end_src
 
 * Snippets

@@ -1,21 +1,12 @@
-- Linux Programming with C by Nir Lichtman https://www.youtube.com/playlist?list=PL0tgH22U2S3Giz-yIxVQTEKIZpMBP0tMf
-- talks https://nullprogram.com/blog/2018/11/21/
 - Channel. https://www.youtube.com/@antirez/videos
 - Channel: https://www.youtube.com/@Mr4thProgramming/videos
-- 15 | Advice for Writing Small Programs in C  https://www.youtube.com/watch?v=eAhWIO1Ra6M
-- tic-tac toe https://www.youtube.com/watch?v=gCVMkKgs3uQ
-- 11 Advanced C Coding For Fun! by Rusty Russell https://www.youtube.com/watch?v=BEQ3sRakIs0
-- 08 Writing application fault handlers by Gilad Ben-Yossef https://bootlin.com/pub/video/2008/ols/ols2008-gilad-ben-yossef-fault-handlers.ogg
+- Linux Programming with C by Nir Lichtman https://www.youtube.com/playlist?list=PL0tgH22U2S3Giz-yIxVQTEKIZpMBP0tMf
+- Talks https://nullprogram.com/blog/2018/11/21/
 - 90 [[https://archive.org/details/learning-c-programming-viagrafix-1990][Learning C Programming (Viagrafix, 1990)]]
-- Tips for C Programming https://www.youtube.com/watch?v=9UIIMBqq1D4
-- Tsoding
-  - Genetic Programming https://www.youtube.com/playlist?list=PLpM-Dvs8t0VZhPhStYD0aS30Y1awAv-DO
-  - Lisp in C https://www.youtube.com/playlist?list=PLpM-Dvs8t0VYbTFO5tBwxG4Q20BJuqXD_
-  - Virtual Machine in C https://www.youtube.com/playlist?list=PLpM-Dvs8t0VY73ytTCQqgvgCWttV3m8LM
-  - Build System in C https://www.youtube.com/playlist?list=PLpM-Dvs8t0VZpih2sTx6povEocoKEUBnk
-  - Cellular Automata https://www.youtube.com/playlist?list=PLpM-Dvs8t0VYX7q4RQsx6mOSWFDzvvnxg
-  - GC in C https://www.youtube.com/playlist?list=PLpM-Dvs8t0VYuYxRxjfnkdHvosHH8faqc
-  - Mini Excel in C https://www.youtube.com/playlist?list=PLpM-Dvs8t0VYfQc5dq21Vc81G1rGHwkmT
+- 08 Writing application fault handlers by Gilad Ben-Yossef https://bootlin.com/pub/video/2008/ols/ols2008-gilad-ben-yossef-fault-handlers.ogg
+- 11 [[https://www.youtube.com/watch?v=BEQ3sRakIs0][Advanced C Coding For Fun!]] by Rusty Russell
+- 15 [[https://www.youtube.com/watch?v=eAhWIO1Ra6M][Advice for Writing Small Programs in C]] by Sean Barret
+- 24 [[https://www.youtube.com/watch?v=9UIIMBqq1D4][Tips for C Programming]] by Nic Barker
 
 * Course: 6.S081: Learning by doing
 
@@ -144,8 +135,8 @@ that much is familiar inside kernels such as Linux.
   You can register file/line and create counters for it.
   for malloc() realloc() free()
   #define malloc(n) f_debug_mem_malloc(n, __FILE__, __LINE__)
-* 19 | "New" Features in C                    | Daniel Saks
-   https://www.youtube.com/watch?v=ieERUEhs910
+* 19 |"New" Features in C                     | Daniel Saks
+https://www.youtube.com/watch?v=ieERUEhs910
 - C++ dev, working also on C
 - Reserved identifiers
   - for global scope, starting with undersore
@@ -157,104 +148,227 @@ that much is familiar inside kernels such as Linux.
      for loop variables declared at the beginning
   C99 relaxed it, and allows declaration after
      for loop variables declared inplace
-* 21 | Checking out raylib                    | Tsoding
+* TODO 21 | Modern C and What We Can Learn From It | Luca Sas
 
-https://www.youtube.com/watch?v=fHojJ9Nxb0E
+- 39:00
+- https://www.youtube.com/watch?v=QpAhX-gsHMs
+- WG14 Standarization Group https://www.open-std.org/jtc1/sc22/wg14/
+- instead of using malloc/fopen, ask for allocators iocallbacks, or buffers from the user
+- centralization of resource managment (custom allocators, system-wide resource managers)
+- macro: to differentiate between c++ and c
+  #+begin_src c
+    #ifdef __cplusplus
+    #endif
+  #+end_src
+- C11
+  - atomics (replaces C89atomics)
+  - thread_local (replaces C99 compiler extensions)
+  - static_assert()
+  - =_Generic= and Overloading
+    #+begin_src c
+      #define min(a,b) _Generic((a), float: minf(a,b), int: mini(a,b))
+    #+end_src
 
- 03:22:00 START
+- macro: Dynamic array
+  - stb_ds.h
 
-- is like an engine as a library
-- a zero initialized structure, is a convention that should be handled
-  by the functions handling them
-  = {0}
+** Example: using sokol gfx, we describe a pipeline, we initialize the others to 0/default
+#+begin_src c
+  sg_pipeline_desc pip_desc = {
+    .layout = {
+      .buffers[0].stride = 28,
+      .attrs = {
+        [ATTR_vs_position].format = SG_VERTEXFORMAT_FLOAT3,
+        [ATTR_vs_color0].format   = SG_VERTEXFORMAT_FLOAT4
+      }
+    },
+    .shared = shd,
+    .index_type = SG_INDEXTYPE_UINT16,
+    .depth_stencil = {
+      .depth_compare_func = SG_COMPAREFUNC_LESS_EQUAL,
+      .depth_write_enagled = true,
+    }
+    .rasterizer.cull_mode = SG_CULLMODE_BACK,
+    .rasterizer.sample_count = SAMPLE_COUNT,
+    .label = "cube-pipeline"
+  };
+#+end_src
 
-** Example: minimal example
+** macro: defer-like, begin-end
 
 #+begin_src c
-  #include "raylib.h"
-  #define SCREEN_WIDTH 800
-  #define SCREEN_HEIGHT 600
-  int main(void) {
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "raylib probe");
-    while (!WindowShouldClose()) {
-      BeginDrawing();
-      CLearBackground(BLACK);
-      EndDrawing();
-    }
-    return 0;
+  #define macro_var(name) concat(name, __LINE__)
+  #define defer(start,end) for (     \
+     int macro_var(_i_) = (start,0); \
+     !macro_var(_i_);                \
+     (macro_var(_i_) += 1), end)
+
+  #define profile defer(profile_begin(), profile_end())
+  profile
+  {
+   ...
+  }
+
+  #define gui defer(gui_begin(),gui_end()
+  gui
+  {
+    ...
   }
 #+end_src
 
-* 21 | Modern C and What We Can Learn From It | Luca Sas
-   https://www.youtube.com/watch?v=QpAhX-gsHMs
-- WG14 Standarization Group https://www.open-std.org/jtc1/sc22/wg14/
-- designated initializers, initialize everything else to 0
-- header macro to differentiate between c++ and c
-  __cplusplus
-- Instead using malloc/fopen ask for allocators iocallbacks
-- static_assert()
-- Example: using sokol gfx, we describe a pipeline, we initialize the others to 0/default
+** macro: defer-like, scope
+#+begin_src c
+  file_handle_t file = file_open(filename, file_mode_read);
+  scope(file_close(file))
+  {
+    ...
+  }
+#+end_src
+
+** API Design
+
+- Value Oriented Design: https://youtu.be/QpAhX-gsHMs?t=1227
+  - passing arguments by values is prefered in "Modern C"
+
+*** Error Handling
+
+- traditionally checking return codes one by one
+- or with a *goto*
+- NEW: return a struct with a *valid* field
   #+begin_src c
-    sg_pipeline_desc pip_desc = {
-      .layout = {
-        .buffers[0].stride = 28,
-        .attrs = {
-          [ATTR_vs_position].format = SG_VERTEXFORMAT_FLOAT3,
-          [ATTR_vs_color0].format   = SG_VERTEXFORMAT_FLOAT4
-        }
-      },
-      .shared = shd,
-      .index_type = SG_INDEXTYPE_UINT16,
-      .depth_stencil = {
-        .depth_compare_func = SG_COMPAREFUNC_LESS_EQUAL,
-        .depth_write_enagled = true,
-      }
-      .rasterizer.cull_mode = SG_CULLMODE_BACK,
-      .rasterizer.sample_count = SAMPLE_COUNT,
-      .label = "cube-pipeline"
+    typedef struct file_contents_t {
+      char *data;
+      isize_t size;
+      valid_t valid; // <----- aka a "bool"
+      error_code_t valid; // <----- enum?
+    } file_contents_t;
+  #+end_src
+
+- It "chains" well (similar-ish to Optional for valid, or Result for error_code)
+  #+begin_src c
+    file_contents_t fc = read_file_contents("milo.cat");
+    image_t img = load_image_from_file_contents(fc);
+    texture_t texture = load_texture_from_image(img);
+    if (texture.valid) {
+    }
+  #+end_src
+
+*** Unions: We can refer to the same thing in different ways
+
+#+CAPTION: example from "Hand Made Math" library
+#+begin_src c
+  typedef union hmm_vec2 {
+    struct { float X, Y; };
+    struct { float U, V; };
+    struct { float Left, Right; };
+    struct { float Width, Height; };
+    float Elements[2];
+  } hmm_vec2;
+#+end_src
+
+* DONE 23 | Programming in Modern C                | Dawid Zalewski
+
+- 01:14:00
+- https://www.youtube.com/watch?v=lLv1s7rKeCM
+- most things default to *int*
+- struct definitions can be on the return type of a function directly
+- typeof()
+- *auto* for storage duration specification and (in C23) for type inference
+- 23 -std=C2X
+  - constexpr
+  - bool (without include)
+  - nullptr
+- zeroing, assigning, ephemeral lvalues
+  - Compound Literals
+
+** Example
+
+#+begin_src c
+  struct Rect{ struct {long n;}; } will_it_run(bool yes_or_no) {
+    typeof(yes_or_no) should_segfault = { !yes_or_no };
+    constexpr int SZ = {6};
+    double array[SZ] = {
+      [4] = 2.3, 3.2,
+      [0] = 3.1, 4.2
     };
-  #+end_src
-- C11 =_Generic= and Overloading
-  #define min(a,b) _Generic((a), float. minf(a,b), int: mini(a,b))
-- defer macro
+    auto num = puts((void*)(array));
+    auto ptr = &(struct Rect){ .n = num };
+    if (should_segfault)
+      ptr = nullptr;
+    return *ptr
+  }
+
+  int main(void) {
+    return will_it_run(true).n;
+  }
+#+end_src
+** initialization
+  - { } for struct, array, for floats(?
+  - {0} Empty Initialization, zero outs (on C23 you don't need the 0)
+  - { .foo = 0 } Designated Initializers
+    - =zero outs fields not explicitly initialized=
+    - can be mixed with positional ones (ME: ugh!)
+    - can be nested, even with multiple dots (!)
+  - { [1] = 0 } Designated Initializers for subscripts
+    - rest zero'd
+** pointers, arrays, functions
+- use VLA style for function array arguments
   #+begin_src c
-    #define macro_var(name) concat(name, __LINE__)
-    #define defer(start,end) for (     \
-       int macro_var(_i_) = (start,0); \
-       !macro_var(_i_);                \
-       (macro_var(_i_) +=, end)
-    #define profile defer(profile_begin(), profile_end())
-    profile
-    {
-     ...
-    }
-    #define gui defer(gui_begin(),gui_end()
-    gui
-    {
-      ...
-    }
+  void g(size_t n, int numbers[n]) {} // for unintialized arrays
+  void g(size_t n, int numbers[static n]) {} // for valid arrays
   #+end_src
-- scope macro
+** Macro Magic: Designated initiliazers as keyword arguments
+
   #+begin_src c
-    file_handle_t file = file_open(filename, file_mode_read);
-    scope(file_close(file))
-    {
-      ...
-    }
+    image_s *blur_(image_s img[static 1], blur_params_s params[static 1]);
+    // Macro to make it's usage more like "keyword arguments"
+    #define blur(img, ...) blur_((img), &(blur_params_s){__VA_ARGS__})
+    // Macro with custom default values...with warnings...
+    #define blur(img, ...) blur_((img), &(blur_params_s){.width=32,__VA_ARGS__})
+    blur(&img, .width=64, .in_place=true)
   #+end_src
-- Unions: We can refer to the same thing in different ways
+
+** Fragile Resource Managment:
+
+  You cannot longer: make an array of this, be a member of other struct, direct init.
+  You can skip a malloc. And do it in 1(one) go. Ensuring contiguous memory.
   #+begin_src c
-    typedef union hmm_vec2
-    {
-      struct { float X, Y; };
-      struct { float U, V; };
-      struct { float Left, Right; };
-      struct { float Width, Height; };
-      float Elements[2];
-    } hmm_vec2;
+    typedef struct string {
+      size_t sz_arr;
+      size_t length;
+      char arr[]; // <--- flexible array member, must be at the END
+    } string_s;
   #+end_src
-- Error: return a struct with a *valid* field
-* 21 | Searching duplicate files with C       | Tsoding
+
+** Macro Magic: _Generic (C11)
+#+begin_src c
+  #define scale(obj, scale)             \
+    _Generic((obj),                     \
+             Rectangle_s* : scale_rect, \
+             Circle_s*    : scale_circ  \
+             )                          \
+    ((obj),(scale))
+#+end_src
+
+** Macro Magic: Variadic Overload
+
+#+begin_src c
+  #define scale2p(obj, ...)        \
+    _Generic( (obj),               \
+      Rectangle_s* : scale_rect_2p \
+      )((obj), __VA_ARGS__)
+#+end_src
+
+* Tsoding
+- 17 tic-tac toe https://www.youtube.com/watch?v=gCVMkKgs3uQ
+- Genetic Programming https://www.youtube.com/playlist?list=PLpM-Dvs8t0VZhPhStYD0aS30Y1awAv-DO
+- Lisp in C https://www.youtube.com/playlist?list=PLpM-Dvs8t0VYbTFO5tBwxG4Q20BJuqXD_
+- Virtual Machine in C https://www.youtube.com/playlist?list=PLpM-Dvs8t0VY73ytTCQqgvgCWttV3m8LM
+- Build System in C https://www.youtube.com/playlist?list=PLpM-Dvs8t0VZpih2sTx6povEocoKEUBnk
+- Cellular Automata https://www.youtube.com/playlist?list=PLpM-Dvs8t0VYX7q4RQsx6mOSWFDzvvnxg
+- GC in C https://www.youtube.com/playlist?list=PLpM-Dvs8t0VYuYxRxjfnkdHvosHH8faqc
+- Mini Excel in C https://www.youtube.com/playlist?list=PLpM-Dvs8t0VYfQc5dq21Vc81G1rGHwkmT
+** 21 | Searching duplicate files with C
 00:53:00
 https://www.youtube.com/watch?v=bpCJf67e1lI
 - Task: Hashing each file
@@ -294,23 +408,46 @@ https://www.youtube.com/watch?v=bpCJf67e1lI
   #+end_src
 - to be able to perform an action on each file, WITHOUT interacting with the recursion of readdir()
   we creates a wrapper API struct that keep an array of DIR* around
-* 21 | Using C instead of Bash                | Tsoding
+** 21 | Checking out raylib
+
+https://www.youtube.com/watch?v=fHojJ9Nxb0E
+
+ 03:22:00 START
+
+- is like an engine as a library
+- a zero initialized structure, is a convention that should be handled
+  by the functions handling them
+  = {0}
+
+*** Example: minimal example
+
+#+begin_src c
+  #include "raylib.h"
+  #define SCREEN_WIDTH 800
+  #define SCREEN_HEIGHT 600
+  int main(void) {
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "raylib probe");
+    while (!WindowShouldClose()) {
+      BeginDrawing();
+      CLearBackground(BLACK);
+      EndDrawing();
+    }
+    return 0;
+  }
+#+end_src
+
+** 21 | Using C instead of Bash
 - for(; *argv != NULL; argv++) can have a missing initialization parameter
 *** shlex
-- python package https://docs.python.org/3/library/shlex.html
+- Python Package https://docs.python.org/3/library/shlex.html
+  - *shlex.quote*, escapes a string to be parsed by a command
 - strchr()
   - locates a character in string
-- python shlex.quote, escapes a string to be parsed by a command
-- we do string concatenation by
+- We do string concatenation by
   - doing a single memory allocation of an array of charj
   - and providing an API to memcpy into it cstrings
-- gdb
-  > break shell_escape
-  > run
-  > tui enable
-  > n
-* 21 | Minicel                                | Tsoding
-** TODO 1 https://www.youtube.com/watch?v=HCAgvKQDJng
+** 21 | Minicel
+*** TODO 1 https://www.youtube.com/watch?v=HCAgvKQDJng
 01:26:00
 - uses ~size_t~ for anything related to array indices
 - Implementation of C++'s StringView in C https://github.com/tsoding/sv
@@ -393,52 +530,3 @@ https://www.youtube.com/watch?v=bpCJf67e1lI
   #+end_src
 - strtod() - string to double
   strtof() - string to float
-* TODO 23 | Programming in Modern C                | Dawid Zalewski
-
-- 31:00
-- https://www.youtube.com/watch?v=lLv1s7rKeCM
-- most things default to *int*
-- struct definitions can be on the return type of a function directly
-- typeof()
-- *auto* for storage duration specification and (in C23) for type inference
-- 23 -std=C2X
-  - constexpr
-  - bool (without include)
-  - nullptr
-
-- initialization
-  - { } for struct, array, for floats(?
-  - {0} Empty Initialization, zero outs (on C23 you don't need the 0)
-  - { .foo = 0 } Designated Initializers
-    - =zero outs fields not explicitly initialized=
-    - can be mixed with positional ones (ME: ugh!)
-    - can be nested, even with multiple dots (!)
-  - { [1] = 0 } Designated Initializers for subscripts
-    - rest zero'd
-
-- pointers, arrays, functions
-- zeroing, assigning
-- fragile resource managment
-- macro magic
-
-** Example
-
-#+begin_src c
-  struct Rect{ struct {long n;}; } will_it_run(bool yes_or_no) {
-    typeof(yes_or_no) should_segfault = { !yes_or_no };
-    constexpr int SZ = {6};
-    double array[SZ] = {
-      [4] = 2.3, 3.2,
-      [0] = 3.1, 4.2
-    };
-    auto num = puts((void*)(array));
-    auto ptr = &(struct Rect){ .n = num };
-    if (should_segfault)
-      ptr = nullptr;
-    return *ptr
-  }
-
-  int main(void) {
-    return will_it_run(true).n;
-  }
-#+end_src

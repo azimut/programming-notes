@@ -448,11 +448,15 @@ As a pointer type
 |----------+---+------------------------------------------------------------------|
 ** ANSI/ISO C99/C9X
 - https://en.wikipedia.org/wiki/C99
+- https://en.cppreference.com/w/c/compiler_support/99.html
 *** features
 
 - inline for functions
-- ~compound literals~, where rational is a typedef struct with 2 members
+- ~Compound Literals~, where rational is a typedef struct with 2 members
+  Create an unnamed object, an *lvalue* (can be assigned or taken an address of it).
   #+begin_src c
+    mktime(&(struct tm){ .tm_year=2021, .tm_mon=6,... })
+    (Person) { "john", "smith", 40 }
     (rational){1,2}
     (int [m]){8,6,3,1,2,3,4,5,6}
     (int []){8,6,3,1,2,3,4,5,6}
@@ -465,17 +469,28 @@ As a pointer type
     int x[10] = { 0, 0, 0, 8, 0, 0, 0,  2}
     int x[10] = { [3] = 8, [7] = 2 }
   #+end_src
-- ~variable length arrays~ VLAs, declaring them and as parameters (stack allocated!!!)
+- ~Variable Length Arrays~ VLAs, declaring them and as parameters (stack allocated!!!)
   #+begin_src c
     void f(size_t m, size_t n) {
       int x[m][n];
+    }
+    // also works and warns with malloc() arrays
+    void g(size_t n, int numbers[n]) {} // for unintialized arrays
+    void g(size_t n, int numbers[static n]) {} // for valid arrays
+    void h(size_t n, int* numbers) {} // instead of...
+    // single object
+    void g(const char str[static 1]) {} // ensure isn't NULL
   #+end_src
-- ~flexible array members~, useful for packet-like structures
+- ~Flexible Array Members~, useful for packet-like structures
+  You cannot longer: make an array of this, be a member of other struct, direct init.
+  You can skip a malloc. And do it in 1(one) go. Ensuring contiguous memory.
   #+begin_src c
     struct packet {
       header h;
-      data d[]; // THIS
-    }
+      data d[]; // <--- flexible array member, must be at the END
+    };
+  #+end_src
+
   #+end_src
 
 *** headers
@@ -490,6 +505,7 @@ As a pointer type
 |            | INT<n>_MAX  |                                                          |
 |------------+-------------+----------------------------------------------------------|
 ** ANSI/ISO C11/C1X
+
 https://en.wikipedia.org/wiki/C11_(C_standard_revision)
 |---------------+---+----------------------------------------|
 |           <r> |   |                                        |
@@ -499,16 +515,34 @@ https://en.wikipedia.org/wiki/C11_(C_standard_revision)
 |     threads.h |   | Thread library                         |
 |       uchar.h |   | UTF-16 and UTF-32 character utilities  |
 |---------------+---+----------------------------------------|
+
+- C11 =_Generic= and Overloading
+#+begin_src c
+  #define _Generic(x, \ // <------- controlling expression
+    T1 : expr1, \   // <---Types
+    T2 : expr2, \
+    default : expr_def)
+#+end_src
+
 ** ANSI/ISO C17/C18
 - https://en.wikipedia.org/wiki/C17_(C_standard_revision)
 - bugfix of C11
 ** ANSI/ISO C23
-https://en.wikipedia.org/wiki/C23_(C_standard_revision)
+- https://en.wikipedia.org/wiki/C23_(C_standard_revision)
+- https://en.cppreference.com/w/c/compiler_support/23
 |-------------+---+---------------------------------------------------------------|
 |         <r> |   |                                                               |
 |    stdbit.h |   | macros to work with the byte and bit representations of types |
 | stdckdint.h |   | macros for performing checked integer arithmetic              |
 |-------------+---+---------------------------------------------------------------|
+
+- -std=C2X
+- constexpr (instead of #define, to define constants at compile time, with a type)
+  - can be used on char* if NULL
+  - cannot be used on char* otherwise
+- bool (without needing to #include)
+- nullptr (typesafe NULL)
+
 ** POSIX
 - Portable Opearting System Interface (for UNIX)
 - https://en.wikipedia.org/wiki/POSIX

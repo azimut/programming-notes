@@ -81,6 +81,7 @@
 |     info      |    threads     |                               |
 |  symbol-file  |      PATH      | gives file with debug symbols |
 |    layout     |      src       | TUI mode                      |
+|      tui      |                |                               |
 |---------------+----------------+-------------------------------|
 - C-x-a - toggles between TUI mode and CLI mode
 - C-x-2 - shows asm
