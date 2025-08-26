@@ -312,6 +312,7 @@ As a pointer type
   #+end_src
 
 ** control flow
+
 - conditionally run *statements* based on a controlling *expression*
 - if/else if/else
 - switch/case/default
@@ -333,11 +334,10 @@ As a pointer type
 - https://en.cppreference.com/w/c/header
 - https://en.wikibooks.org/wiki/Category:Book:C_Programming
 - https://en.wikipedia.org/wiki/ANSI_C
+- K&R C - 1978 - from the book with Brian Kernighan
 - gcc/gnu extensions https://gcc.gnu.org/onlinedocs/gcc/C-Extensions.html
   - linux kernel uses them https://maskray.me/blog/2024-05-12-exploring-gnu-extensions-in-linux-kernel
   - also implemented by clang
-- K&R C - 1978 - from the book with Brian Kernighan
-
 - banned stdlib functions
   - https://wiki.openstack.org/wiki/StarlingX/Security/Banned_C_Functions
   - in git https://github.com/git/git/blob/master/banned.h
@@ -346,7 +346,15 @@ As a pointer type
     - sprintf, vsprintf
     - gmtime, localtime, ctime, ctime_r, asctime, asctime_r
 
-** ANSI/ISO C89/C90
+** _STDC_VERSION_
+|-----+---------|
+| C18 | 201710L |
+| C11 | 201112L |
+| C99 | 199901L |
+| C90 | 1       |
+|-----+---------|
+** ANSI/ISO C89/C90 1
+
 - https://en.wikipedia.org/wiki/C_data_types
 - https://en.wikipedia.org/wiki/C_character_classification
 - https://en.wikipedia.org/wiki/C_string_handling
@@ -358,6 +366,7 @@ As a pointer type
 - https://en.wikipedia.org/wiki/C_process_control
 - https://en.wikipedia.org/wiki/C_signal_handling
 - https://en.wikipedia.org/wiki/C_alternative_tokens
+- Variable declarations have to happen at the top
 - assert(0 && "TODO: description");
 |----------+--------------+----------------------------------------------------------------------|
 |      <r> |     <c>      |                                                                      |
@@ -382,6 +391,8 @@ As a pointer type
 |          |    size_t    |                                                                      |
 |----------+--------------+----------------------------------------------------------------------|
 |  [[https://en.wikibooks.org/wiki/C_Programming/stdio.h][stdio.h]] |              | Input/output. Most return EOF (-1) on error.                         |
+|          |     EOF      | a macro                                                              |
+|          |     FILE     | a type                                                               |
 |          |    fopen     | open a stream                                                        |
 |          |    fclose    | close a stream                                                       |
 |          |    fread     | reads from stream, elements not bytes                                |
@@ -430,15 +441,6 @@ As a pointer type
   - va_arg(va_list, TYPE)
   - va_end(va_list)
 
-- Example: using qsort
-  #+begin_src c
-    int compar(const void *x1, const void *x2) {
-      return (*(int*)x2) - (*(int*)x1);
-    }
-    int xs[] = {1,2,3,4,5,6,7,8,9,10};
-    qsort(xs, 10, sizeof(int), compar);
-  #+end_src
-
 ** ANSI/ISO C95
 |----------+---+------------------------------------------------------------------|
 |      <r> |   |                                                                  |
@@ -446,14 +448,42 @@ As a pointer type
 |  wchar.h |   | Extended multibyte and wide character utilities                  |
 | wctype.h |   | Functions to determine the type contained in wide character data |
 |----------+---+------------------------------------------------------------------|
-** ANSI/ISO C99/C9X
+** ANSI/ISO C99/C9X 199901L
+
 - https://en.wikipedia.org/wiki/C99
 - https://en.cppreference.com/w/c/compiler_support/99.html
-*** features
 
-- inline for functions
-- ~Compound Literals~, where rational is a typedef struct with 2 members
-  Create an unnamed object, an *lvalue* (can be assigned or taken an address of it).
+*** headers
+|------------+----------------+----------------------------------------------------------|
+|        <r> |      <c>       |                                                          |
+|  complex.h |                | ~Complex number~ arithmetic                              |
+|     fenv.h |                | Floating-point environment                               |
+| inttypes.h |                | Format conversion of integer types                       |
+|   tgmath.h |                | Type-generic math (macros wrapping math.h and complex.h) |
+|  stdbool.h |      bool      | Macros for boolean type                                  |
+|            |   false (0)    |                                                          |
+|            |    true (1)    |                                                          |
+|   [[https://en.wikibooks.org/wiki/C_Programming/stdint.h][stdint.h]] |  [u]int<n>_t   | Fixed-width integer types                                |
+|            | int_least<n>_t | where N is 8,16,32, you get smallest that can represent  |
+|            | int_fast<n>_t  | where N is 8,16,32                                       |
+|            |  [u]intptr_t   |                                                          |
+|            |   INT<n>_MAX   |                                                          |
+|------------+----------------+----------------------------------------------------------|
+*** features
+- // comments
+- __func__
+- ~long long~ _type_
+- ~restrict~ as a _type qualifier_ for pointers
+  - to enable compiler optimizations
+  - to flag that not *pointer aliasing* is happening
+    - aka there are no 2 or more pointers to the same storage
+- ~_Complex~ numbers, with complex.h you can use ~complex~
+- ~inline~ for function clarity. Replaced a macro usage. Can take its address.
+  - definition should be on the .h (?
+  - declaration on .c
+- ~Compound Literals~,
+  - where "rational" is a typedef struct with 2 members
+  - creates an unnamed object, an *lvalue* (can be assigned or taken an address of it).
   #+begin_src c
     mktime(&(struct tm){ .tm_year=2021, .tm_mon=6,... })
     (Person) { "john", "smith", 40 }
@@ -461,7 +491,10 @@ As a pointer type
     (int [m]){8,6,3,1,2,3,4,5,6}
     (int []){8,6,3,1,2,3,4,5,6}
   #+end_src
-- ~designated initializers~, nice for unions or structs (to avoid confusion) or arrays (zero out not given fields)
+- ~Designated Initializers~
+  - unions: gives you a way to select which one initialize
+  - structs: to avoid order confusions
+  - arrays: also zero outs not given fields
   #+begin_src c
     glop g1 = { .i = 10}
     glop g2 = { .d = 12.3 }
@@ -491,22 +524,21 @@ As a pointer type
     };
   #+end_src
 
-  #+end_src
+** ANSI/ISO C11/C1X 201112L
+
+- https://en.wikipedia.org/wiki/C11_(C_standard_revision)
+- Static assertions, checked at compile time, after typing
+- Anonymous structs and unions
+- _Thread_local storage class specifier
+- C11 =_Generic= and Overloading
+#+begin_src c
+  #define _Generic(x, \ // <------- controlling expression
+    T1 : expr1, \   // <---Types
+    T2 : expr2, \
+    default : expr_def)
+#+end_src
 
 *** headers
-|------------+-------------+----------------------------------------------------------|
-|        <r> |     <c>     |                                                          |
-|  complex.h |             | ~Complex number~ arithmetic                              |
-|     fenv.h |             | Floating-point environment                               |
-| inttypes.h |             | Format conversion of integer types                       |
-|   tgmath.h |             | Type-generic math (macros wrapping math.h and complex.h) |
-|  stdbool.h |             | Macros for boolean type                                  |
-|   [[https://en.wikibooks.org/wiki/C_Programming/stdint.h][stdint.h]] | [u]int<n>_t | Fixed-width integer types                                |
-|            | INT<n>_MAX  |                                                          |
-|------------+-------------+----------------------------------------------------------|
-** ANSI/ISO C11/C1X
-
-https://en.wikipedia.org/wiki/C11_(C_standard_revision)
 |---------------+---+----------------------------------------|
 |           <r> |   |                                        |
 |    stdalign.h |   | alignas and alignof convenience macros |
@@ -516,18 +548,12 @@ https://en.wikipedia.org/wiki/C11_(C_standard_revision)
 |       uchar.h |   | UTF-16 and UTF-32 character utilities  |
 |---------------+---+----------------------------------------|
 
-- C11 =_Generic= and Overloading
-#+begin_src c
-  #define _Generic(x, \ // <------- controlling expression
-    T1 : expr1, \   // <---Types
-    T2 : expr2, \
-    default : expr_def)
-#+end_src
-
-** ANSI/ISO C17/C18
+** ANSI/ISO C17/C18 201710L
 - https://en.wikipedia.org/wiki/C17_(C_standard_revision)
 - bugfix of C11
+- no new features
 ** ANSI/ISO C23
+
 - https://en.wikipedia.org/wiki/C23_(C_standard_revision)
 - https://en.cppreference.com/w/c/compiler_support/23
 |-------------+---+---------------------------------------------------------------|
@@ -729,3 +755,12 @@ https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference/unistd.h
   bind(s, opts)
   listen(s, BACKLOG)
   accept(s) // wait
+** qsort
+
+#+begin_src c
+  int compar(const void *x1, const void *x2) {
+    return (*(int*)x2) - (*(int*)x1);
+  }
+  int xs[] = {1,2,3,4,5,6,7,8,9,10};
+  qsort(xs, 10, sizeof(int), compar);
+#+end_src

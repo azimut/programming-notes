@@ -17,6 +17,7 @@
   - get automatically converted to strings
 
 - 23 article https://hackaday.com/2023/03/16/the-x-macro-a-historic-preprocessor-hack/
+- ?? video Everything you want to know about C/C++ pre-processor https://www.youtube.com/watch?v=OAuRkAAh6Hk
 
 * Directives
 
@@ -25,7 +26,7 @@
 | #ifdef  | #ifndef  | #elifdef | #elfndef |
 | #define | #undef   | #include | #embed   |
 | #line   | #error   | #warning | #pragma  |
-| defined | __FILE__ | __LINE__ |          |
+| defined | __FILE__ | __LINE__ | __func__ |
 |---------+----------+----------+----------|
 
 #+begin_src c

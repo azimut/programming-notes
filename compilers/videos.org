@@ -1,0 +1,4 @@
+- 15 [[https://www.youtube.com/watch?v=LCslqgM48D4][So you want to write an interpreter?]] by Alex Gaynor
+- 15 [[https://www.youtube.com/watch?v=-E2tu3MqR24][Write your own compiler in 24 hours]] by Phil Trelford
+- 15 [[https://www.youtube.com/watch?v=DspYurD75Ns][Rise of the Transpilers]] by Jeremy Ashkenas
+- 13 [[https://www.youtube.com/watch?v=RPxvx9OkNic][Let's Write an Interpreter]] by Ryan Davis

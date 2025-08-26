@@ -5,8 +5,10 @@
 - 90 [[https://archive.org/details/learning-c-programming-viagrafix-1990][Learning C Programming (Viagrafix, 1990)]]
 - 08 Writing application fault handlers by Gilad Ben-Yossef https://bootlin.com/pub/video/2008/ols/ols2008-gilad-ben-yossef-fault-handlers.ogg
 - 11 [[https://www.youtube.com/watch?v=BEQ3sRakIs0][Advanced C Coding For Fun!]] by Rusty Russell
+- 14 [[https://vimeo.com/97505677][Insecure coding in C and C++]] by Olve Maudal
 - 15 [[https://www.youtube.com/watch?v=eAhWIO1Ra6M][Advice for Writing Small Programs in C]] by Sean Barret
-- 24 [[https://www.youtube.com/watch?v=9UIIMBqq1D4][Tips for C Programming]] by Nic Barker
+- 15 Hacking C for fun and Profit https://www.youtube.com/watch?v=bVxfwsgO00o
+- 24 [[https://www.youtube.com/watch?v=RCPrPSowi0g][Normalization of the C programming language]] by Jens Gustedt
 
 * Course: 6.S081: Learning by doing
 
@@ -37,7 +39,10 @@ that much is familiar inside kernels such as Linux.
 - video https://www.youtube.com/watch?v=443UNeGrFoM
 - uses c89, c99 is too new and broken (fixed on c11)
 - does NOT use: goto, register, do, continue, auto, volatile
-- "ambiguity is the enemy" - in reference to having a programming language that does a thing in 2 lines of code
+- "ambiguity is the enemy"
+  - in reference to
+    - missmatched expectations between the code read and what the code does
+    - having a programming language that does a thing in 2 lines of code
 ** Timestamps
  0:00  intro
 5:00  garbage collection is not suitable for high performance scenarios
@@ -78,39 +83,46 @@ that much is familiar inside kernels such as Linux.
 2:09:56  magical random number generator
 2:10:30  closing
 ** About C++
-  - it tries to be clever
-  - It tries to hide things, not explicit
-  - which is the root of all evil
-  - Examples:
-    - ~operator overloading~
-      eg: on vector multiplication: is it dot product or pairwise multiplication?
-      where i could have used =vector_dot()= and =vector_mul()=
-    - ~overloading~
-      eg: what happens when on an add(X,Y) defined on same types. I mix different types?
-      where I could have used =addf()=, (ME: like in ocaml)
-    - ~on js: undefined field on an object~ the compiler won't complain, it will just return undefined(?)
-** words used for naming things
-  - handle, pointer to opaqe data structure
-  - func, funtion pointer OR function used as function pointer
-  - internal, function internal to a module
+
+- it tries to be clever
+- it tries to hide things, not explicit
+- which is the root of all evil
+- Examples:
+  - ~operator overloading~
+    - eg: on vector multiplication: is it dot product or pairwise multiplication?
+    - where i could have used =vector_dot()= and =vector_mul()=
+  - ~overloading~
+    - eg: what happens when on an add(X,Y) defined on same types. I mix different types?
+    - where I could have used =addf()=, (ME: like in ocaml)
+  - ~on js: undefined field on an object~ the compiler won't complain, it will just return undefined(?)
+
 ** long functions are good
-  - have more code that "does something"
-  - instead of code that handles code
+- have more code that "does something"
+- instead of code that handles code
 ** a swedish fighter jet's code has only 1 main(), that calls functions and those functions NEVER call anything else
   - reduces indirection
 ** naming
-  - Have long names, wide code is better, more descriptive
-  - words that complement each other: create/destroy, load,unload
-  - use:
-    - object_action()
-    - module_object_action()
-  - files
-    - s_draw_font.c
-      s_draw_internal.h
-      s_widget_buttons.c
-      s_widgtet_sliders.c
-      seduce.h
+
+- Have long names, wide code is better, more descriptive
+- _use words that complement each other_: create/destroy, load,unload
+- eg:
+  - object_action()
+  - module_object_action()
+- files
+  - s_draw_font.c
+  - s_draw_internal.h
+  - s_widget_buttons.c
+  - s_widgtet_sliders.c
+  - seduce.h
+
+*** words used for naming things
+
+- handle, pointer to opaqe data structure
+- func, funtion pointer OR function used as function pointer
+- internal, function internal to a module
+
 ** OO in C
+
 - other languages try to fool that it is something that has both code and data in it
   which is not true on modern systems (aka separate memory spaces)
 - object_create()
@@ -127,6 +139,7 @@ that much is familiar inside kernels such as Linux.
         // ...
       } RShader;
     #+end_src
+
 ** Macros 00:50:00
 - Doesn't like them
 - One reason to use them is to duplicate A LOT of code for different types
@@ -135,19 +148,18 @@ that much is familiar inside kernels such as Linux.
   You can register file/line and create counters for it.
   for malloc() realloc() free()
   #define malloc(n) f_debug_mem_malloc(n, __FILE__, __LINE__)
-* 19 |"New" Features in C                     | Daniel Saks
+* DONE 19 |"New" Features in C                     | Daniel Saks
 https://www.youtube.com/watch?v=ieERUEhs910
 - C++ dev, working also on C
 - Reserved identifiers
-  - for global scope, starting with undersore
+  - for global scope, those starting with undersore
   - for all, starting with 2 underscores, or underscore and uppercase
-- C90 _STDC_
-- C99 _STDC_VERSION_
-- C99 long long
-- C90 you couldn't declare after the first line
-     for loop variables declared at the beginning
-  C99 relaxed it, and allows declaration after
-     for loop variables declared inplace
+- C90 _STDC_ is "1" if fully implements "Standard C"
+- C99 _STDC_VERSION_ to which version of the standard is used
+  - 201710L for C18
+  - 201112L for C11
+  - 199901L for C99
+  -      1  for C90
 * TODO 21 | Modern C and What We Can Learn From It | Luca Sas
 
 - 39:00
@@ -358,6 +370,9 @@ https://www.youtube.com/watch?v=ieERUEhs910
       Rectangle_s* : scale_rect_2p \
       )((obj), __VA_ARGS__)
 #+end_src
+
+* 24 | Tips for C Programming                 | Nic Barker
+https://www.youtube.com/watch?v=9UIIMBqq1D4
 
 * Tsoding
 - 17 tic-tac toe https://www.youtube.com/watch?v=gCVMkKgs3uQ
