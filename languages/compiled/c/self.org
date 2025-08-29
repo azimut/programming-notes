@@ -383,6 +383,7 @@ As a pointer type
 |  paths.h |              | constants with string paths of common LINUX files                    |
 | setjmp.h |              | Nonlocal jumps                                                       |
 | signal.h |              | Signal handling                                                      |
+|          |    raise     | sends a signal to the caller process or thread (if single ~kill())   |
 | stdarg.h |   va_start   | Allows variable arguments functions                                  |
 |          |    va_arg    |                                                                      |
 |          |    va_end    |                                                                      |
@@ -708,6 +709,8 @@ https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference/unistd.h
 |-----+-----------------------------------------|
 * Gotchas
 - ME: (like bash) small differences can make a lot
+- pointing to an object in an array might lead to dangling pointers on array resize
+  - solution: store the index (or generational indexes)
 * Snippets
 
 ** read file line by line

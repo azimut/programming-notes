@@ -1,3 +1,9 @@
+- emacs
+  - runner https://github.com/abo-abo/helm-make
+  - runner https://github.com/Olivia5k/makefile-executor.el
+  - template https://github.com/abo-abo/make-it-so
+  - template https://github.com/nick96/basic-c-compile/tree/335e96e19647ad7245fb68cf7e68cf86c5023d23
+
 - 94 [[https://www.nesssoftware.com/home/mwc/doc/coherent/manual/pdf/make.pdf][The make Programming Discipline]]
 - 98 [[https://aegis.sourceforge.net/auug97.pdf][Recursive Make Consided Harmful]]
 - 13 [[http://web.archive.org/web/20131218224259/http://zmjones.com:80/make/][GNU Make for Reproducible Data Analysis]]

@@ -6,6 +6,9 @@
 - emacs
   - http://blog.lujun9972.win/emacs-document/blog/2018/03/22/emacs-as-a-c++-ide/index.html
   - https://vxlabs.com/2016/04/11/step-by-step-guide-to-c-navigation-and-completion-with-emacs-and-the-clang-based-rtags/
+- ccls
+  - https://github.com/MaskRay/ccls/wiki/Project-Setup#ccls-file
+  - https://github.com/MaskRay/ccls/wiki/Customization#clangextraargs--clangexcludeargs
 - clangd
   - autoformat configuration options https://bcain-llvm.readthedocs.io/projects/clang/en/latest/ClangFormatStyleOptions/
   - vim https://github.com/rhysd/vim-clang-format
@@ -29,4 +32,21 @@
 | -Wmisleading-indentation | when not using braces     |
 | -Wimplicit-fallthrough   |                           |
 | -Wswitch-enum            |                           |
+| -fms-extensions          |                           |
 |--------------------------+---------------------------|
+*** -fms-extensions
+
+https://gcc.gnu.org/onlinedocs/gcc/Unnamed-Fields.html
+allows a go'like structure embedding
+
+#+begin_src c
+  typedef struct Shape {
+    int id;
+    Mat4 transformation;
+    MaterialPhong material;
+  } Shape;
+
+  typedef struct Sphere {
+    Shape; // s.transformation, being s a Sphere
+  } Sphere;
+#+end_src

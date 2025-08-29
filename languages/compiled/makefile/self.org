@@ -187,10 +187,16 @@ https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html
 
 - https://www.gnu.org/software/make/manual/html_node/Functions.html
 - do NOT add spaces between arguments, functions will see it
-|-------+-----+---------------------------------|
-|   <r> | <c> |                                 |
-| shell | cmd | exec and replaces \n with space |
-|-------+-----+---------------------------------|
+|---------+------------------------+--------------------------------------------|
+|     <r> |          <c>           |                                            |
+|   [[https://www.gnu.org/software/make/manual/html_node/Shell-Function.html][shell]] |          cmd           | exec and replaces *\n* with space          |
+| [[https://www.gnu.org/software/make/manual/html_node/Foreach-Function.html][foreach]] |  varname, list , text  | foreach V in L, runs and returns each TEXT |
+|     [[https://www.gnu.org/software/make/manual/html_node/Let-Function.html][let]] | varname...,[list],text | simple expanded, only in scope             |
+|      [[https://www.gnu.org/software/make/manual/html_node/Conditional-Functions.html][if]] |    cond, expr, expr    | conditional expansion, expands only needed |
+|      or |    cond, [cond...]     | expands to first non-empty cond            |
+|     and |    cond, [cond...]     | expands to last if all non-empty           |
+|  intcmp |    l,r[,lp,eqp,rp]     | integer comparison of l & r                |
+|---------+------------------------+--------------------------------------------|
 
 *** strings
 https://www.gnu.org/software/make/manual/html_node/Text-Functions.html
@@ -202,8 +208,8 @@ https://www.gnu.org/software/make/manual/html_node/Text-Functions.html
 | firstword  |     text      |                                           |
 |  lastword  |     text      |                                           |
 | findstring |  needle,text  | returns "needle" or "" if not in text     |
-|   filter   |  pat%..,text  | remove words that match "pat%"            |
-| filter-out |  pat%..,text  | remove words that do NOT match "pat%"     |
+|   filter   | pat%...,text  | remove words that match "pat%"            |
+| filter-out | pat%...,text  | remove words that do NOT match "pat%"     |
 |    sort    |     text      | sort words, remove dups                   |
 |   strip    |     text      | trim and squash whitespaces               |
 |   subst    | from,to,text  | substitute literal words                  |
@@ -211,18 +217,18 @@ https://www.gnu.org/software/make/manual/html_node/Text-Functions.html
 |------------+---------------+-------------------------------------------|
 *** filenames
 https://www.gnu.org/software/make/manual/html_node/File-Name-Functions.html
-|-----------+----------------+-------------------------------------------------|
-|    <c>    |      <c>       |                                                 |
-|   join    |   list,list    | zipWith (<>)                                    |
-| wildcard  |   glob*Path    | filesystem match, space separated if many       |
-| (not)dir  |    names..     | like shell's basename/dirname                   |
-|  abspath  |    names..     | absolute path, might not exist, no follow links |
-| realpath  |    names..     | absolute path, must exist                       |
-| basename  |    names..     | removes suffix/extension                        |
-|  suffix   |    names..     | extract suffix                                  |
-| addsuffix | suffix,names.. |                                                 |
-| addprefix | prefix,names.. |                                                 |
-|-----------+----------------+-------------------------------------------------|
+|-----------+---------------+-------------------------------------------------|
+|    <c>    |      <c>      |                                                 |
+|   join    | xs... , xs... | zipWith (<>)                                    |
+| wildcard  |   glob*Path   | filesystem match, space separated if many       |
+| (not)dir  |     xs...     | like shell's basename/dirname                   |
+|  abspath  |     xs...     | absolute path, might not exist, no follow links |
+| realpath  |     xs...     | absolute path, must exist                       |
+| basename  |     xs...     | removes suffix/extension                        |
+|  suffix   |     xs...     | extract suffix                                  |
+| addsuffix | suffix, xs... |                                                 |
+| addprefix | prefix, xs... |                                                 |
+|-----------+---------------+-------------------------------------------------|
 ** control flow
 
 https://www.gnu.org/software/make/manual/html_node/Conditional-Syntax.html
@@ -268,6 +274,20 @@ task1:
   #+begin_src makefile
  SHELL      = /bin/bash -o pipefail
 .SHELLFLAGS = -eu -o pipefail -c
+  #+end_src
+
+- *$(foreach)* expansion
+  #+begin_src makefile
+    dirs := a b c d
+    files := $(foreach dir,$(dirs),$(wildcard $(dir)/*))
+  #+end_src
+
+- dynamically generating targets, each with their correspondent dependency
+  #+begin_src makefile
+IMGS   := $(wildcard org/images/*/*.jpg)
+THUMBS := $(subst .jpg,.thumb.jpg,$(IMGS))
+$(THUMBS): %.thumb.jpg: %.jpg
+	convert $< -resize 240x $@
   #+end_src
 
 * gotchas
