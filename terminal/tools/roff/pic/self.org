@@ -2,6 +2,9 @@
 #+DATE: <2025-04-08 mar>
 #+KEYWORDS: pic, dpic, gpic, roff, groff, pikchr, programming, cheatsheet, quick reference
 
+#+CAPTION: Brian Kernighan in 82's
+[[./bk82.jpg]]
+
 |------+--------+------------------------+-----+---------------------|
 | <c>  |  <c>   |          <c>           | <c> |                     |
 | 1984 |  pic   |        [[https://en.wikipedia.org/wiki/PIC_(markup_language)][wiki]] [[https://pikchr.org/home/uv/pic.pdf][doc]]        | ps  | Brian Kernighan(42) |
