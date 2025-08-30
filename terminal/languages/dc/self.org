@@ -2,6 +2,9 @@
 #+DATE: <2025-01-11 sáb>
 #+KEYWORDS: dc, desk calculator, programming, cheatsheet, quick reference
 
+#+CAPTION: Morris and Cherry on 1974
+[[./morrischerry74-bright.png]]
+
 |--------+-----------------|
 |  <c>   |       <c>       |
 | manual |     [[https://www.gnu.org/software/bc/manual/dc-1.05/html_mono/dc.html][gnu]] [[https://wolfram.schneider.org/bsd/7thEdManVol2/dc/dc.html][bsd]]     |
@@ -126,8 +129,9 @@
 
 * snippets
 
-#+CAPTION: Morris and Cherry on 1974
-[[./morrischerry74-bright.png]]
+#+CAPTION: Lorinda Cherry in 1974
+#+ATTR_HTML: :width 300
+[[./cherry74.png]]
 
 - https://literateprograms.org/category_programming_language_dc.html
 - https://rosettacode.org/wiki/Category:Dc
@@ -142,10 +146,6 @@
   #+end_src
 
 * codebases
-
-#+CAPTION: Lorinda Cherry in 1974
-#+ATTR_HTML: :width 300
-[[./cherry74.png]]
 
 - https://x.com/nixcraft/status/1493822005262491651
 - [[https://github.com/Alhadis/language-etc/blob/1455feb6de582239b67e8bbde8086569db377e3d/samples/dirsize.dc][Alhadis/language-etc/dirsize.dc]]

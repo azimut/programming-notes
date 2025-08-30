@@ -2,6 +2,10 @@
 #+DATE: <2024-04-12 vie>
 #+KEYWORDS: bc, bench calculator, programming, cheatsheet, quick reference
 
+#+CAPTION: Lorinda Cherry in 1982
+#+ATTR_HTML: :width 400
+[[./cherry82.2.png]]
+
 |------+------------------------------------|
 | <c>  |                <c>                 |
 | wiki |     [[https://en.wikipedia.org/wiki/Bc_%28programming_language%29][english]] [[https://es.wikipedia.org/wiki/Bc_(lenguaje_de_programaci%C3%B3n)][spanish]] [[https://en.wikibooks.org/wiki/Guide_to_Unix/Explanations/bc][wikibooks]]      |
@@ -178,10 +182,6 @@
   #+end_src
 
 * codebases
-
-#+CAPTION: Lorinda Cherry in 1982
-#+ATTR_HTML: :width 400
-[[./cherry82.2.png]]
 
 - bitcoin https://github.com/fivepiece/btc-bash-ng/
 - bitcoin https://github.com/fivepiece/btc-bash
