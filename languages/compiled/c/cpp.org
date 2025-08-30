@@ -31,17 +31,25 @@
 
 #+begin_src c
   #include <stdio.h>
+
   #define FOO 2
+
+  #ifndef DIMENSION
+  #define DIMENSION 200
+  #endif
+
   #define BAR(x,y) ((x) + (y))
+
   // Variadic Arguments
-  #define PRINTF_LOOP(iterations, ...) do {  \
-    for (int i = 0; i < (iterations); i++) { \
-      printf(__VA_ARGS__); \
+  #define PRINTF_LOOP(iterations, ...) do {    \
+    for (int i = 0; i < (iterations); i++) {   \
+      printf(__VA_ARGS__);                     \
     }
+
   // Defining functions per type
-  #define GENERIC_ADD_FUNC(type)      \
-    type add_##type(type x, type y) { \
-      return x + y;                   \
+  #define GENERIC_ADD_FUNC(type)        \
+    type add_##type(type x, type y) {   \
+      return x + y;                     \
     }
   GENERIC_ADD_FUNC(float)
 #+end_src

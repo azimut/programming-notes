@@ -11,6 +11,7 @@
 |     gnu      |         [[https://www.gnu.org/software/make/][home]] [[https://www.gnu.org/software/make/manual/html_node/index.html][docs]]         |
 |     bsd      |            [[https://man.freebsd.org/cgi/man.cgi?make(1)][man]]            |
 |    posix     |           [[https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html][home]]            |
+|   original   |           [[https://pages.cs.wisc.edu/~horwitz/make/make.pdf][.pdf]]            |
 |     fork     | https://justine.lol/make/ |
 | alternatives |    [[https://github.com/casey/just][just]] [[https://taskfile.dev/][Task]] [[https://snakemake.github.io/][Snakemake]]    |
 |--------------+---------------------------|
