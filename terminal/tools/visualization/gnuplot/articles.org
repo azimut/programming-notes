@@ -1,0 +1,7 @@
+- 13 http://hxcaine.com/blog/2013/02/28/running-gnuplot-as-a-live-graph-with-automatic-updates/
+- 15 Plotting tools for Linux: gnuplot https://lwn.net/Articles/628537/
+- 17 What's new in gnuplot 5.2 https://lwn.net/Articles/723818/
+- 19 https://raymii.org/s/tutorials/GNUplot_tips_for_nice_looking_charts_from_a_CSV_file.html
+- 20 New features in gnuplot 5.4 https://lwn.net/Articles/826456/
+- 20 Voxel plotting with gnuplot 5.4 https://lwn.net/Articles/828761/
+- 24 Gnuplot 6 comes with pie https://lwn.net/Articles/961003/
