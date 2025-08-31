@@ -73,12 +73,13 @@
 
 *** special targets
 
+https://www.gnu.org/software/make/manual/html_node/Special-Targets.html
 |-------------------+-----------------------------------------------------------|
 | .ONESHELL:        | runs all commands the same shell                          |
-| .POSIX:           | should be the first line                                  |
+| .POSIX:           | must be the first line                                    |
 | .SUFFIXES:        | disable all default *inference rules*                     |
-| .PHONY:           | make target not a regular target file                     |
 | .DELETE_ON_ERROR: | make target be deleted if a command fails (NO BY DEFAULT) |
+| .PHONY:           | unconditionally make targets given                        |
 | .PRECIOUS:        | make target not being deleted, can be a pattern           |
 | .SECONDARY:       | with no target, makes all targets secondary               |
 |-------------------+-----------------------------------------------------------|
@@ -203,12 +204,15 @@ https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html
 https://www.gnu.org/software/make/manual/html_node/Text-Functions.html
 |------------+---------------+-------------------------------------------|
 |    <c>     |      <c>      |                                           |
-|    word    |    n,text     | "n"th word in in text                     |
-|  wordlist  |   n,m,text    | text word-slicing from "n" to "m"         |
-|   words    |     text      | number of words                           |
-| firstword  |     text      |                                           |
-|  lastword  |     text      |                                           |
-| findstring |  needle,text  | returns "needle" or "" if not in text     |
+|            |               | returns                                   |
+|------------+---------------+-------------------------------------------|
+|    word    |    n,text     | text[n]                                   |
+|  wordlist  |   n,m,text    | text[n:m]                                 |
+| firstword  |     text      | text[0]                                   |
+|  lastword  |     text      | text[-1]                                  |
+|   words    |     text      | len(text)                                 |
+|------------+---------------+-------------------------------------------|
+| findstring |  needle,text  | "needle" or "" if not in text             |
 |   filter   | pat%...,text  | remove words that match "pat%"            |
 | filter-out | pat%...,text  | remove words that do NOT match "pat%"     |
 |    sort    |     text      | sort words, remove dups                   |

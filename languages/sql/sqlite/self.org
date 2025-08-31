@@ -185,23 +185,44 @@ https://www.sqlite.org/lang_corefunc.html
 |     trunc | x           | rounding                                         |
 |-----------+-------------+--------------------------------------------------|
 *** Date and Time
+
 https://www.sqlite.org/lang_datefunc.html
-- all functions can take no arguments to return the current time in FN format
-- all functions can take an optional ~modifier~
-  - which can be used to modify the value red by adding/sub "2 days" in human language
-  - or to affect how the value is interpreted, "unixepoch"
-|-----------+--------------------------------|
-|           | returns..                      |
-|-----------+--------------------------------|
-| date      | %Y-%m-%d                       |
-| time      | %H:%M:%S                       |
-| datetime  | %Y-%m-%d %H:%M:%S              |
-| julianday | 2460396.3689133                |
-| unixepoch | %s, fn added on 3.38 (2022-02) |
-|-----------+--------------------------------|
-| srtftime  |                                |
-| timediff  | fn added on 3.43 (2023-08)     |
-|-----------+--------------------------------|
+
+- all functions, can take
+  - no arguments to return the current time in FN format
+  - an optional ~modifier~
+    - which can be used to modify the value red by adding/sub "2 days" in human language
+    - or to affect how the value is interpreted, "unixepoch"
+
+|-----------+---------------------+-------------------+-------------------------|
+|    <c>    |         <c>         |        <c>        |                         |
+|           |                     |     returns..     |                         |
+|-----------+---------------------+-------------------+-------------------------|
+|   date    |   tv, modifer...    |     %Y-%m-%d      |                         |
+|   time    |   tv, modifer...    |     %H:%M:%S      |                         |
+| datetime  |   tv, modifer...    | %Y-%m-%d %H:%M:%S |                         |
+| julianday |   tv, modifer...    |  2460396.3689133  |                         |
+| unixepoch |   tv, modifer...    |        %s         | added on 3.38 (2022-02) |
+|-----------+---------------------+-------------------+-------------------------|
+| srtftime  | fmt, tv, modifer... |                   |                         |
+| timediff  |       tv, tv        |                   | added on 3.43 (2023-08) |
+|-----------+---------------------+-------------------+-------------------------|
+
+**** time-value (tv)
+
+- YYYY-MM-DD
+- YYYY-MM-DD HH:MM
+- YYYY-MM-DD HH:MM:SS (ISO-8601)
+- YYYY-MM-DD HH:MM:SS.SSS
+- YYYY-MM-DDTHH:MM
+- YYYY-MM-DDTHH:MM:SS
+- YYYY-MM-DDTHH:MM:SS.SSS
+- HH:MM
+- HH:MM:SS
+- HH:MM:SS.SSS
+- now
+- DDDDDDDDDD
+
 *** BLOB
 |          <r> |       |                 |
 |--------------+-------+-----------------|

@@ -24,7 +24,9 @@
 ** flags - change what to run
 |---+---------+---------------+---------------------------------------------|
 |   |   <c>   |      <c>      |                                             |
-| e |  code   |               | interpret code                              |
+| f |   arg   |    default    | description                                 |
+|---+---------+---------------+---------------------------------------------|
+| e |  code   |               | code to interpret                           |
 | c |    -    |               | checks syntax only                          |
 | n |    -    |               | awk like loop around, aka "while gets" loop |
 | p |    -    |               | awk like loop around + prints $_            |
@@ -878,6 +880,14 @@ Script ran, to generate valid markdown from site's json. Then converted with  pa
   - https://github.com/discourse/discourse
 
 * snippets
+
+#+CAPTION: reads from stdin a field, and formats date on it to epoch
+#+begin_src sh
+  ruby -r date -F'\|' -ane 'puts DateTime.parse($F[0]).strftime("%s")' <<<"Sun Aug 31 13:04:02 2025|2820"
+#+end_src
+
+#+RESULTS:
+| 1756645442 |
 
 #+begin_src ruby :exports both
   `xrandr`.scan(/current (\d+) x (\d+)/)
