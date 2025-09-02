@@ -44,36 +44,36 @@
 |-------+------------------------------------|
 ** options (setteable)
 #+CAPTION: S = a quoted string, N = a number
-|------------+-------------------+----------------------------------|
-|    <c>     |        <c>        |                                  |
-|            |     argument      | description                      |
-|------------+-------------------+----------------------------------|
-|   border   |        [N]        | axis lines                       |
-| [x¦y]tics  | [nomirror¦rotate] | axis numbers                     |
-| [x¦y]label |         S         | axis label                       |
-| [x¦y]range |       [N:N]       | axis range                       |
-|    grid    |         -         | axis grid                        |
-|    key     |  [LR] [[no]box]   | the box with key labels          |
-|------------+-------------------+----------------------------------|
-|  samples   |         N         | ????                             |
-|   xdata    |       time        | tells x axis is a date/time      |
-|  encoding  |       utf8        |                                  |
-|  timefmt   |         S         | format of the INPUT date         |
-|  datafile  |    separator S    | input separator (default: space) |
-|------------+-------------------+----------------------------------|
-|   title    |         S         | the                              |
-|   format   |     [x¦y] FMT     | tic format string                |
-|  logscale  |     [x¦y] [N]     | with step N                      |
-| autoscale  |    [[x¦y]fix]     | prevents autoextend of scale     |
-|   output   |         S         | saves into filepath at S         |
-|   style    | fill transparent  |                                  |
-|            |      solid F      |                                  |
-|            |     noborder      |                                  |
-|            |    data lines     |                                  |
-|------------+-------------------+----------------------------------|
-|   pause    |         N         | seconds to pause                 |
-|  +reread+  |         -         | REMOVED in 6.0 +reread input+    |
-|------------+-------------------+----------------------------------|
+|--------------+-------------------+----------------------------------|
+|     <c>      |        <c>        |                                  |
+|              |     argument      | description                      |
+|--------------+-------------------+----------------------------------|
+|    border    |        [N]        | axis lines                       |
+| [x¦y¦z]tics  | [nomirror¦rotate] | axis numbers                     |
+| [x¦y¦z]label |         S         | axis label                       |
+| [x¦y¦z]range |       [N:N]       | axis range                       |
+|     grid     |         -         | axis grid                        |
+|     key      |  [LR] [[no]box]   | the box with key labels          |
+|--------------+-------------------+----------------------------------|
+|   samples    |         N         | ????                             |
+|    xdata     |       time        | tells x axis is a date/time      |
+|   encoding   |       utf8        |                                  |
+|   timefmt    |         S         | format of the INPUT date         |
+|   datafile   |    separator S    | input separator (default: space) |
+|--------------+-------------------+----------------------------------|
+|    title     |         S         | the                              |
+|    format    |     [x¦y] FMT     | tic format string                |
+|   logscale   |     [x¦y] [N]     | with step N                      |
+|  autoscale   |    [[x¦y]fix]     | prevents autoextend of scale     |
+|    output    |         S         | saves into filepath at S         |
+|    style     | fill transparent  |                                  |
+|              |      solid F      |                                  |
+|              |     noborder      |                                  |
+|              |    data lines     |                                  |
+|--------------+-------------------+----------------------------------|
+|    pause     |         N         | seconds to pause                 |
+|   +reread+   |         -         | REMOVED in 6.0 +reread input+    |
+|--------------+-------------------+----------------------------------|
 ** plot
 - plot
   - /dev/stdin

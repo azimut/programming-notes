@@ -202,24 +202,24 @@ https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html
 
 *** strings
 https://www.gnu.org/software/make/manual/html_node/Text-Functions.html
-|------------+---------------+-------------------------------------------|
-|    <c>     |      <c>      |                                           |
-|            |               | returns                                   |
-|------------+---------------+-------------------------------------------|
-|    word    |    n,text     | text[n]                                   |
-|  wordlist  |   n,m,text    | text[n:m]                                 |
-| firstword  |     text      | text[0]                                   |
-|  lastword  |     text      | text[-1]                                  |
-|   words    |     text      | len(text)                                 |
-|------------+---------------+-------------------------------------------|
-| findstring |  needle,text  | "needle" or "" if not in text             |
-|   filter   | pat%...,text  | remove words that match "pat%"            |
-| filter-out | pat%...,text  | remove words that do NOT match "pat%"     |
-|    sort    |     text      | sort words, remove dups                   |
-|   strip    |     text      | trim and squash whitespaces               |
-|   subst    | from,to,text  | substitute literal words                  |
-|  patsubst  | pat,repl,text | substitute pattern% words, text can use * |
-|------------+---------------+-------------------------------------------|
+|------------+---------------+---------------------------------------|
+|    <c>     |      <c>      |                                       |
+|            |               | returns                               |
+|------------+---------------+---------------------------------------|
+|    word    |    n,text     | text[n]                               |
+|  wordlist  |   n,m,text    | text[n:m]                             |
+| firstword  |     text      | text[0]                               |
+|  lastword  |     text      | text[-1]                              |
+|   words    |     text      | len(text)                             |
+|------------+---------------+---------------------------------------|
+| findstring |  needle,text  | find                                  |
+|   filter   | pat%...,text  | remove                                |
+| filter-out | pat%...,text  | remove-if-not                         |
+|    sort    |     text      | sort+dedup                            |
+|   strip    |     text      | trim and squash whitespaces           |
+|   subst    | from,to,text  | literal substitution                  |
+|  patsubst  | pat,repl,text | pattern% substitution, text can use * |
+|------------+---------------+---------------------------------------|
 *** filenames
 https://www.gnu.org/software/make/manual/html_node/File-Name-Functions.html
 |-----------+---------------+-------------------------------------------------|

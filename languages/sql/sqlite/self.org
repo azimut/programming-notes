@@ -30,7 +30,12 @@
 * cli
 
 - https://www.sqlite.org/cli.html (TODO 6)
-- $ sqlite3 :memory: # or just not pass any argument
+
+#+begin_src sh
+  $ sqlite3 :memory: # or just not pass any argument
+  $ sqlite3 foo.db 'SELECT * FROM events'
+  $ sqlite3 foo.db .dump
+#+end_src
 
 ** metacomands
 |------------+-------------------+---------------------------------------------------|
@@ -253,6 +258,8 @@ https://www.sqlite.org/lang_aggfunc.html
 | group_concat | x[,sep] | "," is used if sep(arator) is ommited                 |
 |   string_agg | x ,sep  | alias of group_concat(x,sep)                          |
 |--------------+---------+-------------------------------------------------------|
+*** Window
+https://sqlite.org/windowfunctions.html
 ** Foreign Keys
 https://www.sqlite.org/foreignkeys.html
 

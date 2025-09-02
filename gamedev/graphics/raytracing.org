@@ -196,6 +196,7 @@ https://www.youtube.com/watch?v=NIAUFnNZGhE
 #+end_src
 * Book: The Ray Tracer Challenge
 
+
 - Bonus Chapters http://www.raytracerchallenge.com/#bonus
 - Errata https://pragprog.com/cms/errata/jbtracer-errata/
   - Cofactor 4x4
@@ -217,6 +218,20 @@ https://www.youtube.com/watch?v=NIAUFnNZGhE
     - usage of _init() for structs
     - unions for vec3
 
+** 0 Article
+https://medium.com/@jogrosso/the-ray-tracer-challenge-learning-c-through-computer-graphics-e45a68fb7cd5
+- source C++ https://github.com/joseph-grosso/ray-tracer-challenge
+- perlin C++ https://raw.githubusercontent.com/Reputeless/PerlinNoise/refs/heads/master/PerlinNoise.hpp
+- OpenMP for threads
+- Matrix https://eigen.tuxfamily.org/index.php?title=Main_Page
+- perf
+  #+begin_src sh
+    sudo perf record -F 999 -a -g -- ./build/challenges/challenge.out && \
+    	sudo perf script                               > out.perf && \
+    	../FlameGraph/stackcollapse-perf.pl out.perf   > out.folded && \
+    	../FlameGraph/flamegraph.pl         out.folded > kernel.svg && \
+    	google-chrome ./kernel.svg
+  #+end_src
 ** 1 Tuples
 
 *** Types

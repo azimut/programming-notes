@@ -71,6 +71,7 @@
 |      set      |     $1 = 4     | sets a gdb variable           |
 |      set      |   args 1 2 3   | sets "run" arguments          |
 |      set      |    var x=15    | sets a program variable       |
+|      set      |     x = 15     |                               |
 |      set      | pagination off |                               |
 |    (i)nfo     |   registers    |                               |
 |      x/i      |      $pc       |                               |
@@ -126,6 +127,7 @@
 
 - can include a variable name
 - can reference previous results with "$N"
+- can include multiple vars, if they are the same size, surrounded by {a,b}
 
 *** e(x)amine
 
