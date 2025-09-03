@@ -167,12 +167,19 @@ https://0x00sec.org/t/remote-shells-part-i/269/1
 |  MSan | uninitialized memory usage | memory      |
 |  TSan | thread concurrency bugs    | thread      |
 |-------+----------------------------+-------------|
+- https://github.com/google/sanitizers/wiki/MemorySanitizer
+- https://github.com/google/sanitizers/wiki/AddressSanitizer
+  https://clang.llvm.org/docs/AddressSanitizer.html
+- https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html
+  - Compile with -g, -fno-sanitize-merge and -fno-omit-frame-pointer to get proper debug information in your binary.
+  - Run your program with environment variable UBSAN_OPTIONS=print_stacktrace=1.
+  - Make sure llvm-symbolizer binary is in PATH.
+
 - valgrind, fuzzers, libcheck, pvs
 - https://tek256.com/posts/code-hardening/
 - Static http://splint.org/
 - video fuzzers 15 [[https://www.youtube.com/watch?v=qTkYDA0En6U][Beyond Sanitizers...]] by Kostya Serebryany
 - https://www.youtube.com/watch?v=Q2C2lP8_tNE
-- https://github.com/google/sanitizers/wiki/AddressSanitizer
 - https://valgrind.org/docs/manual/quick-start.html
 - https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html
 * Benchmarks

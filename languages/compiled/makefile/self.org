@@ -149,20 +149,32 @@ $(ab:.cpp=.o) # string replace
 |  += | appends with a space                       |
 |  != | exec shell command and assign it           |
 |-----+--------------------------------------------|
+*** target specific
+  #+begin_src makefile
+%.o: CFLAGS = -O
+  #+end_src
+*** goal specific
+#+begin_src makefile
+ifeq (,$(filter debug,$(MAKECMDGOALS))
+    CFLAGS += -Og
+endif
+#+end_src
 *** implicit / predefined / default
 https://www.gnu.org/software/make/manual/html_node/Implicit-Variables.html
 |---------------+-------------------------------------------|
-| CC            | For compiler and compiler flags           |
-| CXX           | "                                         |
-| CFLAGS        | "                                         |
-| CPPFLAGS      |                                           |
-| CXXFLAGS      |                                           |
-| LDFLAGS       | for flags passed to compiler when linking |
-| LDLIBS        | For flags about libraries when linking    |
-| SHELL         | eg: "bash"                                |
-| MAKE_FLAGS    |                                           |
-| MAKEFILE_LIST |                                           |
-| .SHELLFLAGS   | eg: "-eu -o pipefail -c"                  |
+|      <c>      |                                           |
+|      CC       | For compiler and compiler flags           |
+|      CXX      | "                                         |
+|    CFLAGS     | "                                         |
+|   CPPFLAGS    |                                           |
+|   CXXFLAGS    |                                           |
+|    LDFLAGS    | for flags passed to compiler when linking |
+|    LDLIBS     | For flags about libraries when linking    |
+| MAKEFILE_LIST | list of Makefile's                        |
+| MAKECMDGOALS  | the target given                          |
+|   MAKEFLAGS   |                                           |
+|     SHELL     | eg: "bash"                                |
+|  .SHELLFLAGS  | eg: "-eu -o pipefail -c"                  |
 | .RECIPEPREFIX | use instead of tabs                       |
 | .DEFAULT_GOAL | default target                            |
 |---------------+-------------------------------------------|

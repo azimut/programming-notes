@@ -207,6 +207,11 @@ https://www.youtube.com/watch?v=NIAUFnNZGhE
   - https://devtalk.com/books/the-ray-tracer-challenge
 - External Links:
   - https://betterexplained.com/articles/vector-calculus-understanding-the-dot-product/
+- cglm
+  - https://github.com/recp/cglm
+  - https://cglm.readthedocs.io/en/latest/mat4.html
+  - #include "cglm/cglm.h"
+  - #include <cglm/struct.h>
 - Third party sources
   - C https://github.com/LiquidityC/ray_tracer_challenge/
     - complete 16 chapters
@@ -515,3 +520,10 @@ nn
     - unit spheres (radii = 1)
     - centered at origin
 - intesect(Sphere,Ray)
+** 11 Reflections and Refractions
+
+- Fresnel effect explains the inverse relationship between reflection and refraction
+- Real Calculations are expensive, so we use Schlick approximation
+- *Refractive* objects are often *Reflective* too. (eg: glass, both ~1)
+- Reduce *diffuse/ambient* on reflective/refractive as less light comes from the surface and more from elsewhere.
+- specular=1 shininess=300 pair well with reflective+refractive
