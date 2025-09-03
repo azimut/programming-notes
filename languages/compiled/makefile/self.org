@@ -227,9 +227,9 @@ https://www.gnu.org/software/make/manual/html_node/Text-Functions.html
 | findstring |  needle,text  | find                                  |
 |   filter   | pat%...,text  | remove                                |
 | filter-out | pat%...,text  | remove-if-not                         |
-|    sort    |     text      | sort+dedup                            |
-|   strip    |     text      | trim and squash whitespaces           |
-|   subst    | from,to,text  | literal substitution                  |
+|    sort    |     text      | sort¦uniq                             |
+|   strip    |     text      | trim and squeeze whitespaces          |
+|   subst    | from,to,text  | s/from/to/                            |
 |  patsubst  | pat,repl,text | pattern% substitution, text can use * |
 |------------+---------------+---------------------------------------|
 *** filenames
@@ -310,6 +310,7 @@ $(THUMBS): %.thumb.jpg: %.jpg
 * gotchas
 
 - [[https://stackoverflow.com/questions/9838384/can-gnu-make-handle-filenames-with-spaces][no support for filenames with spaces]]
+- filenames with ~:~ must be escaped (aka "multiple target patterns.  Stop." error)
 - ~=~ assignment is perpetually evaluated (aka a macro definition)
 - ~$~ needs to be always escaped with ~$$~ to be sent to commands as such
 - ~\t~ for indentation, NOT spaces
