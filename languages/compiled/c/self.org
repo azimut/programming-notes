@@ -109,6 +109,7 @@ As a pointer type
 - 10 0xfa (%x) 0755 (%o) 0b1010 (%b)
 - literal defaults to 32bit int
 - Floating-point: float, double, long double
+  - overflow to -inf, +inf values
 - Numerical:
   - signed char, short int, int, long int, long long int
   - *int* word can be ommited on declaration
