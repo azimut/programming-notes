@@ -19,6 +19,46 @@
 - exporters
   - groff https://orgmode.org/worg/exporters/ox-groff.html
 
+* per file variables
+
+#+begin_src
+-*- mode: modename; var: value; … -*-
+#+end_src
+
+#+begin_src lisp
+;; -*- mode: Lisp; fill-column: 75; comment-column: 50; -*-
+#+end_src
+
+* .dir-locals.el
+
+- https://www.gnu.org/software/emacs/manual/html_node/emacs/Directory-Variables.html
+
+- commands
+  - customize-dirlocals
+  - add-dir-local-variable
+  - delete-dir-local-variable
+  - copy-file-locals-to-dir-locals
+
+- keys
+  - nil: for all
+  - foo-mode: for foo-mode
+  - "foo/bar": for "foo/bar" subdirectory
+
+- variable special keys
+  - mode: to enable given mode
+  - subdirs: use "nil" to disable block on subdirs
+
+#+begin_src elisp
+((nil . ((indent-tabs-mode . t)
+         (fill-column . 80)
+         (mode . auto-fill)))
+ (c-mode . ((c-file-style . "BSD")
+            (subdirs . nil)))
+ ("src/imported"
+  . ((nil . ((change-log-default-name
+              . "ChangeLog.local"))))))
+#+end_src
+
 * configs
 - full https://eshelyaron.com/esy.html
 - full https://github.com/higham/dot-emacs/blob/3bc53cce471ec9f6b4b08fb5b32ad19761468d42/.emacs#L3123

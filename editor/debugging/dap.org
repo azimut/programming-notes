@@ -54,6 +54,15 @@
 - https://silosneeded.com/en/2024/04/configuring-dape
 
 - Example node.js https://github.com/Artawower/org-mode-ast/blob/4a3997e5204cc70863e1b5e010f66f99331639e8/.dir-locals.el#L27
+
+** Symbols
+
+- command: Shell command to initiate the debug adapter.
+- command-args: List of string arguments for the command.
+- command-cwd: Working directory for the command, if not supplied
+  `default-directory' will be used.
+- command-env: Property list (plist)
+
 ** DAP C - gdbserver
 https://github.com/luksamuk/engine-psx/blob/22ebbb293ecea31692443dd92918d6f8bdb8e77b/.dir-locals.el#L14
 #+begin_src elisp
