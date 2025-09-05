@@ -2,6 +2,7 @@
 #+DATE: <2025-01-04 sáb>
 #+KEYWORDS: m4, programming, cheatsheet, quick reference
 
+#+ATTR_HTML: :width 300
 [[./m4rene.jpg]]
 
 |-----------+---------------------------------------------------------------|
