@@ -1,3 +1,7 @@
+- Monte Carlo
+  - https://www.youtube.com/watch?v=jRAMCzbXteA
+  - https://www.youtube.com/watch?v=HG6c4Kwbv4I
+
 - https://cs87-dartmouth.github.io/Fall2024/
 - playlist [[https://www.youtube.com/playlist?list=PLlrATfBNZ98edc5GshdBtREv5asFW3yXl][Ray Tracing]] by The Cherno
 - The Timeless https://www.youtube.com/watch?v=T-9R0zAwL7s
