@@ -194,3 +194,54 @@ Part1.mp4 01:27:00
 00:25:00
 
 *** Stack vs Heap
+** TODO Part 5 - Network I/O
+
+31:00
+
+*** opening + listening for connections on a socket
+
+
+AF_NET      = ipv4
+AF_NET6     = ipv6
+SOCK_STREAM = TCP
+SOCK_DGRAM  = UDP
+
+#+begin_src c
+  int socket_fd = // a file description
+    socket(AF_INET, SOCK_STREAM, 0);
+
+  int opt = 1; // a boolean
+  setsockopt(socket_fd, // optional: useful for reuseaddr
+             SOL_SOCKET,
+             SO_REUSEADDR, // !
+             &opt,
+             sizeof(opt));
+
+  struct sockaddr_in address; // localhost:8080
+  address.sin_addr.s_addr = INADDR_ANY;
+  address.sin_family      = AF_INET;
+  address.sin_port        = htons(8080);
+
+  bind(socket_fd, // setup socket for listening
+       (struct sockaddr *)&address, // casting needed
+       sizeof(address));
+
+  listen(socket_fd, // actually listen
+         4);        // how many to stack up
+#+end_src
+
+*** reading from a socket
+
+#+begin_src c
+  char req[MAX_REQUEST_BYTES + 1];
+  int addrlen = sizeof(address);
+  while (1) {
+    int req_socket_fd = // new socket fd
+      accept(socket_fd,
+             (struct sockaddr *)&address,
+             (socklet_t*)&addrlen);
+    close(req_socket_fd);
+  }
+#+end_src
+
+*** writing to a socket

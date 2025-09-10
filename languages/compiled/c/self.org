@@ -749,16 +749,17 @@ https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference/unistd.h
 *** basic
 
 - CLIENT
-  s = socket()
+  s = socket(); setsockopt(s);
   opts = htons+inet_addr
   connect(s, opts)
 
 - SERVER
-  s = socket()
+  s = socket(); setsockopt(s)
   opts = htons+htonl
   bind(s, opts)
   listen(s, BACKLOG)
   accept(s) // wait
+
 ** qsort
 
 #+begin_src c

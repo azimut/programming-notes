@@ -1,3 +1,29 @@
+- Words
+  - Ground Truth = real life observations
+  - Model = our prediction f(x)
+  - Loss = prediction's error rate
+  - Mean Squared Error = a way to calculate Loss
+  - Bias = a shift
+
+- Types:
+  - ~Reinforment Learning~: we want to optimize something
+    - we only know in *relative* terms how good/bad a solution is
+    - eg: an AI that "learns" to play a game by playing
+  - ~Supervised Learning~: we provide *labeled* data.
+    - By =function approximation= f(x)
+    - Divided in phases:
+      1. Training: finding f(x)
+      2. Prediction: using f(x)
+    - Linear Regression:
+      #+begin_src
+       ŷ = x * w
+      #+end_src
+  - ~Unsupervised Learning~: from *unlabeled* data
+    - it learns about the relationships between the inputs provided.
+    - Used for _clustering_ into groups.
+    - Used to improve the quality of data.
+    - Used for compress data.
+
 - article: https://karpathy.github.io/2019/04/25/recipe/
 - course: pragmatic data science https://www.youtube.com/playlist?list=PLjxbCynJ0Gd8k75-zdMcqcEbH90jfk9eg
 - article: llm agent https://tadeodonegana.com/posts/building-agents-my-notes/
@@ -173,6 +199,105 @@ https://github.com/iamtrask/Grokking-Deep-Learning
   Neurons converge into looking for *features* although we never told him to.
 ** 2 Essential Statistics
 * Book: 2020 | Programming ML From Coding to DL          | Paolo Perrotta
-** 1
-- https://news.stanford.edu/2017/11/15/algorithm-outperforms-radiologists-diagnosing-pneumonia/
-  - deep learning
+
+** 1 How Machine learning works
+
+https://pragprog.com/titles/pplearn/programming-machine-learning/
+
+#+begin_src sh
+  $ pip3 install numpy==1.15.2
+  $ pip3 install matplotlib==3.1.2
+  $ pip3 install seaborn==0.9.0
+#+end_src
+
+[[https://news.stanford.edu/2017/11/15/algorithm-outperforms-radiologists-diagnosing-pneumonia/][Example of a machine learning solution]]
+
+** 2 Your first learning program
+
+*** Example: Pizzas per reservations
+
+#+begin_src python
+  X, Y = np.loadtxt("pizza.txt", skiprows=1, unpack=True)
+#+end_src
+
+Linear Regression
+#+begin_src python
+  def predict(X, w): # our model
+      return X * w
+#+end_src
+
+How measure Loss our Model?: Mean Squared Error
+Avg of difference between prediction loss and ground truth, squared
+#+begin_src python
+  def loss(X, Y, w):
+      return np.average((predict(X,w) - Y) ** 2)
+#+end_src
+
+Iterate, trying to find a suitable *w*.
+With a given *lr* (learning rate) step.
+#+begin_src python
+  def train(X, Y, iterations, lr):
+      w = 0 # arbitrary init value
+      for i in range(iterations):
+          current_loss = loss(X, Y, w)
+          print("Iteration %4d => Loss: %.6f" % (i, current_loss))
+          if loss(X, Y, w + lr) < current_loss:
+              w += lr
+          elif loss(X, Y, w - lr) < current_loss:
+              w -= lr
+          else:
+              return w
+
+      raise Exception("Couldn't converge within %d iterations" % iterations)
+#+end_src
+
+*** Example: Adding a bias
+
+#+CAPTION: w=weight b=bias
+#+begin_src src
+  ŷ = x * w + b
+#+end_src
+
+#+begin_src python
+  def predit(X, w, b):
+      return X * w + b
+
+  def loss(X, Y, w, b):
+      return np.average((predict(X,w,b) - Y) ** 2)
+
+  def train(X, Y, iterations, lr):
+      w = b = 0
+      for i in range(iterations):
+          current_loss = loss(X, Y, w, b)
+          if   loss(X,Y,w+lr,b) < current_loss:
+              w += lr
+          elif loss(X,Y,w-lr,b) < current_loss:
+              w -= lr
+          elif loss(X,Y,w,b+lr) < current_loss:
+              b += lr
+          elif loss(X,Y,w,b-lr) < current_loss:
+              b -= lr
+          else:
+              return w, b
+
+      raise Exception("Couldn't converge within %d iterations" % iterations)
+#+end_src
+
+*** Example: plot code
+
+#+begin_src python
+  import numpy as np
+  import matplotlib.pyplot as plt
+  import seaborn as sns
+
+  sns.set()
+  plt.axis([0,50,0,50])
+  plt.xticks(fontsize=15)
+  plt.yticks(fontsize=15)
+  plt.xlabel("Reservations", fontsize=30)
+  plt.ylabel("Pizza", fontsize=30)
+  X, Y = np.loadtxt("pizza.txt", skiprows=1, unpack=True)
+  plt.plot(X,Y,"bo")
+  plt.show()
+#+end_src
+
