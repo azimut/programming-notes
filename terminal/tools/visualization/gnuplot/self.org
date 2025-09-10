@@ -29,60 +29,124 @@
 |-----------+----+------------+---------------------------------|
 
 * language
+
 #+begin_src sh
   #!/usr/bin/gnuplot -persist
 #+end_src
-** term
-- xterm (xterm tektronix mode)
-- dumb (aka ascii)
+
+- has variable assignment
+- "(/Symbol p)" - replaces parens with 𝛑
+- curve fitting https://www.youtube.com/watch?v=vHM_5AeKwXE
+- do for [i=1:96] { plot f(x,i*0.1) }
+
+** input data
+
+- space separated by default
+- putting 2 newlines one after another, separate different blocks/groups of data
+
 ** commands
-|-------+------------------------------------|
-|   <r> |                                    |
-| unset | OPTION                             |
-|   set | OPTION [VALUE]                     |
-|  with | (l)ines[*], dots[.], lines(points) |
-|-------+------------------------------------|
-** options (setteable)
-#+CAPTION: S = a quoted string, N = a number
-|--------------+-------------------+----------------------------------|
-|     <c>      |        <c>        |                                  |
-|              |     argument      | description                      |
-|--------------+-------------------+----------------------------------|
-|    border    |        [N]        | axis lines                       |
-| [x¦y¦z]tics  | [nomirror¦rotate] | axis numbers                     |
-| [x¦y¦z]label |         S         | axis label                       |
-| [x¦y¦z]range |       [N:N]       | axis range                       |
-|     grid     |         -         | axis grid                        |
-|     key      |  [LR] [[no]box]   | the box with key labels          |
-|--------------+-------------------+----------------------------------|
-|   samples    |         N         | ????                             |
-|    xdata     |       time        | tells x axis is a date/time      |
-|   encoding   |       utf8        |                                  |
-|   timefmt    |         S         | format of the INPUT date         |
-|   datafile   |    separator S    | input separator (default: space) |
-|--------------+-------------------+----------------------------------|
-|    title     |         S         | the                              |
-|    format    |     [x¦y] FMT     | tic format string                |
-|   logscale   |     [x¦y] [N]     | with step N                      |
-|  autoscale   |    [[x¦y]fix]     | prevents autoextend of scale     |
-|    output    |         S         | saves into filepath at S         |
-|    style     | fill transparent  |                                  |
-|              |      solid F      |                                  |
-|              |     noborder      |                                  |
-|              |    data lines     |                                  |
-|--------------+-------------------+----------------------------------|
-|    pause     |         N         | seconds to pause                 |
-|   +reread+   |         -         | REMOVED in 6.0 +reread input+    |
-|--------------+-------------------+----------------------------------|
-** plot
-- plot
+|-------+------------------------------------+-----------------------------|
+|   <r> |                                    |                             |
+| unset | OPTION                             |                             |
+|   set | OPTION [VALUE]                     |                             |
+|  with | (l)ines[*], dots[.], lines(points) |                             |
+|  show | variables                          |                             |
+| stats | FILENAME name S                    | shows file field statistics |
+|       |                                    | later can be referenced     |
+|       |                                    | eg: S_min_x                 |
+|-------+------------------------------------+-----------------------------|
+*** plot
+
+- [re]plot [PLOT_A OPTS], [PLOT_B OPTS]
+  - "filename.txt"
   - /dev/stdin
   - using N:N+1:N+n
   - smooth [bezier¦mcsplines]
+  - title (for legend box)
+  - index N
+    - reference block N of data (aka separated by 2 \n)
+    - blocks index start at 0
+  - with
+    - linespoint
+    - lines
+      - linestyle N
+      - linecolor rgb "#0b0000"
+    - points
+      - pointsize N
 - imagesc - matrix/heatmap - 2d contour
 - splot - 3d surface
 - hist
 - scatter3 - 3d points
+** options (setteable)
+
+*** general
+#+CAPTION: S = a quoted string, N = a number
+|--------------+-------------------+------------------------------------|
+|     <c>      |        <c>        |                                    |
+|              |     argument      | description                        |
+|--------------+-------------------+------------------------------------|
+|    border    |        [N]        | axis lines (takes the bitsum)      |
+| [x¦y¦z]tics  | [nomirror¦rotate] | axis numbers                       |
+|              |  START,STEP,END   |                                    |
+|              |    (S N[,S N])    | custom labels S at point N         |
+| [x¦y¦z]label |         S         | axis label                         |
+|              |     offset N      |                                    |
+| [x¦y¦z]range |       [N:N]       | axis range                         |
+|     grid     |         -         | axis grid                          |
+|     key      | [BLTR] [[no]box]  | enable/disable/position legend box |
+|              |      width N      |                                    |
+|              |      font S       | use ",14" to only change it's size |
+|              |      at N,N       |                                    |
+|--------------+-------------------+------------------------------------|
+|   samples    |         N         | ????                               |
+|    xdata     |       time        | tells x axis is a date/time        |
+|   encoding   |       utf8        |                                    |
+|   timefmt    |         S         | format of the INPUT date           |
+|   datafile   |    separator S    | input separator (default: space)   |
+|--------------+-------------------+------------------------------------|
+|    title     |         S         | the                                |
+|    format    |     [x¦y] FMT     | tic format string                  |
+|    scale     |         N         |                                    |
+|   logscale   |     [x¦y] [N]     | with step N                        |
+|  autoscale   |    [[x¦y]fix]     | prevents autoextend of scale       |
+|    output    |         S         | saves into filepath at S           |
+|--------------+-------------------+------------------------------------|
+|    pause     |         N         | seconds to pause                   |
+|   +reread+   |         -         | REMOVED in 6.0 +reread input+      |
+|--------------+-------------------+------------------------------------|
+*** style
+
+|------------------+---------------------------------|
+| fill transparent |                                 |
+| solid F          |                                 |
+| noborder         |                                 |
+| data lines       |                                 |
+| line N           | can be later referenced on plot |
+|------------------+---------------------------------|
+
+#+CAPTION: gnuplot "test" command output
+#+ATTR_HTML: :width 500
+#+ATTR_ORG: :width 600
+[[./test_page.png]]
+
+*** term[inal]
+
+- gif [animate¦delay]
+- png [size¦font]
+- pngcairo
+- wxt
+- xterm (xterm tektronix mode)
+- dumb (aka ascii)
+
+*** palette
+
+http://gnuplot.info/demo/pm3dcolors.html
+
+#+begin_src gnuplot
+  set palette rgb 7,5,15
+  set palette defined (0 0 0 0, 0.3 1 0 0, 0.6 "blue", 1 "#ffffff")
+#+end_src
+
 * snippets
 
 - simple pipe
@@ -116,6 +180,9 @@
 
 * gotchas
 
+- by default wants *space* separated fields
+- sizes are given in pixels, can be undesired when exporting at large dimensions
+- plot field indexing starts at $1
 - poor compiler messages
 - different compiler messages when reading a script or from *-e*
 - no *%a* date format for input parsing
