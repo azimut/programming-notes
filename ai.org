@@ -1,9 +1,16 @@
+#+STARTUP: latexpreview
+#+OPTIONS: tex:t
+
 - Words
   - Ground Truth = real life observations
   - Model = our prediction f(x)
-  - Loss = prediction's error rate
+  - Loss = prediction's error rate with our Ground Truth
   - Mean Squared Error = a way to calculate Loss
   - Bias = a shift
+  - Hyperparameters = parameters to our train() fn
+  - Gradient Descent = a way to find a minimum to our loss fn
+    - Gradient = curve of the loss
+    - Partial Derivatives = a way to calculate gradient descend with multiple variables
 
 - Types:
   - ~Reinforment Learning~: we want to optimize something
@@ -15,8 +22,9 @@
       1. Training: finding f(x)
       2. Prediction: using f(x)
     - Linear Regression:
+      #+CAPTION: w=weight b=bias
       #+begin_src
-       ŷ = x * w
+       ŷ = x * w + b
       #+end_src
   - ~Unsupervised Learning~: from *unlabeled* data
     - it learns about the relationships between the inputs provided.
@@ -97,110 +105,110 @@
 - Toward ethical, transparent and fair AI/ML:
   a critical reading list for engineers, designers, and policy makers
   https://github.com/rockita/criticalML
-- https://www.youtube.com/playlist?list=PLl8OlHZGYOQ7bkVbuRthEsaLr7bONzbXS
-- Channel https://www.youtube.com/@vlavrenko/playlists
-  - Neural Networls and Backpropagation https://www.youtube.com/watch?v=jZYz0EUPYBI&list=PLBv09BD7ez_4Bs9j3o8l_ZTjQZoN_3Oqs
+- https://www.youtube.com/playlist?list=pll8olhzgyoq7bkvburthesalr7bonzbxs
+- channel https://www.youtube.com/@vlavrenko/playlists
+  - neural networls and backpropagation https://www.youtube.com/watch?v=jzyz0eupybi&list=plbv09bd7ez_4bs9j3o8l_ztjqzon_3oqs
 
-* Channels
-- Will Kwan https://www.youtube.com/c/WillKwan/videos
-- Instituto de Calculo Secretaria https://www.youtube.com/channel/UCzcbeaNQEIhOFBRBdYx1NEA
-- https://www.youtube.com/c/SirajRaval/videos
-- https://www.youtube.com/c/YannicKilcher/videos
-- https://www.youtube.com/user/MinisterioDeCiencia/videos
-- https://www.youtube.com/channel/UCfxnrdBM1YRV9j2MB8aiy4Q
-* Video: Practical Deep Learning for Coders (2020)
-https://www.youtube.com/playlist?list=PLfYUBJiXbdtRL3FMB3GoWHRI8ieU6FhfM
-** Lesson 1 https://www.youtube.com/watch?v=_QUEXsHfsA0
-- Neural networks have limited range of things it can do with 1 layer (by Minsky research)
-- But with more layers the problem is solved (also by minsky)
-- People used just 2 layers which limited performance
-- Usinge more layers makes it "DEEP" learning
+* channels
+- will kwan https://www.youtube.com/c/willkwan/videos
+- instituto de calculo secretaria https://www.youtube.com/channel/uczcbeanqeihofbrbdyx1nea
+- https://www.youtube.com/c/sirajraval/videos
+- https://www.youtube.com/c/yannickilcher/videos
+- https://www.youtube.com/user/ministeriodeciencia/videos
+- https://www.youtube.com/channel/ucfxnrdbm1yrv9j2mb8aiy4q
+* video: practical deep learning for coders (2020)
+https://www.youtube.com/playlist?list=plfyubjixbdtrl3fmb3gowhri8ieu6fhfm
+** lesson 1 https://www.youtube.com/watch?v=_quexshfsa0
+- neural networks have limited range of things it can do with 1 layer (by minsky research)
+- but with more layers the problem is solved (also by minsky)
+- people used just 2 layers which limited performance
+- usinge more layers makes it "deep" learning
 
-* Video: 2011 - Machine Learning for the Web - Hilary Mason
-** 1 Introduction
-- Classification problems:
-  - Clustering of categorical data
-  - Named Entity Disambiguation: separate different entities (similar)
-- Recommendation systems
-- Special data (uses domain knowledge)
-  - Geographic
-  - Timeseries
-- Approaches from:
-  - Having data
-  - Having a problem
-  - Have infrastructure
-- Methodology:
-  1) Obtain
-  2) Scrub
-  3) Explore
-  4) Model
-  5) Interpret
-** 2 Classifying Web Documents - The Theory
-- Problems harder to classify (write logic)
-- Supervised learning
-  - Examples:
-    - SPAM classification
+* video: 2011 - machine learning for the web - hilary mason
+** 1 introduction
+- classification problems:
+  - clustering of categorical data
+  - named entity disambiguation: separate different entities (similar)
+- recommendation systems
+- special data (uses domain knowledge)
+  - geographic
+  - timeseries
+- approaches from:
+  - having data
+  - having a problem
+  - have infrastructure
+- methodology:
+  1) obtain
+  2) scrub
+  3) explore
+  4) model
+  5) interpret
+** 2 classifying web documents - the theory
+- problems harder to classify (write logic)
+- supervised learning
+  - examples:
+    - spam classification
     - language identification
-    - Face detection
-- Book: "Data Source Handbook"
-- NYT has <meta> tags with information about the article.
+    - face detection
+- book: "data source handbook"
+- nyt has <meta> tags with information about the article.
 
-* Book: 2019 | Grokking Deep Learning                    | Andrew W. Trask
-https://github.com/iamtrask/Grokking-Deep-Learning
-* Book: 2021 | Loving Common Lisp                        | Mark Watson
-** Backpropagation Neural Networks
-- Trained by  applying training inputs to the networks
-- Compare differences/errors between
-  1) Propagated values
-  2) Training data values
-- We magnitude of these errors are used to adjust the weights in the network
-- Some problems while trying to find "good enough" weights
-  1) (Randomness) Sometimes he accumulated error at a *local minimum* is too large, is best to restart the training
-  2) (Memory) If we have enough *memory* and with not enough data, we might just memorize the training data.
-     Memory=weights. Start using a small network.
-- The ~activation values~ of individual neurons are limited to the range [0,1].
-  - Sum of the activation values of neurons in the previous layer *times* the values of the connecting weights and then
-    Using *sigmoid* function to map the sums to desired range.
-* Book: 2021 | Deep Learning: A Visual Approach          | Andrew Glassner
+* book: 2019 | grokking deep learning                    | andrew w. trask
+https://github.com/iamtrask/grokking-deep-learning
+* book: 2021 | loving common lisp                        | mark watson
+** backpropagation neural networks
+- trained by  applying training inputs to the networks
+- compare differences/errors between
+  1) propagated values
+  2) training data values
+- we magnitude of these errors are used to adjust the weights in the network
+- some problems while trying to find "good enough" weights
+  1) (randomness) sometimes he accumulated error at a *local minimum* is too large, is best to restart the training
+  2) (memory) if we have enough *memory* and with not enough data, we might just memorize the training data.
+     memory=weights. start using a small network.
+- the ~activation values~ of individual neurons are limited to the range [0,1].
+  - sum of the activation values of neurons in the previous layer *times* the values of the connecting weights and then
+    using *sigmoid* function to map the sums to desired range.
+* book: 2021 | deep learning: a visual approach          | andrew glassner
   https://nostarch.com/deep-learning-visual-approach
-  https://github.com/blueberrymusic/Deep-Learning-A-Visual-Approach (scikit-learn)
-** Introduction
-- Know, stats (to know how to describe the "patterns" in the data)
-- Know, ~bayes~ (to know the likelihood an algorithm is correct)
-- Know, IT (information theory) to measure kinds of information
-- Do, machine learning classification to explore the data we have before DL
-- Know, ensambles of different ML systems instead of a big one, sometimes is better
-- ~Backpropagation~ (a way of training) and ~Optizers~ (modifies the network numbers)
-- ~Convnet~ (convolution neural networks) made to handle spatial data, like images. Like recognizing objects.
-- ~Autoencoders~ simplify datasets, or clean images (?
-- ~Recurrent Neural Networks~ for sequences (text or audio)
-- ~Attention and Transformers~ to interpret and generate text
-- ~Reinforment Learning~ ?
-- ~Generative Adversarial Networks~ to generate data
-** Part 1
-** 1 An Overview of Machine Learning
-- Our goal (with ML) is to discover *meaningful* information,
+  https://github.com/blueberrymusic/deep-learning-a-visual-approach (scikit-learn)
+** introduction
+- know, stats (to know how to describe the "patterns" in the data)
+- know, ~bayes~ (to know the likelihood an algorithm is correct)
+- know, it (information theory) to measure kinds of information
+- do, machine learning classification to explore the data we have before dl
+- know, ensambles of different ml systems instead of a big one, sometimes is better
+- ~backpropagation~ (a way of training) and ~optizers~ (modifies the network numbers)
+- ~convnet~ (convolution neural networks) made to handle spatial data, like images. like recognizing objects.
+- ~autoencoders~ simplify datasets, or clean images (?
+- ~recurrent neural networks~ for sequences (text or audio)
+- ~attention and transformers~ to interpret and generate text
+- ~reinforment learning~ ?
+- ~generative adversarial networks~ to generate data
+** part 1
+** 1 an overview of machine learning
+- our goal (with ml) is to discover *meaningful* information,
   where is up to us decide what's *meaninful*.
-- ~Expert Systems~: we create rules from what the experts tells us. Feature engineering.
-- ~Supervised Learning~: we provide *labeled* data.
-  When the system gets enough right answers for our needs we can say it is *trained*
-- ~Unsupervised Learning~: it learns about the relationships between the inputs provided.
-  Used for clustering into groups.
-  Used to improve the quality of data.
-  Used for compress data.
-- ~Reinforment Learning~ when we search to optimize (? something, but we don't know how.
-  While we judge how good or bad the algorthim is in relative terms. ("probably good", "better than the last one")
-  It can be always searching with new data, while using the "best" solution found.
-- ~Deep Learning~ uses a series of steps or *layers* for computation
-- Neurons turn input value into a number.
-  Neurons stay the same, what can change is the input and weights
-  Initial weights are random.
-  Loop -> Weights are adjusted carefully by a small ammount. And output is judged.
-  Neurons converge into looking for *features* although we never told him to.
-** 2 Essential Statistics
-* Book: 2020 | Programming ML From Coding to DL          | Paolo Perrotta
+- ~expert systems~: we create rules from what the experts tells us. feature engineering.
+- ~supervised learning~: we provide *labeled* data.
+  when the system gets enough right answers for our needs we can say it is *trained*
+- ~unsupervised learning~: it learns about the relationships between the inputs provided.
+  used for clustering into groups.
+  used to improve the quality of data.
+  used for compress data.
+- ~reinforment learning~ when we search to optimize (? something, but we don't know how.
+  while we judge how good or bad the algorthim is in relative terms. ("probably good", "better than the last one")
+  it can be always searching with new data, while using the "best" solution found.
+- ~deep learning~ uses a series of steps or *layers* for computation
+- neurons turn input value into a number.
+  neurons stay the same, what can change is the input and weights
+  initial weights are random.
+  loop -> weights are adjusted carefully by a small ammount. and output is judged.
+  neurons converge into looking for *features* although we never told him to.
+** 2 essential statistics
+* book: 2020 | programming ml from coding to dl          | paolo perrotta
 
-** 1 How Machine learning works
+** 1 how machine learning works
 
 https://pragprog.com/titles/pplearn/programming-machine-learning/
 
@@ -210,80 +218,80 @@ https://pragprog.com/titles/pplearn/programming-machine-learning/
   $ pip3 install seaborn==0.9.0
 #+end_src
 
-[[https://news.stanford.edu/2017/11/15/algorithm-outperforms-radiologists-diagnosing-pneumonia/][Example of a machine learning solution]]
+[[https://news.stanford.edu/2017/11/15/algorithm-outperforms-radiologists-diagnosing-pneumonia/][example of a machine learning solution]]
 
-** 2 Your first learning program
+** 2 your first learning program
 
-*** Example: Pizzas per reservations
+*** example: pizzas per reservations
 
 #+begin_src python
-  X, Y = np.loadtxt("pizza.txt", skiprows=1, unpack=True)
+  x, y = np.loadtxt("pizza.txt", skiprows=1, unpack=true)
 #+end_src
 
-Linear Regression
+linear regression
 #+begin_src python
-  def predict(X, w): # our model
-      return X * w
+  def predict(x, w): # our model
+      return x * w
 #+end_src
 
-How measure Loss our Model?: Mean Squared Error
-Avg of difference between prediction loss and ground truth, squared
+how measure loss our model?: mean squared error
+avg of difference between prediction loss and ground truth, squared
 #+begin_src python
-  def loss(X, Y, w):
-      return np.average((predict(X,w) - Y) ** 2)
+  def loss(x, y, w):
+      return np.average((predict(x,w) - y) ** 2)
 #+end_src
 
-Iterate, trying to find a suitable *w*.
-With a given *lr* (learning rate) step.
+iterate, trying to find a suitable *w*.
+with a given *lr* (learning rate) step.
 #+begin_src python
-  def train(X, Y, iterations, lr):
+  def train(x, y, iterations, lr):
       w = 0 # arbitrary init value
       for i in range(iterations):
-          current_loss = loss(X, Y, w)
-          print("Iteration %4d => Loss: %.6f" % (i, current_loss))
-          if loss(X, Y, w + lr) < current_loss:
+          current_loss = loss(x, y, w)
+          print("iteration %4d => loss: %.6f" % (i, current_loss))
+          if loss(x, y, w + lr) < current_loss:
               w += lr
-          elif loss(X, Y, w - lr) < current_loss:
+          elif loss(x, y, w - lr) < current_loss:
               w -= lr
           else:
               return w
 
-      raise Exception("Couldn't converge within %d iterations" % iterations)
+      raise exception("couldn't converge within %d iterations" % iterations)
 #+end_src
 
-*** Example: Adding a bias
+*** example: adding a bias
 
-#+CAPTION: w=weight b=bias
+#+caption: w=weight b=bias
 #+begin_src src
   ŷ = x * w + b
 #+end_src
 
 #+begin_src python
-  def predit(X, w, b):
-      return X * w + b
+  def predit(x, w, b):
+      return x * w + b
 
-  def loss(X, Y, w, b):
-      return np.average((predict(X,w,b) - Y) ** 2)
+  def loss(x, y, w, b):
+      return np.average((predict(x,w,b) - y) ** 2)
 
-  def train(X, Y, iterations, lr):
+  def train(x, y, iterations, lr):
       w = b = 0
       for i in range(iterations):
-          current_loss = loss(X, Y, w, b)
-          if   loss(X,Y,w+lr,b) < current_loss:
+          current_loss = loss(x, y, w, b)
+          if   loss(x,y,w+lr,b) < current_loss:
               w += lr
-          elif loss(X,Y,w-lr,b) < current_loss:
+          elif loss(x,y,w-lr,b) < current_loss:
               w -= lr
-          elif loss(X,Y,w,b+lr) < current_loss:
+          elif loss(x,y,w,b+lr) < current_loss:
               b += lr
-          elif loss(X,Y,w,b-lr) < current_loss:
+          elif loss(x,y,w,b-lr) < current_loss:
               b -= lr
           else:
               return w, b
 
-      raise Exception("Couldn't converge within %d iterations" % iterations)
+      raise exception("couldn't converge within %d iterations" % iterations)
 #+end_src
 
-*** Example: plot code
+*** example: plot code
 
 #+begin_src python
   import numpy as np
@@ -294,10 +302,99 @@ With a given *lr* (learning rate) step.
   plt.axis([0,50,0,50])
   plt.xticks(fontsize=15)
   plt.yticks(fontsize=15)
-  plt.xlabel("Reservations", fontsize=30)
-  plt.ylabel("Pizza", fontsize=30)
-  X, Y = np.loadtxt("pizza.txt", skiprows=1, unpack=True)
-  plt.plot(X,Y,"bo")
+  plt.xlabel("reservations", fontsize=30)
+  plt.ylabel("pizza", fontsize=30)
+  x, y = np.loadtxt("pizza.txt", skiprows=1, unpack=true)
+  plt.plot(x,y,"bo")
   plt.show()
 #+end_src
 
+** 3 walking the gradient
+
+- problems with our current train()
+  1) doesn't scale well (cpu/time) when adding new hyperparameters
+  2) is not precise since hyperparameters defined in lr terms
+
+- observation:
+  - if we plot our loss() function values with b=0
+  - it would look like a uv curve
+
+- 𝛿l/𝛿w - =gradient descent=
+  - to measure the gradient
+  - "the derivative of the loss with respect to the weight"
+  - derivative on point is -0, if loss decr when w does it
+  - derivative on point is +0, if loss incr when w does it
+  - derivative on point is  0, if is minimum
+
+*** A Sprinkle Of Math
+
+#+CAPTION: mean squared error loss
+$$L = \frac{1}{m} \sum_{i=1}^{m} (({wx_i}+{b}) - {y_i})^2$$
+
+Where $${m}$$ is the number of examples.
+
+#+CAPTION: derivative of L with respect to w
+$$\frac{\partial{L}}{\partial{w}} = \frac{2}{m} \sum_{i=1}^{m} {x_i} (({wx_i}+{b}) - {y_i})$$
+
+*** Downhill Riding
+
+#+CAPTION: our new gradient function
+#+begin_src python
+  def gradient(X,Y,w):
+      return 2 * np.average(X * (predict(X,w,0) - Y))
+#+end_src
+
+#+begin_src python
+  def train(X,Y,iterations,lr):
+      w = 0
+      for i in range(iterations):
+          print("Iteration: %4d => Loss: %.10f" %
+                (i, loss(X,Y,w,0)))
+          w -= gradient(X,Y,w) * lr # !
+      return w
+#+end_src
+- no *ifs* needed
+- we step in the opposite direction of gradient()
+- we don't stop early
+- good hyperparameters by trial&error
+  - iterations=100
+  - lr=0.001
+  - w=1.8436928702
+
+*** Escape from Flatland
+
+- if we consider $${b}\neq0$$
+- loss() becomes a 3D surface
+- =Partial Derivatives=
+  - a way to calculate gradient descend with multiple variables
+  - first calculating the gradient of a lower dimension slice
+  - then combining the slices to get the gradient of the surface
+
+#+CAPTION: derivative pretending w is constant
+$$\frac{\partial{L}}{\partial{b}} = \\
+  \frac{2}{m} \sum_{i=1}^{m} (({wx_i}+{b}) - {y_i})$$
+
+*** Putting Gradient Descent To The Test
+
+#+begin_src python
+  def gradient(X,Y,w,b):
+      w_gradient = 2 * np.average(X * (predict(X,w,b) - Y))
+      b_gradient = 2 * np.average(    (predict(X,w,b) - Y))
+      return (w_gradient, b_gradient)
+#+end_src
+
+#+begin_src python
+  def train(X,Y,iterations, lr):
+      for i in range(iterations):
+          print("Iteration: %4d => Loss: %.10f" %
+                (i, loss(X,Y,w,b)))
+          w_gradient, b_gradient = gradient(X,Y,w,b)
+          w -= w_gradient * lr
+          b -= b_gradient * lr
+      return w, b
+
+  w, b = train(X,Y,iterations=200,lr=0.001)
+  print("|nw=%.10f, b=%.10f" % (w,b))
+  print("Prediction: x=%d => y=%.2f" %
+        (20, predict(20,w,b)))
+#+end_src
