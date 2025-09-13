@@ -14,3 +14,32 @@
 - (24) https://github.com/begriffs/libderp
 - (10) https://github.com/lelanthran/libds
 - (480) coroutines https://github.com/tidwall/neco
+
+* OpenMP
+
+- wiki https://en.wikipedia.org/wiki/OpenMP
+- not OpenMPI
+- Mark variable thread local
+  #+begin_src c
+    #pragma omp parallel
+    #pragma omp parallel for
+    #pragma omp parallel for schedule(dynamic, 1) private(r)
+    #pragma omp threadprivate (generator)
+  #+end_src
+- options
+  |-------------+---------------------+------------------------------------|
+  |     <c>     |         <c>         |                                    |
+  | num_threads |          N          |                                    |
+  |   private   |        [VAR]        | variables private to each thread   |
+  |   shared    |        [VAR]        | variables shared among each thread |
+  |   default   | private¦shared¦none | default variable behaviour         |
+  |     for     |          _          | a loop that can be parallelized    |
+  |  sections   |          _          | a block that can be parallelized   |
+  |   single    |          _          |                                    |
+  |   master    |          _          |                                    |
+  |-------------+---------------------+------------------------------------|
+- compile
+  #+begin_src sh
+    $ export OMP_NUM_THREADS=4
+    $ gcc -fopenmp hello.c -o hello -ldl
+  #+end_src

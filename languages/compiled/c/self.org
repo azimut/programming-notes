@@ -461,7 +461,7 @@ As a pointer type
 |  complex.h |                | ~Complex number~ arithmetic                              |
 |     fenv.h |                | Floating-point environment                               |
 | inttypes.h |                | Format conversion of integer types                       |
-|   tgmath.h |                | Type-generic math (macros wrapping math.h and complex.h) |
+|   [[https://en.wikibooks.org/wiki/C_Programming/tgmath.h][tgmath.h]] |                | Type-generic math (macros wrapping math.h and complex.h) |
 |  stdbool.h |      bool      | Macros for boolean type                                  |
 |            |   false (0)    |                                                          |
 |            |    true (1)    |                                                          |

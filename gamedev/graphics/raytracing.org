@@ -15,6 +15,7 @@
 - article: ps https://seriot.ch/projects/postscript_tiny_ray_tracer.html
 - article: clojure https://www.abhirag.com/ray_tracer/
 - article: C https://fabiensanglard.net/postcard_pathtracer/
+- article: C https://drakeor.com/2021/06/14/simple-software-based-raytracer-in-c/
 - article: C++ https://fabiensanglard.net/rayTracing_back_of_business_card/
   - c++ -O3 -o card card.cpp
 

@@ -30,15 +30,25 @@
 
 * language
 
-#+begin_src sh
+#+begin_src gnuplot
   #!/usr/bin/gnuplot -persist
+  a = 7             # variable assignent
+  f(x,d) = d * x**2 # functions
+  g(x)   = x <= 0 ? sin(x) : NaN
 #+end_src
 
-- has variable assignment
+- NaN type
 - "(/Symbol p)" - replaces parens with 𝛑
 - curve fitting https://www.youtube.com/watch?v=vHM_5AeKwXE
 - do for [i=1:96] { plot f(x,i*0.1) }
+- operators http://www.gnuplot.info/docs_4.2/node55.html
 
+** functions
+- http://www.gnuplot.info/docs/loc1283.html
+- math
+- string
+- time
+- other
 ** input data
 
 - space separated by default
@@ -58,19 +68,31 @@
 *** plot
 
 - [re]plot [PLOT_A OPTS], [PLOT_B OPTS]
+  - for [n = 1 : 5]
+  - widths = "30 15 5"
+    for [width in widths]
+  - "+" (previous filename)
   - "filename.txt"
   - /dev/stdin
   - using N:N+1:N+n
   - smooth [bezier¦mcsplines]
-  - title (for legend box)
+  - title S (for legend box)
   - index N
     - reference block N of data (aka separated by 2 \n)
     - blocks index start at 0
   - with
+    - histograms
+    - filledcurves
+      - fillstyle pattern N
     - linespoint
     - lines
-      - linestyle N
-      - linecolor rgb "#0b0000"
+      - [d]ash[t]ype N
+      - [d]ash[t]ype S
+      - [l]ine[s]tyle N
+      - [l]ine[t]ype N
+      - [l]ine[c]olor rgb "#0b0000"
+      - [l]ine[c]olor rgb "green"
+      - [l]ine[w]ith N
     - points
       - pointsize N
 - imagesc - matrix/heatmap - 2d contour
@@ -80,49 +102,85 @@
 ** options (setteable)
 
 *** general
-#+CAPTION: S = a quoted string, N = a number
-|--------------+-------------------+------------------------------------|
-|     <c>      |        <c>        |                                    |
-|              |     argument      | description                        |
-|--------------+-------------------+------------------------------------|
-|    border    |        [N]        | axis lines (takes the bitsum)      |
-| [x¦y¦z]tics  | [nomirror¦rotate] | axis numbers                       |
-|              |  START,STEP,END   |                                    |
-|              |    (S N[,S N])    | custom labels S at point N         |
-| [x¦y¦z]label |         S         | axis label                         |
-|              |     offset N      |                                    |
-| [x¦y¦z]range |       [N:N]       | axis range                         |
-|     grid     |         -         | axis grid                          |
-|     key      | [BLTR] [[no]box]  | enable/disable/position legend box |
-|              |      width N      |                                    |
-|              |      font S       | use ",14" to only change it's size |
-|              |      at N,N       |                                    |
-|--------------+-------------------+------------------------------------|
-|   samples    |         N         | ????                               |
-|    xdata     |       time        | tells x axis is a date/time        |
-|   encoding   |       utf8        |                                    |
-|   timefmt    |         S         | format of the INPUT date           |
-|   datafile   |    separator S    | input separator (default: space)   |
-|--------------+-------------------+------------------------------------|
-|    title     |         S         | the                                |
-|    format    |     [x¦y] FMT     | tic format string                  |
-|    scale     |         N         |                                    |
-|   logscale   |     [x¦y] [N]     | with step N                        |
-|  autoscale   |    [[x¦y]fix]     | prevents autoextend of scale       |
-|    output    |         S         | saves into filepath at S           |
-|--------------+-------------------+------------------------------------|
-|    pause     |         N         | seconds to pause                   |
-|   +reread+   |         -         | REMOVED in 6.0 +reread input+      |
-|--------------+-------------------+------------------------------------|
+
+#+CAPTION: S ="string", N=number, F=float
+|------------+------------+-----------------------------------|
+|    <c>     |    <c>     |                                   |
+|   table    | "FILENAME" | save plot to file, unset it after |
+|  encoding  |    utf8    |                                   |
+|------------+------------+-----------------------------------|
+|   title    |     S      | the                               |
+|   scale    |     N      |                                   |
+|   output   |     S      | saves into filepath at S          |
+| monochrome |     _      |                                   |
+|------------+------------+-----------------------------------|
+|   pause    |     N      | seconds to pause                  |
+|  +reread+  |     -      | REMOVED in 6.0 +reread input+     |
+|------------+------------+-----------------------------------|
+
+*** general: file parsing
+
+|-----------+-----------------+----------------------------------|
+|    <c>    |       <c>       |                                  |
+|-----------+-----------------+----------------------------------|
+| datafile  |   separator S   |                                  |
+|           |  separator tab  |                                  |
+|           | separator comma | input separator (default: space) |
+|-----------+-----------------+----------------------------------|
+|  samples  |        N        | sampling frequency               |
+| [xyz]data |      time       | tells ? axis is a date/time      |
+|  timefmt  |       FMT       | INPUT format date                |
+|  format   |    [x¦y] FMT    | OUTPUT format string             |
+|-----------+-----------------+----------------------------------|
+
+*** general: axis styling
+
+#+CAPTION: S ="string", N=number, F=float
+|---------------+----------------+----------------------------------|
+|      <c>      |      <c>       |                                  |
+|---------------+----------------+----------------------------------|
+|    border     |      [N]       | pick axis lines (takes a bitsum) |
+|     grid      |       -        | axis grid                        |
+|   logscale    |   [x¦y] [N]    | with step N                      |
+|   autoscale   |   [[x¦y]fix]   | prevents autoextend of scale     |
+|     xdata     |      time      | tells ? axis is a date/time      |
+|    format     |   [x¦y] FMT    | OUTPUT format string             |
+| [xyz][2]range |     [N:N]      | axis range                       |
+| [xyz][2]tics  |    nomirror    | axis numbers                     |
+|               |     rotate     |                                  |
+|               | START,STEP,END |                                  |
+|               |  (S N[,S N])   | custom labels S at point N       |
+| [xyz][2]label |       S        | axis label                       |
+|               |    offset N    |                                  |
+|---------------+----------------+----------------------------------|
+*** key
+
+|-----+---------------+-------------------------------|
+|     |      <c>      |                               |
+| key |    [BLTR]     | position legend box           |
+|     |    [no]box    | enable/disable                |
+|     | at graph F, F |                               |
+|     |    width N    |                               |
+|     |    font S     | use ",14" to change size only |
+|     |    at N,N     |                               |
+|-----+---------------+-------------------------------|
+
 *** style
 
-|------------------+---------------------------------|
-| fill transparent |                                 |
-| solid F          |                                 |
-| noborder         |                                 |
-| data lines       |                                 |
-| line N           | can be later referenced on plot |
-|------------------+---------------------------------|
+|-----------+-------------+----------------------------------|
+|    <c>    |     <c>     |                                  |
+|   fill    | transparent |                                  |
+|           |    solid    |                                  |
+|   solid   |      F      |                                  |
+| noborder  |      _      |                                  |
+|   data    |    lines    | sets default for *plot* with ... |
+|           | histograms  |                                  |
+|   line    |      N      | can be later referenced on plot  |
+| histogram |    gap N    |                                  |
+|           |   cluster   |                                  |
+|           |  clustered  |                                  |
+|           | rowstacked  |                                  |
+|-----------+-------------+----------------------------------|
 
 #+CAPTION: gnuplot "test" command output
 #+ATTR_HTML: :width 500
@@ -172,6 +230,7 @@ http://gnuplot.info/demo/pm3dcolors.html
 
 * tools
 
+- emacs: [[https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-gnuplot.html][Org-babel-gnuplot]]
 - wrapper: plot realtime and stored data from the cli https://github.com/dkogan/feedgnuplot
 - config https://github.com/Gnuplotting/gnuplot-configs
 - pallettes
