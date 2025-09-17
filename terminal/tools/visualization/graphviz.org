@@ -18,6 +18,8 @@ one binary for each layout filter
 
 * language
 
+https://www.graphviz.org/doc/info/lang.html
+
 ** layout filters
 
 https://graphviz.org/docs/layouts/
@@ -67,5 +69,6 @@ https://graphviz.org/docs/layouts/
 
 * codebases
 
+NN https://www.geeksforgeeks.org/deep-learning/how-to-visualize-a-neural-network-in-python-using-graphviz/
 https://graphviz.org/Gallery/undirected/root.html
 http://www.yifanhu.net/GALLERY/GRAPHS/

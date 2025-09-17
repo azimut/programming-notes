@@ -55,6 +55,7 @@
 - putting 2 newlines one after another, separate different blocks/groups of data
 
 ** commands
+
 |-------+------------------------------------+-----------------------------|
 |   <r> |                                    |                             |
 | unset | OPTION                             |                             |
@@ -65,18 +66,31 @@
 |       |                                    | later can be referenced     |
 |       |                                    | eg: S_min_x                 |
 |-------+------------------------------------+-----------------------------|
+
 *** plot
 
-- [re]plot [PLOT_A OPTS], [PLOT_B OPTS]
+|--------------+-------------------------|
+|     <c>      |                         |
+|    INPUT     | reads from...           |
+|--------------+-------------------------|
+|  "file.txt"  | file contents           |
+| "/dev/stdin" | standard input          |
+|   "< CMD"    | CMD stdout              |
+|      ""      | re-use last given input |
+|--------------+-------------------------|
+
+- [re]plot INPUT [PLOT_A OPTS], INPUT [PLOT_B OPTS]
+  - every N - plots every N data points
   - for [n = 1 : 5]
   - widths = "30 15 5"
     for [width in widths]
-  - "+" (previous filename)
-  - "filename.txt"
-  - /dev/stdin
   - using N:N+1:N+n
-  - smooth [bezier¦mcsplines]
+  - [[http://www.gnuplot.info/docs/loc9016.html][smooth]]
+    - [[http://www.gnuplot.info/docs/loc9099.html][frequency]] - points with the same X-value are replaced with 1 point with Y-values sum
+    - [bezier¦mcsplines]
   - title S (for legend box)
+  - bins=N - total N number of bins in graph http://gnuplot.info/docs_6.1/loc9125.html
+  - binvalue=[avg¦sum] - how to group each bin, default: sum
   - index N
     - reference block N of data (aka separated by 2 \n)
     - blocks index start at 0
@@ -95,6 +109,8 @@
       - [l]ine[w]ith N
     - points
       - pointsize N
+
+*** other
 - imagesc - matrix/heatmap - 2d contour
 - splot - 3d surface
 - hist
@@ -104,34 +120,36 @@
 *** general
 
 #+CAPTION: S ="string", N=number, F=float
-|------------+------------+-----------------------------------|
-|    <c>     |    <c>     |                                   |
-|   table    | "FILENAME" | save plot to file, unset it after |
-|  encoding  |    utf8    |                                   |
-|------------+------------+-----------------------------------|
-|   title    |     S      | the                               |
-|   scale    |     N      |                                   |
-|   output   |     S      | saves into filepath at S          |
-| monochrome |     _      |                                   |
-|------------+------------+-----------------------------------|
-|   pause    |     N      | seconds to pause                  |
-|  +reread+  |     -      | REMOVED in 6.0 +reread input+     |
-|------------+------------+-----------------------------------|
+|------------+------------+-------------------------------------|
+|    <c>     |    <c>     |                                     |
+|   table    | "FILENAME" | save plot to file, unset it after   |
+|  encoding  |    utf8    |                                     |
+|------------+------------+-------------------------------------|
+|   title    |     S      | the                                 |
+|   scale    |     N      |                                     |
+|   output   |     S      | saves into filepath, unset it after |
+| monochrome |     _      |                                     |
+|------------+------------+-------------------------------------|
+|   pause    |     N      | seconds to pause                    |
+|  +reread+  |     -      | REMOVED in 6.0 +reread input+       |
+|------------+------------+-------------------------------------|
 
 *** general: file parsing
 
-|-----------+-----------------+----------------------------------|
-|    <c>    |       <c>       |                                  |
-|-----------+-----------------+----------------------------------|
-| datafile  |   separator S   |                                  |
-|           |  separator tab  |                                  |
-|           | separator comma | input separator (default: space) |
-|-----------+-----------------+----------------------------------|
-|  samples  |        N        | sampling frequency               |
-| [xyz]data |      time       | tells ? axis is a date/time      |
-|  timefmt  |       FMT       | INPUT format date                |
-|  format   |    [x¦y] FMT    | OUTPUT format string             |
-|-----------+-----------------+----------------------------------|
+|-------------+-----------------+----------------------------------|
+|     <c>     |       <c>       |                                  |
+|-------------+-----------------+----------------------------------|
+|  datafile   |   separator S   |                                  |
+|             |  separator tab  |                                  |
+|             | separator comma | input separator (default: space) |
+|-------------+-----------------+----------------------------------|
+| decimalsign |        S        | "." or ","                       |
+|   samples   |        N        | sampling frequency               |
+|  [xyz]data  |      time       | tells ? axis is a date/time      |
+| timecolumn  |      N FMT      | INPUT format date on column N    |
+|   timefmt   |       FMT       | INPUT format date                |
+|   format    |    [x¦y] FMT    | OUTPUT format string, eg: %.2f   |
+|-------------+-----------------+----------------------------------|
 
 *** general: axis styling
 
@@ -150,6 +168,7 @@
 |               |     rotate     |                                  |
 |               | START,STEP,END |                                  |
 |               |  (S N[,S N])   | custom labels S at point N       |
+|   [xyz]tic    |  rotate by N   | rotates tic labels               |
 | [xyz][2]label |       S        | axis label                       |
 |               |    offset N    |                                  |
 |---------------+----------------+----------------------------------|
@@ -167,20 +186,21 @@
 
 *** style
 
-|-----------+-------------+----------------------------------|
-|    <c>    |     <c>     |                                  |
-|   fill    | transparent |                                  |
-|           |    solid    |                                  |
-|   solid   |      F      |                                  |
-| noborder  |      _      |                                  |
-|   data    |    lines    | sets default for *plot* with ... |
-|           | histograms  |                                  |
-|   line    |      N      | can be later referenced on plot  |
-| histogram |    gap N    |                                  |
-|           |   cluster   |                                  |
-|           |  clustered  |                                  |
-|           | rowstacked  |                                  |
-|-----------+-------------+----------------------------------|
+|-----------+---------------+----------------------------------|
+|    <c>    |      <c>      |                                  |
+|   fill    |  transparent  |                                  |
+|           |     solid     |                                  |
+|   solid   |       F       |                                  |
+| noborder  |       _       |                                  |
+|   data    |     lines     | sets default for *plot* with ... |
+|           |  histograms   |                                  |
+|   line    |       N       | can be later referenced on plot  |
+| histogram |     gap N     |                                  |
+|           |    cluster    |                                  |
+|           |   clustered   |                                  |
+|           |  rowstacked   |                                  |
+|           | columnstacked |                                  |
+|-----------+---------------+----------------------------------|
 
 #+CAPTION: gnuplot "test" command output
 #+ATTR_HTML: :width 500

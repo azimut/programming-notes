@@ -37,6 +37,19 @@
   $ sqlite3 foo.db .dump
 #+end_src
 
+** flag
+|-------------+---+-----------------|
+| -csv        |   | .mode           |
+| -html       |   | .mode           |
+| -column     |   | .mode           |
+| -list       |   | .mode           |
+| -line       |   | .mode           |
+| -vfs        | S |                 |
+| -[no]header |   | .headers on/off |
+| -separator  | S | .separator S    |
+| -cmd        | S | run command     |
+| -bail       |   | exit on error   |
+|-------------+---+-----------------|
 ** metacomands
 |------------+-------------------+---------------------------------------------------|
 |            | ARGUMENT          | DESCRIPTION                                       |
@@ -50,12 +63,13 @@
 | .timer     | on/off            | show runtime after queries                        |
 | .import    | --csv foo.csv bar | import csv file into "bar" table                  |
 | .tables    | -                 | list all tables                                   |
-| .output    | FILE              | redirects output to FILE                          |
 | .load      | EXNAME            | loads an ~extension~                              |
 | .open      | DBFILE            | opens database when non was already opened        |
 | .save      | DBFILE            | write in-memory db into FILE                      |
 | .separator | "¦"               | change the separator for ".mode list"             |
 | .eqp       | on/off/full       | explain query planner                             |
+| .output    | FILE              | redirects output to FILE                          |
+| .output    | stdout            | resets output                                     |
 |------------+-------------------+---------------------------------------------------|
 | .mode      |                   | change output format                              |
 |            | list              | DEFAULT                                           |

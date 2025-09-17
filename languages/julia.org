@@ -1,3 +1,4 @@
+- 24 video  Get Started with Julia Programming | Full Course  https://www.youtube.com/watch?v=lZskxdMpYfE
 - Article: 18 An introduction to the Julia language, part 1 https://lwn.net/Articles/763626/
 - Article: 18 An introduction to the Julia language, part 2 https://lwn.net/Articles/764001/
 - Article: 20 The accelerating adoption of Julia https://lwn.net/Articles/834571/

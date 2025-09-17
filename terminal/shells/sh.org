@@ -71,15 +71,13 @@
     until ssh root@10.10.10.10; do sleep 3; done
   #+end_src
 
-|-----------+-----------+---------------|
-|    <c>    |    <c>    | <l>           |
-|           |    cmd    | lines         |
-|-----------+-----------+---------------|
-|   take    | head -n 5 | first 5       |
-|   drop    | tail -n+5 | skips first 4 |
-| take-last | tail -n 5 | last 5        |
-| drop-last | head -n-5 | skips last 5  |
-|-----------+-----------+---------------|
+|---------------+------------+-----------|
+|      <c>      |    <c>     |    <c>    |
+|    first 5    | head -n  5 |   take    |
+| skips first 4 | tail -n +5 |   drop    |
+|    last 5     | tail -n  5 | take-last |
+| skips last 5  | head -n -5 | drop-last |
+|---------------+------------+-----------|
 
 * gotchas
 

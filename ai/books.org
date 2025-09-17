@@ -1,0 +1,687 @@
+#+STARTUP: latexpreview
+#+OPTIONS: tex:t
+
+- books https://github.com/aridiosilva/AI_Books/
+
+* book: 2019 | grokking deep learning                    | andrew w. trask
+https://github.com/iamtrask/grokking-deep-learning
+* book: 2021 | loving common lisp                        | mark watson
+** backpropagation neural networks
+- trained by  applying training inputs to the networks
+- compare differences/errors between
+  1) propagated values
+  2) training data values
+- we magnitude of these errors are used to adjust the weights in the network
+- some problems while trying to find "good enough" weights
+  1) (randomness) sometimes he accumulated error at a *local minimum* is too large, is best to restart the training
+  2) (memory) if we have enough *memory* and with not enough data, we might just memorize the training data.
+     memory=weights. start using a small network.
+- the ~activation values~ of individual neurons are limited to the range [0,1].
+  - sum of the activation values of neurons in the previous layer *times* the values of the connecting weights and then
+    using *sigmoid* function to map the sums to desired range.
+* book: 2021 | deep learning: a visual approach          | andrew glassner
+  https://nostarch.com/deep-learning-visual-approach
+  https://github.com/blueberrymusic/deep-learning-a-visual-approach (scikit-learn)
+** introduction
+- know, stats (to know how to describe the "patterns" in the data)
+- know, ~bayes~ (to know the likelihood an algorithm is correct)
+- know, it (information theory) to measure kinds of information
+- do, machine learning classification to explore the data we have before dl
+- know, ensambles of different ml systems instead of a big one, sometimes is better
+- ~backpropagation~ (a way of training) and ~optizers~ (modifies the network numbers)
+- ~convnet~ (convolution neural networks) made to handle spatial data, like images. like recognizing objects.
+- ~autoencoders~ simplify datasets, or clean images (?
+- ~recurrent neural networks~ for sequences (text or audio)
+- ~attention and transformers~ to interpret and generate text
+- ~reinforment learning~ ?
+- ~generative adversarial networks~ to generate data
+** part 1
+** 1 an overview of machine learning
+- our goal (with ml) is to discover *meaningful* information,
+  where is up to us decide what's *meaninful*.
+- ~expert systems~: we create rules from what the experts tells us. feature engineering.
+- ~supervised learning~: we provide *labeled* data.
+  when the system gets enough right answers for our needs we can say it is *trained*
+- ~unsupervised learning~: it learns about the relationships between the inputs provided.
+  used for clustering into groups.
+  used to improve the quality of data.
+  used for compress data.
+- ~reinforment learning~ when we search to optimize (? something, but we don't know how.
+  while we judge how good or bad the algorthim is in relative terms. ("probably good", "better than the last one")
+  it can be always searching with new data, while using the "best" solution found.
+- ~deep learning~ uses a series of steps or *layers* for computation
+- neurons turn input value into a number.
+  neurons stay the same, what can change is the input and weights
+  initial weights are random.
+  loop -> weights are adjusted carefully by a small ammount. and output is judged.
+  neurons converge into looking for *features* although we never told him to.
+** 2 essential statistics
+* book: 2020 | programming ml from coding to dl          | paolo perrotta
+
+- home https://pragprog.com/titles/pplearn/programming-machine-learning/
+- forum https://devtalk.com/books/programming-machine-learning/
+- source https://github.com/nusco/progml-code
+- bonus
+  - chap 4 https://nusco.medium.com/of-gradients-and-matrices-1b19de65e5cd
+  - chap 5 [[https://levelup.gitconnected.com/the-problem-with-accuracy-3670891b908e][The Problem with Accuracy]]
+
+** Hands On:
+1) ?
+2) change lr
+   - try very small and large values, what happens?
+   - what we gain and lose?
+3) increase lr from 0.001,
+   - notice how at some point loss starts increasing
+4) use data/life-expectancy
+5) print weights, besides bias, what does they tell us?
+   which column has the biggest impact?
+6) What digits would be harder to regonize than 5? Guess and then try.
+7) Minesweper
+   - use Sonar dataset (aka "mines vs rocks")
+   - change hyperparameters
+   - binary classification
+   - set aside 48 of 208 examples for testing
+     - shuffle first
+   - try to reach 75% accuracy
+** Part I: From Zero To Image Recognition
+*** 1 how machine learning works
+
+#+begin_src sh
+  $ pip3 install numpy==1.15.2
+  $ pip3 install matplotlib==3.1.2
+  $ pip3 install seaborn==0.9.0
+#+end_src
+
+[[https://news.stanford.edu/2017/11/15/algorithm-outperforms-radiologists-diagnosing-pneumonia/][example of a machine learning solution]]
+
+*** 2 your first learning program
+
+We want to predict:
+- How many pizzas we need to prepare?
+- Given certain amount of reservations (INPUT)
+
+We try to find the line that more closely approximates the relationship.
+#+caption: w=weight b=bias
+#+begin_src src
+  ŷ = x * w + b
+#+end_src
+
+**** code: pizzas per reservations
+
+#+begin_src python
+  x, y = np.loadtxt("pizza.txt", skiprows=1, unpack=true)
+
+  # x = input var, restaurant reservations
+  # w = weight
+  def predict(x, w): # our model
+      return x * w
+
+  # y = ground truth, pizzas bought
+  def loss(x, y, w): # = Mean Squared Error
+      return np.average((predict(x,w) - y) ** 2)
+
+  # Returns a new w(eight)
+  # lr = learning rate, step
+  def train(x, y, iterations, lr):
+      w = 0 # arbitrary init value
+      for i in range(iterations):
+          current_loss = loss(x, y, w)
+          print("iteration %4d => loss: %.6f" % (i, current_loss))
+          if loss(x, y, w + lr) < current_loss:
+              w += lr
+          elif loss(x, y, w - lr) < current_loss:
+              w -= lr
+          else:
+              return w
+      raise exception("couldn't converge within %d iterations" % iterations)
+#+end_src
+
+**** code: adding a bias
+
+#+begin_src python
+  def predict(x, w, b): # our model
+      return x * w + b
+
+  def loss(x, y, w, b): # Mean Squared Error
+      return np.average((predict(x,w,b) - y) ** 2)
+
+  def train(x, y, iterations, lr):
+      w = b = 0
+      for i in range(iterations):
+          current_loss = loss(x, y, w, b)
+          if   loss(x,y,w+lr,b) < current_loss:
+              w += lr
+          elif loss(x,y,w-lr,b) < current_loss:
+              w -= lr
+          elif loss(x,y,w,b+lr) < current_loss:
+              b += lr
+          elif loss(x,y,w,b-lr) < current_loss:
+              b -= lr
+          else:
+              return w, b
+      raise exception("couldn't converge within %d iterations" % iterations)
+#+end_src
+
+**** extra: plot code
+
+#+begin_src python
+  import numpy as np
+  import matplotlib.pyplot as plt
+  import seaborn as sns
+
+  sns.set()
+  plt.axis([0,50,0,50])
+  plt.xticks(fontsize=15)
+  plt.yticks(fontsize=15)
+  plt.xlabel("reservations", fontsize=30)
+  plt.ylabel("pizza", fontsize=30)
+  x, y = np.loadtxt("pizza.txt", skiprows=1, unpack=true)
+  plt.plot(x,y,"bo")
+  plt.show()
+#+end_src
+
+*** 3 walking the gradient
+
+**** Our Algorithm doesn't cut it
+
+- Problems with our current =train()=
+  1) doesn't scale well (cpu/time) when adding new _hyperparameters_ (INPUTS)
+  2) is NOT precise, since _hyperparameters_ are defined in *lr* terms
+
+- observation:
+  - a plot of loss(), when b=0, looks like a U curve
+
+- Solution: 𝛿l/𝛿w - =Gradient Descent=
+  - to measure the gradient
+  -"the derivative of the loss with respect to the weight"
+  - derivative on point is <0, if loss decr when w does it
+  - derivative on point is >0, if loss incr when w does it
+  - derivative on point is  0, if is a minimum
+
+**** A Sprinkle Of Math
+
+#+CAPTION: Loss = Mean Squared Error of our model
+$$L = \frac{1}{m} \sum_{i=1}^{m} (({wx_i}+{b}) - {y_i})^2$$
+
+Where $${m}$$ is the number of examples.
+
+#+CAPTION: partial derivative of L, with respect to w, pretending b is constant
+$$\frac{\partial{L}}{\partial{w}} = \frac{2}{m} \sum_{i=1}^{m} {x_i} (({wx_i}+{b}) - {y_i})$$
+
+**** Downhill Riding
+
+#+begin_src python
+  def gradient(X,Y,w):
+      return 2 * np.average(X * (predict(X,w,0) - Y))
+
+  def train(X,Y,iterations,lr):
+      w = 0
+      for i in range(iterations):   # no ifs
+          print("Iteration: %4d => Loss: %.10f" %
+                (i, loss(X,Y,w,0)))
+          w -= gradient(X,Y,w) * lr # opposite direction of gradient()
+      return w                      # no early return
+#+end_src
+
+- found good hyperparameters (by trial&error)
+  - iterations=100
+  - lr=0.001
+  - w=1.8436928702
+
+**** Escape from Flatland
+
+- if we consider $${b}\neq0$$
+- loss() becomes a 3D surface
+- =Partial Derivatives=
+  - a way to calculate *Gradient Descend* for multiple INPUT variables
+  - by first calculating the gradient of a lower dimension "slice"
+  - then combining the slices to get the gradient of the surface
+
+#+CAPTION: derivative, now pretending w is constant
+$$\frac{\partial{L}}{\partial{b}} = \\
+  \frac{2}{m} \sum_{i=1}^{m} (({wx_i}+{b}) - {y_i})$$
+
+**** Putting =Gradient Descent= To The Test
+
+#+begin_src python
+  def gradient(X,Y,w,b):
+      w_gradient = 2 * np.average(X * (predict(X,w,b) - Y))
+      b_gradient = 2 * np.average(    (predict(X,w,b) - Y))
+      return (w_gradient, b_gradient)
+
+  def train(X,Y,iterations, lr):
+      for i in range(iterations):
+          print("Iteration: %4d => Loss: %.10f" %
+                (i, loss(X,Y,w,b)))
+          w_gradient, b_gradient = gradient(X,Y,w,b)
+          w -= w_gradient * lr
+          b -= b_gradient * lr
+      return w, b
+
+  w, b = train(X,Y,iterations=20_000,lr=0.001) # less iterations
+  print("|nw=%.10f, b=%.10f" % (w,b))          # more precise
+  print("Prediction: x=%d => y=%.2f" %
+        (20, predict(20,w,b)))
+#+end_src
+
+**** When =Gradient Descent= Fails
+
+- Problems:
+  - There is no guarantee that is the shortest path
+  - It might miss the target completely
+  - Can get confused with sudden loss() surface cliffs
+  - Can get stuck on a local minimum
+
+- loss() surface should be:
+  - convex: no bumps
+  - continuous: no cliffs or gaps
+  - differentiable: smooth, without cusps
+
+- ergo:
+  - mean absolute < mean squared
+
+*** 4 Hyperspace!
+
+- =Multiple Linear Regression=
+  $${y} = {x_1}{w_1} + {x_2}{w_2} + {...} + {b}$$
+  - for more than 1 input
+  - aka weighted sum of the inputs
+
+**** Matrix Math
+
+- Matrix sizes: big, uneven
+- Matrix operations:
+  - multiplication
+    - order matters
+    - if m1.cols = m2.rows
+    - if inner dimensions are equal
+    - (4,3) * (3,2) = (4,2)
+  - transpose
+    - flip it around diagonal \
+    - rows become columns
+    - columns become rows
+    - T(4,3) = (3,4)
+
+**** Code
+
+- we make the input a single big matrix
+- TIP: avoid mixing numpy matrixes and 1D arrays
+
+#+begin_src python
+  import numpy as np
+
+  x1,x2,x3,y = np.loadtxt("pizza_3_vars.txt", skiprows=1, unpack=True)
+  bias = np.ones(x1.size)
+  X = np.column_stack((bias,x1,x2,x3))
+  Y = y.reshape(-1,1)
+  w = train(X,Y,iterations=100_000,lr=0.001)
+
+  print("\nWeights: %s" % w.T) # bias w0 w1 w2
+  print("\nA few predictions:")
+  for i in range(5):
+      print("X[%d] -> %.4f (label: %d)" %
+            (i, predict(X[i],w), Y[i]))
+
+  # predict() now becomes a matrix multiplication
+  # X - a matrix (m,n)
+  #   , m = # of examples
+  #   , n = # of input vars
+  def predict(X,w):
+      return np.matmul(X,w)
+
+  def loss(X,Y,w):     # Y - Ground Truth, (m,1)
+      return np.average((predict(X,w)-Y)**2)
+
+  def gradient(X,Y,w): # no change
+      return 2 * np.matmul(X.T, (predict(X,w)-Y)) / X.shape[0]
+
+  def train():
+      w = np.zeros((X.shape[1], 1))
+      for i in range(iterations):
+          print("Iteration %4d => Loss: %.20f" %
+                (i, loss(X,Y,w)))
+          w -= gradient(X,Y,w) * lr
+      return w
+#+end_src
+
+*** 5 A Discerning Machine
+
+- =Classifier=
+  - a program that assigns data
+  - to one of a limited number of classes
+  - instead of _numerical labels_
+  - works with _categorical labels_
+  - =Binary Classifier=
+    - only recognizes 2 classes
+
+**** Where Linear Regression fails
+
+Scenario: we want to predict if we get a police noise complain (a boolean).
+
+With Linear Regression
+- We assume that the data points are roughly alined to begin with.
+- If they arranged in a curve or scattered randomly, we cannot approximate them with a line.
+- Prediction is unstable in the case of outliers
+
+**** Invasion of the =Sigmoids=
+
+- =Logistic Regression=
+  - To adapt our Linear Regresion for Binary Classification
+
+- =Logistic Function=
+  $$\sigma({z}) = \frac{1}{1+e^{-z}}$$
+  - Belongs to the =Sigmoid= family of fn's
+  - fn that restrict predictions in [0,1] range
+  - works well with =Gradient Descent=
+    1) smooth
+    2) without flat areas (=0)
+    3) without gaps (without undefined values)
+
+#+begin_src gnuplot :exports results :file sigmoid.png
+  reset
+  set key textcolor "white"
+  set terminal png background rgb "black"
+  set border 3 linecolor "white"; set grid
+  set xrange [-10:+10]; set yrange [-0.5:1.5]
+  e = exp(1)
+  f(x) = 1/(1+e**(-x))
+  plot f(x) title "1/(1+e**(-x))" with lines lc rgb "white"
+#+end_src
+
+#+CAPTION: logistic function, aka sigmoid function
+#+ATTR_ORG: :width 500
+#+RESULTS:
+[[file:sigmoid.png]]
+
+**** Confidence and doubt
+
+#+begin_src python
+  def sigmoid(z):
+      return 1 / (1 + np.exp(-z))
+
+  def forward(X,w):  # predict() ran on training
+      weighted_sum = np.matmul(X,w)
+      return sigmoid(weighted_sum)
+
+  def classify(X,w): # predict() ran on classification
+      return np.round(forward(X,w))
+#+end_src
+
+**** Smoothing it out
+
+#+CAPTION: calling our new model with Mean Squared Error
+#+begin_src python
+  def mse_loss(X,Y,w):
+      return np.average((forward(X,w) - Y) ** 2)
+#+end_src
+
+**Sigmoid* made *Gradient Descent* less reliable.
+Resulting surface is irregular with local minima everywhere.
+
+We replace =Mean Squared Error= with =Log Loss=
+
+\[
+L =
+-\frac{1}{m}
+\sum_{i=1}^{m}
+(({y_i} \cdot \log(y'_i)) +
+ ((1-y_i) \cdot \log(1-y'_i)))
+\]
+
+#+begin_src python
+  def loss(X,Y,w):
+      y_hat = forward(X,w)
+      first_term =       Y  * np.log(y_hat)
+      second_term = (1 - Y) * np.log(1 - y_hat)
+      return -np.average(first_term + second_term)
+#+end_src
+
+**** Updating the Gradient
+
+#+CAPTION: Log Loss partial derivative
+\[
+\frac{\partial{L}}{\partial{w}} =
+\frac{1}{m} \sum_{i=1}^{m} {x_i} ({y'_i}-{y_i})
+\]
+
+
+#+begin_src python
+  def gradient(X,Y,w):
+      return np.matmul(X.T, (forward(X,w) - Y)) / X.shape[0]
+#+end_src
+
+**** What happened to the model function?
+
+#+begin_src gnuplot :exports results :file classify.png
+  reset
+  set key textcolor "white"
+  set terminal png background rgb "black"
+  set border 3 linecolor "white"; set grid
+  set xrange [-10:+10]; set yrange [-0.5:1.5]
+  e = exp(1)
+  f(x) = 1/(1+e**(-x))
+  plot f(x) title "1/(1+e**(-x))" with lines lc rgb "white", f(x) > 0.5 ? 1 : 0
+#+end_src
+
+#+CAPTION: forward() vs classify()
+#+ATTR_ORG: :width 500
+#+RESULTS:
+[[file:classify.png]]
+
+**** Classification in Action
+
+#+CAPTION: load and train()
+#+begin_src python
+  def train(X,Y,iterations,lr):
+      w = np.zeros((X.shape[1], 1))
+      for i in range(iterations):
+          print("Iteration %4d => Loss: %.20f" %
+                (i, loss(X,Y,w)))
+          w -= gradient(X,Y,w) * lr
+      return w
+
+  x1,x2,x3,y = np.loadtxt("police.txt", skiprows=1, unpack=True)
+  X = np.column_stack((np.ones(x1.size), x1,x2,x3))
+  Y = y.reshape(-1,1)
+  w = train(X,Y,iterations=10_000, lr=0.001)
+#+end_src
+
+#+CAPTION: test overall correctness
+#+begin_src python
+  def test(X,Y,w):
+      total_examples = X.shape[0]
+      correct_results = np.sum(classify(X,w) == Y)
+      success_percent = correct_results * 100 / total_examples
+      print("\nSuccess: %d/%d (%.2f%%)" %
+            (correct_results, total_examples, success_percent))
+
+  test(X,Y,w)
+#+end_src
+
+*** 6 Getting Real
+
+- Input: MNIST
+
+- We flatten the input character images into a single row of features
+  - we loss the geometry data
+  - such technique would not work for other type of recognition (eg: discent races of elephants)
+
+**** Load Training Data
+
+#+begin_src python
+  import numpy as np
+  import gzip
+  import struct # to read header
+
+  def load_images(filename): # reads file into a matrix
+      with gzip.open(filename, 'rb') as f:
+          _, n_images, columns, rows = struct.unpack('>IIII', fread(16))
+          all_pixels = np.frombuffer(f.read(), dtype=np.uint8)
+          return all_pixels.reshape(n_images, columns * rows)
+
+  def prepend_bias(X): # inserts a column of 1's in pos=0
+      return np.insert(X,0,1,axis=1) # axis=1 means column
+
+  X_train = prepend_bias(load_images("../data/mnist/train-images-idx3-ubyte.gz"))
+  X_test  = prepend_bias(load_images("../data/mnist/t10k-images-idx3-ubyte.gz"))
+#+end_src
+
+**** Load Testing Data
+
+- We transform the labels to 0 for "not-5" and 1 for "5"
+
+#+begin_src python
+  def load_labels(filename): # return a 1 column matrix
+      with gzip.open(filename, 'rb') as f:
+          f.read(8)            # skip header
+          all_labels = fread() # read into a list
+          return np.frombuffer(all_labels, dtype=np.uint8).reshape(-1,1)
+
+  def encode_fives(Y):
+      return (Y == 5).astype(int)
+
+  Y_train = encode_fives(load_labels("../data/mnist/train-labels-idx1-ubyte.gz"))
+  Y_test = encode_fives(load_labels("../data/mnist/t19k-labels-idx1-ubyte.gz"))
+#+end_src
+
+**** Running train()
+
+Test baseline is 90%. Manually guessed hyperparams.
+
+#+begin_src python
+  import mnist as data
+  w = train(data.X_train, data.Y_train, iterations=100, lr=1e-5)
+  test(data.X_test, data.Y_test, w) # 96.37%
+#+end_src
+
+*** 7 the final challenge
+**** new encoding of labels
+
+Label Encoding Problem: multiclass clasification
+
+Solution 1: run many "Weighted Sum Sigmoid" fns and return the one with highest chance.
+Solution 2: we create a matrix of bitsets for the results (=One-Hot Encoding=). We have as many digits as classes.
+
+We use this to initialize the training data.
+
+#+begin_src python
+  def one_hot_encode(Y):
+      n_labels = Y.shape[0]
+      n_classes = 10
+      encoded_Y = np.zeroes((n_labels,n_classes))
+      for i in range(n_labels):
+          label = Y[i]
+          encoded_Y[i][label] = 1
+      return encoded_Y
+#+end_src
+
+**** new classify()
+
+now needs to do more work now than just rounding forward()
+
+#+begin_src python
+  def classify(X,w):
+      y_hat = forward(X,w)
+      labels = np.argmax(y_hat, axis=1) # get index of max
+      return labels.reshape(-1,1)
+#+end_src
+
+**** new weights
+
+#+begin_src python
+  # 785x10
+  w = np.zeroes((X_train.shape[1], Y_train.shape[1]))
+#+end_src
+
+**** new loss()
+
+instead of np.average over all the matrix
+we average over all lines
+
+#+begin_src python
+  def loss(X,Y,w):
+      y_hat = forward(X,w)
+      first_term = Y * np.log(y_hat)
+      second_term = (1 - Y) * np.log(1 - y_hat)
+      return -np.sum(first_term + second_term) / X.shape[0]
+#+end_src
+
+iterations=200
+lr=1e-5
+
+*** 8 Perceptrons
+
+- MNIST is not linearly separable
+  - still we get 90% accuracy with it
+
+- 1950
+  - Connectivists VS Symbolysts
+  - Symbolists:
+    - Programming a AI from the ground up (LISP)
+    - Marvin Minsky, Seymour Papert
+  - Connectivists:
+    - Build a brain and intelligence will come.
+    - Frank Rosenblatt
+    - Final Processing step = Activation Function
+
+- Multilayer perceptron can, in theory, work with non-linear separable data.
+- Are multilayer perceptron impossible to train?
+** Part II: Neural Networks
+
+More powerful than Perceptrons, but with their own challenges.
+We will aim to 99% accuracy with MNIST.
+
+*** 9 Designing the Network
+
+- We can build a NN by serializing 2 perceptrons
+  - aka Multilayer Perceptron
+  - Each with his own: weight, and sigmoid op
+  - shape has 3 layers: input, hidden, output
+
+#+begin_src pikchr :file perceptron.svg :result graphics :exports results
+    circlerad = 0.2; boxwid = 0.4; boxht = 0.4
+    A: move down 0
+    "(M,785)"   monospace
+    circle "X₀" monospace fill gray      ; move down 0.15
+    circle "X₁" monospace fill lightgray ; move down 0.15
+    circle "X₂" monospace fill lightgray ; move down 0.15
+    circle "…"  monospace fill lightgray ; move down 0.15
+    circle "Xn" monospace fill lightgray
+    move to A down 1 right 0.3
+    "(785,201)" monospace; down; "w1" bold
+    box "." bold fill yellow; right  ; move right 0.2
+    box width .7 "sigmoid" fill cyan
+    move right 0.4 up 1.5
+
+    B: move down 0
+    "(M,201)"   monospace
+    circle "H₀" monospace fill gray      ; move down 0.15
+    circle "H₁" monospace fill lightgray ; move down 0.15
+    circle "H₂" monospace fill lightgray ; move down 0.15
+    circle "…"  monospace fill lightgray ; move down 0.15
+    circle "Hn" monospace fill lightgray
+    move to B down 1 right 0.3
+    "(201,10)"  monospace; down; "w2" bold
+    box "." bold fill yellow; right  ; move right 0.2
+    box width .7 "softmax" fill cyan
+    move right 0.4 up 1.7 down
+
+    "(M,10)"    monospace
+    circle "Y₁" monospace fill lightgray ; move down 0.15
+    circle "Y₂" monospace fill lightgray ; move down 0.15
+    circle "…"  monospace fill lightgray ; move down 0.15
+    circle "Yn" monospace fill lightgray ; move down 0.15
+#+end_src
+
+#+CAPTION: a NN formed by serializing 2 Perceptrons
+#+ATTR_ORG: :width 500
+#+RESULTS:
+[[file:perceptron.svg]]
+
+**** Enter =Softmax=
+
+We replace the last *Activation Function* with it.
+Returns a value between 0 and 1.
+Sum of it's outputs is always 1. (aka normalizes the sum to 1)
+
+$$softmax(l_i) = \frac{e^{l_i}}{\sum{e^l}}$$

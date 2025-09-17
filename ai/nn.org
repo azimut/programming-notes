@@ -67,7 +67,7 @@
 
 - James L. McClelland, David E. Rumelhart
 - book about Parallel Distributed Processing
-- introduced ~hidden layers~
+- introduced ~Hidden Layers~
 
 * Articles
 

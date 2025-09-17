@@ -1,0 +1,86 @@
+- Video:  How to Create a Neural Network (and Train it to Identify Doodles)
+  https://www.youtube.com/watch?v=hfMk-kjRv4c
+- MIT RES.LL-005 Mathematics of Big Data and Machine Learning, IAP 2020
+  https://www.youtube.com/watch?v=t4K6lney7Zw
+- Video: Conal Elliott: Can Tensor Programming Be Liberated from the Fortran Data Paradigm?
+  https://www.youtube.com/watch?v=oaIMMclGuog
+  https://github.com/conal/talk-2021-can-tensor-programming-be-liberated
+- Vincent Warmerdam: Winning with Simple, even Linear, Models | PyData London 2018
+  https://www.youtube.com/watch?v=68ABAU_V8qI
+- NARDOZ MARZO - Fairness en Machine Learning + Testing en desarrollo de software
+  https://www.youtube.com/watch?v=rrwrornKhjM
+* courses
+- Deeplearning - Udacity - https://www.youtube.com/playlist?list=PLAwxTw4SYaPn_OWPFT9ulXLuQrImzHfOV
+- deep learning https://www.youtube.com/playlist?list=PLoROMvodv4rPOWA-omMM6STXaWW4FvJT8
+- Course: Neural Networks https://karpathy.ai/zero-to-hero.html
+  - Neural Networks: Zero to Hero  https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ
+- MIT 6.S191 Introduction to Deep Learning https://www.youtube.com/playlist?list=PLtBw6njQRU-rwp5__7C0oIVt26ZgjG9NI
+- MIT Self Driving Lectures https://www.youtube.com/playlist?list=PLrAXtmErZgOeY0lkVCIVafdGFOTi45amq
+- Course: Introduction to ML https://www.youtube.com/playlist?list=PLuh62Q4Sv7BUhFs1KpeVctFmOYpTTxj33
+- Course: intro for probability for cs https://www.youtube.com/playlist?list=PLoROMvodv4rOpr_A7B9SriE_iZmkanvUg
+- course: pragmatic data science https://www.youtube.com/playlist?list=PLjxbCynJ0Gd8k75-zdMcqcEbH90jfk9eg
+- Standford Machine Learning Andrew NG https://www.youtube.com/watch?v=jGwO_UgTS7I&list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU&index=1
+- Course: 2020 Cornell CS 5787: Applied Machine Learning.
+  https://www.youtube.com/playlist?list=PL2UML_KCiC0UlY7iCQDSiGDMovaupqc83
+- NN https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi
+- Video: Information Thoery, Pattern Recognition, and Neural Networks
+  https://www.youtube.com/playlist?list=PLruBu5BI5n4aFpG32iMbdWoRVAA-Vcso6
+- MIT http://introtodeeplearning.com/
+  https://www.youtube.com/playlist?list=PLtBw6njQRU-rwp5__7C0oIVt26ZgjG9NI
+- (Welch Labs) Neural Networks Demystified https://www.youtube.com/playlist?list=PLiaHhY2iBX9hdHaRr6b7XevZtgZRa1PoU
+- [Coursera] Neural Networks for Machine Learning — Geoffrey Hinton
+  https://www.youtube.com/playlist?list=PLoRl3Ht4JOcdU872GhiYWf6jwrk_SNhz9
+- CS50's Introduction to Artificial Intelligence with Python 2020
+  https://www.youtube.com/playlist?list=PLhQjrBD2T382Nz7z1AEXmioc27axa19Kv
+- https://www.youtube.com/playlist?list=pll8olhzgyoq7bkvburthesalr7bonzbxs
+- channel https://www.youtube.com/@vlavrenko/playlists
+  - neural networls and backpropagation https://www.youtube.com/watch?v=jzyz0eupybi&list=plbv09bd7ez_4bs9j3o8l_ztjqzon_3oqs
+* channels
+- Deep Learning Book Lectures https://www.youtube.com/c/AlenaKruchkova/videos
+- Course: zero to neural networks https://www.youtube.com/@datacorelinux/videos
+- https://www.youtube.com/user/mathematicalmonk/videos
+- Video Channel
+  https://www.youtube.com/c/ShashankKalanithiData/videos
+- will kwan https://www.youtube.com/c/willkwan/videos
+- instituto de calculo secretaria https://www.youtube.com/channel/uczcbeanqeihofbrbdyx1nea
+- https://www.youtube.com/c/sirajraval/videos
+- https://www.youtube.com/c/yannickilcher/videos
+- https://www.youtube.com/user/ministeriodeciencia/videos
+- https://www.youtube.com/channel/ucfxnrdbm1yrv9j2mb8aiy4q
+* video: practical deep learning for coders (2020)
+https://www.youtube.com/playlist?list=plfyubjixbdtrl3fmb3gowhri8ieu6fhfm
+** lesson 1 https://www.youtube.com/watch?v=_quexshfsa0
+- neural networks have limited range of things it can do with 1 layer (by minsky research)
+- but with more layers the problem is solved (also by minsky)
+- people used just 2 layers which limited performance
+- usinge more layers makes it "deep" learning
+
+* video: 2011 - machine learning for the web - hilary mason
+** 1 introduction
+- classification problems:
+  - clustering of categorical data
+  - named entity disambiguation: separate different entities (similar)
+- recommendation systems
+- special data (uses domain knowledge)
+  - geographic
+  - timeseries
+- approaches from:
+  - having data
+  - having a problem
+  - have infrastructure
+- methodology:
+  1) obtain
+  2) scrub
+  3) explore
+  4) model
+  5) interpret
+** 2 classifying web documents - the theory
+- problems harder to classify (write logic)
+- supervised learning
+  - examples:
+    - spam classification
+    - language identification
+    - face detection
+- book: "data source handbook"
+- nyt has <meta> tags with information about the article.
+

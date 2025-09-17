@@ -1,3 +1,14 @@
+- tool: tui https://www.visidata.org/
+  - doc https://jsvine.github.io/intro-to-visidata/
+  - graph https://www.visidata.org/docs/graph/
+  - csv, json, sqlite
+  - # number, % float, $ currency, @ date, ~ any, z~ remove
+  - ! make key, - to hide
+  - g. - to plot
+  - Shift+C - Columns view
+    - ^ edit column name
+
+- tool: web ui https://datasette.io/
 - tool: fake data generator https://github.com/multiprocessio/fakegen
 - tool: yaml/json/xml/csv/toml https://github.com/TomWright/dasel
 - tool: yaml/json/xml/csv/toml https://github.com/mikefarah/yq
