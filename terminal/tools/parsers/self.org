@@ -1,11 +1,18 @@
 - tool: tui https://www.visidata.org/
+  - vids https://www.youtube.com/watch?v=yhunJc8Nu4g&list=PLxu7QdBkC7drrAGfYzatPGVHIpv4Et46W&index=5
+  - doc https://www.visidata.org/docs/
   - doc https://jsvine.github.io/intro-to-visidata/
   - graph https://www.visidata.org/docs/graph/
   - csv, json, sqlite
   - # number, % float, $ currency, @ date, ~ any, z~ remove
-  - ! make key, - to hide
+  - ! make key, - to hide, gv to unhide
   - g. - to plot
-  - Shift+C - Columns view
+  - : - split command, asks for regex
+  - M - melt aka unpivot
+  - Shift+F - frequency sheet/view
+  - Shift+O - options   sheet/view
+  - Shift+I - Summary   sheet/view
+  - Shift+C - Columns   sheet/view
     - ^ edit column name
 
 - tool: web ui https://datasette.io/

@@ -150,9 +150,19 @@ $(ab:.cpp=.o) # string replace
 |  != | exec shell command and assign it           |
 |-----+--------------------------------------------|
 *** target specific
-  #+begin_src makefile
+
+This defined a variable visible by Make.
+
+#+begin_src makefile
 %.o: CFLAGS = -O
-  #+end_src
+#+end_src
+
+This defines a variable also (? visible by shell subcommands.
+
+#+begin_src makefile
+%.o: export PAGER = more
+#+end_src
+
 *** goal specific
 #+begin_src makefile
 ifeq (,$(filter debug,$(MAKECMDGOALS))
@@ -316,6 +326,7 @@ $(THUMBS): %.thumb.jpg: %.jpg
 - ~\t~ for indentation, NOT spaces
 - Will *keep* an incomplete target on failure, unless ~.DELETE_ON_ERROR:~
 - What is an ~intermediate~ target? And how to stop them from being deleted?
+- to do Process Substitution we need to use *bash -c*, escape *$* with *$* and *\*, one for make other for bash itself
 
 * tools
 |------------+-------------------------------------------|

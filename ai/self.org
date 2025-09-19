@@ -94,6 +94,25 @@
 - https://en.wikipedia.org/wiki/Iris_flower_data_set
 - https://en.wikipedia.org/wiki/ImageNet
 - https://github.com/several27/FakeNewsCorpus
+- https://meteostat.net/es/station/87582?t=2022-01-01/2022-12-31
+- ezeiza https://meteostat.net/es/station/87576?t=2025-01-01/2025-09-10
+- SMN - https://www.smn.gob.ar/sites/default/files/catalog.xlsx
+  - "csv" per day https://ssl.smn.gob.ar/dpd/descarga_opendata.php?file=observaciones/datohorario20230101.txt
+  - https://ssl.smn.gob.ar/dpd/descarga_opendata.php?file=
+  - https://ssl.smn.gob.ar/dpd/zipopendata.php?dato=
+    - tiepre
+    - regtemp
+    - estaciones
+    - observaciones/datohorario YYYYMMDD.txt
+    - observaciones/obs         YYYYMMDD.txt
+    - radiacionsolar/radsolar   YYYYMMDD.txt
+    - pron5d/pron               YYYYMMDD.txt
+  - https://ssl.smn.gob.ar/dpd/observaciones/estadisticas.txt
+  - json search https://ws1.smn.gob.ar/v1/georef/location/search?name=lomas
+  - json forecast https://ws1.smn.gob.ar/v1/forecast/location/4856
+    - needs JWT
+    - obtain JWT https://www.smn.gob.ar/pronostico
+      - headers={"Referer": "https://www.smn.gob.ar/"}
 - https://en.wikipedia.org/wiki/MNIST_database
   - Modified NIST (National Institute of Standards and Technology)
   - 28x28 grayscale

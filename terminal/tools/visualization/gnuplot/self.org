@@ -42,6 +42,9 @@
 - curve fitting https://www.youtube.com/watch?v=vHM_5AeKwXE
 - do for [i=1:96] { plot f(x,i*0.1) }
 - operators http://www.gnuplot.info/docs_4.2/node55.html
+- Colors
+  - rgb "#0b0000"
+  - rgb "white"
 
 ** functions
 - http://www.gnuplot.info/docs/loc1283.html
@@ -56,18 +59,23 @@
 
 ** commands
 
-|-------+------------------------------------+-----------------------------|
-|   <r> |                                    |                             |
-| unset | OPTION                             |                             |
-|   set | OPTION [VALUE]                     |                             |
-|  with | (l)ines[*], dots[.], lines(points) |                             |
-|  show | variables                          |                             |
-| stats | FILENAME name S                    | shows file field statistics |
-|       |                                    | later can be referenced     |
-|       |                                    | eg: S_min_x                 |
-|-------+------------------------------------+-----------------------------|
+|-----------+------------------------------------+-----------------------------|
+|       <r> |                                    |                             |
+| multiplot | layout N,N                         |                             |
+|     unset | OPTION                             |                             |
+|       set | OPTION [VALUE]                     |                             |
+|      with | (l)ines[*], dots[.], lines(points) |                             |
+|      show | variables                          |                             |
+|     stats | FILENAME name S                    | shows file field statistics |
+|           |                                    | later can be referenced     |
+|           |                                    | eg: S_min_x                 |
+|-----------+------------------------------------+-----------------------------|
 
 *** plot
+
+#+begin_src gnuplot
+ [re]plot INPUT [PLOT_A OPTS], INPUT [PLOT_B OPTS]
+#+end_src
 
 |--------------+-------------------------|
 |     <c>      |                         |
@@ -75,40 +83,87 @@
 |--------------+-------------------------|
 |  "file.txt"  | file contents           |
 | "/dev/stdin" | standard input          |
-|   "< CMD"    | CMD stdout              |
+|    "<CMD"    | CMD stdout              |
 |      ""      | re-use last given input |
 |--------------+-------------------------|
 
-- [re]plot INPUT [PLOT_A OPTS], INPUT [PLOT_B OPTS]
-  - every N - plots every N data points
-  - for [n = 1 : 5]
-  - widths = "30 15 5"
-    for [width in widths]
-  - using N:N+1:N+n
-  - [[http://www.gnuplot.info/docs/loc9016.html][smooth]]
-    - [[http://www.gnuplot.info/docs/loc9099.html][frequency]] - points with the same X-value are replaced with 1 point with Y-values sum
-    - [bezier¦mcsplines]
-  - title S (for legend box)
-  - bins=N - total N number of bins in graph http://gnuplot.info/docs_6.1/loc9125.html
-  - binvalue=[avg¦sum] - how to group each bin, default: sum
-  - index N
-    - reference block N of data (aka separated by 2 \n)
-    - blocks index start at 0
-  - with
-    - histograms
-    - filledcurves
-      - fillstyle pattern N
-    - linespoint
-    - lines
-      - [d]ash[t]ype N
-      - [d]ash[t]ype S
-      - [l]ine[s]tyle N
-      - [l]ine[t]ype N
-      - [l]ine[c]olor rgb "#0b0000"
-      - [l]ine[c]olor rgb "green"
-      - [l]ine[w]ith N
-    - points
-      - pointsize N
+- every N - plots every N data points
+- for [VAR = START : END]
+- for [LVAR in VAR] # widths = "30 15 5"
+- using N:N+1:N+n
+- [[http://www.gnuplot.info/docs/loc9016.html][smooth]]
+  - [[http://www.gnuplot.info/docs/loc9099.html][frequency]] - points with the same X-value are replaced with 1 point with Y-values sum
+  - [bezier¦mcsplines]
+- title S (for legend box)
+- bins=N - total N number of bins (NOT SIZE) in graph http://gnuplot.info/docs_6.1/loc9125.html
+- binvalue=[avg¦sum] - how to group each bin, default: sum
+- index N
+  - reference block N of data (aka separated by 2 \n)
+  - blocks index start at 0
+
+- with
+  - histograms
+  - filledcurves
+    - [f]ill[s]tyle pattern N
+  - points
+    - pointsize N
+  - lines
+    - [d]ash[t]ype N¦S
+    - [l]ine[t]ype N
+    - [l]ine[s]tyle N
+    - [l]ine[w]idth N
+    - [l]ine[c]olor COLOR
+  - linespoint
+
+*** fit
+
+1) We come up with a function shape that "fits" our data.
+   - the function has 2 types of variables
+   - variables that depend on the input (eg: x)
+   - variables that we want to find it's value and make "constants" (eg: a)
+2) We use =fit= command giving it:
+   - the function in 1)
+   - the input data
+   - the fields *using*
+   - the list of variables to find
+
+#+begin_src gnuplot
+  f(x) = a*x + b
+  fit f(x) "" using 1:2 via a,b
+#+end_src
+
+- https://www.youtube.com/watch?v=vHM_5AeKwXE
+
+**** Example output
+
+#+begin_src
+gnuplot> fit f(x) "<awk -vOFS=, '/EZEIZA/{ print $1,$2,$3 }' registro_temperatura365d_smn.txt" using 3:2 via a,b
+iter      chisq       delta/lim  lambda   a             b
+   0 4.3014300000e+04   0.00e+00  9.71e+00    1.000000e+00   1.000000e+00
+   1 7.0509078061e+03  -5.10e+05  9.71e-01    1.315008e+00   6.153986e+00
+   2 3.9723792475e+03  -7.75e+04  9.71e-02    9.075167e-01   1.243513e+01
+   3 3.9719144040e+03  -1.17e+01  9.71e-03    9.024370e-01   1.251326e+01
+   4 3.9719144040e+03  -1.81e-07  9.71e-04    9.024364e-01   1.251327e+01
+iter      chisq       delta/lim  lambda   a             b
+
+After 4 iterations the fit converged.
+final sum of squares of residuals : 3971.91
+rel. change during last iteration : -1.81067e-12
+
+degrees of freedom    (FIT_NDF)                        : 363
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.30786
+variance of residuals (reduced chisquare) = WSSR/ndf   : 10.9419
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.902436         +/- 0.02768      (3.067%)
+b               = 12.5133          +/- 0.3791       (3.03%)
+
+correlation matrix of the fit parameters:
+                a      b
+a               1.000
+b              -0.890  1.000
+#+end_src
 
 *** other
 - imagesc - matrix/heatmap - 2d contour
@@ -134,6 +189,16 @@
 |  +reread+  |     -      | REMOVED in 6.0 +reread input+       |
 |------------+------------+-------------------------------------|
 
+#+CAPTIONS: background
+#+begin_src gnuplot
+  set object rectangle \
+      from screen 0,0 to screen 1,1 \
+      behind \
+      fillcolor rgb '$background' \
+      fillstyle solid \
+      noborder
+#+end_src
+
 *** general: file parsing
 
 |-------------+-----------------+----------------------------------|
@@ -158,6 +223,7 @@
 |      <c>      |      <c>       |                                  |
 |---------------+----------------+----------------------------------|
 |    border     |      [N]       | pick axis lines (takes a bitsum) |
+|               | linecolor COL  |                                  |
 |     grid      |       -        | axis grid                        |
 |   logscale    |   [x¦y] [N]    | with step N                      |
 |   autoscale   |   [[x¦y]fix]   | prevents autoextend of scale     |
@@ -170,7 +236,7 @@
 |               |  (S N[,S N])   | custom labels S at point N       |
 |   [xyz]tic    |  rotate by N   | rotates tic labels               |
 | [xyz][2]label |       S        | axis label                       |
-|               |    offset N    |                                  |
+|               |  offset N[,N]  |                                  |
 |---------------+----------------+----------------------------------|
 *** key
 
@@ -204,7 +270,7 @@
 
 #+CAPTION: gnuplot "test" command output
 #+ATTR_HTML: :width 500
-#+ATTR_ORG: :width 600
+#+ATTR_ORG: :width 800
 [[./test_page.png]]
 
 *** term[inal]
@@ -251,6 +317,7 @@ http://gnuplot.info/demo/pm3dcolors.html
 * tools
 
 - emacs: [[https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-gnuplot.html][Org-babel-gnuplot]]
+- color theming https://github.com/GideonWolfe/Gnuplot-Pywal
 - wrapper: plot realtime and stored data from the cli https://github.com/dkogan/feedgnuplot
 - config https://github.com/Gnuplotting/gnuplot-configs
 - pallettes
@@ -267,3 +334,7 @@ http://gnuplot.info/demo/pm3dcolors.html
 - no *%a* date format for input parsing
 - to read from stdin "-" might not work in plot (?
   - use /dev/stdin
+- you cannot plot fields from differents files/inputs against each other
+- on multiplot, sometimes a plot will silently fail due some formatting issue
+  - try adding ";"
+  - try adding "\n"

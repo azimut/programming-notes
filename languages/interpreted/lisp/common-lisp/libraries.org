@@ -436,3 +436,9 @@ scene2d-layout.lisp
 screen-transition.lisp
 +select-box.lisp+
 tiled-map.lisp
+* CMN
+
+- by Richard/Heinrich Taube
+- https://es.wikipedia.org/wiki/Common_Music
+- https://ccrma.stanford.edu/CCRMA/Courses/AlgoComp/cm/doc/cm.html
+- https://ccrma.stanford.edu/software/cmn/cmn/cmn.html
