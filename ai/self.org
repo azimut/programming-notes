@@ -113,6 +113,17 @@
     - needs JWT
     - obtain JWT https://www.smn.gob.ar/pronostico
       - headers={"Referer": "https://www.smn.gob.ar/"}
+- https://www.hidro.gov.ar/Observatorio/Astronomia.asp?op=1
+  POST https://www.hidro.gov.ar/Observatorio/REsol.asp
+- https://www.hidro.gov.ar/Observatorio/Astronomia.asp?op=3
+  POST https://www.hidro.gov.ar/Observatorio/RELuna.asp
+  #+begin_src sh
+    CSRFToken=OWY4NmQwODE4ODRjN2Q2NTlhMmZlYWEwYzU1YWQwMTVhM2JmNGYxYjJiMGI4MjJjZDE1ZDZMGYwMGEwOA==
+    Localidad=BUENOS+AIRES
+    Mes=Ene
+    Fanio=2025
+    B1=
+  #+end_src
 - https://en.wikipedia.org/wiki/MNIST_database
   - Modified NIST (National Institute of Standards and Technology)
   - 28x28 grayscale

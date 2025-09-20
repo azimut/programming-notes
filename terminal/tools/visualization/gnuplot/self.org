@@ -7,6 +7,7 @@
 | wiki   | https://en.wikipedia.org/wiki/Gnuplot                 |
 | wiki   | https://en.wikibooks.org/wiki/Gnuplot                 |
 | online | https://hostcat.fhsu.edu/cdclark/static/apps/gnuplot/ |
+| source | http://sf.net/p/gnuplot/gnuplot-main/                 |
 |--------+-------------------------------------------------------|
 
 - 1986
@@ -16,10 +17,12 @@
 
 * cli
 
-#+begin_src
-  gnuplot [x11 options] [options] [scriptfile ...]
+#+begin_src sh
+  $ gnuplot [x11 options] [options] [scriptfile ...]
+  $ GNUTERM=dumb gnuplot -e 'plot sin(x)'
 #+end_src
 
+#+CAPTION: flags
 |-----------+----+------------+---------------------------------|
 |           | -e | CMDS       |                                 |
 |           | -c | FILE [ARG] | runs script S with given args   |
@@ -27,6 +30,12 @@
 | --slow    | -s | -          | wait for slow font init         |
 | --default | -d | -          | do NOT read ~/.gnuplot          |
 |-----------+----+------------+---------------------------------|
+
+#+CAPTION: environment variables
+|---------+----------------------------------------|
+| GNUTERM | terminal override                      |
+| FIT_LOG | name of the log file, default: fit.log |
+|---------+----------------------------------------|
 
 * language
 
@@ -62,6 +71,8 @@
 |-----------+------------------------------------+-----------------------------|
 |       <r> |                                    |                             |
 | multiplot | layout N,N                         |                             |
+|           | title S                            |                             |
+|           | offset N,N                         |                             |
 |     unset | OPTION                             |                             |
 |       set | OPTION [VALUE]                     |                             |
 |      with | (l)ines[*], dots[.], lines(points) |                             |
@@ -177,6 +188,8 @@ b              -0.890  1.000
 #+CAPTION: S ="string", N=number, F=float
 |------------+------------+-------------------------------------|
 |    <c>     |    <c>     |                                     |
+|            |            |                                     |
+|------------+------------+-------------------------------------|
 |   table    | "FILENAME" | save plot to file, unset it after   |
 |  encoding  |    utf8    |                                     |
 |------------+------------+-------------------------------------|
@@ -184,25 +197,17 @@ b              -0.890  1.000
 |   scale    |     N      |                                     |
 |   output   |     S      | saves into filepath, unset it after |
 | monochrome |     _      |                                     |
+|   object   | rectangle  |                                     |
 |------------+------------+-------------------------------------|
 |   pause    |     N      | seconds to pause                    |
 |  +reread+  |     -      | REMOVED in 6.0 +reread input+       |
 |------------+------------+-------------------------------------|
 
-#+CAPTIONS: background
-#+begin_src gnuplot
-  set object rectangle \
-      from screen 0,0 to screen 1,1 \
-      behind \
-      fillcolor rgb '$background' \
-      fillstyle solid \
-      noborder
-#+end_src
-
 *** general: file parsing
 
 |-------------+-----------------+----------------------------------|
 |     <c>     |       <c>       |                                  |
+|             |                 |                                  |
 |-------------+-----------------+----------------------------------|
 |  datafile   |   separator S   |                                  |
 |             |  separator tab  |                                  |
@@ -252,21 +257,21 @@ b              -0.890  1.000
 
 *** style
 
-|-----------+---------------+----------------------------------|
-|    <c>    |      <c>      |                                  |
-|   fill    |  transparent  |                                  |
-|           |     solid     |                                  |
-|   solid   |       F       |                                  |
-| noborder  |       _       |                                  |
-|   data    |     lines     | sets default for *plot* with ... |
-|           |  histograms   |                                  |
-|   line    |       N       | can be later referenced on plot  |
-| histogram |     gap N     |                                  |
-|           |    cluster    |                                  |
-|           |   clustered   |                                  |
-|           |  rowstacked   |                                  |
-|           | columnstacked |                                  |
-|-----------+---------------+----------------------------------|
+|-------+-----------+---------------+----------------------------------|
+|       |    <c>    |      <c>      |                                  |
+| style |   fill    |  transparent  |                                  |
+|       |           |     solid     |                                  |
+|       |   solid   |       F       |                                  |
+|       | noborder  |       _       |                                  |
+|       |   data    |     lines     | sets default for *plot* with ... |
+|       |           |  histograms   |                                  |
+|       |   line    |       N       | can be later referenced on plot  |
+|       | histogram |     gap N     |                                  |
+|       |           |    cluster    |                                  |
+|       |           |   clustered   |                                  |
+|       |           |  rowstacked   |                                  |
+|       |           | columnstacked |                                  |
+|-------+-----------+---------------+----------------------------------|
 
 #+CAPTION: gnuplot "test" command output
 #+ATTR_HTML: :width 500
@@ -308,6 +313,16 @@ http://gnuplot.info/demo/pm3dcolors.html
    }
   #+end_src
 
+- background fullscreen rectangle
+  #+begin_src gnuplot
+    set object rectangle \
+        from screen 0,0 to screen 1,1 \
+        behind \
+        fillcolor rgb '$background' \
+        fillstyle solid \
+        noborder
+  #+end_src
+
 * examples
 
 - https://github.com/TheFox/gnuplot-examples
@@ -335,6 +350,4 @@ http://gnuplot.info/demo/pm3dcolors.html
 - to read from stdin "-" might not work in plot (?
   - use /dev/stdin
 - you cannot plot fields from differents files/inputs against each other
-- on multiplot, sometimes a plot will silently fail due some formatting issue
-  - try adding ";"
-  - try adding "\n"
+- on multiplot, sometimes a plot will silently fail (?

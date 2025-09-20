@@ -66,7 +66,7 @@
 - order does not matter
   - but if multiple % patterns match, will use the last one matched (deps stills stacked?)
 - multiple targets: for same dependencies
-- recommended phony ones: https://www.gnu.org/software/make/manual/html_node/Standard-Targets.html
+- [[https://www.gnu.org/software/make/manual/html_node/Standard-Targets.html][recommended]] phony ones:
   - all, help, clean, check, dist, run, deps, serve, deploy
   - test: make it depend of the final binary
   - (un)install: use PREFIX=/usr/local and DESTDIR

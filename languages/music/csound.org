@@ -1,5 +1,8 @@
-- Blue Tutorial
-  https://www.youtube.com/watch?v=ODaL3N24_Dk
+- Blue Tutorial https://www.youtube.com/watch?v=ODaL3N24_Dk
+- Csound Clase https://www.youtube.com/watch?v=gqqhgawayvg
+- Csound: then and how https://www.youtube.com/watch?v=wBpVfpzVuaU
+- Acústica Cromberg Damus 2020 https://www.youtube.com/@AcusticaCrombergDamus/videos
+
 * drifter - game journal (-9) - csound hrtf
 https://sendai.itch.io/drifter/devlog/102416/-9-csound-hrtf
 

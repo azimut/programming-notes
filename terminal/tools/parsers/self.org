@@ -1,20 +1,3 @@
-- tool: tui https://www.visidata.org/
-  - vids https://www.youtube.com/watch?v=yhunJc8Nu4g&list=PLxu7QdBkC7drrAGfYzatPGVHIpv4Et46W&index=5
-  - doc https://www.visidata.org/docs/
-  - doc https://jsvine.github.io/intro-to-visidata/
-  - graph https://www.visidata.org/docs/graph/
-  - csv, json, sqlite
-  - # number, % float, $ currency, @ date, ~ any, z~ remove
-  - ! make key, - to hide, gv to unhide
-  - g. - to plot
-  - : - split command, asks for regex
-  - M - melt aka unpivot
-  - Shift+F - frequency sheet/view
-  - Shift+O - options   sheet/view
-  - Shift+I - Summary   sheet/view
-  - Shift+C - Columns   sheet/view
-    - ^ edit column name
-
 - tool: web ui https://datasette.io/
 - tool: fake data generator https://github.com/multiprocessio/fakegen
 - tool: yaml/json/xml/csv/toml https://github.com/TomWright/dasel
@@ -23,7 +6,53 @@
 - tool: json (sql) https://github.com/SnellerInc/sneller
 - tool: json/csv/parquet (sql) https://github.com/cube2222/octosql
 
-** html
+* visidata
+
+- home https://www.visidata.org/
+- vids https://www.youtube.com/playlist?list=PLxu7QdBkC7drrAGfYzatPGVHIpv4Et46W
+- source: Python https://github.com/saulpw/visidata
+- doc https://www.visidata.org/docs/
+- doc https://jsvine.github.io/intro-to-visidata/
+- graph https://www.visidata.org/docs/graph/
+- [[https://www.visidata.org/formats][input support]]: csv, json, sqlite, xls, postgresql
+
+#+begin_src sh
+  $ visidata input.csv
+  $ visidata --csv-delimiter ';' input.csv
+  $ visidata -b input.csv -o output.json # convert .csv -> .json
+  $ export LC_ALL=es_AR.UTF-8 # if needed to parse dates in spanish
+#+end_src
+
+** keybinds
+
+- CTRL+s save
+- CTRL+q exit to stdout
+- gu   unselect all
+- gs     select all
+- gz=  apply formula on column selected in rows selected
+- za - new column
+  - Shift-C + d to delete
+- z@ - custom date for column
+- =  - new column python expression
+- +  - adds an aggregator to column
+- # number, % float, $ currency, @ date, ~ any, z~ remove
+- ! make key, - to hide, gv to unhide
+- T - transpose matrix
+- .  - to plot this column
+- g. - to plot all columns
+- gENTER - to filter by select
+- : - split by string, asks for regex
+- M - melt aka unpivot
+- [ ] - sort by column desc/asc
+- g[ g] - sort by multiple columns (prev selected!)
+- Shift+U - undo last
+- Shift+F - frequency sheet/view
+- Shift+O - options   sheet/view
+- Shift+I - Summary   sheet/view
+- Shift+C - Columns   sheet/view
+  - ^ edit column name
+
+* html
 - https://github.com/mgdm/htmlq
 - https://github.com/TUVIMEN/reliq
 - https://github.com/htacg/tidy-html5

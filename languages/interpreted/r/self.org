@@ -1,0 +1,13 @@
+- wiki https://en.wikipedia.org/wiki/R_(programming_language)
+- home https://www.r-project.org/
+- manuals https://cran.r-project.org/manuals.html
+- 1993
+- by Ross Ihaka, Robert Gentleman
+- .r
+- image based
+- integrated windowing graphics (?
+
+* cli
+
+- R - repl
+- Rscript - runner
