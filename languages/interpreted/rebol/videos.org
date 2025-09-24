@@ -1,0 +1,2 @@
+- 20 Writing a Rebol lexer in Rebol https://www.youtube.com/watch?v=hAuqrVTWavs
+- 20 Calling C Functions from Rebol 3 with FFI https://www.youtube.com/watch?v=fMeTqPyrNF4

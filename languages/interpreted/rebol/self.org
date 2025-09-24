@@ -1,0 +1,5 @@
+- home https://www.rebol.com/
+- wiki https://en.wikipedia.org/wiki/Rebol
+- 1997
+- by Carl Sassenrath (40)
+- .r, .reb

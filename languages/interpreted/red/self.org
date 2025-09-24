@@ -1,0 +1,9 @@
+- wiki https://en.wikipedia.org/wiki/Red_(programming_language)
+- home https://www.red-lang.org/
+- source https://github.com/red/red
+- 2011
+- by Nenad Rakočević
+- based on Rebol
+- .red, .reds
+- tutorial https://www.red-by-example.org/
+- tutorial https://learnxinyminutes.com/docs/red/
