@@ -19,16 +19,18 @@
 
 #+begin_src sh
   $ gnuplot [x11 options] [options] [scriptfile ...]
+  $ gnuplot -p -e "plot '-'" < rawnumbers # opens qt window
   $ GNUTERM=dumb gnuplot -e 'plot sin(x)'
 #+end_src
 
 #+CAPTION: flags
 |-----------+----+------------+---------------------------------|
-|           | -e | CMDS       |                                 |
+|           |    |    <c>     |                                 |
+|           | -e |    CMDS    |                                 |
 |           | -c | FILE [ARG] | runs script S with given args   |
-| --persist | -p | -          | keep window after plotting ends |
-| --slow    | -s | -          | wait for slow font init         |
-| --default | -d | -          | do NOT read ~/.gnuplot          |
+| --persist | -p |     -      | keep window after plotting ends |
+| --slow    | -s |     -      | wait for slow font init         |
+| --default | -d |     -      | do NOT read ~/.gnuplot          |
 |-----------+----+------------+---------------------------------|
 
 #+CAPTION: environment variables
@@ -49,7 +51,6 @@
 - NaN type
 - {/Symbol ?} - replaces with postscript enhanced symbol http://materials.ucsd.edu/doc/ps_guide.pdf
   - eg: "{/Symbol p}" - replaces parens with 𝛑
-- curve fitting https://www.youtube.com/watch?v=vHM_5AeKwXE
 - do for [i=1:96] { plot f(x,i*0.1) }
 - operators http://www.gnuplot.info/docs_4.2/node55.html
 - Colors
@@ -100,9 +101,11 @@
 |      ""      | re-use last given input |
 |--------------+-------------------------|
 
-- every N - plots every N data points
-- for [VAR = START : END]
-- for [LVAR in VAR] # widths = "30 15 5"
+- [[http://gnuplot.info/docs_5.5/loc8595.html][every]] - p++:b++:pstart:bstart:pend:bend
+  - N   - every N data points
+  - N:N - every N data points, in every other block
+- for [VAR = NSTART : NEND]
+- for [VAR in LVAR] # LVAR = "30 15 5"
 - using N:N+1:N+n
 - [[http://www.gnuplot.info/docs/loc9016.html][smooth]]
   - [[http://www.gnuplot.info/docs/loc9099.html][frequency]] - points with the same X-value are replaced with 1 point with Y-values sum
@@ -288,7 +291,8 @@ b              -0.890  1.000
 
 *** term[inal]
 
-- gif [animate¦delay]
+- gif  [animate¦delay N¦loop N]
+- webp [animate¦delay N¦loop N]
 - png [size¦font]
 - pngcairo
 - wxt
@@ -305,13 +309,6 @@ http://gnuplot.info/demo/pm3dcolors.html
 #+end_src
 
 * snippets
-
-- simple pipe
-  #+begin_src sh
-    $ gnuplot -p -e "plot '<cat'" < rawnumbers # opens qt window
-    $ gnuplot -p -e "plot '-'"    < rawnumbers # opens qt window
-    $ GNUTERM=dumb gnuplot -e "plot '-'"    < rawnumbers # ascii plot
-  #+end_src
 
 - stream - draw last 200 lines, ten times per second
   #+begin_src sh
@@ -346,7 +343,7 @@ http://gnuplot.info/demo/pm3dcolors.html
 
 - emacs: [[https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-gnuplot.html][Org-babel-gnuplot]]
 - color theming https://github.com/GideonWolfe/Gnuplot-Pywal
-- wrapper: plot realtime and stored data from the cli https://github.com/dkogan/feedgnuplot
+- wrapper: [[https://github.com/dkogan/feedgnuplot][feedgnuplot]] - realtime and stored data from the cli
 - config https://github.com/Gnuplotting/gnuplot-configs
 - pallettes
   - https://github.com/Gnuplotting/gnuplot-palettes
