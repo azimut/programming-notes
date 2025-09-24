@@ -30,9 +30,12 @@
 - gu   unselect all
 - gs     select all
 - gz=  apply formula on column selected in rows selected
+- gz^  make row headers
 - za - new column
   - Shift-C + d to delete
 - z@ - custom date for column
+- |  - ask regex, select matched rows
+- "  - keep selected rows
 - =  - new column python expression
 - +  - adds an aggregator to column
 - # number, % float, $ currency, @ date, ~ any, z~ remove
@@ -42,10 +45,13 @@
 - g. - to plot all columns
 - gENTER - to filter by select
 - : - split by string, asks for regex
+- * - replace regex in column values
 - M - melt aka unpivot
 - [ ] - sort by column desc/asc
 - g[ g] - sort by multiple columns (prev selected!)
 - Shift+U - undo last
+- Shift+S - sheet     sheet/view
+  - &, JOIN selected tables
 - Shift+F - frequency sheet/view
 - Shift+O - options   sheet/view
 - Shift+I - Summary   sheet/view
@@ -53,6 +59,7 @@
   - ^ edit column name
 
 * html
+
 - https://github.com/mgdm/htmlq
 - https://github.com/TUVIMEN/reliq
 - https://github.com/htacg/tidy-html5

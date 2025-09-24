@@ -47,7 +47,8 @@
 #+end_src
 
 - NaN type
-- "(/Symbol p)" - replaces parens with 𝛑
+- {/Symbol ?} - replaces with postscript enhanced symbol http://materials.ucsd.edu/doc/ps_guide.pdf
+  - eg: "{/Symbol p}" - replaces parens with 𝛑
 - curve fitting https://www.youtube.com/watch?v=vHM_5AeKwXE
 - do for [i=1:96] { plot f(x,i*0.1) }
 - operators http://www.gnuplot.info/docs_4.2/node55.html
@@ -58,7 +59,7 @@
 ** functions
 - http://www.gnuplot.info/docs/loc1283.html
 - math
-- string
+- string: sprintf
 - time
 - other
 ** input data
@@ -85,7 +86,8 @@
 *** plot
 
 #+begin_src gnuplot
- [re]plot INPUT [PLOT_A OPTS], INPUT [PLOT_B OPTS]
+  [re]plot [XRANGE] [YRANGE] INPUT [PLOT_A OPTS],
+           [XRANGE] [YRANGE] INPUT [PLOT_B OPTS]
 #+end_src
 
 |--------------+-------------------------|
@@ -185,23 +187,28 @@ b              -0.890  1.000
 
 *** general
 
-#+CAPTION: S ="string", N=number, F=float
-|------------+------------+-------------------------------------|
-|    <c>     |    <c>     |                                     |
-|            |            |                                     |
-|------------+------------+-------------------------------------|
-|   table    | "FILENAME" | save plot to file, unset it after   |
-|  encoding  |    utf8    |                                     |
-|------------+------------+-------------------------------------|
-|   title    |     S      | the                                 |
-|   scale    |     N      |                                     |
-|   output   |     S      | saves into filepath, unset it after |
-| monochrome |     _      |                                     |
-|   object   | rectangle  |                                     |
-|------------+------------+-------------------------------------|
-|   pause    |     N      | seconds to pause                    |
-|  +reread+  |     -      | REMOVED in 6.0 +reread input+       |
-|------------+------------+-------------------------------------|
+#+CAPTION: S ="string", N=number, F=float, P=[0.0-1.0]
+|------------+---------------+---------------------------------------------|
+|    <c>     |      <c>      |                                             |
+|            |               |                                             |
+|------------+---------------+---------------------------------------------|
+|   table    |  "FILENAME"   | save plot to file, unset it after           |
+|  encoding  |     utf8      |                                             |
+|------------+---------------+---------------------------------------------|
+|   title    |       S       | the                                         |
+|   scale    |       N       |                                             |
+|   output   |       S       | saves into filepath, unset it after         |
+| monochrome |       _       |                                             |
+|   object   | [N] rectangle |                                             |
+|            | [N] fillstyle |                                             |
+|------------+---------------+---------------------------------------------|
+|    size    |      P,P      | size in multiplot                           |
+|            |    square     |                                             |
+|   origin   |      P,P      | position in multiplot, from left and bottom |
+|------------+---------------+---------------------------------------------|
+|   pause    |       N       | seconds to pause                            |
+|  +reread+  |       -       | REMOVED in 6.0 +reread input+               |
+|------------+---------------+---------------------------------------------|
 
 *** general: file parsing
 
@@ -242,6 +249,7 @@ b              -0.890  1.000
 |   [xyz]tic    |  rotate by N   | rotates tic labels               |
 | [xyz][2]label |       S        | axis label                       |
 |               |  offset N[,N]  |                                  |
+|     label     |   N at X,Y S   | puts a label at X,Y position     |
 |---------------+----------------+----------------------------------|
 *** key
 
@@ -324,6 +332,11 @@ http://gnuplot.info/demo/pm3dcolors.html
   #+end_src
 
 * examples
+
+- map https://gnuplotting.org/plotting-the-world-revisited/index.html
+  - [[https://gnuplotting.org/data/world_10m.txt][world_10m.txt]]
+  - [[https://gnuplotting.org/data/world_50m.txt][world_50m.txt]]
+  - [[https://gnuplotting.org/data/world_110m.txt][world_110m.txt]]
 
 - https://github.com/TheFox/gnuplot-examples
 - https://gnuplot.info/screenshots/index.html

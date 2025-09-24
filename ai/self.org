@@ -1,4 +1,8 @@
+#+STARTUP: latexpreview
+#+OPTIONS: tex:t
+
 - Words
+  - Error = the unexplained part of our model prediction
   - T-Test =
     - evaluates whether there is a _significant differences_ between the *means* of 2 groups
     - between metric variables (measurable)
@@ -13,6 +17,10 @@
   - Overfitting = tendency to memorize training data
   - Ground Truth = real life observations
   - Model = our prediction f(x)
+  - Sample Regression Line
+    - with estimates for coefficients
+    - we don't consider error
+  - Residual = the individual difference between a point, and the model's prediction
   - Loss = prediction's error rate with our Ground Truth
   - Bias = a shift
   - Linearly Separable
@@ -95,6 +103,8 @@
 - https://en.wikipedia.org/wiki/ImageNet
 - https://github.com/several27/FakeNewsCorpus
 - https://meteostat.net/es/station/87582?t=2022-01-01/2022-12-31
+- https://datos.gob.ar/
+- https://data.buenosaires.gob.ar/
 - ezeiza https://meteostat.net/es/station/87576?t=2025-01-01/2025-09-10
 - SMN - https://www.smn.gob.ar/sites/default/files/catalog.xlsx
   - "csv" per day https://ssl.smn.gob.ar/dpd/descarga_opendata.php?file=observaciones/datohorario20230101.txt

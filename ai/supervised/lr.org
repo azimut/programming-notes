@@ -1,0 +1,31 @@
+#+STARTUP: latexpreview
+#+OPTIONS: tex:t
+
+$$ y_i = \beta_0 + \beta_1 x_i + \epsilon_i $$
+
+Where:
+
+$$y_i$$     the dependent variable.
+$$\beta$$     the coeficients, the goal of LR
+$$x_i$$     the independent variable.
+$$\epsilon$$      the error.
+
+- https://en.wikipedia.org/wiki/Linear_regression
+- Part of =Supervised Learning=
+- Example 3D https://gist.github.com/aricooperdavis/c658fc1c5d9bdc5b50ec94602328073b
+- Ways to finding coeficients/parameters
+  - OLS = Ordinary Less Squared https://en.wikipedia.org/wiki/Ordinary_least_squares
+  - WLS = Weighted
+  - GLS = Generalized
+
+- SSR = Sum of Squares due to Regression (aka Residual SS)
+- SSE = Sum of Squares due to Errors, aka sum of Residuals (aka Explained SS)
+- SST = Sum of Square Totals = SSR+SSE (aka TSS)
+
+  $$ SST = \sum{(y_i - \overline{y_i})^2} $$  $$ SSR = \sum{({y'}_i - \overline{y_i})^2} $$  $$ SSE = \sum{(y_i - {y'}_i)^2} $$
+
+- Metrics on LR
+  - R^2 = SSR/SST
+  - Standard Error Estimate
+  - Prediction Interval
+  - Statistical Significance
