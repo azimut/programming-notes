@@ -34,7 +34,7 @@
 #+begin_src sh
   $ sqlite3 :memory: # or just not pass any argument
   $ sqlite3 foo.db 'SELECT * FROM events'
-  $ sqlite3 foo.db .dump
+  $ sqlite3 foo.db '.dump'
 #+end_src
 
 ** flag
@@ -141,9 +141,14 @@
     - replace
   - INSERT OR IGNORE           - UNIQUE
   - INSERT ON CONFLICT IGNORE  - UNIQUE+NULL
+    - on conflict (id) do nothing
 - LIMIT row_count
 - LIMIT row_count OFFSET offset
 - LIMIT offset, row_count
+- CASE      WHEN expr THEN
+- CASE expr WHEN expr THEN res
+  - ELSE res
+- END
 
 ** Stdlib Functions
 *** Core
@@ -153,7 +158,7 @@ https://www.sqlite.org/lang_corefunc.html
 |    FUNCTION | ARGS        | DESCRIPTION                                         |
 |-------------+-------------+-----------------------------------------------------|
 |        char | uc1,uc2,... | build a string of unicode codes passed as ints      |
-|      concat | x  ,...     | concatenates non-null args                          |
+|      concat | x  ,...     | concatenates non-null args (aka "¦¦")               |
 |   concat_ws | sep, x, ... | concatenates non-null args with SEP                 |
 |      format | fmt,...     | aka printf()                                        |
 |       instr | x  ,y       | position of y in x                                  |
@@ -207,6 +212,7 @@ https://www.sqlite.org/lang_corefunc.html
 
 https://www.sqlite.org/lang_datefunc.html
 
+- no special type available
 - all functions, can take
   - no arguments to return the current time in FN format
   - an optional ~modifier~
@@ -408,7 +414,7 @@ https://www.sqlite.org/changes.html
 
 - subselects or WITH RECURSIVE, do =not= well with UPDATE
 - iif() is a sweet ternary operator (sadly not available on postgresql)
-- there is a BOOL (true/false) but internally is converted to 1/0
+- there is a boolean (true/false) but internally is converted to 1/0, =there is no type for it=
 - there is mod(), but % is still an option
 - you have = and == for equality
   and have != and <> for inequality
