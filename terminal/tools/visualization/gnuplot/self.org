@@ -1,6 +1,11 @@
 #+TITLE: gnuplot
 #+DATE: <2024-12-27 vie>
 
+#+CAPTION: gnuplot's logo
+#+ATTR_ORG: :width 250
+#+ATTR_HTML: :width 250 :style background: black
+[[./gnuplot.svg]]
+
 |--------+-------------------------------------------------------|
 | home   | http://gnuplot.info/                                  |
 | faq    | http://gnuplot.info/faq/index.html                    |
@@ -86,7 +91,7 @@
 
 *** plot
 
-#+begin_src gnuplot
+#+begin_src
   [re]plot [XRANGE] [YRANGE] INPUT [PLOT_A OPTS],
            [XRANGE] [YRANGE] INPUT [PLOT_B OPTS]
 #+end_src
@@ -153,7 +158,7 @@
 **** Example output
 
 #+begin_src
-gnuplot> fit f(x) "<awk -vOFS=, '/EZEIZA/{ print $1,$2,$3 }' registro_temperatura365d_smn.txt" using 3:2 via a,b
+gnuplot> fit f(x) "file.txt" using 3:2 via a,b
 iter      chisq       delta/lim  lambda   a             b
    0 4.3014300000e+04   0.00e+00  9.71e+00    1.000000e+00   1.000000e+00
    1 7.0509078061e+03  -5.10e+05  9.71e-01    1.315008e+00   6.153986e+00
