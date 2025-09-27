@@ -1,0 +1,98 @@
+- 24 Translating Concepts of the Futhark Programming Language into an Extended Pi-Calculus https://www.youtube.com/watch?v=S8_fjSila1w
+- 20 Troels Henriksen: Purely Functional GPU Programming with Futhark https://www.youtube.com/watch?v=QqOsJ0EwyrY
+- 20 Demo & Interview: Futhark, a GPU Functional Language https://www.youtube.com/watch?v=uo8iNfRBErI
+- 18 Troels Henriksen - Futhark: A data-parallel pure functional programming language https://www.youtube.com/watch?v=2dvhUZTlhEA
+- 17 Purely Functional GPU Programming with Futhark https://www.youtube.com/watch?v=nkasoiVXHDY
+- 17 Futhark: A High-Performance Purely Functional Array Language - Troels Henriksen NOISE https://www.youtube.com/watch?v=UN4_theSjcA
+
+* TODO 22 Using smoke & mirrors to compile a (...) to efficient GPU code | Troels Henriksen
+
+- https://www.youtube.com/watch?v=6TgaTRHMvT8
+- TODO: 20:00
+- Most fundamental principle: Futhark unboxes all non-array to keep them in registers.
+- For arrays in GPU Futhark arranges them in memory in column-major layout
+- CPU multi-core compiler has less work put on it
+- a =GPU kernel=
+  - is a GPU function/program
+  - consists on thousands of threads, _running the same code_
+  - but on different parts of the dataset
+- some kinds of FP are not suited for GPU parallelisation
+  - eg: recursive functions over linked lists
+- bulk data transformations with HoF is very well suited
+  - eg: map, reduce, scan, filter, ...
+    #+begin_src futhark
+      def dotprod [n] (x: [n]f32) (y: [n]f32) =
+        f32.sum (map2 (*) x y)
+      def matmul [n][m][k] (A:[n][m]f32) (B:[m][k]f32) =
+        map (\A_row -> map (\B_col -> dotprod A_row B_col)
+                           (transpose B))
+            A
+    #+end_src
+
+* DONE 19 "Making Elm Talk to Your Personal Supercomputer" by James Carlson
+
+- https://www.youtube.com/watch?v=FVP8zxpZKV8
+- Elm + Futhark (wasm)
+- Problem: machine learning classification of bones
+  - aka a bunch of matrix multiplication
+  - Principal Component Analysis to find axes
+- Example:
+  #+begin_src futhark
+    def sum v =
+      reduce (+) 0.0 v -- sum [1,2,3,4]
+    def dotprod u v =  -- dotprod [2,4] [3,1]
+      reduce (+) 0.0 (map2 (*) u v)
+    def vecmul u b =   -- vecmul [2,4] [[3,-2],[1,1]]
+      map (\rowOfTrB -> dotprod u rowOfTrB)
+          (transpose b) -- ft thinks in terms of rows
+    def matmul a b =
+      map (\rowOfA -> vecmul rowOfA b) a
+  #+end_src
+- Futhark assumes *reduce* is associative because
+  - reduce: (a -> a -> a) -> a -> [a] -> a
+  - compiler might make wrong assumptions when optimizing code
+- NOTE: By the time of the video there were no WebGPU integration
+  - today (2025)
+    - there is only wasm (cpu)
+    - while webgpu is 32bit limited
+
+* TODO 17 Futhark: Purely Functional GPU-programming with Nested Parallelism and... - Troels Henriksen
+
+09:00
+
+https://www.youtube.com/watch?v=HwcNegS0-uw
+** example: k-means clustering
+
+#+CAPTION: Fully sequential, but O(n * d) work
+#+begin_src futhark
+  def add_points (x:[d]f32) (y:[d]f32): [d]f32  =
+    map (+) x y
+  def cluster_means_seq (cluster_sizes: [k]i32)
+                        (points: [n][d]f32)
+                        (membership: [n]i32): [k][d]f32 =
+    loop (acc = replicate k (replicate d 0.0)) for i < n do
+      let p  = points[i]
+      let c  = membership[i]
+      let p' = map (/f32(cluster_sizes[c])) p
+      in acc with [c] <- add_points acc[c] p'
+#+end_src
+
+#+CAPTION: Fully parallel, but O(k * n * d) work
+#+begin_src futhark
+  def matrix_add (xss: [k][d]f32) (yss: [k][d]f32): [k][d]f32 =
+    map (\xs ys -> map (+) xs ys) xss yss
+
+  def cluster_means_par (cluster_sizes: [k]i32)
+                        (points: [n][d]f32)
+                        (membership: [n]i32): [k][d]f32 =
+    let increments : [n][k][d]i32 =
+      map (\p c ->
+             let a = replicate k (replicate d 0.0)
+             let p' = map (/(f32(cluster_sizes[c]))) p
+             in a with [c] <- p')
+          points membership
+    in reduce matrix_add (replicate k (replicate d 0.0))
+              increments
+#+end_src
+
+- Using Futhark's =stream reduction= is better (removed in 2025?)

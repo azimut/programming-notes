@@ -1,0 +1,375 @@
+- home https://futhark-lang.org/
+- wiki https://en.wikipedia.org/wiki/Futhark_(programming_language)
+- dev blog https://futhark-lang.org/blog.html
+- tutorial https://futhark-book.readthedocs.io/en/latest/
+- user guide https://futhark.readthedocs.io/en/stable/
+- examples https://futhark-lang.org/examples.html
+- docs https://futhark-lang.org/docs.html
+- source https://github.com/diku-dk/futhark/
+
+- 2014
+- Troels Henriksen, Cosmin Oancea, Martin Elsman
+- .fut
+- compiled
+- parallel
+- typed, size-dependant types
+- pure
+- _not a general purpose programming language_
+- _not designed for graphics programming_
+
+* cli
+
+#+begin_src sh
+  $ futhark repl
+  $ futhark run    foo.fut
+  $ futhark c      foo.fut # ./foo - sequential CPU code
+  $ futhark opencl foo.fut # ./foo - parallel GPU
+  $ futhark test           # test entry point functions against I/O examples
+  $ futhark pkg add github.com/HnimNart/deeplearning
+  $ futhark pkg sync
+#+end_src
+
+** repl
+
+|-------+----------+--------------------------------------------|
+| :load | test.fut | remove previous declarations and load file |
+| :load |          | " previous file                            |
+| :type | EXPR     |                                            |
+|-------+----------+--------------------------------------------|
+
+* language
+
+#+begin_src futhark
+  def average (xs: []f64) =
+    reduce (+) 0 xs / f64.i64 (length xs)
+#+end_src
+
+- if you define a function called =main=, it will read STDIN
+- reference https://futhark.readthedocs.io/en/stable/language-reference.html
+- eager evaluated (not lazy)
+- one pass compiler, no recursive or circular definitions
+- no syntactically significant identation
+- explicit array indexing might affect optimization
+- new: iota, replicate, 1...4, 1..<4, 1..2...10
+- pattern matching in: fn params, let binding, loop params
+
+** loops
+
+- no recursive functions are supported
+- *loop* supports pattern matching
+- can express equivalent tail-recursive functions
+
+#+begin_src futhark
+  -- returns final PATTERN value
+  loop x for i < n do     -- elided if an "x" is already in scope
+  loop (x=1) for i < n do -- initializes PATTERN, end condition
+    x * (i+1)             -- new value to bind PATTERN to
+
+  -- same but gives less info to the compiler
+  loop (x=1) while x < bound do
+    x * 2
+#+end_src
+
+** binding
+
+#+begin_src futhark
+  let (x,y) = e
+  let a = 10
+  let b = 20 in
+#+end_src
+
+** functions
+
+#+begin_src futhark
+  def physicists_pi: f64 = 4.0                     -- constant
+  def average (xs: []f64) =                        -- return type signature is optional
+    reduce (+) 0 xs / f64.i64 (length xs)
+  def dotprod [n] (xs: [n]i32) (ys: [n]i32): i32 = -- m Size Parameter
+    reduce (+) 0 (map2 (*) xs ys)
+  def replicate 't (n:i64) (x:t): [n]t =           -- t' Type Parameter for Parametric Polymorphism
+    map (\_ -> x) (0..<n)
+#+end_src
+
+- Sections:
+  - from operators: (+)
+  - from partial application: (1 -)
+  - from selections: (.a) (.[i])
+
+- HoF
+  - CANNOT be stored in arrays (in tuples or records is fine)
+  - CANNOT be returned from branches in conditional expressions
+  - NOT allowed in loop parameters
+
+** types
+
+#+CAPTION: type abbreviation
+#+begin_src futhark
+  type complex = (f64,f64)
+  type intvec [n] = [n]i32 -- def x: intvec [3] = [1,2,3]
+#+end_src
+
+*** simple
+
+- <TO>.<FROM> functions to cast, eg: "i32.f64 3.14"
+- shorthands
+  - r32 == f32.i32
+  - t32 == i32.f32
+
+|----------------+------------|
+|      <c>       |            |
+| i8 i16 i32 i64 | 32i8       |
+| u8 u16 u32 u64 | 32u8       |
+|    f32 f64     | 32f32      |
+|      bool      | true false |
+|----------------+------------|
+
+*** complex
+
+|--------+-----------------+-------------+-----------------|
+|    <r> |       <c>       |     <c>     |       <c>       |
+|   NAME |      TYPE       |  INSTANCE   |     ACCESS      |
+|--------+-----------------+-------------+-----------------|
+|  tuple |   (i32, bool)   | (23, true)  |      foo.0      |
+|        | {0:i32, 1:bool} |             |                 |
+|--------+-----------------+-------------+-----------------|
+|  array |      []i32      |  [1, 2, 3]  |     foo[0]      |
+|        |     [n]f32      |             | foo[F:T:STRIDE] |
+|        |     [2]f32      |             |                 |
+|--------+-----------------+-------------+-----------------|
+| record | {a:i32, b:f64}  | {a=23, b=7} |      foo.a      |
+|        |                 |  {a, b=7}   |                 |
+|--------+-----------------+-------------+-----------------|
+
+- tuple:
+  - CANNOT just have 1 element
+  - can be Structural equal to a record
+- array:
+  - []i32  - an =Anonymous Size= Annotation
+  - [2]i32 - using a =Constant as Size= Annotation
+  - [n]i32 - using a =Variable as Size= Annotation "n", which is defined in scope
+    #+begin_src futhark
+      def average [n] (xs: [n]f64): f64 =
+        reduce (+) 0 xs / r64 n -- <---- n:i64 in scope
+    #+end_src
+  - :> [6]i32 - applies a Size Coercion to previuos expression
+  - indices of type i64
+  - all access is checked at runtime
+  - must be regular (all inner arrays must have the same shape)
+- record:
+  - are a syntactic extension on top of tuples
+  - are Structural, not Nominal for equality of types
+  - we use Record Expression to create a new on
+    #+begin_src futhark
+      def one = {a=32, b=44.0}
+    #+end_src
+  - field access, through Field Projection "foo.a"
+  - field access, with pattern matching
+    #+begin_src futhark
+      def bar (x: {a = a, b = b}) = a + b
+      def bar (x: {a, b}) = a + b
+    #+end_src
+
+** import
+
+#+CAPTION: import of a Module namespace
+#+begin_src futhark
+  import "module"            -- includes "module.fut", all non-local TLD are included
+  local open import "module" -- equivalent to above
+        open import "module" -- + also makes it available to other modules
+  import "foo/bar/baz"       -- includes baz.fut, in foo/bar/
+  module M = import "module" -- aka a qualified import, M.fn
+#+end_src
+
+** modules
+
+- files ARE NOT the foundation of the module system
+- a way to abstract generic code
+- all module language constructs ARE ELIMINATED from the program at compile time
+  - aka zero overhead
+  - module expressions are evaluated at compile time
+
+#+CAPTION: a Module is a collection of declarations in a new namespace
+#+begin_src futhark
+  module add_i32 = {      -- module binding + module expression
+    type t = f32          -- add_i32.t == f32
+    def add (x:t) (y:t): t = x + y
+    local def zero: t = 0 -- invisible outside, doesn't work with types
+  }
+  module foo = add_i32    -- module binding
+  module m2 = {
+    open add_i32          -- can call add directly, without using add_i32.add
+  }
+#+end_src
+
+*** module types
+
+#+begin_src futhark
+  module type i32_adder = { -- module type binding + module type expression
+    type t = i32
+    val add : t -> t -> t
+    val zero : t
+  }
+   -- bind module "foo", which implements module type i32_adder
+  module foo = add_i32 : i32_adder -- Module Type Ascription
+
+  module speeds: { type thing -- used to hide what is not in the Module Type
+                   val car   : thing
+                   val plane : thing
+                   val speed : thing -> i32 } = {
+    type thing = i32
+    def car: thing = 0
+    def plane: thing = 1
+    def speed (x:thing): i32 =
+      if      x == car   then 120
+      else if x == plane then 800
+      else                    0   -- will never happen
+  }
+#+end_src
+
+*** module type refinement
+
+#+CAPTION: a module with abstract type
+#+begin_src futhark
+  module type monoid = {  -- generic module type
+    type t                -- ABSTRACT type
+    val add : t -> t -> t
+    val zero : t
+  }
+
+  -- REFINED module with a concrete type
+  -- aka implements...
+  module monoid_i32 = add_i32 : monoid with t = i32
+
+  module type i32_monoid = monoid with t = i32 -- if we want, we can bind the refined module type
+#+end_src
+
+*** parametric modules
+
+#+begin_src futhark
+  module sum (M: monoid) = { -- takes a module
+    def sum (a: []M.t): M.t =
+      reduce M.add M.zero a
+  }                         -- returns a module that implements sum
+#+end_src
+
+Instantiation.
+
+#+begin_src futhark
+  module sum_i32 = sum add_i32 -- Instantiation, with module
+  sum_i32.sum  -- []i32 -> i32
+
+  module prod_f64 = sum {      -- Instantiation, with anonymous module
+    type t = f64
+    def add (x:f64) (y:f64): f64 = x * y
+    def zero: f64 = 1.0
+  }
+  prod_f64.sum -- []f64 -> f64
+#+end_src
+
+Giving related functionality a common abstraction.
+
+#+begin_src futhark
+  module linalg(M : { -- anonymous Module
+    type scalar
+    val zero : scalar
+    val add : scalar -> scalar -> scalar
+    val mul : scalar -> scalar -> scalar
+  }) = {
+    open M -- bring the names of the module to the current scope
+    def dotprod [n] (xs: [n]scalar) (ys: [n]scalar)
+        : scalar =
+      reduce add zero (map2 mul xs ys)
+    def matmul [n] [p] [m] (xss: [n][p]scalar)
+                           (yss: [p][m]scalar)
+        : [n][m]scalar =
+      map (\xs -> map (dotprod xs) (transpose yss)) xss
+  }
+#+end_src
+
+** stdlib
+
+- https://futhark-lang.org/docs/prelude/doc/prelude/prelude.html
+- https://futhark-lang.org/docs/prelude/
+- array operations
+  - First Order Array Combinators:
+    - always perform the same operation
+    - eg: zip/unzip
+  - Second Order Array Combinators (SOACs)
+    - take a functional argument
+    - eg:
+      - map (array transformer)
+      - reduce (array aggregator)
+      - scan
+        - aka Generalised Prefix Sum
+        - is inclusive, it includes the final reduce in it's result
+      - filter (cost is ~scan+map)
+
+#+begin_src futhark
+  val id      '^a         : a -> a               -- identity function
+  val const   '^a '^b     : a -> b -> a          -- constant function
+  val |>      '^a '^b     : a -> (a -> b) -> b   -- pipe right
+  val <|      '^a '^b     : (a -> b) -> a -> b   -- pipe left, aka "$", might trigger "causality restrictions"
+
+  val >->     '^a '^b '^c : (a -> b) -> (b -> c) -> a -> c
+  val <-<     '^a '^b '^c : (b -> c) -> (a -> b) -> a -> c
+
+  val curry   '^a '^b '^c : ((a,b) -> c) -> a -> b -> c
+  val uncurry '^a '^b '^c : (a -> b -> c) -> (a,b) -> c
+#+end_src
+
+** TODO in-place updates
+
+- use must be rare
+- use on cases where is simple for the compiler
+
+
+* testing
+
+#+CAPTION: example matmul
+#+begin_src futhark
+  entry matmul [n][m][p] (x: [n][m]i32) (y: [m][p]i32): [n][p]i32 =
+    map (\xr -> map (\yc -> reduce (+) 0 (map2 (*) xr yc))
+                    (transpose y))
+        x
+#+end_src
+
+- a .fut(hark) program might contain a =test block=
+- entrypoint can be elided if it is "main"
+- =input/output sets=
+  - can be put on 1 line
+  - no record or tuples are permitted
+
+#+CAPTION: inline test block
+#+begin_src futhark
+  -- Matrix Multiplication
+  -- ==
+  -- entry: matmul
+  -- input { [[1,2]] [[3],[4]]}
+  -- output { [[11]] }
+  -- input { [[1, 2], [3, 4]] [[5, 6], [7, 8]] }
+  -- output { [[19, 22], [43, 50]] }
+  --
+#+end_src
+
+#+CAPTION: file input/output test block
+#+begin_src futhark
+  -- compiled input @ foo.in
+  -- output @ foo.out
+#+end_src
+
+* libraries
+- ds https://github.com/diku-dk/containers
+- sparse matrix https://github.com/diku-dk/sparse
+- linear algebra https://github.com/diku-dk/linalg
+- https://github.com/diku-dk/segmented/
+- https://futhark-lang.org/pkgs/
+- https://github.com/HnimNart/deeplearning
+- https://github.com/BobMcDear/llaf/
+* tools
+- editor: emacs mode https://github.com/diku-dk/futhark-mode
+* prebuild installation
+
+#+begin_src sh
+  $ make install MANPREFIX=$HOME/.local/share/man PREFIX=$HOME/.local
+  $ mandb
+#+end_src
