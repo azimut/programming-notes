@@ -21,9 +21,11 @@
 * cli
 
 #+begin_src sh
-  $ manpath
+  $ echo $MANPATH # prints locations
+  $ manpath       # prints locations
+  $ mandb         # updates man pages
   $ man man
-  $ man 7 man # macro language
+  $ man 7 man     # macro language
   $ man -f FOOBAR # list all available sections for FOOBAR
   $ man -Tps | ps2pdf - bash.pdf
   $ man -l foo/bar.1

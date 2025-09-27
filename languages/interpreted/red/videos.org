@@ -2,6 +2,7 @@
 - 20 Parsing with Red https://www.youtube.com/@yvescloutier3835/videos
 - 16 Red language overview (Maxim Velesyuk) https://www.youtube.com/watch?v=4ZbGJemrLFw
 - 13 Red Programming Language: From Systems Programming to Declarative GUI Scripting - Kaj de Vos https://www.youtube.com/watch?v=_xObn-LRn-c
+- 13 Nenad Rakocevic Recode talk https://www.youtube.com/watch?v=-KqNO_sDqm4
 - 12 Introduction to Red Programming Language by Nenad Rakocevic https://www.youtube.com/watch?v=j-qLzrw-D2I
 - 12 Red Programming Language running on the Raspberry Pi - Kaj de Vos 1/2 https://www.youtube.com/watch?v=9eQPtrw8rIQ
 - 12 Programming for common people: introducing the new Red language - Kaj de Vos (1/2) https://www.youtube.com/watch?v=YtLHl-Kpyyg
