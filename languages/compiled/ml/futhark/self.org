@@ -40,12 +40,12 @@
 * language
 
 #+begin_src futhark
-  def average (xs: []f64) =
-    reduce (+) 0 xs / f64.i64 (length xs)
+  def main (x: []i32) (y: []i32): i32 =
+    reduce (+) 0 (map2 (*) x y)
 #+end_src
 
-- if you define a function called =main=, it will read STDIN
 - reference https://futhark.readthedocs.io/en/stable/language-reference.html
+- if you define a function called =main=, it will read STDIN
 - eager evaluated (not lazy)
 - one pass compiler, no recursive or circular definitions
 - no syntactically significant identation
@@ -58,15 +58,19 @@
 - no recursive functions are supported
 - *loop* supports pattern matching
 - can express equivalent tail-recursive functions
+- returns final PATTERN value
 
 #+begin_src futhark
-  -- returns final PATTERN value
-  loop x for i < n do     -- elided if an "x" is already in scope
-  loop (x=1) for i < n do -- initializes PATTERN, end condition
-    x * (i+1)             -- new value to bind PATTERN to
+  loop x       -- elided if an "x" is already in scope
+  for i < n do
 
-  -- same but gives less info to the compiler
-  loop (x=1) while x < bound do
+  loop (x = 1)   -- initial bindings of PATTERN
+  for i < n do -- end condition, "i++" on each iteration
+    x * (i+1)  -- new value to bind PATTERN
+
+  -- gives less info to the compiler
+  loop (x = 1)
+  while x < bound do
     x * 2
 #+end_src
 
@@ -102,10 +106,14 @@
 
 ** types
 
+https://futhark-lang.org/examples/sum-types.html
+
 #+CAPTION: type abbreviation
 #+begin_src futhark
   type complex = (f64,f64)
   type intvec [n] = [n]i32 -- def x: intvec [3] = [1,2,3]
+  type dir = #left | #right -- sum types
+  type int_or_float = #int i32 | #float f32
 #+end_src
 
 *** simple
@@ -367,9 +375,14 @@ Giving related functionality a common abstraction.
 - https://github.com/BobMcDear/llaf/
 * tools
 - editor: emacs mode https://github.com/diku-dk/futhark-mode
+- ci: github action https://github.com/diku-dk/install-futhark
 * prebuild installation
 
 #+begin_src sh
   $ make install MANPREFIX=$HOME/.local/share/man PREFIX=$HOME/.local
   $ mandb
 #+end_src
+* gotchas
+
+- futhark-literate
+  - doesn't include constant definitions

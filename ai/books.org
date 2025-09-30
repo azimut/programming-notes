@@ -109,27 +109,27 @@ We try to find the line that more closely approximates the relationship.
 **** code: pizzas per reservations
 
 #+begin_src python
-  x, y = np.loadtxt("pizza.txt", skiprows=1, unpack=true)
+  X, Y = np.loadtxt("pizza.txt", skiprows=1, unpack=true)
 
   # x = input var, restaurant reservations
   # w = weight
-  def predict(x, w): # our model
-      return x * w
+  def predict(X, w): # our model
+      return X * w
 
   # y = ground truth, pizzas bought
-  def loss(x, y, w): # = Mean Squared Error
-      return np.average((predict(x,w) - y) ** 2)
+  def loss(X, Y, w): # = Mean Squared Error
+      return np.average((predict(X,w) - Y) ** 2)
 
   # Returns a new w(eight)
   # lr = learning rate, step
-  def train(x, y, iterations, lr):
+  def train(X, Y, iterations, lr):
       w = 0 # arbitrary init value
       for i in range(iterations):
-          current_loss = loss(x, y, w)
+          current_loss = loss(X, Y, w)
           print("iteration %4d => loss: %.6f" % (i, current_loss))
-          if loss(x, y, w + lr) < current_loss:
+          if loss(X, Y, w + lr) < current_loss:
               w += lr
-          elif loss(x, y, w - lr) < current_loss:
+          elif loss(X, Y, w - lr) < current_loss:
               w -= lr
           else:
               return w
@@ -139,23 +139,23 @@ We try to find the line that more closely approximates the relationship.
 **** code: adding a bias
 
 #+begin_src python
-  def predict(x, w, b): # our model
+  def predict(X, w, b): # our model
       return x * w + b
 
-  def loss(x, y, w, b): # Mean Squared Error
-      return np.average((predict(x,w,b) - y) ** 2)
+  def loss(X, Y, w, b): # Mean Squared Error
+      return np.average((predict(X,w,b) - Y) ** 2)
 
-  def train(x, y, iterations, lr):
+  def train(X, Y, iterations, lr):
       w = b = 0
       for i in range(iterations):
-          current_loss = loss(x, y, w, b)
-          if   loss(x,y,w+lr,b) < current_loss:
+          current_loss = loss(X, Y, w, b)
+          if   loss(X,Y,w+lr,b) < current_loss:
               w += lr
-          elif loss(x,y,w-lr,b) < current_loss:
+          elif loss(X,Y,w-lr,b) < current_loss:
               w -= lr
-          elif loss(x,y,w,b+lr) < current_loss:
+          elif loss(X,Y,w,b+lr) < current_loss:
               b += lr
-          elif loss(x,y,w,b-lr) < current_loss:
+          elif loss(X,Y,w,b-lr) < current_loss:
               b -= lr
           else:
               return w, b
@@ -175,7 +175,10 @@ We try to find the line that more closely approximates the relationship.
   plt.yticks(fontsize=15)
   plt.xlabel("reservations", fontsize=30)
   plt.ylabel("pizza", fontsize=30)
-  x, y = np.loadtxt("pizza.txt", skiprows=1, unpack=true)
+  X, Y = np.loadtxt("pizza.txt", skiprows=1, unpack=true)
+  w = train(X,Y,iterations=1000,lr=0.01)
+  print("w=%.3f" % w)
+  print("Prediction: x=%d => y=%.2f" % (20, predict(20,w)))
   plt.plot(x,y,"bo")
   plt.show()
 #+end_src
@@ -186,7 +189,7 @@ We try to find the line that more closely approximates the relationship.
 
 - Problems with our current =train()=
   1) doesn't scale well (cpu/time) when adding new _hyperparameters_ (INPUTS)
-  2) is NOT precise, since _hyperparameters_ are defined in *lr* terms
+  2) is NOT precise, since _hyperparameters_ are defined in *lr* (learning rate) terms
 
 - observation:
   - a plot of loss(), when b=0, looks like a U curve

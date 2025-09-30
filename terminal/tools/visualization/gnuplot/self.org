@@ -89,6 +89,7 @@
 |           |                                    | eg: S_min_x                 |
 |-----------+------------------------------------+-----------------------------|
 
+
 *** plot
 
 #+begin_src
@@ -126,6 +127,7 @@
   - histograms
   - filledcurves
     - [f]ill[s]tyle pattern N
+  - dots
   - points
     - pointsize N
   - lines
@@ -229,7 +231,7 @@ b              -0.890  1.000
 |             | separator comma | input separator (default: space) |
 |-------------+-----------------+----------------------------------|
 | decimalsign |        S        | "." or ","                       |
-|   samples   |        N        | sampling frequency               |
+|   samples   |      N[,N]      | sampling frequency               |
 |  [xyz]data  |      time       | tells ? axis is a date/time      |
 | timecolumn  |      N FMT      | INPUT format date on column N    |
 |   timefmt   |       FMT       | INPUT format date                |
@@ -254,11 +256,33 @@ b              -0.890  1.000
 |               |     rotate     |                                  |
 |               | START,STEP,END |                                  |
 |               |  (S N[,S N])   | custom labels S at point N       |
+|               |   font ",20"   | set font size to 20              |
 |   [xyz]tic    |  rotate by N   | rotates tic labels               |
 | [xyz][2]label |       S        | axis label                       |
 |               |  offset N[,N]  |                                  |
+|               |   font ",20"   | set font size to 20              |
 |     label     |   N at X,Y S   | puts a label at X,Y position     |
 |---------------+----------------+----------------------------------|
+*** general: splot
+|-------------+-------------+-----------------------------------|
+| dgrid3d     | N,N         | ????                              |
+| xyplane     | N           | Z value where xyplane is          |
+| +ticslevel+ | N           | " DEPRECATED                      |
+| colorbox    | -           | color range box                   |
+| pm3d        | border lw 1 | surface with lines                |
+| isosamples  | N           | splot lines draw per xz axis      |
+| view        | X,Z         | 0-180 rotation around axis        |
+| hidden3d    | -           | non translucent (disables sample) |
+|             |             | linestyle 1/2 for top/bottom      |
+|             |             | aka "hidden line removal"         |
+|-------------+-------------+-----------------------------------|
+
+#+begin_src gnuplot
+  splot f(x,y) with pm3d          # surface
+  splot f(x,y) lc pal        lw 2 # sets isolines color/thicc
+  set     lt 1 lc "seagreen" lw 3
+#+end_src
+
 *** key
 
 |-----+---------------+-------------------------------|
@@ -309,8 +333,15 @@ b              -0.890  1.000
 http://gnuplot.info/demo/pm3dcolors.html
 
 #+begin_src gnuplot
+  set palette gray
   set palette rgb 7,5,15
   set palette defined (0 0 0 0, 0.3 1 0 0, 0.6 "blue", 1 "#ffffff")
+  set palette defined (0 "blue", 0.5 "red", 1 "white")
+  set palette defined (0 "black", 0.5 "blue", 0.5 "red", 1 "white")
+  set palette cubehelix start 0 cycles -1. saturation 1
+  set palette cubehelix start 1.2 cycles -1 saturation 1
+  set palette cubehelix start pi/2 cycles -1 saturation 1
+  set palette cubehelix start pi/2 cycles -15 saturation 1
 #+end_src
 
 * snippets
