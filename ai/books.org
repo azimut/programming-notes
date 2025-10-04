@@ -507,9 +507,9 @@ L =
 
 - We flatten the input character images into a single row of features
   - we loss the geometry data
-  - such technique would not work for other type of recognition (eg: discent races of elephants)
+  - such technique would not work for other type of recognition (eg: discern between races of elephants)
 
-**** Load Training Data
+**** Load Images
 
 #+begin_src python
   import numpy as np
@@ -529,7 +529,7 @@ L =
   X_test  = prepend_bias(load_images("../data/mnist/t10k-images-idx3-ubyte.gz"))
 #+end_src
 
-**** Load Testing Data
+**** Load Labels
 
 - We transform the labels to 0 for "not-5" and 1 for "5"
 

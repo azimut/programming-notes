@@ -27,6 +27,7 @@
 - https://en.wikipedia.org/wiki/Dependent_type
 - https://en.wikipedia.org/wiki/Generalized_algebraic_data_type
 - tutorial http://caiorss.github.io/Functional-Programming/haskell/README.html
+- tutorial https://github.com/keithfancher/haskell-notes/blob/master/haskell-notes.md
 
 ** deriving - types that can be derived
 |---------+---------------------------------------|

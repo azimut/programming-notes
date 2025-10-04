@@ -1,3 +1,10 @@
+- binary https://lwn.net/Articles/924133/
+  - jq for binary https://github.com/wader/fq
+  - gnu poke https://www.jemarch.net/poke
+  - objdump
+  - od
+  - xxd
+  - library https://kaitai.io/
 - tool: web ui https://datasette.io/
 - tool: fake data generator https://github.com/multiprocessio/fakegen
 - tool: yaml/json/xml/csv/toml https://github.com/TomWright/dasel

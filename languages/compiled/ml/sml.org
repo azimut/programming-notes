@@ -1,6 +1,9 @@
 - https://smlfamily.github.io/
-- Playlist: Functional Programming with Standard ML (University of Trento)
-  https://www.youtube.com/playlist?list=PLbdi8aNvDqlKKXdG7qn0rQsfH0z1hf7FC
 - https://en.wikipedia.org/wiki/Standard_ML
 - Introduction to SML
   https://cs.lmu.edu/~ray/notes/introml/
+- Playlist: Functional Programming with Standard ML (University of Trento)
+  https://www.youtube.com/playlist?list=PLbdi8aNvDqlKKXdG7qn0rQsfH0z1hf7FC
+- 23 CME: Principles of Functional Programming M23 https://www.youtube.com/playlist?list=PLsydD1kw8jng2t2G8USQNLz0faYZetPnH
+  - https://brandonspark.github.io/150/
+  - 1 slides https://brandonspark.github.io/prologue/lecture01.pdf

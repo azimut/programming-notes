@@ -264,23 +264,45 @@ b              -0.890  1.000
 |     label     |   N at X,Y S   | puts a label at X,Y position     |
 |---------------+----------------+----------------------------------|
 *** general: splot
-|-------------+-------------+-----------------------------------|
-| dgrid3d     | N,N         | ????                              |
-| xyplane     | N           | Z value where xyplane is          |
-| +ticslevel+ | N           | " DEPRECATED                      |
-| colorbox    | -           | color range box                   |
-| pm3d        | border lw 1 | surface with lines                |
-| isosamples  | N           | splot lines draw per xz axis      |
-| view        | X,Z         | 0-180 rotation around axis        |
-| hidden3d    | -           | non translucent (disables sample) |
-|             |             | linestyle 1/2 for top/bottom      |
-|             |             | aka "hidden line removal"         |
-|-------------+-------------+-----------------------------------|
+|-------------+------------------------------+-----------------------------------|
+| dgrid3d     | N,N                          | ????                              |
+| xyplane     | N                            | Z value where xyplane is          |
+| +ticslevel+ | N                            | " DEPRECATED                      |
+| colorbox    | -                            | color range box                   |
+| pm3d        | border lw 1                  | surface with lines                |
+| isosamples  | N                            | splot lines draw per xz axis      |
+| view        | X,Z                          | 0-180 rotation around axis        |
+| contour     | base                         |                                   |
+| cntrparam   | levels auto 9                |                                   |
+|             | levels discrete 1, -1        |                                   |
+|             | levels incremental -2 .05 .2 |                                   |
+|             | first 10 sort                |                                   |
+| hidden      |                              |                                   |
+| hidden3d    | -                            | non translucent (disables sample) |
+|             |                              | linestyle 1/2 for top/bottom      |
+|             |                              | aka "hidden line removal"         |
+|-------------+------------------------------+-----------------------------------|
 
 #+begin_src gnuplot
   splot f(x,y) with pm3d          # surface
   splot f(x,y) lc pal        lw 2 # sets isolines color/thicc
   set     lt 1 lc "seagreen" lw 3
+#+end_src
+
+*** palette
+
+http://gnuplot.info/demo/pm3dcolors.html
+
+#+begin_src gnuplot
+  set palette gray
+  set palette rgb 7,5,15
+  set palette defined (0 0 0 0, 0.3 1 0 0, 0.6 "blue", 1 "#ffffff")
+  set palette defined (0 "blue", 0.5 "red", 1 "white")
+  set palette defined (0 "black", 0.5 "blue", 0.5 "red", 1 "white")
+  set palette cubehelix start 0 cycles -1. saturation 1
+  set palette cubehelix start 1.2 cycles -1 saturation 1
+  set palette cubehelix start pi/2 cycles -1 saturation 1
+  set palette cubehelix start pi/2 cycles -15 saturation 1
 #+end_src
 
 *** key
@@ -327,22 +349,6 @@ b              -0.890  1.000
 - wxt
 - xterm (xterm tektronix mode)
 - dumb (aka ascii)
-
-*** palette
-
-http://gnuplot.info/demo/pm3dcolors.html
-
-#+begin_src gnuplot
-  set palette gray
-  set palette rgb 7,5,15
-  set palette defined (0 0 0 0, 0.3 1 0 0, 0.6 "blue", 1 "#ffffff")
-  set palette defined (0 "blue", 0.5 "red", 1 "white")
-  set palette defined (0 "black", 0.5 "blue", 0.5 "red", 1 "white")
-  set palette cubehelix start 0 cycles -1. saturation 1
-  set palette cubehelix start 1.2 cycles -1 saturation 1
-  set palette cubehelix start pi/2 cycles -1 saturation 1
-  set palette cubehelix start pi/2 cycles -15 saturation 1
-#+end_src
 
 * snippets
 

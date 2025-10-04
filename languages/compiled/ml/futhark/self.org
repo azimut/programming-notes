@@ -325,6 +325,16 @@ Giving related functionality a common abstraction.
   val uncurry '^a '^b '^c : (a -> b -> c) -> (a,b) -> c
 #+end_src
 
+** literate mode
+
+- img = [ROW][COL]T
+
+- :img
+- :video
+  - [NIMG]img
+  - (stepfn, initial_value, num_frames)
+    - stepfn s = (img, newval)
+
 ** TODO in-place updates
 
 - use must be rare
@@ -343,6 +353,15 @@ Giving related functionality a common abstraction.
 
 - a .fut(hark) program might contain a =test block=
 - entrypoint can be elided if it is "main"
+- futharkscript functions https://futhark.readthedocs.io/en/latest/man/futhark-literate.html
+  |------------+--------+--------------+-------------------|
+  |            |        |     <c>      |                   |
+  | $loadimg   | "file" |   [][]u32    | row major ARGB    |
+  | $loaddata  | "file" | t ¦ (t,t...) |                   |
+  | $loadbytes | "file" |     []u8     |                   |
+  | $loadaudio | "file" |   [][]f64    | a row per channel |
+  | $restore   |        |              |                   |
+  |------------+--------+--------------+-------------------|
 - =input/output sets=
   - can be put on 1 line
   - no record or tuples are permitted
@@ -361,6 +380,7 @@ Giving related functionality a common abstraction.
 
 #+CAPTION: file input/output test block
 #+begin_src futhark
+  entry foobar x = x
   -- compiled input @ foo.in
   -- output @ foo.out
 #+end_src

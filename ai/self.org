@@ -135,7 +135,9 @@
     B1=
   #+end_src
 - https://en.wikipedia.org/wiki/MNIST_database
+  - http://web.archive.org/web/20020622183530/http://yann.lecun.com:80/exdb/mnist/
   - Modified NIST (National Institute of Standards and Technology)
+  - MSB
   - 28x28 grayscale
   - 1 byte pixels
     - 0x00 white
