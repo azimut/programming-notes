@@ -296,13 +296,15 @@ Giving related functionality a common abstraction.
 
 ** stdlib
 
-- https://futhark-lang.org/docs/prelude/doc/prelude/prelude.html
 - https://futhark-lang.org/docs/prelude/
+- https://futhark-lang.org/docs/prelude/doc/prelude/prelude.html
+- https://futhark-lang.org/docs/prelude/doc/prelude/math.html
+
 - array operations
-  - First Order Array Combinators:
+  - First Order Array Combinators: https://futhark-lang.org/docs/prelude/doc/prelude/array.html
     - always perform the same operation
-    - eg: zip/unzip
-  - Second Order Array Combinators (SOACs)
+    - eg: zip/unzip https://futhark-lang.org/docs/prelude/doc/prelude/zip.html
+  - Second Order Array Combinators (SOACs) https://futhark-lang.org/docs/prelude/doc/prelude/soacs.html
     - take a functional argument
     - eg:
       - map (array transformer)
@@ -311,6 +313,8 @@ Giving related functionality a common abstraction.
         - aka Generalised Prefix Sum
         - is inclusive, it includes the final reduce in it's result
       - filter (cost is ~scan+map)
+
+https://futhark-lang.org/docs/prelude/doc/prelude/functional.html
 
 #+begin_src futhark
   val id      '^a         : a -> a               -- identity function
@@ -354,14 +358,15 @@ Giving related functionality a common abstraction.
 - a .fut(hark) program might contain a =test block=
 - entrypoint can be elided if it is "main"
 - futharkscript functions https://futhark.readthedocs.io/en/latest/man/futhark-literate.html
-  |------------+--------+--------------+-------------------|
-  |            |        |     <c>      |                   |
-  | $loadimg   | "file" |   [][]u32    | row major ARGB    |
-  | $loaddata  | "file" | t ¦ (t,t...) |                   |
-  | $loadbytes | "file" |     []u8     |                   |
-  | $loadaudio | "file" |   [][]f64    | a row per channel |
-  | $restore   |        |              |                   |
-  |------------+--------+--------------+-------------------|
+  |------------+----------+--------------+---------------------------|
+  |            |          |     <c>      |                           |
+  | $loadimg   | "file"   |   [][]u32    | row major ARGB            |
+  | $loaddata  | "file"   | t ¦ (t,t...) |                           |
+  | $loadbytes | "file"   |     []u8     |                           |
+  | $loadaudio | "file"   |   [][]f64    | a row per channel         |
+  | $restore   | "file"   |      v       | laods file                |
+  | $store     | "file" v |      -       | stores value in v in file |
+  |------------+----------+--------------+---------------------------|
 - =input/output sets=
   - can be put on 1 line
   - no record or tuples are permitted

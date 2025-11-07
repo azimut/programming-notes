@@ -115,7 +115,7 @@
 ** Types
 
 - reserved words
-- shell builtin
+- shell builtin (see "help" command)
 - numbers (? are of 2^ARCH size
 - Bash does NOT support natively floating point numbers
 
@@ -185,6 +185,8 @@ https://tldp.org/LDP/abs/html/io-redirection.html
   - "<>" https://bash.cyberciti.biz/guide/Opening_the_file_descriptors_for_reading_and_writing
   |-------------+------------------------------------------------|
   | ¦&          | shorthand for "2>&1 ¦"                         |
+  | <&-         | closes stdin                                   |
+  | >&-         | closes stdout                                  |
   | [n]<>word   | opens fd n at word, for r/w                    |
   | [n]<&word   | duplicates fd                                  |
   | [n]>&word   | duplicates fd                                  |
@@ -296,6 +298,21 @@ https://en.wikipedia.org/wiki/Getopts
 |                 ¦                 | bitwise OR                                 |
 |-----------------------------------+--------------------------------------------|
 
+** shopt
+- https://gist.github.com/detain/dfa0e4d75647b424c5aea45a34af0713
+- https://mywiki.wooledge.org/glob
+*** globstar
+
+#+begin_src
+**/*.mp4
+#+end_src
+
+- If set, the pattern ** used in a pathname expansion context will match all files and zero or more directories and
+  subdirectories. If the pattern is followed by a /, only directories and subdirectories match.
+
+- * Matches any string, including the null string.  When the globstar shell option is enabled, and * is used in  a  pathname
+  expansion context, two adjacent *s used as a single pattern will match all files and zero or more directories and subdi‐
+  rectories.  If followed by a /, two adjacent *s will match only directories and subdirectories.
 
 * Tutorial: Style https://google.github.io/styleguide/shellguide.html
 

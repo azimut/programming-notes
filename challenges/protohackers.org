@@ -5,9 +5,22 @@ home https://protohackers.com/
 - https://gergely.imreh.net/blog/2022/09/programming-challenge-protohackers-3/
 - https://geekingfrog.com/blog/post/protohackers-learnings
 - tunnels
-  - https://ngrok.com/
-  - https://telebit.cloud/
+  - many https://www.reddit.com/r/node/comments/yd99nb/alternatives_to_ngrok/
+  - https://pinggy.io/
+    - 60 minutes free tcp tunnels
+    - eg: tcp://mfmek-201-212-28-49.a.free.pinggy.link:37861
+    #+begin_src sh
+      ssh -p 443 -R0:localhost:1234 qr+tcp@free.pinggy.io
+    #+end_src
+  - https://localtunnel.me/
+    - http only (?)
+  - https://tunnelin.com/
   - https://github.com/cloudflare/cloudflared
+  - https://telebit.cloud/
+    - fails to install (capabilities drop error)
+  - https://ngrok.com/
+    - don't work with SmokeTest (?)
+    - requires credit card for tcp
 
 * code
 

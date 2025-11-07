@@ -61,6 +61,7 @@ https://github.com/iamtrask/grokking-deep-learning
 - home https://pragprog.com/titles/pplearn/programming-machine-learning/
 - forum https://devtalk.com/books/programming-machine-learning/
 - source https://github.com/nusco/progml-code
+- errata https://forum.devtalk.com/c/pragprog/pragprog-customers/85?tags=book-programming-machine-learning
 - bonus
   - chap 4 https://nusco.medium.com/of-gradients-and-matrices-1b19de65e5cd
   - chap 5 [[https://levelup.gitconnected.com/the-problem-with-accuracy-3670891b908e][The Problem with Accuracy]]
@@ -560,9 +561,11 @@ Test baseline is 90%. Manually guessed hyperparams.
 *** 7 the final challenge
 **** new encoding of labels
 
-Label Encoding Problem: multiclass clasification
+Goal: recognize all digits.
 
-Solution 1: run many "Weighted Sum Sigmoid" fns and return the one with highest chance.
+From _binary classification_ to a _multiclass clasification_ problem.
+
+Solution 1: build a binary classifier for each digit and return the one with highest chance.
 Solution 2: we create a matrix of bitsets for the results (=One-Hot Encoding=). We have as many digits as classes.
 
 We use this to initialize the training data.

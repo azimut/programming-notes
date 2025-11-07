@@ -61,3 +61,7 @@
   - https://sadservers.com/
 - Terminal Skills
   - https://overthewire.org/wargames/bandit/
+  - +https://cmdchallenge.com/+
+    - +https://oops.cmdchallenge.com/+
+    - +https://12days.cmdchallenge.com/+
+    - source https://gitlab.com/jarv/cmdchallenge

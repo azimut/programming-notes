@@ -96,6 +96,9 @@
 
 * DataSets
 
+- Fashion MNIST
+- CIFAR-10
+  - contains forced aspect-ratio https://x.com/ID_AA_Carmack/status/1366627186732634115
 - https://github.com/shramos/Awesome-Cybersecurity-Datasets
 - https://en.wikipedia.org/wiki/List_of_datasets_for_machine-learning_research
 - https://en.wikipedia.org/wiki/List_of_datasets_in_computer_vision_and_image_processing
@@ -134,6 +137,8 @@
     Fanio=2025
     B1=
   #+end_src
+
+** MNIST
 - https://en.wikipedia.org/wiki/MNIST_database
   - http://web.archive.org/web/20020622183530/http://yann.lecun.com:80/exdb/mnist/
   - Modified NIST (National Institute of Standards and Technology)
@@ -149,3 +154,20 @@
       - 60k labels
       - 10k images for testing
       - 10k labels
+- digits distribution https://www.researchgate.net/figure/Distribution-of-digits-in-MNIST-and-Farsi-handwritten-digit-datasets_tbl1_220464658
+  |---+-------+-------|
+  | N | train |  test |
+  |---+-------+-------|
+  | 0 |  5923 |   980 |
+  | 1 |  6742 |  1135 |
+  | 2 |  5958 |  1032 |
+  | 3 |  6131 |  1010 |
+  | 4 |  5842 |   982 |
+  | 5 |  5421 |   892 |
+  | 6 |  5918 |   958 |
+  | 7 |  6265 |  1028 |
+  | 8 |  5851 |   974 |
+  | 9 |  5949 |  1009 |
+  |---+-------+-------|
+  | T | 60000 | 10000 |
+  |---+-------+-------|

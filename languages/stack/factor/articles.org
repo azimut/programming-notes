@@ -8,9 +8,16 @@
 - 10 Factor's bootstrap process explained http://factor-language.blogspot.com/2010/01/factors-bootstrap-process-explained.html
 - paper https://factorcode.org/littledan/dls.pdf
 - https://andreaferretti.github.io/factor-tutorial/
+  - you should write code that does as little shuffling (dup,drop,swap) as possible
+  - use common patterns, that are better abstracted away into their own words
+  - both extremely *functional* (fn composition) and largely *imperative* describing operation on a global mutable stack
 - https://www.junglecoder.com/blog/factorlang-review
 - https://re.factorcode.org/
 - https://re.factorcode.org/2014/04/scraping-re-factor.html
+- tutorial
+  - https://docs.factorcode.org/content/article-cookbook.html
+  - https://docs.factorcode.org/content/article-first-program.html
+  - https://docs.factorcode.org/content/article-tour.html
 - https://docs.factorcode.org/content/article-handbook-library-reference.html
 - 12 https://re-factor.blogspot.com/2012/08/literate-programming.html
 - book of articles

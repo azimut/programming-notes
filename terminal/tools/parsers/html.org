@@ -1,0 +1,27 @@
+- 238 https://github.com/plainas/tq
+- https://www.w3.org/Tools/HTML-XML-utils/README
+  - hselect
+    | -i |   | case-insensitive               |
+    | -s | S | match separator (default:none) |
+    | -c |   | print contents only            |
+    | -l | S | selects language of content    |
+  #+begin_src sh
+    cat index.html | hxnormalize -x | hxselect -s '\n' 'li a::attr(href)'
+  #+end_src
+- https://github.com/mgdm/htmlq
+- https://github.com/TUVIMEN/reliq
+- https://github.com/htacg/tidy-html5
+- https://github.com/ericchiang/xpup
+- https://github.com/ericchiang/pup
+  - pup [flags] [css-selectors] [display function]
+  - css-selectors, comma separated
+  - display function
+    |---------------+------------------------------|
+    | text{}        | inner text of selected nodes |
+    | attr{attrkey} | return attributes            |
+    | json{}        | html -> json                 |
+    |---------------+------------------------------|
+  - flags
+    |----+----------------------------------|
+    | -f | read from file, instead of STDIN |
+    |----+----------------------------------|

@@ -84,20 +84,29 @@
 - list start at zero
 - supports float with *math* module
 - no booleans, per se
+  - exit code 0, true
 
 ** commands
-- count $argv
+
+https://fishshell.com/docs/current/commands.html
+
 - math
 - argparse
   - -n --name
   - -N --min-args
   - -X --max-args
+
 *** string
 
 #+begin_src fish
   string replace -a "i" "I" "Wikipedia" # WIkIpedIa
 #+end_src
 
+*** lists
+|----------+----------|
+| [[https://fishshell.com/docs/current/cmds/contains.html][contains]] | key list |
+| [[https://fishshell.com/docs/current/cmds/count.html][count]]    | list     |
+|----------+----------|
 *** set
 
 #+begin_src fish

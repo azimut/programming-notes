@@ -17,19 +17,61 @@
 
 - Stack is used to organize calls to words, NOT as a data structure.
 - No package manager.
-  All libraries of the language are part of the Factor monorepo.
-  Along with docs.
+  - All libraries of the language are part of the Factor monorepo.
+  - Along with docs.
+- all values are truthy, except "f"
 
 - vocabularies: named set of words (me: libraries)
 
+** types
+https://docs.factorcode.org/content/article-tuple-examples.html
+|-----------+---+----------------------------------------------------|
+| boolean   | ? | t f                                                |
+| lists     |   | { 0 1 2 3 }                                        |
+| hashs     |   | H{ { "Perl" "L. Wall" } { "Factor" "S. Pestov" } } |
+| bytearray |   | B{ 1 14 18 23 }                                    |
+| range     |   | [0,b]                                              |
+|-----------+---+----------------------------------------------------|
 ** quotations
 
 #+begin_src factor
   [ "Hello, World" print ]
 #+end_src
-- are unammed blocks of code
-- you can ~call~ it
 
+- https://docs.factorcode.org/content/vocab-fry.html
+- is a block of code
+- can be pushed to the stack as a value
+- you can ~call~ it
+|-------+----------------------|
+| call  | a f   -- (f a)       |
+| dip   | a b f -- (f a) b     |
+| keep  | a b f -- (f a b) b   |
+| bi    | a f g -- (f a) (g a) |
+| bi@   | a b f -- (f a) (f b) |
+| curry | a f   -- [f a]       |
+|-------+----------------------|
+
+** conditionals
+
+#+begin_src factor
+  0 [] when   ! when* leaves test value on stack, WHEN TRUE
+  0 [] unless
+  2 ["Two is true" .] ["Invalid" .] if
+#+end_src
+
+** loops
+|--------------+----------+------------|
+|              |          |    <c>     |
+| times        | n f      |   f0..fn   |
+| each-integer | n f      | f(0)..f(n) |
+| each         | list f   |            |
+| map          | list f   |   list'    |
+| reduce       | list n f |     n'     |
+| accumulate   | list n f |  list' n'  |
+| replicate    |          |            |
+| produce      | n pred f |    list    |
+| while        | n pred f |     n'     |
+|--------------+----------+------------|
 ** words
 
 #+begin_src factor
@@ -42,11 +84,31 @@
 
 - new words are defined at parse time
   - stack effects are used, error is reported if wrong
+  - modifiers: inline, recursive
 
 - ~combinators~ are words that take quotations
   - eg: if, map
 
-- those that manipulate the stack are called *shuffle words*
+- *parsing words*
+  - commonly used to defining literals (eg: list, hash, bytearray)
+  - interact with the parser
+  - defined with *SYNTAX:*
+  - eg: [ ] : ;
+
+*** shuffling words
+- manipulate the stack
+|-------+-------+---------|
+| dup   | x     | x x     |
+| drop  | x     |         |
+| swap  | x y   | y x     |
+| over  | x y   | x y x   |
+| dupd  | x y   | x x y   |
+| swapd | x y z | y x z   |
+| nip   | x y   | y       |
+| rot   | x y z | y z x   |
+| -rot  | x y z | z x y   |
+| 2dup  | x y   | x y x y |
+|-------+-------+---------|
 
 * Standalone Executables
 
@@ -62,12 +124,13 @@ https://concatenative.org/wiki/view/Factor/Deployment
   * libstdc++.so.6
 - does NOT support "stripping" with "strip"
 - single core compiler (?
-- ~8min in compile "tetris" example
-  ~3Mb
+- 35s in compile "hello world", 1.6Mb
+- 8min in compile "tetris", ~3Mb
 
 ** hello world
 
-- Run in a directory above ~./hello/~
+- Binary at ./hello/hello
+- Run in a directory above ~./hello/~, in ~./~
   #+begin_src sh
     $ factor -roots=. -e='USING: namespaces tools.deploy tools.deploy.config ; "." deploy-directory set "hello" deploy'
     # 40 seconds
@@ -116,9 +179,13 @@ H{
 * libraries/vocabularies
 
 - x11 example https://github.com/letoh/hello-x11-factor
+- json
+  - https://docs.factorcode.org/content/article-json.html
+  - https://docs.factorcode.org/content/vocab-json.html
 - all
   https://docs.factorcode.org/content/article-vocab-index.html
   https://docs.factorcode.org/content/article-handbook-library-reference.html
+- kernel https://docs.factorcode.org/content/vocab-kernel.html
 - ui examples https://docs.factorcode.org/content/article-ui.html
 - raylib https://github.com/ArnautDaniel/raylib-factor
   - https://github.com/ArnautDaniel/raylib-factor/blob/master/examples/piggy/piggy.factor
@@ -127,6 +194,10 @@ H{
 - web framework
   https://concatenative.org/wiki/view/Factor/Furnace
   https://docs.factorcode.org/content/vocab-furnace.html
+
+* tools
+
+- editor: emacs https://github.com/factor/fuel
 
 * codebases
 

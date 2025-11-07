@@ -1,23 +1,10 @@
+- 25 | Reasons and Resources - Learning The Factor Programming Language https://www.youtube.com/watch?v=OvM1fygiShI
 - 23 | Battle Snake |
   - https://www.youtube.com/watch?v=sqHY3YDGj80
   - https://www.youtube.com/watch?v=tPXAmEsS_6I
   - https://www.youtube.com/watch?v=9cti_7OLrsw
   - build an http service using *furnace*
   - TODO 40:00
-* TODO 09 Factor | Doug Coleman
-
-https://vimeo.com/6203360
-
-#+begin_src factor
-  3 weeks ago noon monday .
-  USE: roman 2009 >roman .
-  : average ( seq -- x )
-      [ sum ] [ length ] bi / ;
-  { 1 2 3 4 } average .
-  1 miles [ km ] undo >float .
-  [ readln eval>string print t ] loop
-#+end_src
-
 * TODO 22 Factor | John Benediktsson & Doug Coleman
 
 https://www.youtube.com/watch?v=OLh61q4c4XE
@@ -51,6 +38,20 @@ https://www.youtube.com/watch?v=OLh61q4c4XE
     { "%" } split random
     [ print ] each
   #+end_src
+
+* TODO 09 Factor | Doug Coleman
+
+https://vimeo.com/6203360
+
+#+begin_src factor
+  3 weeks ago noon monday .
+  USE: roman 2009 >roman .
+  : average ( seq -- x )
+      [ sum ] [ length ] bi / ;
+  { 1 2 3 4 } average .
+  1 miles [ km ] undo >float .
+  [ readln eval>string print t ] loop
+#+end_src
 
 * TODO 08 Factor: an extensible interactive language | Slave Pestov
 

@@ -5,13 +5,22 @@
   - od
   - xxd
   - library https://kaitai.io/
-- tool: web ui https://datasette.io/
-- tool: fake data generator https://github.com/multiprocessio/fakegen
-- tool: yaml/json/xml/csv/toml https://github.com/TomWright/dasel
-- tool: yaml/json/xml/csv/toml https://github.com/mikefarah/yq
-- tool: json to grep-able format https://github.com/tomnomnom/gron
-- tool: json (sql) https://github.com/SnellerInc/sneller
-- tool: json/csv/parquet (sql) https://github.com/cube2222/octosql
+- json generator [[https://github.com/jpmens/jo][source]] [[https://jpmens.net/2016/03/05/a-shell-command-to-create-json-jo/][tutorial]]
+  - -p for pretty print
+  - -a for array
+  #+begin_src sh
+    jo foo=bar baz=1             # {"foo":"bar","baz":1}
+    seq 1 10 | jo -a             # [1,2,3,4,5,6,7,8,9,10]
+    jo foo=bar baz=$(jo a=1 b=2) # {"foo":"bar","baz":{"a":1,"b":2}}
+    jo foo=bar baz[a]=1 baz[b]=2 # {"foo":"bar","baz":{"a":1,"b":2}}
+  #+end_src
+- web ui https://datasette.io/
+- fake data generator https://github.com/multiprocessio/fakegen
+- yaml/json/xml/csv/toml https://github.com/TomWright/dasel
+- yaml/json/xml/csv/toml https://github.com/mikefarah/yq
+- json to grep-able format https://github.com/tomnomnom/gron
+- json (sql) https://github.com/SnellerInc/sneller
+- json/csv/parquet (sql) https://github.com/cube2222/octosql
 
 * visidata
 
@@ -64,22 +73,3 @@
 - Shift+I - Summary   sheet/view
 - Shift+C - Columns   sheet/view
   - ^ edit column name
-
-* html
-
-- https://github.com/mgdm/htmlq
-- https://github.com/TUVIMEN/reliq
-- https://github.com/htacg/tidy-html5
-- https://github.com/ericchiang/pup
-  - pup [flags] [css-selectors] [display function]
-  - css-selectors, comma separated
-  - display function
-    |---------------+------------------------------|
-    | text{}        | inner text of selected nodes |
-    | attr{attrkey} | return attributes            |
-    | json{}        | html -> json                 |
-    |---------------+------------------------------|
-  - flags
-    |----+----------------------------------|
-    | -f | read from file, instead of STDIN |
-    |----+----------------------------------|

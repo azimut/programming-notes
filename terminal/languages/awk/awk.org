@@ -159,7 +159,7 @@ Can be:
 |               | DESCRIPTION                                  |     DEFAULT     |
 |---------------+----------------------------------------------+-----------------|
 |        =FPAT= | regex of what each field contains            | "[^[:space:]]+" |
-| =FIELDWIDTHS= | whitespace separated list field widths       |       ""        |
+| =FIELDWIDTHS= | space separated list of field widths         |     "4 2 2"     |
 |---------------+----------------------------------------------+-----------------|
 |            NF | numer of fields in line                      |        0        |
 |            NR | number of records (aka lines) read so far    |        0        |
@@ -464,28 +464,27 @@ use "|&" to send and receive
 #+CAPTION: Alfred Aho in a 80's film about UNIX
 [[./aho.png]]
 
-|---------------------+----------------------------------------------------------------|
-|         <c>         |                                                                |
-|    graphics demo    | https://github.com/patsie75/awk-demo                           |
-|    graphics libs    | https://github.com/patsie75/awk-glib                           |
-|       CHIP-8        | https://github.com/patsie75/awk-chip8                          |
-|     game tetris     | https://github.com/mikkun/AWKTC                                |
-|         git         | https://github.com/djanderson/aho                              |
-|        json         | https://github.com/step-/JSON.awk                              |
-|   static site gen   | https://github.com/nuex/zodiac                                 |
-|    svg from git     | https://github.com/deuill/grawkit                              |
-|         jvm         | https://github.com/rethab/awk-jvm                              |
-|  toy lang compiler  | https://cowlark.com/mercat/com.awk.txt                         |
-| plot.awk (to svg )  | https://gist.github.com/katef/fb4cb6d47decd8052bd0e8d88c03a102 |
-|     svg drawing     | https://gist.github.com/katef/f52978b2ba4583d195414f19342d91ca |
-|       matrix        | https://x.com/climagic/status/1472931718214651912              |
-| system logs parsing | https://github.com/kaworu/hawk                                 |
-| generate random fsm | https://github.com/katef/libfsm/blob/main/fuzz/genregex        |
-|  graphviz makefile  | https://github.com/TomConlin/MakefileViz                       |
-|     networking      | [[https://github.com/crossbowerbt/awk-webserver][webserver]]  [[https://github.com/alq666/datadawk/][datadog]]  [[http://web.archive.org/web/20231229231534/http://git.vgx.fr/gem.awk/file/gem.awk.html][gemini]]  [[https://git.sr.ht/~akarle/gc/tree/main/item/gc][gopher]]  [[https://github.com/falconindy/bin-scripts/blob/master/geoloc][httpclient]]                 |
-|        libs         | https://github.com/e36freak/awk-libs                           |
-|        libs         | https://github.com/dubiousjim/awkenough                        |
-|---------------------+----------------------------------------------------------------|
+|---------------------+---------------------------------------------------------|
+|         <c>         |                                                         |
+|    graphics demo    | https://github.com/patsie75/awk-demo                    |
+|    graphics libs    | https://github.com/patsie75/awk-glib                    |
+|       CHIP-8        | https://github.com/patsie75/awk-chip8                   |
+|     game tetris     | https://github.com/mikkun/AWKTC                         |
+|         git         | https://github.com/djanderson/aho                       |
+|        json         | https://github.com/step-/JSON.awk                       |
+|   static site gen   | https://github.com/nuex/zodiac                          |
+|    svg from git     | https://github.com/deuill/grawkit                       |
+|         jvm         | https://github.com/rethab/awk-jvm                       |
+|  toy lang compiler  | https://cowlark.com/mercat/com.awk.txt                  |
+|      svg plot       | [[https://gist.github.com/katef/fb4cb6d47decd8052bd0e8d88c03a102][plot.awk]]                                                |
+|         art         | [[https://x.com/climagic/status/1472931718214651912][matrix.awk]]  [[https://gist.github.com/katef/f52978b2ba4583d195414f19342d91ca][hattifatteners.awk]]                          |
+|    logs parsing     | https://github.com/kaworu/hawk                          |
+| generate random fsm | https://github.com/katef/libfsm/blob/main/fuzz/genregex |
+|  graphviz makefile  | https://github.com/TomConlin/MakefileViz                |
+|      cli utils      | https://github.com/douglasgscofield/tinyutils           |
+|     networking      | [[https://github.com/crossbowerbt/awk-webserver][webserver]]  [[https://github.com/alq666/datadawk/][datadog]]  [[http://web.archive.org/web/20231229231534/http://git.vgx.fr/gem.awk/file/gem.awk.html][gemini]]  [[https://git.sr.ht/~akarle/gc/tree/main/item/gc][gopher]]  [[https://github.com/falconindy/bin-scripts/blob/master/geoloc][httpclient]]          |
+|        libs         | [[https://github.com/e36freak/awk-libs][awk-libs]]  [[https://github.com/dubiousjim/awkenough][awkenough]]                                     |
+|---------------------+---------------------------------------------------------|
 * snippets
 
 #+CAPTION: Peter J. Weinberger edited for the book "Beyond Photography"
@@ -526,6 +525,8 @@ use "|&" to send and receive
   #+end_src
 - math
   #+begin_src awk
+    function odd(    x)   { return x % 2 }
+    function even(   x)   { return ! odd(x) }
     function max(    x,y) { return (x>y)?x:y  }
     function min(    x,y) { return (x<y)?x:y  }
     function abs(    x)   { return (x<0)?-x:x }

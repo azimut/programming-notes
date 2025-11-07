@@ -8,3 +8,40 @@
 - tutorial https://redprogramming.com/Home.html
 - tutorial https://www.red-by-example.org/
 - tutorial https://learnxinyminutes.com/docs/red/
+- reference https://static.red-lang.org/red-system-specs.html
+
+* language
+
+** types
+- use *as* for casting
+|-----------+-------------+----|
+| integer!  | 23 -23 0Fh  | 32 |
+| byte!     | #"a" #"^A"  |  8 |
+| float!    | 1.0 1E3     | 64 |
+| float32!  |             | 32 |
+| logic!    | true false  |  ? |
+| c-string! | "foo" {bar} |  - |
+| struct!   |             |    |
+| pointer!  |             |    |
+|-----------+-------------+----|
+
+- c-string
+  - a null bytes gets added at the end
+  - can be: length? or size?
+  #+begin_src red
+    foo: "bar"   ; "bar"
+    foo: foo + 1 ;  "ar"
+  #+end_src
+
+
+** variables / labels / identifiers
+
+- case insensitive
+
+#+begin_src red
+  foo: 2
+  foo: bar: 2 ; foo=2 bar=2
+#+end_src
+
+* gotchas
+- no emacs support

@@ -36,6 +36,7 @@
 
 * X11
 
+- dmenu
 - rofi
   - source C https://github.com/davatorium/rofi
 
