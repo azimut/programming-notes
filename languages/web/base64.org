@@ -1,0 +1,10 @@
+https://en.wikipedia.org/wiki/Base64
+
+- binary to text encoding
+- Possible alphabets
+  - A-Za-z0-9+/
+  - A-Za-z0-9-_ (for the web)
+
+* Encoding - when no padding needed
+
+Each input sequence of 6 bits (which can encode 26 = 64 values) is mapped to a Base64 alphabet letter.
