@@ -1,3 +1,5 @@
+- reversing
+  - https://microcorruption.com/
 - Tuenti
   - OLD +contest.tuenti.net+
     - index http://web.archive.org/web/20230608014618/https://codechallenge.0x14.net/InfoPublic/past
@@ -9,11 +11,45 @@
   - 10 writeup https://jcarlosroldan.com/post/152
   - 3 has pdfs https://github.com/luisyng/TuentiChallenge3/
   - 3 has html https://github.com/dvil88/TuentiChallenge3/tree/master/statements
+- Synacor (2012) https://web.archive.org/web/20220906222312/https://challenge.synacor.com/
+  - https://github.com/Gyebro/synacor-challenge
+  - https://github.com/AxlLind/synacor_challenge?tab=readme-ov-file
+  - build a VM from a specification
+  - run a given binary file on the vm
+  - writeup https://github.com/gabekanegae/synacor-challenge/blob/master/writeup.md
+  - writeup https://benjamincongdon.me/blog/2016/12/18/Taking-on-the-Synacor-Challenge/
+  - writeup https://paiv.github.io/blog/2016/04/24/synacor-challenge.html
+- puzzles (2022) https://gekko.csokavar.hu/login
+  - published https://www.reddit.com/r/adventofcode/comments/14uwutd/a_small_game/
 - https://rosalind.info/about/
 - https://projectlovelace.net/
 - https://selectstarsql.com/
+- https://binary.golf/
 - https://cryptopals.com/
 - https://hackattic.com/challenges
+  - crypto
+    - md5 collision gen https://hackattic.com/challenges/collision_course
+    - https://hackattic.com/challenges/brute_force_zip
+    - https://hackattic.com/challenges/mini_miner
+    - https://hackattic.com/challenges/password_hashing
+    - https://hackattic.com/challenges/tales_of_ssl
+  - ai
+    - image read qr https://hackattic.com/challenges/reading_qr
+    - image read numbers https://hackattic.com/challenges/visual_basic_math
+    - image read face https://hackattic.com/challenges/basic_face_detection
+    - audio https://hackattic.com/challenges/touch_tone_dialing
+  - misc
+    - https://hackattic.com/challenges/a_global_presence
+      - perform queries from different countries (at demand)
+  - server
+    - restore https://hackattic.com/challenges/backup_restore
+    - pull api https://hackattic.com/challenges/dockerized_solutions
+    - https://hackattic.com/challenges/hosting_git
+    - https://hackattic.com/challenges/jotting_jwts
+    - https://hackattic.com/challenges/serving_dns
+  - client
+    - +https://hackattic.com/challenges/help_me_unpack+
+    - https://hackattic.com/challenges/websocket_chit_chat
 - test driven tetris https://learntris.org/
 - katas https://web.archive.org/web/20160701032652/https://codingdojo.org/cgi-bin/index.pl?KataCatalogue
 - Data
@@ -35,9 +71,13 @@
   - https://protohackers.com/
   - https://yare.io/
   - https://fly.io/blog/gossip-glomers/
+    https://fly.io/dist-sys/
+  - https://github.com/pingcap/talent-plan/
   - game https://play.battlesnake.com/
   - game https://dojorena.io/with/the-best-coding-challenge https://dojorena.io/manuals/43
 - Algo
+  - https://theweeklychallenge.org/challenges/
+  - https://www.spoj.com/
   - https://everybody.codes/home
   - https://www.janestreet.com/puzzles/archive/
   - https://leetcode.com/

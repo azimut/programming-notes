@@ -1,10 +1,15 @@
 home https://protohackers.com/
 
+- 2022 piechart of popular languages https://github.com/edoannunziata/protohackers/blob/gh-pages/pie.png
+  - rust (14), go (10), python (3), js, ts, c#, ocaml, elixir, erlang
 - videos
   - elixir https://www.youtube.com/playlist?list=PLd7I3U4fDsULTLqbRAkWzA002-IzMe8fl
 - https://gergely.imreh.net/blog/2022/09/programming-challenge-protohackers-3/
 - https://geekingfrog.com/blog/post/protohackers-learnings
 - tunnels
+  - https://sdf.org/ free shell
+    - 20 mb disk quota
+    - tutorials https://sdf.org/?tutorials
   - many https://www.reddit.com/r/node/comments/yd99nb/alternatives_to_ngrok/
   - https://pinggy.io/
     - 60 minutes free tcp tunnels
@@ -50,3 +55,4 @@ home https://protohackers.com/
   - stdlib+uuid https://github.com/STollenaar/protohackers
   - stdlib+go-proxyproto https://github.com/fanatic/protohackers
   - stdlib https://github.com/richmans/proto
+- 05 sh Found a wacky [solution](https://gist.github.com/jan-g/11047aaf50d0ac3b4e40bb76dedbf2e6) in `.sh`.

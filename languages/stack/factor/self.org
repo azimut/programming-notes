@@ -42,15 +42,17 @@ https://docs.factorcode.org/content/article-tuple-examples.html
 - is a block of code
 - can be pushed to the stack as a value
 - you can ~call~ it
-|-------+----------------------|
-| call  | a f   -- (f a)       |
-| dip   | a b f -- (f a) b     |
-| keep  | a b f -- (f a b) b   |
-| bi    | a f g -- (f a) (g a) |
-| bi@   | a b f -- (f a) (f b) |
-| curry | a f   -- [f a]       |
-|-------+----------------------|
-
+|----------+-------+----------------------|
+| preserve | dip   | a b f -- (f a) b     |
+| preserve | keep  | a b f -- (f a b) b   |
+| cleave   | bi    | a f g -- (f a) (g a) |
+| cleave   | tri   |                      |
+| apply    | bi@   | a b f -- (f a) (f b) |
+| apply    | tri@  |                      |
+| spread   | bi*   |                      |
+|          | call  | a f   -- (f a)       |
+|          | curry | a f   -- [f a]       |
+|----------+-------+----------------------|
 ** conditionals
 
 #+begin_src factor

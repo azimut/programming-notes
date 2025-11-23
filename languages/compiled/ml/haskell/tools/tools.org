@@ -23,3 +23,20 @@
       ld-options: -static -pthread
       extra-lib-dirs: ./.system-work/lib
     #+end_src
+
+* scripting
+
+- runhaskell
+  - standalone scripts
+  - uses globally installed deps
+    #+begin_src sh
+      $ ghc-pkg list
+      $ cabal list --installed
+    #+end_src
+
+- cabal scripts https://cabal.readthedocs.io/en/stable/getting-started.html#running-a-single-file-haskell-script
+  - inline cabal deps (a'la ruby)
+
+- cabal run
+  - in a project directory
+  - slow

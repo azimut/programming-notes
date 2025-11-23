@@ -117,7 +117,7 @@
 | 1 | n |   | print top of stack, no \n                    |
 | 1 | P | 1 | print top of stack, no \n, as char if number |
 |---+---+---+----------------------------------------------|
-*** stack manipulation
+*** stack shuffling
 |---+---+---+----------------------------|
 |   |   |   |            <c>             |
 |   | z | 1 |         stack size         |
