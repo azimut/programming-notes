@@ -26,6 +26,8 @@
   $ mandb         # updates man pages
   $ man man
   $ man 7 man     # macro language
+  $ man man.7
+  $ man 'man(7)'
   $ man -f FOOBAR # list all available sections for FOOBAR
   $ man -Tps | ps2pdf - bash.pdf
   $ man -l foo/bar.1

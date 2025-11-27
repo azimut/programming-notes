@@ -89,11 +89,15 @@ Can be:
 
 [[https://www.gnu.org/software/gawk/manual/html_node/Variable-Typing.html][weakly typed: their type can change as the program runs]]
 
-- gnu: typeof(a)
-- untyped, unassigned
-- strnum
-- regexp (?
 - falsy: "", 0, undefined variables
+- gnu: typeof(a)
+  - undefined
+  - unassigned (untyped?)
+  - strnum
+  - regexp:
+    - GAWK
+    - ~@/[0-9]/~
+    - can be assigned to a variable and passed around
 
 *** string
 
@@ -148,9 +152,9 @@ Can be:
 
 ** built-in variables
 
-- RS="^$" reads the whole file as a single record
+- ~RS="^$"~ reads the whole file as a single record
 - FPAT https://www.gnu.org/software/gawk/manual/html_node/Splitting-By-Content.html
-  - For csv, FPAT = "([^,]+)|(\"[^\"]+\")"
+  - For csv: ~FPAT = "([^,]+)|(\"[^\"]+\")"~
   - Instead of using FS to specify what the fields are *not*
   - We use this to specify what are the fields, in the form of a regular expression.
 

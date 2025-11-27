@@ -1,0 +1,21 @@
+
+SP-NETWORK https://www.youtube.com/watch?v=DLjzI5dX8jc
+- substitution permutation network
+- basis of much of symetric crypto
+- for caesar/enigma substitution 1 output character depended only of 1 input character and the algorithm used by them
+  - aka blocksize=1
+  - enigma changes the substitution key, but it still keeps the blocksize=1
+- substitution (inputs mapping)
+- permutation (inputs/output mappings)
+- key-mixing (split and xor each block in between rounds)
+- goes through many rounds (usually rounds have the same logic)
+
+AES https://www.youtube.com/watch?v=O4xNJsjtN6E
+- 128-bit simetric block cipher
+- aka 16bytes in a 4x4 grid (column major order)
+- sp-network (substitution/confusion/permutation/difussion)
+
+- https://thmsdnnr.com/blog/lets-code-aes-aes-in-ecb-mode/
+
+Lessons Learned
+- It gave me an "emotional connection" to cryptography. Which is making easier learn about in different sources.

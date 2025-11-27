@@ -1,3 +1,4 @@
+- A&DS English Course - Pavel Mavrin - https://www.youtube.com/playlist?list=PLrS21S1jm43igE57Ye_edwds_iL7ZOAG4
 - CS170 - Efficient Algorithms and Intractable Problems https://cs170.org/
 * 18 | Algorithmic Toolbox               | HackerRank
 https://www.youtube.com/watch?v=CAfMYNNsVAo

@@ -38,25 +38,25 @@
 
 https://en.wikipedia.org/wiki/C_data_types
 |----------------+------+--------+-------+----------+-----------+----------|
-|            <r> | <c>  |        |       |      <r> |       <r> |   <c>    |
+|            <r> |  <r> |        |       |      <r> |       <r> |   <c>    |
 |                | bits |        |    to |          |           |          |
 |----------------+------+--------+-------+----------+-----------+----------|
-|           bool |  1   |      0 |     1 |    false |      true |          |
-|           char |  8   |   -128 |   127 | CHAR_MIN |  CHAR_MAX | %c  %hhd |
-|  unsigned char |  8   |      0 |   255 |        - | UCHAR_MAX |    %c    |
-|          short |  16  | -32768 | 32767 | SHRT_MIN |  SHRT_MAX |   %hi    |
-| unsigned short |  16  |      0 | 65535 |        - | USHRT_MAX |   %hu    |
-|            int |  16  | -32768 | 32767 |  INT_MIN |   INT_MAX |    %d    |
-|   unsigned int |  16  |        |       |        - |  UINT_MAX |    %u    |
-|           long |  32  |   -2bn |  +2bn | LONG_MIN |  LONG_MAX |   %li    |
-|  unsigned long |  32  |      0 |  +4bn |        - | ULONG_MAX |   %lu    |
-|      long long |  64  |        |       |          |           |   %ll    |
+|           bool |    1 |      0 |     1 |    false |      true |          |
+|           char |    8 |   -128 |   127 | CHAR_MIN |  CHAR_MAX | %c  %hhd |
+|  unsigned char |    8 |      0 |   255 |        - | UCHAR_MAX |    %c    |
+|          short |   16 | -32768 | 32767 | SHRT_MIN |  SHRT_MAX |   %hi    |
+| unsigned short |   16 |      0 | 65535 |        - | USHRT_MAX |   %hu    |
+|            int |   16 | -32768 | 32767 |  INT_MIN |   INT_MAX |    %d    |
+|   unsigned int |   16 |        |       |        - |  UINT_MAX |    %u    |
+|           long |   32 |   -2bn |  +2bn | LONG_MIN |  LONG_MAX |   %li    |
+|  unsigned long |   32 |      0 |  +4bn |        - | ULONG_MAX |   %lu    |
+|      long long |   64 |        |       |          |           |   %ll    |
 |         size_t |      |        |       |          |           |   %zu    |
-|          float |  32  |        |       |  FLT_MIN |   FLT_MAX | %f %e %g |
-|         double |  64  |        |       |  DBL_MIN |   DBL_MAX |          |
-|    long double | 128  |        |       | LDBL_MIN |  LDBL_MAX |          |
-|    [u]int<N>_t |  N   |        |       |          |           |          |
-|              * |  32  |        |       |          |           |    %p    |
+|          float |   32 |        |       |  FLT_MIN |   FLT_MAX | %f %e %g |
+|         double |   64 |        |       |  DBL_MIN |   DBL_MAX |          |
+|    long double |  128 |        |       | LDBL_MIN |  LDBL_MAX |          |
+|    [u]int<N>_t |  *N* |        |       |          |           |          |
+|              * |   32 |        |       |          |           |    %p    |
 |          char* |      |        |       |          |           |    %s    |
 |----------------+------+--------+-------+----------+-----------+----------|
 
@@ -314,6 +314,7 @@ As a pointer type
 
 ** control flow
 
+- goto: have function scope
 - conditionally run *statements* based on a controlling *expression*
 - if/else if/else
 - switch/case/default
@@ -708,13 +709,19 @@ https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference/unistd.h
 |  -N | aligns left                             |
 |  .N | decimal precision                       |
 |-----+-----------------------------------------|
+
 * Gotchas
+
 - ME: (like bash) small differences can make a lot
 - pointing to an object in an array might lead to dangling pointers on array resize
   - solution: store the index (or generational indexes)
+
 * Snippets
 
 ** read file line by line
+
+unlike *fgets*, *getline* dynamically resized the buffer read.
+
 #+begin_src c
   FILE *file = fopen("foo", "r");
   char *line = NULL;
@@ -746,20 +753,120 @@ https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference/unistd.h
 #+end_src
 
 ** sockets
-*** basic
 
-- CLIENT
-  s = socket(); setsockopt(s);
-  opts = htons+inet_addr
-  connect(s, opts)
+#+begin_src c
+  #include <sys/socket.h>
+  #include <netinet/in.h>
+#+end_src
 
-- SERVER
-  s = socket(); setsockopt(s)
-  opts = htons+htonl
-  bind(s, opts)
-  listen(s, BACKLOG)
-  accept(s) // wait
+- fns on error
+  - return -1
+  - sets errno
 
+#+CAPTION: server
+#+begin_src
+socket    bind  listen  accept   close
+   setsockopt              read/write
+#+end_src
+
+#+CAPTION: client
+#+begin_src
+socket    connect   read/write   close
+   setsockopt
+      bind
+#+end_src
+
+*** socket/3
+see ~ip.7~
+|------------+----------+-------------+---|
+| ipv4 + tcp | AF_INET  | SOCK_STREAM | 0 |
+| ipv6 + tcp | AF_INET6 | SOCK_STREAM | 0 |
+| ipv4 + udp | AF_INET  | SOCK_DGRAM  | 0 |
+| ipv6 + udp | AF_INET6 | SOCK_DGRAM  | 0 |
+|------------+----------+-------------+---|
+*** setsockopt/5
+see ~socket.7~, ~tcp.7~, ~ip.7~, or ~unix.7~
+|---------+---------------------------------------------------|
+| sockfd  |                                                   |
+| level   | use SOL_SOCKET, or /etc/protocols number          |
+| optname | eg: SO_REUSEADDR                                  |
+| *optval | different options use different types, eg: ~&val~ |
+| optlen  | sizeof(val)                                       |
+|---------+---------------------------------------------------|
+*** fcntl/3
+
+fd F_GETFL 0
+fd F_SETFL flags
+
+O_NONBLOCK, only accepted settable flag value for sockets
+
+*** bind/3
+
+fd sockaddr* socklen_t
+
+host(le) to network(be) order: htons/1 htonl/1
+
+#+begin_src c
+  struct sockaddr_in addr = {
+      .sin_family = AF_INET,
+      .sin_port = htons(1234),
+      .sin_addr.s_addr = htonl(0), // 0.0.0.0
+  };
+#+end_src
+
+*** accept/3
+
+blocks, consumes an item from a queue
+non-blocking, has a readiness notificatin
+
+fd sockaddr* socklen_t*
+
+*** listen/2
+fd nbacklog
+*** read/write
+
+- under normal conditions, they can return less than the requested number of bytes (on sockets)
+- is a good idea to write wrappers that ensure all needed is read/write
+- they also might errno (-1) momentarilly, eg: EINTR, or EAGAIN for non-blocking versions
+
+|----------+----------+---------------------------------------|
+| read     | write    | with a single continuos buffeer       |
+| readv    | writev   | with multiple buffers                 |
+| recv     | send     | +flag                                 |
+| recvfrom | sendto   | +remote sockaddr                      |
+| recvmsg  | sendmsg  | with multiple buffers +flags          |
+| recvmmsg | sendmmsg | multiple recvmsg/sendmsg in 1 syscall |
+|----------+----------+---------------------------------------|
+
+- *read()* merely copies data from the kernel-side buffer, and when the buffer is empty, read() suspends the calling thread until more data is ready
+- *write()* merely puts the data into a kernel-side buffer for the TCP stack to consume, and when the buffer is full, write() suspends the calling thread until there is room
+
+*** readiness APIs
+for sockets, pipes, signalfd, not files
+1) select - hard limit to 1024 fds
+2) epoll_wait - fd list is stored in the kernel (through epoll_ctl)
+3) kqueue - bsd, like epoll, requires fewer syscalls
+4) io_uring - ????
+**** poll/3
+
+(struct pollfd*) nfds_t timeout
+
+takes an array of pollfd
+
+#+begin_src c
+  struct pollfd {
+    int   fd;
+    short events; // provided flag: POLLIN|POLLOUT
+    short revents;// returned flag, indicates readines
+  };
+#+end_src
+
+*** other
+|-------------+----+-----------------------|
+| getsockname | /3 | get fd local address  |
+| getpeername | /3 | get fd remote address |
+| getaddrinfo | /4 | name resolution       |
+|-------------+----+-----------------------|
 ** qsort
 
 #+begin_src c

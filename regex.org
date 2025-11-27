@@ -1,5 +1,53 @@
+#+TITLE: regex
+
 - https://en.wikipedia.org/wiki/Regular_expression
 - https://en.wikibooks.org/wiki/Regular_Expressions/POSIX_Basic_Regular_Expressions
-- debug https://regex101.com/
-- * zero or more, aka Kleene star
-- + one or more, aka Kleene plus
+
+- by Steven Kleene
+- online debug https://regex101.com/
+- POSIX.2 https://man7.org/linux/man-pages/man7/regex.7.html
+- *branches* are separated by |
+- *branch* is made of *pieces*
+- *piece* is an *atom* followed by * + ? or bound
+- types
+  - extended: egrep
+  - basic: ed
+
+|-------+-----+-------------------------|
+|  <c>  | <l> |                         |
+|   .   | 1   |                         |
+|  \^   | 0   | matching beginning line |
+|  \$   | 0   | matching end of line    |
+|  \*   | 0+  | Kleene star             |
+|   +   | 1+  | Kleene plus             |
+|   ?   | 0 1 |                         |
+|   ¦   |     | branch separator        |
+|  {N}  | N   | bound                   |
+| {N,}  | N+  | bound                   |
+| {N,M} | N-M | bound inclusive         |
+|-------+-----+-------------------------|
+
+* bracket expansion []
+
+  - matches characters on the list
+  - ^ negates the match
+  - - ranges between chars
+  - [..] collating element
+
+* character classes
+- see wctype
+|--------+--------------------|
+|        |        <c>         |
+| alnum  |    [0-9A-Z-a-z]    |
+| digit  |       [0-9]        |
+| cntrl  |    control char    |
+| blank  |       " " \t       |
+| print  |     printable      |
+| graph  |      no space      |
+| punct  | no space, no alpha |
+| space  | " " \f \n \r \t \v |
+| lower  |       [a-z]        |
+| upper  |       [A-Z]        |
+| alpha  |      [A-Za-z]      |
+| xdigit |    [0-9a-fA-F]     |
+|--------+--------------------|
