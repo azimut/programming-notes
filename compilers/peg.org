@@ -1,0 +1,37 @@
+#+TITLE: PEG
+
+- https://en.wikipedia.org/wiki/Parsing_expression_grammar
+- 2004 by Bryan Ford
+- https://bford.info/packrat/
+- https://bford.info/pub/lang/peg/
+
+Grammars, parsing, and recursive descent https://www.youtube.com/watch?v=ENKT0Z3gldE
+
+Parsing explained https://www.youtube.com/watch?v=bxpc9Pp5pZM
+Parsing bottom up https://www.youtube.com/watch?v=tH5AOX9929g
+Yoda parsing https://www.youtube.com/watch?v=ggxEzR2VRNU
+
+* Articles
+** guido van r
+https://archive.ph/AxCBe
+https://archive.ph/CVGZ5
+https://archive.ph/z1myB
+https://archive.ph/o6UjG
+https://archive.ph/U6UOG
+https://archive.ph/n2HZM
+https://archive.ph/otnRZ
+https://archive.ph/O0CzH
+https://archive.ph/VzjId
+
+* Videos
+
+- 11 Lexical scanning in go https://www.youtube.com/watch?v=HxaD_trXwRE
+- 24 Understanding PEG parsers with Parsimonious https://www.youtube.com/watch?v=M5g6MuTiIlE
+- 19 Writting a PEG parser for fun and profit by Guido van Rossum https://www.youtube.com/watch?v=QppWTvh7_sI
+- 19 PEG by Tim Raymond https://www.youtube.com/watch?v=rwzhu5YegpE
+- 19 PEG by Tim Raymond https://www.youtube.com/watch?v=a37rQdV7LE4
+  - story about a templating language, based on ruby regexes
+  - recommends trying the book "writting an interpreter in go" before PEG
+  - example: parsing go.mod
+- PEG using PEG.js https://www.youtube.com/watch?v=EubNzfhZS_E
+- Parsing Ruby code by Tim R Morgan https://www.youtube.com/playlist?list=PLWUx_XkUoGTrZFVEYGh6N7bmC60Eu5tjX

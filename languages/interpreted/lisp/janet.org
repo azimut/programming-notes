@@ -1,12 +1,40 @@
-- 23 https://ianthehenry.com/posts/janet-for-mortals/
+- home https://janet-lang.org/
+- docs https://janet-lang.org/docs/index.html
+
+- 23 https://janet.guide/ https://ianthehenry.com/posts/janet-for-mortals/
 - 23 https://ianthehenry.com/posts/why-janet/
+
 - book: https://janet.guide/
 
+* language
+
+- Janet does not have native, built-in regular expressions.
+** peg
+https://janet.guide/pegular-expressions/
+https://janet-lang.org/docs/peg.html
+peg/compile GRAMMAR
+peg/match PEG INPUT
+|----------+----+-------------------------------+-------------+--------------------------|
+|          |    |              <c>              |     <c>     |                          |
+| opt      | ?  |         (range "09")          |   [0-9]?    | zero or one              |
+| any      |    |               1               |     .*      | zero or more             |
+| some     |    |               1               |     .+      | one or more              |
+| between  |    |             1 3 _             |    {1,3}    | bounded                  |
+| choice   | +  |            :w "_"             |    [\w_]    | custom character class   |
+| range    |    |             "az"              |    [a-z]    |                          |
+| not      | !  |     (+ "-" (range "az"))      |   [^a-z-]   |                          |
+| sequence | *  | (range "az") (? (range "09")) | [a-z][0-9]? |                          |
+| capture  | <- |            (any 1)            |    (.*)     |                          |
+| if-not   |    |             ">" 1             |    [^>]     |                          |
+| replace  | /  |          CAPTURE fn           |             | maps fn over the capture |
+|----------+----+-------------------------------+-------------+--------------------------|
 * videos
+
 - 2020 random project (text editor) https://www.youtube.com/@saikyun/search?query=janet
 - 2020 random projects https://www.youtube.com/@swlkr_/search?query=janet
 - 2023 aoc https://www.youtube.com/playlist?list=PLjT5GDnW_UMCQfIxEr0ftjBeDohXEnYmh
 - 2024 Janet: A practical, Embeddable Lisp by SystemCrafters https://www.youtube.com/watch?v=f5KZHGGogbc
+
 * 21 Article: Janet Game
 - https://ianthehenry.com/posts/janet-game/day-one/
 - https://ianthehenry.com/posts/janet-game/judging-janet/
@@ -15,3 +43,4 @@
 - https://ianthehenry.com/posts/janet-game/putting-judge-to-the-test/
 - https://ianthehenry.com/posts/janet-game/how-to-patch-emacs/
 - https://ianthehenry.com/posts/janet-game/dots-and-crosses/
+

@@ -15,3 +15,10 @@
 - tool: seeing is believing
   - https://github.com/JoshCheek/seeing_is_believing
   - https://github.com/jcinnamond/seeing-is-believing
+- tool: lsp - solargraph
+  - type annotation
+    #+begin_src ruby
+      # @type [String] bar
+      bar = `ls`
+      bar.upcase
+    #+end_src

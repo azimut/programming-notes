@@ -196,7 +196,23 @@ H{
 - web framework
   https://concatenative.org/wiki/view/Factor/Furnace
   https://docs.factorcode.org/content/vocab-furnace.html
-
+- [[https://docs.factorcode.org/content/article-peg.ebnf.html][peg.ebnf]]
+  - the last rule is the main one
+  |-----------------+-----------+-------+-------|
+  |                 |    <c>    |       |       |
+  | Option          |     ?     | self  | f     |
+  | Ignore          |     ~     |       | error |
+  | Choice          |     ¦     | self  | error |
+  | Any             |     .     | self  | error |
+  | One or more     |     +     | self  | error |
+  | Zero or more    |     *     | self  |       |
+  | Character Class |   [0-9]   | self  | error |
+  | Not             |     !     | error |       |
+  | And             |     &     |       |       |
+  | String          |   "foo"   | self  | error |
+  | Group           | ("a"¦"b") |       |       |
+  |                 | {"a" "b"} |       |       |
+  |-----------------+-----------+-------+-------|
 * tools
 
 - editor: emacs https://github.com/factor/fuel

@@ -98,7 +98,8 @@
 
 - Fashion MNIST
 - CIFAR-10
-  - contains forced aspect-ratio https://x.com/ID_AA_Carmack/status/1366627186732634115
+  - contains forced aspect-ratio jhttps://x.com/ID_AA_Carmack/status/1366627186732634115
+- words https://en.wikipedia.org/wiki/Collins_Scrabble_Words
 - https://github.com/shramos/Awesome-Cybersecurity-Datasets
 - https://en.wikipedia.org/wiki/List_of_datasets_for_machine-learning_research
 - https://en.wikipedia.org/wiki/List_of_datasets_in_computer_vision_and_image_processing

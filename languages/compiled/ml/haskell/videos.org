@@ -1,3 +1,7 @@
+- uqbar https://www.youtube.com/playlist?list=PLoELfD_vSox-YVFmf8RsKmfphoIPg3KYU
+  - https://www.youtube.com/watch?v=FCwwOM_7jZo
+  - https://www.youtube.com/watch?v=OaPxc03WVTU
+  - https://www.youtube.com/watch?v=qv5RuZl5iCo
 - 19 Stick to Simple Haskell https://www.youtube.com/watch?v=zHSD7qC_4iI
 - 22 "HTML over the wire" meets functional https://www.youtube.com/watch?v=ZoTpOQr2vuk
 - Livestreams Learning Haskell https://www.youtube.com/@JohnCinnamond/streams

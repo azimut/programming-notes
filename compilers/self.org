@@ -1,1 +1,30 @@
+#+begin_src
+grammar >>> parser
+      parser
+     generator
+#+end_src
+
+- BNF https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form
+  - Authors: John Backus, Peter Naur
+  - metasyntax notation
+  - can be used to express context-free grammars
+  - parts
+    - terminals
+    - nonterminals: in <between>
+    - productions:
+      #+begin_src bnf
+        <digit>   ::= 0 | 1 | 2 | 3 | 4 | 5
+        <integer> ::= <digit> | <digit><integer>
+        <float>   ::= <integer>.<integer>
+      #+end_src
+- EBNF https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form
+  - +compact +complex
 - https://craftinginterpreters.com/
+
+- https://ocaml.org/manual/5.4/lexyacc.html
+- ocamllex [[https://www.youtube.com/playlist?list=PLmG_3qmc10qQKLgP2H_d2BHHzD3RQWBE_][Youtube Playlist]]
+- Writting an Interpreter
+  - ocaml
+    - https://www.youtube.com/watch?v=NjKJ9-ejR6o
+    - https://www.youtube.com/watch?v=dycsRSOQjho&pp=2AYj
+
