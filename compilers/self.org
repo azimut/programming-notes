@@ -4,6 +4,8 @@ grammar >>> parser
      generator
 #+end_src
 
+- Parsing is the process of determing how a string of terminals can be generated from a grammar
+
 - BNF https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form
   - Authors: John Backus, Peter Naur
   - metasyntax notation
