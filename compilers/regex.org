@@ -18,21 +18,6 @@
 
 - special purpose language used to recognize patterns within text
 - called regular expressions, because they can recognize regular languages
-  - (chomsky) hierachy of languages https://en.wikipedia.org/wiki/Chomsky_hierarchy
-    - from + restrictive to - restrictive
-      - regular language (fsa)
-      - recursive enumerable (recognized turing machines)
-
-- finite automata, finite state machine (fsm)
-  - "a kind of conceptual computer"
-  - types:
-    - DFA (deterministic)
-      - each state can only go to another state given a particular input
-    - NDFA/NFA (non-deterministic)
-      - eg: (ha+)+h
-  - parts
-    - states (nodes)
-    - transitions (vertex)
 
 * language
 ** syntax

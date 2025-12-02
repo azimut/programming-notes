@@ -16,12 +16,32 @@ https://en.wikipedia.org/wiki/Field-programmable_gate_array
   https://thunderclap.io/
 
 * Languages
+
 - VHDL
 - Verilog
   - 21 article https://dev.to/taw/100-languages-speedrun-episode-28-verilog-18jp
 - AHDL
 - System Verilog
 - ABEL
+- clash (haskell)
+  - https://old.reddit.com/r/adventofcode/comments/zqryhy/2022_day_1_both_haskell_clash_twenty_days_later/
+  - videos
+    - 22 https://www.youtube.com/watch?v=E9Knry0QRuc
+    - 22 https://www.youtube.com/watch?v=BlWOwg_UFaI
+    - 21 https://www.youtube.com/watch?v=8s4xPeX71NA
+    - 18 https://www.youtube.com/watch?v=HAhfWsvpt7E
+    - 18 https://www.youtube.com/watch?v=ZjYb37ZCgk8
+    - 14 HIW 2014: CLaSH: Compiling circuit descriptions https://www.youtube.com/watch?v=CWh9mMVCZD4
+- hardcaml (ocaml)
+  - videos
+    - 25 https://www.youtube.com/watch?v=dzk_4rz23tE
+    - 18 https://www.youtube.com/watch?v=X1cgRXhpQLY
+    - 15 https://www.youtube.com/watch?v=0COX5OfCtbo
+  - docs https://www.janestreet.com/web-app/hardcaml-docs/introduction/why
+  - https://www.janestreet.com/web-app/hardcaml-docs/
+  - https://blog.janestreet.com/advent-of-hardcaml-2024/
+  - https://blog.janestreet.com/advent-of-fpga-challenge-2025/
+
 * Videos
 
 - TODO 24 [[https://www.youtube.com/watch?v=uXH3xof4BNg][FPGAs para password/hash cracking]] by Ignacio Agustin Randazzo

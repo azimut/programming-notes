@@ -55,7 +55,7 @@
 - #!/usr/bin/awk -f
 - #!/usr/bin/env -S gawk -f
 - standalone script should use BEGIN (not END)
-- [[https://www.gnu.org/software/gawk/manual/html_node/Feature-History.html][gawk version changelog]] ([[https://fossies.org/linux/gawk/ChangeLog][by date]])
+- [[https://www.gnu.org/software/gawk/manual/html_node/Feature-History.html][GAWK: A.6 History of gawk Features]] ([[https://fossies.org/linux/gawk/ChangeLog][by date]])
   - 2023 (5.3)
     - ~--csv~ flag, supports fields surrounded by double quotes
     - ~\u~ escape sequence
@@ -87,8 +87,7 @@ Can be:
 
 ** types
 
-[[https://www.gnu.org/software/gawk/manual/html_node/Variable-Typing.html][weakly typed: their type can change as the program runs]]
-
+- [[https://www.gnu.org/software/gawk/manual/html_node/Variable-Typing.html][GAWK: weakly typed, their type can change as the program runs]]
 - falsy: "", 0, undefined variables
 - gnu: typeof(a)
   - undefined
@@ -131,7 +130,7 @@ Can be:
   - start at 1
     - at least the ones returned by stdlib functions
     - you can make it start by 0(zero) if you use a custom variable to initialize it
-- https://www.gnu.org/software/gawk/manual/html_node/Controlling-Array-Traversal.html
+- [[https://www.gnu.org/software/gawk/manual/html_node/Controlling-Array-Traversal.html][GAWK: 12.3.1 Controlling Array Traversal]]
   #+begin_src awk
    comp_func(i1, v1, i2, v2)  < 0 # Index i1 comes before index i2
    comp_func(i1, v1, i2, v2) == 0 # Indices i1 and i2 come together
@@ -153,7 +152,7 @@ Can be:
 ** built-in variables
 
 - ~RS="^$"~ reads the whole file as a single record
-- FPAT https://www.gnu.org/software/gawk/manual/html_node/Splitting-By-Content.html
+- FPAT [[https://www.gnu.org/software/gawk/manual/html_node/Splitting-By-Content.html][GAWK: 4.7 Defining Fields by Content]]
   - For csv: ~FPAT = "([^,]+)|(\"[^\"]+\")"~
   - Instead of using FS to specify what the fields are *not*
   - We use this to specify what are the fields, in the form of a regular expression.
@@ -189,10 +188,10 @@ Can be:
 |  =IGNORECASE= | all but array subscripting will ignore case  |        0        |
 |---------------+----------------------------------------------+-----------------|
 ** built-in functions
-https://www.gnu.org/software/gawk/manual/html_node/Built_002din.html#Built_002din
+[[https://www.gnu.org/software/gawk/manual/html_node/Built_002din.html#Built_002din][GAWK: 9.1 Built-in Functions]]
 typeof()
 *** TIME
-https://www.gnu.org/software/gawk/manual/html_node/Time-Functions.html
+[[https://www.gnu.org/software/gawk/manual/html_node/Time-Functions.html][GAWK: 9.1.6 Time Functions]]
 |----------+----------------------+-------------------------------------------------|
 |      <r> |                      |                                                 |
 |   mktime | DATESTR, UTC?        | given DATESTR, timestamp in seconds since epoch |
@@ -202,7 +201,7 @@ https://www.gnu.org/software/gawk/manual/html_node/Time-Functions.html
 - where DATESTR is a space separated "YYYY MM DD HH MM SS DST? 0|1"
 - where FMT can be "%Y-%m-%d %H:%M:%S"
 *** BITWISE
-https://www.gnu.org/software/gawk/manual/html_node/Bitwise-Functions.html
+[[https://www.gnu.org/software/gawk/manual/html_node/Bitwise-Functions.html][GAWK: 9.1.7 Bit-Manipulation Functions]]
 |--------+-----------+-------------------------------------|
 |    <r> |    <c>    |                                     |
 |     fn |   args    | returns                             |
@@ -231,7 +230,7 @@ https://www.gnu.org/software/gawk/manual/html_node/Bitwise-Functions.html
 |-----------------+---------------------------+--------------------------------------------------|
 
 *** MATH
-https://www.gnu.org/software/gawk/manual/html_node/Numeric-Functions.html
+[[https://www.gnu.org/software/gawk/manual/html_node/Numeric-Functions.html][GAWK: 9.1.3 Numeric Functions]]
 |-------+-----+------------------------------------|
 |   <r> | <c> |                                    |
 |    fn | arg | returns                            |
@@ -249,7 +248,7 @@ https://www.gnu.org/software/gawk/manual/html_node/Numeric-Functions.html
 | srand |  x  | x is new seed for rand()           |
 |-------+-----+------------------------------------|
 *** STRING
-https://www.gnu.org/software/gawk/manual/html_node/String-Functions.html
+[[https://www.gnu.org/software/gawk/manual/html_node/String-Functions.html][GAWK: 9.1.4 String-Manipulation Functions]]
 #+begin_src
 r=regex  s=string  t=targetstring  fs=field separator
 #+end_src
@@ -308,7 +307,7 @@ r=regex  s=string  t=targetstring  fs=field separator
 | system | command  | execute command                             |
 |--------+----------+---------------------------------------------|
 *** getline
-https://www.gnu.org/software/gawk/manual/html_node/Getline.html
+[[https://www.gnu.org/software/gawk/manual/html_node/Getline.html][GAWK: 4.10 Explicit Input with getline]]
 |----------------------+-------------------------------------+---------------------|
 | getline              | reads next input record             | NF, NR, FNR, RT, $0 |
 | getline var          | reads n.i.r. into var               | NR, FNR, RT         |
@@ -334,8 +333,8 @@ NOTE: call ~close("cmd")~ on the non two-way pipes, maybe call getline on a ~whi
 
 ** format strings
 
-- https://www.gnu.org/software/gawk/manual/html_node/Control-Letters.html
-- https://www.gnu.org/software/gawk/manual/html_node/Format-Modifiers.html
+- [[https://www.gnu.org/software/gawk/manual/html_node/Control-Letters.html][GAWK: 5.5.2 Format-Control Letters]]
+- [[https://www.gnu.org/software/gawk/manual/html_node/Format-Modifiers.html][GAWK: 5.5.3 Modifiers for printf Formats]]
 - %+-width.prec(?)
 
 |--------+------------------------------|
@@ -371,7 +370,8 @@ NOTE: call ~close("cmd")~ on the non two-way pipes, maybe call getline on a ~whi
 - @include "assert"
   assert(BOOLEAN, "Reason of failure HERE")
 
-- @include "ord" OR @load "ordchr" https://www.gnu.org/software/gawk/manual/html_node/Extension-Sample-Ord.html
+- @include "ord" OR @load "ordchr"
+  - [[https://www.gnu.org/software/gawk/manual/html_node/Extension-Sample-Ord.html][GAWK: 17.7.5 Character and Numeric values: ord() and chr()]]
   - ord(STRING) -> NUMBER
   - chr(NUMBER) -> STRING
 
@@ -385,9 +385,9 @@ NOTE: call ~close("cmd")~ on the non two-way pipes, maybe call getline on a ~whi
 
 ** network
 
-- https://www.gnu.org/software/gawk/manual/html_node/TCP_002fIP-Networking.html
-- https://www.gnu.org/software/gawk/manual/gawkinet/html_node/index.html
-- https://www.gnu.org/software/gawk/manual/gawkinet/gawkinet.html#Primitive-Service
+- [[https://www.gnu.org/software/gawk/manual/html_node/TCP_002fIP-Networking.html][GAWK: 12.5 Using gawk for Network Programming]]
+- [[https://www.gnu.org/software/gawk/manual/gawkinet/html_node/index.html][GAWKINET: General Introduction]]
+- [[https://www.gnu.org/software/gawk/manual/gawkinet/gawkinet.html#Primitive-Service][GAWKINET: 2.8 A Primitive Web Service]]
 
 #+begin_src
   /inet[,4,6]/(udp|tcp)/lport/rhost/rport
@@ -404,7 +404,7 @@ use "|&" to send and receive
 
 ** redirections
 
-- https://www.gnu.org/software/gawk/manual/html_node/Redirection.html
+- [[https://www.gnu.org/software/gawk/manual/html_node/Redirection.html][GAWK: 5.6 Redirecting Output of print and printf]]
 - see getline
 - in pipes, it's a good idea to call ~close(cmd)~ on them
 
@@ -417,7 +417,7 @@ use "|&" to send and receive
 
 * gotchas
 
-- https://www.gnu.org/software/gawk/manual/html_node/Conversion
+- [[https://www.gnu.org/software/gawk/manual/html_node/Conversion][GAWK: 6.1.4 Conversion of Strings and Numbers]]
   gawk always uses the period (.) as the decimal point
   unless told explicitly to use the local LC_NUMERIC
   --posix

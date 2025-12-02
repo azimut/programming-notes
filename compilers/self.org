@@ -21,7 +21,31 @@ grammar >>> parser
       #+end_src
 - EBNF https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form
   - +compact +complex
+
+- (chomsky) hierachy of languages https://en.wikipedia.org/wiki/Chomsky_hierarchy
+  - from + restrictive to - restrictive
+    - non effectively computable
+    - type 0 - recursive enumerable (recognized turing machines)
+    - type 0 - recursive
+    - type 1 - context sensitive
+    - type 2 - context free / non deterministic
+    - type 2 - context free / deterministic
+    - type 3 - regular (fsa)
+
+- finite automata, finite state machine (fsm)
+  - "a kind of conceptual computer"
+  - types:
+    - DFA (deterministic)
+      - each state can only go to another state given a particular input
+    - NDFA/NFA (non-deterministic)
+      - eg: (ha+)+h
+  - parts
+    - states (nodes)
+    - transitions (vertex)
+
+* books
 - https://craftinginterpreters.com/
+* tools
 
 - https://ocaml.org/manual/5.4/lexyacc.html
 - ocamllex [[https://www.youtube.com/playlist?list=PLmG_3qmc10qQKLgP2H_d2BHHzD3RQWBE_][Youtube Playlist]]

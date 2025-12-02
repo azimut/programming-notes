@@ -43,6 +43,7 @@
 #+end_src
 
 ** parser
+https://www.red-by-example.org/parse.html
 https://www.red-lang.org/2013/11/041-introducing-parse.html
 * gotchas
 - no emacs support
