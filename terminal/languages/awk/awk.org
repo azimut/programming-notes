@@ -418,17 +418,16 @@ use "|&" to send and receive
 * gotchas
 
 - [[https://www.gnu.org/software/gawk/manual/html_node/Conversion][GAWK: 6.1.4 Conversion of Strings and Numbers]]
-  gawk always uses the period (.) as the decimal point
-  unless told explicitly to use the local LC_NUMERIC
-  --posix
-  --use-lc-numeric (-N)
+  - gawk always uses the period (.) as the decimal point
+  - unless told explicitly to use the local LC_NUMERIC
+  - --posix
+  - --use-lc-numeric (-N)
 
 - sometimes not enforcing variables to be local can cause weird issues.
-  early return, should happen as soon as possible
-  otherwise this function will keep looping...
-  If I move the if/return0 to the top it works just fine
-  OR
-  if I make "middle" a local variable
+  - early return, should happen as soon as possible
+  - otherwise this function will keep looping...
+  - Example: If I move the if/return0 to the top it works just fine
+  - Example: if I make "middle" a local variable
   #+begin_src awk
     function binarySearch(target,    left, right) {
         middle = int((left+right)/2)

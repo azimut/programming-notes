@@ -43,6 +43,25 @@ grammar >>> parser
     - states (nodes)
     - transitions (vertex)
 
+* videos
+- 19 [[https://www.youtube.com/watch?v=ggxEzR2VRNU][Yoda Parsing]]
+  - https://eprg.org/computerphile/ParsingFiles.zip
+  - http://web.archive.org/web/20200816093318/http://www.eprg.org/computerphile/ParsingFiles.zip
+- 19 [[https://www.youtube.com/watch?v=jzpYiuD2ffo][YACC & LEX background]]
+  - 63 Tony Booker's "The Compiler-Compiler"
+    - had no code-gen
+    - but was a parser generator, aka syntax analyzer
+  - Lex became the "frontend"
+- 19 [[https://www.youtube.com/watch?v=tH5AOX9929g][Parsing Bottom Up]]
+  - from the text to the grammar solution
+  - yacc generates them
+- 19 [[https://www.youtube.com/watch?v=Airi85CPdPk][How Chomsky Fits In]]
+  - BNF in Chomsky work took the shape of SVO (Subject Verb Object)
+- 19 [[https://www.youtube.com/watch?v=bxpc9Pp5pZM][Parsing Explained]] (bnf)
+  - if an input to parse by a grammar has 1+ solution
+    - it might lead to errors
+    - example: on calculators, with non commutative operations
+      - 8/4/2
 * books
 - https://craftinginterpreters.com/
 * tools

@@ -1,1 +1,8 @@
+* Why?
+- is POSIX
+- work on embedded device with few cli binaries
+- work with small screens
+* articles
+- 15 https://blog.thechases.com/posts/cli/why-ed1/
+* videos
 - 20 video [[https://www.youtube.com/watch?v=7pqaj050X7g][I Love ED on CP/M]]

@@ -1,3 +1,4 @@
+- 22 Regular Expressions in TCL https://www.youtube.com/watch?v=7tFk-8BBHWI
 - 25 The Most MISUNDERSTOOD Programming Language https://www.youtube.com/watch?v=PYh6D1NhatY
 - 22 Coding Live: Advent of Code with iRules https://www.youtube.com/watch?v=Rnw7lUU8KpY
 - Learning TCL https://www.youtube.com/watch?v=jf0PynxBSOg
