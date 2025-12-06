@@ -1,0 +1,71 @@
+- Regular Expressions Explained From The Ground Up https://www.youtube.com/playlist?list=PLp31D6HATKfdc5PSJTx7rIvlTLCSM5nDi
+- 13 Fun and easy regex on CLI by Dan Good https://www.youtube.com/watch?v=HTEyuBXPuqo
+- 13 Beneath The Surface: Harnessing the True Power of Regular Expressions in Ruby https://www.youtube.com/watch?v=JfwS4ibJFDw
+- 13 parsing json with a single regex https://vimeo.com/briandfoy/briandfoy-json-regex
+- 14 regex ninja https://vimeo.com/105751285
+- 18 pcre https://www.youtube.com/watch?v=v1hJqJ4tYSk
+- 18 RegEx 2.0: Full Coverage - Mathias R. Jessen https://www.youtube.com/watch?v=VgDlMVe2x0E
+- 18 It’s super effective! Solving Pokemon Blue with a... by Alex Clemmer https://www.youtube.com/watch?v=n-HTvjIueX0
+- 20 regex basics https://www.youtube.com/watch?v=77I4ZkhuHsQ
+- 22 Talks - Guillaume and Quazi: Oh no! My regex is causing a Denial of Service! What can I do about it? https://www.youtube.com/watch?v=t6DqAVR-pFQ
+
+* 23 Faster, Faster! Improving regex performance with atomic grouping, possessive quantifiers and more! https://www.youtube.com/watch?v=L5Vqm-REhAU
+  - speaker works at Sonar, static analyzers
+  - static analyzer for regex ddos
+* 20 emacs: basics of regular expressions by Protesilaos Stavrou https://www.youtube.com/watch?v=TxYGHjKBMUg
+  - C-h r i - opens official emacs doc keyword search
+  - isearch - M-r to switch to regex search
+  - phi-search - already uses regex match by default
+  - flush-lines - removes matching regex lines
+  - keep-lines
+  - run elisp function with first match group
+    - \,(upcase \1)
+  - =multi-occur= package
+  - =regexp-builder= built-in package
+    - C-h m
+  - =visual-regexp= package
+    - good for regexp group replace
+* 20 Regular Expressions, Part 3- The Regular Expression Game https://vimeo.com/394691949
+  - a game where people
+    - have their own regex card
+    - have to provide words that match all the cards, without revealing them
+* 11 Advanced Regular Expression Practice by Dan Good https://www.youtube.com/watch?v=u5fOApt9Pi4
+  - regex to parse config file, with comment suppot (ME: kind of wonky)
+  - regex to translate a path with many relative subpaths (trying to bypass a WAF) to it's realpath
+  - regex to parse crontab
+* ⭐ 16 Catastrophic Backtracking ‒ When Regular Expressions Explode
+https://www.youtube.com/watch?v=IP5xnHm45s4
+- https://www.regular-expressions.info/catastrophic.html
+- the backtracking regex w/problems
+  #+begin_src
+   \n\nBIB: ([\w ]+?\d*(,\s|(?=\n\n)))+\n\n
+  #+end_src
+- Lesson:
+  - use a non-backtracking regex engine
+  - be careful when creating nested regex w/nester quantifiers (?+*)
+  - ?> use *atomic grouping*
+  - consider the failure cases
+  - make sure there is only a way to do the matching
+  #+begin_src
+    (\w+?\d*,)*             <---- no
+    ([^\W\d]+?\d*,)*        <---- yes
+    (((?|\d)\w)+?\d*,)*     <---- yes
+    (?>\w+?\d*,)
+    (\w+,)*
+  #+end_src
+* Computerphile
+- 24 [[https://www.youtube.com/watch?v=DqabogrIVNk][Python Regular Expressions]]
+- 23 [[https://www.youtube.com/watch?v=Qn_vjKYfwak][Defining Regular Expressions (RegEx)]]
+- 23 [[https://www.youtube.com/watch?v=NhWDVqR4tZc][Non-Deterministic Automata]]
+- 23 [[https://www.youtube.com/watch?v=32bC33nJR3A][Automata & Python]]
+- 20 [[https://www.youtube.com/watch?v=528Jc3q86F8][Regular Expressions]]
+- 20 [[https://www.youtube.com/watch?v=6gddK-cOxYc][Using Regular Expressions]]
+  - build a program with Lex, to create a new "toy programming language"
+  - ME: could have used AWK for it, Lex doesn't matter
+- 20 [[https://www.youtube.com/watch?v=M3x5Z3iIoSU][RegEx Roman Numerals]]
+  - _"It's very easy in regex to get it to recognize what you want. But will it also reject what's bad?."_
+  - the strange case of the empty alternative
+  - aka when it's possible/valid to match NOTHING AT ALL
+  - saying that at the end of the parsing you need to have something, IS NOT A CONTEXT FREE assertion
+    - it's a context sensitive assertion
+* Kay Lack

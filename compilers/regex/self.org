@@ -4,8 +4,6 @@
 - https://en.wikibooks.org/wiki/Regular_Expressions
 
 - by Steven Kleene
-- online https://regex101.com/
-- online https://www.debuggex.com/
 - tutorial https://gnosis.cx/publish/programming/regular_expressions.html
 - POSIX.2 https://man7.org/linux/man-pages/man7/regex.7.html
 - *branches* are separated by |
@@ -22,13 +20,14 @@
 * language
 ** syntax
 
+- flags: g(lobal), (case) i(nsensitive), m(ultiline)
 - quantifiers
   - greedy: matches as much as possible, as long as it finds the latter part of the pattern (eg: 'x.*y')
   - non-greedy: matches as little as possible to reach the next part of the pattern (eg: 'x.*y?')
 
 |---------------------------+-------+-----|
 |                           |  <c>  | <l> |
-|                           |   .   | 1   |
+| [^\r\n]                   |   .   | 1   |
 | matching beginning line   |   ^   | 0   |
 | matching end of line      |   $   | 0   |
 | Kleene star (universal)   |   *   | 0+  |
@@ -39,6 +38,10 @@
 | bound lower bound         | {N,}  | N+  |
 | bound inclusive bound     | {N,M} | N-M |
 | word boundary             |  \b   | 0   |
+| non-greedy                |   ?   |     |
+| forward assertion         |  ?=   |     |
+| not followed by           |  ?!   |     |
+| do notcapture             |  ?:   |     |
 |---------------------------+-------+-----|
 ** [bracket expansion]
 
@@ -61,13 +64,28 @@
 | alnum  | [0-9a-zA-Z]  | \w | print |     printable      |    |
 |        | [^0-9a-zA-Z] | \W |       |                    |    |
 |--------+--------------+----+-------+--------------------+----|
-* articles
-- 07 A Regular Expression Matcher https://www.cs.princeton.edu/courses/archive/spr09/cos333/beautiful.html
-- 07 Regular Expression Matching Can Be Simple And Fast https://swtch.com/%7Ersc/regexp/regexp1.html
-- 05 http://web.archive.org/web/20100413161537/http://www.codinghorror.com:80/blog/2005/02/regex-use-vs-regex-abuse.html
-* videos
-** Kay Lack
-
+* tools
+- online https://regex101.com/
+- online https://www.debuggex.com/
+- https://github.com/katef/libfsm
+* snippet
+|----------+--------------------------------------------------|
+| /a(b)/   | match b, that is after an a                      |
+| /a(?=b)/ | match a, only if followed by by, but not match b |
+|----------+--------------------------------------------------|
 * trivia
 - mail regex http://web.archive.org/web/20100407084032/http://ex-parrot.com/~pdw/Mail-RFC822-Address.html
 - http://web.archive.org/web/20090629182035/http://thedailywtf.com/Articles/Irregular_Expression.aspx
+- reDOS
+  - https://en.wikipedia.org/wiki/ReDoS
+  - https://www.owasp.org/index.php/Regular_expression_Denial_of_Service_-_ReDoS
+  - stackoverflow
+    - http://web.archive.org/web/20160720200842/http://stackstatus.net/post/147710624694/outage-postmortem-july-20-2016
+  - cloudflare outage https://blog.cloudflare.com/details-of-the-cloudflare-outage-on-july-2-2019/
+    - The CPU exhaustion was caused by a single WAF rule that contained a poorly written regular expression that ended up creating excessive =backtracking=.
+    - The regular expression that was at the heart of the outage is
+      #+begin_src
+       (?:(?:\"|'|\]|\}|\\|\d|(?:nan|infinity|true|false|null|undefined|symbol|math)|\`|\-|\+)+[)]*;?((?:\s|-|~|!|{}|\|\||\+)*.*(?:.*=.*)))
+      #+end_src
+
+

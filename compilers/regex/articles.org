@@ -1,0 +1,5 @@
+- https://www.regular-expressions.info/catastrophic.html
+- 07 A Regular Expression Matcher https://www.cs.princeton.edu/courses/archive/spr09/cos333/beautiful.html
+- 07 Regular Expression Matching Can Be Simple And Fast https://swtch.com/%7Ersc/regexp/regexp1.html
+- 08 https://blog.codinghorror.com/regular-expressions-now-you-have-two-problems/
+- 05 http://web.archive.org/web/20100413161537/http://www.codinghorror.com:80/blog/2005/02/regex-use-vs-regex-abuse.html
