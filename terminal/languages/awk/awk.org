@@ -538,8 +538,8 @@ use "|&" to send and receive
   #+begin_src awk
     function isEmpty()    { return idx == 0 }
     function peek()       { return stack[idx] }
-    function push(el)     { print el; stack[++idx] = el }
-    function pop(    tmp) { tmp = stack[idx]; delete stack[idx--]; return tmp }
+    function push(el)     { stack[++_idx] = el }
+    function pop(    tmp) { if(!(_idx in stack)) return; tmp = stack[_idx]; delete stack[_idx--]; return tmp }
   #+end_src
 - tested stack?
   #+begin_src awk

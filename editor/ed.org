@@ -1,8 +1,143 @@
+- wiki https://en.wikipedia.org/wiki/Ed_(text_editor)
+- by Ken Thompson
+- 1973
+- ? http://edbrowse.org/
+- doc https://www.gnu.org/software/ed/manual/ed_manual.html
+- shitposting https://x.com/ed1conf
+- Line oriented editor, as opossed to character oriented editor
+- 55k on x86_64
+
 * Why?
 - is POSIX
 - work on embedded device with few cli binaries
 - work with small screens
+* cli
+
+#+begin_src sh
+  rlwrap ed -p '> '
+  ed  [OPTIONS] [FILE]
+  red [OPTIONS] [FILE]
+#+end_src
+
+|----+-------------------+--------+--------------------------|
+|    |                   |  <c>   |                          |
+| -E | --extended-regexp |   -    |                          |
+| -s | --quiet --silent  |   -    | turn OFF byte counts     |
+| -p | --prompt          | STRING |                          |
+| -v | --verbose         |   -    | prints error msgs        |
+| -r | --restricted      |   -    | disable edit outside CWD |
+|    |                   |        | disable (!) command      |
+|----+-------------------+--------+--------------------------|
+
+* language
+
+#+CAPTION: command's format
+#+begin_src
+[ADDRESS[,ADDRESS]]COMMAND[PARAMETERS]
+#+end_src
+
+- info ed
+
+** commands
+|-----+------------+---+------------------------------------------|
+|     | .          |   | exit insert mode                         |
+| .,. | p          | - | prints                                   |
+| .,. | n          | - | prints w/number                          |
+| .,. | l          | - | prints verbose                           |
+|     | u          |   | undo last edit                           |
+|     | s          |   | repeats lasts substitution               |
+|     | s/re/bar   |   | substitutes 1st re(gex) on current line  |
+|     | s/re/bar/2 |   | substitutes 2nd re(gex) on current line  |
+|     | s/re/bar/g |   | substitutes ALL re(gex) on current line  |
+|     | s/re/%/    |   | substitutes 1st re(gex) with prev subst  |
+|     | s/re/*&*/  |   | substitutes 1st re(gex) with *re*        |
+| 1,$ | g/re       |   | global search                            |
+| 1,$ | g/re/p     |   | global search, explicit print            |
+| 1,$ | G/re       |   | global search, interactive action        |
+| 1,$ | v/re       |   | global inverse search                    |
+| 1,$ | V/re       |   | global inverse search interactive action |
+|-----+------------+---+------------------------------------------|
+*** file / command
+|-----+--------+---+----------------------------------------|
+|     | f      |   | shows current file name                |
+|     | f FILE |   | sets output FILE name                  |
+|     | e FILE |   | edit file, reads it and sets curr file |
+| 1,$ | w FILE | - | write to a file                        |
+| 1,$ | w !cmd | - | write to command                       |
+| 1,$ | W FILE | - | appends to file                        |
+| $   | r FILE |   | read from file                         |
+| $   | r !cmd |   | read from command                      |
+|     | ! CMD  |   | executes command, "%" is curr filename |
+|     | !!     |   | executes last command                  |
+|-----+--------+---+----------------------------------------|
+*** edit
+|-----+---+---+----------------------------------|
+| .   | a | - | append mode                      |
+| .   | i | - | insert mode                      |
+| .,. | c | - | change                           |
+|     | j |   | joins lines                      |
+| .,. | d | - | delete                           |
+| .,. | t | . | transfers/copies and paste lines |
+| .,. | m | . | moves/cuts and paste lines       |
+| .,. | y | - | yank/copies to cut buffer        |
+| .   | x | - | pastes the cut buffer            |
+|-----+---+---+----------------------------------|
+*** address
+|----+-------------------------|
+| =  | prints current line     |
+| N  | an absolute line number |
+| .  | current line            |
+| $  | last line               |
+| %  | entire file (aka 1,$)   |
+| +1 | moves cursor down       |
+| -1 | moves cursor up         |
+|----+-------------------------|
+*** address range
+|-------------+------------------------------------|
+|     <c>     |                                    |
+|      ,      | whole file                         |
+|      %      | whole file                         |
+|     1,$     | whole file                         |
+| /foo/,/bar/ | lines between next foo and bar     |
+| ?foo?,/bar/ | lines between previous foo and bar |
+|-------------+------------------------------------|
+*** misc
+|---+-------------------------|
+| Q | quits unconditionally   |
+| q | quits                   |
+| P | enables prompt          |
+| H | enables error reporting |
+| h | prints last error msg   |
+|---+-------------------------|
+* snippets
+|----------------+--------------------------------|
+|      <c>       |                                |
+|       s        | repeat previous substitution   |
+|   g/Needle/p   | shows lines matching           |
+|     3,10c      | replaces range with given text |
+|    r !xsel     | paste from clipboard           |
+|       ;p       | prints lines from curr to EOF  |
+|       ,p       | prints all lines               |
+|       ,n       | prints all lines with numbers  |
+| /foo/;/bar/-1p | prints between "foo" and "bar" |
+| w !diff -u - % | diff buffer with file          |
+|     w !wc      | count buffer lines, chars      |
+|----------------+--------------------------------|
 * articles
+- 22 https://sebastiano.tronto.net/blog/2022-11-23-git-host/#bells-and-whistles
+- 20 https://atthis.link/blog/2020/usingEd.html
+- 19 https://www.olowe.co/2019/05/using-ed.html
+- 18 https://jvns.ca/blog/2018/05/11/batch-editing-files-with-ed/
 - 15 https://blog.thechases.com/posts/cli/why-ed1/
+- 12 https://blog.sanctum.geek.nz/actually-using-ed/
+- https://catonmat.net/ed-unix-text-editor-cheat-sheet
+- https://linuxtldr.com/ed-command/
 * videos
-- 20 video [[https://www.youtube.com/watch?v=7pqaj050X7g][I Love ED on CP/M]]
+- [X] 25 [[https://www.youtube.com/watch?v=Zwo6Hf6hr9I][You say you can exit vim, have you ever tried exiting ed instead-JJ Asghar]]
+- [X] 25 [[https://www.youtube.com/watch?v=GoyNMFccbow][The little editor that could]]
+- [X] 25 [[https://www.youtube.com/watch?v=I1GVHhBS7no][Most RUTHLESS text editor?]]
+- [ ] 23 [[https://www.youtube.com/watch?v=pXmS501wKlU][Technical writing history with ed and nroff]]
+- [ ] 20 [[https://www.youtube.com/watch?v=7pqaj050X7g][I Love ED on CP/M]]
+- [X] 20 [[https://lambdaisland.com/episodes/ultimate-dev-setup][Ultimate Dev Setup]]
+- [X] [[https://www.youtube.com/watch?v=bSaBe6WiC2s][from ED to GREP]]
+- https://www.youtube.com/watch?v=BNYpmLH6IjQ
