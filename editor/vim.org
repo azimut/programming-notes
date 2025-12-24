@@ -22,6 +22,7 @@
 * vimscript
 
 - https://exercism.org/tracks/vimscript/
+- video 15 [[https://www.youtube.com/watch?v=wlR5gYd6um0][Mastering the Vim language]]
 - Learn Vimscript The Hard Way
   - home https://learnvimscriptthehardway.stevelosh.com/
   - behind the scenes footage https://vimeo.com/31177198
@@ -29,6 +30,14 @@
 * videos
 
 - 22 [[https://www.youtube.com/watch?v=DOtM1mrWjUo][How I take notes as a Math major using Vim + LaTeX]]
-- 15 [[https://www.youtube.com/watch?v=wlR5gYd6um0][Mastering the VIM language]]
+- 16 [[https://www.youtube.com/watch?v=XA2WjJbmmoM][How to do what 90% of what plugins do (with just vim)]]
+- 15 [[https://www.youtube.com/watch?v=Qem8cpbJeYc][Vim navigation commands]]
+- 14 [[https://www.youtube.com/watch?v=D9qzcf0xwxw][Intermediate Vim Intro]]
 - 14 [[https://www.youtube.com/watch?v=Jaa-LGyagRA][VIM grammar]]
+  - cit<td>Value</td><ESC>11ci<tr<ESC>"ci<tr
+    - <li>Value</li>
+    - <tr><td>Value</td></tr>
+  - vim grammar = <command> <motion>
+    - eg: dw (delete word)
+- 13 [[https://www.youtube.com/watch?v=aHm36-na4-4][More Instantly better Vim]]
 - 12 [[https://www.youtube.com/watch?v=pksX5m8D1B4][VIM]] by cs50

@@ -39,24 +39,67 @@
 - info ed
 
 ** commands
-|-----+------------+---+------------------------------------------|
-|     | .          |   | exit insert mode                         |
-| .,. | p          | - | prints                                   |
-| .,. | n          | - | prints w/number                          |
-| .,. | l          | - | prints verbose                           |
-|     | u          |   | undo last edit                           |
-|     | s          |   | repeats lasts substitution               |
-|     | s/re/bar   |   | substitutes 1st re(gex) on current line  |
-|     | s/re/bar/2 |   | substitutes 2nd re(gex) on current line  |
-|     | s/re/bar/g |   | substitutes ALL re(gex) on current line  |
-|     | s/re/%/    |   | substitutes 1st re(gex) with prev subst  |
-|     | s/re/*&*/  |   | substitutes 1st re(gex) with *re*        |
-| 1,$ | g/re       |   | global search                            |
-| 1,$ | g/re/p     |   | global search, explicit print            |
-| 1,$ | G/re       |   | global search, interactive action        |
-| 1,$ | v/re       |   | global inverse search                    |
-| 1,$ | V/re       |   | global inverse search interactive action |
-|-----+------------+---+------------------------------------------|
+|-----+----+---+------------------|
+|     | .  |   | exit insert mode |
+| .,. | p  | - | prints           |
+| .,. | n  | - | prints w/number  |
+| .,. | l  | - | prints verbose   |
+|     | u  |   | undo last edit   |
+| .+1 | \n | - | new line         |
+|-----+----+---+------------------|
+*** address
+|----+---------------------------|
+| =  | prints nr of buffer lines |
+| .= | prints nr current line    |
+| .  | prints current line       |
+| N  | jumps to N line number    |
+| $  | jumps to last line        |
+| %  | entire file (aka 1,$)     |
+| +1 | moves cursor down         |
+| -1 | moves cursor up           |
+|----+---------------------------|
+*** address range
+|-------------+------------------------------------|
+|     <c>     |                                    |
+|      ,      | whole file                         |
+|      %      | whole file                         |
+|     1,$     | whole file                         |
+| /foo/,/bar/ | lines between next foo and bar     |
+| ?foo?,/bar/ | lines between previous foo and bar |
+|-------------+------------------------------------|
+*** search
+|-----+--------+---+------------------------------------------|
+|     | //     |   | repeat last search                       |
+| 1,$ | /re    |   | search                                   |
+| 1,$ | g/re   |   | global search                            |
+| 1,$ | g/re/p |   | global search, explicit print            |
+| 1,$ | G/re   |   | global search, interactive action        |
+| 1,$ | v/re   |   | global inverse search                    |
+| 1,$ | V/re   |   | global inverse search interactive action |
+|-----+--------+---+------------------------------------------|
+*** substitution (.,.)
+|------------+-----------------------------------------------------------|
+| s          | repeats lasts substitution                                |
+| s/re       | substitutes 1st re(gex) with nothing                      |
+| s/re/bar   | substitutes 1st re(gex) on current line                   |
+| s/re/bar/I | substitutes 1st re(gex) on current line, case insensitive |
+| s/re/bar/2 | substitutes 2nd re(gex) on current line                   |
+| s/re/bar/g | substitutes ALL re(gex) on current line                   |
+| s/re/%/    | substitutes 1st re(gex) with prev subst                   |
+| s/re/*&*/  | substitutes 1st re(gex) with *re*                         |
+|------------+-----------------------------------------------------------|
+*** edit
+|-----+---+---+----------------------------------|
+| .   | a | - | append mode                      |
+| .   | i | - | insert mode                      |
+| .,. | c | - | change                           |
+|     | j |   | joins lines                      |
+| .,. | d | - | delete                           |
+| .,. | t | . | transfers/copies and paste lines |
+| .,. | m | . | moves/cuts and paste lines       |
+| .,. | y | - | yank/copies to cut buffer        |
+| .   | x | - | pastes the cut buffer            |
+|-----+---+---+----------------------------------|
 *** file / command
 |-----+--------+---+----------------------------------------|
 |     | f      |   | shows current file name                |
@@ -70,37 +113,6 @@
 |     | ! CMD  |   | executes command, "%" is curr filename |
 |     | !!     |   | executes last command                  |
 |-----+--------+---+----------------------------------------|
-*** edit
-|-----+---+---+----------------------------------|
-| .   | a | - | append mode                      |
-| .   | i | - | insert mode                      |
-| .,. | c | - | change                           |
-|     | j |   | joins lines                      |
-| .,. | d | - | delete                           |
-| .,. | t | . | transfers/copies and paste lines |
-| .,. | m | . | moves/cuts and paste lines       |
-| .,. | y | - | yank/copies to cut buffer        |
-| .   | x | - | pastes the cut buffer            |
-|-----+---+---+----------------------------------|
-*** address
-|----+-------------------------|
-| =  | prints current line     |
-| N  | an absolute line number |
-| .  | current line            |
-| $  | last line               |
-| %  | entire file (aka 1,$)   |
-| +1 | moves cursor down       |
-| -1 | moves cursor up         |
-|----+-------------------------|
-*** address range
-|-------------+------------------------------------|
-|     <c>     |                                    |
-|      ,      | whole file                         |
-|      %      | whole file                         |
-|     1,$     | whole file                         |
-| /foo/,/bar/ | lines between next foo and bar     |
-| ?foo?,/bar/ | lines between previous foo and bar |
-|-------------+------------------------------------|
 *** misc
 |---+-------------------------|
 | Q | quits unconditionally   |
@@ -131,6 +143,7 @@
 - 15 https://blog.thechases.com/posts/cli/why-ed1/
 - 12 https://blog.sanctum.geek.nz/actually-using-ed/
 - https://catonmat.net/ed-unix-text-editor-cheat-sheet
+- https://wiki.c2.com/?EdIsTheStandardTextEditor
 - https://linuxtldr.com/ed-command/
 * videos
 - [X] 25 [[https://www.youtube.com/watch?v=Zwo6Hf6hr9I][You say you can exit vim, have you ever tried exiting ed instead-JJ Asghar]]
@@ -139,5 +152,5 @@
 - [ ] 23 [[https://www.youtube.com/watch?v=pXmS501wKlU][Technical writing history with ed and nroff]]
 - [ ] 20 [[https://www.youtube.com/watch?v=7pqaj050X7g][I Love ED on CP/M]]
 - [X] 20 [[https://lambdaisland.com/episodes/ultimate-dev-setup][Ultimate Dev Setup]]
+- [X] 14 [[https://www.youtube.com/watch?v=BNYpmLH6IjQ][Ed text editor]]
 - [X] [[https://www.youtube.com/watch?v=bSaBe6WiC2s][from ED to GREP]]
-- https://www.youtube.com/watch?v=BNYpmLH6IjQ

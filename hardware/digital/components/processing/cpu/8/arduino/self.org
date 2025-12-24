@@ -55,14 +55,14 @@ I -----------|
 - 3 UNO ports, some bits/pins are not usable
   |---+--------+------|
   |   |  <c>   |      |
-  | D | D0-D7  | 0,1* |
   | B | D8-D13 | 6,7  |
   | C |  A0-5  | 6,7  |
+  | D | D0-D7  | 0,1* |
   |---+--------+------|
   - D0: aka RX set as 0=input
   - D1: aka TX set as 1=output
 
-- 3 registers for each port
+- 3 register variables for each port
   |------+----+--------------------------------------|
   | DDR  | rw | configure direction 0=INPUT 1=OUTPUT |
   | PORT | rw | controls LOW/HIGH                    |
@@ -86,6 +86,25 @@ I -----------|
   #+begin_src c
     PORTD = B10101000; // pins 7,5,3 to HIGH
   #+end_src
+
+* Interrupts
+
+- UNO supports attachInterrupt/externa only on pins 2,3
+
+**** Using Arduino - Read Address Bus on CLOCK
+
+- Read Clock Pulse (have it trigger an interrupt)
+ #+begin_src c++
+   #define CLOCK 2
+   void init() {
+     pinMode(CLOCK, INPUT);
+     attachInterrupt(digitalPinToInterrupt(CLOCK), onClock, RISING); // !!!
+   }
+   void onClock(){
+    // put what you want to run JUST on a clock
+    // in our case the print of addresses input pins
+   }
+ #+end_src
 
 * ADC
 

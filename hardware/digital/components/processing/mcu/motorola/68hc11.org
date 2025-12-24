@@ -40,6 +40,11 @@
 
 * videos
 
+- 25 Making a 68HC11 microcomputer
+  - [[https://www.youtube.com/watch?v=r8gagcmyqT0][Bootloader]]
+  - [[https://www.youtube.com/watch?v=DXzG8URHgbM][Wild Buffalo]]
+  - [[https://www.youtube.com/watch?v=pBRDYejuRCo&pp=2AZX][RAM]]
+
 - @IMSAI https://www.youtube.com/watch?v=k_S_Nf_6weE
   - special because it's a MCU that can be used a CPU
   - expensive at the time

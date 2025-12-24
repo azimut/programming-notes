@@ -8,6 +8,7 @@
 - 18 It’s super effective! Solving Pokemon Blue with a... by Alex Clemmer https://www.youtube.com/watch?v=n-HTvjIueX0
 - 20 regex basics https://www.youtube.com/watch?v=77I4ZkhuHsQ
 - 22 Talks - Guillaume and Quazi: Oh no! My regex is causing a Denial of Service! What can I do about it? https://www.youtube.com/watch?v=t6DqAVR-pFQ
+- 21 [[https://www.youtube.com/watch?v=YwzahozPum0][Regular Expression Demos with Real World Examples]]
 
 * 23 Faster, Faster! Improving regex performance with atomic grouping, possessive quantifiers and more! https://www.youtube.com/watch?v=L5Vqm-REhAU
   - speaker works at Sonar, static analyzers
