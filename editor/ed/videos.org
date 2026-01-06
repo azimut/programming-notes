@@ -1,0 +1,8 @@
+- [X] 25 [[https://www.youtube.com/watch?v=Zwo6Hf6hr9I][You say you can exit vim, have you ever tried exiting ed instead-JJ Asghar]]
+- [X] 25 [[https://www.youtube.com/watch?v=GoyNMFccbow][The little editor that could]]
+- [X] 25 [[https://www.youtube.com/watch?v=I1GVHhBS7no][Most RUTHLESS text editor?]]
+- [ ] 23 [[https://www.youtube.com/watch?v=pXmS501wKlU][Technical writing history with ed and nroff]]
+- [ ] 20 [[https://www.youtube.com/watch?v=7pqaj050X7g][I Love ED on CP/M]]
+- [X] 20 [[https://lambdaisland.com/episodes/ultimate-dev-setup][Ultimate Dev Setup]]
+- [X] 14 [[https://www.youtube.com/watch?v=BNYpmLH6IjQ][Ed text editor]]
+- [X] [[https://www.youtube.com/watch?v=bSaBe6WiC2s][from ED to GREP]]

@@ -1,0 +1,9 @@
+- 22 https://sebastiano.tronto.net/blog/2022-11-23-git-host/#bells-and-whistles
+- 20 https://atthis.link/blog/2020/usingEd.html
+- 19 https://www.olowe.co/2019/05/using-ed.html
+- 18 https://jvns.ca/blog/2018/05/11/batch-editing-files-with-ed/
+- 15 https://blog.thechases.com/posts/cli/why-ed1/
+- 12 https://blog.sanctum.geek.nz/actually-using-ed/
+- https://catonmat.net/ed-unix-text-editor-cheat-sheet
+- https://wiki.c2.com/?EdIsTheStandardTextEditor
+- https://linuxtldr.com/ed-command/
