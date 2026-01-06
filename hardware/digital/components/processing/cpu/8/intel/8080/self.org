@@ -8,3 +8,4 @@
     - Data: 8
     - Address: 16
   - Power Source: +5 -5 +12 GND
+  - Intel's 2nd/3rd generation

@@ -9,6 +9,7 @@
   - First comercially produced microprocessor
 
 - Intel https://www.4004.com/
+- project [[https://dmitry.gr/index.php?r=05.Projects&proj=35.%20Linux4004][Slowly booting full Linux on the intel 4004 for fun, art, and absolutely no profit]]
 
 * videos
 

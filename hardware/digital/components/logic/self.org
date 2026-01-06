@@ -6,7 +6,8 @@
 
 - tutorial http://r-luis.xbot.es/edigital/ed_ref.html
 - https://en.wikipedia.org/wiki/Schmitt_trigger
-- https://en.wikipedia.org/wiki/Tyranny_of_numbers
+- ⭐ https://en.wikipedia.org/wiki/Tyranny_of_numbers
+  - video 1960 [[https://www.youtube.com/watch?v=4qlcBWkSHjk][The Tyranny Of Large Numbers]]
 - https://en.wikipedia.org/wiki/Programmer_(hardware)
 - Digital Circuits - Dave Astels
   1) binary https://learn.adafruit.com/binary-boolean-and-logic?view=all

@@ -72,6 +72,7 @@ https://en.wikipedia.org/wiki/Field-programmable_gate_array
 - ECE5760 DE2/115 lectures 2011 https://www.youtube.com/playlist?list=PL2BA78454E71FF0E5
 *** Channels
 - https://www.youtube.com/@ZeroToASICcourse/videos
+- "Peter Mathys"  https://www.youtube.com/@mathys2000yt/videos
 - "EEVeBlog"      https://www.youtube.com/user/EEVblog/videos
 - "Robert Baruch" https://www.youtube.com/channel/UCBcljXmuXPok9kT_VGA3adg
 - "Nandland"      https://www.youtube.com/c/Nandland/videos

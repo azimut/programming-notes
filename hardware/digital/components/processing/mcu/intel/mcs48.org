@@ -2,7 +2,7 @@
 
 |----------+----------------------------------------------------|
 | manual   | https://devsaurus.github.io/mcs-48/mcs-48.pdf      |
-| wiki     | [[https://en.wikipedia.org/wiki/Intel_MCS-48][english]] [[https://es.wikipedia.org/wiki/Intel_MCS-48][spanish]] [[https://en.wikipedia.org/wiki/Intel_MCS-48#/media/File:EPROM-Microcontroller_Intel_8749H_(chip)_-_(1).jpg][die]]                                |
+| wiki     | [[https://en.wikipedia.org/wiki/Intel_MCS-48][english]] [[https://es.wikipedia.org/wiki/Intel_MCS-48][spanish]]                                    |
 | wiki     | https://handwiki.org/wiki/Engineering:Intel_MCS-48 |
 | timeline | https://timeline.intel.com/1976/mcs-48             |
 |----------+----------------------------------------------------|
@@ -69,8 +69,6 @@
   #+end_src
 
 ** Conditional Branch Logic
-
-(?)
 
 |-----------------------+---------+-------------|
 |          <c>          |   <c>   |     <c>     |
@@ -231,6 +229,7 @@
 
 ** RAM
 
+- RAM addresses can't be accessed directly, do it through @R0 or @R1
 - Vdd(26) provides power when Vcc(40) is powered off
 - Can be expanded to access 256 bytes extra of external _data memory_
   - 64+256 = 320 bytes
@@ -262,8 +261,10 @@
     - 16x8
     - addressed by the stack pointer during subroutine calls
     - 8 stack locations in 16 RAM locations (2 locations per address)
-    - each will contain the ~program counter~ + 4MSB of the ~PSW~
-  - (24-31) Optional second register stack
+    - each will contain:
+      - 11 the ~program counter~
+      - 4 of the ~PSW~ (the MSB of it)
+  - (24-31) 0x18-0x1F Optional second register stack
     - R0'-R7' - aka memory bank 1
     - can be used in place of R0-R7
     - useful during interrupts
@@ -306,9 +307,9 @@
    - control-> ->signal <-data->
    - inneficient use of CPU
    - there is abit chit-chat needed for reading data
-     + you signal/ask for the conversion to happen to the A/D converter
-     + wait for it to be ready on T0 (maybe thousands of status signals)
-     + accept the data
+     1) you signal/ask for the conversion to happen to the A/D converter
+     2) wait for it to be ready on T0 (maybe thousands of status signals)
+     3) accept the data
 
 2) Interrupt: initiated by the _device_ when is ready, through an INTerruption
    - temporarilly suspends normal operations, and transfer the data
@@ -327,9 +328,9 @@
 
 *** Types of I/O operations
 
-1) Control: IO <=  CPU, causes IO to perform an *action* (eg: rewind tape)
-2) Status:  IO  => CPU, convey *information* about the present state or condition (eg: parity error)
-3) Data:    IO <=> CPU, through data lines on the CPU bus
+1) Control: CPU → IO, causes IO to perform an *action* (eg: rewind tape)
+2) Status:  CPU ← IO, convey *information* about the present state or condition (eg: parity error)
+3) Data:    CPU ↔ IO, through data lines on the CPU bus
 
 *** 1 bit INT(6)
 
@@ -390,7 +391,7 @@
 *** 8 bit bus (12-19)
 
 #+begin_src asm
-  outl bus, a   ; bus = acc(umulator) - also needed for ORL and ANL opcodes
+  outl bus, a   ; bus = acc(umulator)
   ins    a, bus ; acc = bus
 #+end_src
 
@@ -403,6 +404,22 @@
   2) statically non-latched INPUT
   3) statically latched OUTPUT
 
+* opcodes
+#+CAPTION: ? is immediate, register, @register
+|--------+------+----------------------------------------|
+| XRL    | A, ? | xor A with given ?                     |
+| ANL    | A, ? | and A with given ?                     |
+| ORL    | A, ? | or  A with given ?                     |
+| ADD[C] | A, ? | add A with given ?, w/carry            |
+| DEC    | A    | decrement A by 1                       |
+| INC    | A    | increment A by 1                       |
+| SWAP   | A    | swaps A nibbles                        |
+| CPL    | A    | complement A                           |
+| DA     | A    | decimal adjust the current result in A |
+| RR[C]  | A    | rotate right A by 1 bit, w/carry       |
+| RL[C]  | A    | rotate left  A by 1 bit, w/carry       |
+| CLR    | A    | clear content of A                     |
+|--------+------+----------------------------------------|
 * support chips
 
 - https://en.wikipedia.org/wiki/Intel_MCS-48#Variants
@@ -433,6 +450,7 @@
   - https://github.com/nejohnson/dasmxx
     - old https://www.oocities.org/pclareuk/DASMx/
 
+- assemblers http://www.armory.com/~rstevew/Public/Micros/8048/
 - VHDL https://github.com/devsaurus/t48
 - ROM programmer story https://laughtonelectronics.com/oldsite/lab_oem/lab_mcs48.html
 - https://jhnbyrn.github.io/951-KLR-PAGES/reading_code.html

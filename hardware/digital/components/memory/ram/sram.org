@@ -16,6 +16,10 @@
   - OE Output Enable
   - CLK Clock (optional, for synchronous SRAM)
 
+- https://en.wikipedia.org/wiki/DDR_SDRAM
+  - Double Data Rate
+  - Able to read/write multiple times per clock cycle
+
 - tools:
   - 62256 tester https://github.com/Andre-Fonteles/62256-sram-tester/blob/master/62256-sram-tester.ino
 

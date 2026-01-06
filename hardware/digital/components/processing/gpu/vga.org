@@ -1,0 +1,67 @@
+
+- arduino vga code: https://github.com/smaffer/vgax
+- projects
+  - Home of the Low Budget, Open Source, VGA Compatible video card http://wacco.mveas.com/
+  - http://web.archive.org/web/20230608091246/https://quinndunki.com/blondihacks/?page_id=1761
+    - 8bit computer + gpu
+    - ATMega 324PA
+
+* timing
+
+- http://www.tinyvga.com/vga-atiming
+- blank lines
+  - refer to the time it takes for electrons to stabilize on sweeps (sync pulse)
+    - on CRT monitor
+  - still used on non-CRT vga monitor
+
+* pinout
+- 5,6,7,8,9 GNDs
+- outer shell is GND
+|----+-------+----------+--------|
+|  1 | red   | 0 - 0.7v | 75 ohm |
+|  2 | green | 0 - 0.7v | 75 ohm |
+|  3 | blue  | 0 - 0.7v | 75 ohm |
+| 13 | HSYNC |          |        |
+| 14 | VSYNC |          |        |
+|----+-------+----------+--------|
+* videos
+
+- Breadboard VGA Controller https://www.youtube.com/playlist?list=PL0HI91x0gPoE357VA_nqy4WpDcsiXW2PF
+- Slu4 - arduino VGA
+  - https://www.youtube.com/watch?v=jUoR5ICCepA
+  - https://www.youtube.com/watch?v=Id3VYybrcws
+  - https://www.youtube.com/watch?v=OYIEQlPotIg
+
+** BenEater: https://eater.net/vga
+*** 1) intro [[https://www.youtube.com/watch?v=l7rce6IQDWs][The world's worst video card?]]
+     - horizontal sync
+       - 9 bit counter (3x 4bit)
+       - using logic gates to detect timing events
+         - 200, 210, 242, 264
+         - by counter value
+         - each, NAND'ing 8 raw/NOT bits known to be "1"
+       - using an inverted SR-latch, to detect timing ranges
+         - using 2 nand gates
+     - vertical sync
+       - same setup
+       - 10 bit counter (3x 4bit)
+       - 600, 601, 605, 628
+*** 2) build [[https://www.youtube.com/watch?v=uqY3FMuMuRo][World's worst video card? The exciting conclusion]]
+     - using an EEPROM
+     - using the counters to tell where are we painting (eeprom address)
+       - slowing vertical counter to keep a 200x200 instead of 200x600
+       - dropping some bits due address limit on eeprom 100x75
+     - using the eeprom data to give a color to each RGB component
+       - using 2 bits for each
+       - 1.5k + 680 resistors in parallel
+       - 4 possible values of each
+       - 64 colors
+     - not sending anything for blank/control lines
+*** TODO 3) 6502 interface [[https://www.youtube.com/watch?v=2iURr3NBprc][Installing the world's worst video card]]
+
+- we want to replace the EEPROM with RAM
+- we let the 6502 write on RAM on the blanking time
+  - halting it on RDY pin, and BE
+- using a 74245, octal bus transceiver (buffer)
+
+*** 4) troubleshooting [[https://www.youtube.com/watch?v=BUTHtNrpwiI][World's worst video card gets better?]]

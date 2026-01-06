@@ -1,0 +1,4 @@
+- New Breadboard PC Version 2 https://www.youtube.com/playlist?list=PL0HI91x0gPoE9sSNmIbq5fcDDc7ziQe3c
+  - New Intel 8088 PC on solderless breadboards. Running MS-DOS and early versions of Microsoft Windows.
+- Breadboard PC https://www.youtube.com/playlist?list=PL0HI91x0gPoGUtu3rUd1dSInTlIL2wk2p
+  - Build a retro IBM PC-XT compatible computer on solderless breadboards using Intel 8088 microprocessor and 1980's components.

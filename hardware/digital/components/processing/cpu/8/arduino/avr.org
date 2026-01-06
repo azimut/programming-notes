@@ -1,3 +1,5 @@
+- project [[https://spritesmods.com/?art=avrfmtx&page=1][AVR-based FM-transmitter]]
+- project [[https://dmitry.gr/index.php?r=05.Projects&proj=36.%208pinLinux][An interactive-speed Linux computer on a tiny board you can easily build with only 3 8-pin chips]]
 - AVR Advent Calendar https://www.youtube.com/playlist?list=PLCGpd0Do5-I3cpoRJyqYOG4tCD6pVk_qs
 
 #+CAPTION: atmega328p diagram

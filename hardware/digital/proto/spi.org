@@ -7,8 +7,11 @@
   - master/slave
   - controlled by the MCU
 - simpler han I2C
+  - can be bitbanged
 - no spec
-- used by some serial EEPROMS (see flashrom)
+- used by:
+  - some serial EEPROMS (see flashrom)
+  - sdcards
 
 * pins
 

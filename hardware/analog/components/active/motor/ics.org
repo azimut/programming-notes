@@ -12,6 +12,12 @@
 
 - ULN2003 - "High voltage and high current darlington transistor array"
   - Can work for unipolar stepper motors
+  - 8 darlington array
+- ULN2803 (7 darlington array)
+  - for indulctive loads
+  - up to 500mA load each (can be added)
+  - 12v-24v for motor
+  - 3.3v-5v for input
 - DM542T
   - up to 128 microsteps
 - L297 - "Stepper Motor Controller"

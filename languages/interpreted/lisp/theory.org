@@ -6,24 +6,29 @@
   Gerald Jay Sussman
 ** Video: Lecture 1A: Overview and Introduction to Lisp - https://www.youtube.com/watch?v=-J_xL4IGhJA&list=PLE18841CABEA24090
 *** Part 1
-- Computer science is not about computer in the same way that
+- "Computer Science" is not about computer in the same way that
   - physics is not about particle accelerators
-  - or biology is not about petri dishes
+  - or biology is not about microscopes, or petri dishes
+  - geometry is not about surveying instruments
 - Computer science, is about
   - Formalizing intuitions about processes.
   - How to do things.
   - How to knowledge.
 - *Declarative knowledge*: "What is true"
   sqrt(x) is the "Y" such that "pow(Y,2) = x" and "Y>=0"
-- *Imperative knowledge*: "How to" (a process)
+- *Imperative knowledge*: "How to" (a process/the method)
   make a guess, improve the guess by avg g and x/g, keep improving
-- Computer engineer deals with idealized components.
-  That means there is no much difference into what I could build and what can I imagine.
-  The constrains are not physics, but the constrains of our minds.
-- Techniques to control complexity:
-  | Black-Box Abstraction      | functions that return values or other functions | functions  |
-  | Conventional Interfaces    | generic operations                              | interfaces |
-  | Metalinguistic Abstraction | DSL                                             | macros     |
+- CS isn't real
+  - Computer engineer deals with idealized components.
+    - That means there is no much difference into what I could build and what can I imagine.
+    - The constrains are not physics, but the constrains of our minds.
+- The real issues of CS comes when building large systems (+1000pages)
+  - CS uses techniques to handle complexity
+    |----------------------------+-------------------------------------------------+------------|
+    | Black-Box Abstraction      | functions that return values or other functions | functions  |
+    | Conventional Interfaces    | generic operations                              | interfaces |
+    | Metalinguistic Abstraction | DSL                                             | macros     |
+    |----------------------------+-------------------------------------------------+------------|
 *** Part 2
 - Elements of programming languages:
   | Primitive elements   | + 3 17.5 5                           | primitives                         |
