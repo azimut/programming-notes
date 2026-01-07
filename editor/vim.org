@@ -1,6 +1,7 @@
 - vi https://en.wikipedia.org/wiki/Vi_(text_editor)
   - Bill Joy
   - 1976
+  - posix https://pubs.opengroup.org/onlinepubs/9699919799/utilities/vi.html
 - vim https://en.wikipedia.org/wiki/Vim_(text_editor)
   - 1991
   - Bram Moolenaar
@@ -9,6 +10,7 @@
   - fork
 
 - article http://howivim.com/2016/andy-stewart/
+- articles https://www.mpaoli.net/~michael/unix/vi/
 - lua https://neovim.io/doc/user/lua-guide.html#lua-guide
 - https://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/
 

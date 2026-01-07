@@ -1,16 +1,21 @@
-#+TITLE: ED
+#+TITLE: ed
 #+DATE: <2025-09-19 vie>
 #+KEYWORDS: ed, text editor, unix, cheatsheet, quick reference
 
-- wiki https://en.wikipedia.org/wiki/Ed_(text_editor)
+|-------+---------|
+| wiki  | [[https://en.wikipedia.org/wiki/Ed_(text_editor)][english]] |
+| gnu   | [[https://www.gnu.org/software/ed/manual/ed_manual.html][manual]]  |
+| posix | [[https://pubs.opengroup.org/onlinepubs/9699919799/utilities/ed.html][man]]     |
+| ex    | [[https://pubs.opengroup.org/onlinepubs/9699919799/utilities/ex.html][man]]     |
+|-------+---------|
+
+- Line oriented editor, as opossed to character oriented editor
 - by Ken Thompson
 - 1973
-- doc https://www.gnu.org/software/ed/manual/ed_manual.html
-- shitposting https://x.com/ed1conf
-- Line oriented editor, as opossed to character oriented editor
 - 55k on x86_64
-- online game? http://edbrowse.org/
 - info ed
+- shitposting https://x.com/ed1conf
+- online game? http://edbrowse.org/
 
 * Why?
 
@@ -36,14 +41,13 @@
 |    |                   |        | disable (!) command      |
 |----+-------------------+--------+--------------------------|
 
-* language
+* commands
 
 #+CAPTION: command's format
 #+begin_src
 [ADDRESS[,ADDRESS]]COMMAND[PARAMETERS]
 #+end_src
 
-** commands
 |-----+----+---+------------------|
 |     | .  |   | exit insert mode |
 | .,. | p  | - | prints           |
@@ -52,7 +56,8 @@
 |     | u  |   | undo last edit   |
 | .+1 | \n | - | new line         |
 |-----+----+---+------------------|
-*** address
+
+** address
 |----+---------------------------|
 | =  | prints nr of buffer lines |
 | .= | prints nr current line    |
@@ -63,7 +68,7 @@
 | +1 | moves cursor down         |
 | -1 | moves cursor up           |
 |----+---------------------------|
-*** address range
+** address range
 |-------------+------------------------------------|
 |     <c>     |                                    |
 |      ,      | whole file                         |
@@ -72,7 +77,7 @@
 | /foo/,/bar/ | lines between next foo and bar     |
 | ?foo?,/bar/ | lines between previous foo and bar |
 |-------------+------------------------------------|
-*** search
+** search
 |-----+--------+---+------------------------------------------|
 |     | //     |   | repeat last search                       |
 | 1,$ | /re    |   | search                                   |
@@ -82,7 +87,7 @@
 | 1,$ | v/re   |   | global inverse search                    |
 | 1,$ | V/re   |   | global inverse search interactive action |
 |-----+--------+---+------------------------------------------|
-*** substitution (.,.)
+** substitution (.,.)
 |------------+-----------------------------------------------------------|
 | s          | repeats lasts substitution                                |
 | s/re       | substitutes 1st re(gex) with nothing                      |
@@ -93,7 +98,7 @@
 | s/re/%/    | substitutes 1st re(gex) with prev subst                   |
 | s/re/*&*/  | substitutes 1st re(gex) with *re*                         |
 |------------+-----------------------------------------------------------|
-*** edit
+** edit
 |-----+---+---+----------------------------------|
 | .   | a | - | append mode                      |
 | .   | i | - | insert mode                      |
@@ -105,7 +110,7 @@
 | .,. | y | - | yank/copies to cut buffer        |
 | .   | x | - | pastes the cut buffer            |
 |-----+---+---+----------------------------------|
-*** file / command
+** file / command
 |-----+--------+---+----------------------------------------|
 |     | f      |   | shows current file name                |
 |     | f FILE |   | sets output FILE name                  |
@@ -118,7 +123,7 @@
 |     | ! CMD  |   | executes command, "%" is curr filename |
 |     | !!     |   | executes last command                  |
 |-----+--------+---+----------------------------------------|
-*** misc
+** misc
 |---+-------------------------|
 | Q | quits unconditionally   |
 | q | quits                   |
