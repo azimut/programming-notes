@@ -21,7 +21,7 @@
 - .mc (where macro expansion happens)
 - a requirement for autoconf
 - general purpose macro pre-processor
-- part of the [[id:][POSIX]] standard, mandatory
+- part of the [[https://pubs.opengroup.org/onlinepubs/9699919799/utilities/m4.html][POSIX]] standard, mandatory
 - see man&info page
 - used by:
   - sendmail (.mc -> .cf)
