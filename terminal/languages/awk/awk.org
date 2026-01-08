@@ -6,18 +6,18 @@
 #+ATTR_ORG: :width 200
 [[./auk.jpg]]
 
-|-----------+---------------------------------------------------------------|
-|    <c>    |                                                               |
-|   book    | https://www.awk.dev/                                          |
-|   wiki    | https://en.wikipedia.org/wiki/AWK                             |
-| wikibooks | https://en.wikibooks.org/wiki/AWK                             |
-| web repl  | https://awk.js.org/                                           |
-|    doc    | https://www.gnu.org/software/gawk/manual/html_node/index.html |
-|  fansite  | http://awklang.org/                                           |
-|-----------+---------------------------------------------------------------|
+|-----------+-----------------------------------|
+|    <c>    |                                   |
+|   book    | https://www.awk.dev/              |
+|   wiki    | https://en.wikipedia.org/wiki/AWK |
+| wikibooks | https://en.wikibooks.org/wiki/AWK |
+| web repl  | https://awk.js.org/               |
+|  fansite  | http://awklang.org/               |
+|-----------+-----------------------------------|
 
 - 1977
-- Authors
+- part of the [[https://pubs.opengroup.org/onlinepubs/9699919799/][POSIX]] standard, mandatory
+- by
   - Aho Alfred Vaino (36)
   - Weinberger Peter Jay (35)
   - Kernighan Brian Wilson (35)
@@ -598,18 +598,17 @@ use "|&" to send and receive
 
 [[http://awk.freeshell.org/AwkFeatureComparison.html][Comparisons]] [[https://www.gnu.org/software/gawk/manual/html_node/Other-Versions.html][Others]]
 
-|--------+-------------------------------------------------------------------------------|
-|    <r> |                                                                               |
-|   gawk | https://www.gnu.org/software/gawk/                                            |
-|   mawk | https://web.archive.org/web/20240202023335/https://invisible-island.net/mawk/ |
-|  goawk | https://github.com/benhoyt/goawk                                              |
-| bioawk | https://github.com/lh3/bioawk                                                 |
-|  frawk | https://github.com/ezrosent/frawk                                             |
-|    wak | https://github.com/raygard/wak                                                |
-|  posix | https://pubs.opengroup.org/onlinepubs/9699919799/                             |
-|   nawk | https://github.com/onetrueawk/awk                                             |
-|        | https://justine.lol/awk/                                                      |
-|--------+-------------------------------------------------------------------------------|
+|--------+--------------------------|
+|    <r> |                          |
+|   gawk | [[https://www.gnu.org/software/gawk/][home]] [[https://www.gnu.org/software/gawk/manual/html_node/index.html][doc]]                 |
+|   mawk | [[https://web.archive.org/web/20240202023335/https://invisible-island.net/mawk/][home]]                     |
+|  goawk | [[https://github.com/benhoyt/goawk][source]]                   |
+| bioawk | [[https://github.com/lh3/bioawk][source]]                   |
+|  frawk | [[https://github.com/ezrosent/frawk][source]]                   |
+|    wak | [[https://github.com/raygard/wak][source]]                   |
+|   nawk | [[https://github.com/onetrueawk/awk][source]]                   |
+|        | https://justine.lol/awk/ |
+|--------+--------------------------|
 
 #+begin_src
 $ readelf -d /usr/bin/gawk | grep Shared # 689K

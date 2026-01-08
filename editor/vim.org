@@ -1,7 +1,7 @@
 - vi https://en.wikipedia.org/wiki/Vi_(text_editor)
   - Bill Joy
   - 1976
-  - posix https://pubs.opengroup.org/onlinepubs/9699919799/utilities/vi.html
+  - part of the [[https://pubs.opengroup.org/onlinepubs/9699919799/utilities/vi.html][POSIX]] standard, optional
 - vim https://en.wikipedia.org/wiki/Vim_(text_editor)
   - 1991
   - Bram Moolenaar

@@ -1,0 +1,2 @@
+- https://en.wikipedia.org/wiki/List_of_POSIX_commands
+- Shell & Utilities: Detailed Toc https://pubs.opengroup.org/onlinepubs/9699919799/utilities/contents.html

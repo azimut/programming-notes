@@ -62,3 +62,11 @@
   - M  1-char month
   - [[http://bedienungsanleitung.elektronotdienst-nuernberg.de/din-en-60062.html][West german (year) code dates]]
   [[https://telcontar.net/KBK/tech/images/IC_dates/IC_dates--GoldStar_YYWW.svgz]]
+* seconds
+
+|-------+----+---------------+-------+------|
+| milli | ms |         1.000 | 10^-3 | 1e+3 |
+| micro | μs |     1.000.000 | 10^-6 | 1e+6 |
+| nano  | ns | 1.000.000.000 | 10^-9 | 1e+9 |
+|-------+----+---------------+-------+------|
+

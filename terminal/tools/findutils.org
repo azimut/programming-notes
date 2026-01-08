@@ -3,6 +3,7 @@
 - find, locate, updatedb, xargs
 - find
   - -ok, is like -exec, but ask user before running
+- find is mandatory as part of the [[https://pubs.opengroup.org/onlinepubs/9699919799/utilities/find.html][POSIX]] standard
 
 * xargs
 

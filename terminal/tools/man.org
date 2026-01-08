@@ -8,6 +8,7 @@
 - online
   - https://linux.die.net/man/
   - https://man7.org/linux/man-pages/
+- part of POSIX, mandatory
 - Should/Can be gzip
 - Directories
   - /usr/share/man

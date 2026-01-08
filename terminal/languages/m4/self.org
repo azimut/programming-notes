@@ -5,15 +5,14 @@
 #+ATTR_HTML: :width 300
 [[./m4rene.jpg]]
 
-|-----------+--------------------------------------------------------------------|
-|    <c>    |                                                                    |
-|   home    | https://www.gnu.org/software/m4/m4.html                            |
-|   docs    | [[https://www.gnu.org/software/m4/manual/m4.html][html]] [[https://www.gnu.org/software/m4/manual/m4.pdf][pdf]]                                                           |
-| manual 77 | https://wolfram.schneider.org/bsd/7thEdManVol2/m4/m4.pdf           |
-|  history  | https://www.gnu.org/software/m4/manual/html_node/History.html      |
-|   wiki    | https://en.wikipedia.org/wiki/M4_(computer_language)               |
-|   posix   | https://pubs.opengroup.org/onlinepubs/9699919799/utilities/m4.html |
-|-----------+--------------------------------------------------------------------|
+|-----------+---------------------------------------------------------------|
+|    <c>    |                                                               |
+|   home    | https://www.gnu.org/software/m4/m4.html                       |
+|   docs    | [[https://www.gnu.org/software/m4/manual/m4.html][html]] [[https://www.gnu.org/software/m4/manual/m4.pdf][pdf]]                                                      |
+| manual 77 | https://wolfram.schneider.org/bsd/7thEdManVol2/m4/m4.pdf      |
+|  history  | https://www.gnu.org/software/m4/manual/html_node/History.html |
+|   wiki    | https://en.wikipedia.org/wiki/M4_(computer_language)          |
+|-----------+---------------------------------------------------------------|
 
 - 1977
 - Authors: Brian Kernighan(35), Dennis Ritchie(36)
@@ -22,7 +21,7 @@
 - .mc (where macro expansion happens)
 - a requirement for autoconf
 - general purpose macro pre-processor
-- part of POSIX standard
+- part of the [[id:][POSIX]] standard, mandatory
 - see man&info page
 - used by:
   - sendmail (.mc -> .cf)

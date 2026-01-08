@@ -12,10 +12,11 @@
 |--------+----------------------------|
 
 - 1974, Bell Labs
-- Lee E. McMahon (43)
+- by Lee E. McMahon (43)
 - "Stream EDitor"
 - _line-oriented_ text processing utility
-- based on the scripting features of the interactive editor "ed"
+- based on the scripting features of the interactive editor ~ed~
+- part of the [[https://pubs.opengroup.org/onlinepubs/9699919799.2018edition/utilities/sed.html][POSIX]] standard, mandatory
 
 * cli
 

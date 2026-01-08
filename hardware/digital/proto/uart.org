@@ -65,7 +65,7 @@
 - linux:
   #+begin_src sh
     $ minicom -b 9600 -o -D /dev/ttyUSB0 # new
-    $ picom -b 9600 /dev/ttyUSBO         # nice (works with default scroll)
+    $ picocom -b 9600 /dev/ttyUSBO       # nice (works with default scroll)
     $ cu -l /dev/ttyUSB0 -s 9600         # old
     $ screen /dev/ttyUSB0 9600           # classic
   #+end_src

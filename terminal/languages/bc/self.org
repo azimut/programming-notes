@@ -15,7 +15,8 @@
 - 1975
 - "Basic/Bench Calculator"
 - started as a frontend for [[https://en.wikipedia.org/wiki/Dc_(computer_program)][dc]]
-- Authors:
+- mandatory part of [[https://pubs.opengroup.org/onlinepubs/9699919799/utilities/bc.html][POSIX]], since version 4
+- by
   - Robert H. Morris (43)
   - Lorinda Cherry (31)
 
@@ -223,7 +224,6 @@ $ cat /usr/local/bin/solve
 |   <c>   |        |        |        |
 |   gnu   | [[https://github.com/fivepiece/gnu-bc/][source]] | [[https://www.gnu.org/software/bc/manual/html_mono/bc.html][manual]] | [[https://bc.js.org/][online]] |
 | howard  | [[https://github.com/gavinhoward/bc][source]] |        |        |
-|  posix  |        | [[https://pubs.opengroup.org/onlinepubs/9699919799/utilities/bc.html][manual]] |        |
 |   bsd   | [[https://cgit.freebsd.org/src/tree/contrib/bc][source]] | [[https://man.freebsd.org/cgi/man.cgi?query=bc&sektion=1][manual]] |        |
 | busybox | [[https://git.busybox.net/busybox/tree/miscutils/bc.c][source]] |        |        |
 | toybox  | [[https://github.com/landley/toybox/blob/master/toys/pending/bc.c][source]] |        |        |

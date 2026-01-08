@@ -5,21 +5,20 @@
 |-------+---------|
 | wiki  | [[https://en.wikipedia.org/wiki/Ed_(text_editor)][english]] |
 | gnu   | [[https://www.gnu.org/software/ed/manual/ed_manual.html][manual]]  |
-| posix | [[https://pubs.opengroup.org/onlinepubs/9699919799/utilities/ed.html][man]]     |
-| ex    | [[https://pubs.opengroup.org/onlinepubs/9699919799/utilities/ex.html][man]]     |
 |-------+---------|
 
-- Line oriented editor, as opossed to character oriented editor
-- by Ken Thompson
 - 1973
+- by Ken Thompson
+- Line oriented editor, as opossed to character oriented editor
 - 55k on x86_64
+- part of the [[https://pubs.opengroup.org/onlinepubs/9699919799/utilities/ed.html][POSIX]] standard, mandatory
 - info ed
 - shitposting https://x.com/ed1conf
 - online game? http://edbrowse.org/
 
 * Why?
 
-- is POSIX
+- being part of POSIX, is everywhere
 - to work on embedded device with few cli binaries
 - to work with small screens
 
@@ -79,7 +78,8 @@
 |-------------+------------------------------------|
 ** search
 |-----+--------+---+------------------------------------------|
-|     | //     |   | repeat last search                       |
+|     | //     |   | repeat last search forward               |
+|     | ??     |   | repeat last search backward              |
 | 1,$ | /re    |   | search                                   |
 | 1,$ | g/re   |   | global search                            |
 | 1,$ | g/re/p |   | global search, explicit print            |
@@ -132,16 +132,25 @@
 | h | prints last error msg   |
 |---+-------------------------|
 * snippets
-|----------------+--------------------------------|
-|      <c>       |                                |
-|       s        | repeat previous substitution   |
-|   g/Needle/p   | shows lines matching           |
-|     3,10c      | replaces range with given text |
-|    r !xsel     | paste from clipboard           |
-|       ;p       | prints lines from curr to EOF  |
-|       ,p       | prints all lines               |
-|       ,n       | prints all lines with numbers  |
-| /foo/;/bar/-1p | prints between "foo" and "bar" |
-| w !diff -u - % | diff buffer with file          |
-|     w !wc      | count buffer lines, chars      |
-|----------------+--------------------------------|
+|----------------+----------------------------------|
+|      <c>       |                                  |
+|       s        | repeat previous substitution     |
+|   g/Needle/p   | shows lines matching             |
+|     3,10c      | replaces range with given text   |
+|    r !xsel     | paste from clipboard             |
+|       ;p       | prints lines from curr to EOF    |
+|       ,p       | prints all lines                 |
+|       ,n       | prints all lines with numbers    |
+| /foo/;/bar/-1p | prints between "foo" and "bar"   |
+| w !diff -u - % | diff buffer with file            |
+|     2w !wc     | count words, and chars on line 2 |
+|     w !wc      | count buffer lines, chars        |
+|     !wc %      | "                                |
+|----------------+----------------------------------|
+* ex
+|-----------|
+| [[https://en.wikipedia.org/wiki/Ex_(text_editor)][wiki]]  [[https://pubs.opengroup.org/onlinepubs/9699919799/utilities/ex.html][man]] |
+|-----------|
+- 1978
+- by Bill Joy
+- part of the [[https://pubs.opengroup.org/onlinepubs/9699919799/utilities/ex.html][POSIX]] standard, optional
