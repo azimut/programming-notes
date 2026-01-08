@@ -8,7 +8,7 @@
 |-------+---------|
 
 - 1973
-- by Ken Thompson
+- by Ken Thompson (30)
 - Line oriented editor, as opossed to character oriented editor
 - 55k on x86_64
 - part of the [[https://pubs.opengroup.org/onlinepubs/9699919799/utilities/ed.html][POSIX]] standard, mandatory
@@ -148,9 +148,7 @@
 |     !wc %      | "                                |
 |----------------+----------------------------------|
 * ex
-|-----------|
-| [[https://en.wikipedia.org/wiki/Ex_(text_editor)][wiki]]  [[https://pubs.opengroup.org/onlinepubs/9699919799/utilities/ex.html][man]] |
-|-----------|
+- wiki https://en.wikipedia.org/wiki/Ex_(text_editor)
 - 1978
-- by Bill Joy
+- by Bill Joy (24)
 - part of the [[https://pubs.opengroup.org/onlinepubs/9699919799/utilities/ex.html][POSIX]] standard, optional
