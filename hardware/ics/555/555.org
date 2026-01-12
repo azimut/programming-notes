@@ -1,12 +1,11 @@
 https://hackaday.com/2019/03/25/the-worlds-fastest-555-timer-and-the-state-of-the-555/
 https://en.wikipedia.org/wiki/555_timer_IC
 
-1972
-
 #+ATTR_ORG: :width 200
-[[https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Signetics_NE555N.JPG/375px-Signetics_NE555N.JPG]]
+[[./555-photo.jpg]]
 
-- Creator: Hans Camenzind
+- 1972
+- by Hans Camenzind
 - based on BJT
 - DIP8
 - Used as a:
@@ -14,31 +13,19 @@ https://en.wikipedia.org/wiki/555_timer_IC
   - pulse generator
   - oscillator
 
-- Recommendations:
-  - Sheet, put a 0.01uf =capacitor= from ~pin 5~ (CV) to GND, for no janky OUTPUT
-  - Sheet, lock/tying ~pin 4~ (RESET latch) to VCC
-  - Some other overshoot/spikes of output might be due noise in our cable *impedance*, try:
-    - reducing the size of the cable
-    - or putting a 0.1uf capacitor between GND and VCC pins (the closest to the chip the better)
-      - on circuits, chips usually do have capacitor near for this reason
+[[./555-pinout.png]]
 
-#+ATTR_ORG: :width 500
-[[https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/555_esquema.png/1024px-555_esquema.png]]
+* Insides
 
-* Naming
+- 2 Comparators (2 inputs and 1 output, if input a<b output is on, if not is off)
+- 1 Flip-Flip (aka SR Latch)
+- 3 5k resitors, that made a =voltage divider=
+- 1 Transistor (on to discharge ~pin 7~ and to GND)
 
-NE555V
+#+ATTR_ORG: :width 400
+[[./555-inside.png]]
 
-- LMC, TLC, ICM7 = low power CMOS version
-- NE = commercial (0° - +70°)
-- SE = militar (-55° - +125°)
-- Variants
-  - 556: DIP14 2x555
-  - 558/9: DIP16 ~4x555
-- T = metal
-- V = epoxy
-- N = ?
-* Circuits
+* Circuit Configurations
 ** Astable
 
 https://www.youtube.com/watch?v=kRlSFm519Bo
@@ -47,12 +34,6 @@ https://www.youtube.com/watch?v=kRlSFm519Bo
 
 #+ATTR_ORG: :width 500
 [[./ast.jpg]][[./astschema.jpg]]
-
-- 555 has inside:
-  * 2 Comparators (2 inputs and 1 output, if input a<b output is on, if not is off)
-  * 1 Flip-Flip (aka SR Latch)
-  * 3 5k resitors, that made a =voltage divider=
-  * 1 Transistor (on to discharge ~pin 7~ and to GND)
 
 - rate of charging and discharging times, will depend on:
   - charging: 1k / 100k / 1uf
@@ -94,3 +75,28 @@ https://www.youtube.com/watch?v=WCwJNnx36Rk
 
 - This time ( differently from above (for fun) )
   We would use just the internal *SR Latch*.
+* Tips
+
+- from datasheet, put a 0.01uf =capacitor= from ~pin 5~ (CV) to GND, for no janky OUTPUT
+- from datasheet, lock/tying ~pin 4~ (RESET latch) to VCC
+- Some other overshoot/spikes of output might be due noise in our cable *impedance*, try:
+  - reducing the size of the cable
+  - or putting a 0.1uf capacitor between GND and VCC pins (the closest to the chip the better)
+    - on circuits, chips usually do have capacitor near for this reason
+
+* Naming
+
+#+begin_src
+NE555V
+#+end_src
+
+- LMC, TLC, ICM7 = low power CMOS version
+- NE = commercial (0° - +70°)
+- SE = militar (-55° - +125°)
+- Variants
+  - 556: DIP14 2x555
+  - 558/9: DIP16 ~4x555
+- T = metal
+- V = epoxy
+- N = ?
+
