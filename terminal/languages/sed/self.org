@@ -131,7 +131,7 @@
 |  s/p/r/f   | substitute  | /pattern/replacement/flags                                          |
 |            |             | uses address for pattern if missing                                 |
 |            |             | replacement: "&" /pattern/ matched, \N where N is the N-match group |
-|            |             | flags: [w FILE,g,p,I,NUMBEROFMATCH]                                 |
+|            |             | flags: [w FILE, g, p, I, NUMBEROFMATCH]                             |
 |            |             | hk                                                                  |
 |------------+-------------+---------------------------------------------------------------------|
 |  e [CMD]   |   execute   | given shell CMD, and stores its output in the *pattern space* (GNU) |
