@@ -442,6 +442,7 @@
   - [[https://www.punsmann.de/retro/prompt-48.html][The INTEL Prompt 48 Deveopment System]]
   - [[https://en.wikipedia.org/wiki/Intel_system_development_kit#HSE-49][HSE-49: Original Dev Board]]
   - [[https://vintagecomputer.ca/imsai-8048-control-computer/][IMSAI 8048 Control Computer]] [[https://x.com/Arduining/status/1897729027756245281/photo/1][photo]]
+  - +examples https://github.com/jim11662418/Intel_8048_Single_Board_Computer
 
 - AS output to binary to be written into ROM https://linux.die.net/man/1/p2bin
 
@@ -514,10 +515,10 @@
 
 * codebases
 
+- rs232 serial https://github.com/jim11662418/Intel_8048_Single_Board_Computer/blob/main/serial.asm
 - demoscene [[https://www.pouet.net/prod.php?which=61201][source]] [[https://www.youtube.com/watch?v=1q-4Ie5wjus][video]]
 - https://github.com/AngryTroll/i8048_board
 - hello world https://x.com/RueNahcMohr/status/1431910449185005571
-- homebrew computer https://github.com/jim11662418/Intel_8048_Single_Board_Computer
 - https://github.com/Lefucjusz/MAB8048_led_clock
 - https://github.com/marekw1986/8048/blob/main/code/ascii/ascii.asm
 - game https://github.com/tcr/8bit-demos/

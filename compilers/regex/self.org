@@ -74,6 +74,14 @@
 | /a(?=b)/ | match a, only if followed by by, but not match b |
 |----------+--------------------------------------------------|
 * trivia
+- html https://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags
+  #+begin_src
+    I think the flaw here is that HTML is a Chomsky Type 2 grammar
+    (context free grammar) and a regular expression is a Chomsky Type 3
+    grammar (regular grammar). Since a Type 2 grammar is fundamentally
+    more complex than a Type 3 grammar (see the Chomsky hierarchy), you
+    can't possibly make this work.
+  #+end_src
 - mail regex http://web.archive.org/web/20100407084032/http://ex-parrot.com/~pdw/Mail-RFC822-Address.html
 - http://web.archive.org/web/20090629182035/http://thedailywtf.com/Articles/Irregular_Expression.aspx
 - reDOS

@@ -1,8 +1,11 @@
 - https://en.wikipedia.org/wiki/Infrared_Data_Association
 - https://www.sbprojects.net/knowledge/ir/
+https://lirc.sourceforge.net/remotes-table.html
 - argentina codes https://github.com/estebanramos/Flipper-ArgentinaIRDB
 
-- there is a *carrier frequency* of 38kHz
+- a type of LED diode
+- transmitter -> receiver
+- *carrier frequency* of 38kHz
 - 4 byte packet
   - 2 byte address
     - one for each manufacturer
@@ -15,9 +18,31 @@
 - 13 [[https://www.youtube.com/watch?v=vOzaDQmAW0g][EEVblog #505 - IR Learning Remote Control Hack]]
 
 * protocols
+** what?
+
+A protocol on top of IRDA defines:
+
+  - infrared light freq
+  - carrier freq
+  - # of devices supported
+  - # of commands per device
+  - # of bits used in encoding
+  - encoding procedure
+  - key-to-code mapping
+  - data rate, may be variable
+  - modulation schemes
+
 ** rc5
 - https://en.wikipedia.org/wiki/RC-5
 - https://robots-argentina.com.ar/Comunicacion_protocolorc5.htm
 - https://www.sbprojects.net/knowledge/ir/rc5.php
 ** nec
 - https://www.sbprojects.net/knowledge/ir/nec.php
+
+* tools
+
+- Linux Infrared Remote Control https://www.lirc.org/
+
+* hardware
+
+- usb ir toy http://dangerousprototypes.com/docs/USB_Infrared_Toy
