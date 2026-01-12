@@ -599,14 +599,14 @@ use "|&" to send and receive
 [[http://awk.freeshell.org/AwkFeatureComparison.html][Comparisons]] [[https://www.gnu.org/software/gawk/manual/html_node/Other-Versions.html][Others]]
 
 |--------+--------------------------|
-|    <r> |                          |
-|   gawk | [[https://www.gnu.org/software/gawk/][home]] [[https://www.gnu.org/software/gawk/manual/html_node/index.html][doc]]                 |
-|   mawk | [[https://web.archive.org/web/20240202023335/https://invisible-island.net/mawk/][home]]                     |
-|  goawk | [[https://github.com/benhoyt/goawk][source]]                   |
-| bioawk | [[https://github.com/lh3/bioawk][source]]                   |
-|  frawk | [[https://github.com/ezrosent/frawk][source]]                   |
-|    wak | [[https://github.com/raygard/wak][source]]                   |
-|   nawk | [[https://github.com/onetrueawk/awk][source]]                   |
+|    <r> |           <c>            |
+|   gawk |         [[https://www.gnu.org/software/gawk/][home]] [[https://www.gnu.org/software/gawk/manual/html_node/index.html][doc]]         |
+|   mawk |           [[https://web.archive.org/web/20240202023335/https://invisible-island.net/mawk/][home]]           |
+|  goawk |      [[https://github.com/benhoyt/goawk][benhoyt/goawk]]       |
+| bioawk |        [[https://github.com/lh3/bioawk][lh3/bioawk]]        |
+|  frawk |      [[https://github.com/ezrosent/frawk][ezrosent/frawk]]      |
+|    wak |       [[https://github.com/raygard/wak][raygard/wak]]        |
+|   nawk |      [[https://github.com/onetrueawk/awk][onetrueawk/awk]]      |
 |        | https://justine.lol/awk/ |
 |--------+--------------------------|
 
