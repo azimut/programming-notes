@@ -1,7 +1,7 @@
 - https://en.wikipedia.org/wiki/PIC_microcontrollers
-  - 1976-
+  - 1976
+  - by Microchip
   - Programmable Intelligent Computer/Circuit
-  - Microcontroller
   - design derived from PIC1640 (by [[https://en.wikipedia.org/wiki/General_Instrument][GI]])
   - might use RTOS for task scheduling and prioritization
   - Family

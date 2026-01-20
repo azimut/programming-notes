@@ -51,6 +51,9 @@
   - 24 I built a QR code with my bare hands to see how it works https://www.youtube.com/watch?v=w5ebcowAJD8
 
 - hacking
+  - 11 BSoD
+    - https://www.youtube.com/watch?v=dJ_LTivE_xw&t=855s
+    - https://www.youtube.com/watch?v=dJ_LTivE_xw&t=947s
   - 20 Hacking QR Codes with QRGen to Attack Scanning Devices https://www.youtube.com/watch?v=Tjc-Xs-1fq8
     - exploit qr code readers
   - 24 Evading Modern Defenses When Phishing with Pixels - Melvin Langvik https://www.youtube.com/watch?v=l89qpmb2CAQ

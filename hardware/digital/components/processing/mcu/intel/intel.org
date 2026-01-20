@@ -43,6 +43,12 @@ https://x86.fr/the-ultimate-amd-486-die-packaging-guide/
 - 19 Programming 8051
   - https://www.youtube.com/watch?v=QEI55gpt7zM
 
+** projects
+
+- dht11 https://github.com/yspjack/DHT11_demo
+- dht11 https://www.electronicwings.com/8051/dht11-sensor-interfacing-with-8051
+  - 11Mhz clock
+
 ** tools
 
 - riscv on mcs-51 https://github.com/cyrozap/rv51

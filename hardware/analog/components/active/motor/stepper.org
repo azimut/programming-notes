@@ -18,6 +18,10 @@
 
 - Shafts: round, D, geared, lead-screw
 
+- Sheet:
+  - min delay between steps (eg: 2ms)
+  - steps per revolution
+  - max speed (steps/sec)
 - Drivers:
   - L/R (aka constant voltage)
   - Chopper
@@ -28,6 +32,7 @@
 
 - Microstepping:
   - affects max velocity
+  - affects torque
 
 * hardware
 

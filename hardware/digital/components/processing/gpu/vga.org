@@ -8,7 +8,7 @@
 
 * timing
 
-- http://www.tinyvga.com/vga-atiming
+- http://www.tinyvga.com/vga-atiming ([[http://web.archive.org/web/20080605030127/http://www.tinyvga.com:80/vga-timing][wayback]])
 - blank lines
   - refer to the time it takes for electrons to stabilize on sweeps (sync pulse)
     - on CRT monitor

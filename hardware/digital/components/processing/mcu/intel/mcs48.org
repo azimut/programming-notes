@@ -575,7 +575,8 @@
 * articles
 
 - ⭐ https://www.controller-designs.de/index.php?lang=de&cat=projekte&cont=demon48_128k&sub=documentation_0
-  - When operating at 11MHz, the instruction cycle time is 1.364µs (T[µs] = 15 / fosc[MHz]), in which 1-byte/1-cycle instructions are executed
+  - When operating at 11MHz, the instruction cycle time is 1.364µs (T[µs] = 15 / fosc[MHz]),
+    in which 1-byte/1-cycle instructions are executed.
 - https://web.archive.org/web/20140703075839/http://www.atarihq.com/danb/files/8048.txt
 - http://www.moria.de/~michael/comp/ecb/sbcmcs48/hardware.html
 - https://www.cpu-world.com/Arch/8048.html
