@@ -4,11 +4,62 @@
 #+CAPTION: logic gates build from NAND
 [[http://hyperphysics.phy-astr.gsu.edu/hbase/Electronic/ietron/nand5.gif]]
 
+- NOT = tied NAND
+- AND = NAND + tied NAND
+-  OR = 3 NAND
+- NOR = 3 NAND + tied nAND
+
+#+CAPTION: logic gates build from NOR
+[[http://hyperphysics.phy-astr.gsu.edu/hbase/Electronic/ietron/nor2.gif]]
+
+- NOT = tied NOR
+- OR = NOR + tier NOR
+- AND = 2tied + NOR
+
+- ME: After a "NAND/NOR expansion" it could be that it can be further simplified to less gates than you started with.
+
+- MUX - Multiplexores
+  - Output: 1 output
+  - Input
+    - 1 CLOCK
+    - N individual input channels/pins
+    - N selection input pins, in binary
+  - Daisy Chained
+    - by OR-ing the output
+    - tying common selection inputs, with inputs
+    - and with input MSB split to each ENABLE with/without a NOT
+  - IC: 74150/1, 74157 (bus)
+  - TIP: can be used to replace logic gates, by mocking a truth table
+
+- Codificadores: dec -> binary
+- Decodificadores: binary -> decimal
+  - INPUT: parallel, a number in binary
+  - OUTPUT: a pin per possible decimal number
+  - ICs: 74154, 7442, 74138
+  - TIP: can be used to save on using logic gates, by hooking desired outputs to an OR
+  - TIP: ENABLE input pin can also be used to daisy chain multiple deco
+    - MSB to ENABLE and not(ENABLE)
+
 - tutorial http://r-luis.xbot.es/edigital/ed_ref.html
 - https://en.wikipedia.org/wiki/Schmitt_trigger
 - ⭐ https://en.wikipedia.org/wiki/Tyranny_of_numbers
   - video 1960 [[https://www.youtube.com/watch?v=4qlcBWkSHjk][The Tyranny Of Large Numbers]]
 - https://en.wikipedia.org/wiki/Programmer_(hardware)
+- Algebra
+  - simplification: boolean equivalence https://www.electronics-tutorials.ws/boolean/bool_6.html
+  - transformation https://en.wikipedia.org/wiki/De_Morgan%27s_laws
+    - "si parto cambio el signo"
+  - simplification https://en.wikipedia.org/wiki/Karnaugh_map
+    - of sum of products
+    - a way to solve boolean equivalences
+    - draw directly from truth table
+    - less or equal to 4 input vars (otherwise try Quine-McCluskey)
+  - Bubble Pushing https://digital-ic.com/de-morgans-law-and-bubble-pushing-solved-problems-step-by-step/
+    - simplification to NAND/NOR
+    - derived from De Morgan (?)
+    - works for any N of inputs
+    - by adding 2 bubbles in a line
+    - by transforming to NAND/NOR
 - Digital Circuits - Dave Astels
   1) binary https://learn.adafruit.com/binary-boolean-and-logic?view=all
   2) some digital tools https://learn.adafruit.com/some-digital-tools?view=all

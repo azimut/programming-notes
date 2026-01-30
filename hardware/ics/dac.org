@@ -1,0 +1,3 @@
+- FS = Fondo de escala (max Volts in scale)
+- E.k (k is proportionality)
+- Resolution = Height of each step in scale (in Volts)

@@ -1,3 +1,7 @@
+aka discret (not infinite), can take finite values
+
 #+CAPTION: digital systems family tree
 #+ATTR_ORG: :width 600
 [[./digital-family.jpg]]
+
+- 95 Electronica Digital https://www.youtube.com/playlist?list=PLp-w99abd513_I2xlYTfYYJxzy0Iav7F2

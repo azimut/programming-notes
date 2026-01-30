@@ -8,6 +8,8 @@
   - aka by placing a capacitor in between points
 - https://www.inventable.eu/2012/09/15/como-se-leen-los-valores-de-los-capacitores/
 
+- in parallel:  C1+C2
+- in serie:    (C1*C2) / (C1+C2)
 - *stores* electricity in a ~electrostatic field~
   - the field of force between 2 electrically charged bodies
   - aka _conductors_ separated by an _insulator/dielectric_

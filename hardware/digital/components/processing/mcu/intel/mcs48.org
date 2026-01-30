@@ -480,12 +480,16 @@
 
 ** simulator
 
-- https://web.archive.org/web/20130601085340/http://www.coprolite.com/art27.html
 - https://www.acebus.com/8048.htm
+  - text editor + simulator
+
 - S48
   - https://web.synchro.net/files/Simtel.Sep-1997/EMULATE/
+  - article https://web.archive.org/web/20130601085340/http://www.coprolite.com/art27.html
   - by William Luitje
+
 - https://www.ucsim.hu/news.html
+  - repl based
   - comes in ubuntu
   - doc pdf https://www.baigar.de/irix/ucsim.pdf
   - commands https://www.ucsim.hu/cmd_general.html

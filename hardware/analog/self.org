@@ -4,3 +4,4 @@
 - Kirchoff's Laws
   - KCL: Sum of all _current_ flowing through node at any instant is 0
   - KVL: Algebraic sum of all _voltages_ around a loop at any instant is 0
+- can take infinite values

@@ -1,15 +1,20 @@
 - https://en.wikipedia.org/wiki/Seven-segment_display
 - 1903 (1970 Leds)
 - You need an extra resistor for each pin.
+- pins can be determined using a tester in the "diode test" setting
 - Types
   - common cathode (more common)
   - common anode
+- IC: 7446/7/8 - BCD to 7-segment display
+  - Input Pin LT: Lamp test
+  - Input Pin RBI: Ripple Blanking Input (for cascading)
+  - Input Pin RBO: Ripple Blanking Output (skip leading zeros)
 
 *  1 digit
 
 #+CAPTION: in DIP-10 form + segment names
 #+ATTR_ORG: :width 150
-[[https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Seven_segment_01_Pengo.jpg/485px-Seven_segment_01_Pengo.jpg]] [[https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/7_Segment_Display_with_Labeled_Segments.svg/225px-7_Segment_Display_with_Labeled_Segments.svg.png]]
+[[./7-segment-photo.jpg]] [[./7-segment-diagram.png]]
 
 - 10 pins
 - common 1 digit pinout
@@ -22,10 +27,14 @@
 
 * >1 digit
 
+[[./7-segment-bus.png]]
+
 - Multiplexed (aka alternating power between each digit)
   - 7 pins for the segments
-  - 1 extra pin *for each* digit, to select them
+    - aka "data bus"
+  - 1 extra pin *for each* digit, to chip select them
     - aka scan lines
+    - aka "address bus"
 
 * matrix
 

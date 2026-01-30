@@ -16,6 +16,7 @@
 
 - diy 3d enclosure https://www.printables.com/model/2857-vivotek-ip7135-enclosure
 - firmware https://ftpmirror.your.org/pub/misc/ftp.vivotek.com/Firmware/IP7135/
+- no DHCP by default
 - program? https://github.com/jimliu08/fyd_ipcam/tree/master/venc
 - include/config/mach/vvtk1000.h
 - debboostrap with vtk1000 kernel module loaded https://stewarts.org.uk/project/wdsharespacedebootstrap/
@@ -46,14 +47,403 @@
 * connectivity
 - 1x RJ45 100 baseT (RTL8100B ethernet controller)
 - +WiFi b/g+ on IP7137
+
+* rootfs
+
+#+begin_src sh
+$ file busybox
+busybox: ELF 32-bit LSB executable, ARM, version 1 (ARM), dynamically linked, interpreter /lib/ld-uClibc.so.0, for GNU/Linux 2.0.0, stripped
+#+end_src
+
+** /var/log/messages
+
+#+begin_src
+Jan  1 11:48:44  [UPnPIGDCP]: Search IGD failed (ffffffff)
+Jan  1 11:48:49  IP_CAM: Init...Current Connection = 11
+Jan  1 11:48:49  last message repeated 10 times
+Jan  1 11:48:55  SYS: Serial number = 0002D10ACE1C
+Jan  1 11:48:55  SYS: System starts at Sat Jan  1 11:48:55 CST 2000
+Jan  1 11:48:55  NET: === NET INFO ===
+Jan  1 11:48:55  NET: Host IP = 172.16.0.100
+Jan  1 11:48:55  NET: Subnet Mask = 255.255.255.0
+Jan  1 11:48:55  NET: Gateway = 172.16.0.1
+Jan  1 11:48:55  NET: Primary DNS = 172.16.0.1
+Jan  1 11:48:55  NET: Secondary DNS = 172.16.0.1
+Jan  1 13:17:50  IP_CAM: RTSP Server:Start one session, IP=172.16.0.1
+Jan  1 13:18:26  IP_CAM: RTSP Server:Stop one session, IP=172.16.0.1
+Jan  1 13:18:26  IP_CAM: Init...Current Connection = 0
+#+end_src
+
+** /proc/cpuinfo
+
+#+begin_src
+Processor   : FA526id(wb) rev 1 (v4l)
+BogoMIPS    : 136.80
+Features    : swp half thumb
+
+Hardware    : Vivotek VVTK1000
+Revision    : 0000
+Serial      : 0000000000000000
+#+end_src
+
+** /proc/partitions
+
+#+begin_src
+major minor  #blocks  name
+
+  31     0       3072 mtdblocka
+  31     1       1024 mtdblockb
+#+end_src
+
+** /proc/version
+
+#+begin_src
+Linux version 2.4.26-vrs1 (root@rd1-3) (gcc version 3.3.2) #219 Thu Oct 2 10:15:02 CST 2008
+#+end_src
+
+** /proc/self/env
+
+#+begin_src
+USER=root
+pciclk=27648000
+HOME=/
+TERM=vt102
+ahbclk=110592000
+PATH=/sbin:/bin:/usr/bin
+SHELL=/bin/sh
+PWD=/
+inetd_dummy=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+#+end_src
+
+** /proc/net/udp
+
+15B0 5552 2710p 10000
+15B1 5553 2711p 10001
+15B4 5556 2712p 10002
+15B5 5557 2713p 10003
+
+#+begin_src
+  sl  local_address rem_address   st tx_queue rx_queue tr tm->when retrnsmt   uid  timeout inode
+  16: 640010AC:2710 020202E6:2710 01 00000000:00000000 00:00000000 00000000     0        0 464 2 c11a29a0
+  17: 640010AC:2711 020202E6:2711 01 00000000:00000000 00:00000000 00000000     0        0 465 2 c11a2cc0
+  18: 640010AC:2712 020202E6:2712 01 00000000:00000000 00:00000000 00000000     0        0 466 2 c118b040
+  19: 640010AC:2713 020202E6:2713 01 00000000:00000000 00:00000000 00000000     0        0 467 2 c118b360
+  48: 00000000:15B0 00000000:0000 07 00000000:00000000 00:00000000 00000000     0        0 438 2 c0881cc0
+  49: 00000000:15B1 00000000:0000 07 00000000:00000000 00:00000000 00000000     0        0 440 2 c11a2360
+  52: 00000000:15B4 00000000:0000 07 00000000:00000000 00:00000000 00000000     0        0 439 2 c11a2040
+  53: 00000000:15B5 00000000:0000 07 00000000:00000000 00:00000000 00000000     0        0 441 2 c11a2680
+#+end_src
+
+** /proc/net/tcp
+
+#+begin_src
+sl  local_address rem_address   st tx_queue rx_queue tr tm->when retrnsmt   uid  timeout inode                                    >
+ 0: 00000000:0402 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 469 1 c118b680 300 0 0 2 -1              >
+ 1: 00000000:0050 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 437 1 c08819a0 300 0 0 2 -1              >
+ 2: 00000000:0015 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 239 1 c0015040 300 0 0 2 -1              >
+ 3: 640010AC:057E 010010AC:B88C 01 00000000:00000000 02:000AFC7F 00000000     0        0 2020 2 c0f969a0 21 0 0 2 -1              >
+ 4: 640010AC:057D 010010AC:E948 06 00000000:00000000 03:00001676 00000000     0        0 0 2 c10ae240                             >
+ 5: 640010AC:0015 010010AC:8476 01 0000003E:00000000 01:00000016 00000000     0        0 1649 4 c0f96360 22 4 5 2 -1              >
+#+end_src
+
+** /etc
+
+#+begin_src
+ftp> dir
+227 Entering Passive Mode (172,16,0,100,4,181)
+150 Opening ASCII mode data connection for '/bin/ls'.
+-rw-r--r--    1 root     root           25 Nov 20  2008 auto.cf
+lrwxrwxrwx    1 root     root           21 Nov 20  2008 conf.d -> /mnt/flash/etc/conf.d
+drwxr-xr-x    3 root     root         1024 Nov 20  2008 default
+-rw-r--r--    1 root     root           18 Nov 20  2008 firmware-version
+lrwxrwxrwx    1 root     root           20 Jan  1  1970 fstab -> /mnt/flash/etc/fstab
+lrwxrwxrwx    1 root     root           20 Jan  1  1970 group -> /mnt/flash/etc/group
+-rw-r--r--    1 root     root           35 Nov 20  2008 hosts
+lrwxrwxrwx    1 root     root           25 Jan  1  1970 inetd.conf -> /mnt/flash/etc/inetd.conf
+drwxr-xr-x    2 root     root         1024 Nov 20  2008 init.d
+-rw-r--r--    1 root     root           90 Nov 20  2008 inittab
+-rw-r--r--    1 root     root          268 Nov 20  2008 localtime
+lrwxrwxrwx    1 root     root           22 Nov 20  2008 network -> /mnt/flash/etc/network
+-rw-r--r--    1 root     root         1755 Nov 20  2008 nsswitch.conf
+lrwxrwxrwx    1 root     root           21 Jan  1  1970 passwd -> /mnt/flash/etc/passwd
+lrwxrwxrwx    1 root     root           18 Nov 20  2008 ppp -> /mnt/flash/etc/ppp
+-rw-r--r--    1 root     root          133 Nov 20  2008 profile
+-rw-r--r--    1 root     root         5810 Nov 20  2008 protocols
+lrwxrwxrwx    1 root     root           20 Nov 20  2008 rcK.d -> /mnt/flash/etc/rcK.d
+lrwxrwxrwx    1 root     root           20 Nov 20  2008 rcS.d -> /mnt/flash/etc/rcS.d
+-rw-r--r--    1 root     root           44 Jan  1 03:48 resolv.conf
+lrwxrwxrwx    1 root     root           23 Jan  1  1970 services -> /mnt/flash/etc/services
+lrwxrwxrwx    1 root     root           22 Nov 20  2008 sysconf -> /mnt/flash/etc/sysconf
+-rw-r--r--    1 root     root          179 Nov 20  2008 sysinfo
+lrwxrwxrwx    1 root     root           26 Jan  1  1970 syslog.conf -> /mnt/flash/etc/syslog.conf
+-rw-r--r--    1 root     root          244 Nov 20  2008 thttpd.conf
+drwxr-xr-x    2 root     root         1024 Nov 20  2008 udhcpc
+226 Transfer complete.
+#+end_src
+
+** /etc/init.d
+|--------------+----------------------|
+| bbcrond      |                      |
+| bootlogger   |                      |
+| ddnsc        |                      |
+| drmd         |                      |
+| eventd       |                      |
+| farseer      |                      |
+| functions    |                      |
+| heartbeat    |                      |
+| hresetd      |                      |
+| inetd        |                      |
+| led          | ledswitch 0/1 off/on |
+| .listing     |                      |
+| netfs        |                      |
+| network      |                      |
+| network_lvlo |                      |
+| rcS          |                      |
+| restore      |                      |
+| synctime     |                      |
+| sysklogd     |                      |
+| udhcpc       |                      |
+| upnpdd       |                      |
+| upnpigdcp    |                      |
+| urecorder    |                      |
+| watchdog     |                      |
+|--------------+----------------------|
+** /usr/bin
+
+adsl-test-start
+adsl-test-stop
+arp-update
+boot-logger
+closeallfd
+config-wlan
+crontab-generator
+ddnsrc
+event_ftp
+event_mail
+firmunpack
+flash_erase
+flash_eraseall
+flashmgr
+ftpmput
+gen-mailftpconf
+gen_etc_confd_ddnscconf
+gen_etc_confd_ledconf
+gen_etc_confd_mailftpconf
+gen_etc_confd_timezone
+gen_etc_confd_upnpcpconf
+gen_etc_confd_upnpddconf
+gen_etc_network_interfaces
+gen_etc_network_wirelessconf
+get_snapshot
+gpioutil
+ifswitch
+ini2conf
+ini2shvar
+ipchevent
+ipchscript
+isprivateip
+ledswitch
+lspci
+mkfs.jffs2
+mod_inetd_conf
+mtd_debug
+netdriver
+pppoeip2config
+read-reset-button
+reloadconfigini
+remote_syslog
+setpci
+site_survey
+smtpclient
+soft-reboot
+soft-reboot-bg
+start-eventd
+stop-eventd
+sysparam
+update_etc
+update_firmpkg
+update_upnpportfor
+wireless_test
+wlaninfo
+wlconn_test
+** /usr/sbin
+
+autoip
+automount
+ddnsc
+drmd
+dumpnetif
+eventd
+facmode
+farseer.out
+ftp
+ftpd
+heartbeat
+hresetd
+inetd
+iptype
+parsenetif
+parsepppif
+psntpdate
+rcp
+rlogind
+rshd
+setdns
+startip
+swatchdog
+telnetd
+upnpdd
+upnpigdcp
+urecorder
+** /sbin
+
+adsl-connect
+adsl-start
+adsl-status
+adsl-stop
+iwconfig
+iwlist
+iwpriv
+klogd
+mii-tool
+poff -> /sbin/adsl-stop
+pon -> /sbin/adsl-start
+pppd
+pppoe
+syslogd
+watchdog
+
+* ports
+
+#+begin_src
+PORT     STATE SERVICE REASON  VERSION
+21/tcp   open  ftp     syn-ack GNU Inetutils FTPd 1.4.2
+80/tcp   open  http    syn-ack Vivotek IP7131 Network Camera http config
+1026/tcp open  rtsp    syn-ack Vivotek IP7131 or IP7138 webcam rtspd
+#+end_src
+
+**   21 ftp
+
+root/1234
+HOME=/mnt/ramdisk
+
+#+begin_src
+$ ftp 172.16.0.100
+Connected to 172.16.0.100.
+220 Network-Camera FTP server (GNU inetutils 1.4.2) ready.
+Name (172.16.0.100:foobar): root
+331 Password required for root.
+Password:
+230 User root logged in.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+#+end_src
+
+*** strings ftpd
+
+#+begin_src sh
+flash.pkg
+flash.bin
+l1all.bin
+l2boot.bin
+update_firmpkg FTP
+214-firmware upgrade begin
+/etc/init.d/farseer stop > /dev/null
+/etc/init.d/inetd stop > /dev/null
+config.ini
+append
+Transfer complete.
+/usr/bin/reloadconfigini
+Rebooting system now !!
+This connection will close
+214 firmware upgrade exit
+reboot
+Upgrade L2 boot image
+/usr/bin/flashmgr writel2boot /mnt/ramdisk/l2boot.bin
+Upgrade L1 bootloader image
+/usr/bin/flashmgr writel1boot /mnt/ramdisk/l1all.bin
+Upgrade system image
+/usr/bin/flashmgr writebootp /mnt/ramdisk/flash.bin
+Upgrade ROM image
+/usr/bin/flashmgr writeall /mnt/ramdisk/flashall.bin
+Transfer complete (unique file name:%s).
+Use BINARY mode to upgrade firmware
+
+/opt/Vivotek/lsp/vivaldi-2.0.0.0/tools/arm-linux/etc/ftpchroot
+GCC: (GNU) 3.3.2 20031005 (Debian prerelease)
+#+end_src
+
+**   80 http
+
+#+begin_src
+http://172.16.0.100/
+http://172.16.0.100/cgi-bin/admin/showlog.cgi
+#+end_src
+
+*** /cgi-bin/admin/
+|---------------------------+----------------------|
+| ddns_reg.cgi              |                      |
+| ddnsupdate_stat.cgi       |                      |
+| gen-eventd-conf.cgi       |                      |
+| gen-new-eventd-conf.cgi   |                      |
+| net_conn_type.cgi         | 00 Ethernet          |
+| netstat.cgi               | shows IP config vars |
+| pppoe_stat.cgi            | 02 Disable           |
+| pppoe_test_getresult.cgi  |                      |
+| pppoe_test_start.cgi      |                      |
+| pppoe_test_stop.cgi       |                      |
+| show-eventd-conf.cgi      |                      |
+| showlog.cgi               | /var/log/messages    |
+| show-new-eventd-conf.cgi  |                      |
+| show-snapshot1-conf.cgi   |                      |
+| show-snapshot2-conf.cgi   |                      |
+| show-videoclip-conf.cgi   |                      |
+| sitesurvey.cgi            |                      |
+| soft_reboot.cgi           |                      |
+| upnpcp_stat.cgi           |                      |
+| upnppf_port.cgi           |                      |
+| upnppf_stat.cgi           |                      |
+| wlan_ch.cgi               | 1 11                 |
+| wlconn_test_getresult.cgi | 02 Not found         |
+| wlconn_test_start.cgi     |                      |
+| wlconn_test_stop.cgi      |                      |
+|---------------------------+----------------------|
+** 1026 rtsp
+
+#+begin_src
+  $ mpv rtsp://172.16.0.100:1026/test
+#+end_src
+
+**    0 UDP
+
+#+begin_src sh
+PORT      STATE         SERVICE       REASON
+5552/udp  open|filtered unknown       no-response
+5553/udp  open|filtered sgi-eventmond no-response
+5556/udp  open|filtered freeciv       no-response
+5557/udp  open|filtered unknown       no-response
+10000/udp closed        ndmp          port-unreach ttl 64
+10001/udp closed        scp-config    port-unreach ttl 64
+10002/udp closed        documentum    port-unreach ttl 64
+10003/udp closed        documentum_s  port-unreach ttl 64
+MAC Address: 00:02:D1:0A:CE:1C (Vivotek)
+#+end_src
+
+#+begin_src sh
+$ curl http://172.16.0.100/cgi-bin/admin/upnppf_port.cgi
+
+  80 TCP HTTP port
+1026 TCP RTSP port
+5556 UDP RTP port for audio
+5557 UDP RTCP port for audio
+5552 UDP RTP port for video
+5553 UDP RTCP port for video
+#+end_src
+
 * audio
 - UDA1345TS
 - GSM-AMR/MPEG4 AAC
 * snippets
-
-- visit http://172.16.0.100/
-- no DHCP by default
-
 ** direct network access
 
 #+begin_src sh
@@ -61,8 +451,9 @@
   $ sudo ip link set dev eth1 up
 #+end_src
 
-** check video with mpv
+** clone dir
 
 #+begin_src sh
-  $ mpv rtsp://172.16.0.100:1026/test
+  wget -m ftp://root:1234@172.16.0.100/../flash/
 #+end_src
+

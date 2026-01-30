@@ -88,6 +88,9 @@
 - gEDA
 - fritzing
 - https://www.freepcb.com/
+- circuit design
+  - logic inputs should be on left or up
+  - logic outputs should be on right or down
 
 ** KiCad
 
@@ -97,6 +100,7 @@
   - 1992
   - Jean-Pierre Charras
 
+- Electronic CAD libraries http://smisioto.no-ip.org/elettronica/kicad/kicad-en.htm
 - Course
   - DigiKey https://www.youtube.com/playlist?list=PLEBQazB0HUyR24ckSZ5u05TZHV9khgA1O
   - PlumPot https://www.youtube.com/playlist?list=PLZNH6jlLeFXsg9ohRMbJ0qqSfUrRyAn7b
