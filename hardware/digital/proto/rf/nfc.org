@@ -1,3 +1,5 @@
+- Subset of RFID
+- Hardware: Proxmark
 - https://tools.kali.org/wireless-attacks/mfcuk
 - https://tools.kali.org/wireless-attacks/mfterm
 - https://tools.kali.org/wireless-attacks/mfoc

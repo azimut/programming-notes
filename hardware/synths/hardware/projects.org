@@ -1,3 +1,14 @@
+- casperelectronics
+  - oscillators
+    - https://www.youtube.com/watch?v=FaoJaLmZaL4&t=709s
+    - https://bastl-instruments.com/support/tutorials/omsynth-project-1
+  - sequencers
+    - https://www.youtube.com/watch?v=t7JYOIYqMEY&t=357s
+    - https://bastl-instruments.com/support/tutorials/omsynth-project-2
+  - lofi sampler
+    - https://www.youtube.com/watch?v=ECSYLTB_sbw
+    - https://bastl-instruments.com/support/tutorials/omsynth-project-3
+
 - Projects by "Gadget Reboot" https://www.youtube.com/playlist?list=PLDnEejiR3mBx6eKRuZLWoyBhbLhnrtvyz
 - Builders https://sdiy.info/wiki/List_of_synth_DIY_repositories
 - DIY Modules https://sdiy.info/wiki/List_of_synth_DIY_repositories
@@ -105,14 +116,15 @@
 - Meter Reader http://www.muzines.co.uk/articles/meter-reader/3315
 - Breath Control http://www.muzines.co.uk/articles/the-miniblo/7963
 
-
 - Pa Signal Processor
   - http://www.muzines.co.uk/articles/pa-signal-processor/2706
   - http://www.muzines.co.uk/articles/pa-signal-processor/3557
+
 - Hi-Fi
   - http://www.muzines.co.uk/articles/hi-fi/2699
   - http://www.muzines.co.uk/articles/hi-fi/2726
   - http://www.muzines.co.uk/articles/hi-fi/3562
+
 - Vero Project
   - Tone http://www.muzines.co.uk/articles/vero-project-1-tone-generator/2626
   - Amp http://www.muzines.co.uk/articles/vero-project-2-test-amplifier/2627
@@ -170,6 +182,9 @@
 * IMSAI Guy - VCA(OTA) - OSC(OPAMP)
 
 https://www.youtube.com/playlist?list=PLrPxXQRRbyP2NnIWBZUzg5e1SDTF_J4W9
+
+not modular
+
 1) #1197
    - Output phase (opamp + potentiometer)
    - White Noise generator (zener diode)

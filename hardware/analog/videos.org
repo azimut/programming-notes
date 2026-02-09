@@ -2,6 +2,9 @@
 
 * channels
 
+- projects https://www.youtube.com/playlist?list=PL3v2frUD-CMkgdr2Snf_balC0EergqYjM
+  - sun tracker https://www.youtube.com/watch?v=Q7smbj3Yt3M
+    - comparator, audio meter, h bridge
 - https://www.youtube.com/c/Electr%C3%B3nicaFP/videos
 - https://www.youtube.com/@GadgetReboot
 - IMSAI guy basics https://www.youtube.com/playlist?list=PLXDK0MeyK4Zj7aS1_kkNKaRwiWeBhNZb0

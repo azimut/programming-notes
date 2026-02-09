@@ -1,0 +1,22 @@
+- https://en.wikipedia.org/wiki/27_MHz_CB27/81_Bandplan
+- https://es.wikipedia.org/wiki/Banda_ciudadana
+
+* article
+
+- https://www.talkingelectronics.com/projects/27MHz%20Transmitters/27MHzLinks-1.html
+- https://www.talkingelectronics.com/projects/27MHz%20Transmitters/27MHzLinks-2.html
+- pdf https://www.hobbielektronika.hu/forum/getfile.php?id=349609
+
+* video
+
+- Reverse Engineering a 27MHz Radio Controller Transmitter
+  - buys the crystal for the carrier (27Mhz)
+  - uses arduino for duty cycle generation
+  - https://www.youtube.com/watch?v=Su7VNLW8jWU
+  - https://www.youtube.com/watch?v=pMZoyhXmbr4
+  - https://www.youtube.com/watch?v=9CpsH4miXKk
+  - https://www.youtube.com/watch?v=3Ie56eApfZU
+  - https://www.youtube.com/watch?v=smSFZksTrEA
+- 21 27MHz super regen receiver and more https://www.youtube.com/watch?v=5o9P19HSCqE
+- 20 HIGH POWER 27Mhz transmitter 1.5 watt. Stable+Schematic and band Scan https://www.youtube.com/watch?v=sRaibKi6QuY
+- 16 INTRODUCTION INTO A SUPER REGENERATIVE RECEIVER CIRCUIT - CB 27MHz AM https://www.youtube.com/watch?v=qvpvn6T5PBQ

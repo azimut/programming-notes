@@ -18,101 +18,174 @@
 
 - ME: After a "NAND/NOR expansion" it could be that it can be further simplified to less gates than you started with.
 
-- MUX - Multiplexores
-  - Output: 1 output
-  - Input
-    - 1 CLOCK
-    - N individual input channels/pins
-    - N selection input pins, in binary
-  - Daisy Chained
-    - by OR-ing the output
-    - tying common selection inputs, with inputs
-    - and with input MSB split to each ENABLE with/without a NOT
-  - IC: 74150/1, 74157 (bus)
-  - TIP: can be used to replace logic gates, by mocking a truth table
-
-- Codificadores: dec -> binary
-- Decodificadores: binary -> decimal
-  - INPUT: parallel, a number in binary
-  - OUTPUT: a pin per possible decimal number
-  - ICs: 74154, 7442, 74138
-  - TIP: can be used to save on using logic gates, by hooking desired outputs to an OR
-  - TIP: ENABLE input pin can also be used to daisy chain multiple deco
-    - MSB to ENABLE and not(ENABLE)
-
 - tutorial http://r-luis.xbot.es/edigital/ed_ref.html
 - https://en.wikipedia.org/wiki/Schmitt_trigger
 - ⭐ https://en.wikipedia.org/wiki/Tyranny_of_numbers
   - video 1960 [[https://www.youtube.com/watch?v=4qlcBWkSHjk][The Tyranny Of Large Numbers]]
 - https://en.wikipedia.org/wiki/Programmer_(hardware)
-- Algebra
-  - simplification: boolean equivalence https://www.electronics-tutorials.ws/boolean/bool_6.html
-  - transformation https://en.wikipedia.org/wiki/De_Morgan%27s_laws
-    - "si parto cambio el signo"
-  - simplification https://en.wikipedia.org/wiki/Karnaugh_map
-    - of sum of products
-    - a way to solve boolean equivalences
-    - draw directly from truth table
-    - less or equal to 4 input vars (otherwise try Quine-McCluskey)
-  - Bubble Pushing https://digital-ic.com/de-morgans-law-and-bubble-pushing-solved-problems-step-by-step/
-    - simplification to NAND/NOR
-    - derived from De Morgan (?)
-    - works for any N of inputs
-    - by adding 2 bubbles in a line
-    - by transforming to NAND/NOR
-- Digital Circuits - Dave Astels
-  1) binary https://learn.adafruit.com/binary-boolean-and-logic?view=all
-  2) some digital tools https://learn.adafruit.com/some-digital-tools?view=all
-  3) combinational logic https://learn.adafruit.com/combinational-logic?view=all
-  4) sequential circuits https://learn.adafruit.com/digital-circuits-4-sequential-circuits?view=all
-  5) memories https://learn.adafruit.com/digital-circuits-5-memories?view=all
-  6) EPROM emulator https://learn.adafruit.com/digital-circuits-6-eprom-emulator?view=all
-  7) MCUs https://learn.adafruit.com/mcus-how-do-they-work?view=all
-- Counters
-  - https://en.wikipedia.org/wiki/Ring_counter
-  - https://www.electronics-tutorials.ws/counter/count_1.html
-- Combinational Logic
-  - https://www.electronics-tutorials.ws/combination/comb_1.html
-- Flip-Flop https://en.wikipedia.org/wiki/Flip-flop_(electronics)
-  - aka latches, aka bistable multivibrator
-  - have 2 stable states
-  - can store state information
+- ICS:
+  - have a ~propagation delay~ measured in ns
+  - have a consumption measured in mW
+  - HIGH: 2.4v (~3.4v)
+  - LOW: 0.4v (~0.2v)
+  - gives 16mA max LOW
+  - gives 400uA max HIGH
 
-- https://leap.tardate.com/notebook/logic_families/
-- Playlist
-  - Electronica FP - Electronica Digital https://www.youtube.com/playlist?list=PLuzS0jdNRVvpQmCxFV4S2eqfji90BnDub
-  - Sebastian Lague - How Computers Work https://www.youtube.com/playlist?list=PLFt_AvWsXl0dPhqVsKt1Ni_46ARyiCGSq
-  - Intermation -  Computer Organization and Design Fundamentals https://www.youtube.com/playlist?list=PLxfrSxK7P38X7XfG4X8Y9cdOURvC7ObMF
-  - Zahi Haddad -  Digital Logic https://www.youtube.com/playlist?list=PL21KuaIMCPGoiDogGSxbBtnkmBMM_-6o3
+* Algebra
 
-* 2015 Ben Eater's - Digital electronics tutorial
+- simplification: boolean equivalence https://www.electronics-tutorials.ws/boolean/bool_6.html
+- transformation https://en.wikipedia.org/wiki/De_Morgan%27s_laws
+  - "si parto cambio el signo"
+- simplification https://en.wikipedia.org/wiki/Karnaugh_map
+  - of sum of products
+  - a way to solve boolean equivalences
+  - draw directly from truth table
+  - less or equal to 4 input vars (otherwise try Quine-McCluskey)
+- Bubble Pushing https://digital-ic.com/de-morgans-law-and-bubble-pushing-solved-problems-step-by-step/
+  - simplification to NAND/NOR
+  - derived from De Morgan (?)
+  - works for any N of inputs
+  - by adding 2 bubbles in a line
+  - by transforming to NAND/NOR
 
-https://www.youtube.com/playlist?list=PLowKtXNTBypETld5oX1ZMI-LYoA2LWi8D
+* Combinational Logic
 
-** Experimenting with LEDs (1-3)
+https://www.electronics-tutorials.ws/combination/comb_1.html
 
-- Each LED color has
-  - different voltage range (?
-  - same current requirement (within the voltage range)
+** Multiplexores
 
-- Kirchhoff’s Voltage Law (KVL)
-  - the voltage drops across every component has to be zero
-  - if we put 1 component that component has to consume 5v
-  - In the example, a 155ohm resistor would drop 3.1v of the circuit.
-    - Leaving the LED with 1.9v.
-    - It needs 20mA
-    - In reality we use a 220ohm (RRB)
-    - If we put an 1k (BbR) it will be a bit dimmer.
-      With less current consumption.
+- Output: 1 output
+- Input
+  - 1 CLOCK
+  - N individual input channels/pins
+  - N selection input pins, in binary
+- Daisy Chained
+  - by OR-ing the output
+  - tying common selection inputs, with inputs
+  - and with input MSB split to each ENABLE with/without a NOT
+- IC: 74150/1, 74157 (bus)
+- TIP: can be used to replace logic gates, by mocking a truth table
 
-** Connecting to a Mystery signal (4-)
+** Codificadores: decimal -> binary
+** Decodificadores: binary -> decimal
 
+- OUTPUT: a pin per possible decimal number
+- INPUT: parallel, a number in binary
+- ICs: 74154, 7442, 74138
+- TIP: can be used to save on using logic gates, by hooking desired outputs to an OR
+- TIP: ENABLE input pin can also be used to daisy chain multiple deco
+  - MSB to ENABLE and not(ENABLE)
 
+** Counters
+
+- https://en.wikipedia.org/wiki/Ring_counter
+- https://www.electronics-tutorials.ws/counter/count_1.html
+
+** Project: BCD
+
+https://www.electricaltechnology.org/2018/05/bcd-to-7-segment-display-decoder.html
+
+* Sequential Logic
+
+https://en.wikipedia.org/wiki/Sequential_logic
+https://en.wikipedia.org/wiki/Finite-state_machine
+
+In automata theory, sequential logic is a type of logic circuit whose output depends on:
+- the present value of its input signals
+- and on the sequence of past inputs, the input history.
+
+This is in contrast to combinational logic, whose output is a function of only the present input. That is, sequential logic has state (memory) while combinational logic does not.
+
+** Flip-Flop
+
+https://en.wikipedia.org/wiki/Flip-flop_(electronics)
+Ben Eater https://www.youtube.com/playlist?list=PLEJ4ZX3tdB692QvbCDnn6wrJGU0kTMY8P
+- aka latches, aka bistable multivibrator
+- have 2 stable states
+- can store state information
+
+*** S(et)R(eset) Latch
+
+- A simple ~OR~ gate can *hold/latch* an input value
+  - if one input is hooked directly to the output of it
+  - even if retriggered, it will keep holding the value, until poweroff
+  - IC: 7432
+   #+ATTR_ORG: :width 700
+   [[./srlatchOR.jpg]]
+
+- If we want a way to *reset* the latch, we could use 2 ~NOR~ gates (aka cross coupled gates)
+  - is an ~active-high~ latch
+  - with the output inverted (feeding the other NOR gate)
+  - 4 I/O's usually labeled S/R and Q/Ǭ
+  - setting both inputs HIGH is an _invalid state_
+  - it is completely random which gate will start with 1
+  - IC: 7402
+   #+ATTR_ORG: :width 600
+   [[./srlatchNOR.jpg]]
+
+- We could have used 2 ~NAND~ gates and would be ~active-low~ latch
+
+*** D(ata)       Latch
+
+- We want instead of 2 INPUTS, a single INPUT instead, that still latches one bit of *Data*
+  - A naive approach of feeding D and Di (D inverse) would NOT latch/keep
+
+#+ATTR_ORG: :width 750
+[[./dlatch.jpg]]
+
+- Modifications before the SR-latch
+  - Add 2(two) *AND* gates
+  - Add an *Enable Input* signal, to only change data when signaled
+  - Add an *inverter* to decouple the input data
+
+*** D            flip-flop
+
+- (End of review 00:03:00)
+
+- A variation of the D-latch
+- To only latch to new values, at transitions of the clock from low to high.
+  - and NOT latch through the whole clock cycle
+  - instead of the *Enable Input* we have a *Clock Input*
+  - with an ~edge detector~, to detect a raising into a pulse
+    1) With an AND with inputA and inputA negated.
+       We take advantage of the fact that the *invertor* takes a small amount of time to switch states
+    2) Simpler yet.
+       A resistor and a capacitor.
+       When the capacitor is fully charged, no current will go through it.
+       #+begin_src
+       ----||-----o------
+                  |
+                  Z
+                  Z
+                  |
+                 GND
+       #+end_src
+       - 0.1uf = 0.1 * 10^-6
+         1K = 10^3
+         0.1 * 10^-6 * 10^3 = 0.1ms is how long the pulse will last
+
+** Project: Clock
+
+- video Building a digital clock kit with no microcontroller https://www.youtube.com/watch?v=0hwWnPxKU14
+- english https://duino4projects.com/learning-sequential-logic-design-digital-clock/?utm_source=chatgpt.com
+- spanish https://www.askix.com/diseno-de-la-logica-secuencial-para-un-reloj-digital-de-aprendizaje.html
+- https://tusolucionelectronica.blogspot.com/2014/10/reloj-digital.html
+
+- alternative
+  - rcd trip timer https://www.youtube.com/watch?v=DnsAoYIOmUg
+  - tachometer https://www.youtube.com/watch?v=qm3rqlt-Sw8
+  - freq counter https://www.youtube.com/watch?v=TmSOcC5NAng
+    - <1Mhz
+  - capacitance meter https://www.youtube.com/watch?v=vf8GL3gzulc
+    - <5000uf
+  - resistance meter https://www.youtube.com/watch?v=8XtH9zHaEHg
+    - >10k
 
 * Logic Families
 
 https://en.wikipedia.org/wiki/Logic_family
 https://www.youtube.com/watch?v=1TpLYx1iZD4
+https://leap.tardate.com/notebook/logic_families/
 
 - Both 5v
 - Output level for high signal
@@ -142,3 +215,51 @@ https://www.youtube.com/watch?v=1TpLYx1iZD4
 - NMOS AND-by-default logic can produce unusual glitches or buggy behaviour, such as 6502 "illegal opcodes"
 - in the 70's faster than CMOS
 - high power consumption
+* 2015 Ben Eater's - Digital electronics tutorial
+
+https://www.youtube.com/playlist?list=PLowKtXNTBypETld5oX1ZMI-LYoA2LWi8D
+
+** Experimenting with LEDs (1-3)
+
+- Each LED color has
+  - different voltage range (?
+  - same current requirement (within the voltage range)
+
+- Kirchhoff’s Voltage Law (KVL)
+  - the voltage drops across every component has to be zero
+  - if we put 1 component that component has to consume 5v
+  - In the example, a 155ohm resistor would drop 3.1v of the circuit.
+    - Leaving the LED with 1.9v.
+    - It needs 20mA
+    - In reality we use a 220ohm (RRB)
+    - If we put an 1k (BbR) it will be a bit dimmer.
+      With less current consumption.
+
+** Connecting to a Mystery signal (4-)
+
+* Playlists
+
+- Electronica FP - Electronica Digital https://www.youtube.com/playlist?list=PLuzS0jdNRVvpQmCxFV4S2eqfji90BnDub
+- Sebastian Lague - How Computers Work https://www.youtube.com/playlist?list=PLFt_AvWsXl0dPhqVsKt1Ni_46ARyiCGSq
+- Intermation -  Computer Organization and Design Fundamentals https://www.youtube.com/playlist?list=PLxfrSxK7P38X7XfG4X8Y9cdOURvC7ObMF
+- York University - Computer Organization and Architecture (EECS2021E) (RISC-V Version) - Fall 2019 (23 Lectures) https://www.youtube.com/playlist?list=PL-Mfq5QS-s8iUJpNzCOtQKRfpswCrPbiW
+- Zahi Haddad -  Digital Logic https://www.youtube.com/playlist?list=PL21KuaIMCPGoiDogGSxbBtnkmBMM_-6o3
+- RO22 - Técnicas Digitales - Alejandro Picciochi https://www.youtube.com/playlist?list=PLLuRr8RHc2lY7Ry9gKjUCdVa-NQmX_-yp
+- Digital Logic by Jack Buffington https://www.youtube.com/playlist?list=PLyG2VxFPjWqDDbo1FKEvzMvj33fI22weJ
+- Computer Science by CrashCourse https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo
+- EEVacademy Digital Design Tutorial Series https://www.youtube.com/playlist?list=PLvOlSehNtuHs2LwEdDwTp3n7mxb-MyBbo
+- 6.004 | Computation Structures
+  - Fall 2018 https://www.youtube.com/@silvinahanonowachman3310/videos
+  - Sprint 2017 https://www.youtube.com/playlist?list=PLUl4u3cNGP62WVs95MNq3dQBqY2vGOtQ2
+  - https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/
+
+* Course: Digital Circuits - Dave Astels
+
+  1) binary https://learn.adafruit.com/binary-boolean-and-logic?view=all
+  2) some digital tools https://learn.adafruit.com/some-digital-tools?view=all
+  3) combinational logic https://learn.adafruit.com/combinational-logic?view=all
+  4) sequential circuits https://learn.adafruit.com/digital-circuits-4-sequential-circuits?view=all
+  5) memories https://learn.adafruit.com/digital-circuits-5-memories?view=all
+  6) EPROM emulator https://learn.adafruit.com/digital-circuits-6-eprom-emulator?view=all
+  7) MCUs https://learn.adafruit.com/mcus-how-do-they-work?view=all
+

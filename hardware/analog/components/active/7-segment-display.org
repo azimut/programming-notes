@@ -5,10 +5,6 @@
 - Types
   - common cathode (more common)
   - common anode
-- IC: 7446/7/8 - BCD to 7-segment display
-  - Input Pin LT: Lamp test
-  - Input Pin RBI: Ripple Blanking Input (for cascading)
-  - Input Pin RBO: Ripple Blanking Output (skip leading zeros)
 
 *  1 digit
 
@@ -35,6 +31,12 @@
   - 1 extra pin *for each* digit, to chip select them
     - aka scan lines
     - aka "address bus"
+
+* IC: 7446/7/8 - BCD to 7-segment display
+
+- Input Pin LT: Lamp test
+- Input Pin RBI: Ripple Blanking Input (for cascading)
+- Input Pin RBO: Ripple Blanking Output (skip leading zeros)
 
 * matrix
 

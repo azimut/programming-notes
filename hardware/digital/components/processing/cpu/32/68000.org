@@ -1,0 +1,2 @@
+- wiki https://en.wikipedia.org/wiki/Motorola_68000_series
+- rtos https://en.wikipedia.org/wiki/PSOS_(real-time_operating_system)

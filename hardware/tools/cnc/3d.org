@@ -62,7 +62,7 @@
 * todo ideas
 
 - PCBite (helping hands for circuits)
-  [[https://github.com/f3nter/HardBreak/raw/main/.gitbook/assets/IMG_0561.jpeg]]
+  https://github.com/f3nter/HardBreak/raw/main/.gitbook/assets/IMG_0561.jpeg
 - Cases:
   - Pi
   - Tablet
@@ -72,3 +72,7 @@
 - Protoboard + aduino bottom
   - with screws
 - drawing dummy
+- camera mount
+  - gimbal
+  - ball and socket
+  - condyloid

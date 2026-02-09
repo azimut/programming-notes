@@ -1,2 +1,7 @@
-- [[https://www.youtube.com/playlist?list=PLu0BPYzTjiHru1KmPThmbY-8rRm3EWvUQ][SDR with HackRF]]
-- [[https://www.youtube.com/playlist?list=PLu0BPYzTjiHqnqMgh0Gg5TAcrTiOeW76P][HackRF]]
+- Software: GNURadio, OSMOCOM, sdrsharp, sdr++, hdsdr, sdrconsole
+- Hardware: [[https://www.youtube.com/playlist?list=PLu0BPYzTjiHqnqMgh0Gg5TAcrTiOeW76P][HackRF]]
+  - [[https://www.youtube.com/playlist?list=PLu0BPYzTjiHru1KmPThmbY-8rRm3EWvUQ][SDR with HackRF]]
+- Hardware: BladeRF
+- Hardware: PandaRF
+- https://tools.kali.org/wireless-attacks/gqrx
+- https://tools.kali.org/wireless-attacks/gr-scan

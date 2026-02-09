@@ -78,6 +78,18 @@
 |-----+---------+-----------------------------------|
 * software
 
+- CAD
+  - https://en.wikipedia.org/wiki/OpenSCAD
+    - addon https://github.com/BelfrySCAD/BOSL2
+    - new python scripting https://pythonscad.org/
+  - https://en.wikipedia.org/wiki/FreeCAD
+    - constrain solver
+  - https://en.wikipedia.org/wiki/Autodesk_Fusion
+  - antimony https://github.com/mkeeter/antimony
+  - http://www.implicitcad.org/
+  - rhino https://www.rhino3d.com/
+    - algorithmic scripting https://www.grasshopper3d.com/
+
 - $ https://www.vectric.com/products/cut2d/
 
 - firmware

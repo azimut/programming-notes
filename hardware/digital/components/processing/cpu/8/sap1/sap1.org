@@ -12,6 +12,7 @@
 [[https://karenok.github.io/SAP-1-Computer/images/sap-1-architecture.png]]
 
 - digital https://www.youtube.com/@Kevindarrah/videos
+- Simple Usable (TTL) CPU? https://www.youtube.com/playlist?list=PLYlQj5cfIcBU5SqFe6Uz4Q31_6VZyZ8h5
 - 19 Learn How Computers Work Between Silicon and Assembly: Build a CPU with Python https://www.youtube.com/watch?v=iJqCMoAMlMA
 
 * Video: My Ben Eater inspired homemade 8-bit CPU
@@ -55,64 +56,6 @@ https://www.youtube.com/watch?v=HyznrdDSSGM
 
 #+ATTR_ORG: :width 600
 [[./555allnandclock.jpg]]
-
-** Latches
-*** S(et)R(eset) Latch
-
-- A simple OR gate can *hold/latch* an input value
-  - if one input is hooked directly to the output of it
-  - even if retriggered, it will keep holding the value, until poweroff
-  - Example circuit uses an ~74LS32~
-   #+ATTR_ORG: :width 700
-   [[./srlatchOR.jpg]]
-
-- If we want a way to *reset* the latch, we could use 2 NOR gates
-  - with the output inverted (feeding the other NOR gate)
-  - 4 I/O's usually labeled S/R and Q/Ǭ
-  - setting both inputs ON is an _invalid state_
-  - it is completely random which gate will start with 1
-  - Example circuit uses an ~74LS02~
-   #+ATTR_ORG: :width 600
-   [[./srlatchNOR.jpg]]
-
-*** D(ata)       Latch
-
-- We want instead of 2 INPUTS, a single INPUT instead, that still latches one bit of *Data*
-  - A naive approach of feeding D and Di (D inverse) would NOT latch/keep
-
-#+ATTR_ORG: :width 750
-[[./dlatch.jpg]]
-
-- Modifications before the SR-latch
-  - Add 2(two) *AND* gates
-  - Add an *Enable Input* signal, to only change data when signaled
-  - Add an *inverter* to decouple the input data
-
-*** D            flip-flop
-
-- (End of review 00:03:00)
-
-- A variation of the D-latch
-- To only latch to new values at transitions of the clock from low to high.
-  - and NOT latch through the whole clock cycle
-  - instead of the *Enable Input* we have a *Clock Input*
-  - with an ~edge detector~, to detect a raising into a pulse
-    1) With an AND with inputA and inputA negated.
-       We take advantage of the fact that the *invertor* takes a small amount of time to switch states
-    2) Simpler yet.
-       A resistor and a capacitor.
-       When the capacitor is fully charged, no current will go through it.
-       #+begin_src
-       ----||-----o------
-                  |
-                  Z
-                  Z
-                  |
-                 GND
-       #+end_src
-       - 0.1uf = 0.1 * 10^-6
-         1K = 10^3
-         0.1 * 10^-6 * 10^3 = 0.1ms is how long the pulse will last
 
 ** 8 bit register
 

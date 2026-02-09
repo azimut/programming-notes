@@ -51,9 +51,9 @@ https://en.wikipedia.org/wiki/Field-programmable_gate_array
 *** Playlist
 - Curso FPGA https://www.youtube.com/watch?v=GLfnmc4Vv5U&list=PLIyIZGa1sAZqeQJ6Y02b7O8HV0gK25zc2
 - [[https://www.youtube.com/playlist?list=PLEBQazB0HUyT1WmMONxRZn9NmQ_9CIKhb][Intro to FPGA]] by digikey
-- 17 https://www.youtube.com/playlist?list=PLKcjQ_UFkrd7UcOVMm39A6VdMbWWq-e_c
-- 20 DE1-SoC FPGA Lectures
-  - https://www.youtube.com/playlist?list=PLDqMkB5cbBA4OW0fDTu1FY6aw4uBWOpBa
+- 17 [[https://www.youtube.com/playlist?list=PLKcjQ_UFkrd7UcOVMm39A6VdMbWWq-e_c][Hardware Acceleration via FPGA]]
+  - http://people.ece.cornell.edu/land/courses/ece5760/
+- 20 [[https://www.youtube.com/playlist?list=PLDqMkB5cbBA4OW0fDTu1FY6aw4uBWOpBa][Advanced Microcontroller Design and System on Chip]]
   - https://people.ece.cornell.edu/land/courses/ece5760/
 - Building a CPU on an FPGA - Robert Baruch
   https://www.youtube.com/playlist?list=PLEeZWGE3PwbZ44SUf1-vA-UuX9_J_pifB

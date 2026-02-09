@@ -20,8 +20,8 @@
   - reverb: hall room spring
 
 * Form Factors
+** Dimensions
 
-- Dimensions
   - 1" = 1 inch
   - 2.5" to 3" hex screws to mounts in eurorack
     - add a washer to prevent scratches
@@ -30,7 +30,8 @@
   - U = Height in rack U(nits), from the minimal spacing in an 1.75inch rack
   - Depth 10cm
 
-- Categories
+** Categories
+
   - Normalized switching scheme (eg: mini-moog, arp odyssey)
   - Hybrids (arp 2600)
   - Modules with patchcords
