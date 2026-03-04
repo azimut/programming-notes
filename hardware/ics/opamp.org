@@ -1,4 +1,4 @@
-|------+-----------------------|
+n|------+-----------------------|
 | V+   | non-inverting input   |
 | V-   | invertig input        |
 | Vout | output                |
@@ -15,25 +15,31 @@
   https://www.analog.com/en/resources/analog-dialogue/articles/opamp-issues-why-so-many-opamps.html
 
 - 1941 with vacuum tubes
-- 1963 first monolithic IC
+- 1963 first monolithic IC (uA702)
 
-- Is a Diferential Amplifier
+- Is a *Diferential Amplifier*
   - Amplifies the difference between the inputs (differential input)
+  - Inputs: (+)Non-Inverting Input, (-)Inverting Input
 - aka V+ minus V-
 - Supports both DC and AC
-- High gains (+100000x)
+- High gains (Av) >100k
 - VCVS = Voltage Controlled Voltage Source
+- Vout = A * (Vin1 - Vin2)
+  - A is gain
+  - if only opamp isn't saturated: |Vout|<Vs
+- made of ~23 transistors, resistors
 
-- Impedance
+- Impedance (aka resistance)
   - high INPUT (aka "no =current= can flow IN")
   - low OUTPUT (aka "we could draw as much =current= as we want")
 
 - Rules
-  1) no ~current~ flows IN or OUT of the inputs (V+, V-)
-     - think of the inputs like voltage sensors
+  1) no ~current~ flows IN or OUT of the INPUTS (V+, V-)
+     - think of the inputs like voltage sensors (aka the *virtual ground*)
      - they will detect voltage without interfering
-  2) tries to keep the inputs the same ~voltage~ (only for closed loop)
-     it does it with the output feedback
+  2) tries to keep the inputs the same ~voltage~
+     - applies ONLY for closed loops
+     - it does it with the output feedback
 
 - TIP: connection of unused https://www.ti.com/lit/ab/sboa204a/sboa204a.pdf
 
@@ -59,7 +65,7 @@
 |------+-----------------------------+-------------------------------------------|
 | V    | Input Offset Voltage        | input that causes 0v output               |
 | db   | Common Mode Rejection Ratio | ability to reject signal in both inputs   |
-| Hz   | Bandwidth                   | functional range                          |
+| Hz   | Bandwidth                   | functional frequency range                |
 | V/us | Slew Rate                   | rate of change of the output, when gain=1 |
 |------+-----------------------------+-------------------------------------------|
 
@@ -113,33 +119,37 @@
    - canNOT return negative voltages (chops it off)
 
 ** examples
-|---------+-----+---+----+-----+---------+----------------------------------------|
-|         | DIP | n | pw | Vcc | GBP Mhz |                                        |
-|---------+-----+---+----+-----+---------+----------------------------------------|
-| LM324   |  14 | 4 | s  |  32 |       1 | low current (~30mA)                    |
-| LM358   |   8 | 2 | s  |  32 |     1.2 | high ESD protection                    |
-| CA3140  |   8 | 1 | d  |  18 |     4.5 | MOS+Bip ++Iimp ++Oi                    |
-| CA3240  |   8 | 2 | d  |  18 |     4.5 | MOS+Bip ++Iimp ++Oi                    |
-| MCP6001 |   6 | 1 |    |   6 |         | rail-to-rail                           |
-| MCP6002 |   8 | 2 | s  |   6 |       1 | rail-to-rail output                    |
-| MCP6022 |   8 | 2 | s  |   6 |      10 | rail-to-rail output                    |
-| NE5532  |   8 | 2 | d  |  15 |      10 | BJT, low noise, hifi audio             |
-| NE5534  |     | 1 |    |     |         | BJT, lower distortion than 32          |
-| TL072   |   8 | 2 | d  |  20 |    5.25 | FET, low THD 0.0003                    |
-| TL074   |     |   |    |     |         | see TL084/2/1                          |
-| LM741   |   8 | 1 | d  |  18 |         | preamp? (old, do not use?)             |
-| LM1458  |   8 | 2 | d  |  18 |         |                                        |
-| LM339   |  14 | 4 | sd |  18 |         | comparator                             |
-| LM386   |   8 | 1 | s  |  15 |         | audio/power? amplifier (high output W) |
-| TLC081  |   8 | 1 |    |     |         | low input offset voltage               |
-|---------+-----+---+----+-----+---------+----------------------------------------|
-| LM1875  |     |   |    |     |         | high current                           |
-| LM4562  |   8 | 2 |    |     |         |                                        |
-| LM359   |     |   |    |     |         | Norton (aka current difference)        |
-| LM2900  |     |   |    |     |         | Norton                                 |
-| LM3900  |     |   |    |     |         | Norton                                 |
-|---------+-----+---+----+-----+---------+----------------------------------------|
-* use cases
+|---------+-----+---+----+-----+------+-------+------+------+----------------------------------------|
+|         | DIP | n | pw | Vcc | gain | Rin   | Iout |  GBP |                                        |
+|         |     |   |    |     |      | ohm   |   mA |  Mhz |                                        |
+|---------+-----+---+----+-----+------+-------+------+------+----------------------------------------|
+| L165    |     |   |    |     | 10k  | 0.5M  |   2A |    - |                                        |
+| 411     |     |   |    |     | 200k | 10^12 |   20 |    4 | used by "Art of Electronics"           |
+| LM324   |  14 | 4 | s  |  32 |      |       |   20 |    1 | low current (~30mA)                    |
+| LM358   |   8 | 2 | s  |  32 |      |       |      |  1.2 | high ESD protection                    |
+| CA3140  |   8 | 1 | d  |  18 |      |       |      |  4.5 | MOS+Bip ++Iimp ++Oi                    |
+| CA3240  |   8 | 2 | d  |  18 |      |       |      |  4.5 | MOS+Bip ++Iimp ++Oi                    |
+| MCP6001 |   6 | 1 |    |   6 |      |       |      |      | rail-to-rail                           |
+| MCP6002 |   8 | 2 | s  |   6 |      |       |      |    1 | rail-to-rail output                    |
+| MCP6022 |   8 | 2 | s  |   6 |      |       |      |   10 | rail-to-rail output                    |
+| NE5532  |   8 | 2 | d  |  15 |      |       |      |   10 | BJT, low noise, hifi audio             |
+| NE5534  |     | 1 |    |     |      |       |      |      | BJT, lower distortion than 32          |
+| TL072   |   8 | 2 | d  |  20 |      |       |      | 5.25 | FET, low THD 0.0003                    |
+| TL074   |     |   |    |     |      |       |      |      | see TL084/2/1                          |
+| LM741   |   8 | 1 | d  |  18 | 200k | 2M    |   25 |    1 | preamp? (old, do not use?)             |
+| LM747   |     | 2 |    |     |      |       |      |      | two LM741                              |
+| LM1458  |   8 | 2 | d  |  18 |      |       |      |      |                                        |
+| LM339   |  14 | 4 | sd |  18 |      |       |      |      | comparator                             |
+| LM386   |   8 | 1 | s  |  15 |      |       |      |      | audio/power? amplifier (high output W) |
+| TL081   |   8 | 1 |    |     | 200k | 10^12 |   40 |    3 | low input offset voltage               |
+|---------+-----+---+----+-----+------+-------+------+------+----------------------------------------|
+| LM1875  |     |   |    |     |      |       |   4A |      | high current                           |
+| LM4562  |   8 | 2 |    |     |      |       |      |      |                                        |
+| LM359   |     |   |    |     |      |       |      |      | Norton (aka current difference)        |
+| LM2900  |     |   |    |     |      |       |      |      | Norton                                 |
+| LM3900  |     |   |    |     |      |       |      |      | Norton                                 |
+|---------+-----+---+----+-----+------+-------+------+------+----------------------------------------|
+*  use cases
 
 see https://www.electronics-tutorials.ws/opamp/opamp_1.html
 
@@ -148,7 +158,7 @@ see https://www.electronics-tutorials.ws/opamp/opamp_1.html
 - voltage followers
 - differentiator
   - eg: LPF
-- Multivibrator
+- Multivibrator: oscilates
   - eg: astable, monostable
 - constant current source/load
 - non/inverting differences
@@ -206,12 +216,13 @@ see https://www.electronics-tutorials.ws/opamp/opamp_1.html
   #+ATTR_ORG: :width 200
   [[https://www.electronics-tutorial.net/wp-content/uploads/2015/09/Peak_D2.png]] [[https://circuitdigest.com/sites/default/files/inlineimages/u/Op-amp-based-Peak-Detector-Circuit-Output-Waveform.png]]
 
-*   open loop (mode)
+*   open ended/loop (mode)
 
 - gain is typically around 100k (not practical)
+- one of the inputs (non-inverting) is the Vref
 - it's easy for the OUTPUT to get saturated
   - with 2 inputs it can be used as _comparator_ (poor's man)
-  - to interface digital with digital electronics
+  - to interface analog with digital electronics
 
 #+ATTR_ORG: :width 150
 [[https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Op-amp_open-loop_1.svg/255px-Op-amp_open-loop_1.svg.png]]
@@ -222,6 +233,8 @@ see https://www.electronics-tutorials.ws/opamp/opamp_1.html
 - We give it a ~negative feedback~
 - The higher Rf, the higher the gain
 
+- LPactiveF
+- HPactiveF
 ** (Unity Gain) Buffer/Follower
 
 - aka "Voltage Follower"
@@ -241,6 +254,11 @@ see https://www.electronics-tutorials.ws/opamp/opamp_1.html
   = Rf/Ri + 1
 - Rf feedback resistor
 - Ri   ground resistor
+- in practice people pick R1=1k to make math easier
+  - eg: R2=100k, will give an amplification of 101
+- "Buffer" configuration is a variant of this one, where Av=1
+
+#+CAPTION: single supply, Vout = (Vin - 2.5)*(1 + R2/R1) + 2.5
 
 #+CAPTION: circuit and output waveform
 #+ATTR_ORG: :width 200
@@ -257,12 +275,15 @@ see https://www.electronics-tutorials.ws/opamp/opamp_1.html
 
 - signal goes into V-
 - You are NEVER going to get a negative OUTPUT voltage
-  - if you have a single supply power?
-- Creates a ~virtual ground~ after R1
-- GAIN = Av = Vout/Vin = -Rf/R1
-- Vout = -Vin * (Rf/R1)
+  - if you have a single voltage supply power
+- Creates a ~virtual ground~ after Ri
+- GAIN = Av = Vout/Vin = -Rf/Ri
+- Vout = -Vin * (Rf/Ri)
 
-#+CAPTION: differential amplifier?
+#+CAPTION: single supply, Vout = (2.5-Vin)*R2/R1 + 2.5
+[[https://i.sstatic.net/P1gYC.png]]
+
+#+CAPTION: double supply
 #+ATTR_ORG: :width 200
 [[https://upload.wikimedia.org/wikipedia/commons/4/41/Op-Amp_Inverting_Amplifier.svg]] [[https://pfnicholls.com/Electronics_Resources/Images/InvAmpAC.png]]
 
@@ -273,6 +294,11 @@ see https://www.electronics-tutorials.ws/opamp/opamp_1.html
 - 23 Dronebot |Op-Amps - Using Operational Amplifiers https://www.youtube.com/watch?v=_HHxV-7alwE
 - Aaron's Analog Chip Collection (ECE Design Fundamentals, Georgia Tech class) https://www.youtube.com/watch?v=fVFukSjWQjk
 - LM1875 DIY audio amplifier https://www.youtube.com/playlist?list=PL9zJKV-F2eMzatbAfKcEIOSK2qt0VTn7Z
+- Course Op Amps Electronics with Professor Fiore https://www.youtube.com/playlist?list=PLxuejeK2BP_dMJcEapPFavqaItrewjjT1
+- Op Amp Tutorials by w2aew https://www.youtube.com/playlist?list=PL4ZSD4omd_Ayn6ap2siY3oqzw5wCSQo8j
+
+- Analog Electronics || Active Filters - Op-amp  https://www.youtube.com/playlist?list=PLHhCOhnyK0J4tyBaiHQVOvdLfsBi9srxT
+- Analog Electronics || Operational Amplifier (OP-AMP) Electrodiction https://www.youtube.com/playlist?list=PLHhCOhnyK0J7rwr6yUyeNUbplsQmeJDKh
 
 * Articles
 - [[http://seti.harvard.edu/unusual_stuff/misc/lorenz.htm][Build a Lorenz Attractor]]

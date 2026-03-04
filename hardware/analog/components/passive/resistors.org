@@ -4,6 +4,9 @@
 - https://en.wikipedia.org/wiki/Resistor
 - V-I curve of resistor
   [[https://ohmlaw.com/wp-content/uploads/2018/03/ohms-law-overall-graph.jpg]]
+- Properties
+  - linearity
+  - simetry
 
 * parallel resistors - aka Current divider
 
@@ -61,6 +64,7 @@
 
 - can take different forms in a circuit, depending how many terminals you connect
   - a _variable voltage divider_, if you use all the 3
+    - changing the relation between the resistors
   - a _variable resistor_, if you use only 2
 
 |-----------------+---------------+---------------------------------|

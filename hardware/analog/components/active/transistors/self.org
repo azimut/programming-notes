@@ -7,6 +7,8 @@
 - based on semiconductors changes of conductivity
 - Similar to a *diode* (aka PN), but with an extra element
   - Uses both *electrons* and *electron holes* as charge carriers.
+- Most can handle up to a few hundred mA in Ice
+  - As such it can only handle <700mV in Vbe
 - You can think of a transistors as
   - switches
   - current amplifiers
@@ -42,6 +44,16 @@
 - States
   - =Saturation=: when there is current in base
   - =Cutoff=: when there is no current in base
+
+- transistor leakage
+  - this is way dissipators are important on some transistors
+  - the way that temperature affects transistors
+  - making it unstable and pass more or less electrons
+
+- thermal runaway https://mechatrofice.com/electronics/what-is-thermal-runaway-in-transistor
+  - when the transistor leakage is not kept on check
+  - it ends up burning
+  - a resistor on emitter can help
 
 - Tutorial: How to design a transistor circuit that controls low-power devices
   https://www.youtube.com/watch?v=8DMZSxS-xVc

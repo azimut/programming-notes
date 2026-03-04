@@ -1,1 +1,21 @@
 - https://anthonyhobday.com/sideprojects/saferules/
+- grids
+  - default: 12 columns
+    - or 8 for small size
+    - or 4 for cell phone
+- button
+  - size of finger
+  - size of min 48px
+  - size of inner text 24px
+
+* books
+
+- Don't Make Me Think - Steve Krug
+  - rules
+    - self evident
+      - no delay between though and action
+      - no doubts or questions about elements
+        - eg: what looks like a navigation is a navigation
+        - eg: clickable stuff
+- diseño de apps para moviles https://appdesignbook.com/es/contenidos/presentacion/
+

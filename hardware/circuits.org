@@ -146,6 +146,25 @@
 - add ~capacitor~ in series with _signal source_
   - making a LPF, bigger capacitance == lower filter?
 
+** Emitter follower
+
+- helps with impedance problems
+- transistor directly (*collector/emitter*) connected to power rails
+- Vin comes at the *base*
+- gain of 1 for voltage: Vload/Vin ~= 1
+- amplifies current: Iload/Iin = B + 1 = B
+  - B current comming in
+  - B = 100
+
+** Differential Pair/Amplifier (aka long tailed pair)
+
+  - 2 transistors
+  - individual ICs have variations, but 2 of the same match very wel
+  - taking advantage of the matching, you get better performance (?)
+    - amplifying the difference, and ignoring the common
+  - https://www.allaboutcircuits.com/textbook/designing-analog-chips/differential-pairs/introduction-to-differential-pairs/
+
+
 * Simulation
 
 - Netlist is the "programming language", SPICE is the "compiler" (the simulator)

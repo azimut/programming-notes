@@ -4,6 +4,8 @@
 - reversing https://github.com/thomasbbrunner/arduino-reverse-engineering
 - https://www.microchip.com/wwwproducts/en/ATmega328P#datasheet-toggle
 - https://www.arduino.cc/en/uploads/Main/arduino-uno-schematic.pdf
+- PROGMEM https://docs.arduino.cc/language-reference/en/variables/utilities/PROGMEM/
+  - stores variable in program memory instead of SRAM
 - Stop auto-reset of arduino on connection
   - 10uF capacitor between reset and gnd (or 100nF ceramic capacitor)
   - 120ohm resistor between 5v and reset pin (or 110-124)

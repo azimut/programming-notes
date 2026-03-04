@@ -1,6 +1,7 @@
 - Calculator of case+power+$$$ https://modulargrid.net/
 - argentino https://www.gsmusic.com.ar/productos/apollo1.html
 
+
 * Pedals
 
 - https://www.youtube.com/watch?v=otkW_q0_VIU
@@ -28,6 +29,9 @@
   - Width in HP, from the minimal space between screws in *threaded strip*
     - 1 HP = 0.2"
   - U = Height in rack U(nits), from the minimal spacing in an 1.75inch rack
+  - 1U = 1.75in = 44.45mm
+  - Height = 3U = 128.5mm
+    - 122.5mm between rails
   - Depth 10cm
 
 ** Categories
@@ -86,7 +90,7 @@
 
 ** Clocks
 
-- Can be
+- Can be (mostly between 0v and 12v)
   - Gates
   - Triggers
 
@@ -159,10 +163,14 @@
 - 20Hz-20kHz (audible)
 - CV
   - frequency
-    - exponential CV (1V per octave)
-    - linear CV
+    - exponential CV (1V/1oct)
+    - linear CV (vibrato)
   - pulse width
   - sync
+    - from another VCO, reset after sync finish a cycle.
+      1) Hard: core ramp is *reset* to zero
+      2) Soft: triangle ramp direction is *reversed*
+
 - Manual
   - knobs: coarse freq, fine freq, pulse width
   - switch: octaves
@@ -170,26 +178,34 @@
 - Noise types
   [[https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/The_Colors_of_Noise.svg/576px-The_Colors_of_Noise.svg.png]]
 
-- Can be *Sync* with another VCO, reset after sync finish a cycle.
-  1) Hard: core ramp is *reset* to zero
-  2) Soft: triangle ramp direction is *reversed*
 
 - Core wave types, from which other waves can be generated, either:
-  1) Ramp
+  1) Ramp /|
   2) Triangle
+
+- Other waves:
+  - sawtooth |\
+  - square: may allow duty cycle control
+  - rectangle or pulse: not 50% duty cycle
+  - sine
+  - triangle
 
 ** VCF = Voltage Controlled Filter
 
+- maybe include a mixer
 - Inputs
-  - (key) exponential CV (1v per octave)
+  - (key) exponential CV (1v/1oct)
+    - cutoff freq or resonance freq
+    - 1 control per filter
   - (key) linear CV
   - (Audio) Signal IN
 - Outputs: LPF/HPF/BPF
-- CV controls
-  - resonance
+- CV manual controls
+  - resonance (frequency) ammount
+    - adds emphasis to center freq, results in "ringing"
   - COF = cutoff frequency
-    - fine
     - coarse
+    - fine
 
 ** VCA = Voltage Controlled Amplifier
 
@@ -224,4 +240,22 @@
 
 - Output Module
   - to not worry about clipping
+
+* CV
+
+1V between octaves
+1/12V between notes
+
+|----+---+---------|
+|    | V |      Hz |
+|----+---+---------|
+| C1 | 1 |   32.70 |
+| C2 | 2 |   65.41 |
+| C3 | 3 |  130.81 |
+| C4 | 4 |  261.63 |
+| C5 | 5 |  523.25 |
+| C6 | 6 | 1046.50 |
+| C7 | 7 | 2093.00 |
+| C8 | 8 | 4186.01 |
+|----+---+---------|
 

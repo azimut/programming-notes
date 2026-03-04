@@ -29,13 +29,23 @@ f_sample = 2 * f_signal
  #+ATTR_ORG: :width 200
  [[https://upload.wikimedia.org/wikipedia/commons/6/61/SA_ADC_block_diagram.png]]
 
+** Integration
+
+- uses an OPAMP integration
+  - creates an OUTPUT with a =slope= equal to it's INPUT
+- measure ammount of time to reach zero
+
 * videos
+
+- 21 [[https://www.youtube.com/watch?v=CQapmDx5oV0][Comparators: The Building Blocks of Analog to Digital Converters (ADC)]]
+  - sample&hold, priority encoder
 - 17 [[https://www.youtube.com/watch?v=EnfjYwe2A0w][Electronic Basics #27: ADC (Analog to Digital Converter)]]
 - 21 [[https://www.youtube.com/watch?v=g4BvbAKNQ90][How ADCs work?]]
 - 20 [[https://www.youtube.com/watch?v=UAJMLTzrM9Q][How good are the ADCs inside Arduinos, ESP8266, and ESP32? And external ADCs (ADS1115)]]
   - by Andreas Spiess
   - UNO:
     - uses Vcc as Vref
+
 * ics
 
 - TLC5540

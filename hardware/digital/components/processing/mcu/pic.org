@@ -29,3 +29,7 @@
 - usb programmer: http://web.archive.org/web/20120918133318/http://www.create.ucsb.edu:80/%7Edano/CUI/
 - debugger: https://www.olimex.com/Products/PIC/Programmers/PIC-ICD2/
 - programmer: picpgm https://web.archive.org/web/20070106223701/http://www.members.aon.at/electronics/pic/picpgm/index.html
+
+* project
+
+- freq counter https://www.qsl.net/dl4yhf/freq_counter/freq_counter.html

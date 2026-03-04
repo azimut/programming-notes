@@ -1,3 +1,12 @@
+
+- tutorial http://r-luis.xbot.es/edigital/ed_ref.html
+- https://en.wikipedia.org/wiki/Schmitt_trigger
+- ⭐ https://en.wikipedia.org/wiki/Tyranny_of_numbers
+  - video 1960 [[https://www.youtube.com/watch?v=4qlcBWkSHjk][The Tyranny Of Large Numbers]]
+- https://en.wikipedia.org/wiki/Programmer_(hardware)
+
+* gates
+
 #+CAPTION: common logic gates
 [[https://www.autodesk.com/products/fusion-360/blog/wp-content/uploads/2023/07/AdobeStock_613706823-1024x614.jpeg]]
 
@@ -18,18 +27,14 @@
 
 - ME: After a "NAND/NOR expansion" it could be that it can be further simplified to less gates than you started with.
 
-- tutorial http://r-luis.xbot.es/edigital/ed_ref.html
-- https://en.wikipedia.org/wiki/Schmitt_trigger
-- ⭐ https://en.wikipedia.org/wiki/Tyranny_of_numbers
-  - video 1960 [[https://www.youtube.com/watch?v=4qlcBWkSHjk][The Tyranny Of Large Numbers]]
-- https://en.wikipedia.org/wiki/Programmer_(hardware)
-- ICS:
-  - have a ~propagation delay~ measured in ns
-  - have a consumption measured in mW
-  - HIGH: 2.4v (~3.4v)
-  - LOW: 0.4v (~0.2v)
-  - gives 16mA max LOW
-  - gives 400uA max HIGH
+* ICs
+
+- have a ~propagation delay~ measured in ns
+- have a consumption measured in mW
+- HIGH: 2.4v (~3.4v)
+- LOW: 0.4v (~0.2v)
+- gives 16mA max LOW
+- gives 400uA max HIGH
 
 * Algebra
 
@@ -47,6 +52,22 @@
   - works for any N of inputs
   - by adding 2 bubbles in a line
   - by transforming to NAND/NOR
+
+* Transistor
+
+http://hyperphysics.phy-astr.gsu.edu/hbase/Electronic/trangate.html
+
+#+CAPTION: AND, OR gates
+#+ATTR_ORG: :width 600
+[[./ttl-logic-andor.jpg]]
+
+#+CAPTION: XOR gate
+#+ATTR_ORG: :width 600
+[[./ttl-logic-xor.jpg]]
+
+#+CAPTION: NAND gate
+#+ATTR_ORG: :width 200
+[[./nand4.gif]]
 
 * Combinational Logic
 
@@ -175,7 +196,10 @@ Ben Eater https://www.youtube.com/playlist?list=PLEJ4ZX3tdB692QvbCDnn6wrJGU0kTMY
   - rcd trip timer https://www.youtube.com/watch?v=DnsAoYIOmUg
   - tachometer https://www.youtube.com/watch?v=qm3rqlt-Sw8
   - freq counter https://www.youtube.com/watch?v=TmSOcC5NAng
+    - https://www.mousa-simple-project.com/2020/01/diy-frequency-counter-without.html
     - <1Mhz
+  - freq counter - AM/FM display
+    - Popular Electronics 1981 N°10
   - capacitance meter https://www.youtube.com/watch?v=vf8GL3gzulc
     - <5000uf
   - resistance meter https://www.youtube.com/watch?v=8XtH9zHaEHg
@@ -239,6 +263,14 @@ https://www.youtube.com/playlist?list=PLowKtXNTBypETld5oX1ZMI-LYoA2LWi8D
 
 * Playlists
 
+- 13 Computer Architecture
+  - ELE/COS 475
+  - from beginning to (real) advanced multi-core processors
+  - Book: CA by Mennessy
+  - Book: modern process design: fundamentals of superscalar processors
+  - https://www.youtube.com/watch?v=9nuAjYRbITQ
+  - https://www.youtube.com/watch?v=foCkCSZXOt8
+  - https://www.youtube.com/watch?v=BHMETwOXvWw
 - Electronica FP - Electronica Digital https://www.youtube.com/playlist?list=PLuzS0jdNRVvpQmCxFV4S2eqfji90BnDub
 - Sebastian Lague - How Computers Work https://www.youtube.com/playlist?list=PLFt_AvWsXl0dPhqVsKt1Ni_46ARyiCGSq
 - Intermation -  Computer Organization and Design Fundamentals https://www.youtube.com/playlist?list=PLxfrSxK7P38X7XfG4X8Y9cdOURvC7ObMF

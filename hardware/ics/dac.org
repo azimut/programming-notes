@@ -1,3 +1,25 @@
 - FS = Fondo de escala (max Volts in scale)
 - E.k (k is proportionality)
 - Resolution = Height of each step in scale (in Volts)
+
+* videos
+
+- DAC using =PWM= https://www.youtube.com/watch?v=oU-WQVaHm4g
+  - by controlling it's duty cycle
+  - and in consequence the avg voltage
+  - with a LPF
+  - with a OpAmp buffer
+  - cons: low freq
+  - bit precisions
+    - 8bit @ 16Mhz = 62500 phases
+    - 8bit @  8Mhz = 31250 phases
+
+- DAC using =R-2R resistor ladder= https://www.youtube.com/watch?v=_tABS7AX8D8
+  - cons: needs N-depth dedicated number of pins
+  - runs at *3Mhz* with an Arduino UNO using Ports
+    - slower with an OPAMP buffer
+    - 5 bits turned out enought at max speed
+  - n = bits
+  - levels = 2^n
+  - Vi = Vhigh/2^n * i
+  - Vmax = Vhigh/2^n * (2^n - 1)

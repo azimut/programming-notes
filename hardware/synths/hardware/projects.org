@@ -1,15 +1,13 @@
-- casperelectronics
-  - oscillators
-    - https://www.youtube.com/watch?v=FaoJaLmZaL4&t=709s
-    - https://bastl-instruments.com/support/tutorials/omsynth-project-1
-  - sequencers
-    - https://www.youtube.com/watch?v=t7JYOIYqMEY&t=357s
-    - https://bastl-instruments.com/support/tutorials/omsynth-project-2
-  - lofi sampler
-    - https://www.youtube.com/watch?v=ECSYLTB_sbw
-    - https://bastl-instruments.com/support/tutorials/omsynth-project-3
+1 3 6 1
+2 4 5
 
+6/5
+1/1 GND
+
+
+- Sculptures: Erik Brandal
 - Projects by "Gadget Reboot" https://www.youtube.com/playlist?list=PLDnEejiR3mBx6eKRuZLWoyBhbLhnrtvyz
+- Modular In A Week (MIAW) by Kristian Blåsol https://www.youtube.com/playlist?list=PLyE56WXw0_5Q5QGMEXWmskuhojKyRdA3T
 - Builders https://sdiy.info/wiki/List_of_synth_DIY_repositories
 - DIY Modules https://sdiy.info/wiki/List_of_synth_DIY_repositories
 - DIY Modules https://open4umodular.github.io/synthpanel/
@@ -208,29 +206,319 @@ not modular
    - micromoog used CA3080
 
 * Moritz Klein
-** VCO
+** Double WaveFolder
 
-- Creating a Sawtooth OSC from:
-  - Schmitt trigger (4016)
+- Wavefolder Components
+  - NPN transistor
+  - PNP transistor
+  - 4x resistors
+  - opamp buffer
+
+- It abuses transistor saturation
+  - to invert voltages crossing a threshold
+  - 2 thresholds
+
+** TODO 606 Kick Drum
+
+- Wien Bridge
+  - Creates a decaying sine burst, freq set by the 2 resistors
+  - Components
+    - 2x capacitors
+    - 2x resistors
+    - 1x opamp
+
+** DONE 5 STEP SEQUENCER - Designing a 5 Step Sequencer from Scratch
+*** 4017 Decade Counter
+
+- 1 clock input
+  - filter negative input LFO OSC voltages with a DIODE+RESISTOR(PULL DOWN)
+
+- connect output n+1 to reset
+  - single pole 3-throw SWITCH to select between 4,5,6 steps
+
+- n LEDs/steps, on n outputs
+  - ideally with a ~emmiter follower~ (NPN transistor)
+
+*** CV sequence
+
+- drives melody
+- analog output
+- connect a 100k POTENTIOMETER to each COUNTER output
+  - for CV OUTPUT
+  - with DIODEs
+  - to a OPAMP buffer (to copy voltage without pulling any current)
+    - with a RESISTOR to limit OUTPUT
+    - with voltage divider to limit INPUT to 5v
+
+*** GATE sequence
+
+- digital output
+- drives rhytm
+- drives env generator
+
+- 10 state outputs
+- each OUTPUT represents a step
+- n SWITCHs + n DIODES
+- output AND with CLOCK to ensure it goes low
+  - with an opamp(buffer)+diode for CLOCK input
+  - with an opamp(comparator) to avoid shortcircuit without dividing voltage
+- output goes to an OPAMP buffer
+  - 1k resistor in output
+  - pulldown 100k resistor in input
+
+** DONE DRUM SEQUENCER - This drum sequencer breaks all the rules
+
+Wanting a design:
+- with less buttons, 8 -> 2
+- without microcontroller
+
+Buttons for:
+- trigger
+- clear
+
+Input LFO
+- 1 per channel
+
+*** 4015 Dual 4-stage Shift Register
+
+- 12v power
+- 1 per channel
+- both 4bit registers chained
+  - looped through DIODES in Da->4b
+  - we add our triger SWITCH on the loop
+  - with pull down
+  - we add our clear SWITCH through the loop with a transistor and 1M pulldown transistor
+- make sure INPUT clock is 0v<CLK<12v
+  - pull OUTPUT low when clock is low
+  - with help of an OPAMP+diode(clock)+resistor(output)
+- 8 LED on outputs for debug
+  - replaced by 1 LED at the OPAMP trigger output
+  - through an NPN transistor to avoid overloaded output
+
+Alternative, per channel, double function SWITCH for trigger & clear
+- uses a modifier SWITCH (aka "Clear Mode")
+- when Clear Mode and Trigger are pressed
+- needs 2 additional transistors
+
+three-way switch
+- to have each channel loop at different steps
+- select feedback OUTPUT length: 4B, 2B, 1B
+
+two-way switch
+- to select clock input
+- 16th note, 8th note
+
+*** 4520 dual binary up-counter
+
+- 12v
+- 1 for all channels
+- to slow down the LED of the clock
+- we use the Q1 output with a LED
+  - buffered with an NPN transistor
+  - we could send it elsewhere
+
+*** OPAMP (Analog) Accents Sequence
+
+- Accent = Volume
+- based on a triangle OSC
+- circuit made from 2 OPAMPs
+  - a schmit trigger
+  - and an integrator
+- output clamped with ~diode clamp~ circuit setup (+capacitor)
+  - basically translating the triangle above 0v
+- output buffered with an 100k ~emitter follower~ circuit using a transistor
+  - with a potentiometer to GND to control the *mod depth*
+  - buffered again by an ~emitter follower~ circuit
+    - +LED
+
+- output synchronization
+  - triangle restarts on each loop
+  - bridge OPAMP integrator feedback capacitor with resistor and a NPN transistor
+  - input is 4520 counter half note (Q2)
+    - shaped to a pulse by an 100n capacitor
+
+- 3three pole switch
+  - free triangle LFO
+  - sync to pattern length (reset)
+  - sync to half pattern length (reset)
+
+alternative
+- we could use a channel trigger pattern for accents
+- sending 4 bits of the Shift Register bits to an DAC made with 4 resitors
+- scaled down (?) below zero with a resitor to GND
+- ~emitter follower~ output
+- changing the SR being peeked will change the accents
+- can control PITCH
+
+** TODO VCO
+
+TODO 4 add pwm square
+
+- Sawtooth OSC
+  - =4016 Schmitt Trigger=
+    - tie all non-used inputs to GND, might affect our used gate (!)
   - Diode(signal), capacitor(2.2nF), resistor(100k)
+    - replace resistor with NPN BJT =BC548=
+      - using it on his *linear region of operation* based on current won't work
+        - it's based on current not voltage
+        - 1v = 1oct
+        - as voltage increases linearly, frequency increases exponentially
+        - 0.350v < 0.550
+      - input signal to emitter
+        - add a ~voltage divider~ of 25 (100k+4k) to scale down INPUT
+          - with a potentiometer to offset manually the voltage
+        - add a ~passive mixing~ cicuit (2x100k) to offset voltage upwards
+        - add a pulldown resistor before input
+    - add a PNP transistor =BC558=
+      - in an ~emitter follower~ circuit, beforethe NPN
+        - must be connected to -12v instead of GND (that lowers it's phase?)
+      - to keep voltage constant regardless of changes in ambient temperature
+      - creating a negative feedback loop between NPN and PNP
+      - add a NTC THERMISTOR of 10k in serie with other input resitors
+  - OpAmp (buffer) for output, a =TL074=
+    - ~voltage divider~ circuit of 2x 10k resistors on output
+    - ~ac coupling~ circuit (aka capacitor+GNDresistor) for output
+    - with +9v and -9v power supply
+      - to provide voltage headroom for input voltages
 
-- To "listen" to it we would need to build a OpAmp buffer
+** TODO Drum
 
-** Drum
 - Old schools drum machines were complex machines consisting of:
   - VCO + VCF + VCA + ENV + FILTER
   - eg: Roland 606
 
 - Basic _Functional_ Blocks:
   - OSC: continuous
-  - Volume Modulator: decay of volume, controlled by a input "gate" signal
+  - Volume Modulator: decay of volume
+    - controlled by a input "gate" signal
+    - aka Envelope + VCA
   - Frequency Modulator: pitch/volume control of OSC
+    - alongside volume
 
 - Bridge-T Oscillator: https://en.wikipedia.org/wiki/Wien_bridge_oscillator
-  - opamp + 2 resistor + 2 capacitors
-  - a sinewave oscillator
+  - a (strange) sinewave oscillator, that dissapears
   - need to be kickstarted by a pulse
-    - triggered when voltage changes
-  - Roland 606 parts: 1M + 51k + 15nF = 15Hz
+    - (re)triggered when voltage changes
+  - opamp + 2 resistor + 2 capacitors
+    - eg: 1M + 51k + 15nF = 15Hz
+  - Used by Roland 606
+    - they compacted a VCO+VCA+ENV into a single block of few components
 
 - Gate-to-Trigger Converter: to avoid retrigger of kickstart on single pulses
+
+** DONE 3-Mixer + Distortion
+*** mixer
+**** ~passive mixer~ circuit
+
+  - can be used to mix N inputs
+  - alone is not possible to drive anything
+  - high output impedance
+  - with equal resistors, ouputs the avg of both inputs
+
+**** ~active mixer~ circuit
+
+  - we add an OPAMP BUFFER, after the passive mixer
+  - input signal goes to non-inverting input
+  - =TL072=
+  - adding a 1k resistor at its OUTPUT
+    - to avoid shortcircuits, due OPAMP low impedance
+
+**** ~inverting mixer~ circuit
+
+- based on an OPAMP (as an inverting buffer) and a passive mixer
+- input going to INVERTING INPUT
+- with a 100k resistor on the INVERTING INPUT loop
+- with NON-INVERTING INPUT to GND
+
+**** ~double negative mixer~ circuit
+
+- starting from the ~inverting mixer~
+- while being inverted doesn't matter for audio
+- it does for CV
+- we add an inverter opamp circuit at the end to restore it as an OUTPUT
+- we could keep an inverted OUTPUT
+
+**** ~adjustable mixer~ circuit
+
+just adds 100k potentiometer before each 100k INPUT RESISTOR
+
+*** distortion - diode clipping
+
+- at the mixer OUTPUT
+- uses diodes forward voltage threshold to clip output (bottom and top)
+- components
+  - 2 diodes
+  - 20k trimmer potentiometer to GND
+  - opamp non inverting buffer
+    - with some gain
+    - 100k in loop
+    - 27k to gnd in INVERTING INPUT
+
+*** improvements
+
+- ME: can the distortion trimmer by a potentiometer?
+- panning
+- compression
+- sidechanning
+
+** TODO compressor
+
+TODO VCA
+
+evens output gain
+- quiet -> quiet
+- loud  -> quiet
+
+controls
+- threshold: in db
+- ratio: how much? in ratios
+- attack: how long to wait
+- release: how long to restore
+
+steps (in a feedback loop)
+- volume modulator (VCA)
+- volume detector
+- volume comparator, against a threshold
+- CV our volume modulator depending on the comparator value
+
+** VCA - Voltage Controlled Amplifier
+
+Components
+  - Opamp
+  - 2x Transitor
+    - as a Differential Pair/Amplifier (aka long tailed pair)
+
+2 inputs: signal, cv
+1 output
+1 control: offset
+
+* casperelectronics
+
+- oscillators
+  - https://www.youtube.com/watch?v=FaoJaLmZaL4&t=709s
+  - https://bastl-instruments.com/support/tutorials/omsynth-project-1
+- sequencers
+  - https://www.youtube.com/watch?v=t7JYOIYqMEY&t=357s
+  - https://bastl-instruments.com/support/tutorials/omsynth-project-2
+  - Components
+    - LFO+VCO 40106 Schmit trigger
+    - LFO divider 4040 counter
+      - could have been used to divide frequency too (aka the output of the VCO)
+      - could have connect outputs to the loop of the schmit trigger LFO
+      - could connect one with diode to override others
+      - could have connected a capacitor to GND on the schmit loop
+    - 2x 4051 Multiplexer (8x1)
+      - 1 connected to the LFO, through potentiometers
+      - 1 connected to LEDs
+- lofi sampler
+  - https://www.youtube.com/watch?v=ECSYLTB_sbw
+  - https://bastl-instruments.com/support/tutorials/omsynth-project-3
+
+* sarah
+
+- VCO 555
+- LFO 555
+  - gives clock to 4017
+- 4017 decade counter
+- 8x potentiometer
+  - chained together through diodes

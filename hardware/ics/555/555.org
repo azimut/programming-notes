@@ -75,6 +75,15 @@ https://www.youtube.com/watch?v=WCwJNnx36Rk
 
 - This time ( differently from above (for fun) )
   We would use just the internal *SR Latch*.
+** Other
+
+- binary counter https://www.youtube.com/watch?v=uKf5XAka9AI
+  - NOT gate with a 555
+  - OR gate with diode-resistor
+- 2011 contest
+  - video https://www.youtube.com/watch?v=VhVnELYyRpU
+  - home http://web.archive.org/web/20111030195708/http://www.555contest.com/2011/04/the-555-contest-winners-announcement/
+
 * Tips
 
 - from datasheet, put a 0.01uf =capacitor= from ~pin 5~ (CV) to GND, for no janky OUTPUT
@@ -100,3 +109,6 @@ NE555V
 - V = epoxy
 - N = ?
 
+* Trivia
+
+- Some 555 clones [[https://www.youtube.com/watch?v=OJaooiIIlas][might have]] faster response time and max speed (2Mhz) than regulars.

@@ -10,6 +10,8 @@
 #+ATTR_ORG: :width 600
 [[https://upload.wikimedia.org/wikipedia/commons/2/2c/Hack_Computer_CPU_Block_Diagram.png]]
 
+- https://www.youtube.com/@onthelearn/videos
+
 * Video: From NAND To Tetris by "Tea Leaves"
 https://www.youtube.com/playlist?list=PLu6SHDdOToSdD4-c9nZX2Qu3ZXnNFocOH
 * Course: From NAND to Tetris

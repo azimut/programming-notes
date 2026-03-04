@@ -63,6 +63,7 @@
 
 - PCBite (helping hands for circuits)
   https://github.com/f3nter/HardBreak/raw/main/.gitbook/assets/IMG_0561.jpeg
+- Rotating objects
 - Cases:
   - Pi
   - Tablet
@@ -76,3 +77,11 @@
   - gimbal
   - ball and socket
   - condyloid
+
+* course
+
+- 2020 CFP https://www.youtube.com/playlist?list=PL_lD1_KDQ_48W-y25cfNfSZBYkHoA-zme
+
+* video
+
+- 2021 https://www.youtube.com/watch?v=pqkomM-nVBc

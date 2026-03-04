@@ -10,6 +10,8 @@
   - https://www.analogictips.com/analog-computation-part-1-what-and-why/
     - 0.1% to 1% precision
   - https://www.analogictips.com/analog-computation-part-2-when-and-how-faq/
+- 23 VIDEO On analog computers
+  https://www.youtube.com/watch?v=0NtolLVFK9M
 
 * 13 VIDEO Will Analog Computing and Neural Nets Power Innovation after Moore's Law?
   - https://www.youtube.com/watch?v=3tOA8Fo6b7A

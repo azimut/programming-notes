@@ -26,8 +26,16 @@
   * [[https://archive.org/details/ucberkeley_webcast_pHUDY-Pgihc][Lecture 17: Tradeoffs in Digital Circuits (Power, Speed, Cost), Diodes]]
   * [[https://archive.org/details/ucberkeley_webcast_VDQSAt6M_r4][Lecture 18: Intro to Semiconductor Physics, PN Junctions, Chip Manufacturing]]
 
+* Course: Fundamentos Electrónica Analógica
+
+https://www.youtube.com/playlist?list=PLarIdvSxyFn6_S8rGOr9PPBDeRvOOGmQB
+
+* Course: Todo el Curso GRATIS de Electrónica Analógica
+
+https://www.youtube.com/playlist?list=PLb_ph_WdlLDny2cGloFSxyRgO8B733jeo
+
 * Course: The Great Courses Understanding Modern Electronics
-** 1 Electricity and Electronics
+**  1 Electricity and Electronics
 
 - =Electronics=
   - involves the *control* of one ~electrical circuit~
@@ -48,11 +56,11 @@
   - in Watts
   - P = I*V
 
-** 2 Circuits and Symbols
+**  2 Circuits and Symbols
 
 - simplest circuit = battery + resistor
 
-** 3 Instruments and Measurement
+**  3 Instruments and Measurement
 
 #+begin_src
   voltage <-> across
@@ -79,7 +87,7 @@
   - you to be more "active", generate a current
   - you need to disconnect it from the circuit
 
-** 4 AC vs DC
+**  4 AC vs DC
 
 #+ATTR_ORG: :width 200
 #+CAPTION: AC to DC, simple power supply
@@ -95,13 +103,13 @@
     + frequency: number of cycles per second (Hz)
   - in US: 120v, 60Hz powerlines (peak 170v, rms 120v)
 
-** 5 Up the Trebble, Down the Bass
+**  5 Up the Trebble, Down the Bass
 
 - aka filter circuits (with capacitors)
 - project TODO: twin-t filter / notch filter
   [[http://www.learningaboutelectronics.com/images/Twin-t-notch-filter.png]]
 
-** 6 Semiconductors
+**  6 Semiconductors
 
 - sillicon acts as semiconductor
   - every sillicon atom is bind to his neighbours by 2 electrons
@@ -123,40 +131,147 @@
 
 - Types of diodes: zener, photovoltaicell, led
 
-** 7 Transistors: How they work
+**  7 Transistors: How they work
 
 - FET(MOS,J), BJT
 - BJT(NPN,PNP)
 
-** 8 Transistors: as amplifiers
+**  8 Transistors: as amplifiers
 
-- Common Emitter Amplifier
+- ~Common Emitter~ Amplifier
   - load line analysis (?
     - there is a cutoff of a max input voltage we can receive before cutting off the amplified signal
   - needs biasing circuit or diode on transistor won't work
+    - Class A: works with V+ and V- (?
+    - aka Small signal AMP
     - with resistors carefully selected
+      - to give a resting Vout voltage in the middle of power rails when Vin=0v
+      - while still giving us a good gain
+      - we could add another resistor in series, to GND
     - provides current even when there is no other input current
     - input
       - needs to be really small
       - coupled with a capacitor, to block direct current (DC can't get through it)
       - out of phase with the output
+  - in practice, temperature and manufacturing differences makes it unstable (unless...)
   - an extra resistor (50ohms) on the emitter lead gives a better bias
+    - aka negative feedback
     - protects transistor
     - less distortion
     - give you a fixed gain
-    - an capacitor in parallel with it would also help
+    - losses some of the gain
+    - an capacitor in parallel with it would also help to restore back the gain
+      - will add some distortion
+      - decrease the bandwith
+  - flips Vout with respect to Vin
   #+ATTR_ORG: :width 200
   [[https://blog.mbedded.ninja/_astro/bjt-common-emitter-amplifier.CU7QYcts.png]]
 
-** TODO 9 Building an Audio Amplifier
+**  9 Building an Audio Amplifier
 
 - 2-stage common-emitter amplifier
   - stage 2 is basically a copy of stage 1
   - in between a capacitor
-  - added an emmitter follower
-    - aka a common collector configuration
-    - aka current amplifier
-    - to not draw current when quiet
-  - added volume control
+  - feature: added volume control
     - at the output of the stage 1
     - or at the output of the second stage
+  - feature: added an ~emmitter follower~ =2N3904=
+    - aka current amplifier
+    - aka a common collector configuration
+      - because is directly connected to V+ and GND
+    - =to not draw current when quiet/0v=
+    - feature: added a ~complementary simmetry~ circuit
+      - PNP transistor after the NPN of the emitter follower =2N3906=
+      - but it's collector to V-, not GND
+    - problem: Vout PP gain drop, due transistors internal diode
+    - problem: Vout is distorted, due intenal transistor diode breakage voltage (~0.7v)
+      - aka ~crossover distortion~
+    - solution: 2xdiodes + 2xresistors in series, and in parallel to both transistors, between V+ and V-
+
+- =Don't build, buy!=
+  - they sell audio amplifiers ICs, with similar components in it
+  - eg: LM386 (1w)
+  - eg: LM3886 (68w)
+
+** 10 The Ideal Amplifier
+
+- Not everything you want to amplify is audio
+  - MRI
+  - Sensors: Temperature, Solar Tracker (Pyranometer)
+
+- Ideal
+  - high gain (aka "infinite")
+  - low output resistance
+    - aka 0
+    - meaning it can source or sink substantial current
+  - high input resistance
+    - aka infinite
+  - wide freq response (same for all)
+  - needs to be good for DC
+    - 2-stage common emitter amp IS NOT
+    - =due capacitors=
+
+- Circuit ~difference amplifier~
+  - Parts
+    - NPN transistor
+    - resistor collector
+    - resistor emitter
+    - +V, -V
+  - Mirrored
+  - Output: voltage between 2 collectors
+    - if V1=V2 then Vout=0
+    - if V1>V2 then Vout>0
+  - Input: on each base
+  - To get a DC amplifier, we could GND one input
+    - 15:00
+
+- OpAMP
+
+** 11 Feedback Magic
+
+- Feedback:
+  - A change in a system
+  - that follows as a result of some earlier change
+  - types:
+    1) negative: diminishes the orig change, stabilizes
+    2) positive: enhances, destabilizing
+  - elements:
+    - a sensor, quantifies
+    - mechanism for acting back
+
+- examples using a normal OPAMP as comparator, with non-electric feedback (slow)
+  1) a light follower
+     - using 2 LDRs
+     - light feedback (resistance)
+  2) a temperature controller
+     - using a thermister
+     - temperature feedback (resistance)
+  3) controling a motor direction
+     - V+, V-
+     - depending on the position of a potentiometer that follows a motor rotation
+     - problems: it is unstable
+     - potentiometer feedback (resistance)
+  4) PWM a light depending on the state of a voltage divider
+     - light feedback (resistance)
+     - made with a LDR and a resistor
+     - V+, V-
+
+- All these examples wooble
+
+** 12 Electronic Feedback
+
+TODO 11:00
+
+- electronic feedback
+  - faster than mechanic feedback
+
+- inverting opamp
+  - + to GND
+  - - to Vin input signal, through Rin
+  - feedback through Rf
+  - Vout = A*V-
+  - Vin current = I
+  - I = (Vin - Vout) / (Rin + Rf)
+  - V- = Vin - I*Rin
+  - Vout = -((A*Rf)/(Rf+Rin+A*Rin))*Vin
+  - Vout = (Rf/Rin) * Vin

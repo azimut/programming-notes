@@ -888,23 +888,25 @@ receiveSessionFromJavascript toMsg =
 
 ** 02 Opaque Types (module exposing)
 
-- it is common to just return, when we don't want to return anything on a case
-  text ""
-
 *** Module Boundaries / Opaque Types
+
+- it is common to just return it
+  - when we don't want to return anything on a case text ""
 
 - by using encapsulation to _enforce invariants_
   - aka _NOT exposing constructors_ of variants
 
 - instead, you can export things that will keep the invariant
   #+begin_src elm
-    module Email exposing (Email, fromString, toString)
+module Email exposing (Email, fromString, toString) -- THIS enforces the invariant
 
-    type Email =
-        ValidEmail String
+type Email =
+    ValidEmail String
 
-    fromString : String -> Result String Email
-    toString : Email -> String
+-- indirect constructor
+fromString : String -> Result String Email
+-- unwrapper
+toString : Email -> String
   #+end_src
 
 - =Opaque Types=
@@ -912,8 +914,7 @@ receiveSessionFromJavascript toMsg =
   - the _implementation details_ are hidden
   - eg: Decoder, Html, Random.Generator
 
-- we can resort to defining a type, ~even when it doesn't have any data~
-  just to enforce the invariant
+- the opaque type might not even have any data to enforce the invariant
   #+begin_src elm
     type Email = Email
   #+end_src
@@ -921,24 +922,14 @@ receiveSessionFromJavascript toMsg =
 
 *** Example: Validated data (rtfeldman/elm-validate)
 
-- Or this that the only way to *submitForm* is with a *Valid* type
-  Which the only way to get it is with a call to *validate*
-  Make the *invariant* enforceable by the types and the compiler
-
-  #+begin_src elm
-    submitForm : Valid Form -> Http.Request User
-  #+end_src
-
-- Snippet rtfeldman/elm-validate code
-
+#+CAPTION: snippet from rtfeldman/elm-validate
 #+begin_src elm
 module Validate exposing (Validator, Valid,...)
 
-type Valid a = Valid a
+type Valid a =
+ Valid a
 
-fromValid
-    : Valid a
-    -> a
+fromValid : Valid a -> a
 
 validate
     : Validator error subject
@@ -946,19 +937,27 @@ validate
     -> Result (List error) (Valid subject)
 #+end_src
 
+Given this, we can create our own *submitForm*
+
+#+begin_src elm
+  submitForm : Valid Form -> Http.Request User
+#+end_src
+
+- The only way to *submitForm* is with a *Valid* type.
+- And the only way to get *Valid* it is with a call to *validate*
+- Makes the *invariant* enforceable by the types and the compiler
+
 *** Example: Credentials (elm-spa-example)
+
+#+begin_src elm
+module Credentials exposing (Cred, login)
+type Cred = ...
+
+login : LoginInfo -> http.Request Cred
+#+end_src
 
 - if you have a *Cred* that means you are logged in.
 - Since is the only way to expose a way to get those values.
-
-    #+begin_src elm
-module Credentials exposing (Cred, login)
-
-type Cred = ...
-
-login    : LoginInfo -> http.Request Cred     -- if I have a Cred, it means a user must have logged in
-    #+end_src
-
 - at the same time, you can build the rest of your code like this
 
 #+begin_src elm
