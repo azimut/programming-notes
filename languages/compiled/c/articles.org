@@ -1,3 +1,4 @@
+- 23 My favorite C compiler flags during development https://nullprogram.com/blog/2023/04/29/
 - https://jangafx.com/insights/linux-binary-compatibility
 - https://learnxinyminutes.com/c/
 - 21 Don't use math.h/div(3) https://eklitzke.org/don't-use-div(3)

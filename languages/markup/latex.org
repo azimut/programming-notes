@@ -1,3 +1,4 @@
+- book "The TexTBook" by Knuth
 - codebases
   - https://github.com/cab-1729/Pandoc-Themes?tab=readme-ov-file
 - https://en.wikibooks.org/wiki/LaTeX/Macros

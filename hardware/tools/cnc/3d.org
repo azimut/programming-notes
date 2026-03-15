@@ -14,9 +14,12 @@
 * hardware
 ** prusa i3 rework
 
+- course ensambly https://www.youtube.com/playlist?list=PLOu4qpeGlHPezwRPUcxhZP63PBqOzz_sy
+- https://web.archive.org/web/20160604132258/http://zootec3d.com/equipos/Prusai3_HQ/
 - https://reprap.org/wiki/Prusa_i3_Variants
 - https://reprap.org/wiki/Prusa_i3_Rework_Introduction
 - https://reprap.org/wiki/Prusa_i3_Rework_Firmware
+- PDF Emotion-tech 1.5 https://data.emotion-tech.com/ftp/Prusa_I3_Rework_et_Ordbot/Documentation/en/Prusa_i3_Rework_rev1.5%20-%20Assembly%20instructions.pdf
 - https://github.com/Zootec3D/i3-HQ/
   - empty repo
   - Modification for Prusa i3 Reworks originally developed by Josef Prusa and EMotion-Tech modified by Zootec3D.
@@ -59,6 +62,13 @@
   - 3d https://octoprint.org/
   - 3d https://www.repetier.com/
 
+* course
+
+- 2020 CFP https://www.youtube.com/playlist?list=PL_lD1_KDQ_48W-y25cfNfSZBYkHoA-zme
+
+* video
+
+- 2021 https://www.youtube.com/watch?v=pqkomM-nVBc
 * todo ideas
 
 - PCBite (helping hands for circuits)
@@ -78,10 +88,22 @@
   - ball and socket
   - condyloid
 
-* course
+** adaptor
 
-- 2020 CFP https://www.youtube.com/playlist?list=PL_lD1_KDQ_48W-y25cfNfSZBYkHoA-zme
+#+CAPTION: cable genius
+|---------+--------------|
+| tip-top | green second |
+| midup   | red          |
+| middown | copper (E)   |
+| bottom  | blue (E)     |
+|---------+--------------|
 
-* video
+- parts
+  - female jacks
+  - switch
 
-- 2021 https://www.youtube.com/watch?v=pqkomM-nVBc
+- eastern shapes
+  - bunny
+  - egg
+  - basket
+  - carrot?

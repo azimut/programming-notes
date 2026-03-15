@@ -718,6 +718,22 @@ https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference/unistd.h
 
 * Snippets
 
+** min max
+
+#+begin_src c
+  #define MIN(a,b) (((a) < (b)) ? (a) : (b))
+  #define MAX(a,b) (((a) > (b)) ? (a) : (b))
+#+end_src
+
+** bytes to
+
+#+begin_src c
+  #define u64 uint64_t u64
+  #define KiB(n) ((u64)(n) << 10)
+  #define MiB(n) ((u64)(n) << 20)
+  #define GiB(n) ((u64)(n) << 30)
+#+end_src
+
 ** read file line by line
 
 unlike *fgets*, *getline* dynamically resized the buffer read.

@@ -1,8 +1,10 @@
+
 - History https://www.youtube.com/watch?v=xGVRF-Y--hI
 - https://www.youtube.com/watch?v=2BLRLuczykM
 - https://www.youtube.com/watch?v=gk6NL1pZi1M
 - Channel. https://www.youtube.com/@antirez/videos
 - Channel: https://www.youtube.com/@Mr4thProgramming/videos
+  - arenas https://www.youtube.com/playlist?list=PLT6InxK-XQvMSaXSeAwsB5VP07MLP7abh
 - Linux Programming with C by Nir Lichtman https://www.youtube.com/playlist?list=PL0tgH22U2S3Giz-yIxVQTEKIZpMBP0tMf
 - Talks https://nullprogram.com/blog/2018/11/21/
 - 90 [[https://archive.org/details/learning-c-programming-viagrafix-1990][Learning C Programming (Viagrafix, 1990)]]
@@ -548,3 +550,93 @@ https://www.youtube.com/watch?v=fHojJ9Nxb0E
   #+end_src
 - strtod() - string to double
   strtof() - string to float
+* Magicalbat
+
+https://www.youtube.com/@Magicalbat/videos
+
+** DONE [[https://www.youtube.com/watch?v=XSAIgL4bweE][the dumbest optimization technique]]
+  - data locality, on nested loops traversing a row major matrix
+** TODO [[https://www.youtube.com/watch?v=jgiMagdjA1s][i hate malloc/free with a passion]]
+  - arenas
+** DONE [[https://www.youtube.com/watch?v=oJH8yX1WxFI][fix this 50 year old mistake in your code]]
+
+see also: https://www.youtube.com/watch?v=OkW7_rWz70A
+
+  - replace strings (char*) with a struct
+    #+begin_src c
+      typedef struct {
+        u8* str;
+        u64 size;
+      } string8;
+    #+end_src
+  - define a helper to declare literal strings
+    #+begin_src c
+      #define STR8_LIT(s) (string8){ (u8*)(s), sizeof((s)) - 1 };
+      #define STR8_FMT(s8) (int)(s8).size, (s8).str
+    #+end_src
+  - print strings
+    #+begin_src c
+      string8 test = STR8_LIT("hello");
+      printf("%.*s", STR8_FMT(test));
+    #+end_src
+  - substr
+    #+begin_src c
+      string8 str8_substr(string8 str, u64 start, u64 end) {
+        end = MIN(end, str.size);
+        start = MIN(start, end);
+        return (string8){ str.str + start, end - start };
+      }
+    #+end_src
+** TODO [[https://www.youtube.com/watch?v=_pDPfFsG89A][rand() sucks, do this instead]]
+
+based on: https://www.pcg-random.org
+
+- single global status RNG
+- RAND_MAX value depends on the implementation (compiler? platform?) being used
+** DONE [[https://www.youtube.com/watch?v=j3BvierE2hM][one file is better than cmake]]
+
+- https://en.wikipedia.org/wiki/Unity_build
+- aka =unity build=
+- aka =unified build=
+- aka =jumbo build=
+
+- it is basically =#include= both .h and .c
+- build is just
+  #+begin_src
+    $ gcc main.c
+    $ ./a.out
+  #+end_src
+
+** DONE [[https://www.youtube.com/watch?v=Cgc4LKmjm_c][one file is still better than cmake]]
+
+- more about =unity build=
+- everything will be on the same namespace
+- you compile everything every time
+- examples showing that is fast (faster on the second run?)
+  - radebugger, sqlite
+- to fix it for clangd LSP use
+  #+NAME: compile_flags.txt
+  #+begin_src
+    -include src/base/base.h
+    -include src/platform/platform.h
+  #+end_src
+
+** TODO [[https://www.youtube.com/watch?v=2EcJnBSH86s][just dont have errors...]]
+
+- from
+  - Ryan Fleury https://www.dgtlgrove.com/p/the-easiest-way-to-handle-errors
+  - Alan Webster https://www.youtube.com/watch?v=-XethY-QrR0
+
+- each if error check creates a different ~code path~
+
+- take #1 we convert some code
+  - from doing NULL punning for errors
+  - to
+    - using a custom type where an error is just a particular instance of the return type
+      - from char* to struct{char*,size}
+      - with size=0 on error
+    - we avoid dereferencing on our code
+
+- TODO take #2
+  - accumulate errors as a side effect
+

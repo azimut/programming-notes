@@ -1,0 +1,34 @@
+mia
+#+begin_src c
+  #include <SDL.h>
+#+end_src
+
+* cli
+
+sdl[2]-config
+--cflags
+--libs
+--static-libs
+
+* functions
+
+SDL_Init
+SDL_CreateWindow
+SDL_CreateRenderer
+SDL_WaitEvent
+SDL_RenderClear
+SDL_RenderPresent
+SDL_DestroyRenderer
+SDL_DestroyWindow
+SDL_Quit
+
+SDL_Log, like printf
+SDL_ShowSimpleMessageBox
+
+* articles
+
+- 23 https://nullprogram.com/blog/2023/01/08/
+
+* videos
+
+- 17 Tic-tac-toe Game in C with SDL https://www.youtube.com/watch?v=gCVMkKgs3uQ

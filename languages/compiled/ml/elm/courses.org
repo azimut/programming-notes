@@ -1,4 +1,4 @@
-- by Ryan Haskell https://www.youtube.com/playlist?list=PLuGpJqnV9DXq_ItwwUoJOGk_uCr72Yvzb
+- Welcome to Elm! by Ryan Haskell https://www.youtube.com/playlist?list=PLuGpJqnV9DXq_ItwwUoJOGk_uCr72Yvzb
 * DONE 16 | Elm Beyond the Basics
 code https://github.com/knowthen/elm-beyond-basics
 uses (20) library not supported by 0.19 https://package.elm-lang.org/packages/rluiten/elm-date-extra/latest
@@ -677,7 +677,7 @@ searchResult : { name : String, stars : Int } -- record
 
 ** 07 Maybe                 | (|>)
 
-- Pipeline style
+Pipeline style
 
 #+begin_src elm
 [ 2, 4, 6 ]
@@ -731,44 +731,46 @@ searchResult : { name : String, stars : Int } -- record
 ** 09 Talking to Servers    | Cmd, Http
 *** Elm functions
 
-- are pure
-- have no side-effects
+- are pure (aka no side effects)
 - have ~managed effects~, any side-effect has to be done through commands
   - through "Cmd Msg" sent by *update*
 
 *** HTTP
+**** GET
 
-- GET - we need to get a Request and then convert it to a Cmd
-  #+begin_src elm
-    -- CompletedLoadFeed (Result Error String)
-    Http.getString "/feed?tag=happiness" -- build a Request
-         |> Http.send CompletedLoadFeed -- send Request and use custom Msg to receive response
+We need to get a Request and then convert it to a Cmd
 
-    -- CompletedLoadFeed (Result Error (List Article))
-    Http.get articlesDecoder url
-  #+end_src
+#+begin_src elm
+  -- CompletedLoadFeed (Result Error String)
+  Http.getString "/feed?tag=happiness" -- build a Request
+       |> Http.send CompletedLoadFeed  -- send Request and use custom Msg to receive response
 
-- POST
-  #+begin_src elm
-    let
-        requestBody : Http.Body
-        requestBody =
-            encodeJsonBody model.form
+  -- CompletedLoadFeed (Result Error (List Article))
+  Http.get articlesDecoder url
+#+end_src
 
-        responseDecoder : Decoder Viewer
-        responseDecoder =
-            Decode.field "user" Viewer.decoder
+**** POST
 
-        request : Http.Request Viewer
-        request =
-            Http.post "/api/users" requestBody responseDecoder
+#+begin_src elm
+  let
+      requestBody : Http.Body
+      requestBody =
+          encodeJsonBody model.form
 
-        cmd : Cmd Msg
-        cmd =
-            Http.send CompletedRegister request
-    in
-        ({ model | problems = [] }, cmd)
-  #+end_src
+      responseDecoder : Decoder Viewer
+      responseDecoder =
+          Decode.field "user" Viewer.decoder
+
+      request : Http.Request Viewer
+      request =
+          Http.post "/api/users" requestBody responseDecoder
+
+      cmd : Cmd Msg
+      cmd =
+          Http.send CompletedRegister request
+  in
+      ({ model | problems = [] }, cmd)
+#+end_src
 
 ** 10 Talking to Javascript | Sub, on, port
 
@@ -869,6 +871,7 @@ receiveSessionFromJavascript toMsg =
 * TODO 18 | Advanced Elm           | Richard Feldman
 
 |------------------------------+----------------------------------------------------------------------------------|
+| source                       | https://github.com/rtfeldman/elm-0.19-workshop                                   |
 | opaque data types            | https://en.wikipedia.org/wiki/Opaque_data_type                                   |
 | extensible custom types      | https://allanderek.prose.sh/extensible-custom-types                              |
 | extensible custom types WASM | https://dev.to/briancarroll/elm-in-wasm-custom-types-and-extensible-records-15m0 |
@@ -877,6 +880,48 @@ receiveSessionFromJavascript toMsg =
 | talk                         | https://www.youtube.com/watch?v=tyFe9Pw6TVE                                      |
 | talk                         | https://www.youtube.com/watch?v=XpDsk374LDE                                      |
 |------------------------------+----------------------------------------------------------------------------------|
+
+** 00 Directory Structure
+*** tests/
+*** src/
+**** /
+- Api.elm
+- Article.elm
+- Asset.elm
+- Author.elm
+- Avatar.elm
+- CommentId.elm
+- Email.elm
+- Loading.elm
+- Log.elm
+- Main.elm
+- Page.elm
+- PaginatedList.elm
+- Profile.elm
+- Route.elm
+- Session.elm
+- Timestamp.elm
+- Username.elm
+- Viewer.elm
+**** Article/
+- Body.elm
+- Comment.elm
+- Feed.elm
+- Slug.elm
+- Tag.elm
+**** Page/
+- Article.elm
+- Blank.elm
+- Home.elm
+- Login.elm
+- NotFound.elm
+- Profile.elm
+- Register.elm
+- Settings.elm
+***** Article/
+- Editor.elm
+**** Viewer/
+- Cred.elm
 
 ** 01 Overview
 
@@ -1238,24 +1283,29 @@ Task.perform ViewportChanged getViewport
 
 ** 05 Scaling
 
-- order of function arguments
+- Order of function arguments
   - think on how ~partial application~ would affect it
-  - the most important argument first,
+  - the most important argument first
   - aka the less likely to change
 
-- What fits in our heads
+*** What fits in our heads
 
-  - Split into modules
+- Split into modules
+  - Such as each module fits in your head
+  - Every page has his own Model
 
-- Narrowing types, help on debugging
+*** Narrowing types
 
-  - You focus your attention on functions that touch/modify the thing you have BUG with
-  - If it is a an issue with the *Model*
-    - can rule out view functions, if it an isue with data
-  - If it is a particular part of the *Model*
-    - can rule out functions that deal with unreleated part of it
+- Help on debugging
+- You focus your attention on functions that touch/modify the thing you have BUG with
+- If it is a an issue with the *Model*
+  - can rule out view functions, if it an isue with data
+- If it is a particular part of the *Model*
+  - can rule out functions that deal with unreleated part of it
 
-- Enforcement arguments, adding arguments to show business dependencies logic
+*** Enforcement arguments
+
+Adding arguments to show business dependencies logic
 
   #+begin_src elm
      type Author
@@ -1270,15 +1320,15 @@ Task.perform ViewportChanged getViewport
         -> Html msg
   #+end_src
 
-- Using modules for modularity
+*** Using modules for modularity
 
-  - The primary purpose of a module is to hide things, hide implementation details
+- The primary purpose of a module is to hide things, hide implementation details
 
-  - Nobody else should be messing with the Model of a page,
-    you should not be exposing it
+- Nobody else should be messing with the Model of a page,
+  you should not be exposing it
 
-  - dividing into smaler files without a clear objective
-    leads to over-exposing things, just to have the other module to have access
+- dividing into smaler files without a clear objective
+  leads to over-exposing things, just to have the other module to have access
 
 ** TODO 06 Reuse
 
@@ -1434,4 +1484,81 @@ type alias Internals =
     }
 #+end_src
 
-** TODO 09 SPAs
+** DONE 09 SPAs
+
+*** Routes
+
+#+begin_src elm
+import Url.Parser as Parser exposing ((</>), Parser, oneOf, s, string)
+#+end_src
+
+- a Route is an abstraction on top of valid urls
+- Route a custom type enum
+- each url will map to a particular Route variant
+
+#+begin_src elm
+import Username exposing (Username)
+import Article.Slug as Slug exposing (Slug)
+
+type Route = ...
+
+parser : Parser (Route -> a) a
+parser =
+    oneOf -- runs 1 at the time, returns successful
+        [ Parser.map Home Parser.top
+        , Parser.map Login (s "login")
+        , Parser.map Logout (s "logout")
+        , Parser.map Settings (s "settings")
+        , Parser.map Profile (s "profile" </> Username.urlParser)
+        , Parser.map Register (s "register")
+        , Parser.map Article (s "article" </> Slug.urlParser)
+        , Parser.map NewArticle (s "editor")
+        , Parser.map EditArticle (s "editor" </> Slug.urlParser)
+        ]
+#+end_src
+
+Helper to generate links from a Route.
+Such as nothing outside this module should be dealing with urls directly.
+
+#+begin_src elm
+routeToString : Route -> String
+routeToString page =
+#+end_src
+
+*** Pages
+
+#+begin_src elm
+module Page exposing (Page(..), view, viewErrors)
+#+end_src
+
+- a =Page= is a non-opaque custom enum type
+- not necesarilly correspond with ~urls~
+  - they correspond with displays
+
+#+begin_src elm
+viewErrors : msg -> List String -> Html msg
+
+view : Maybe Viewer -> Page -> { title : String, content : Html msg } -> Document msg
+view maybeViewer page { title, content } =
+    { title = title ++ " - Conduit"
+    , body = viewHeader page maybeViewer :: content :: [ viewFoter ]
+    }
+#+end_src
+
+*** Module Structure
+
+- keep it as flat as possible
+  - this leads to exporting less (?
+  - no Data/, no Request/
+
+- this example uses folders for use as namespaces
+
+- against using type alias
+
+*** Loading & Persisting Data
+
+- loading
+  - render all possible while waiting for other things
+    - maybe localized spinner
+  - block all page until all is ready
+    - render a spinner

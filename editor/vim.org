@@ -11,6 +11,7 @@
 
 - article http://howivim.com/2016/andy-stewart/
 - articles https://www.mpaoli.net/~michael/unix/vi/
+- articles https://catonmat.net/vim-plugins
 - lua https://neovim.io/doc/user/lua-guide.html#lua-guide
 - https://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/
 
