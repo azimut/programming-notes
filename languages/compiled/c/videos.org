@@ -1,8 +1,9 @@
-
 - History https://www.youtube.com/watch?v=xGVRF-Y--hI
+- jonas Birch https://www.youtube.com/playlist?list=PLdNUbYq5poiUwKaZULNCNw0VOd_a2wGqv
 - https://www.youtube.com/watch?v=2BLRLuczykM
 - https://www.youtube.com/watch?v=gk6NL1pZi1M
 - Channel. https://www.youtube.com/@antirez/videos
+- Channel https://www.youtube.com/@HirschDaniel/videos
 - Channel: https://www.youtube.com/@Mr4thProgramming/videos
   - arenas https://www.youtube.com/playlist?list=PLT6InxK-XQvMSaXSeAwsB5VP07MLP7abh
 - Linux Programming with C by Nir Lichtman https://www.youtube.com/playlist?list=PL0tgH22U2S3Giz-yIxVQTEKIZpMBP0tMf
@@ -377,6 +378,7 @@ https://www.youtube.com/watch?v=ieERUEhs910
 #+end_src
 
 * 24 | Tips for C Programming                 | Nic Barker
+
 https://www.youtube.com/watch?v=9UIIMBqq1D4
 
 * Tsoding
@@ -387,7 +389,6 @@ https://www.youtube.com/watch?v=9UIIMBqq1D4
 - Build System in C https://www.youtube.com/playlist?list=PLpM-Dvs8t0VZpih2sTx6povEocoKEUBnk
 - Cellular Automata https://www.youtube.com/playlist?list=PLpM-Dvs8t0VYX7q4RQsx6mOSWFDzvvnxg
 - GC in C https://www.youtube.com/playlist?list=PLpM-Dvs8t0VYuYxRxjfnkdHvosHH8faqc
-- Mini Excel in C https://www.youtube.com/playlist?list=PLpM-Dvs8t0VYfQc5dq21Vc81G1rGHwkmT
 ** 21 | Searching duplicate files with C
 00:53:00
 https://www.youtube.com/watch?v=bpCJf67e1lI
@@ -467,6 +468,7 @@ https://www.youtube.com/watch?v=fHojJ9Nxb0E
   - doing a single memory allocation of an array of charj
   - and providing an API to memcpy into it cstrings
 ** 21 | Minicel
+- Mini Excel in C https://www.youtube.com/playlist?list=PLpM-Dvs8t0VYfQc5dq21Vc81G1rGHwkmT
 *** TODO 1 https://www.youtube.com/watch?v=HCAgvKQDJng
 01:26:00
 - uses ~size_t~ for anything related to array indices

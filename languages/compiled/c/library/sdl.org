@@ -1,3 +1,15 @@
+- 1998
+- by Sam Lantinga
+- Home https://www.libsdl.org/
+- Wiki https://en.wikipedia.org/wiki/Simple_DirectMedia_Layer
+- Wiki https://wiki.libsdl.org/
+- source https://github.com/libsdl-org/SDL
+- libraries
+  - SDL_image
+  - SDL_mixer
+  - SDL_ttf
+  - SDL_net
+
 mia
 #+begin_src c
   #include <SDL.h>
@@ -32,3 +44,4 @@ SDL_ShowSimpleMessageBox
 * videos
 
 - 17 Tic-tac-toe Game in C with SDL https://www.youtube.com/watch?v=gCVMkKgs3uQ
+- Writing 2D Games in C using SDL https://www.youtube.com/watch?v=yFLa3ln16w0

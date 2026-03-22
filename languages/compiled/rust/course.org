@@ -1,3 +1,5 @@
+- null labs https://www.youtube.com/playlist?list=PL5JFPVMx5WzVy30QNj2uESSAurSkSdrJS
+
 * 21 Rust Programming Language / Richard Feldman
 
 ** 1 Introduction

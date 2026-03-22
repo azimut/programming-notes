@@ -1,9 +1,11 @@
 - cscout [[https://github.com/dspinellis/cscout][source]] [[https://www.spinellis.gr/cscout/][home]]
-- clang-format
-  - https://emacs.stackexchange.com/questions/55635/how-can-i-set-up-clang-format-in-emacs
-    clang-format -style=llvm -dump-config > .clang-format
 - sanitizers
   - ASAN compatible with gdb https://github.com/google/sanitizers/wiki/AddressSanitizerAndDebugger
+* clang-format
+  - https://git.sr.ht/~rabbits/hiversaires/tree/master/item/.clang-format
+  - https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+  - https://emacs.stackexchange.com/questions/55635/how-can-i-set-up-clang-format-in-emacs
+    clang-format -style=llvm -dump-config > .clang-format
 * Editors
 - emacs
   - http://blog.lujun9972.win/emacs-document/blog/2018/03/22/emacs-as-a-c++-ide/index.html

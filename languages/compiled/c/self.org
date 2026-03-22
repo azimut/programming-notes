@@ -696,19 +696,24 @@ https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference/unistd.h
 - MSVCRT.DLL -> UCRTBASE.DLL (C99-ish) https://en.wikipedia.org/wiki/Microsoft_Windows_library_files#Runtime_libraries
 - sockets https://en.wikipedia.org/wiki/Winsock
 ** Linux
+
 - alloca.h: allocs memory in stack
 - execinfo.h: backtrace https://man7.org/linux/man-pages/man3/backtrace.3.html
+
 ** printf
-|-----+-----------------------------------------|
-| <r> |                                         |
-|     | a space, leaves a space for sign symbol |
-|   + | always prints sign symbol               |
-|   * | takes width as an argument              |
-|  .* | takes decimal precision from argument   |
-|   N | aligns right                            |
-|  -N | aligns left                             |
-|  .N | decimal precision                       |
-|-----+-----------------------------------------|
+
+#+CAPTION: %jfsw.plt
+|-----+---------+---------------------------------------|
+| <r> |   <c>   |                                       |
+|   j |   "-"   | justification, "-" for right          |
+|   f | "0" " " | fill with                             |
+|   s |   "+"   | sign, always prints sign symbol       |
+|   w |    N    | width, reserve N chars for number     |
+|  .p |    N    | precision, N digits after decimal     |
+|   t | "f" "d" | type                                  |
+|   * |         | takes width as an argument            |
+|  .* |         | takes decimal precision from argument |
+|-----+---------+---------------------------------------|
 
 * Gotchas
 

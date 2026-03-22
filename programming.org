@@ -49,6 +49,13 @@
     - no stemming of symbols
   - html, js, css https://publicwww.com/
 
+- [[https://wiki.c2.com/?SamuraiPrinciple][Samurai Principle]] "return victorious or not at all"
+  - it takes the burden out from the caller to check for errors
+  - aka always return a valid result or no at all
+  - aka throw an exception on error
+  - aka do not return NULL
+  - eg: assert.h
+
 - [[https://en.wikipedia.org/wiki/Robustness_principle][Robustness principle]]
   - "be conservative in what you do, be liberal in what you accept from others"
 
