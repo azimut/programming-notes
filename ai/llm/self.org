@@ -1,0 +1,5 @@
+- https://github.com/anomalyco/opencode
+- https://academy.langchain.com/courses/intro-to-langgraph
+- LangGraph
+  - https://www.langchain.com/langgraph
+  - an agent runtime and low-level orchestration framework

@@ -20,6 +20,7 @@
 - https://reprap.org/wiki/Prusa_i3_Rework_Introduction
 - https://reprap.org/wiki/Prusa_i3_Rework_Firmware
 - PDF Emotion-tech 1.5 https://data.emotion-tech.com/ftp/Prusa_I3_Rework_et_Ordbot/Documentation/en/Prusa_i3_Rework_rev1.5%20-%20Assembly%20instructions.pdf
+- pieces https://github.com/b2az/prusa_i3_rework_1.5
 - https://github.com/Zootec3D/i3-HQ/
   - empty repo
   - Modification for Prusa i3 Reworks originally developed by Josef Prusa and EMotion-Tech modified by Zootec3D.
@@ -60,6 +61,7 @@
 - controller
   - 3d https://github.com/kliment/Printrun
   - 3d https://octoprint.org/
+    - web interface
   - 3d https://www.repetier.com/
 
 * course

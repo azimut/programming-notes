@@ -1,0 +1,42 @@
+- $ https://en.wikipedia.org/wiki/Autodesk_Fusion
+- $ https://www.vectric.com/products/cut2d/
+- antimony https://github.com/mkeeter/antimony
+- http://www.implicitcad.org/
+- rhino https://www.rhino3d.com/
+  - algorithmic scripting https://www.grasshopper3d.com/
+
+* 3d
+
+- $ zwCAD
+- $ nanoCAD
+- $ ondsel
+- onshape
+- OpenSCAD
+  - 2010
+  - code based?
+  - wiki https://en.wikipedia.org/wiki/OpenSCAD
+  - addon https://github.com/BelfrySCAD/BOSL2
+  - home https://openscad.org/
+  - new python scripting https://pythonscad.org/
+
+- FreeCAD
+  - home https://www.freecad.org/
+  - wiki https://en.wikipedia.org/wiki/FreeCAD
+  - constrain solver
+  - =try dev version=
+
+* 2d
+
+- sagcad
+- QCAD
+- LibreCAD
+  - QCAD fork
+  - 2011 - QT5
+  - home https://librecad.org/
+  - source https://github.com/LibreCAD/LibreCAD
+  - wiki https://en.wikipedia.org/wiki/LibreCAD
+  - .dxf
+    - plaintext
+    - only supported format
+
+- course Dibujo técnico con LibreCAD, Curso Completo  https://www.youtube.com/watch?v=mhmj_IghriQ

@@ -76,46 +76,6 @@
 |  17 |    -    | enable motors                     |
 |  18 |    -    | disable motors                    |
 |-----+---------+-----------------------------------|
-* software
-
-- CAD
-  - https://en.wikipedia.org/wiki/OpenSCAD
-    - addon https://github.com/BelfrySCAD/BOSL2
-    - new python scripting https://pythonscad.org/
-  - https://en.wikipedia.org/wiki/FreeCAD
-    - constrain solver
-  - https://en.wikipedia.org/wiki/Autodesk_Fusion
-  - antimony https://github.com/mkeeter/antimony
-  - http://www.implicitcad.org/
-  - rhino https://www.rhino3d.com/
-    - algorithmic scripting https://www.grasshopper3d.com/
-
-- $ https://www.vectric.com/products/cut2d/
-
-- firmware
-  - cnc grbl Arduino https://github.com/grbl/grbl
-  - cnc Smoothieware [[https://github.com/Smoothieware/Smoothieware][source]] [[http://smoothieware.org/][home]]
-  - FluidNC ESP32 [[http://wiki.fluidnc.com/][home]] [[https://github.com/bdring/FluidNC][source]]
-  - https://github.com/synthetos/TinyG
-  - https://github.com/synthetos/g2
-
-- controller
-  - pcb http://flatcam.org/
-  - pcb https://www.galaad.net/coppercam-eng.html
-  - pcb https://www.easylogix.de/products_detail.php?prog_id=1
-    - windows
-  - https://en.wikipedia.org/wiki/LinuxCNC
-  - https://winder.github.io/ugs_website/
-  - https://grbl-controller.software.informer.com/
-  - https://github.com/vlachoudis/bCNC
-    - of: grbl
-  - cnsjs [[https://github.com/cncjs/cncjs][source]] [[https://cnc.js.org/][home]]
-    - of: grbl, marlin, smoothieware, tinyg
-  - https://benbox.updatestar.com/en
-  - https://lasergrbl.com/ https://github.com/arkypita/LaserGRBL
-    - windows
-  - freeware https://wegstr.com/software/controlling-software
-
 * file formats
 
 - .brd - Board Design Rule Document

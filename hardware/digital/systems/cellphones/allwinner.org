@@ -1,0 +1,18 @@
+* Tools
+
+- /dev/ttyUSB1 - 115200
+- https://play.google.com/store/apps/details?id=com.cgutman.androidremotedebugger
+- https://androidmtk.com/download-amlogic-usb-burning-tool
+- Phoenix USB Pro
+- Phoenix Card
+  - imgRepacker
+  - OpenixCard https://linux-sunxi.org/OpenixCard https://github.com/YuzukiTsuru/OpenixCard
+    - https://www.youtube.com/watch?v=hgX6R27LZAY
+- Phoenix Suite
+  - aka "AllWinner" flasher tool
+  - APK > Recovery
+  - Live Suit Tool https://androidmtk.com/download-livesuit-all-versions
+  - Live Suite https://github.com/linux-sunxi/sunxi-livesuite
+    - https://linux-sunxi.org/LiveSuit
+    - linux alternative
+- TWRP (allwinner.zip)

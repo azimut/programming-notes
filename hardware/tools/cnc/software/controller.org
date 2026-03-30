@@ -1,0 +1,15 @@
+- pcb http://flatcam.org/
+- pcb https://www.galaad.net/coppercam-eng.html
+- pcb https://www.easylogix.de/products_detail.php?prog_id=1
+  - windows
+- https://en.wikipedia.org/wiki/LinuxCNC
+- https://winder.github.io/ugs_website/
+- https://grbl-controller.software.informer.com/
+- https://github.com/vlachoudis/bCNC
+  - of: grbl
+- cnsjs [[https://github.com/cncjs/cncjs][source]] [[https://cnc.js.org/][home]]
+  - of: grbl, marlin, smoothieware, tinyg
+- https://benbox.updatestar.com/en
+- https://lasergrbl.com/ https://github.com/arkypita/LaserGRBL
+  - windows
+- freeware https://wegstr.com/software/controlling-software

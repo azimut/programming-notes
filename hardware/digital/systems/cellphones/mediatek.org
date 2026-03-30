@@ -1,3 +1,4 @@
+- https://baylibre.pages.baylibre.com/mediatek/rita/device/mediatek/mtk-android-14/docs/android.html
 - wiki [[https://web.archive.org/web/20180614215104/https://en.wikipedia.org/wiki/List_of_devices_using_Mediatek_SoCs][List of devices using Mediatek SoCs]]
 - record flashing process https://web.archive.org/web/20201109011938/https://wiki.postmarketos.org/wiki/Dump_proprietary_flashing_procedures
   - wireshark usb traffic

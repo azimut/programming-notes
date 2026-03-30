@@ -1,3 +1,7 @@
+#+begin_src c
+  #include <SDL.h>
+#+end_src
+
 - 1998
 - by Sam Lantinga
 - Home https://www.libsdl.org/
@@ -9,11 +13,6 @@
   - SDL_mixer
   - SDL_ttf
   - SDL_net
-
-mia
-#+begin_src c
-  #include <SDL.h>
-#+end_src
 
 * cli
 
