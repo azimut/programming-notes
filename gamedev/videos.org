@@ -1,3 +1,14 @@
 - 23 Computational Creativity https://www.youtube.com/playlist?list=PLuh62Q4Sv7BX-uwS15xlbi7KUcgKUmWNL
 - Channel: https://www.youtube.com/@roguelikecelebration/videos
 - Channel: recreate gameplay https://www.youtube.com/@mixandjam/videos
+
+* Freya Holmer
+
+https://media.rss.com/the-generalists/feed.xml
+https://www.youtube.com/@acegikmo
+
+- 19 THE SIMPLE YET POWERFUL MATH WE DON'T TALK ABOUT
+  - IndieGDC https://www.youtube.com/watch?v=NzjF1pdlK7Y
+  - IndieCade https://www.youtube.com/watch?v=R6UB7mVO3fY
+- 20 Developing Shader Expertise https://vimeo.com/482361448
+- 25 Quaternions https://www.youtube.com/watch?v=PMvIWws8WEo

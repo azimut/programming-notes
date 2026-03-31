@@ -44,11 +44,48 @@
 - tool https://en.wikipedia.org/wiki/Odin_(firmware_flashing_software)
 
 * os
+
+- Pixel Experience????
+- Havoc OS????
 - AOSP
 - LineageOS - not supported (never?)
+  - https://xdaforums.com/t/rom-g532x-7-1-2-beta-lineageos-14-1-for-galaxy-j2-prime.3946388/
+    - blobs https://github.com/almondnguyen/android_vendor_samsung_grandppltedx
+    - kernel https://github.com/almondnguyen/android_kernel_samsung_grandppltedx
+    - dtb https://github.com/almondnguyen/android_device_samsung_grandppltedx
+      - works: gps, radio, wifi, bluetooth
+      - not: video recording, audio jack, battery--, heat++
 - e/os - not supported
 - https://xdaforums.com/t/rom-aroma-stable-xtreme-ultimate-v6-0-by-xtreme-team-g532m-g-f-6-0-1.3763904/
 - https://xdaforums.com/f/samsung-galaxy-j2-roms-kernels-recoveries-oth.6450/
+
+** uname -a
+
+#+begin_src sh
+  shell@grandpplte:/ $ uname -a
+  Linux localhost 3.18.19-14373813 #1 SMP PREEMPT Fri Aug 23 05:50:39 KST 2019 armv7l
+#+end_src
+
+** /proc/cpuinfo
+
+#+begin_src sh
+shell@grandpplte:/ $ cat /proc/cpuinfo
+Processor       : ARMv7 Processor rev 3 (v7l)
+processor       : 0
+model name      : ARMv7 Processor rev 3 (v7l)
+BogoMIPS        : 5.98
+Features        : half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm aes pmull sha1 sha2 crc32
+CPU implementer : 0x41
+CPU architecture: 7
+CPU variant     : 0x0
+CPU part        : 0xd03
+CPU revision    : 3
+
+Hardware        : Samsung GrandPrimePlus LTE LTN OPEN rev04 board based on MT6737T
+Revision        : 0000
+Serial          : 0000000000000000
+#+end_src
+
 * android recovery
 
 apply update from sd card

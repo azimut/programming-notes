@@ -723,6 +723,48 @@ https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference/unistd.h
 
 * Snippets
 
+** tuples
+
+#+begin_src c
+  #define Tuple2(T1, T2)        \
+    struct Tuple2_##T1##_##T2 { \
+      T1 a;                     \
+      T2 b;                     \
+    }
+#+end_src
+
+** rust types
+
+#+begin_src c
+  #include <stdint.h>
+  typedef uint8_t   u8;
+  typedef int8_t    i8;
+  typedef int16_t   i16;
+  typedef uint16_t  u16;
+  typedef int32_t   i32;
+  typedef uint32_t  u32;
+  typedef uint64_t  u64;
+  typedef float     f32;
+  typedef double    f64;
+  typedef uintptr_t uptr;
+  typedef ptrdiff_t isize;
+  typedef size_t    usize;
+#+end_src
+
+** self compile
+
+#+CAPTION: main.c
+#+begin_src c
+  #if 0
+  gcc  -Wall -Wextra -pedantic -O3 $0 -o out -lm && ./out
+  exit 0
+  #endif
+#+end_src
+
+#+begin_src sh
+  $ bash main.c
+#+end_src
+
 ** min max
 
 #+begin_src c
@@ -891,12 +933,16 @@ takes an array of pollfd
 ** qsort
 
 #+begin_src c
+  #include <stdlib.h>
+
   int compar(const void *x1, const void *x2) {
     return (*(int*)x2) - (*(int*)x1);
   }
+
   int xs[] = {1,2,3,4,5,6,7,8,9,10};
   qsort(xs, 10, sizeof(int), compar);
 #+end_src
+
 ** child signal handling
 
 avoid fork defunct process

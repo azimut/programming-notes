@@ -1,3 +1,5 @@
+- https://www.lelanthran.com/toc.html
+- https://www.unix.dog/~yosh/blog/c-habits-for-me.html
 - 23 My favorite C compiler flags during development https://nullprogram.com/blog/2023/04/29/
 - https://jangafx.com/insights/linux-binary-compatibility
 - https://learnxinyminutes.com/c/

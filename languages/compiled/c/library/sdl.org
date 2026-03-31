@@ -38,6 +38,7 @@ SDL_ShowSimpleMessageBox
 
 * articles
 
+- opengl example https://gist.github.com/jordandee/94b187bcc51df9528a2f
 - 23 https://nullprogram.com/blog/2023/01/08/
 
 * videos

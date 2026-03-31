@@ -10,6 +10,10 @@
 - https://gist.github.com/lopestom/ce250f5de64a2764ee85092a2c01939e
 - https://www.hovatek.com/forum/thread-46342.html
 
+- NOTE: GPT says mainstream kernel support is poor, and in consequence
+  - there few ROMS for it
+  - the roms that are out there have poor HW performance (eg: incomplete audio drivers or video)
+
 * tools
 
 - [[https://www.hovatek.com/forum/thread-46342.html][[Tutorial] How to use MTK Client + SP Flash tool to back up or flash]]
@@ -102,7 +106,9 @@ cdc_acm 1-2:1.0: Zero length descriptor references
 cdc_acm: probe of 1-2:1.0 failed with error -22
 cdc_acm 1-2:1.1: ttyACM0: USB ACM device
 #+end_src
+
 * videos
+
 - 21 [[https://www.youtube.com/watch?v=0UmK9aHO4Go][Knockin' On MediaTek ADSP’s Door]] by Slava Makkaveev
 - 14 [[https://www.youtube.com/watch?v=hpEqDPYtf9s][Fernvale: An Open Hardware and Software Platform, Based on the (nominally) Closed-Sour]]
   - by bunnie & Xobs
