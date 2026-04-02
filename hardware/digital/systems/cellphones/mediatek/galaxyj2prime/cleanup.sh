@@ -48,18 +48,29 @@ packages=(
     com.osp.app.signin         # Samsung Account
     com.samsung.android.scloud # Samsung Cloud
 
-
     com.android.bluetoothmidiservice
-    com.google.android.googlequicksearchbox # widgets, background
-    com.sec.phone                     # test phonecalls
-    com.samsung.aasaservice
-    com.google.android.onetimeinitializer
-    com.android.providers.partnerbookmars # bookmarks in chrome
-    com.wsomacp # weird protocol omacp=OMA Client Provisioning
-    com.android.dreams.phototable  # screensaver of photos
-    com.sec.android.app.samsungapps # samsung stores
-    com.wssnps # samsung backup
     com.android.calllogbackup
+    com.android.dreams.phototable           # screensaver of photos
+    com.android.providers.partnerbookmars   # bookmarks in chrome
+    com.google.android.googlequicksearchbox # widgets, background
+    com.google.android.onetimeinitializer   #
+    com.samsung.aasaservice                 #
+    com.samsung.android.securitylogagent    # agent that monitors for changes on the disk (?)
+    com.samsung.safetyinformation           # manual?
+    com.sec.android.AutoPreconfig           # country SIM card soft-lock
+    com.sec.android.app.ringtoneBR          # backup restore
+    com.sec.android.app.samsungapps         # samsung stores
+    com.sec.android.diagmonagent            # telemetry
+    com.sec.android.preloadinstaller        # install apks .. https://x.com/fs0c131y/status/1046689524691218432
+    com.sec.android.widgetapp.webmanual     # manual?
+    com.sec.enterprise.mdm.vpn              # VPN enterprise ??
+    com.sec.epdgtestap                      # 3G test app
+    com.sec.factory                         # sometimes targeted by bugs
+    com.sec.factory.camera                  #
+    com.sec.imslogger                       # official backdoor https://x.com/fs0c131y/status/1115889065285562368
+    com.sec.phone                           # test phonecalls
+    com.wsomacp                             # weird protocol omacp=OMA Client Provisioning
+    com.wssnps                              # samsung backup
 )
 for package in "${packages[@]}"; do
     adb shell pm uninstall --user 0 "${package}"

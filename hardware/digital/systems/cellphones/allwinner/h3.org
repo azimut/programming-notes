@@ -1,0 +1,38 @@
+TV BOX Mxq pro 5g  4k
+5v 2a
+android10.1 4g+64h wifi 2.4g/5g
+
+- https://linux-sunxi.org/H3
+- https://linux-sunxi.org/MXQ-4K
+
+- Allwinner
+- 1.2Ghz ARM Cortex-A7 Quad-Core
+- 2014
+- ~h3q44 v3.0 20190725~
+  - wifi? SV6256P
+  - AllWinner H3?
+
+* OS
+
+- LibreElec https://libreelec.tv/downloads/allwinner/
+  - to run Kodi
+  - can run from an SD card
+  - no official image (?
+
+** linux
+
+- decodings++ encoding--
+  - vdpau (video decoding) api code
+- kernel old https://linux-sunxi.org/H3_Manual_build_howto
+- kernel source https://linux-sunxi.org/Linux_mainlining_effort
+- kernel manual https://linux-sunxi.org/Mainline_Kernel_Howto
+- u-boot manual https://linux-sunxi.org/U-Boot
+- u-boot old https://linux-sunxi.org/U-Boot/Legacy_U-Boot
+- ARMBIAN
+  - orangepi?
+  - sunvell-r69
+  - kernel https://github.com/linux-sunxi/linux-sunxi
+- kodi
+  - history https://linux-sunxi.org/Kodi
+  - working fork https://github.com/mosterta/xbmc
+  - http://forum.kodi.tv/showthread.php?tid=254202

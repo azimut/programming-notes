@@ -1,0 +1,8 @@
+adb shell pm grant com.spocky.projengmenu android.permission.WRITE_SECURE_SETTINGS
+adb shell pm settings put secure enabled_input_methods $(settings get secure enabled_input_methods),com.spocky.projengmenu/.ProjEngMenuActivity
+adb shell pm settings put secure default_input_method com.spocky.projengmenu/.ProjEngMenuActivity
+adb shell pm disable-user --user 0 com.android.tv.launcher
+adb shell pm settings put secure default_home_screen com.spocky.projengmenu/.ProjEngMenuActivity
+adb shell pm clear com.android.tv.launcher
+adb shell pm list packages
+adb reboot

@@ -1,42 +1,31 @@
-- https://wiki.postmarketos.org/wiki/Galaxy_J2_Prime_(SM-G532M)
 - https://en.wikipedia.org/wiki/Samsung_Galaxy_J2_Prime
+
+- grandpplte
 - 2016-2018
 - Samsung GrandPrimePlus LTE LTN OPEN rev04 board
 - FCC ID: [[https://fcc.report/FCC-ID/A3LSMG532M][A3LSMG532M]]
 - SM-G532M
-- SoC: MediaTek *MT6737T*
+- SoC: MediaTek MT6737T (procinfo)
+  - MT6735T (cpuz) https://wiki.postmarketos.org/wiki/MediaTek_MT6735
+    - of which 37T is a variant of
   - CPU:
     - ARMv7 Cortex-A53
-    - Quad-Core 1.4Ghz
+    - Quad-Core 1.44 Ghz
   - GPU:
     - ARM Mali-T720MP2
     - 1.5GB RAM
 - ROM: 8GB
 - RAM: 1.5GB
-- Android: 6.0.1
-- Linux: 3.18.19
+- Android: 6.0.1 / 23
+- Linux: 3.18.19-14373813 (GM532MUMU1ASH2)
   - dpi@SWHD7007
+- JVM: ART 2.1.0
 
 - usb JIG https://www.instructables.com/USB-JIG-to-give-life-to-your-Bricked-mobile/
 - eemc repair through jtag
   - https://www.youtube.com/watch?v=_n7s4US2Q2A
   - https://scontent.faep9-1.fna.fbcdn.net/v/t1.6435-9/36580382_403301206847519_7561248070151700480_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=mDMmaCJuURIQ7kNvwEUlwpK&_nc_oc=Adlm0xIF6ISaETiCCHnhHe4dsHuSjDnljeyA-bysjS7_2Ks2Q0hBVndVaG9Ob-g-ezc&_nc_zt=23&_nc_ht=scontent.faep9-1.fna&_nc_gid=TlTV98KTVWsPB7OxtNAoOg&oh=00_AfKimHSguSANlVm3X2kUXm2spZcmPpHs6rzypOsyq9veXg&oe=6855BE0F
   - EasyJTAG and pinout https://pikabu.ru/story/podnimaem_boot_na_telefone_samsung_galaxy_j2_primeg532g_5115433
-
-* adb getprops
-
-[ro.build.version.sdk]:             [23]
-[ro.build.selinux]:                 [1]
-[ro.build.selinux.enforce]:         [1]
-[ro.build.version.incremental]:     [G532MUMU1ASH2]
-[ro.build.version.security_patch]:  [2018-08-01]
-[ro.product.cpu.abilist32]:         [armeabi-v7a,armeabi]
-[ro.product.cpu.abilist64]:         []
-[ro.product.manufacturer]:          [samsung]
-[ro.product.model]:                 [SM-G532M]
-[ro.product.name]:                  [grandpplteub]
-[dalvik.vm.isa.arm.variant]:        [cortex-a53]
-
 
 * tools
 
@@ -45,6 +34,10 @@
 
 * os
 
+- linux kernel for SoC https://gitlab.com/mt6735-mainline/linux
+- https://wiki.postmarketos.org/wiki/Galaxy_J2_Prime_(SM-G532M)
+  - works: usb networking, screen, touch, 3d acceleration
+  - no: wifi, sdcard, bluetooth, battery
 - Pixel Experience????
 - Havoc OS????
 - AOSP
@@ -86,7 +79,23 @@ Revision        : 0000
 Serial          : 0000000000000000
 #+end_src
 
+** adb getprops
+
+[ro.build.version.sdk]:             [23]
+[ro.build.selinux]:                 [1]
+[ro.build.selinux.enforce]:         [1]
+[ro.build.version.incremental]:     [G532MUMU1ASH2]
+[ro.build.version.security_patch]:  [2018-08-01]
+[ro.product.cpu.abilist32]:         [armeabi-v7a,armeabi]
+[ro.product.cpu.abilist64]:         []
+[ro.product.manufacturer]:          [samsung]
+[ro.product.model]:                 [SM-G532M]
+[ro.product.name]:                  [grandpplteub]
+[dalvik.vm.isa.arm.variant]:        [cortex-a53]
+
 * android recovery
+
+Flash Mode: Power+Home+VolDown
 
 apply update from sd card
 apply update from adb
@@ -106,3 +115,15 @@ reboot to bootloader
   successfully applied multi-csv
   successfully verify tofor dmverity hash tree
 #+end_src
+
+* todo
+
+- 22 video: retroarch + root
+  - https://www.youtube.com/watch?v=BoDxBIe5-nI
+  - live https://www.youtube.com/watch?v=oYh5qPcaRLw
+
+** roms
+
+- use firefox+adblock
+- use netguard
+- disable-user printspool, blutooth apks
