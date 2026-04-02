@@ -124,6 +124,6 @@ reboot to bootloader
 
 ** roms
 
-- use firefox+adblock
-- use netguard
+- +use firefox+adblock+
+- +use netguard+ meh, all my apps need wifi
 - disable-user printspool, blutooth apks

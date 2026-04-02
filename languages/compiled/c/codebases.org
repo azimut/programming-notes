@@ -1,3 +1,5 @@
+- metasearch engine frontend+backend https://git.bwaaa.monster/omnisearch/
+
 - https://github.com/practical-tutorials/project-based-learning?tab=readme-ov-file#cc
   - tuto
     - https://cstack.github.io/db_tutorial/
