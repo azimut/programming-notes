@@ -1,0 +1,23 @@
+# Nmap 7.80 scan initiated Fri Jan 23 17:07:19 2026 as: nmap -v -n --reason -O -Pn -sTV -p21,80,1026 -oA ip7135_tcp_version 172.16.0.100
+Nmap scan report for 172.16.0.100
+Host is up, received arp-response (0.00042s latency).
+
+PORT     STATE SERVICE REASON  VERSION
+21/tcp   open  ftp     syn-ack GNU Inetutils FTPd 1.4.2
+80/tcp   open  http    syn-ack Vivotek IP7131 Network Camera http config
+1026/tcp open  rtsp    syn-ack Vivotek IP7131 or IP7138 webcam rtspd
+MAC Address: 00:02:D1:0A:CE:1C (Vivotek)
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: general purpose
+Running: Linux 2.4.X
+OS CPE: cpe:/o:linux:linux_kernel:2.4
+OS details: Linux 2.4.18 - 2.4.35 (likely embedded)
+Uptime guess: 0.022 days (since Fri Jan 23 16:35:59 2026)
+Network Distance: 1 hop
+TCP Sequence Prediction: Difficulty=200 (Good luck!)
+IP ID Sequence Generation: All zeros
+Service Info: Host: Network-Camera; Device: webcam; CPE: cpe:/h:vivotek:ip7131, cpe:/h:vivotek:ip7138
+
+Read data files from: /usr/bin/../share/nmap
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri Jan 23 17:07:43 2026 -- 1 IP address (1 host up) scanned in 23.61 seconds

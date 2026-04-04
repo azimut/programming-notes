@@ -1,0 +1,8 @@
+# Nmap 7.80 scan initiated Fri Jan 23 16:47:28 2026 as: nmap -v -n --reason --version-all -Pn -sU -oA ip7135_udp 172.16.0.100
+Nmap scan report for 172.16.0.100
+Host is up, received arp-response (0.00039s latency).
+All 1000 scanned ports on 172.16.0.100 are closed because of 1000 port-unreaches
+MAC Address: 00:02:D1:0A:CE:1C (Vivotek)
+
+Read data files from: /usr/bin/../share/nmap
+# Nmap done at Fri Jan 23 17:05:20 2026 -- 1 IP address (1 host up) scanned in 1071.37 seconds

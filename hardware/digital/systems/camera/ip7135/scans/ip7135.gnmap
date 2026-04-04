@@ -1,0 +1,5 @@
+# Nmap 7.80 scan initiated Fri Jan 23 16:44:37 2026 as: nmap -v -n --reason -Pn -sT -T4 -p- -oA ip7135 172.16.0.100
+# Ports scanned: TCP(65535;1-65535) UDP(0;) SCTP(0;) PROTOCOLS(0;)
+Host: 172.16.0.100 ()	Status: Up
+Host: 172.16.0.100 ()	Ports: 21/open/tcp//ftp///, 80/open/tcp//http///, 1026/open/tcp//LSA-or-nterm///	Ignored State: closed (65532)
+# Nmap done at Fri Jan 23 16:44:55 2026 -- 1 IP address (1 host up) scanned in 18.03 seconds

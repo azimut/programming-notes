@@ -1,0 +1,12 @@
+# Nmap 7.80 scan initiated Fri Jan 23 16:44:37 2026 as: nmap -v -n --reason -Pn -sT -T4 -p- -oA ip7135 172.16.0.100
+Nmap scan report for 172.16.0.100
+Host is up, received user-set (0.030s latency).
+Not shown: 65532 closed ports
+Reason: 65532 conn-refused
+PORT     STATE SERVICE      REASON
+21/tcp   open  ftp          syn-ack
+80/tcp   open  http         syn-ack
+1026/tcp open  LSA-or-nterm syn-ack
+
+Read data files from: /usr/bin/../share/nmap
+# Nmap done at Fri Jan 23 16:44:55 2026 -- 1 IP address (1 host up) scanned in 18.03 seconds

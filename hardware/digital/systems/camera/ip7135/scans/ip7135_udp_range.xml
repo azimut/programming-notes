@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.80 scan initiated Fri Jan 23 21:25:33 2026 as: nmap -v -n -&#45;reason -Pn -sU -&#45;version-all -p5552,5553,5556,5557,10000,10001,10002,10003 -oA ip7135_udp_range 172.16.0.100 -->
+<nmaprun scanner="nmap" args="nmap -v -n -&#45;reason -Pn -sU -&#45;version-all -p5552,5553,5556,5557,10000,10001,10002,10003 -oA ip7135_udp_range 172.16.0.100" start="1769214333" startstr="Fri Jan 23 21:25:33 2026" version="7.80" xmloutputversion="1.04">
+<scaninfo type="udp" protocol="udp" numservices="8" services="5552-5553,5556-5557,10000-10003"/>
+<verbose level="1"/>
+<debugging level="0"/>
+<taskbegin task="ARP Ping Scan" time="1769214333"/>
+<taskend task="ARP Ping Scan" time="1769214333" extrainfo="1 total hosts"/>
+<taskbegin task="UDP Scan" time="1769214333"/>
+<taskend task="UDP Scan" time="1769214334" extrainfo="8 total ports"/>
+<host starttime="1769214333" endtime="1769214334"><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="172.16.0.100" addrtype="ipv4"/>
+<address addr="00:02:D1:0A:CE:1C" addrtype="mac" vendor="Vivotek"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="udp" portid="5552"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="udp" portid="5553"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="sgi-eventmond" method="table" conf="3"/></port>
+<port protocol="udp" portid="5556"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="freeciv" method="table" conf="3"/></port>
+<port protocol="udp" portid="5557"><state state="open|filtered" reason="no-response" reason_ttl="0"/></port>
+<port protocol="udp" portid="10000"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="ndmp" method="table" conf="3"/></port>
+<port protocol="udp" portid="10001"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="scp-config" method="table" conf="3"/></port>
+<port protocol="udp" portid="10002"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="documentum" method="table" conf="3"/></port>
+<port protocol="udp" portid="10003"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="documentum_s" method="table" conf="3"/></port>
+</ports>
+<times srtt="475" rttvar="1829" to="100000"/>
+</host>
+<runstats><finished time="1769214334" timestr="Fri Jan 23 21:25:34 2026" elapsed="1.42" summary="Nmap done at Fri Jan 23 21:25:34 2026; 1 IP address (1 host up) scanned in 1.42 seconds" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

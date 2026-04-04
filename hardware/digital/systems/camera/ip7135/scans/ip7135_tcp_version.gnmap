@@ -1,0 +1,5 @@
+# Nmap 7.80 scan initiated Fri Jan 23 17:07:19 2026 as: nmap -v -n --reason -O -Pn -sTV -p21,80,1026 -oA ip7135_tcp_version 172.16.0.100
+# Ports scanned: TCP(3;21,80,1026) UDP(0;) SCTP(0;) PROTOCOLS(0;)
+Host: 172.16.0.100 ()	Status: Up
+Host: 172.16.0.100 ()	Ports: 21/open/tcp//ftp//GNU Inetutils FTPd 1.4.2/, 80/open/tcp//http//Vivotek IP7131 Network Camera http config/, 1026/open/tcp//rtsp//Vivotek IP7131 or IP7138 webcam rtspd/	OS: Linux 2.4.18 - 2.4.35 (likely embedded)	Seq Index: 200	IP ID Seq: All zeros
+# Nmap done at Fri Jan 23 17:07:43 2026 -- 1 IP address (1 host up) scanned in 23.61 seconds

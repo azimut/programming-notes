@@ -1,0 +1,5 @@
+# Nmap 7.80 scan initiated Fri Jan 23 21:25:33 2026 as: nmap -v -n --reason -Pn -sU --version-all -p5552,5553,5556,5557,10000,10001,10002,10003 -oA ip7135_udp_range 172.16.0.100
+# Ports scanned: TCP(0;) UDP(8;5552-5553,5556-5557,10000-10003) SCTP(0;) PROTOCOLS(0;)
+Host: 172.16.0.100 ()	Status: Up
+Host: 172.16.0.100 ()	Ports: 5552/open|filtered/udp//unknown///, 5553/open|filtered/udp//sgi-eventmond///, 5556/open|filtered/udp//freeciv///, 5557/open|filtered/udp/////, 10000/closed/udp//ndmp///, 10001/closed/udp//scp-config///, 10002/closed/udp//documentum///, 10003/closed/udp//documentum_s///
+# Nmap done at Fri Jan 23 21:25:34 2026 -- 1 IP address (1 host up) scanned in 1.42 seconds

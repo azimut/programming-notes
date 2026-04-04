@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.80 scan initiated Fri Jan 23 17:07:19 2026 as: nmap -v -n -&#45;reason -O -Pn -sTV -p21,80,1026 -oA ip7135_tcp_version 172.16.0.100 -->
+<nmaprun scanner="nmap" args="nmap -v -n -&#45;reason -O -Pn -sTV -p21,80,1026 -oA ip7135_tcp_version 172.16.0.100" start="1769198839" startstr="Fri Jan 23 17:07:19 2026" version="7.80" xmloutputversion="1.04">
+<scaninfo type="connect" protocol="tcp" numservices="3" services="21,80,1026"/>
+<verbose level="1"/>
+<debugging level="0"/>
+<taskbegin task="ARP Ping Scan" time="1769198840"/>
+<taskend task="ARP Ping Scan" time="1769198840" extrainfo="1 total hosts"/>
+<taskbegin task="Connect Scan" time="1769198840"/>
+<taskend task="Connect Scan" time="1769198840" extrainfo="3 total ports"/>
+<taskbegin task="Service scan" time="1769198840"/>
+<taskend task="Service scan" time="1769198861" extrainfo="3 services on 1 host"/>
+<taskbegin task="NSE" time="1769198862"/>
+<taskend task="NSE" time="1769198862"/>
+<taskbegin task="NSE" time="1769198862"/>
+<taskend task="NSE" time="1769198863"/>
+<host starttime="1769198840" endtime="1769198863"><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="172.16.0.100" addrtype="ipv4"/>
+<address addr="00:02:D1:0A:CE:1C" addrtype="mac" vendor="Vivotek"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ftp" product="GNU Inetutils FTPd" version="1.4.2" hostname="Network-Camera" method="probed" conf="10"><cpe>cpe:/a:gnu:inetutils:1.4.2</cpe></service></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="Vivotek IP7131 Network Camera http config" devicetype="webcam" method="probed" conf="10"><cpe>cpe:/h:vivotek:ip7131</cpe></service></port>
+<port protocol="tcp" portid="1026"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="rtsp" product="Vivotek IP7131 or IP7138 webcam rtspd" devicetype="webcam" method="probed" conf="10"><cpe>cpe:/h:vivotek:ip7138</cpe></service></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="21"/>
+<portused state="closed" proto="udp" portid="41818"/>
+<osmatch name="Linux 2.4.18 - 2.4.35 (likely embedded)" accuracy="100" line="44951">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.4.X" accuracy="100"><cpe>cpe:/o:linux:linux_kernel:2.4</cpe></osclass>
+</osmatch>
+</os>
+<uptime seconds="1904" lastboot="Fri Jan 23 16:35:59 2026"/>
+<distance value="1"/>
+<tcpsequence index="200" difficulty="Good luck!" values="EECA41E,E661505,E1E0D5F,EAC6975,F059AFF,EF3E3BC"/>
+<ipidsequence class="All zeros" values="0,0,0,0,0,0"/>
+<tcptssequence class="100HZ" values="2E735,2E73F,2E749,2E753,2E75D,2E767"/>
+<times srtt="420" rttvar="162" to="100000"/>
+</host>
+<runstats><finished time="1769198863" timestr="Fri Jan 23 17:07:43 2026" elapsed="23.61" summary="Nmap done at Fri Jan 23 17:07:43 2026; 1 IP address (1 host up) scanned in 23.61 seconds" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
