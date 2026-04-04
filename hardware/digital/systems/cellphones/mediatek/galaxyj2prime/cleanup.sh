@@ -1,5 +1,5 @@
 #!/bin/bash
-set -exu
+set -eu
 # TODO: https://blog.jaredsburrows.com/2014/03/what-android-apps-are-safe-to-remove.html
 packages=(
     com.facebook.appmanager
@@ -32,15 +32,14 @@ packages=(
     com.google.android.syncadapters.calendar
     com.google.android.syncadapters.contacts
     com.google.android.talk
-    com.google.android.webview
+    # com.google.android.webview # NEEDED BY womic, opera mini, aurora, ...
     com.google.android.youtube
-    com.google.android.apps.maps # NEW
+    com.google.android.apps.maps
     com.samsung.android.email.provider
 
     com.samsung.android.app.galaxyfinder
     com.sec.android.app.sbrowser
     com.google.android.gm
-    # com.google.android.gms # FAILED, google play (?)
     # com.sec.android.gallery3d # NOT galaxy store, just image gallery
     com.google.android.videos
     com.sec.spp.push           # Samsung Push Service
@@ -51,7 +50,6 @@ packages=(
     com.android.bluetoothmidiservice
     com.android.calllogbackup
     com.android.dreams.phototable           # screensaver of photos
-    com.android.providers.partnerbookmars   # bookmarks in chrome
     com.google.android.googlequicksearchbox # widgets, background
     com.google.android.onetimeinitializer   #
     com.samsung.aasaservice                 #
@@ -71,8 +69,30 @@ packages=(
     com.sec.phone                           # test phonecalls
     com.wsomacp                             # weird protocol omacp=OMA Client Provisioning
     com.wssnps                              # samsung backup
+
+    # Chrome
+    com.android.providers.partnerbookmars # bookmarks in chrome
+    com.android.chrome
+    com.sec.android.app.chromecustomizations
 )
+i=1
 for package in "${packages[@]}"; do
+    printf "[%02d/%02d] %s\n" "$((i++))" "${#packages[@]}" "${package}"
     adb shell pm uninstall --user 0 "${package}"
+    adb shell pm uninstall "${package}"
     #adb shell "am force-stop ${package} && pm disable-user ${package} && pm clear ${package}"
+done
+
+echo "--------------------"
+echo "  Disabling Apps"
+echo "--------------------"
+disabled=(
+    com.google.android.gms
+    com.google.android.gsf
+    com.google.vending
+)
+i=1
+for package in "${disabled[@]}"; do
+    printf "[%02d/%02d] %s\n" "$((i++))" "${#disabled[@]}" "${package}"
+    adb shell "pm disable-user --user 0 ${package}"
 done

@@ -116,13 +116,33 @@ reboot to bootloader
   successfully verify tofor dmverity hash tree
 #+end_src
 
-* todo
+* notes
 
 - 22 video: retroarch + root
   - https://www.youtube.com/watch?v=BoDxBIe5-nI
   - live https://www.youtube.com/watch?v=oYh5qPcaRLw
 
-** roms
+** upgrade from stock
+
+- Memory wipe
+- Reboot
+- Connect to Wifi
+- Auth Google
+- Disconnect to wifi
+- =Wait for preloaded apps to settle=
+- run cleanup.sh
+- run certs.sh
+
+- Either
+  * =Connect wifi= and Wait for Google Play to update
+  * disable Google Play!??!??!?!
+
+- Install apps:
+  - f-droid + aurora
+  - w4b, vlc
+  - apks: firefox (142), fmd (6.20)
+
+** todo
 
 - +use firefox+adblock+
 - +use netguard+ meh, all my apps need wifi
