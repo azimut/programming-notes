@@ -31,6 +31,7 @@ uninstalled=(
     com.android.dreams.phototable          # screensavers
     com.android.smspush                    # SMS
     com.softwinner.miracastReceiver        # stream phone screen to tv
+    com.google.android.youtube.tv
 )
 for package in "${uninstalled[@]}"; do
     adb uninstall --user 0 "${package}"
@@ -42,11 +43,11 @@ disabled=(
     com.mm.droid.livetv.tve           # IPTV
     com.factorytools.factorystability # ????
     com.valor.mfc.droid.tvapp.generic # My Family Cinema
+    # DEGOOGLE
     com.android.vending
-    # com.android.phone
-    # idk too much ram
-    # com.google.android.googlequicksearchbox
-    # com.google.android.gms
+    com.google.android.gms
+    com.google.android.gsf
+    com.android.providers.calendar
     # com.android.printspooler
 )
 for package in "${disabled[@]}"; do

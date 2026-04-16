@@ -324,6 +324,10 @@ PORT     STATE SERVICE REASON  VERSION
 
 **   21 ftp
 
+- took from a .pdf
+  - Copyright (C) 1997 and 1998 WIDE Project.
+  - From: @(#)ftpd.c 8.4 (Berkeley) 4/16/94
+
 root/1234
 HOME=/mnt/ramdisk
 

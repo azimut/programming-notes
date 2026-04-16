@@ -753,16 +753,17 @@ https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference/unistd.h
 
 ** self compile
 
-#+CAPTION: main.c
+#+CAPTION: foo.c
 #+begin_src c
   #if 0
-  gcc  -Wall -Wextra -pedantic -O3 $0 -o out -lm && ./out
+  gcc -Wall -Wextra -pedantic $0 -o ${0%.c} && ./${0%.c}
   exit 0
   #endif
 #+end_src
 
 #+begin_src sh
-  $ bash main.c
+  $ bash foo.c
+  $ ./foo
 #+end_src
 
 ** min max
