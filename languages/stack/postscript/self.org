@@ -20,7 +20,15 @@
   - editor (for vector graphics) https://inkscape.org/ https://en.wikipedia.org/wiki/Inkscape
   - viewer: evince
   - viewer gv https://www.gnu.org/software/gv/
-    - $ gv -noantialias -center -widgetless -watch -infoAll -noresize bar.ps
+    #+begin_src sh
+      gv -noantialias -center -widgetless -watch -infoAll -noresize bar.ps
+      gv -noantialias \
+         -center \
+         -widgetless \
+         -watch \
+         -infoAll \
+         -noresize bar.ps
+    #+end_src
     - -geometry wxh - of the x11 window
   - https://www.ghostscript.com/
   - hack https://github.com/RUB-NDS/PRET
@@ -87,9 +95,17 @@
   - (1) into an subindex 1
 
 ** commands / operators
+
 - by cat https://personal.math.ubc.ca/~cass/courses/ps.html
 - by letter https://hepunx.rl.ac.uk/~adye/psdocs/ref/REF.html
 - showpage, forces page print of what is draw
+
+*** boolean
+
+- eq, ne, ge, gt, le, lt
+- and, not, or, xor
+- bitshift
+
 *** array
 index numering starts at 0
 |---+-------------+---+---------------------------------------------|
@@ -169,10 +185,34 @@ index numering starts at 0
 
 *** matrix
 
-- matrix, creates an identity matrix
-- 2/3 translate 0 origin
-- 2/3 scale 0 user space
-- 1/2 rotate 0 user space
+- A matrix is an array of 6 numbers.
+- CTM = Current Transformation Matrix
+- identity() = identity matrix
+- m, a, b are matrices
+
+|---------+---------------+---+----------------------------|
+|     <r> |      <c>      |   |                            |
+|       - |    matrix     | m | identity()                 |
+|       - |  initmatrix   | - | CTM = default matrix       |
+|       m |   setmatrix   | - | CTM = m                    |
+|       m |    concat     | - | CTM = CTM * m              |
+|       m | currentmatrix | m | m = CTM                    |
+|       m |  identmatrix  | m | m = identity()             |
+|   a b m | concatmatrix  | m | m = a * b                  |
+|     a m | invertmatrix  | m | m = invert(a)              |
+|---------+---------------+---+----------------------------|
+
+|---------+-----------+---+----------------------------|
+| <l>     |    <c>    |   |                            |
+| x y     | translate | - | CTM = translate(CTM, x, y) |
+| x y m   | translate | - | translates x y by m        |
+| x y     |   scale   | - | CTM = scale(CTM, x, y)     |
+| x y m   |   scale   | - | scales x y by m            |
+| angle   |  rotate   | - | CTM = rotate(CTM, angle)   |
+| angle m |  rotate   | - | rotates x y by m           |
+| x y     | transform |   |                            |
+| x y m   | transform |   |                            |
+|---------+-----------+---+----------------------------|
 
 *** arithmetic / rand
 
@@ -190,34 +230,41 @@ index numering starts at 0
 
 - there is *always* a path
 - can be visually disconnected
-|---+--------------+---+-------------------------------------------------------|
-|   |     <c>      |   |                                                       |
-| T |              | P |                                                       |
-|---+--------------+---+-------------------------------------------------------|
-| 0 |   newpath    | 0 | clears current path                                   |
-| 0 |  closepath   | 0 | closes current path, with a line to the last *moveto* |
-| 0 |    stroke    | 0 | draws current path + RESET PATH                       |
-| 0 |     fill     | 0 | fills current path + RESET PATH                       |
-|---+--------------+---+-------------------------------------------------------|
-| 0 | currentpoint | 2 | returns current point                                 |
-| 4 |  rectstroke  | - | x y w h                                               |
-| 4 |   rectfill   | - | x y w h                                               |
-| 2 |  [r]moveto   | 0 | [relative] move current point                         |
-| 2 |  [r]lineto   | 0 | puts a line from current point, and moves it there    |
-| 5 |    arc[n]    | 0 | counter/clockwise arc (x y r a1 a2)                   |
-| 5 |   arct[o]    | - | draws arc from current point x0,y0 (x1 y1 x2 y2 r)    |
-| 6 |   curveto    | - | bezier curve from current point (x1 y2 x2 y2 x3 y3)   |
-| 2 |   charpath   | 0 | adds chars outlines to path                           |
-|---+--------------+---+-------------------------------------------------------|
+
+#+CAPTION: T=Take P=Put
+|-------------------+--------------+-----+-------------------------------------------------------|
+|        <c>        |     <c>      | <c> |                                                       |
+|         T         |   command    |  P  |                                                       |
+|-------------------+--------------+-----+-------------------------------------------------------|
+|         -         |   newpath    |  -  | clears current path                                   |
+|         -         |  closepath   |  -  | closes current path, with a line to the last *moveto* |
+|         -         |    stroke    |  -  | draws current path + RESET PATH                       |
+|         -         |     fill     |  -  | fills current path + RESET PATH                       |
+|-------------------+--------------+-----+-------------------------------------------------------|
+|         -         | currentpoint | x y | returns xy of current point                           |
+|        x y        |  [r]moveto   |  -  | [relative] move current point                         |
+|        x y        |  [r]lineto   |  -  | line from current point to given point                |
+|      x y w h      |  rectstroke  |  -  |                                                       |
+|      x y w h      |   rectfill   |  -  |                                                       |
+|    x y r a1 a2    |    arc[n]    |  -  | counter/clockwise arc                                 |
+|   x1 y1 x2 y2 r   |   arct[o]    |  -  | draws arc from current point x0,y0                    |
+| x1 y1 x2 y2 x3 y3 |   curveto    |  -  | bezier curve from current point                       |
+|      str t/f      |   charpath   |  -  | adds chars outlines to path                           |
+|                   |  pathforall  |     |                                                       |
+|-------------------+--------------+-----+-------------------------------------------------------|
+
 #+CAPTION: arc: (x y r a1 a2)
 #+ATTR_HTML: :width 300
 [[./arc.png]]
+
 #+CAPTION: arct: (x1 y1 x2 y2 r)
 #+ATTR_HTML: :width 300
 [[./arct.png]]
+
 #+CAPTION: curveto: (x1 y1 x2 y2 x3 y3)
 #+ATTR_HTML: :width 400
 [[./curveto.png]]
+
 *** fonts
 
 #+begin_src ps
@@ -248,6 +295,19 @@ index numering starts at 0
 
 * snippets
 
+- safediv
+  #+begin_src ps
+    % a b -- c
+    /safediv {
+      dup 0 eq { 0 } { div } ifelse
+    } def
+  #+end_src
+
+- color 255
+  #+begin_src ps
+    /setcolor { { 255 div } forall setrgbcolor } def
+  #+end_src
+
 - quicksort https://gist.github.com/kuroneko/e896a466dc4a1af55c9c
 - vector
   #+begin_src ps
@@ -261,11 +321,14 @@ index numering starts at 0
   #+end_src
 - factor like operators
   #+begin_src ps
-/drop { pop  } def
-/nip  { exch pop } def
-/swap { exch } def
-/over { 1 index } def
-/pick { 2 index } def
+    /drop { pop } def
+    /swap { exch } def
+    /over { 1 index } def
+    /pick { 2 index } def
+    /dupd { exch dup 3 2 roll } def
+    /swapd { 3 1 roll exch 3 2 roll } def
+    /nip  { exch pop } def
+    /2dup { 2 copy } def
   #+end_src
 - print stack count (need =moveto=)
   #+begin_src ps
