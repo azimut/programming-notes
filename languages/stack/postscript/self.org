@@ -61,6 +61,7 @@
     - between ()
     - assigned by reference, must be manually copied when needed
 - weakly typed, you can assign a *number* to a variable, but then it will show it's printable *character* when asked to print
+- comments https://hepunx.rl.ac.uk/~adye/psdocs/DSC2.html
 
 - A ~path~ is a collection of, possibly disconnected, lines and areas describing the image.
 - A ~clipping path~ is a type of path that defines the effective drawing area. By default it matches the border of the paper.
@@ -107,7 +108,9 @@
 - bitshift
 
 *** array
+
 index numering starts at 0
+
 |---+-------------+---+---------------------------------------------|
 |   |     <c>     |   |                                             |
 |   | [ 0 1 20 ]  |   |                                             |
@@ -122,6 +125,7 @@ index numering starts at 0
 | 2 |    copy     | 1 | copies arr1 to initial subarray of arr2  ?  |
 | 2 |   forall    | 1 | executes proc for every element in _array_  |
 |---+-------------+---+---------------------------------------------|
+
 *** control flow
 
 - repeat
@@ -309,17 +313,20 @@ index numering starts at 0
   #+end_src
 
 - quicksort https://gist.github.com/kuroneko/e896a466dc4a1af55c9c
+
 - vector
   #+begin_src ps
-/vectoradd { exch 3 1 roll add 3 1 roll add exch } def
-/vectorsub { exch 3 1 roll sub 3 1 roll sub exch } def
+    /vectoradd { exch 3 1 roll add 3 1 roll add exch } def
+    /vectorsub { exch 3 1 roll sub 3 1 roll sub exch } def
   #+end_src
+
 - position helpers
   #+begin_src ps
-/currentx { currentpoint pop } def
-/currenty { currentpoint exch pop } def
+    /currentx { currentpoint pop } def
+    /currenty { currentpoint exch pop } def
   #+end_src
-- factor like operators
+
+- Factor-like stack shuffling operators
   #+begin_src ps
     /drop { pop } def
     /swap { exch } def
@@ -327,28 +334,65 @@ index numering starts at 0
     /pick { 2 index } def
     /dupd { exch dup 3 2 roll } def
     /swapd { 3 1 roll exch 3 2 roll } def
+    /rot { 3 2 roll } def
     /nip  { exch pop } def
     /2dup { 2 copy } def
   #+end_src
+
 - print stack count (need =moveto=)
   #+begin_src ps
-/printcount { count 20 string cvs show } def
+    /printcount { count 20 string cvs show } def
   #+end_src
+
 - filled circle
   #+begin_src ps
-currentpoint 6 0 360 arc fill stroke
+    currentpoint 6 0 360 arc fill stroke
   #+end_src
+
 - a font initialization
   #+begin_src ps
-/Courier 20 selectfont 300 300 moveto
+    /Courier 20 selectfont 300 300 moveto
   #+end_src
+
 - get dimensions
   #+begin_src ps
-/width  currentpagedevice /PageSize get 0 get def
-/height currentpagedevice /PageSize get 1 get def
+    /width  currentpagedevice /PageSize get 0 get def
+    /height currentpagedevice /PageSize get 1 get def
   #+end_src
+
 - [[./shapes.ps][shapes.ps]]
   #+INCLUDE: "./shapes.ps" src ps
+
+** 3d shapes
+
+#+begin_src ps
+  /project {
+    /z exch def /y exch def /x exch def
+    x z safediv
+    y z safediv
+  } def
+
+  /rotate_x {
+    /angle exch def /z exch def /y exch def /x exch def
+    x
+    y angle cos mul z angle sin mul sub
+    y angle sin mul z angle cos mul add
+  } def
+
+  /rotate_y {
+    /angle exch def /z exch def /y exch def /x exch def
+    z angle sin mul x angle cos mul add
+    y
+    z angle cos mul x angle sin mul sub
+  } def
+
+  /rotate_z {
+    /angle exch def /z exch def /y exch def /x exch def
+    x angle cos mul y angle sin mul sub
+    x angle sin mul y angle cos mul add
+    z
+  } def
+#+end_src
 
 * codebases
 
