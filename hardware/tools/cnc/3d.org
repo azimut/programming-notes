@@ -43,6 +43,30 @@
  UUID:00000000-0000-0000-0000-000000000000
 #+end_src
 
+
+#+CAPTION: baudrate=115200
+#+begin_src
+ echo:Marlin1.0.0
+ echo: Ultima actualizacion: Apr  9 2016 18:31:19 | Autor: Zootec3D Rev10 / RJ
+ Compiled: Apr  9 2016
+ echo: Memoria libre: 3204  PlannerBufferBytes: 1232
+ echo:Hardcoded Default Settings Loaded
+ echo:Steps per unit:
+ echo:  M92 X80.00 Y80.00 Z4000.00 E600.00
+ echo:Maximum feedrates (mm/s):
+ echo:  M203 X500.00 Y500.00 Z1.00 E45.00
+ echo:Maximum Acceleration (mm/s2):
+ echo:  M201 X9000 Y9000 Z100 E10000
+ echo:Acceleration: S=acceleration, T=retract acceleration
+ echo:  M204 S500.00 T500.00
+ echo:Advanced variables: S=Min feedrate (mm/s), T=Min travel feedrate (mm/s), B=minimum segment time (ms), X=maximum XY jerk (mm/s),  Z=maximum Z jerk (mm/s),  E=maximum E jerk (mm/s)
+ echo:  M205 S0.00 T0.00 B20000 X20.00 Z0.40 E5.00
+ echo:Home offset (mm):
+ echo:  M206 X0.00 Y0.00 Z0.00
+ echo:PID settings:
+ echo:   M301 P22.20 I1.08 D114.00
+#+end_src
+
 * software
 
 - [[https://en.wikipedia.org/wiki/Slicer_(3D_printing)][slicer]] - .stl -> .gcode
@@ -60,9 +84,13 @@
 
 - controller
   - 3d https://github.com/kliment/Printrun
+    - "printcore" raw g-code sender
+    - "pronsole" cli g-code sender
+    - "pronterface" GUI
   - 3d https://octoprint.org/
     - web interface
   - 3d https://www.repetier.com/
+  - https://github.com/timschmidt/repsnapper
 
 * course
 
@@ -71,6 +99,7 @@
 * video
 
 - 2021 https://www.youtube.com/watch?v=pqkomM-nVBc
+
 * todo ideas
 
 - PCBite (helping hands for circuits)

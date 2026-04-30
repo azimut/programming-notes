@@ -10,6 +10,17 @@
 - 19 The Font Wars—PostScript, TrueType, the Mac and the success of desktop publishing https://www.youtube.com/watch?v=5X9Dj7tBlkg
 - 19 Intro to PostScript: CS 372 2019 03 04 https://www.youtube.com/watch?v=Tgy8S4dUVgY
 
+- 18 A Postscript to Functional Geometry - Einar Host
+  - https://www.youtube.com/watch?v=JOLD9Q1DylE
+  - https://www.youtube.com/watch?v=yF6GPjZl8cw
+
+- 25 Games in Postscript - Nicolas Seriot
+  - https://www.youtube.com/watch?v=2YCATafErA8
+  - https://www.youtube.com/watch?v=BvZXEf4GAas
+
+- 25 Postscript - The Printer Language
+  https://www.youtube.com/watch?v=qbMjBdoNZQI
+
 * Security
 - 11 28c3: Hacking MFPs https://www.youtube.com/watch?v=PqL5P46m_zQ
 - 12 Andrei Costin Postscript Danger Ahead https://www.youtube.com/watch?v=ygcs0m5C9ZI

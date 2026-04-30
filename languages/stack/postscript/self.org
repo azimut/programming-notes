@@ -9,6 +9,7 @@
   - Adobe
   - John Warnock, Chuck Geschke, Doug Brotz, Ed Taft, Bill Paxton
 
+- script is sent to the printer and executed on it
 - library https://github.com/nasa/pvslib
 - Init file ~gs_init.ps~
 - Page sizes
@@ -64,12 +65,15 @@
 - comments https://hepunx.rl.ac.uk/~adye/psdocs/DSC2.html
 
 - A ~path~ is a collection of, possibly disconnected, lines and areas describing the image.
-- A ~clipping path~ is a type of path that defines the effective drawing area. By default it matches the border of the paper.
+- A ~clipping path~
+  - defines the effective drawing area.
+  - things outside will be discarded
+  - by default it matches the border of the paper.
 
 - Uses a =coordinate system=, device independent.
   - X=right Y=up
   - unit is in ~points~ (1/72 inch long)
-  - 1pt  = 28.34645 cm
+  - 1 point = 28.34645 cm = 1/72 inch
   - 72pt = 1 inch
   - 0,0 is the bottom left coordinate
   - aka doesn't depend on the resolution or paper size
@@ -81,10 +85,18 @@
 
 - https://en.wikipedia.org/wiki/PostScript_fonts
 - images of all charset https://web.mit.edu/kenta/www/three/postscript/0-All.html
+- Font Families: Helvetica, Times, Courier, AvantGarde, Bookman, Palatino
 
-#+CAPTION: postscript available fonts
+#+CAPTION: postscript available font types
 #+ATTR_ORG: :width 800
 [[./fonts.png]]
+
+- character
+  - encoding between 0 and 255
+  - For "a"
+    - 8#097
+    - \275 (for % in octal)
+    - (a) 0 get
 
 - Symbol (translates strings into symbols)
   - https://en.wikipedia.org/wiki/Symbol_(typeface)
@@ -165,6 +177,7 @@ index numering starts at 0
 *** string
 |---+--------+---+----------------------------------------------|
 |   |  <c>   |   |                                              |
+|   | 8#092  | 1 | puts char "a" on stack                       |
 | 1 | string | 1 | takes a number, push a string of that length |
 | 1 | length | 1 | takes a string, push length                  |
 | 2 |  get   | 1 | takes a index and string, returns int at idx |
@@ -180,8 +193,9 @@ index numering starts at 0
 - [set¦current]gray - gray level 0-1(white)
 - [set¦current]miterlimit
 - [set¦current]linewidth
-- [set¦current]linecap  - end     - 0=butt,   1=round, 2=square
+- [set¦current]linecap  - end     - 0=butt,   1=round, 2=proj.square
 - [set¦current]linejoin - corners - 0=mitter, 1=round, 2=bevel
+- [set¦current]dash     - separation and pattern for it
 
 #+CAPTION: miter
 #+ATTR_HTML: :width 300
@@ -220,9 +234,11 @@ index numering starts at 0
 
 *** arithmetic / rand
 
-- srand  sets random seed
-- rrand  gets random seed
-- rand   push random number > 0 < ?
+|---+-------+---+----------------------------|
+| 1 | srand | - | sets random seed           |
+| - | rrand | 1 | gets random seed           |
+| - | rand  | 1 | random number (0 - 2^31-1) |
+|---+-------+---+----------------------------|
 
 - add, sub, mul, div, idiv, mod (2)
 - abs, neg (1)
@@ -244,6 +260,7 @@ index numering starts at 0
 |         -         |  closepath   |  -  | closes current path, with a line to the last *moveto* |
 |         -         |    stroke    |  -  | draws current path + RESET PATH                       |
 |         -         |     fill     |  -  | fills current path + RESET PATH                       |
+|         -         |     clip     |  -  | clipping path = current path                          |
 |-------------------+--------------+-----+-------------------------------------------------------|
 |         -         | currentpoint | x y | returns xy of current point                           |
 |        x y        |  [r]moveto   |  -  | [relative] move current point                         |
@@ -271,20 +288,40 @@ index numering starts at 0
 
 *** fonts
 
-#+begin_src ps
-  /Courier 20 selectfont
-  300 300 moveto
-  (foo) show
-#+end_src
-|---+-------------+---+---------------------------------------------------|
-|   |     <c>     |   |                                                   |
-| 1 |  findfont   | 1 | pushes the fontdict of given key                  |
-| 2 |  scalefont  | 1 | set+scale fontdict from size 1 (default) to given |
-| 1 |   setfont   | 0 | sets current fontdict                             |
-| 2 | selectfont  |   |                                                   |
-| - | currentfont | 1 | returns fontdict                                  |
-| 1 |    show     | - | prints string of text                             |
-|---+-------------+---+---------------------------------------------------|
+- no font is set by default (not a visible one)
+- requires a position being set first (aka moveto)
+- font size given in "points"
+- 1 p = 1/72 inch
+
+|-------+--------------+-----+-------------------------------------------|
+|   <r> |     <c>      | <c> |                                           |
+|    /k |   findfont   |  f  | pushes the fontdict of given key, size 1p |
+|   f n |  scalefont   |  1  | scales fontdict                           |
+|     f |   setfont    |  -  | sets current fontdict                     |
+|  /k s | =selectfont= |  -  | sets current fontdict, at given scale     |
+|     - | currentfont  |  f  | returns fontdict                          |
+|     s | stringwidth  | x 0 | distance from the current point           |
+| f [6] |   makefont   |  f  | transforms font matrix by [6]             |
+|-------+--------------+-----+-------------------------------------------|
+
+- font matrix only affects fonts
+- makefont [6] matrix
+  - [m 0 a n 0 0]
+    - scale in m,n in x,y
+    - angle of rotation
+      - eg: y*tan(30)
+      - to rotate 30 degrees
+
+#+CAPTION: show functions
+|---------------+------------+---+---------------------------------------------------|
+|           <r> |    <c>     |   |                                                   |
+|             s |    show    | - | prints string of text                             |
+|           p s |   kshow    | - | prints and executes p(c1,c2) between each 2 chars |
+|         x y s |   ashow    | - | prints adding space x,y after each char           |
+|       x y c s | widthshow  | - | prints adding space x,y after each char "c"       |
+|               |            |   | (eg: 8#040 for space)                             |
+| x y c ax ay s | awidthshow |   | ashow + widthshow                                 |
+|---------------+------------+---+---------------------------------------------------|
 
 ** local variables
 
@@ -299,12 +336,16 @@ index numering starts at 0
 
 * snippets
 
+- units
+  #+begin_src ps
+    /degrees { 180 mul 3.141592653589793 div } def
+    /cm { 72 mul 2.54 div } def
+  #+end_src
+
 - safediv
   #+begin_src ps
     % a b -- c
-    /safediv {
-      dup 0 eq { 0 } { div } ifelse
-    } def
+    /safediv { dup 0 eq { 0 } { div } ifelse } def
   #+end_src
 
 - color 255
@@ -335,8 +376,20 @@ index numering starts at 0
     /dupd { exch dup 3 2 roll } def
     /swapd { 3 1 roll exch 3 2 roll } def
     /rot { 3 2 roll } def
+    /-rot { 3 -2 roll } def
     /nip  { exch pop } def
     /2dup { 2 copy } def
+    /bi { % x p q --
+       rot % p q x
+       dup % p q x x
+      -rot % p x q x
+      exch % p x x q
+      exec % p x x'
+      -rot % x' p x
+      exch % x' x p
+      exec % x' y'
+      exch % y' x'
+    } def
   #+end_src
 
 - print stack count (need =moveto=)
@@ -354,7 +407,7 @@ index numering starts at 0
     /Courier 20 selectfont 300 300 moveto
   #+end_src
 
-- get dimensions
+- get page dimensions
   #+begin_src ps
     /width  currentpagedevice /PageSize get 0 get def
     /height currentpagedevice /PageSize get 1 get def
@@ -428,3 +481,9 @@ index numering starts at 0
 - chess
   - article https://seriot.ch/projects/pschess.html
   - source https://github.com/nst/PSChess
+
+* gotchas
+
+- trigonometric functions take degrees as argument
+  - not radians like most common languages now do
+  - see *snippets* for =\degrees= function
