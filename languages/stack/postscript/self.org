@@ -6,33 +6,14 @@
 
 - https://en.wikipedia.org/wiki/PostScript
   - 1982([[https://hepunx.rl.ac.uk/~adye/psdocs/DSC2.html][v1]]), =1984= (released), 1991(v2), 1997(v3)
-  - Adobe
   - John Warnock, Chuck Geschke, Doug Brotz, Ed Taft, Bill Paxton
+  - at Adobe
 
-- script is sent to the printer where is interpreted
-- library https://github.com/nasa/pvslib
+- script is sent to the printer, where is interpreted
 - Init file ~gs_init.ps~
 - Page sizes
   - A4 595x842 (default)
   - US Letter 612x792
-- tuto https://github.com/Chubek/postscript-dossier
-- tuto https://github.com/Chubek/postscript-manpages
-- tools
-  - editor (for vector graphics) https://inkscape.org/ https://en.wikipedia.org/wiki/Inkscape
-  - viewer: evince
-  - viewer gv https://www.gnu.org/software/gv/
-    #+begin_src sh
-      gv -noantialias -center -widgetless -watch -infoAll -noresize bar.ps
-      gv -noantialias \
-         -center \
-         -widgetless \
-         -watch \
-         -infoAll \
-         -noresize bar.ps
-    #+end_src
-    - -geometry wxh - of the x11 window
-  - https://www.ghostscript.com/
-  - hack https://github.com/RUB-NDS/PRET
 
 * language
 
@@ -335,6 +316,30 @@
   } def
 #+end_src
 
+* gotchas
+
+- trigonometric functions take degrees as argument
+  - not radians like most common languages now do
+  - see *snippets* for =\degrees= function
+
+* tools
+
+- editor (for vector graphics) https://inkscape.org/ https://en.wikipedia.org/wiki/Inkscape
+- viewer: evince
+- viewer gv https://www.gnu.org/software/gv/
+  #+begin_src sh
+    gv -noantialias -center -widgetless -watch -infoAll -noresize bar.ps
+    gv -noantialias \
+       -center \
+       -widgetless \
+       -watch \
+       -infoAll \
+       -noresize bar.ps
+  #+end_src
+  - -geometry wxh - of the x11 window
+- https://www.ghostscript.com/
+- hack https://github.com/RUB-NDS/PRET
+
 * snippets
 
 - units
@@ -461,6 +466,7 @@
 - examples https://web.archive.org/web/20060824003443/http://www.physics.uq.edu.au/people/foster/postscript.html
 - examples https://github.com/hzeller/postscript-hacks/
 - library https://github.com/denismm/dmmlib
+- library https://github.com/nasa/pvslib
 
 ** art / graphics
 
@@ -488,9 +494,3 @@
 - chess
   - article https://seriot.ch/projects/pschess.html
   - source https://github.com/nst/PSChess
-
-* gotchas
-
-- trigonometric functions take degrees as argument
-  - not radians like most common languages now do
-  - see *snippets* for =\degrees= function
