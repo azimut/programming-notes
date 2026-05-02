@@ -9,7 +9,7 @@
   - Adobe
   - John Warnock, Chuck Geschke, Doug Brotz, Ed Taft, Bill Paxton
 
-- script is sent to the printer and executed on it
+- script is sent to the printer where is interpreted
 - library https://github.com/nasa/pvslib
 - Init file ~gs_init.ps~
 - Page sizes
@@ -78,16 +78,16 @@
   - 0,0 is the bottom left coordinate
   - aka doesn't depend on the resolution or paper size
 
-- Truetype: .ttf apple font
-  - troff (typesetter roff)
-
 ** fonts
 
 - https://en.wikipedia.org/wiki/PostScript_fonts
+- Adobe Type 1 Font Format (not ttf)
+  - Tool: adobe type manager
 - images of all charset https://web.mit.edu/kenta/www/three/postscript/0-All.html
 - Font Families: Helvetica, Times, Courier, AvantGarde, Bookman, Palatino
 
 #+CAPTION: postscript available font types
+#+ATTR_HTML: :width 800
 #+ATTR_ORG: :width 800
 [[./fonts.png]]
 
@@ -121,22 +121,23 @@
 
 *** array
 
-index numering starts at 0
+- index numering starts at 0
+- fixed size arrays
 
-|---+-------------+---+---------------------------------------------|
-|   |     <c>     |   |                                             |
-|   | [ 0 1 20 ]  |   |                                             |
-| 1 |    array    | 1 | creates array of given length               |
-| 1 |   length    | 1 |                                             |
-| 2 |     get     | 1 | arr idx                                     |
-| 3 |     put     | - | arr idx val                                 |
-| 3 | getinterval | 1 | arr idx len                                 |
-| 3 | putinterval | - | arr idx arr                                 |
-| 1 |    aload    | ? | puts arr elements + arr into stack          |
-| ? |   astore    | 1 | stores stack upto array capacity into array |
-| 2 |    copy     | 1 | copies arr1 to initial subarray of arr2  ?  |
-| 2 |   forall    | 1 | executes proc for every element in _array_  |
-|---+-------------+---+---------------------------------------------|
+|-------+-------------+--------+----------------------------------------------------|
+|  <c>  |     <c>     |  <c>   |                                                    |
+|   -   | [ 0 1 20 ]  |   a    |                                                    |
+|   n   |    array    |   a    | creates array of n length, w/ null on each element |
+|   a   |   length    |   n    | len(a)                                             |
+|  a i  |     get     |   v    | a[i]                                               |
+| a i v |     put     |   -    | a[i] = v                                           |
+| a s l | getinterval |   a    | a[s:s+l]                                           |
+| a s b | putinterval |   -    | a[s] = b                                           |
+|   a   |    aload    | a ..a  |                                                    |
+| ..e a |   astore    |   a    | stores stack upto array capacity into array        |
+|  a b  |    copy     |   a    | b[0] = a                                           |
+| a {f} |   forall    | ..f(a) | a.foreach(f)                                       |
+|-------+-------------+--------+----------------------------------------------------|
 
 *** control flow
 
@@ -269,7 +270,7 @@ index numering starts at 0
 |      x y w h      |   rectfill   |  -  |                                                       |
 |    x y r a1 a2    |    arc[n]    |  -  | counter/clockwise arc                                 |
 |   x1 y1 x2 y2 r   |   arct[o]    |  -  | draws arc from current point x0,y0                    |
-| x1 y1 x2 y2 x3 y3 |   curveto    |  -  | bezier curve from current point                       |
+| x1 y1 x2 y2 x3 y3 |   curveto    |  -  | (cubic) bezier curve from current point               |
 |      str t/f      |   charpath   |  -  | adds chars outlines to path                           |
 |                   |  pathforall  |     |                                                       |
 |-------------------+--------------+-----+-------------------------------------------------------|
@@ -389,6 +390,12 @@ index numering starts at 0
       exch % x' x p
       exec % x' y'
       exch % y' x'
+    } def
+    /2keep { % ..a x y q:(..a x y -- ..b) -- ..b x y
+      3 1 roll  % q x y
+      2 copy    % q x y x y
+      5 -1 roll % x y x y q
+      exec      % x y
     } def
   #+end_src
 
