@@ -1,0 +1,75 @@
+#+TITLE: G-code
+
+- https://en.wikipedia.org/wiki/G-code
+- https://reprap.org/wiki/G-code
+- 3d printers follow NIST [[http://www.nist.gov/manuscript-publication-search.cfm?pub_id=823374][RS274NGC]] g-code standard
+- https://docs.duet3d.com/en/User_manual/Reference/Gcodes
+- pdf https://machmotion.com/blog/knowledge-g-code/
+- https://www.youtube.com/@GCodeTutor/videos
+- https://www.youtube.com/playlist?list=PLxzIM06jyJCaUjp2pZsCcOyxaAIuLzqL-
+- Geometric code (aka RS-274)
+- 1958, 1963 (released)
+- read and interpreted by firmware
+
+* file sections
+
+- header
+  - with general information
+  - commented out
+- start g-code
+- printing g-code
+- end g-code
+- slicer settings used
+  - commented out
+  - can be imported with the same slicer
+
+* language
+
+- reference https://marlinfw.org/meta/gcode/
+- originally no loops, nor control structures
+- ; for comments or "()"
+
+#+begin_src
+[CMD_TYPE][CMD_NUMBER] [PARAM_NAME] [PARAM_VALUE]
+#+end_src
+
+*** G - Preparatory Commands - aka movement related tasks
+|-----+------------------------+-------------------+-------------------------------------------|
+|     |          <c>           |        <c>        |                    <c>                    |
+| G0  |  Linear (Travel) Move  |     X Y Z E F     | Optional XYZF, Extrusion, Feed Rate/Speed |
+| G1  |  Linear (Print) Move   |         "         |                     "                     |
+| G2  |  Arc Move (clockwise)  | X Y Z I J K R E F |       R=radius I=relX J=relY K=relZ       |
+| G3  | Arc Move (a-clockwise) |                   |                                           |
+| G21 |    Millimiters Mode    |         -         |                     -                     |
+| G90 |   Absolute Pos Mode    |         -         |                                           |
+| G91 |   Relative Pos Mode    |         -         |                                           |
+| G92 |    Set Current pos     |     X Y Z  E      |    "X0" will make current X, the zero     |
+|-----+------------------------+-------------------+-------------------------------------------|
+| G28 |  Homing axis routine   |    [X] [Y] [Z]    |     moves to endstops, with known pos     |
+| G29 |      Bed Leveling      |                   |                                           |
+|-----+------------------------+-------------------+-------------------------------------------|
+*** M - Miscellaneus Commands - change settings, perform actions
+|-----+---------+-----------------------------------|
+|     |   <c>   |                                   |
+|   M |         |                                   |
+|-----+---------+-----------------------------------|
+|  82 |    -    | extruder abs pos mode             |
+|  83 |    -    | extruder rel pos mode             |
+|  84 | [X Y Z] | disable steppers                  |
+| 106 |   [S]   | set [full] fan speed              |
+| 107 |    -    | turn fan off                      |
+| 104 |    S    | set noozle temperature & continue |
+| 109 |    S    | set noozle temperature & pause    |
+| 140 |    S    | set bed temperature & continue    |
+| 190 |    S    | set bed temperature & pause       |
+|-----+---------+-----------------------------------|
+|  00 |    -    | halt                              |
+|  01 |    -    | halt if possible                  |
+|  02 |    -    | end currently running program     |
+|  03 |    -    | start spindle clockwise           |
+|  04 |    -    | start spindle anti-clockwise      |
+|  05 |    -    | stop spindle                      |
+|  06 |    -    | load tool (?                      |
+|  17 |    -    | enable motors                     |
+|  18 |    -    | disable motors                    |
+|-----+---------+-----------------------------------|

@@ -13,7 +13,7 @@
 - onshape
 - OpenSCAD
   - 2010
-  - code based?
+  - =parametric/code based=
   - wiki https://en.wikipedia.org/wiki/OpenSCAD
   - addon https://github.com/BelfrySCAD/BOSL2
   - home https://openscad.org/

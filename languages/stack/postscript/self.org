@@ -411,7 +411,7 @@
 
 - filled circle
   #+begin_src ps
-    currentpoint 6 0 360 arc fill stroke
+    currentpoint 6 0 360 arc fill
   #+end_src
 
 - a font initialization

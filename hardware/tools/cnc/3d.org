@@ -8,22 +8,54 @@
   - [[https://www.youtube.com/playlist?list=PL4njCTv7IRbwYunc2ftxPak6au8Xh2mMA][Ultimate Makers Guide To Using Gears in your Projects]]
 
 * filament
+
 - pla
 - petg
 - asa (abs)
+
 * hardware
 ** prusa i3 rework
 
-- course ensambly https://www.youtube.com/playlist?list=PLOu4qpeGlHPezwRPUcxhZP63PBqOzz_sy
-- https://web.archive.org/web/20160604132258/http://zootec3d.com/equipos/Prusai3_HQ/
 - https://reprap.org/wiki/Prusa_i3_Variants
+- https://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
+- https://reprap.org/wiki/RAMPS_1.4
+- MK2B Dual Power https://reprap.org/wiki/PCB_Heatbed
+
+*** 1.0
+
 - https://reprap.org/wiki/Prusa_i3_Rework_Introduction
-- https://reprap.org/wiki/Prusa_i3_Rework_Firmware
-- PDF Emotion-tech 1.5 https://data.emotion-tech.com/ftp/Prusa_I3_Rework_et_Ordbot/Documentation/en/Prusa_i3_Rework_rev1.5%20-%20Assembly%20instructions.pdf
-- pieces https://github.com/b2az/prusa_i3_rework_1.5
-- https://github.com/Zootec3D/i3-HQ/
+- Marlin Config https://reprap.org/wiki/Prusa_i3_Rework_Firmware
+- by Emotion-Tech
+  - piece reinforment https://www.reprap-france.com/page/renforcez-votre-prusa-i3
+- by Geeki
+  - pieces https://github.com/GeekiTutorials/Prusa-I3-Rework
+  - videos https://www.youtube.com/playlist?list=PLOu4qpeGlHPezwRPUcxhZP63PBqOzz_sy
+  - extruder has the herringbone gears
+- by Zootec https://github.com/Zootec3D/i3-HQ/
+  - codename "HQ"
   - empty repo
   - Modification for Prusa i3 Reworks originally developed by Josef Prusa and EMotion-Tech modified by Zootec3D.
+  - https://web.archive.org/web/*/http://zootec.com.ar/*
+  - https://web.archive.org/web/*/http://zootec3d.com/*
+    - Marlin .zip
+    - slic3r ini
+    - openscad stl?
+  - https://web.archive.org/web/20200219025533/http://www.zootec3d.com:80/Prusa_i3.html
+  - https://web.archive.org/web/20160604132258/http://zootec3d.com/equipos/Prusai3_HQ/
+  - https://web.archive.org/web/20170314205607/http://zootec3d.com/equipos/Prusai3_HQ/stl/duckfilament140mmheight_for_roll_of_8_cm_of_radio.stl
+
+*** 1.0.?
+
+- by random
+- pieces https://www.thingiverse.com/thing:247992
+- bowden extruder, x axis belt adjust
+
+*** 1.5 by Emotion-tech
+
+- PDF https://data.emotion-tech.com/ftp/Prusa_I3_Rework_et_Ordbot/Documentation/en/Prusa_i3_Rework_rev1.5%20-%20Assembly%20instructions.pdf
+- pieces https://github.com/b2az/prusa_i3_rework_1.5
+- pieces https://www.thingiverse.com/thing:5064715
+- Marling 1.1.x config https://gist.github.com/skywodd/1e5193d50a4ebca7847c31c35299fe3b
 
 *** slic3r
 
@@ -59,7 +91,13 @@
  echo:  M201 X9000 Y9000 Z100 E10000
  echo:Acceleration: S=acceleration, T=retract acceleration
  echo:  M204 S500.00 T500.00
- echo:Advanced variables: S=Min feedrate (mm/s), T=Min travel feedrate (mm/s), B=minimum segment time (ms), X=maximum XY jerk (mm/s),  Z=maximum Z jerk (mm/s),  E=maximum E jerk (mm/s)
+ echo:Advanced variables:
+        S=Min feedrate (mm/s),
+	T=Min travel feedrate (mm/s),
+	B=minimum segment time (ms),
+	X=maximum XY jerk (mm/s),
+	Z=maximum Z jerk (mm/s),
+	E=maximum E jerk (mm/s)
  echo:  M205 S0.00 T0.00 B20000 X20.00 Z0.40 E5.00
  echo:Home offset (mm):
  echo:  M206 X0.00 Y0.00 Z0.00
@@ -76,10 +114,12 @@
   - PrusaSlicer https://prusaslicer.net/
   - Cura [[https://en.wikipedia.org/wiki/Cura_(software)][wiki]] [[https://github.com/Ultimaker/Cura][source]]
   - OrcaSlicer [[https://orcaslicer.com/][home]] [[https://github.com/SoftFever/OrcaSlicer][source]]
+  - skeinforge
 
 - firmware
   - 3d Klipper [[https://en.wikipedia.org/wiki/Klipper_(firmware)][wiki]] [[https://github.com/Klipper3d/klipper][source]]
   - 3d Marlin [[https://en.wikipedia.org/wiki/Marlin_(firmware)][wiki]] [[https://github.com/MarlinFirmware/Marlin][source]]
+   - 1.1.9 (July 2018) https://github.com/MarlinFirmware/Marlin/releases?page=7
   - 3d https://github.com/prusa3d/Prusa-Firmware
 
 - controller
@@ -102,6 +142,7 @@
 
 * todo ideas
 
+- seven segment display
 - PCBite (helping hands for circuits)
   https://github.com/f3nter/HardBreak/raw/main/.gitbook/assets/IMG_0561.jpeg
 - Rotating objects
@@ -118,23 +159,6 @@
   - gimbal
   - ball and socket
   - condyloid
-
-** adaptor
-
-#+CAPTION: cable genius
-|---------+--------------|
-| tip-top | green second |
-| midup   | red          |
-| middown | copper (E)   |
-| bottom  | blue (E)     |
-|---------+--------------|
-
-- parts
-  - female jacks
-  - switch
-
-- eastern shapes
-  - bunny
-  - egg
-  - basket
-  - carrot?
+- adaptor
+  - +switch audio+
+  - mic enable

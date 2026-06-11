@@ -327,6 +327,7 @@ $(THUMBS): %.thumb.jpg: %.jpg
 - Will *keep* an incomplete target on failure, unless ~.DELETE_ON_ERROR:~
 - What is an ~intermediate~ target? And how to stop them from being deleted?
 - to do Process Substitution we need to use *bash -c*, escape *$* with *$* and *\*, one for make other for bash itself
+- no native supported way to do boolean logic on *ifeq* (can be hacked w/filter)
 
 * tools
 |------------+-------------------------------------------|
