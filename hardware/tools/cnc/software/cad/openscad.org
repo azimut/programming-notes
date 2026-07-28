@@ -1,0 +1,153 @@
+#+TITLE: OpenSCAD
+
+- 2010
+- =parametric/code based=
+- wikibook https://en.wikibooks.org/wiki/OpenSCAD_User_Manual
+- cheatsheet https://openscad.org/cheatsheet/
+- wiki https://en.wikipedia.org/wiki/OpenSCAD
+- home https://openscad.org/
+- new python scripting https://pythonscad.org/
+- https://github.com/elasticdotventures/awesome-openscad/
+- thingiverse integration (see parametric)
+- export 2D (dxf) and 3D (stl) formats
+
+* cli
+
+|---------------+---------+---------------------|
+|      <c>      |   <c>   |                     |
+|       o       |    -    | output to stdout    |
+| export-format |    s    | exported fileformat |
+|       D       | var=val | defines variable    |
+|---------------+---------+---------------------|
+
+* language
+
+- polimorfic functions by cardinality
+- two pass compiler/interpreter
+- ends with ";"
+- comments with "//" and "/* */"
+- variables are defined once, the last one if many
+  - aka no recursive definition
+  - but there are scopes
+- include(file) - appends file
+- use(file) - pulls functions and modules
+- len(sv) - returns the length of a string or vector
+
+- transformations: the same one can be nested
+  - translate([x,y,z]) { }
+  - scale([x,y,z])
+  - resize([x,y,z])
+  - rotate([x,y,z])
+  - mirror([x,y,z])
+  - multimatrix([1,0,0,10],
+                [0,1,0,20],
+                [0,0,1,30],
+                [0,0,0, 1])
+  - color([r,g,b,a])
+  - offset(radius)
+  - offset(delta, chamfer)
+  - minkowski() - sum of childs
+  - hull() - wraps childs
+  - projection() - 3d into 2d
+
+- operations
+  - union() { }
+  - difference() { }
+    - first shape minus second shape
+  - intersection() { }
+
+** modifiers
+
+- % make it as a background object, dim gray
+- # make transparent red
+- ! ignore everything else but this
+- * ignore this
+
+** special variables
+
+- $fn - facet numbers
+- $fs - fragment size in mm
+- $fa - fragment angle in °
+- $preview
+- $t  - time (? for animations
+- $vpr / $vpt / $vpf / $vpd
+  - viewport related, for screenshots
+
+** loops
+
+- for (x=[1,2,3,4])
+- for (x=[1:4])
+- for (x=[1:0.5:4])
+- for (x=[0:3], y=[2,4,6]) - nested loop
+- intersection_for (x=[1:4]) - intersection of childs created
+
+** shapes
+
+- 2d
+  - square([width,lengh])
+    - center=true
+- 3d
+  - cube(n) cube([w,d,h])
+    - center=true
+  - sphere(r)
+  - cylinder(r,h) cylinder(r1,r2,h)
+    - $fn=6
+    - center=true
+  - polyhedron
+
+** types
+
+- number: 23, 3.1415
+- boolean: true, false
+- string: "foobar"
+- lists: [10,20], [[10,20],false,"foo"]
+  - v[0], v.x, v.y, v.z
+- ranges: [0:10], [0:2:10]
+- undefined
+
+** modules
+
+produces a geometry and do NOT return a value
+
+#+begin_src
+  $fn = 100;
+  module cone(rad1, rad2=2, xform=10) {
+  module cone(rad1, rad2, xform) {
+    translate(xform)
+      cylinder(h = 10, r = rad1, r2 = rad2);
+  }
+#+end_src
+
+** functions
+
+contain a *single expresion* and return a value
+
+#+begin_src
+  function foo() = 1
+  function foo(a) = let (b=1, c=b+1) a + b + c;
+#+end_src
+
+* codebases
+
+- https://github.com/josefprusa/Prusa3
+- http://www.thingiverse.com/tag:openscad (+10k)
+  - linear bushings https://www.thingiverse.com/thing:2202854
+
+* tips
+
+- constraints are made by tying numerically a value to another
+
+* use cases
+
+- to modify a stl
+- to split a stl
+  - in equal parts
+  - in custom parts
+
+* derivatives
+
+- BlockSCAD
+
+* libraries
+
+- addon https://github.com/BelfrySCAD/BOSL2

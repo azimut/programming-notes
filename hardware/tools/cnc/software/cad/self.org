@@ -5,27 +5,30 @@
 - rhino https://www.rhino3d.com/
   - algorithmic scripting https://www.grasshopper3d.com/
 
-* 3d
+* 3D
 
 - $ zwCAD
 - $ nanoCAD
 - $ ondsel
+  - fork of FreeCAD
 - onshape
-- OpenSCAD
-  - 2010
-  - =parametric/code based=
-  - wiki https://en.wikipedia.org/wiki/OpenSCAD
-  - addon https://github.com/BelfrySCAD/BOSL2
-  - home https://openscad.org/
-  - new python scripting https://pythonscad.org/
-
 - FreeCAD
   - home https://www.freecad.org/
   - wiki https://en.wikipedia.org/wiki/FreeCAD
   - constrain solver
   - =try dev version=
 
-* 2d
+** Other
+
+- libfive
+  - https://libfive.com/
+  - https://github.com/libfive/libfive
+  - [[https://www.reddit.com/r/Common_Lisp/comments/sbm3d9/deleted_by_user/][based on]] "Dual Contouring of Hermite Data", by Tao Ju, et al
+- tovero
+  - opensource/abandonware
+  - https://github.com/JMC-design/tovero/
+
+* 2D
 
 - sagcad
 - QCAD
@@ -38,5 +41,4 @@
   - .dxf
     - plaintext
     - only supported format
-
-- course Dibujo técnico con LibreCAD, Curso Completo  https://www.youtube.com/watch?v=mhmj_IghriQ
+  - course Dibujo técnico con LibreCAD, Curso Completo  https://www.youtube.com/watch?v=mhmj_IghriQ
