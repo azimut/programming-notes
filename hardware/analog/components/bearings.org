@@ -1,0 +1,28 @@
+why? rolling friction is muuuuch less than just sliding
+- explains ball bearing
+- explains pulleys (?)
+
+material
+- hard wood, eg: lignum vitae
+- brass
+- hard plastic: delrin, tufnol (made from cloth+resine)
+- steel (aka hinges)
+
+bushes
+- brass (oil filled)
+- plastic
+
+pillow blocks: spin
+tolerance ring
+rollers vs balls
+
+- lm(N)uu
+  - linear
+
+sizes
+- 6,8,10,12,16
+
+shield
+- open
+- dust (metal)
+- rubber (sealed) more friction, slower

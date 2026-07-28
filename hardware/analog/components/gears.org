@@ -1,0 +1,52 @@
+https://www.gearify.io/
+https://web.archive.org/web/20231002184532/https://www.gearify.io/
+
+2 gears can invert the rotation
+
+Backlash: when two gears are apart but touching and wooble
+Pulley: for a timing belt
+Shaft: engine pin
+Boss: lump on the side (for engines)
+
+Materials
+- Plastic
+- Steel
+- Stainless Steel
+- Brass
+- Phosphorus Bronce ($)
+
+Sizes
+- 1 MOD - 62 gears                         - 60mm pitch diameter
+- 1 MOD - 82 gears - 82mm outside diameter - 80mm pitch diameter
+- 2 MOD - 40mm pitch diameter
+- 0.5 MOD - 64 gears
+
+Types:
+- Antibacklash: two gears tied together by springs (for instruments)
+- Pin Gears: work on angle, slow (for clocks)
+- Rack Gear: straight
+- Worm Gear: 
+  - made like from a threaded rod
+  - tilted against other gears
+  - for light loads
+  - great reduction
+  - other gears cannot move it (self locking)
+- ring/planetary
+  - can be stacked
+  - good reduction (movement source is the shaft)
+  - for wind turbines (disc is movement source)
+- bevel gears: 
+  - to rotate 90° the rotation
+  - small load
+- angle/helical gears
+  - more contact area
+  - more load
+  - quieter/less vibration
+  - cons: some sliding, push appart
+  - change 90° rotation
+  - eg: for hand disc cutters, cars (differential, gearbox)
+- herringbone
+  - v-shape, cancel sideways force of bevel gears
+- differential gears:
+  - on cars
+  - for calculations (!?) in early "computers"
