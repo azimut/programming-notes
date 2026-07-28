@@ -1,5 +1,17 @@
 - https://github.com/ad-si/awesome-3d-printing
 
+- walls of at least 0.8mm (aka 2 walls?)
+  - usually at least 2mm for rigid
+
+- clearances
+  - 0.5mm for thight fit
+  - 1.0mm for loose fit
+
+- parametric design
+  - geometric constrains before numeric constraints
+  - instead of sketching above faces directly, sketch over root planes with an offset defined on a spreadsheet
+  - chamfer & filet at the end
+
 * techniques
 
 - https://www.youtube.com/@HowToMechatronics/videos
@@ -14,12 +26,21 @@
 - asa (abs)
 
 * hardware
+** prusa i3 mk2
+
+- clone https://marques-bruno.github.io/2017/12/10/dolly.html
+
 ** prusa i3 rework
 
 - https://reprap.org/wiki/Prusa_i3_Variants
 - https://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
 - https://reprap.org/wiki/RAMPS_1.4
 - MK2B Dual Power https://reprap.org/wiki/PCB_Heatbed
+- e3d v6
+  - https://e3d-online.com/pages/e3d-classics-support-v6-hotend
+  - http://web.archive.org/web/20180909123050/https://e3d-online.dozuki.com/Guide/V6+Assembly/6
+- extruder https://www.thingiverse.com/thing:725082/remixes
+- fan cover https://www.thingiverse.com/thing:210215
 
 *** 1.0
 
@@ -46,9 +67,11 @@
 
 *** 1.0.?
 
-- by random
+- piece reinforment https://www.thingiverse.com/thing:1656945
 - pieces https://www.thingiverse.com/thing:247992
-- bowden extruder, x axis belt adjust
+  - bowden extruder, x axis belt adjust
+- pieces https://www.thingiverse.com/thing:707109
+  - March 2015
 
 *** 1.5 by Emotion-tech
 
@@ -56,6 +79,23 @@
 - pieces https://github.com/b2az/prusa_i3_rework_1.5
 - pieces https://www.thingiverse.com/thing:5064715
 - Marling 1.1.x config https://gist.github.com/skywodd/1e5193d50a4ebca7847c31c35299fe3b
+
+*** 1.? upgrade
+
+24 https://x.com/RainMotorsports/status/1847000134984310802/photo/2
+24 https://x.com/RainMotorsports/status/1850368101713383929
+25 https://x.com/RainMotorsports/status/1924148031672263093/photo/1
+- https://pbs.twimg.com/media/GrPxaQrWcAAJALm?format=jpg&name=4096x4096
+26 https://x.com/ThisOld3DP/status/2012282028532658380
+prusa mk0, allegedly with mk2 parts
+z axis
+- piece to tie 2 cylnders at the top
+- metalic coupling
+extruder
+- piece on the front to give air from sideways
+bed
+- metal bed frame
+- adjustments at the bottom of each screw
 
 *** slic3r
 

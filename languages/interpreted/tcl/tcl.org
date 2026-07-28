@@ -337,6 +337,7 @@ https://wiki.tcl-lang.org/page/Tcl+Commands
     set a 10
     repeat 5 {incr a};# will return 15
   #+end_src
+
 ** Memoize the rest of a function (from "Tcl the misunderstood")
 #+begin_src tcl
   proc memoize {} {

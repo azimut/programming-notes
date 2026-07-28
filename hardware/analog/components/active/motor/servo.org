@@ -1,7 +1,40 @@
 - https://en.wikipedia.org/wiki/Servomotor
-- uses PWM to control speed and direction
-- tip: those that have a potentiometer inside
-  - can return it's position on a cable
-  - can be used to record some previous movement
-  - and replay it
-  - also can fix drifting (aka not stopping completely)
+
+- servo motor
+  + dc motor
+  + gearbox: speed-- torque++ (a compound gear train)
+  + electonics
+    - feedback sensor: potentiometer/magnetometer/rotary encoder
+    - pcb: h-bridge, comparator
+
+- 3 cables (+/-/PWM)
+
+- speed can be controlled by breaking down a movement into steps with delays in between
+- speed and torque also determined by voltage
+- uses PWM to control angle/position
+  - a pulse every 20ms aka 50Hz
+  - angle: by the duration of the pwm (0.5ms - 2.5ms)
+
+- types: micro & standard
+
+- by control system
+  - open loop: 360° rotation/travel
+  - closed loop: aprox 180° rotation/travel (sometimes 160°)
+
+* hardware
+
+** Servo Horns
+
+- connecto the output shaft
+
+** Standard Servo
+
+- HS-311
+- MG 996R
+- MG 945
+
+** Micro Servo
+
+- FS90R
+- SG90
+- MG90S

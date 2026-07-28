@@ -16,38 +16,104 @@
     - needs at least 5 cables
     - 1 extra for a tap to the center of a pair of coils
 
-- Shafts: round, D, geared, lead-screw
-
 - Sheet:
   - min delay between steps (eg: 2ms)
   - steps per revolution
   - max speed (steps/sec)
+  - Inductance:
+    - in millihenries
+    - higher means less maxspeed
+
 - Drivers:
   - L/R (aka constant voltage)
   - Chopper
 
-- Inductance:
-  - in millihenries
-  - higher means less maxspeed
-
 - Microstepping:
   - affects max velocity
   - affects torque
+  - smoother rotation
+  - quieter
+  - < half-step, eg: 1/4
+  - uses different currents (needs a driver)
+
+* steps sequences
+
+** simple/wave
+
+| 1 | 0 | 0 | 0 |
+| 0 | 1 | 0 | 0 |
+| 0 | 0 | 1 | 0 |
+| 0 | 0 | 0 | 1 |
+
+** double/full
+
+| 1 | 1 | 0 | 0 |
+| 0 | 1 | 1 | 0 |
+| 0 | 0 | 1 | 1 |
+| 1 | 0 | 0 | 1 |
+
+** half (interleaves wave and full)
+
+| 1 | 0 | 0 | 0 |
+| 1 | 1 | 0 | 0 |
+| 0 | 1 | 0 | 0 |
+| 0 | 1 | 1 | 0 |
+| 0 | 0 | 1 | 0 |
+| 0 | 0 | 1 | 1 |
+| 0 | 0 | 0 | 1 |
+| 1 | 0 | 0 | 1 |
+
+** bipolar
+
+| 1 | 0 | 1 | 0 |
+| 1 | 0 | 0 | 1 |
+| 0 | 1 | 0 | 1 |
+| 0 | 1 | 1 | 0 |
 
 * hardware
 
+** generic
+
+- NMB PM35S-048-HPL2
+  - sheet http://web.archive.org/web/20110102015715/http://www.nmbtc.com/pdf/motors/PM35S-048-HHC6.pdf
+  - sale https://www.lazada.co.th/products/stepper-motor-nmb-nmb-pm35s-048-hpl2-iteams-diy-hotend-extruder-stepping-filament-driver-3d-printer-i3127710412.html
+  - help https://reprap.org/forum/read.php?13,215687
+   - simple step configuration, uses a 555 and 4017 (decade counter) to feed a ULN2003
+  - used to push filament (?
+  - 12v 0.5A / 24v 0.25A
+  - ULN2003
+  - 7.5° / 48 steps
+  - unipolar
+- NMB-MAT PM42L-048-SYR0
+  - Minebea
+  - 48 steps (7.5°/step)
+  - Bipolar
+  - 24v
+  - 600mA
+  - 7 ohm / phase
+  - drived by udn2917b
+- EM-330 M42sp-6k
+  - 24v DC (21.6-26.4)
+  - 7.5°/step
+    - 48 steps per cycle
+  - 8 ohm/phase
+  - MITSUMI
+- EM-329
+  - EPSON
 - 28YBJ-48 - Unipolar 5v, 32 steps, 248 steps with (64) gear reduction
 
-- NEMA - National Electrical Manufacturers Association
-  - a standard for having same..., on different brands:
-    - shape: front step size, N/10 in inches
-    - specs
+** NEMA - National Electrical Manufacturers Association
+
+- a standard for having same..., on different brands:
+  - size/shape: front step size, N/10 in inches
+  - specs
 
 - [[https://joy-it.net/en/products/NEMA14-01][NEMA14]]
   - 200 steps
   - 0.1 Nm holding torque
   - 8v
   - phase?: 2 / 20Ω / 20mH
+
 - [[https://joy-it.net/en/products/NEMA17-01][NEMA17]]
   - 200 steps
   - 43.1 Ncm holding torque
@@ -56,4 +122,6 @@
 
 * videos
 
+- Designing UniStep - an open source UNIPOLAR stepper motor driver! https://www.youtube.com/watch?v=VZYx2AsjqHE
+- DIY Stepper Motor Driver From Scratch https://www.youtube.com/watch?v=5b6qWVo6lcU
 - [[https://www.youtube.com/watch?v=Z_6wpdbHNtY][Diving into DIY Motion Control; Explaining Stepper Motors, Drivers, Controllers and Rigs]]

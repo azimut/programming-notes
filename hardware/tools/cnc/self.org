@@ -9,6 +9,29 @@
   - router (wood)
   - 3d printer
 
+- threaded rod
+  - 1 thread at end
+- leadscreaw
+  - 5mm, 8mm
+  - 4 threads at end
+- timing belt
+  - 2(m)gt - 2mm tooth pitch
+  - 3(m)gt - 3mm tooth pitch
+  - 5(m)gt - 5mm tooth pitch
+- circular belt (green/orange)
+  - 20x diameter pulley
+- fishing/steel thread
+  - 50x diameter pulley
+
+- din rail
+  - rodamientos
+  - pom wheel
+  - v groove wheel
+- linear rail
+- smooth rod
+  - LM(N)UU linear bearing
+- sigma profile
+
 * file formats
 
 - .brd - Board Design Rule Document
@@ -18,7 +41,12 @@
 - https://en.wikipedia.org/wiki/HP-GL
 - .dxf https://en.wikipedia.org/wiki/AutoCAD_DXF
 
+* tips
+
+divide g-code into vertical/horizontal/color lines and replace toolends
+
 * other
+
 - guitarbot
   - https://en.wikipedia.org/wiki/GuitarBot
   - https://web.archive.org/web/20050710002934/http://www.lemurbots.org/guitarbot.html

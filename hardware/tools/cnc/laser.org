@@ -1,0 +1,44 @@
+#+TITLE: Laser Cutter
+
+Speed measured in IPS (inchs per second)
+Shape might not be a dot, but a rectangle
+
+
+Types
+- diode: budget, slow
+- co2: faster, no metal
+- fiber: metal, jewelry, color
+- infrared
+  - don't cut, mark metals and some plastics
+- combo: fiber + ir
+
+* hardware
+
+https://www.instructables.com/DIY-Mini-CNC-Laser-Engraver/
+- arduino, recycled parts, 3d printed parts
+
+** elementos
+
+- sujetador para girar objetos redondos
+- base panal de abeja, para corte, para que no rebote
+- bomba de aire para limpiar polvo (+calidad)
+
+* software
+
+- lightburn
+- laser gerbil
+- ps, coreldraw, inkscapeh
+
+* brands
+
+- wecreat
+- xtool
+- longer (?)
+
+* examples
+
+- business cards (alluminium)
+- keychain
+- pencils
+- book covers
+- water canister

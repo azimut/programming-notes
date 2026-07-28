@@ -11,9 +11,11 @@
 
 * cli (wish)
 
-- #!/usr/bin/env wish
-- #!/usr/bin/tclsh
+#+begin_src tcl
+  #!/usr/bin/env wish
+  #!/usr/bin/env tclsh
   package require Tk
+#+end_src
 
 - api https://www.tcl-lang.org/man/tcl/UserCmd/wish.htm
 
@@ -52,6 +54,7 @@
 |    [[https://www.tcl-lang.org/man/tcl/TkCmd/spinbox.htm][spinbox]]    |                                |
 | [[https://www.tcl-lang.org/man/tcl/TkCmd/tk_optionMenu.htm][tk_optionMenu]] |                                |
 |---------------+--------------------------------|
+
 ** ttk
 
 [[https://www.tcl-lang.org/man/tcl/TkCmd/ttk_notebook.htm][ttk_notebook]]
@@ -83,6 +86,7 @@
 |  [[https://www.tcl-lang.org/man/tcl/TkCmd/pack.htm][pack]] | packs widgets into a cavity             |
 | [[https://www.tcl-lang.org/man/tcl/TkCmd/place.htm][place]] | positions widgets at absolute locations |
 |-------+-----------------------------------------|
+
 * examples
 
 - library: GUTTER - Great Unified Tcl/Tk Extension Repository
