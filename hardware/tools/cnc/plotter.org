@@ -38,3 +38,8 @@
 - molecules
 - circuits
   - 6502, z80
+
+* projects
+
+- l-type - corexy https://www.instructables.com/CNC-Plotter-1/
+  - 3m belt

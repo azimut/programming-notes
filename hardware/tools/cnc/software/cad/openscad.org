@@ -1,4 +1,5 @@
 #+TITLE: OpenSCAD
+#+DATE: <2026-07-15 Wed>
 
 - 2010
 - =parametric/code based=
@@ -32,34 +33,51 @@
 - include(file) - appends file
 - use(file) - pulls functions and modules
 - len(sv) - returns the length of a string or vector
+- new: functions as values, closures
 
-- transformations: the same one can be nested
-  - translate([x,y,z]) { }
-  - scale([x,y,z])
-  - resize([x,y,z])
-  - rotate([x,y,z])
-  - mirror([x,y,z])
-  - multimatrix([1,0,0,10],
-                [0,1,0,20],
-                [0,0,1,30],
-                [0,0,0, 1])
-  - color([r,g,b,a])
-  - offset(radius)
+** transformations
+
+https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Transformations
+
+the same one can be nested/cascaded, no ";"
+
+- translate([x,y,z]) { }
+- scale([x,y,z]) - scales by vector
+- resize([x,y,z]) - scales to vector size, 0 does nothing on that axis
+- rotate(a) - rotates around z
+- rotate(a, [x,y,z]) - rotates a degrees in x,y,z vector direction
+- rotate([a1,a2,a3]) - rotates around origin, on each angle
+- mirror([x,y,z])
+- multimatrix([1,0,0,10],
+              [0,1,0,20],
+              [0,0,1,30],
+              [0,0,0, 1])
+- color([r,g,b,a]) - from 0.0 - 1.0
+- color("black")
+- color("#fafafa")
+- offset
+  - offset() - r=1  chamfer=false
+  - offset(N) - N defaults to radius
+  - offset(r) - radius around figure
+  - offset(delta) - delta away from figure
   - offset(delta, chamfer)
-  - minkowski() - sum of childs
-  - hull() - wraps childs
-  - projection() - 3d into 2d
+- minkowski() - sum of childs
+- hull() - wraps childs, hull projection on xy plane
+- projection() - 3d into 2d
+- fill() - removes holes from polygons
 
-- operations
-  - union() { }
-  - difference() { }
-    - first shape minus second shape
-  - intersection() { }
+** boolean operations
+
+- union() { }
+  - useful when nesting other operations
+- difference() { }
+  - first shape minus second shape
+- intersection() { }
 
 ** modifiers
 
-- % make it as a background object, dim gray
-- # make transparent red
+- % background object, aka transparent gray
+- # debug object, aka transparent red
 - ! ignore everything else but this
 - * ignore this
 
@@ -72,6 +90,7 @@
 - $t  - time (? for animations
 - $vpr / $vpt / $vpf / $vpd
   - viewport related, for screenshots
+  - rotation, translation, fov, distance
 
 ** loops
 
@@ -82,26 +101,78 @@
 - intersection_for (x=[1:4]) - intersection of childs created
 
 ** shapes
+*** 2D
+|----------------+-----------+-------------------+------------------------------------|
+|                |    <c>    |        <c>        |                                    |
+|                |   prop    |        val        |                                    |
+|----------------+-----------+-------------------+------------------------------------|
+| square         |   size    |       [1,1]       |                                    |
+|                |   size    |         1         |                                    |
+|                |  center   |       false       |                                    |
+|----------------+-----------+-------------------+------------------------------------|
+| circle         |     r     |         1         |                                    |
+|                |     d     |                   |                                    |
+|                |    $fn    |         0         |                                    |
+|----------------+-----------+-------------------+------------------------------------|
+| polygon        |  points   | [ [0,1], [2,3] ]  |                                    |
+|                |   paths   |                   | the order to transverse the points |
+|                | convexity |                   |                                    |
+|----------------+-----------+-------------------+------------------------------------|
+| [[https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Text][text]]           |   text    |       "foo"       |                                    |
+|                |   size    |        10         |                                    |
+|                |   font    | "Liberation Sans" |                                    |
+|                | direction | "ltr/rtl/ttb/btt" | ltr=left to right                  |
+|                | language  |       "en"        |                                    |
+|                |  script   |      "latin"      |                                    |
+|                |  halign   |      "left"       |                                    |
+|                |  valign   |    "baseline"     |                                    |
+|                |  spacing  |         1         | multiplicating factor              |
+|----------------+-----------+-------------------+------------------------------------|
+| linear_extrude |  height   |         5         | must be positive                   |
+|                |     v     |     [0, 0, 1]     | normal vector (>2021)              |
+|                |  center   |       true        |                                    |
+|                | convexity |        10         |                                    |
+|                |   twist   |        45         | in degrees                         |
+|                |  slices   |        20         | like $fn, without modifyng 2D      |
+|                | segments  |        20         | like $fn, adding points to 2D      |
+|                |   scale   |        1.0        | final scale value at the end       |
+|                |           |      [1, 4]       |                                    |
+|----------------+-----------+-------------------+------------------------------------|
+| rotate_extrude |           |                   | aka "revolution"                   |
+|                |           |                   | around Y axis, placed as n Z axis  |
+|                |   angle   |        360        | degrees to sweep                   |
+|                |   start   |       0/180       | starting angle                     |
+|                | convexity |        10         |                                    |
+|----------------+-----------+-------------------+------------------------------------|
+| projection     |           |                   | projects in XY plane               |
+|                |    cut    |       false       | whole shape                        |
+|                |           |       true        | only shape at Z=0                  |
+|----------------+-----------+-------------------+------------------------------------|
 
-- 2d
-  - square([width,lengh])
-    - center=true
-- 3d
-  - cube(n) cube([w,d,h])
-    - center=true
-  - sphere(r)
-  - cylinder(r,h) cylinder(r1,r2,h)
-    - $fn=6
-    - center=true
-  - polyhedron
+*** 3D
+
+- cube(n) cube([w,d,h])
+  - center=true
+- sphere(r)
+- cylinder(r,h)
+  cylinder(r1,r2,h)
+  - $fn=6
+  - center=true
+- polyhedron
 
 ** types
 
 - number: 23, 3.1415
 - boolean: true, false
 - string: "foobar"
-- lists: [10,20], [[10,20],false,"foo"]
+- vectors: [10,20], [[10,20],false,"foo"]
   - v[0], v.x, v.y, v.z
+  - [ for (i=[0:100]) i*20 ]
+  - [ for (i=[0:100]) [ i*10, i*30 ] ]
+  - there are vector operations
+    - + - of vectors
+    - * for dot product
+    - dividing or multiplication by a scalar
 - ranges: [0:10], [0:2:10]
 - undefined
 
@@ -135,10 +206,15 @@ contain a *single expresion* and return a value
 
 * tips
 
+- translate after(aka outer) rotate
+- use *EPILON* value to avoid z-fighting
 - constraints are made by tying numerically a value to another
+- declare vars at the top
+- define modules at the bottom
 
 * use cases
 
+- when tolerances come first, like in hinges
 - to modify a stl
 - to split a stl
   - in equal parts
@@ -151,3 +227,11 @@ contain a *single expresion* and return a value
 * libraries
 
 - addon https://github.com/BelfrySCAD/BOSL2
+
+* projects
+
+- layers of transparent slices CNC'd https://x.com/kitwallace/status/1195407977584496647
+- clock https://x.com/seya128/status/1485866726051168256
+- https://pelandintecno.blogspot.com/search/label/OpenSCAD
+- light projector https://www.thingiverse.com/thing:2094215
+- handle (uses BOSL2) https://softsolder.com/2026/07/16/dremel-collet-chuck-handle/

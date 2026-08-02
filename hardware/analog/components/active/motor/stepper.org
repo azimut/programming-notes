@@ -37,7 +37,6 @@
   - uses different currents (needs a driver)
 
 * steps sequences
-
 ** simple/wave
 
 | 1 | 0 | 0 | 0 |
@@ -71,36 +70,29 @@
 | 0 | 1 | 1 | 0 |
 
 * hardware
-
-** generic
+** other
 
 - NMB PM35S-048-HPL2
   - sheet http://web.archive.org/web/20110102015715/http://www.nmbtc.com/pdf/motors/PM35S-048-HHC6.pdf
   - sale https://www.lazada.co.th/products/stepper-motor-nmb-nmb-pm35s-048-hpl2-iteams-diy-hotend-extruder-stepping-filament-driver-3d-printer-i3127710412.html
   - help https://reprap.org/forum/read.php?13,215687
    - simple step configuration, uses a 555 and 4017 (decade counter) to feed a ULN2003
-  - used to push filament (?
-  - 12v 0.5A / 24v 0.25A
-  - ULN2003
-  - 7.5° / 48 steps
-  - unipolar
-- NMB-MAT PM42L-048-SYR0
-  - Minebea
-  - 48 steps (7.5°/step)
-  - Bipolar
-  - 24v
-  - 600mA
-  - 7 ohm / phase
-  - drived by udn2917b
-- EM-330 M42sp-6k
-  - 24v DC (21.6-26.4)
-  - 7.5°/step
-    - 48 steps per cycle
-  - 8 ohm/phase
-  - MITSUMI
-- EM-329
-  - EPSON
-- 28YBJ-48 - Unipolar 5v, 32 steps, 248 steps with (64) gear reduction
+
+|----------------+---+-----+-------+-----+-----+----+--------+----------+---------+---------|
+|                |   | ohm |   stp | stp |     |    |   hold | pull-out | pull-in |         |
+|                |   |     |     ° |   x |  mA |  V | (mN-m) |   (mN-m) |  (mN-m) |         |
+|                |   |     |       | rev |     |    |        |          |         |         |
+|----------------+---+-----+-------+-----+-----+----+--------+----------+---------+---------|
+| M35SP-9T       | U |  10 |   7.5 |  48 | 517 | 24 |   51.9 |     35.8 |    35.3 | Mitsumi |
+| M42SP-6K       | B |  10 |   7.5 |  48 | 550 | 24 |   47.1 |     33.4 |    39.2 | Mitsumi |
+| PM35S-048-HPL2 | U |     |   7.5 |  48 |     | 24 |        |          |         | Mineba  |
+| PM42L-048-SYR0 | B |   7 |   7.5 |  48 | 600 | 24 |        |          |         | Mineba  |
+| 28YBJ-48       | U |     | 5.625 |  64 |     |  5 |        |          |         |         |
+| EM-600         | B |     |       |  50 |     | 12 |        |          |         |         |
+|----------------+---+-----+-------+-----+-----+----+--------+----------+---------+---------|
+
+- UDN2916B-V == IC for Mineba Bipolar
+- 2SC3346    == IC for Mineba Unipolar
 
 ** NEMA - National Electrical Manufacturers Association
 
