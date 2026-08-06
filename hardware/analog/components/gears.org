@@ -1,19 +1,7 @@
+#+TITLE: Gears
+
 https://www.gearify.io/
 https://web.archive.org/web/20231002184532/https://www.gearify.io/
-
-2 gears can invert the rotation
-
-Backlash: when two gears are apart but touching and wooble
-Pulley: for a timing belt
-Shaft: engine pin
-Boss: lump on the side (for engines)
-
-Materials
-- Plastic
-- Steel
-- Stainless Steel
-- Brass
-- Phosphorus Bronce ($)
 
 Sizes
 - 1 MOD - 62 gears                         - 60mm pitch diameter
@@ -21,32 +9,104 @@ Sizes
 - 2 MOD - 40mm pitch diameter
 - 0.5 MOD - 64 gears
 
-Types:
+* glosary
+
+- Involute: describes the shape of the teeth, the curves are involutes of circles
+- Backlash:
+  - space between the teeth
+  - helpwith: preventing jamming, lubricant, fabrication errors
+  - excesive is undesirable, especially if the drive reverses frequently
+  - you can add more by making teeeth smaller or putting them apart
+  - add on both gears, unless one is too small
+- Pulley: for a timing belt
+- Shaft: engine pin
+- Boss: lump on the side (for engines)
+- Axial Thrust: sideways pushing *force* parallel to the turning shaft
+
+- Pitch Circle: roughly in the middle of the teeth
+- Pressure angle:
+  - angle between tooth with the ~pitch circle~
+  - +angle => +strength +power +wear +noise +
+  - new industry standard is 20°, old one is 14.5°
+- Circular Pitch:
+  - distance along the ~pitch circle~ from start of one tooth to the start of the next one
+  - = PI * d / N
+    - d is the diameter of the ~pitch circle~
+    - N is the number of teeth on gear
+- Module
+  - = d / N
+    - diameter of the gear
+    - N is the number of teeth on gear
+- Clearance
+  - extra space at the tooth *valley* that separate teeths
+  - allow
+    - teeth to fit together
+    - space for lubricant
+  - sometimes a negative one is needed
+    - ex: with large (>55) pressure angles
+
+* materials
+
+- Plastic
+- Steel
+- Stainless Steel
+- Brass
+- Phosphorus Bronce ($)
+
+* trivia
+
+- 2 gears invert the rotation
+- 2 gears mesh if
+  - have same teeth size
+  - identical pressure angles
+
+* types
+
+- Spur:
+  - no axial thrust
 - Antibacklash: two gears tied together by springs (for instruments)
 - Pin Gears: work on angle, slow (for clocks)
-- Rack Gear: straight
-- Worm Gear: 
+- Rack Gear: straight or on angle
+  - locks:
+    - with a worm gear
+    - spring loaded matching rack, acting as a lock
+    - pin
+- Worm Gear:
   - made like from a threaded rod
   - tilted against other gears
   - for light loads
   - great reduction
   - other gears cannot move it (self locking)
-- ring/planetary
+- ring/internal/planetary
   - can be stacked
   - good reduction (movement source is the shaft)
   - for wind turbines (disc is movement source)
-- bevel gears: 
-  - to rotate 90° the rotation
+  - mating gear must have few enough teeth so that don't interfere on the other side of the ring
+    - but enough to not interfere/touch besides the involute part
+- bevel gears:
+  - teeths
+    - on the surface of an imaginary cone (the *pich cone*)
+    - shrink as they get closer to the center of the gear
+    - types:
+      - straight:       spiral_angle=0  cutter_radius=0
+      - spiral/helical: spiral_angle>0  cutter_radius>0
+      - zero (angle):   spiral_angle=0  cutter_radius>0
+  - pitch diameter == base of the pitch cone
+  - for dealing with intersecting gear shafts
+    - eg: to rotate 90° the rotation
   - small load
-- angle/helical gears
+- angle/helical
   - more contact area
   - more load
+  - smoother
   - quieter/less vibration
-  - cons: some sliding, push appart
+  - cons: some sliding (aka axial thrust)
   - change 90° rotation
-  - eg: for hand disc cutters, cars (differential, gearbox)
+  - two gears need to have oposite angles to mesh
+    - eg: 35° and -35°
+  - uses: for hand disc cutters, cars (differential, gearbox)
 - herringbone
-  - v-shape, cancel sideways force of bevel gears
+  - v-shape, cancel sideways force of bevel gears (aka axial thrust)
 - differential gears:
   - on cars
   - for calculations (!?) in early "computers"

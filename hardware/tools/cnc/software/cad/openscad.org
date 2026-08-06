@@ -11,6 +11,8 @@
 - https://github.com/elasticdotventures/awesome-openscad/
 - thingiverse integration (see parametric)
 - export 2D (dxf) and 3D (stl) formats
+- online https://ochafik.com/openscad2/
+- online https://cadhub.xyz/dev-ide/openscad
 
 * cli
 
@@ -23,16 +25,13 @@
 
 * language
 
-- polimorfic functions by cardinality
+- polimorfic functions by type and cardinality
 - two pass compiler/interpreter
 - ends with ";"
 - comments with "//" and "/* */"
 - variables are defined once, the last one if many
   - aka no recursive definition
   - but there are scopes
-- include(file) - appends file
-- use(file) - pulls functions and modules
-- len(sv) - returns the length of a string or vector
 - new: functions as values, closures
 
 ** transformations
@@ -42,20 +41,20 @@ https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Transformations
 the same one can be nested/cascaded, no ";"
 
 - translate([x,y,z]) { }
-- scale([x,y,z]) - scales by vector
-- resize([x,y,z]) - scales to vector size, 0 does nothing on that axis
 - rotate(a) - rotates around z
 - rotate(a, [x,y,z]) - rotates a degrees in x,y,z vector direction
 - rotate([a1,a2,a3]) - rotates around origin, on each angle
+- scale([x,y,z]) - scales by vector
+- resize([x,y,z]) - scales to vector size, 0 does nothing on that axis
 - mirror([x,y,z])
-- multimatrix([1,0,0,10],
-              [0,1,0,20],
-              [0,0,1,30],
-              [0,0,0, 1])
+- multmatrix([1,0,0,10],
+             [0,1,0,20],
+             [0,0,1,30],
+             [0,0,0, 1])
 - color([r,g,b,a]) - from 0.0 - 1.0
 - color("black")
 - color("#fafafa")
-- offset
+- offset: generates a new 2D outline from an existing one
   - offset() - r=1  chamfer=false
   - offset(N) - N defaults to radius
   - offset(r) - radius around figure
@@ -68,18 +67,21 @@ the same one can be nested/cascaded, no ";"
 
 ** boolean operations
 
-- union() { }
-  - useful when nesting other operations
-- difference() { }
-  - first shape minus second shape
-- intersection() { }
+|----------------+--------------------------------|
+|            <r> |                                |
+|        union() |                                |
+|   difference() | first shape minus second shape |
+| intersection() |                                |
+|----------------+--------------------------------|
 
 ** modifiers
 
-- % background object, aka transparent gray
-- # debug object, aka transparent red
-- ! ignore everything else but this
-- * ignore this
+|---+-----------------------------------------|
+| % | background object, aka transparent gray |
+| # | debug object, aka transparent red       |
+| ! | ignore everything else but this         |
+| * | ignore this                             |
+|---+-----------------------------------------|
 
 ** special variables
 
@@ -151,14 +153,28 @@ the same one can be nested/cascaded, no ";"
 
 *** 3D
 
-- cube(n) cube([w,d,h])
-  - center=true
-- sphere(r)
-- cylinder(r,h)
-  cylinder(r1,r2,h)
-  - $fn=6
-  - center=true
-- polyhedron
+|------------+------------+--------------|
+|            |    <c>     |     <c>      |
+|------------+------------+--------------|
+| sphere     | radius / d |      N       |
+|------------+------------+--------------|
+| cube       |    size    |      N       |
+|            |            |   [w,d,h]    |
+|            |   center   | true / false |
+|------------+------------+--------------|
+| cylinder   |     h      |      N       |
+|            |   r / d    |      N       |
+|            |   r1/r2    |      N       |
+|            |   d1/d2    |      N       |
+|            |   center   | true / false |
+|------------+------------+--------------|
+| polyhedron |   points   |              |
+|            |   faces    |              |
+|            | convexity  |              |
+|------------+------------+--------------|
+
+- surface
+- import
 
 ** types
 
@@ -198,6 +214,31 @@ contain a *single expresion* and return a value
   function foo(a) = let (b=1, c=b+1) a + b + c;
 #+end_src
 
+** introspection
+
+all take a variable as an argument
+
+- is_undef
+- is_string
+- is_list
+- is_num
+- is_bool
+- is_function
+
+** other
+
+- include(file) - appends file
+- use(file) - pulls functions and modules
+- len(S|V) - returns the length of a string or vector
+- assert(EXPR)
+- concat(V,V,..)
+- lookup(..) ????
+- str(...) - converts params to string
+- echo(S)
+- chr(N|V|S) - ascii => string
+- ord(C) - char => ascii
+- search() ????
+
 * codebases
 
 - https://github.com/josefprusa/Prusa3
@@ -226,7 +267,32 @@ contain a *single expresion* and return a value
 
 * libraries
 
-- addon https://github.com/BelfrySCAD/BOSL2
+- https://github.com/BelfrySCAD/BOSL2
+  - props:
+    - mod teeth thickness shaft_diam
+  - gears:
+    - spur_gear ring_gear rack
+    - crown_gear bevel_gear
+    - worm enveloping_worm worm_gear
+    - planetary_gears
+  - gear dimensions
+    - tooth density:
+      - circular_pitch diametral_pitch module_value
+    - radius:
+      - pitch_radius() outer_radius() root_radius()
+    - bevel_pitch_angle()
+    - worm_gear_thickness()
+    - worm_dist() gear_dist() gear_dist_skew()
+      - distance between 2 gear centers
+
+
+- https://github.com/Irev-Dev/Round-Anything
+  - include <Round-Anything/polyround.scad>
+  - based on arrays of polygon points [x,y,radius]
+  - getpoints(xss) - to XY points for polygon()
+  - polyRound(xss,N) - to XY rounded for polygon()
+  - mirrorPoints(xss,N,[X,Y])
+  - extrudeWithRadius(H,?,?,R)
 
 * projects
 
