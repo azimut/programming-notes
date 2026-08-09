@@ -1,3 +1,5 @@
+#+TITLE: Factor
+
 - home https://factorcode.org/
 - wiki https://en.wikipedia.org/wiki/Factor_(programming_language)
   - 2003
@@ -12,6 +14,14 @@
 
 - wiki http://progopedia.com/language/factor/
 - https://concatenative.org/wiki/view/Factor/Implementation%20history
+
+* cli
+|----------------+-------+----------------------------|
+|      <c>       |       |                            |
+|      -e=       | CODE  | evals given expression     |
+|     -run=      | VOCAB | runs MAIN on given ~vocab~ |
+| -no-user-input | -     |                            |
+|----------------+-------+----------------------------|
 
 * language
 
@@ -64,12 +74,12 @@ https://docs.factorcode.org/content/article-tuple-examples.html
 ** loops
 |--------------+----------+------------|
 |              |          |    <c>     |
-| times        | n f      |   f0..fn   |
-| each-integer | n f      | f(0)..f(n) |
-| each         | list f   |            |
-| map          | list f   |   list'    |
-| reduce       | list n f |     n'     |
-| accumulate   | list n f |  list' n'  |
+| times        | n f()    |  f()..f()  |
+| each-integer | n f(n)   | f(0)..f(n) |
+| each         | xs f(x)  |            |
+| map          | xs f(x)  |     ys     |
+| reduce       | xs n f   |     n'     |
+| accumulate   | xs n f   |  list' n'  |
 | replicate    |          |            |
 | produce      | n pred f |    list    |
 | while        | n pred f |     n'     |
@@ -196,23 +206,28 @@ H{
 - web framework
   https://concatenative.org/wiki/view/Factor/Furnace
   https://docs.factorcode.org/content/vocab-furnace.html
-- [[https://docs.factorcode.org/content/article-peg.ebnf.html][peg.ebnf]]
-  - the last rule is the main one
-  |-----------------+-----------+-------+-------|
-  |                 |    <c>    |       |       |
-  | Option          |     ?     | self  | f     |
-  | Ignore          |     ~     |       | error |
-  | Choice          |     ¦     | self  | error |
-  | Any             |     .     | self  | error |
-  | One or more     |     +     | self  | error |
-  | Zero or more    |     *     | self  |       |
-  | Character Class |   [0-9]   | self  | error |
-  | Not             |     !     | error |       |
-  | And             |     &     |       |       |
-  | String          |   "foo"   | self  | error |
-  | Group           | ("a"¦"b") |       |       |
-  |                 | {"a" "b"} |       |       |
-  |-----------------+-----------+-------+-------|
+
+** peg.ebnf
+
+- https://docs.factorcode.org/content/article-peg.ebnf.html
+- the last rule is the main one
+
+|-----------------+-----------+-------+-------|
+|                 |    <c>    |       |       |
+| Option          |     ?     | self  | f     |
+| Ignore          |     ~     |       | error |
+| Choice          |     ¦     | self  | error |
+| Any             |     .     | self  | error |
+| One or more     |     +     | self  | error |
+| Zero or more    |     *     | self  |       |
+| Character Class |   [0-9]   | self  | error |
+| Not             |     !     | error |       |
+| And             |     &     |       |       |
+| String          |   "foo"   | self  | error |
+| Group           | ("a"¦"b") |       |       |
+|                 | {"a" "b"} |       |       |
+|-----------------+-----------+-------+-------|
+
 * tools
 
 - editor: emacs https://github.com/factor/fuel
@@ -230,11 +245,3 @@ H{
 - utils https://github.com/mrjbq7/re-factor
 - https://bluishcoder.co.nz/2020/04/18/fun-factor-libraries.html
 - supercollider https://github.com/defaultxr/factor-supercollider/
-
-* cli
-|----------------+-------+----------------------------|
-|      <c>       |       |                            |
-|      -e=       | CODE  | evals given expression     |
-|     -run=      | VOCAB | runs MAIN on given ~vocab~ |
-| -no-user-input | -     |                            |
-|----------------+-------+----------------------------|

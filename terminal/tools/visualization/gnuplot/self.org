@@ -16,7 +16,7 @@
 |--------+-------------------------------------------------------|
 
 - 1986
-- Thomas Williams, Colin Kelley, Russell Lang, Dave Kotz, John Campbell, Gershon Elber, Alexander Woo
+- Thomas Williams, Colin Kelley
 - ~/.gnuplot, gnuplotrc (system-wide)
 - .gp extension
 
@@ -62,16 +62,18 @@
   - rgb "#0b0000"
   - rgb "white"
 
+** input data
+
+- space separated by default
+- by putting 2 newlines one after another, it separate different *blocks/groups* of data
+
 ** functions
+
 - http://www.gnuplot.info/docs/loc1283.html
 - math
 - string: sprintf
 - time
 - other
-** input data
-
-- space separated by default
-- putting 2 newlines one after another, separate different blocks/groups of data
 
 ** commands
 
@@ -138,6 +140,32 @@
     - [l]ine[c]olor COLOR
   - linespoint
 
+*** splot
+|-------------+------------------------------+-----------------------------------|
+| dgrid3d     | N,N                          | ????                              |
+| xyplane     | N                            | Z value where xyplane is          |
+| +ticslevel+ | N                            | " DEPRECATED                      |
+| colorbox    | -                            | color range box                   |
+| pm3d        | border lw 1                  | surface with lines                |
+| isosamples  | N                            | splot lines draw per xz axis      |
+| view        | X,Z                          | 0-180 rotation around axis        |
+| contour     | base                         |                                   |
+| cntrparam   | levels auto 9                |                                   |
+|             | levels discrete 1, -1        |                                   |
+|             | levels incremental -2 .05 .2 |                                   |
+|             | first 10 sort                |                                   |
+| hidden      |                              |                                   |
+| hidden3d    | -                            | non translucent (disables sample) |
+|             |                              | linestyle 1/2 for top/bottom      |
+|             |                              | aka "hidden line removal"         |
+|-------------+------------------------------+-----------------------------------|
+
+#+begin_src gnuplot
+  splot f(x,y) with pm3d          # surface
+  splot f(x,y) lc pal        lw 2 # sets isolines color/thicc
+  set     lt 1 lc "seagreen" lw 3
+#+end_src
+
 *** fit
 
 1) We come up with a function shape that "fits" our data.
@@ -190,12 +218,11 @@ b              -0.890  1.000
 
 *** other
 - imagesc - matrix/heatmap - 2d contour
-- splot - 3d surface
 - hist
 - scatter3 - 3d points
 ** options (setteable)
 
-*** general
+*** misc
 
 #+CAPTION: S ="string", N=number, F=float, P=[0.0-1.0]
 |------------+---------------+---------------------------------------------|
@@ -220,7 +247,7 @@ b              -0.890  1.000
 |  +reread+  |       -       | REMOVED in 6.0 +reread input+               |
 |------------+---------------+---------------------------------------------|
 
-*** general: file parsing
+**** input parsing
 
 |-------------+-----------------+----------------------------------|
 |     <c>     |       <c>       |                                  |
@@ -238,7 +265,7 @@ b              -0.890  1.000
 |   format    |    [x¦y] FMT    | OUTPUT format string, eg: %.2f   |
 |-------------+-----------------+----------------------------------|
 
-*** general: axis styling
+**** axis styling
 
 #+CAPTION: S ="string", N=number, F=float
 |---------------+----------------+----------------------------------|
@@ -263,32 +290,6 @@ b              -0.890  1.000
 |               |   font ",20"   | set font size to 20              |
 |     label     |   N at X,Y S   | puts a label at X,Y position     |
 |---------------+----------------+----------------------------------|
-*** general: splot
-|-------------+------------------------------+-----------------------------------|
-| dgrid3d     | N,N                          | ????                              |
-| xyplane     | N                            | Z value where xyplane is          |
-| +ticslevel+ | N                            | " DEPRECATED                      |
-| colorbox    | -                            | color range box                   |
-| pm3d        | border lw 1                  | surface with lines                |
-| isosamples  | N                            | splot lines draw per xz axis      |
-| view        | X,Z                          | 0-180 rotation around axis        |
-| contour     | base                         |                                   |
-| cntrparam   | levels auto 9                |                                   |
-|             | levels discrete 1, -1        |                                   |
-|             | levels incremental -2 .05 .2 |                                   |
-|             | first 10 sort                |                                   |
-| hidden      |                              |                                   |
-| hidden3d    | -                            | non translucent (disables sample) |
-|             |                              | linestyle 1/2 for top/bottom      |
-|             |                              | aka "hidden line removal"         |
-|-------------+------------------------------+-----------------------------------|
-
-#+begin_src gnuplot
-  splot f(x,y) with pm3d          # surface
-  splot f(x,y) lc pal        lw 2 # sets isolines color/thicc
-  set     lt 1 lc "seagreen" lw 3
-#+end_src
-
 *** palette
 
 http://gnuplot.info/demo/pm3dcolors.html
