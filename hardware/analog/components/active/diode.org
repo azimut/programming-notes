@@ -193,21 +193,23 @@
 
 - have a thin P-type layer
 - light is created at the junction
-- Anode(+): longer leg
-- Cathode(-): flat face on the body
+- Anode   (+): longer leg
+- Cathode (-): flat face on the body
 - tip: find led resistor
   - supply voltage = Vs
   - led forward voltage = Vf (in datasheet)
   - led forward current = If (in datasheet)
   - R = (Vs-Vf) / If (R is in omhms)
   - common Vf values by led color
-    |-----+--------------|
-    |  Vf | color        |
-    |-----+--------------|
-    | 1.6 | red          |
-    | 2.5 | yellow/green |
-    |   3 | blue/white   |
-    |-----+--------------|
+    |-----------+--------------|
+    |    <c>    |              |
+    |    Vf     | color        |
+    |-----------+--------------|
+    | 1.8 - 2.2 | red          |
+    | 2.0 - 2.2 | yellow       |
+    | 2.0 - 3.0 | green        |
+    | 3.0 - 3.3 | blue / white |
+    |-----------+--------------|
 - ~20mA needed
 
 ** High-Power LED
