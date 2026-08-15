@@ -149,6 +149,7 @@ the same one can be nested/cascaded, no ";"
 | projection     |           |                   | projects in XY plane               |
 |                |    cut    |       false       | whole shape                        |
 |                |           |       true        | only shape at Z=0                  |
+|                |           |                   |                                    |
 |----------------+-----------+-------------------+------------------------------------|
 
 *** 3D
@@ -227,8 +228,9 @@ all take a variable as an argument
 
 ** other
 
+- include <file>;
 - include(file) - appends file
-- use(file) - pulls functions and modules
+- use(file) - pulls ONLY functions and modules definitions
 - len(S|V) - returns the length of a string or vector
 - assert(EXPR)
 - concat(V,V,..)

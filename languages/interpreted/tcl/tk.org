@@ -115,12 +115,18 @@
   grid .ok
 #+end_src
 
-
 * codebases
 
 - official git gui
   https://git-scm.com/docs/git-gui/
   https://github.com/prati0100/git-gui/
+
+* tutorial
+
+- 23 Tcl/Tk tutorial https://zetcode.com/gui/tcltktutorial/
+  - source https://github.com/janbodnar/Tcl-Tk-Examples
+- https://tkdocs.com/tutorial/index.html
+- https://www.tutorialspoint.com/tcl-tk/index.htm
 
 * videos
 
@@ -141,13 +147,6 @@
 - 21 https://dev.to/taw/100-languages-speedrun-episode-06-tcltk-50kl
 - 03 Scripting Graphical Commands with Tcl/Tk Mini-HOWTO https://tldp.org/HOWTO/Scripting-GUI-TclTk/index.html
 - TCL/Tk Hello world https://wiki.tcl-lang.org/page/The+Hello+World+program+as+implemented+in+Tcl%2FTk
-
-* tutorial
-
-- 23 Tcl/Tk tutorial https://zetcode.com/gui/tcltktutorial/
-  - source https://github.com/janbodnar/Tcl-Tk-Examples
-- https://tkdocs.com/tutorial/index.html
-- https://www.tutorialspoint.com/tcl-tk/index.htm
 
 * books
 
