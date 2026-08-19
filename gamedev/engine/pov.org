@@ -1,0 +1,81 @@
+#+TITLE: POVRAY
+#+DATE: <2026-08-17 Mon>
+
+- Persistence Of Vision RAYtracing
+- CSG Operations
+
+* cli
+
+#+begin_src
+$ pov foo.ini fo.pov
+#+end_src
+
+* language
+
+- Turing Complete
+
+* snippets
+- See: Jaime Vives Piqueres, Gilles Tran
+** Example 1
+
+#+FILENAME: s.ini
+#+begin_src ini
+Width            = 1200
+Height           = 800
+Quality          = 11
+Antialias_Depth  = 4
+Antialias        = On
+Cyclic_Animation = On
+Initial_Frame    = 1
+Final_Frame      = 20
+Initial_Clock    = 0.0
+Final_Clock      = 1.0
+#+end_src
+
+#+FILENAME: s.pov
+#+begin_src
+camera { up y right 4*x/3 location <0,1,-3> look_at <0,0,0> }
+light_source { <0,300,-100> ??? rgb<1,1,1> }
+light_source { <-10,3,-100> ??? rgb<1,1,1> }
+background { rgb<0.6,0,0> }
+
+#macro r(c)
+  pigment { rgb c }
+  finish { phong 1.0 ambient 0.5 diffuse 0.5 }
+#end
+
+#declare S=difference {
+  sphere   { <0,0,0>,  1 texture { r(<1,1/2,0>) } }
+  cylinder { <0,-2,0>,<0,2,0>, 0.6 texture { r(<0,1,0>) } }
+  cylinder { <0,0,-2>,<0,0,2>, 0.6 texture { r(<1,0,0>) } }
+  cylinder { <-2,0,0>,<2,0,0>, 0.6 texture { r(<1,0,0>) } }
+}
+
+union { object{5} rotate <-70,10,35>+clock*y*360 }
+#+end_src
+** Example 2
+
+#+begin_src pov
+  #include"colors.inc"
+  #include"textures.inc"
+  #default{finish{Phong_Glossy}}
+  camera{ location<0,800,-500> direction<0,0,1> up<0,1,0> right<4/3,0,0> look_at<500,0,0> }
+  light_source { <400, 400,  100> color White }
+  light_source { <400, 400, -200> color White }
+  light_source { <400,-400,  100> color White }
+  background { Black }
+  #declare n=40;
+  #declare L=140;
+  #declare sticks=union {
+    #declare k=1;
+    #while(k<=n)
+      cylinder { <0,-L,0><0,L,0>,10
+        pigment { checker rgb<1,k/n,0>,rgb<k/n,0,1-k/n> scale 10}
+        rotate    <10*k,0,0>
+        translate <40*k,0,0>
+        #declare k=k+1
+      }
+    #end
+  }
+  object { sticks rotate <clock*360,0,0> translate <0,0,0> }
+#+end_src
