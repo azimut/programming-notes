@@ -1,5 +1,6 @@
 #+COMMENT: it crashed my machine/wm at random times
 - source (C) https://core.tcl-lang.org/tk/dir?ci=tip
+- origin 0,0 is at top-left
 - https://en.wikipedia.org/wiki/Tk_(software)
   - 1991
   - Tcl extension
@@ -107,11 +108,12 @@
   wm geometry . 300x90
 
   radiobutton .rb1 -variable yesno -value 1 -text "I like yes"
-  radiobutton .rb2 -variable yesno -value 0 -text "I like no"
-  button .ok -text "Ok" -command { puts $yesno; exit }
-
   grid .rb1 -sticky nw ;# -sticky for alignment, nw = north west
+
+  radiobutton .rb2 -variable yesno -value 0 -text "I like no"
   grid .rb2 -sticky nw
+
+  button .ok -text "Ok" -command { puts $yesno; exit }
   grid .ok
 #+end_src
 
@@ -154,3 +156,49 @@
   - nothing here https://github.com/jmsi1
   - Arduino Tcl/Tk: Radio FM
   - Arduino Tcl/Tk: Getting Started
+
+* python
+
+** overview
+
+#+TITLE: classes and methods on "tkinter"
+#+begin_src
+Tk()
+.title() .resizable() .geometry() .config() .iconbitmap()
+.mainloop()
+
+Frame()
+.config()
+.pack()
+
+Label() Button() Entry()
+.grid() .place()
+#+end_src
+
+** example
+
+#+begin_src python
+  from tkinter import *
+  root = Tk()
+  root.title("foobarbaz")
+  root.resizable(False,False)
+  #root.iconbitmap("foo.ico")
+  root.geometry("400x400")
+  root.config(bg="blue")
+
+  frame = Frame(root)
+  frame.config(bg="red", width=300, height=300)
+  frame.pack()
+
+  mlabel = Label(frame, text = "DO NOT! ->")
+  mlabel.place(x=250,y=100) # "deprecated" in favour to grid
+
+  mbutton = Button(frame, text = "PRESS ME")
+  mbutton.place(x=84,y=100)
+
+  mentry = Entry(frame)
+  mentry.place(x=200,y=100)
+
+
+  root.mainloop()
+#+end_src
