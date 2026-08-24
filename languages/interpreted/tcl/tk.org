@@ -132,6 +132,8 @@
 
 * videos
 
+- Python
+  - Understanding Tkinter https://www.youtube.com/playlist?list=PLpMixYKO4EXeaGnqT_YWx7_mA77bz2VqM
 - 21 Simple Calculator using TCL/TK  https://www.youtube.com/watch?v=q7Zjy0tATW4
 - 20 Tcl/Tk, The tclsh Shell and Scripts - PESU Academy
   - https://vimeo.com/477489492
@@ -159,22 +161,61 @@
 
 * python
 
-** overview
+https://docs.python.org/3/library/tkinter.html
+
+tip: try to use ttk widgets (new) instead of the tk ones (old)
+
+#+begin_src python
+  import tkinter as tk       # <===== logic
+  from tkinter import ttk    # <===== Widgets
+  import ttkbootstrap as ttk # <===== ttk.Tk() => ttk.Window(themename)
+#+end_src
+
+** class overview
 
 #+TITLE: classes and methods on "tkinter"
 #+begin_src
 Tk()
-.title() .resizable() .geometry() .config() .iconbitmap()
-.mainloop()
+  .title(S) .resizable(B,B) .geometry(S)
+  .config(KV) .iconbitmap(S)
+  .mainloop()
 
 Frame()
-.config()
-.pack()
+  .config(KV)
+  .pack()
 
 Label() Button() Entry()
-.grid() .place()
+  .grid(column,row,padx,pady,columnspan,rowspan)
+  .place(x,y)
+  .pack(side,padx,pady)
+  .get()
+
+IntVar()
+StringVar()
+  .set(S)
+  .get()
+
+Canvas(bg,width,height)
+  .pack()
+  .create_rectangle((x1,y1,x2,y2),fill,width)
+  .create_line((x1,y1,x2,y2),fill)
+  .create_oval
+  .create_arc((),start,extent,outline,fill)
+  .create_polygon(xs)
+  .create_text((x,y),text)
 #+end_src
 
+** class parameters
+|----------+--------------+-----------------|
+| Button() | text         |                 |
+|          | textvariable |                 |
+|          | width        |                 |
+|          | padx         |                 |
+|          | pady         |                 |
+|          | command      | lambda: foo()   |
+|          | font         | ("Arial", 20)   |
+|          |              | "Arial 20 bold" |
+|----------+--------------+-----------------|
 ** example
 
 #+begin_src python
@@ -201,4 +242,83 @@ Label() Button() Entry()
 
 
   root.mainloop()
+#+end_src
+** counter
+
+#+begin_src python
+from tkinter import *
+
+def sumar(n):
+    global state
+    state.set(state.get() + n)
+
+root = Tk()
+
+state = IntVar()
+state.set(0)
+
+pantalla = Label(root, textvariable=state, justify="center", font=("Arial",30))
+pantalla.grid(column=1, row=1, columnspan=2)
+
+negro = Button(root, text="-", command=lambda: sumar(-1))
+negro.grid(column=1, row=2)
+
+marron = Button(root, text="+", command=lambda: sumar(+1))
+marron.grid(column=2, row=2)
+
+root.eval('tk::PlaceWindow . center') # <====== IGNORAR
+root.mainloop()
+#+end_src
+*** brief
+
+#+begin_src python
+from tkinter import *
+
+def sumar(n):
+    global state
+    state.set(state.get() + n)
+
+root = Tk()
+state = IntVar()
+
+Label(root, textvariable=state, justify="center", font=("Arial",30)).grid(column=1, row=1, columnspan=2)
+Button(root, text="-", command=lambda: sumar(-1)).grid(column=1, row=2)
+Button(root, text="+", command=lambda: sumar(+1)).grid(column=2, row=2)
+
+root.eval('tk::PlaceWindow . center') # <====== IGNORAR
+root.mainloop()
+#+end_src
+
+** resistor
+
+#+begin_src python
+from tkinter import *
+
+def agregar_color(nombre, digito, multiplicador, tolerancia):
+    global state
+    if len(state.get()) == 0 or len(state.get()) == 1:
+        state.set(state.get() + str(digito))
+    elif len(state.get()) == 2:
+        state.set(int(state.get()) * multiplicador)
+
+root = Tk()
+state = StringVar()
+
+Label(root, textvariable=state, justify="center", font=("Arial",30)).grid(column=1, row=1, columnspan=10)
+
+Button(root, bg="black",  command=lambda: agregar_color("black",  0, 1, 0)).grid(column=1, row=2)
+Button(root, bg="brown",  command=lambda: agregar_color("brown",  1, 10, 1)).grid(column=2, row=2)
+Button(root, bg="red",    command=lambda: agregar_color("red",    2, 100, 2)).grid(column=3, row=2)
+Button(root, bg="orange", command=lambda: agregar_color("orange", 3, 1000, 0)).grid(column=4, row=2)
+Button(root, bg="yellow", command=lambda: agregar_color("yellow", 4, 10000, 0)).grid(column=5, row=2)
+Button(root, bg="green",  command=lambda: agregar_color("green",  5, 100000, 0)).grid(column=6, row=2)
+Button(root, bg="blue",   command=lambda: agregar_color("blue",   6, 1000000, 0)).grid(column=7, row=2)
+Button(root, bg="violet", command=lambda: agregar_color("violet", 7, 10000000, 0)).grid(column=8, row=2)
+Button(root, bg="gray",   command=lambda: agregar_color("gray",   8, 100000000, 0)).grid(column=9, row=2)
+Button(root, bg="white",  command=lambda: agregar_color("white",  9, 1000000000, 0)).grid(column=10, row=2)
+
+Button(root, text="Clear", command=lambda: state.set("")).grid(column=1, row=3, columnspan=10)
+
+root.eval('tk::PlaceWindow . center') # <====== IGNORAR
+root.mainloop()
 #+end_src
