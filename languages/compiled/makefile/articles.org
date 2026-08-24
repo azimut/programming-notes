@@ -38,6 +38,7 @@
 - 22 [[https://rosszurowski.com/log/2022/makefiles][Makefiles for Web Work]]
 - 23 [[https://stackabuse.com/how-to-write-a-makefile-automating-python-setup-compilation-and-testing/][How to Write a Makefile - Automating Python Setup, Compilation, and Testing]]
 - 24 [[https://www.matheusmoreira.com/articles/managing-dotfiles-with-make][Managing dotfiles with Make]]
+- 24 [[https://github.com/bartdorlandt/Beyond_the_Makefile][Beyond the Makefile]]
 - 25 [[https://blog.yossarian.net/2025/01/10/Be-aware-of-the-Makefile-effect][Be aware of the Makefile effect]]
 - https://swcarpentry.github.io/make-novice/reference.html
 - https://swcarpentry.github.io/make-novice/aio.html
