@@ -67,8 +67,6 @@
     - Used for compress data.
 
 - article: https://karpathy.github.io/2019/04/25/recipe/
-- article: llm agent https://tadeodonegana.com/posts/building-agents-my-notes/
-- https://github.com/AudioLLMs/AudioLLM
 - https://microsoft.github.io/generative-ai-for-beginners/#/
 - https://uvadlc-notebooks.readthedocs.io/en/latest/index.html
 - https://stackoverflow.blog/2022/04/21/the-robots-are-coming-for-the-boring-parts-of-your-job/?cb=1
@@ -140,6 +138,7 @@
   #+end_src
 
 ** MNIST
+- https://www.kaggle.com/datasets/hojjatk/mnist-dataset/data
 - https://en.wikipedia.org/wiki/MNIST_database
   - http://web.archive.org/web/20020622183530/http://yann.lecun.com:80/exdb/mnist/
   - Modified NIST (National Institute of Standards and Technology)

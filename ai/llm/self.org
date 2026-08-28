@@ -1,5 +1,25 @@
+- article: llm agent https://tadeodonegana.com/posts/building-agents-my-notes/
+- https://github.com/AudioLLMs/AudioLLM
+- https://github.com/raiyanyahya/how-to-train-your-gpt
+- https://github.com/rasbt/LLMs-from-scratch https://sebastianraschka.com/llms-from-scratch/
 - https://github.com/anomalyco/opencode
 - https://academy.langchain.com/courses/intro-to-langgraph
 - LangGraph
   - https://www.langchain.com/langgraph
   - an agent runtime and low-level orchestration framework
+
+* videos
+
+- course: https://languagemodelbuilder.com/
+- course: Language Modeling from Scratch (Stanford) https://www.youtube.com/playlist?list=PLoROMvodv4rMqXOcazWaTUHhq-yembLCV
+- Karpathy
+  - Intro to LLM https://www.youtube.com/watch?v=zjkBMFhNj_g
+  - Deep Dive into LLMs like ChatGPT https://www.youtube.com/watch?v=7xTGNNLPyMI
+  - How I use LLMs https://www.youtube.com/watch?v=EWvNQjAaOHw
+- LLMs explained briefly by 3Blue https://www.youtube.com/watch?v=LPZh9BOjkQs
+- I build an LLM from scratch by syntax https://www.youtube.com/watch?v=YmLp8qe87A0
+- I build by own LLM from scratch by youniss https://www.youtube.com/watch?v=coDs1LWmAdI
+- can you build an LLM from scratch by banananar https://www.youtube.com/watch?v=ZaBJ2VwDvPI
+- What I learned from implementing LLM architectures from scratch by Sebastian Raschka https://www.youtube.com/watch?v=TXzQ7PGpO6w
+
+- nanogpt: training from scratch https://www.youtube.com/watch?v=UsB70Tf5zcE

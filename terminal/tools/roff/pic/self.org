@@ -26,6 +26,7 @@
   $ pic foo.pic | groff -ms > hello.ps
   $ pic -p foo.pic > hello.ps
   $ dpic -v foo.pic > foo.svg
+  $ pikchr --svg-only foo.pikchr > foo.svg
 #+end_src
 
 - -ms on groff will use defaults of .PS/.PE, will center drawing
@@ -54,7 +55,7 @@
 - by default draws from left to right
   - changes when you put a direction (up/down/left/right)
   - from then on it becomes the new one
-  - with the entrypoint of the new one attached to the exitpoint of the last
+  - with the *entrypoint* of the new one attached to the *exitpoint* of the last
 - use {} to preserve/restore *position* and *direction* after the block is finished
 - optional ";" to end statements
 - use "#" to start comments
@@ -99,7 +100,7 @@
 
 - start with upper-case
 - a object can be labeled
-  - refers the center of the object
+  - refers the *center of the object*
 - a position can be labeled
   #+begin_src pikchr
     A: ( 0, sqrt(3/4) )

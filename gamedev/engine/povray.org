@@ -16,6 +16,7 @@ $ pov foo.ini fo.pov
 
 * snippets
 - See: Jaime Vives Piqueres, Gilles Tran
+- https://github.com/susam/pov25
 ** Example 1
 
 #+FILENAME: s.ini

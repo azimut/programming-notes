@@ -74,6 +74,7 @@
 - https://bartoszmilewski.com/2024/03/22/neural-networks-pre-lenses-and-triple-tambara-modules/
 - https://bartoszmilewski.com/2024/03/24/neural-networks-pre-lenses-and-triple-tambara-modules-part-ii/
 - https://bartoszmilewski.com/2025/03/06/understanding-attention-in-llms/
+- https://www.geeksforgeeks.org/deep-learning/neural-networks-a-beginners-guide/
 
 * Examples
 
@@ -106,7 +107,7 @@
 - Masterclass | De McCulloch-Pitts a ChatGPT: un vistazo a 80 años de avances en el mundo de la IA https://www.youtube.com/watch?v=DiXix3sowbM
 - Neural Networks: Zero to Hero by Andrej Karpathy https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ
 - JS CodeTrain https://www.youtube.com/playlist?list=PLRqwX-V7Uu6aCibgK1PTWWu9by6XFdCfh
-- https://www.youtube.com/watch?v=e5dVSygXbAE
+- The First Neural Networks https://www.youtube.com/watch?v=e5dVSygXbAE
 
 * Book: 2019 | Neural Networks for Electronics Hobbyists | Richard McKeon
 ** Preface

@@ -9,16 +9,40 @@
 
 - GRAPH VIZualiation software
 - 1991
-- .gv extension
+- .gv or .dot extension
 - AT&T
 
 * cli
 
 one binary for each layout filter
 
+#+begin_src sh
+  $ dot -Tpng foo.dot -o graph.png
+#+end_src
+
 * language
 
 https://www.graphviz.org/doc/info/lang.html
+
+#+CAPTION: undirected graph
+#+begin_src dot
+graph G {
+  A [ color=red ]
+  A -- B
+}
+#+end_src
+
+#+CAPTION: directed graph
+#+begin_src dot
+digraph G {
+    node [style=filled, color=red]
+    edge [style=dotted, color=yellow=
+    Hello -> World;
+}
+#+end_src
+
+- subgraphs
+- sketchviz
 
 ** layout filters
 
@@ -40,19 +64,24 @@ https://graphviz.org/docs/layouts/
 |-----------+----------------------------|
 
 ** props
-- for: node, edge
-|-------+-----------------|
-|   <r> |       <c>       |
-| group |     linear      |
-| shape |     circle      |
-| style | [filled¦dotted] |
-| color |     yellow      |
-| shape |      squre      |
-|-------+-----------------|
+
+- label
+
+#+CAPTION: for node and graph
+|---------+-----------------|
+|     <r> |       <c>       |
+|   group |     linear      |
+|   shape |     circle      |
+|   style | [filled¦dotted] |
+|   color |   yellow¦red    |
+|   shape |      squre      |
+|---------+-----------------|
 ** vars
 |---------+------------|
 |     <r> |    <c>     |
+|  layout |   neato    |
 | rankdir |     LR     |
+|    rank |    same    |
 | splines | true¦ortho |
 | overlap |   false    |
 |---------+------------|
@@ -64,11 +93,25 @@ https://graphviz.org/docs/layouts/
 - 21 https://kellyshortridge.com/blog/posts/security-decision-trees-with-graphviz/
 
 * videos
+
 - 09 GraphViz step-by-step walkthrough https://vimeo.com/7860697
 - demo: Automatic book building from markdown with inline graphviz (2x speed) https://vimeo.com/108337533
 
 * codebases
 
-NN https://www.geeksforgeeks.org/deep-learning/how-to-visualize-a-neural-network-in-python-using-graphviz/
+https://www.geeksforgeeks.org/deep-learning/how-to-visualize-a-neural-network-in-python-using-graphviz/
 https://graphviz.org/Gallery/undirected/root.html
 http://www.yifanhu.net/GALLERY/GRAPHS/
+
+* python
+
+#+begin_src python
+  from graphviz import Digraph
+  g = Digraph('G')
+  g.edge('Hello', 'World')
+#+end_src
+
+* alternatives
+
+- mermaid
+  - github markdown integration
