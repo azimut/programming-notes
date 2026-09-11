@@ -1,0 +1,13 @@
+- starfield https://www.youtube.com/watch?v=17WoOqgXsRM
+  - in 2d, using a z element
+  - array of stars
+  - spawn at random
+    - x 0..width
+    - y 0..height
+    - z width
+  - divide x|y by z
+    - map that 0..1 value to 0..width|height
+  - decrease z by 1 on each update()
+    - when z<=0 respawn
+    - map z from 0..width to 16..0 for the star size
+

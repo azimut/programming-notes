@@ -1,0 +1,30 @@
+#+TITLE: void linux
+#+DATE: <2026-08-30 dom>
+
+- home https://voidlinux.org/
+- wiki https://en.wikipedia.org/wiki/Void_Linux
+- 2008
+- by Juan Romero Pardines
+
+* cli
+
+- xbps-install
+- xbps-query
+- xmirror - demenu select of mirror host
+
+* snippets
+** build pkg from src
+
+#+begin_src sh
+xbps-install -S xtools git
+git clone https://github.com/void-linux/void-packages/
+cd void-package
+./xbps-src bootstrap
+#...
+xgensum -f srcpkgs/<PKG>/template
+./xbps-src pkg <PKG>
+xi povray
+# sudo xbps-install --repository=hostdir/binpks <povray>
+sudo xbps-pkgdb -m repolock <package_name>
+#+end_src
+

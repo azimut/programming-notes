@@ -76,14 +76,19 @@
 
 [[https://www.digikey.com/-/media/Images/Article%20Library/TechZone%20Articles/2021/May/The%20Fundamentals%20of%20Digital%20Potentiometers%20and%20How%20to%20Use%20Them/article-2021may-the-fundamentals-of-digital-fig1.jpg]]
 
-- taper types
-  - A logarithmic (actually implemented linearly, but is not perceptible)
-  - B linear
-
 - can take different forms in a circuit, depending how many terminals you connect
   - a _variable voltage divider_, if you use all the 3
     - changing the relation between the resistors
   - a _variable resistor_, if you use only 2
+    - from 0 ohm to ...
+
+- taper types
+  - A logarithmic (actually implemented linearly, but is not perceptible)
+  - B linear
+
+- 3 pins
+  - sides connected
+  - middle is "signal"
 
 |-----------------+---------------+---------------------------------|
 |             <r> |               |                                 |
