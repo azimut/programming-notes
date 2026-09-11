@@ -402,7 +402,7 @@ Overall, the ReSTIR technique involves a cycle of importance estimation, spatial
 
 * Book: Nature of code
 
-** 0 Random
+** 0 Randomness
 
 - =Single Event Proability= the likelihood that a single event will occur
 - =Outcomes= all the possible results of a random proces
@@ -429,18 +429,23 @@ Overall, the ReSTIR technique involves a cycle of importance estimation, spatial
     3) avg all of them to get the *avg variance*
     4) sqrt and you have the *std deviation*
 
-- Custom distribution
-  - =Oversampling= returning to previously visited positions
-  - Solution
-    - Taking big steps every so often (Levi flight)
-  - =accept-reject algorith=
-    - a type of *monte carlo* method
-    - eg:
-      - infinite loop
-      - get 2 random numbers
-      - if one is less than the other
-      - pick the bigger one
-      - otherwise keep trying
+- Custom distribution of random numbers
+  - aka non-uniform/non-gaussian distribution
+  - WHY? to avoid hitting the same spots (aka ~oversampling~)
+  - Solutions
+    1) =Levi Flight= take a big step every so often
+       - the longer the steps, the LESS likely to take it
+       - the smaller the step, the MORE likely to take it
+    2) =accept-reject algorith=
+       - a type of *monte carlo* method
+       - eg: wastful example
+         1. on a infinite loop
+         2. get 2 random numbers
+            - a random nr
+            - a ~qualifying random number~
+         3. if 2nd<1st
+         4. return 1st
+         5. else goto 2.
 
 - Noise
   - is deterministic

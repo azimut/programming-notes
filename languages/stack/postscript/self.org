@@ -324,6 +324,18 @@
 
 * tools
 
+- gs
+  - -g device width/height
+  - -r device x/y resolution
+  - convert to =.png=
+    #+begin_src sh
+      gs -sDEVICE=pngalpha -sOutputFile=output.png -dBATCH -dNOPAUSE foo.ps -c showpage
+    #+end_src
+  - systemdict setting
+    #+begin_src sh
+      -dname=token  # sets systemdict
+      -sname=string # sets systemdict
+    #+end_src
 - editor (for vector graphics) https://inkscape.org/ https://en.wikipedia.org/wiki/Inkscape
 - viewer: evince
 - viewer gv https://www.gnu.org/software/gv/
@@ -373,45 +385,9 @@
     /currenty { currentpoint exch pop } def
   #+end_src
 
-- Factor-like stack shuffling operators
-  #+begin_src ps
-    /drop { pop } def
-    /swap { exch } def
-    /over { 1 index } def
-    /pick { 2 index } def
-    /dupd { exch dup 3 2 roll } def
-    /swapd { 3 1 roll exch 3 2 roll } def
-    /rot { 3 2 roll } def
-    /-rot { 3 -2 roll } def
-    /nip  { exch pop } def
-    /2dup { 2 copy } def
-    /bi { % x p q --
-       rot % p q x
-       dup % p q x x
-      -rot % p x q x
-      exch % p x x q
-      exec % p x x'
-      -rot % x' p x
-      exch % x' x p
-      exec % x' y'
-      exch % y' x'
-    } def
-    /2keep { % ..a x y q:(..a x y -- ..b) -- ..b x y
-      3 1 roll  % q x y
-      2 copy    % q x y x y
-      5 -1 roll % x y x y q
-      exec      % x y
-    } def
-  #+end_src
-
 - print stack count (need =moveto=)
   #+begin_src ps
     /printcount { count 20 string cvs show } def
-  #+end_src
-
-- filled circle
-  #+begin_src ps
-    currentpoint 6 0 360 arc fill
   #+end_src
 
 - a font initialization
@@ -425,8 +401,46 @@
     /height currentpagedevice /PageSize get 1 get def
   #+end_src
 
-- [[./shapes.ps][shapes.ps]]
-  #+INCLUDE: "./shapes.ps" src ps
+** Factor-like stack shuffling
+
+#+begin_src ps
+  /drop { pop } def
+  /swap { exch } def
+  /over { 1 index } def
+  /pick { 2 index } def
+  /dupd { exch dup 3 2 roll } def
+  /swapd { 3 1 roll exch 3 2 roll } def
+  /rot { 3 2 roll } def
+  /-rot { 3 -2 roll } def
+  /nip  { exch pop } def
+  /2dup { 2 copy } def
+  /bi { % x p q --
+    rot % p q x
+    dup % p q x x
+    -rot % p x q x
+    exch % p x x q
+    exec % p x x'
+    -rot % x' p x
+    exch % x' x p
+    exec % x' y'
+    exch % y' x'
+  } def
+  /2keep { % ..a x y q:(..a x y -- ..b) -- ..b x y
+    3 1 roll  % q x y
+    2 copy    % q x y x y
+    5 -1 roll % x y x y q
+    exec      % x y
+  } def
+#+end_src
+
+** 2d shapes
+
+- filled circle
+  #+begin_src ps
+    currentpoint 6 0 360 arc fill
+  #+end_src
+
+#+INCLUDE: "./shapes.ps" src ps
 
 ** 3d shapes
 

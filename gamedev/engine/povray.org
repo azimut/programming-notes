@@ -3,19 +3,639 @@
 
 - Persistence Of Vision RAYtracing
 - CSG Operations
+- fork (3.7) with more features: https://github.com/UberPOV/UberPOV
 
 * cli
 
 #+begin_src
-$ pov foo.ini fo.pov
+  $ pov foo.ini foo.pov
+  $ pov +Oout.png foo.pov
+  $ pov Declare=MyValue=24 +Oout.png foo.pov
 #+end_src
+
+- Declare=VarName=VarValue
+- https://www.povray.org/documentation/3.7.0/r3_2.html
+
+** cli/ini options
+*** parsing
+|-----+-------------------+---------|
+|     |        <c>        |         |
+| I   |  Input_File_Name  | file    |
+| HI  |  Include_Header   | file    |
+| L   |   Library_Path    | path    |
+| MV  |      Version      | float   |
+| SU  |   Split_Unions    | bool    |
+| UB  |   Remove_Bounds   | bool    |
+| BM1 | Bounding_Method=1 | aka BVH |
+| BM2 | Bounding_Method=2 | aka BSP |
+|-----+-------------------+---------|
+*** output
+|----+------------------+-------------|
+|    |       <c>        |             |
+| H  |      Height      | int         |
+| W  |      Width       | int         |
+| SR |    Start_Row     | int / float |
+| ER |     End_Row      | int / float |
+| SC |   Start_Column   | int / float |
+| EC |    End_Column    | int / float |
+| C  |  Continue_Trace  | bool        |
+| P  | Pause_When_Done  | bool        |
+| V  |     Verbose      | bool        |
+| WL |  Warning_Level   | int         |
+| X  |    Test_Abort    | bool        |
+| X  | Test_Abort_Count | int         |
+|----+------------------+-------------|
+*** output display
+|----+--------------------+------|
+|    |        <c>         |      |
+| D  |     ?????????      | ?    |
+| SP | Preview_Start_Size | int  |
+| EP |  Preview_End_Size  | int  |
+| UD |    Draw_Vistas     | bool |
+|----+--------------------+------|
+*** tracing
+|------+---------------------+-------------------------------------------|
+|      |         <c>         |                                           |
+| MBn  | Bounding_Threshold  | use bounding slabs if +n objects in scene |
+| Qn   |       Quality       | 0-9 and 10,11 to add radiosity            |
+| A    |      Antialias      |                                           |
+| A0.n | Antialias_Threshold | until diff between adj pixels < 0.n       |
+| AMn  |   Sampling_Method   | 1=nonadaptive 2=adaptativealiasing        |
+| J    |       Jitter        |                                           |
+| Jn.n |    Jitter_Amount    | max jitter radius                         |
+| Rn   |   Antialias_Depth   | max recursion depth                       |
+| UA   |    Output_Alpha     |                                           |
+| UL   |    Light_Buffer     | deprecated                                |
+| UV   |    Vista_Buffer     | deprecated                                |
+|------+---------------------+-------------------------------------------|
+*** animation
+|-------------+--------------------+----------------------------------------------|
+|             |        <c>         |                                              |
+| Kn.n        |       Clock        | renders single frame with clock at value     |
+| KIn.n       |   Initial_Clock    |                                              |
+| KFn.n       |    Final_Clock     |                                              |
+| KFIn        |   Initial_Frame    |                                              |
+| KFFn        |    Final_Frame     |                                              |
+| SFn / SF0.n | Subset_Start_Frame |                                              |
+| EFn / EF0.n |  Subset_End_Frame  |                                              |
+| KC          |  Cyclic_Animation  | generates clock values for cyclic animations |
+| Uf          |    Field_Render    | use even/odd fields, for interlaced output   |
+| UO          |     Odd_Field      |                                              |
+|-------------+--------------------+----------------------------------------------|
 
 * language
 
+- aka SDL (Scene Description Language)
+- [[https://www.povray.org/documentation/3.7.0/r3_3.html][3.3 Scene Description Language]]
 - Turing Complete
 
+** macro
+https://www.povray.org/documentation/view/3.6.1/243/
+
+** arrays
+https://www.povray.org/documentation/view/3.6.0/233/
+
+** conditional statements
+
+https://wiki.povray.org/content/HowTo:Use_conditional_structures
+https://www.f-lohmueller.de/pov_tut/dir/dir_000e.htm
+
+** camera
+
+https://www.f-lohmueller.de/pov_tut/camera_light/camera_e1.htm
+https://www.f-lohmueller.de/pov_tut/camera_light/camera_e2.htm
+https://www.povray.org/documentation/3.7.0/r3_4.html#r3_4_2
+
+#+begin_src pov
+  camera {
+    perspective // by default, max 180° angle, 3 vanishing points
+    orthographic // no vanishing point
+    omnimax // vue of 180°, without angle
+    spherical angle 360 180
+    panoramic // ????
+    cylindrical // 1=vertical 2=horizontal 3=v+axis 4=h+axis
+    fisheye angle 180
+    ultra_wide_angle
+    angle 100
+    right x*image_width/image_height // SOLVES ALL ISSUES
+    location <0,0,0>
+    // perturbated
+    normal { bumps 0.15 scale 0.4 translate <0.2,0,0> }
+    // dof
+    focal_point <0,0,0>
+    aperture     0.7 // 0.05 ~ 1.5    - blur
+    blur_samples 100 // 4    ~ 100    - quality
+    confidence   0.9 // 0    ~ 1      - closer to correct color
+    variance   1/128 // 1/64 ~ 1/1024 - smallest displayable color difference
+  }
+#+end_src
+
+** lights
+
+shadowless
+fade_distance N - distance of full illumination
+fade_power N - rate of attenuation
+looks_like { OBJ }
+
+#+begin_src pov
+  // ambient
+  #default {finish {ambient 0}}
+  global_settings { ambient_light rgb<1,0,0> }
+  // point - no attenuation
+  light_source { <2,10,-3> White }
+#+end_src
+
+*** spotlight / cylindrical
+
+#+begin_src pov
+  light_source {
+    <0,10,-3> White
+    spotlight // cylinder
+    radius 15
+    falloff 18
+    tightness 10
+    point_at 0
+  }
+#+end_src
+
+*** area_light - soft shadow
+
+#+begin_src pov
+  // area point
+  light_source {
+    <2,10,-3> White
+    area_light 5*x,5*z,5,5
+    adaptive 1
+    jitter
+  }
+  // area spotlight
+  light_source { // Spot
+    <0,10,-3> White
+    spotlight
+    radius 15
+    falloff 18
+    tightness 10
+    area_light x,z,2,2
+    adaptive 1
+    jitter
+    point_at 0
+  }
+#+end_src
+
+*** radiosity
+
+https://wiki.povray.org/content/HowTo:Use_radiosity
+https://wiki.povray.org/content/Documentation:Tutorial_Section_3.7#Radiosity
+
+computes ~diffuse~ inter-reflection of light
+background and sky_sphere act as a source of light
+
+#+begin_src pov
+  global_settings {
+    radiosity {
+      adc_bailout     0.01  // keep or use "0.01 / brightest_emissive_object"
+      always_sample   off   // off = use pretrace stage samples
+      brightness       F
+      count            35   // ,N (optional n° directions)  number of rays sent
+      error_bound      1.8  // fraction of error tolerated - shape of shadows - +flatter_shadows
+      gray_threshold   0.0  // ratio to gray out the color bleed
+      low_error_factor 0.5  // aka error_bound used on pretrace
+      max_sample       F
+      media           true
+      maximum_reuse  0.200  // effective radius ratio
+      minimum_reuse  0.015  // effective radius ratio
+      nearest_count    5    // ,N - 1 .. 20, second value is optional, smaller than first, used for adapative pretrace
+      normal          true
+      pretrace_start   0.08 // 0.0 ~ 1.0 percentage, size of the blocks in the mosaic preview
+      pretrace_end     0.04 // 0.0 ~ 1.0 percentage, size of the blocks in the mosaic preview
+      recursion_limit  2    // ~ 20
+      subsurface      true
+    }
+  }
+#+end_src
+
+**** rad_def.inc
+
+#+begin_src pov
+#include "rad_def.inc"
+global_settings{radiosity{Rad_Settings(Radiosity_Final,off,off)}} // normal, media
+#+end_src
+
+#+begin_src pov
+#declare Radiosity_Default = 0;
+#declare Radiosity_Debug = 1;
+#declare Radiosity_Fast = 2;
+#declare Radiosity_Normal = 3;
+#declare Radiosity_2Bounce = 4;
+#declare Radiosity_Final = 5;
+
+#declare Radiosity_OutdoorLQ = 6;
+#declare Radiosity_OutdoorHQ = 7;
+#declare Radiosity_OutdoorLight = 8;
+#declare Radiosity_IndoorLQ = 9;
+#declare Radiosity_IndoorHQ = 10;
+#+end_src
+
+*** photons
+
+- https://wiki.povray.org/content/Reference:Photons
+- adds:
+  - reflective caustics (eg: mirrors can reflect light)
+  - refractive caustics (eg: lenses can focus light)
+- emitted from the lights
+- use with refraction, interior, pigment
+
+**** global
+
+#+begin_src pov
+  global_settings {
+    photons {
+      count 200000 // or use "spacing"
+      autostop 0
+      jitter 0.4
+    }
+  }
+#+end_src
+
+|-------------------+------------+------------------------------------------------|
+|                   |    <c>     |                                                |
+| spacing           |            | avg dist between photons                       |
+| count             |     N      | eg: 20000                                      |
+| *gather           |  20, 100   | min,max - how many are gathered at each point  |
+| media             |     0      | max(photonsper)_steps , factor (media/surface) |
+| *jitter           |    0.4     |                                                |
+| max_trace_level   |            | if unset, use global                           |
+| adc_bailout       |            | if unset, use global                           |
+| save_file         | "filename" |                                                |
+| load_file         | "filename" |                                                |
+| autostop          |            | a fraction                                     |
+| expand_thresholds |            | % increase, expand_min                         |
+| expand_min        |     40     |                                                |
+| *radius           |            | radius,multiplier                              |
+|-------------------+------------+------------------------------------------------|
+#+CAPTION: *leave these values be
+
+**** objects - receive/cause photons
+
+1) will ~show photon~ caustics when hit
+   - by default all
+   - disable with =photons{collect off}=
+2) will ~cause photons~ by reflecting/refracting
+   - lights will target these objects
+   - =photons{target [F] reflection on refraction on}=
+   - you usually pick one of the two
+   - this new photons will be also used on other computations
+   - split_union on ?????????
+   - pass_through - keeps photons unaffected
+3) both
+4) none
+
+**** lights - emit photons
+
+- area_light
+- refraction
+- reflection
+
+** 2d shapes
+
+- disc
+- plane
+
+** 3d shapes
+
+- box
+- sphere
+- torus
+- cone
+- cylinder
+*** isosurface {}
+
+- approximated during rendering
+- [[https://www.povray.org/documentation/3.7.0/r3_4.html#r3_4_9_1_7][3.4.9.1.7 Functions.inc]]
+
+#+begin_src pov
+#include "colors.inc"
+#include "metals.inc"
+#include "rad_def.inc"
+#include "finish.inc"
+#include "functions.inc"
+#default {finish {ambient 0}}
+background { Gray20 }
+global_settings {radiosity{Rad_Settings(2, false, false)}}
+light_source { <10,5,5> White }
+camera {location <4,4,6> look_at -1*y angle 60 }
+plane { y, -2 pigment {checker Green, White} }
+
+//#declare Sphere = function {pow(x,2)+pow(y,2)+pow(z,2)};
+#declare Sphere = function (x,y,z,Radius) {pow(x,2)+pow(y,2)+pow(z,2)-pow(Radius,2)};
+#declare fn_A = function { sqrt(pow(y,2) + pow(z,2)) - 0.8 }
+#declare fn_B = function { abs(x)+abs(y)-1 }
+#declare Blob_Threshold = 0.001;
+#declare Strength = 0.4;
+#declare fn_Pigm = function { pigment { agate color_map { [0 color rgb 0] [1 color rgb 1]}}}
+isosurface {
+  // function {x+y+z}
+  // function {abs(x)-1}                  // ||
+  // function {sqrt(x*x)-1}               // ||
+  // function {abs(x)-1+y}                // ^
+  // function {abs(x)+abs(y)+abs(z)-2}    // ⋄
+  // function {pow(x,2)+y}                // ⌒
+  // function {sqrt(pow(x,2)+pow(z,2))-1} // ⦿
+  // function {sqrt(pow(x,2)+pow(z,2))+y} // ⌲
+  // function {sqrt(pow(x,2)+pow(y,2)+pow(z,2))-2} // ◍
+  // function {Sphere(x,y,z)}
+  // function {Sphere(x,y,z,2)}
+  // function {f_devils_curve(x,y,z,1)}
+  // function { min(fn_A(x,y,z), fn_B(x,y,z))} // min(f,g) aka merge
+  // function { max(fn_A(x,y,z), fn_B(x,y,z))} // max(f,g) aka intersection
+  // function { min(fn_A(x,y,z), -fn_B(x,y,z))} // min(f,-g) aka difference
+  // function { // Merge with smooth transition
+  //   (1+Blob_Threshold)
+  //   -pow(Blob_Threshold, fn_A(x,y,z))
+  //   -pow(Blob_Threshold, fn_B(x,y,z))
+  // }
+  // function{fn_A(x,y,z) + pow(Blob_Threshold,(fn_B(x,y,z) + Strength))} // difference with smooth transition
+  // function {f_noise3d(x,y,z)-0.5}
+  // function {y - f_noise3d(x,0,z)} // noise on a plane
+  // function {f_sphere(x,y,z,1.2) - f_noise3d(x,y,z)}
+  // function {f_sphere(x,y,z,1.2) - f_noise3d(x*5,y,z) * 0.5}
+  // function {f_sphere(x,y,z,1.2) - f_noise3d(x*5,y*5,z*5) * 0.5}
+  function {}
+  //threshold 1 // default: 0
+  open // removes visible surface on the container
+  contained_by {box {-2,2}}
+  max_gradient 100
+  pigment {P_Silver3}
+  finish {
+    ambient .2
+    diffuse .6
+    brilliance 2
+    roughness .001
+    specular 1
+  }
+}
+#+end_src
+
+** transformations
+
+- translate
+- scale
+- rotate
+- clipped_by {OBJ}
+
+** operations
+
+- union
+- intersection
+- difference
+- merge (union variation for, transparent objects)
+
+** material
+*** texture
+
+- properties of the *surface* of the shape
+- previously had ~interior~
+- can have transformations
+- kinds
+  - plain: it has a single ~pigment~, ~normal~ and ~finish~
+  - patterned
+  - layered
+
+**** patterns
+
+https://www.povray.org/documentation/3.7.0/r3_4.html#r3_4_7
+used in pigments, normals, texture maps, and media density
+
+|----------+-------------+---------+-----------|
+| agate    | average     | boxed   | bozo      |
+| brick    | bumps       | cells   | checker   |
+| *crackle | cylindrical | dents   | mandel    |
+| julia    | *facets     |         | gradient  |
+| *granite | hexagon     |         | leopard   |
+| onion    | planar      | quilter | radial    |
+| ripples  | spherical   | spiral1 | spiral2   |
+| *spotted | waves       | wood    | *wrinkles |
+|----------+-------------+---------+-----------|
+
+**** pigments
+
+- aka color or patter of colors
+- modifiers:
+  - color_map
+  - pigment_map
+  - quick_color
+- types
+  - color, rgb, rgbf (filter'ed transparency), rgbt (transmittance)
+  - pattern
+    - grid C C
+    - hexagon C C C
+  - image_map {}
+
+**** normal
+
+- SEE PATTERNS
+- turbulence N
+- frequency N
+- gradient V
+- normal_map {}
+
+**** finish
+
+- [[https://www.povray.org/documentation/3.7.0/t2_3.html#t2_3_5_3][Advanced Features - 2.3.5.3 Finishes]]
+- controls the properties of the surface of an object
+
+|-----------------+------------------------+-------------------------------------------------------|
+|             <r> |          <c>           |                                                       |
+|         ambient |           C            | "ok" for indoors  (~0.1)                              |
+|        emission |           C            | w/radiosity or as a indep ambient                     |
+|      reflection | { F metallic fresnel } | nice with highlights, +color of surface to reflection |
+|      brilliance |           1            | "metallic" (5~10 less fallout to med/low angle)       |
+|        metallic |          bool          | +color of surface to hightlight                       |
+|           crand |           0            | graininess (0.01 ~ 0.5)                               |
+|      phong_size |           n            | highlight size (the smaller the bigger)               |
+|          *phong |           n            | highlight brightness                                  |
+|        *diffuse |          n n           | (0.5~0.7) 2nd is backsurface illum, 2<1, 1+2<1        |
+|       *specular |           n            | highlight, works w/roughness                          |
+|       roughness |           n            | highlight size, works w/specular                      |
+| conserve_energy |          bool          | ??????                                                |
+|-----------------+------------------------+-------------------------------------------------------|
+
+- reflection {}
+- subsurface {}
+- irid {F (amount), thickness, turbulence}
+  |------------+-----------+---------------------------|
+  | (amount)   | 0.1 ~ 0.5 | contribution to the color |
+  | thickness  | 0.25 ~ 1  | busyness of the efect     |
+  | turbulence | 0.25 ~ 1  |                           |
+  |------------+-----------+---------------------------|
+  - is what we see on the surface of an oil slick, when the sun shines on it
+  - aka the rainbow effect created by =thin-film interference=
+  - responds to surface normals
+- refraction, ior, caustics were moved to =interior=
+- no transformable
+- optionally inside a texture{} (shorthand)
+- for specular reflected indirect illumination see ~photons~
+  - https://www.povray.org/documentation/3.7.0/r3_4.html#r3_4_4_4
+- * those that accept =albedo= make it the TOTAL, rather than peak value
+  - ag: diffuse albedo 0.7, means 70% comes from dirrect illumination
+- example: https://mastodon.art/@povable/111635237814319709
+
+*** interior
+
+#+begin_src pov
+  box {
+    0, 20
+    pigment { rgbt 1}
+    hollow
+    interior {
+      media {
+      }
+    }
+  }
+#+end_src
+
+- properties inside the shape
+
+|--------------------+--------+-------------------------------------|
+|                    |  <c>   |                                     |
+| ior                |  1.0   | index of refraction                 |
+| caustics           |  0.0   | 0=off                               |
+| dispersion         |  1.0   | from refraction                     |
+| dispersion_samples |   7    |                                     |
+| fade_distance      |  0.0   | 0=off, distance with half intensity |
+| fade_power         |  0.0   | 0=off, 1..2 relistic                |
+| fade_color         | <0.0,> |                                     |
+|--------------------+--------+-------------------------------------|
+
+- media {}
+  - density {PATTERN TRANSFORM COLOR_MAP}
+  |--------------+-------+---------------------------------------------|
+  |              |  <c>  |                                             |
+  | emission     |   C   | does not get light up or gets shadowed      |
+  | scattering   | {1,C} | 1=isotropic  2=mie haze  3=mie murky        |
+  |              |       | 4=rayleight  5=Henyey-Greenstein            |
+  | absorption   |   C   | absorves given color                        |
+  |--------------+-------+---------------------------------------------|
+  | intervals    |  10   | intervals to sample the ray                 |
+  | samples      |  N,N  | min,max samples per interval                |
+  | confidence   |  0.9  | the smaller the more accurate               |
+  | variance     | 1/128 | the smaller the more accurate               |
+  | ratio        |  0.9  | between lit and unlit areas                 |
+  |--------------+-------+---------------------------------------------|
+  | eccentricity |  0.0  | for  scattering                             |
+  | extintion    |  1.0  | for  scattering, how fast light is absorbed |
+  |--------------+-------+---------------------------------------------|
+
+** rand.inc
+
+https://www.f-lohmueller.de/pov_tut/random/random6e.htm
+
+#+CAPTION: Stream is integer value of seed()
+|-----------------+------------------+------------------------|
+|                 |       <c>        |          <c>           |
+| SRand           |      Stream      |        -1 .. 1         |
+| RRand           | Min, Max, Stream |       Min .. Max       |
+| VRand           |      Stream      |   <0..1, 0..1, 0..1>   |
+| VRand_In_Box    |  P1, P2, Stream  | a point in box(P1,P2)  |
+| VRand_In_Sphere |      Stream      | a point in sphere(0,1) |
+| VRand_On_Sphere |      Stream      | a point on sphere(0,1) |
+| VRand_In_Obj    |   Obj, Stream    |   a point inside Obj   |
+|-----------------+------------------+------------------------|
+
+TODO: see other Rand_* functions
+
+|------------+-------------------+-----------+---------------------|
+| Normal     | Mu, Sigma, Stream | Beta      | Alpha, Beta, Stream |
+| Gauss      |                   | Gamma     |                     |
+| Cauchy     |                   | Tri       |                     |
+| Binomial   |                   | Erlang    |                     |
+| Bernouli   |                   | Exp       |                     |
+| Poisson    |                   | Lognormal |                     |
+| Student    |                   | Pareto    |                     |
+| Chi_Square |                   | Weibull   |                     |
+| F_Dist     |                   | *Prop     |                     |
+| Spline     |                   | Geo       | P, Stream           |
+|------------+-------------------+-----------+---------------------|
+
+** atmospheric effects
+
+- see media {}
+- background
+- sky_sphere
+  - pigment
+  - emission
+  - transformation
+- fog
+  - no interaction with light
+  |------------+---------+--------------------------|
+  |            |   <c>   |                          |
+  | fog_type   |    1    | constant density         |
+  |            |    2    | groud, constant below    |
+  | distance   |   50    | 36% of color at it       |
+  | color      |  White  |                          |
+  | up         | <0,1,0> |                          |
+  | fog_offset |   0.0   | below is constant        |
+  | fog_alt    |   0.0   | rate of fade             |
+  |            |         | offset+alt = 25% density |
+  | turbulence | <0,0,0> |                          |
+  | turb_depth |   0.5   |                          |
+  | omega      |   0.5   | turbulence param         |
+  | lambda     |   2.0   | turbulence param         |
+  | octaves    |    6    | turbulence param         |
+  |------------+---------+--------------------------|
+
 * snippets
+
+** objects macros
+
+#+begin_src pov
+#macro overbox(w,h,d)
+  box { 0,1 translate -0.5 pigment {Gray20} scale <w,h,d> translate <0,h/2,0> }
+#end
+#+end_src
+
+** makefile animation
+
+#+begin_src makefile
+FPS    ?= 30
+WIDTH  ?= 300
+HEIGHT ?= 300
+
+OPTS := +KI0 +KF360 +KFI1 +KFF90 +KC
+OPTS += +W$(WIDTH) +H$(HEIGHT)
+OPTS += +Q11 +A0.3
+
+frames/anim01.png: anim.pov anim.ini
+	mkdir -p frames
+	cp anim.pov frames/
+	cd frames/ && povray $(OPTS) anim.pov
+
+anim.mp4: frames/anim01.png
+	ffmpeg -r $(FPS) -i frames/anim%02d.png -c:v libx264 -pix_fmt yuv420p $@
+
+.PHONY: clean
+clean:; rm -f anim.mp4 frames/*
+#+end_src
+
+** makefile single image
+
+#+begin_src make
+NAME   := board
+WIDTH  ?= 300
+HEIGHT ?= 300
+OPTS   += +W$(WIDTH) +H$(HEIGHT)
+OPTS   += +Q11 +A0.3 +UA
+
+$(NAME).png: $(NAME).pov
+	povray $(OPTS)  $<
+
+.PHONY: clean
+clean:; rm -f $(NAME).png
+#+end_src
+
+* examples
 - See: Jaime Vives Piqueres, Gilles Tran
+- https://hea-www.harvard.edu/~fine/POV/pov.html
 - https://github.com/susam/pov25
 ** Example 1
 
@@ -34,7 +654,7 @@ Final_Clock      = 1.0
 #+end_src
 
 #+FILENAME: s.pov
-#+begin_src
+#+begin_src pov
 camera { up y right 4*x/3 location <0,1,-3> look_at <0,0,0> }
 light_source { <0,300,-100> ??? rgb<1,1,1> }
 light_source { <-10,3,-100> ??? rgb<1,1,1> }
@@ -74,9 +694,46 @@ union { object{5} rotate <-70,10,35>+clock*y*360 }
         pigment { checker rgb<1,k/n,0>,rgb<k/n,0,1-k/n> scale 10}
         rotate    <10*k,0,0>
         translate <40*k,0,0>
-        #declare k=k+1
+        #declare k=k+1;
       }
     #end
   }
   object { sticks rotate <clock*360,0,0> translate <0,0,0> }
 #+end_src
+* trivia
+
+** "Viewing angle has to be smaller than 180 degrees."
+
+due  https://github.com/POV-Ray/povray/issues/460
+- on VoidLinux
+  - bug https://github.com/void-linux/void-packages/issues/55478
+  - fix https://github.com/void-linux/void-packages/pull/62090/files
+- -ffast-math on GCC 13 (14?)
+
+* tutorials
+
+- https://www.povray.org/documentation/3.7.0/t2_0.html#t2_3_8
+- https://www.povray.org/documentation/view/3.60/97/
+- https://www.f-lohmueller.de/pov_tut/pov__eng.htm
+- https://www.f-lohmueller.de/pov_tut/camera_light/camera_e1.htm#perspective
+- laberynth https://weblog.jamisbuck.org/2015/11/21/representing-toroidal-grid.html
+* videos
+
+- 13 introduction to scientific visualization with postscript and povray https://www.youtube.com/playlist?list=PL3UcA3J_AIiIL0Vc9s2PPUPxvOwYvq8Ph
+  - it's about viewing what was not originally meant to be seen
+  - why?
+    - exploration
+      - to reveal
+      - to understand
+      - to extract patterns
+      - to induce though/insight
+    - presentation
+      - to compress information
+      - to use as a map / tool / reminder
+      - to communicate with others
+      - to convey information
+* gotchas
+
+- materials are accounted on CSG operations, last one wins
+  - macros are your friend
+  - maybe pass around materials when doing macros

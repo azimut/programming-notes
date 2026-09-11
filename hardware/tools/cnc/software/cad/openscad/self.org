@@ -13,6 +13,7 @@
 - export 2D (dxf) and 3D (stl) formats
 - online https://ochafik.com/openscad2/
 - online https://cadhub.xyz/dev-ide/openscad
+- ~/.local/share/OpenSCAD/libraries/
 
 * cli
 
@@ -293,8 +294,9 @@ all take a variable as an argument
   - based on arrays of polygon points [x,y,radius]
   - getpoints(xss) - to XY points for polygon()
   - polyRound(xss,N) - to XY rounded for polygon()
+  - polyRoundExtrude(xss, N, RTOP, RBOTT)
   - mirrorPoints(xss,N,[X,Y])
-  - extrudeWithRadius(H,?,?,R)
+  - extrudeWithRadius(H,BR,TR,R)
 
 * projects
 
