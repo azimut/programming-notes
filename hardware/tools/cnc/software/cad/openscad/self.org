@@ -17,12 +17,34 @@
 
 * cli
 
-|---------------+---------+---------------------|
-|      <c>      |   <c>   |                     |
-|       o       |    -    | output to stdout    |
-| export-format |    s    | exported fileformat |
-|       D       | var=val | defines variable    |
-|---------------+---------+---------------------|
+|---------------+-------------------------+------------------------------------|
+|      <c>      |           <c>           |                                    |
+|       o       |            -            | output to stdout                   |
+| export-format |            s            | exported fileformat                |
+|       D       |         var=val         | defines variable                   |
+|    camera     |   x,y,z,rx,ry,rz,dist   |                                    |
+|               | eye_x,y,z,center_x,y,z  |                                    |
+|  autocenter   |            -            | camera to look at center of object |
+|    viewall    |            -            | camera to fit all object           |
+|    imgsize    |      width,height       |                                    |
+| hardwarnings  |            -            |                                    |
+|  colorscheme  |                         |                                    |
+|  projection   | (o)rtho / (p)erspective |                                    |
+|    render     |            -            | do the final render, not preview   |
+|---------------+-------------------------+------------------------------------|
+
+- Colorschemes
+  - BeforeDawn
+  - Cornfield
+  - DeepOcean
+  - Metallic
+  - Monotone
+  - Nature
+  - Solarized
+  - Starnight
+  - Sunset
+  - Tomorrow
+  - Tomorrow Night
 
 * language
 

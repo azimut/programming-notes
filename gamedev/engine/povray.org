@@ -4,6 +4,7 @@
 - Persistence Of Vision RAYtracing
 - CSG Operations
 - fork (3.7) with more features: https://github.com/UberPOV/UberPOV
+- .obj to .pov https://sites.google.com/site/poseray/?pli=1&authuser=0
 
 * cli
 
@@ -243,7 +244,8 @@ global_settings{radiosity{Rad_Settings(Radiosity_Final,off,off)}} // normal, med
   - reflective caustics (eg: mirrors can reflect light)
   - refractive caustics (eg: lenses can focus light)
 - emitted from the lights
-- use with refraction, interior, pigment
+- use with interior, pigment, finish{irid refraction}
+- does refractions don't require "hollow"
 
 **** global
 
@@ -275,6 +277,12 @@ global_settings{radiosity{Rad_Settings(Radiosity_Final,off,off)}} // normal, med
 |-------------------+------------+------------------------------------------------|
 #+CAPTION: *leave these values be
 
+**** lights - emit photons
+
+- area_light
+- refraction
+- reflection
+
 **** objects - receive/cause photons
 
 1) will ~show photon~ caustics when hit
@@ -290,12 +298,6 @@ global_settings{radiosity{Rad_Settings(Radiosity_Final,off,off)}} // normal, med
 3) both
 4) none
 
-**** lights - emit photons
-
-- area_light
-- refraction
-- reflection
-
 ** 2d shapes
 
 - disc
@@ -308,6 +310,7 @@ global_settings{radiosity{Rad_Settings(Radiosity_Final,off,off)}} // normal, med
 - torus
 - cone
 - cylinder
+
 *** isosurface {}
 
 - approximated during rendering
@@ -419,17 +422,33 @@ used in pigments, normals, texture maps, and media density
 
 **** pigments
 
-- aka color or patter of colors
+[[https://www.povray.org/documentation/view/3.6.0/77/][1.3.4.1 Pigments]]
+
+- aka the surface:
+  - color
+    |--------+---------+-------------------+-----------------------|
+    | rgb v3 | rgbf v4 | rgb v3 filter   f | filtered transparency |
+    | rgb v3 | rgbt v4 | rgb v4 transmit f | transmittance         |
+    |--------+---------+-------------------+-----------------------|
+  - color pattern:
+    - can be modified:
+      - pigment_map {[f PM]}
+      - color_map {[f color C]}
+      - frequency, increases the number of patterns per unit
+      - turbulence
+        - omega
+        - lambda
+        - octaves
+  - color list: grid, hexagon, brick, gradient
+    - take a color list
+  - image map
+
+- can be layered up, as long as the upper ones have some transparency
+
 - modifiers:
   - color_map
   - pigment_map
   - quick_color
-- types
-  - color, rgb, rgbf (filter'ed transparency), rgbt (transmittance)
-  - pattern
-    - grid C C
-    - hexagon C C C
-  - image_map {}
 
 **** normal
 
@@ -441,27 +460,36 @@ used in pigments, normals, texture maps, and media density
 
 **** finish
 
-- [[https://www.povray.org/documentation/3.7.0/t2_3.html#t2_3_5_3][Advanced Features - 2.3.5.3 Finishes]]
+- [[https://www.povray.org/documentation/3.7.0/t2_3.html#t2_3_5_3][Documentation - Advanced Features - 2.3.5.3 Finishes]]
+- [[https://wiki.povray.org/content/Reference:Finish#Subsurface_Light_Transport][Wiki - Reference:Finish]]
 - controls the properties of the surface of an object
+- no transformable
 
-|-----------------+------------------------+-------------------------------------------------------|
-|             <r> |          <c>           |                                                       |
-|         ambient |           C            | "ok" for indoors  (~0.1)                              |
-|        emission |           C            | w/radiosity or as a indep ambient                     |
-|      reflection | { F metallic fresnel } | nice with highlights, +color of surface to reflection |
-|      brilliance |           1            | "metallic" (5~10 less fallout to med/low angle)       |
-|        metallic |          bool          | +color of surface to hightlight                       |
-|           crand |           0            | graininess (0.01 ~ 0.5)                               |
-|      phong_size |           n            | highlight size (the smaller the bigger)               |
-|          *phong |           n            | highlight brightness                                  |
-|        *diffuse |          n n           | (0.5~0.7) 2nd is backsurface illum, 2<1, 1+2<1        |
-|       *specular |           n            | highlight, works w/roughness                          |
-|       roughness |           n            | highlight size, works w/specular                      |
-| conserve_energy |          bool          | ??????                                                |
-|-----------------+------------------------+-------------------------------------------------------|
+|-----------------+---------------------------+----------------------------------------------------------------------|
+|             <r> |            <c>            |                                                                      |
+|         ambient |             C             | "ok" for indoors  (~0.1)                                             |
+|        emission |             C             | w/radiosity or as a indep ambient                                    |
+|      reflection | { F metallic fresnel on } | nice with highlights, +color of surface to reflection                |
+|      brilliance |             1             | "metallic" (5~10 less fallout to med/low angle)                      |
+|        metallic |           bool            | +color of surface to hightlight                                      |
+|                 |             0             | graininess (0.01 ~ 0.5) adds random dark grains in reflection of dir |
+|      phong_size |             n             | highlight size (the smaller the bigger)                              |
+|          *phong |             n             | highlight brightness                                                 |
+|        *diffuse |            n n            | (0.5~0.7) 2nd is backsurface illum, 2<1, 1+2<1                       |
+|       *specular |             n             | highlight, works w/roughness                                         |
+|       roughness |             n             | highlight size, works w/specular                                     |
+| conserve_energy |           bool            | ??????                                                               |
+|-----------------+---------------------------+----------------------------------------------------------------------|
+#+CAPTION: *take an albedo argument, makes it the total, rather than peak value
 
-- reflection {}
-- subsurface {}
+- subsurface {translucency C}
+  - subsurface scattering, like skin or candle wax
+  - needs object with an =interior {ior F}= set
+  - needs ~global_settings~ like
+    #+begin_src pov
+      subsurface { samples 400, 40 }
+      subsurface { radiosity on } // applied to incoming radiosity
+    #+end_src
 - irid {F (amount), thickness, turbulence}
   |------------+-----------+---------------------------|
   | (amount)   | 0.1 ~ 0.5 | contribution to the color |
@@ -470,17 +498,17 @@ used in pigments, normals, texture maps, and media density
   |------------+-----------+---------------------------|
   - is what we see on the surface of an oil slick, when the sun shines on it
   - aka the rainbow effect created by =thin-film interference=
+  - aka it glows with photons
   - responds to surface normals
-- refraction, ior, caustics were moved to =interior=
-- no transformable
+- ~refraction~, ~ior~, and ~caustics~ were moved to =interior=
 - optionally inside a texture{} (shorthand)
 - for specular reflected indirect illumination see ~photons~
   - https://www.povray.org/documentation/3.7.0/r3_4.html#r3_4_4_4
-- * those that accept =albedo= make it the TOTAL, rather than peak value
-  - ag: diffuse albedo 0.7, means 70% comes from dirrect illumination
 - example: https://mastodon.art/@povable/111635237814319709
 
 *** interior
+
+https://wiki.povray.org/content/Reference:Interior
 
 #+begin_src pov
   box {
@@ -496,25 +524,28 @@ used in pigments, normals, texture maps, and media density
 
 - properties inside the shape
 
-|--------------------+--------+-------------------------------------|
-|                    |  <c>   |                                     |
-| ior                |  1.0   | index of refraction                 |
-| caustics           |  0.0   | 0=off                               |
-| dispersion         |  1.0   | from refraction                     |
-| dispersion_samples |   7    |                                     |
-| fade_distance      |  0.0   | 0=off, distance with half intensity |
-| fade_power         |  0.0   | 0=off, 1..2 relistic                |
-| fade_color         | <0.0,> |                                     |
-|--------------------+--------+-------------------------------------|
+|--------------------+--------+----------------------------------------------------|
+|                    |  <c>   |                                                    |
+| ior                |  1.0   | index of refraction                                |
+| caustics           |  0.0   | 0=off (as ambient is to radiosity, but for photons) |
+| dispersion         |  1.0   | from refraction                                    |
+| dispersion_samples |   7    |                                                    |
+| fade_distance      |  0.0   | 0=off, distance with half intensity                |
+| fade_power         |  0.0   | 0=off, 1..2 relistic                               |
+| fade_color         | <0.0,> |                                                    |
+|--------------------+--------+----------------------------------------------------|
 
 - media {}
+  - https://www.povray.org/documentation/view/3.60/94/
+  - https://wiki.povray.org/content/Reference:Media
+  - for fx: glows, smoke, dust, fog
   - density {PATTERN TRANSFORM COLOR_MAP}
   |--------------+-------+---------------------------------------------|
   |              |  <c>  |                                             |
   | emission     |   C   | does not get light up or gets shadowed      |
+  | absorption   |   C   | absorves given color                        |
   | scattering   | {1,C} | 1=isotropic  2=mie haze  3=mie murky        |
   |              |       | 4=rayleight  5=Henyey-Greenstein            |
-  | absorption   |   C   | absorves given color                        |
   |--------------+-------+---------------------------------------------|
   | intervals    |  10   | intervals to sample the ray                 |
   | samples      |  N,N  | min,max samples per interval                |
@@ -701,8 +732,7 @@ union { object{5} rotate <-70,10,35>+clock*y*360 }
   object { sticks rotate <clock*360,0,0> translate <0,0,0> }
 #+end_src
 * trivia
-
-** "Viewing angle has to be smaller than 180 degrees."
+** BUG: "Viewing angle has to be smaller than 180 degrees."
 
 due  https://github.com/POV-Ray/povray/issues/460
 - on VoidLinux
@@ -712,11 +742,12 @@ due  https://github.com/POV-Ray/povray/issues/460
 
 * tutorials
 
-- https://www.povray.org/documentation/3.7.0/t2_0.html#t2_3_8
-- https://www.povray.org/documentation/view/3.60/97/
 - https://www.f-lohmueller.de/pov_tut/pov__eng.htm
 - https://www.f-lohmueller.de/pov_tut/camera_light/camera_e1.htm#perspective
+- https://www.povray.org/documentation/3.7.0/t2_0.html#t2_3_8
+- https://www.povray.org/documentation/view/3.60/97/
 - laberynth https://weblog.jamisbuck.org/2015/11/21/representing-toroidal-grid.html
+
 * videos
 
 - 13 introduction to scientific visualization with postscript and povray https://www.youtube.com/playlist?list=PL3UcA3J_AIiIL0Vc9s2PPUPxvOwYvq8Ph
@@ -732,6 +763,7 @@ due  https://github.com/POV-Ray/povray/issues/460
       - to use as a map / tool / reminder
       - to communicate with others
       - to convey information
+
 * gotchas
 
 - materials are accounted on CSG operations, last one wins
