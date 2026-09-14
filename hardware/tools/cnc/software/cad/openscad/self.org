@@ -291,34 +291,155 @@ all take a variable as an argument
 - BlockSCAD
 
 * libraries
+** BOSL2
 
-- https://github.com/BelfrySCAD/BOSL2
-  - props:
-    - mod teeth thickness shaft_diam
-  - gears:
-    - spur_gear ring_gear rack
-    - crown_gear bevel_gear
-    - worm enveloping_worm worm_gear
-    - planetary_gears
-  - gear dimensions
-    - tooth density:
-      - circular_pitch diametral_pitch module_value
-    - radius:
-      - pitch_radius() outer_radius() root_radius()
-    - bevel_pitch_angle()
-    - worm_gear_thickness()
-    - worm_dist() gear_dist() gear_dist_skew()
-      - distance between 2 gear centers
+https://github.com/BelfrySCAD/BOSL2
 
+*** TODO 2D objects
 
-- https://github.com/Irev-Dev/Round-Anything
-  - include <Round-Anything/polyround.scad>
-  - based on arrays of polygon points [x,y,radius]
-  - getpoints(xss) - to XY points for polygon()
-  - polyRound(xss,N) - to XY rounded for polygon()
-  - polyRoundExtrude(xss, N, RTOP, RBOTT)
-  - mirrorPoints(xss,N,[X,Y])
-  - extrudeWithRadius(H,BR,TR,R)
+- square - has BOSL2 object attributes (anchor, spin, attach)
+- circle - has BOSL2 object attributes (anchor, spin, attach)
+
+*** 3D objects
+
+|--------+-------------+--------------|
+| cube   | cuboid      | prismoid     |
+|--------+-------------+--------------|
+| size   | size        | size1        |
+| center | center      | size2        |
+|        | rounding    | [h]eight     |
+|        | chamfer     | [l]ength     |
+|        | edges       | shift        |
+|        | except      | xang         |
+|        | trimcorners | yang         |
+|        | teardrop    | chamfer[12]  |
+|        | clip_angle  | rounding[12] |
+|        | p1          |              |
+|        | p2          |              |
+|--------+-------------+--------------|
+
+|----------+----------+--------------------------------------------------|
+| cube     | cuboid   | size center                                      |
+|          |          | rounding chamfer edges except_edeges trimcorners |
+| sphere   | spheroid | circum style                                     |
+| cylinder | cyl      | rounding[12] chamfer[12]                         |
+|----------+----------+--------------------------------------------------|
+
+- all come with anchors for attaching children
+- BOSL2 ones are centered by default
+
+*** BOSL2 object attributes
+
+|--------+--------------------+-------------------------------------------------|
+|        |        <c>         |                                                 |
+| center |        true        |                                                 |
+| anchor |       TBFRLB       | tell what corner is at the origin         |
+|        | polar_to_xy(1,150) | for circle                                      |
+| spin   |         a°         | rotates a° around z, after anchor               |
+| orient |       TBFRLB       | where the top of the shape should be rotated to |
+|--------+--------------------+-------------------------------------------------|
+
+*** BOSL2 attachments
+
+- an anchor is a point with a direction outward of the object
+- see: ~show_anchors()~
+- 2 objects can be =attached= by
+  - the anchor= of the 2nd/child
+  - the ~position(TBFRLB)~ of the 1st/parent
+  - the ~orient(anchor=TBFRLB)~ to change anchor orientation
+  - by putting _one after the other_, in the same command (;)
+
+*** BOSL2 default vectors
+
+|---------------------+----+------------|
+|         <c>         |    |            |
+|        LEFT         | -X | [-1, 0, 0] |
+|        RIGHT        | +X | [ 1, 0, 0] |
+|  FRONT/FORWARD/FWD  | -Y | [ 0,-1, 0] |
+|        BACK         | +Y | [ 0, 1, 0] |
+| BOTTOM/BTM/BOT/DOWN | -Z | [ 0, 0,-1] |
+|       TOP/UP        | +Z | [ 0, 0, 1] |
+|     CENTER/CTR      |    | [ 0, 0, 0] |
+|---------------------+----+------------|
+
+*** BOSL2 transformations
+
+|------------------+-----------------------------+--------------|
+|       <c>        |                             |              |
+| translate / move | up down fwd back left right |              |
+|      scale       | xscale yscale zscale        |              |
+|   rotate / rot   | xrot yrot zrot              | cp=v         |
+|                  |                             | from=p to=p  |
+|      mirror      | xflip yflip zflip           |              |
+|                  | skew                        | s[xyz][xyz]= |
+|------------------+-----------------------------+--------------|
+
+*** BOSL2 distributions / array operators
+
+- modules for placing a child across a...
+  |--------+-----------------+--------------------------------------------------|
+  |        |             <r> |                                                  |
+  | line   |     [xyz]copies | spacing l(ength)= n=2 sp=v3                      |
+  |        |     line_copies | spacing n p1 p2                                  |
+  | area   |     grid_copies | spacing n size stagger=true stagger="alt" inside |
+  | volume |   sphere_copies | n d cone_ang                                     |
+  | ring   | [xyz]rot_copies | n r                                              |
+  |        |      rot_copies | n v delta=v                                      |
+  |        |      arc_copies | n r sa ea rx ry                                  |
+  |        |     path_copies | path n spacing                                   |
+  |--------+-----------------+--------------------------------------------------|
+
+*** BOSL2 object rounding attributes
+
+|--------------+-------------+----------------------------|
+|              |     <c>     |                            |
+| circum       |      B      | into the ideal sphere      |
+| style        |   "orig"    |                            |
+|              |  "aligned"  |                            |
+|              |  "stagger"  |                            |
+|              |   "icosa"   |                            |
+|              |   "octa"    |                            |
+| rounding     |      N      |                            |
+| chamfer      |      N      |                            |
+| edges        |   TBFRLB    | selects edge or corner     |
+|              | "X" "Y" "Z" | selects edges aligned with |
+|              |  [TOP,"Y"]  |                            |
+|              |  EDGES_ALL  | default                    |
+| except_edges |      "      |                            |
+|--------------+-------------+----------------------------|
+
+*** gears.scad
+
+- props:
+  - mod teeth thickness shaft_diam
+
+- types:
+  - spur_gear ring_gear rack
+  - crown_gear bevel_gear
+  - worm enveloping_worm worm_gear
+  - planetary_gears
+
+- dimensions
+  - tooth density:
+    - circular_pitch diametral_pitch module_value
+  - radius:
+    - pitch_radius() outer_radius() root_radius()
+  - bevel_pitch_angle()
+  - worm_gear_thickness()
+  - worm_dist() gear_dist() gear_dist_skew()
+    - distance between 2 gear centers
+
+** Round-Anything
+
+https://github.com/Irev-Dev/Round-Anything
+
+- include <Round-Anything/polyround.scad>
+- based on arrays of polygon points [x,y,radius]
+- getpoints(xss) - to XY points for polygon()
+- polyRound(xss,N) - to XY rounded for polygon()
+- polyRoundExtrude(xss, N, RTOP, RBOTT)
+- mirrorPoints(xss,N,[X,Y])
+- extrudeWithRadius(H,BR,TR,R)
 
 * projects
 
