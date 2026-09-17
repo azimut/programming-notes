@@ -302,38 +302,116 @@ https://github.com/BelfrySCAD/BOSL2
 
 *** 3D objects
 
-|--------+-------------+--------------|
-| cube   | cuboid      | prismoid     |
-|--------+-------------+--------------|
-| size   | size        | size1        |
-| center | center      | size2        |
-|        | rounding    | [h]eight     |
-|        | chamfer     | [l]ength     |
-|        | edges       | shift        |
-|        | except      | xang         |
-|        | trimcorners | yang         |
-|        | teardrop    | chamfer[12]  |
-|        | clip_angle  | rounding[12] |
-|        | p1          |              |
-|        | p2          |              |
-|--------+-------------+--------------|
-
-|----------+----------+--------------------------------------------------|
-| cube     | cuboid   | size center                                      |
-|          |          | rounding chamfer edges except_edeges trimcorners |
-| sphere   | spheroid | circum style                                     |
-| cylinder | cyl      | rounding[12] chamfer[12]                         |
-|----------+----------+--------------------------------------------------|
+|----------+----------+--------------------------|
+| sphere   | spheroid | circum style             |
+| cylinder | cyl      | rounding[12] chamfer[12] |
+|----------+----------+--------------------------|
 
 - all come with anchors for attaching children
 - BOSL2 ones are centered by default
 
+**** cuboids
+|--------+-------------+--------------+---------------+---------------+-----------------+----------------------+------------|
+|  <c>   |     <c>     |     <c>      |      <c>      |      <c>      |       <c>       |         <c>          |    <c>     |
+|  cube  |   cuboid    |   prismoid   | regular_prism | textured_tile |    rect_tube    |        wedge         | octahedron |
+|--------+-------------+--------------+---------------+---------------+-----------------+----------------------+------------|
+|  size  |    size     |    size1     |       n       |    texture    |        h        |         size         |    size    |
+| center |   center    |    size2     |   [h]eight    |     size      |   [i]size[12]   |        center        |            |
+|        |  rounding   |   [h]eight   |   [l]ength    |     w[12]     |     center      |    anchor="hypot"    |            |
+|        |   chamfer   |   [l]ength   |     r[12]     |      ang      |      shift      | anchor="hypot_left"  |            |
+|        |    edges    |    shift     |    center     |     shift     |      wall       | anchor="hypot_right" |            |
+|        |   except    |     xang     |    anchor     |   [h]eight    | [i]chamfer[12]  |  anchor="top_edge"   |            |
+|        | trimcorners |     yang     |    realign    |     atype     | [i]rounding[12] |  anchor="bot_edge"   |            |
+|        |  teardrop   | chamfer[12]  |     d[12]     |     diff      |                 |                      |            |
+|        | clip_angle  | rounding[12] | [io][rd][12]  |   tex_extra   |                 |                      |            |
+|        |    p[12]    |              |   side[12]    |   tex_skip    |                 |                      |            |
+|        |             |              |  chamfer[12]  |               |                 |                      |            |
+|        |             |              | chamfang[12]  |               |                 |                      |            |
+|        |             |              | rounding[12]  |               |                 |                      |            |
+|        |             |              |   texture*    |               |                 |                      |            |
+|        |             |              |   tex_size    |               |                 |                      |            |
+|        |             |              |   tex_reps    |               |                 |                      |            |
+|        |             |              |   tex_depth   |               |                 |                      |            |
+|        |             |              |    tex_rot    |               |                 |                      |            |
+|        |             |              |  tex_samples  |               |                 |                      |            |
+|        |             |              |     style     |               |                 |                      |            |
+|        |             |              |   tex_inset   |               |                 |                      |            |
+|--------+-------------+--------------+---------------+---------------+-----------------+----------------------+------------|
+**** cylinders
+|----------+--------------+------------------+-----------|
+|   <c>    |     <c>      |       <c>        |    <c>    |
+| cylinder |   [xyz]cyl   |       tube       | pie_slice |
+|----------+--------------+------------------+-----------|
+|    h     |   l[ength]   |        h         | l[ength]  |
+|  r[12]   |   h[eight]   |        l         | h[eight]  |
+|  d[12]   |    r[12]     |        ir        |   r[12]   |
+|  center  |    d[12]     |      center      |   d[12]   |
+|          |    center    |      od[12]      |    ang    |
+|          |    circum    |      id[12]      |  center   |
+|          |   realign    |      ir[12]      |           |
+|          | chamfer[12]  |      or[12]      |           |
+|          | chamfang[12] |       wall       |           |
+|          |   from_end   | [io]rounding[12] |           |
+|          | rounding[12] |     teardrop     |           |
+|          |  extra[12]   |    clip_angle    |           |
+|          |   teardrop   | [io]chamfer[12]  |           |
+|          |  clip_angle  |       ifn        |           |
+|          |   texture    |                  |           |
+|          |   tex_size   |                  |           |
+|          |   tex_reps   |                  |           |
+|          |  tex_depth   |                  |           |
+|          |   tex_rot    |                  |           |
+|          | tex_samples  |                  |           |
+|          |    style     |                  |           |
+|          |  tex_taper   |                  |           |
+|          |  tex_inset   |                  |           |
+|----------+--------------+------------------+-----------|
+**** other round objects
+|--------+-----------------+----------+----------------+---------|
+|  <c>   |       <c>       |   <c>    |      <c>       |   <c>   |
+| sphere |    spheroid     |  torus   |    teardrop    |  onion  |
+|--------+-----------------+----------+----------------+---------|
+|   r    |        r        | [rd]_maj |    [l]ength    |    r    |
+|   d    |        d        | [rd]_min |    [h]eghit    |    d    |
+|        |     circum      |  center  |     r[12]      |   ang   |
+|        |  style="orig"   | [io][rd] |      ang       |  cap_h  |
+|        | style="aligned" |          |   cap_h[12]    | circum  |
+|        |  style="octa"   |          | bot_corner[12] | realign |
+|        |  style="icosa"  |          |                |         |
+|--------+-----------------+----------+----------------+---------|
+**** text
+|-----------+-------------------+-------------+-------------------|
+| text3d    |                   | path_text   |                   |
+|-----------+-------------------+-------------+-------------------|
+| text      |                   | path        |                   |
+| [h]eight  | 1                 | text        |                   |
+| size      | 10                | size        |                   |
+| font      | "Liberation Sans" | thickness   |                   |
+| em        |                   | font        | "Liberation Sans" |
+| spacing   | 1.0               | lettersize  |                   |
+| direction | "ltr"             | offset      | 0                 |
+|           | "rtl"             | reverse     | false             |
+|           | "ttb"             | normal      |                   |
+|           | "btt"             | top         |                   |
+| language  | "en"              | textmetrics | false             |
+| script    | "latin"           | kern        | 0                 |
+| atype     | "baseline"        | script      | "latin"           |
+|           | "ycenter"         | language    | "en"              |
+| anchor    |                   | valign      | "top"             |
+| center    |                   |             | "bottom"          |
+|           |                   |             | "center"          |
+|           |                   |             | "baseline"        |
+|-----------+-------------------+-------------+-------------------|
+**** misc
+|--------+--------+-----------------+-------|
+| fillet | plot3d | plot_revolution | ruler |
+|--------+--------+-----------------+-------|
 *** BOSL2 object attributes
 
 |--------+--------------------+-------------------------------------------------|
 |        |        <c>         |                                                 |
 | center |        true        |                                                 |
-| anchor |       TBFRLB       | tell what corner is at the origin         |
+| anchor |       TBFRLB       | tell what edge/corner is at the origin          |
 |        | polar_to_xy(1,150) | for circle                                      |
 | spin   |         a°         | rotates a° around z, after anchor               |
 | orient |       TBFRLB       | where the top of the shape should be rotated to |

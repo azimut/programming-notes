@@ -402,6 +402,8 @@ Overall, the ReSTIR technique involves a cycle of importance estimation, spatial
 
 * Book: Nature of code
 
+movement <- velocity <- acceleration <- force
+
 ** 0 Randomness
 
 - =Single Event Proability= the likelihood that a single event will occur
@@ -474,30 +476,58 @@ Overall, the ReSTIR technique involves a cycle of importance estimation, spatial
 
 ** 2 Forces
 
-- =force=: a vector that causes an object with mass to *accelerate*
-  - equilibrium: if the forces that act on an object *cancel each other out*, meaning the net force adds up to zero.
+*** definitions
+**** force
 
-- =weigth=: is the *force* of gravity on an object (in newtons)
-  - weight = mass x gravity_acceleration
+- is a ~vector~ that causes an object with ~mass~ to *accelerate*
 
-- =mass=: measure of ammount of matter in an object (in kg)
-  - mass != weight
+- equilibrium: if the forces that act on an object *cancel each other out*, meaning the net force adds up to zero.
 
-- =density=: the ammount of *mass* per unit of volume (in kg in cm3)
+**** weigth
 
-- Newton's laws of motion
-  1) An object at rest stays at rest, and an object in motion stays in motion.
-     - an object's velocity vector will remain constant if it's in a state of equilibrium.
+- is the ~force~ of gravity on an object (in newtons)
+- an object has same mass on earth and moon
+- weight = mass x gravity's_acceleration
 
-  2) force        = mass x acceleration
-     acceleration = force / mass
+**** mass
 
-  3) For every action, there is an equal and opposite reaction.
-     - aka resistance is measure as a force
-     - Forces always occur in pairs. Both of equal strength but in opposite directions.
+- measure of ammount of ~matter~ in an object (in kg)
+- an object has same mass on earth and moon
+- mass != weight
 
-- Exercises
-  1) Hellium baloon
-     - floats upwards
-     - bouncing of the top
-     - wind force changes over time (noise)
+**** density
+
+- the ammount of ~mass~ per unit of volume (in g in cm3)
+
+*** Newton's 3 laws of motion
+**** Inertia
+
+- An object at rest stays at rest, and an object in motion stays in motion, at constant speed and direction unless acted upon by an unbalanced ~force~.
+
+- alt: An object's ~velocity~ vector will remain constant if it's in a state of equilibrium.
+**** Force and Acceleration
+
+ F̅ = M * A̅
+ A̅ = F̅ / M
+
+**** Action and Reaction
+
+- For every action, there is an equal and opposite reaction.
+   - alt: Forces always occur in pairs. Both of equal strength but in opposite directions.
+   - alt: If you calculate a ~p5.Vector~ called ~f~ that represents a force of object A and object B, you must also apply the opposite force that object B exerts on object A. You can calculate this other foce as ~p5.Vector.mult(f,-1)~
+   - aka resistance is measure as a force
+
+*** Code
+
+ - accumulate forces to be added together
+ - acceleration should have no memory, aka be set to 0 on each cycle
+   - in a time-based physics simulation
+ - ideally you would have a constant concept of time, expressed on ~dt~
+   - not for this chapter
+
+*** Exercises
+
+ 1) Hellium baloon
+    - floats upwards
+    - bouncing of the top
+    - wind force changes over time (noise)
