@@ -311,6 +311,13 @@ https://github.com/BelfrySCAD/BOSL2
 - BOSL2 ones are centered by default
 
 **** cuboids
+
+- Cuboid rounding/anchor selection
+  - "?"    = ?      = 4 edges
+  -  ?     = face   = 4 edges
+  -  ?+?   = edge   = 1 edge
+  -  ?+?+? = corner = 3 edges
+
 |--------+-------------+--------------+---------------+---------------+-----------------+----------------------+------------|
 |  <c>   |     <c>     |     <c>      |      <c>      |      <c>      |       <c>       |         <c>          |    <c>     |
 |  cube  |   cuboid    |   prismoid   | regular_prism | textured_tile |    rect_tube    |        wedge         | octahedron |

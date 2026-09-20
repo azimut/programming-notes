@@ -305,6 +305,7 @@ global_settings{radiosity{Rad_Settings(Radiosity_Final,off,off)}} // normal, med
 
 ** 3d shapes
 
+- text: ttf "timrom.ttf" "HERE" THICKNESS, OFFSET
 - box
 - sphere
 - torus
@@ -459,6 +460,7 @@ used in pigments, normals, texture maps, and media density
 - normal_map {}
 
 **** finish
+
 
 - [[https://www.povray.org/documentation/3.7.0/t2_3.html#t2_3_5_3][Documentation - Advanced Features - 2.3.5.3 Finishes]]
 - [[https://wiki.povray.org/content/Reference:Finish#Subsurface_Light_Transport][Wiki - Reference:Finish]]

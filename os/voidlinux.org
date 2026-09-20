@@ -4,12 +4,15 @@
 - home https://voidlinux.org/
 - wiki https://en.wikipedia.org/wiki/Void_Linux
 - 2008
-- by Juan Romero Pardines
+- by Juan Romero Pardines (retired)
 
 * cli
 
 - xbps-install
+  - -Su xbps - update package manager
+  - -Su - update packages
 - xbps-query
+  - -R -s PKGNAME
 - xmirror - demenu select of mirror host
 
 * snippets
