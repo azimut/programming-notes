@@ -1,0 +1,93 @@
+#+TITLE: SVG
+#+DATE: <2026-09-20 dom>
+
+- wiki https://en.wikipedia.org/wiki/SVG
+- rfc https://www.w3.org/TR/SVG/
+- tutorial: mozilla https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorials/SVG_from_scratch
+- 2001-
+- Scalable Vector Graphics
+- plaintext
+- based on paths
+- support for animations
+
+* language
+** svg attributes
+
+- width
+- height
+- viewBox - x1 y1 w h - defines an internal cordinate system
+
+** shapes
+*** geometry attributes
+|------+----------+--------+--------+---------+---------+------|
+| line | polyline | rect   | circle | ellipse | polygon | path |
+|------+----------+--------+--------+---------+---------+------|
+| x1   | points   | x      | cx     | cx      | points  | d    |
+| y1   |          | y      | cy     | cy      |         |      |
+| x2   |          | width  | r      | rx      |         |      |
+| y2   |          | height |        | ry      |         |      |
+|      |          | rx     |        |         |         |      |
+|      |          | ry     |        |         |         |      |
+|------+----------+--------+--------+---------+---------+------|
+
+- path
+  - uses uppercase in commands for absolute and lowercase for relative positioning
+  |---+------------------------+-----------------|
+  |   |          <c>           |       <c>       |
+  | M |          move          |       x,y       |
+  | L |          line          |       x,y       |
+  | A |          arc           |  x,y 0 x,y x,y  |
+  | Q | quadratic bezier curve |    cx,cy,x,y    |
+  | C |   cubic bezier curve   | cx,cy,cx,cy,x,y |
+  | Z |       close path       |                 |
+  |---+------------------------+-----------------|
+
+- polygon / polyline
+  - are non regular polygons
+  - where ~points~ value is pairs of x,y separated by a space
+    - eg: "60,100 100,180, 140,140 180,180 220,110"
+
+*** presentation attributes
+|-------------------+----------------------------|
+|                   |            <c>             |
+| pathLength        |             n              |
+| fill              | color / none / transparent |
+| stroke            | color / none / transparent |
+| stroke-width      |             n              |
+| stroke-dasharray  |     Width,Gap[...,W,G]     |
+| stroke-dashoffset |             n              |
+| stroke-linecap    |           square           |
+|                   |            butt            |
+|                   |           round            |
+|-------------------+----------------------------|
+* snippets
+
+** css example
+
+#+begin_src css
+  circle {
+      fill: hotpink;
+      transition: r 400ms, cy 600ms;
+  }
+
+  button:hover circle,
+  button:focus-visible circle {
+      r: 50px;
+      cy: 100px;
+  }
+#+end_src
+
+#+begin_src html
+  <svg width="100" height="100">
+    <circle
+      r="30"
+      cx="50"
+      cy="50"
+    />
+  </svg>
+#+end_src
+
+* gotchas
+
+- when a 2D shape only scretches in 1D, is invalid and doesn't get rendered
+- in ~points~ extra characters are considered superflous and could be replaced with space
