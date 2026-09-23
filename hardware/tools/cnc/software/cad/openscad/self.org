@@ -277,6 +277,9 @@ all take a variable as an argument
 - constraints are made by tying numerically a value to another
 - declare vars at the top
 - define modules at the bottom
+- things to remember for 3d printing
+  - think at least once on the orientation of the print (a future flat surface)
+  - place the figure as it would print (centered and at 0)
 
 * use cases
 
@@ -516,7 +519,8 @@ https://github.com/BelfrySCAD/BOSL2
 
 ** Round-Anything
 
-https://github.com/Irev-Dev/Round-Anything
+- https://github.com/Irev-Dev/Round-Anything
+- https://learn.cadhub.xyz/docs/round-anything/api-reference
 
 - include <Round-Anything/polyround.scad>
 - based on arrays of polygon points [x,y,radius]
