@@ -265,6 +265,17 @@ if(n)eq ($(CC),gcc)
 else # if...
 endif
 #+end_src
+** macros
+
+#+begin_src makefile
+  define common-png-steps
+  	@echo "--- Running common step for $(@): Verifying dimensions ---"
+  endef
+
+  %.png: %.jpg
+        convert $< $@
+        $(common-png-steps)
+#+end_src
 
 * snippets
 
@@ -327,6 +338,7 @@ $(THUMBS): %.thumb.jpg: %.jpg
 - ~=~ assignment is perpetually evaluated (aka a macro definition)
 - ~$~ needs to be always escaped with ~$$~ to be sent to commands as such
 - ~\t~ for indentation, NOT spaces
+- Target order does NOT matter, is from more precise to less one.
 - Will *keep* an incomplete target on failure, unless ~.DELETE_ON_ERROR:~
 - What is an ~intermediate~ target? And how to stop them from being deleted?
 - to do Process Substitution we need to:
