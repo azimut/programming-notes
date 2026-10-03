@@ -229,7 +229,7 @@ b              -0.890  1.000
 |    <c>     |      <c>      |                                             |
 |            |               |                                             |
 |------------+---------------+---------------------------------------------|
-|   table    |  "FILENAME"   | save plot to file, unset it after           |
+|   table    |  "FILENAME"   | save .dat plot to file, unset it after      |
 |  encoding  |     utf8      |                                             |
 |------------+---------------+---------------------------------------------|
 |   title    |       S       | the                                         |
@@ -271,6 +271,7 @@ b              -0.890  1.000
 |---------------+----------------+----------------------------------|
 |      <c>      |      <c>       |                                  |
 |---------------+----------------+----------------------------------|
+| [xyz]zeroaxis |       -        | show zero axes                   |
 |    border     |      [N]       | pick axis lines (takes a bitsum) |
 |               | linecolor COL  |                                  |
 |     grid      |       -        | axis grid                        |

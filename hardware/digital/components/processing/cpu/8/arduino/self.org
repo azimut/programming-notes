@@ -321,3 +321,11 @@ https://wiki.archlinux.org/index.php/Arduino
 #+begin_src shell
   stty -F /dev/ttyACM0 cs8 9600 ignbrk -brkint -imaxbel -opost -onlcr -isig -icanon -iexten -echo -echoe -echok -echoctl -echoke noflsh -ixon -crtscts
 #+end_src
+* Libraries
+
+- /dev/ttyACM0 -> /dev/uinput https://github.com/mcgurk/Linux-Arduino-Serial-Joystick
+
+- V-USB https://github.com/todd-herbert/unoHID
+  - Your Arduino will NOT APPEAR as a USB keyboard or mouse through the built in USB port.
+  - Instead, you will need to wire a secondary USB port, using pins 2,4 and 5.
+  - project: https://www.msarnoff.org/gen2usb/
