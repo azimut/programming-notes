@@ -48,8 +48,9 @@
 
 #+begin_src gnuplot
   #!/usr/bin/gnuplot -persist
-  a = 7             # variable assignent
-  f(x,d) = d * x**2 # functions
+  a = 7                       # variable assignent
+  f(x,d) = d * x**2           # functions
+  f(x)   = (PI=pi, sin(x*PI)) # multi-statement functions
   g(x)   = x <= 0 ? sin(x) : NaN
 #+end_src
 
