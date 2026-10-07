@@ -424,3 +424,7 @@ https://www.lua.org/versions.html
 | [[https://urn-lang.com/][urn]]        | lisp |
 | [[https://amulet.works/][amulet]]     | ml   |
 |------------+------|
+
+* videos
+
+- 26 [[https://www.youtube.com/watch?v=9PKSKMsFi2E][You only need 2 programming languages]] by dacctal
