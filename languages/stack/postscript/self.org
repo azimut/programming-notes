@@ -484,6 +484,7 @@
 
 ** art / graphics
 
+- 4k procedural graphics https://www.pouet.net/prod.php?which=52410
 - logo https://seriot.ch/projects/golfing_with_postscript.html
 - yearly poster
   - https://github.com/k16shikano/new-year-cards
