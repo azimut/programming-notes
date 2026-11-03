@@ -159,12 +159,15 @@ I -----------|
   - MonkMakesDuino
 
 ** Uno
+
 #+ATTR_ORG: :width 400
 [[https://res.cloudinary.com/practicaldev/image/fetch/s--cCmipZlc--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/778713k4efamdbandco8.png]]
 
-- ATmega328p
-- USB to TTL
+- R3
+- ATMEGA328P - 16 Mhz
+- USB to TTL - MEGA16U
 - 2 voltage regulators: 5v and 3.3v
+- 5.3mm power jack
 - LM358: dual opamp
   1) [[https://forum.arduino.cc/t/uno-rev-3-what-is-the-lm358-for/125822][as a voltage comparator]], between USB and Vin, to know the power source
   2) buffers D13, removing the load created by the L LED and its current limiting resistor.
