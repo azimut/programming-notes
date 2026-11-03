@@ -438,6 +438,26 @@ https://github.com/BelfrySCAD/BOSL2
 |--------+--------+-----------------+-------|
 | fillet | plot3d | plot_revolution | ruler |
 |--------+--------+-----------------+-------|
+*** BOSL2 operations
+
+- extrude_from_to() - 2d figure between 2 points
+  - (p1,p2) {2d-childrens}
+  - convexity, twist, scale, slices
+- path_extrude2d() - 2d figures along 1 2D path
+  - (path) {2d-childrens}
+  - caps, closed, s, convexity
+- path_extrude() - 2d figures along 1 3D path
+  - (path) {2d-childrens}
+  - convexity, clipsize
+- cylindrical_extrude() - 2d children along around cylinder
+
+- chain_hull()
+- bounding_box()
+
+- minkowski_difference() {}
+- offset3d(r) {}
+- round3d(r|or|ir|or/ir) {}
+
 *** BOSL2 object attributes
 
 |--------+--------------------+-------------------------------------------------|
@@ -482,6 +502,7 @@ https://github.com/BelfrySCAD/BOSL2
 |                  |                             | from=p to=p  |
 |      mirror      | xflip yflip zflip           |              |
 |                  | skew                        | s[xyz][xyz]= |
+|                  |                             | a[xyz][xyz]= |
 |------------------+-----------------------------+--------------|
 
 *** BOSL2 distributions / array operators
