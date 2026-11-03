@@ -1,0 +1,41 @@
+- aka =Famicon=
+- aka =Family Game= in south america
+
+* controller
+
+- brown - gnd   - black
+- white - data   - gren
+- orange - latch?   - blue
+- yellow - clock ?   - white
+- red - vcc   - orange
+
+- by bitluni https://www.youtube.com/watch?v=Qpt14gJVpTk
+- famiclon http://luispichio.blogspot.com/2015/06/arduino-interfaz-para-joystick-de.html
+  - not my pinout
+- my famiclon pinout https://www.tapatalk.com/groups/blissbox/request-famicom-fc-db15-da15-t352-s20.html
+  #+CAPTION: DB9 female controller pinout
+  #+begin_src
+    NC CLOCK LATCH DATA NC
+      NC  GND  NC  VCC
+  #+end_src
+
+- uses =serial pooling= shift register protocols
+- latch and clock pins can be shared between controllers
+- AB turbo buttons, are equivalent to pressing AB repeatedly
+- pins
+  - vcc, gnd (supports 5v and 3.3v)
+  - 3 line/pins serial communication
+    |-----+--------------+----------------------------------------|
+    | IN  | latch/strobe | sent to capture the current state      |
+    | IN  | clock        | on each, the next button state is read |
+    | OUT | data         | single bit, of the button status       |
+    |-----+--------------+----------------------------------------|
+    - order
+      - a
+      - b
+      - start
+      - select
+      - up
+      - down
+      - left
+      - right
