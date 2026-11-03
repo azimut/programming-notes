@@ -1,0 +1,18 @@
+* cable = DB9 male -> female pins
+
+FP = Female Pins = 5 pin holes above, 4 below
+M9 = Male DB9    = 5 pins above, 4 below
+
+|----+----+----|
+| FP | M9 | F9 |
+|----+----+----|
+|  1 |  1 |  5 |
+|  2 |  3 |  3 |
+|  3 |  5 |  1 |
+|  4 |  7 |  8 |
+|  5 |  9 |  6 |
+|  6 |  2 |  4 |
+|  7 |  4 |  2 |
+|  8 |  6 |  9 |
+|  9 |  8 |  7 |
+|----+----+----|
