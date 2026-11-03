@@ -70,11 +70,71 @@
 
 ** functions
 
+- http://web.archive.org/web/20220301182548/http://gnuplot.info/docs_5.5/gnuplot5.html
 - http://www.gnuplot.info/docs/loc1283.html
-- math
-- string: sprintf
+- https://gnuplot.sourceforge.net/docs_4.2/node53.html
 - time
-- other
+
+*** math
+
+- besj[01], besy[01] - bessel functions, in radians
+- trigonometry take radians
+  - [a]sin[h]
+  - [a]cos[h]
+  - [a]tan[2h]
+- ceil, int, floor
+- abs, sgn
+- sqrt, exp, log, log10
+
+|--------------+---------+----------------------------------------------------|
+|     <c>      |   <c>   |                                                    |
+|    arg(x)    | complex | the phase of x                                     |
+|    erf(x)    |   any   | error function of real(x)                          |
+|  inverf(x)   |   any   | inverse error function of real(x)                  |
+|   erfc(x)    |   any   | 1.0 - error function of real(x)                    |
+| ibeta(p,q,x) |   any   | ibeta function of real(p,q,x)                      |
+|   gamma(x)   |   any   | gamma function of real(x)                          |
+| igamma(a,x)  |   any   | igamma function of real(a,x)                       |
+|  lgamma(x)   |   any   | lgamma function of real(x)                         |
+|  invnorm(x)  |   any   | inverse normal distribution function of real(x)    |
+| lambertw(x)  |  real   | Lambert W function                                 |
+|   norm(x)    |   any   | normal distribution (Gaussian) function of real(x) |
+|   rand(x)    |   any   | pseudo random number generator                     |
+|   real(x)    |   any   | real part of x                                     |
+|   imag(x)    | complex | imaginary part of x as a real number               |
+|--------------+---------+----------------------------------------------------|
+
+*** string
+|--------------------------+------------+-----------------------------------------------------|
+|           <c>            |    <c>     |                                                     |
+|   gprintf("format",x)    |    any     | string result from applying gnuplot's format parser |
+| sprintf("format",x,...)  |  multiple  | string result from C-language sprintf               |
+|     strlen("string")     |   string   | int length of string                                |
+| strstrt("string","key")  |  strings   | int index of first character of substring "key"     |
+| substr("string",beg,end) |  multiple  | string "string"[beg:end]                            |
+|    system("command")     |   string   | string containing output stream of shell command    |
+|     word("string",n)     | string int | returns the nth word in "string"                    |
+|     words("string")      |   string   | returns the number of words in "string"             |
+|--------------------------+------------+-----------------------------------------------------|
+
+*** other
+|-----------------+---------------+----------------------------------------------------------|
+|       <c>       |      <c>      |                                                          |
+|    column(x)    |      int      | column 7#7 during datafile manipulation.                 |
+|   defined(X)    | variable_name | [DEPRECATED] returns 1 if X is defined, 0 otherwise.     |
+|   exists("X")   | variable_name | returns 1 if a variable named X is defined, 0 otherwise. |
+| stringcolumn(x) |      int      | content of column 7#7 as a string.                       |
+|  timecolumn(x)  |      int      | timecolumn 7#7 during datafile manipulation.             |
+|   tm_hour(x)    |      int      | the hour                                                 |
+|   tm_mday(x)    |      int      | the day of the month                                     |
+|    tm_min(x)    |      int      | the minute                                               |
+|    tm_mon(x)    |      int      | the month                                                |
+|    tm_sec(x)    |      int      | the second                                               |
+|   tm_wday(x)    |      int      | the day of the week                                      |
+|   tm_yday(x)    |      int      | the day of the year                                      |
+|   tm_year(x)    |      int      | the year                                                 |
+|    valid(x)     |      int      | test validity of 48#48 during datafile manip.            |
+|-----------------+---------------+----------------------------------------------------------|
 
 ** commands
 
@@ -354,6 +414,11 @@ http://gnuplot.info/demo/pm3dcolors.html
 - dumb (aka ascii)
 
 * snippets
+
+- mod
+  #+begin_src sh
+   mod(x, y) = x - y * floor(x / y)
+  #+end_src
 
 - stream - draw last 200 lines, ten times per second
   #+begin_src sh
